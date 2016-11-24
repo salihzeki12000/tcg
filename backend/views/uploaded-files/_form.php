@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UploadedFiles */
@@ -20,6 +21,8 @@ use yii\widgets\ActiveForm;
     <!-- <?//= $form->field($model, 'path')->textInput(['maxlength' => true]) ?> -->
 
     <!-- <?//= $form->field($model, 'create_time')->textInput() ?> -->
+
+    <!-- <?//= $form->field($model, 'images[]')->widget(FileInput::classname(), ['options' => ['multiple' => true, 'maxFileCount' => 10,], ]); ?> -->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
