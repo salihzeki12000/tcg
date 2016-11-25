@@ -53,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <?php
+/*
 echo Html::a('创建', '#', [ 'id' => 'create', 'data-toggle' => 'modal', 'data-target' => '#create-modal', 'class' => 'btn btn-success', ]);
 ?>
 
@@ -72,4 +73,5 @@ $js = <<<JS
 JS;
 $this->registerJs($js);
 Modal::end(); 
+*/
 ?>
