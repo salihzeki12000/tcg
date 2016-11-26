@@ -7,9 +7,9 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Itinerary',
-]) . $model->id;
+]) . "Day No." . $model->day;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Itineraries'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => "Day No." . $model->day, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="itinerary-update">
@@ -18,6 +18,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'tour_info' => $tour_info,
+        'p1' => $p1,
+        'p2' => $p2,
     ]) ?>
 
 </div>

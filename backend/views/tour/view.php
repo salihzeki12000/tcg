@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\UploadedFiles;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
@@ -42,9 +43,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'price_usd',
             'overview:ntext',
             'best_season',
-            'pic_map',
-            'pic_title',
+            [
+              'attribute'=>'image',
+              'label'=> Yii::t('app', 'Title Picture'),
+              'format' => 'raw',
+              'value' => "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_title, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_title, 's') . "' width='200px' /></a>",
+            ],
             'inclusion:ntext',
+            [
+              'attribute'=>'image',
+              'label'=> Yii::t('app', 'Title Picture'),
+              'format' => 'raw',
+              'value' => "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_map, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_map, 's') . "' width='200px' /></a>",
+            ],
             'exclusion:ntext',
             'tips:ntext',
             'keywords',

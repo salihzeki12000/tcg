@@ -3,12 +3,14 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\helpers\Url;
 use common\models\Itinerary;
 use common\models\ItinerarySearch;
+use common\models\UploadedFiles;
+use common\models\Tour;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 /**
  * ItineraryController implements the CRUD actions for Itinerary model.
  */
@@ -61,15 +63,21 @@ class ItineraryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($tour_id='')
     {
         $model = new Itinerary();
+        $tour_info = array();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id, 'tour_id'=>$model->tour_id]);
         } else {
+            if (!empty($tour_id)) {
+                $tour_info = Tour::find()->where(['id' => $tour_id])->one();
+                $model->tour_id = $tour_info['id'];
+            }
             return $this->render('create', [
                 'model' => $model,
+                'tour_info' => $tour_info,
             ]);
         }
     }
@@ -83,12 +91,40 @@ class ItineraryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $p1 = $p2 = [];
+
+        $tour_info = Tour::find()->where(['id' => $model->tour_id])->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if (Yii::$app->request->post('add_next')) {
+                return $this->redirect(['create', 'tour_id' => $model->tour_id]);
+            }
+            return $this->redirect(['tour/update', 'id' => $model->tour_id]);
         } else {
+            $ftype = Yii::$app->params['biz_type']['itinerary'];
+            $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
+            $file_use = Yii::$app->db->createCommand($sql)
+            ->queryAll();
+
+            foreach ($file_use as $key => $value) {
+                $path = Yii::$app->params['uploads_url'] . UploadedFiles::getSize($value['path'], 's');
+                $p1[$key] = $path;
+                $p2[$key] = [
+                    // 要删除商品图的地址
+                    'url' => Url::toRoute('/uploaded-files/del-file-use'),
+                    // 商品图对应的商品图id
+                    'key' => $value['fu_id'],
+                    'caption' => $value['org_name'],
+                    'size' => $value['size'],
+                    'width' => "120px",
+                ];
+            }
+
             return $this->render('update', [
                 'model' => $model,
+                'tour_info' => $tour_info,
+                'p1' => $p1,
+                'p2' => $p2,
             ]);
         }
     }
@@ -101,9 +137,11 @@ class ItineraryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $tour_id = $model->tour_id;
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['tour/update', 'id' => $tour_id]);
     }
 
     /**

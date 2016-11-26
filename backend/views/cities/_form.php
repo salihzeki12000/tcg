@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use common\models\UploadedFiles;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Cities */
@@ -21,6 +22,11 @@ use kartik\file\FileInput;
 
     <!-- <?//= $form->field($model, 'pic_s')->textInput(['maxlength' => true]) ?> -->
     <?= $form->field($model, 'image')->fileInput() ?>
+    <?php 
+        if ($model->pic_s) {
+            echo "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 's') . "' width='200px' /></a>";
+        }
+    ?>
 
     <?php if (!$model->isNewRecord) { ?>
 
@@ -53,7 +59,7 @@ use kartik\file\FileInput;
                 ]
             ],
         ]);
-     ?>
+    ?>
 
 
     <?= $form->field($model, 'introduction')->widget(\yii\redactor\widgets\Redactor::className(), [
@@ -75,7 +81,7 @@ use kartik\file\FileInput;
     <?php } ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

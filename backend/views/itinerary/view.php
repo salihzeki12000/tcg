@@ -23,6 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a(Yii::t('app', 'Back to Tour'), ['tour/update', 'id'=>$model->tour_id], ['class' => 'btn btn-primary']) ?>
+
     </p>
 
     <?= DetailView::widget([

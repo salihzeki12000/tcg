@@ -5,10 +5,15 @@ namespace backend\controllers;
 use Yii;
 use common\models\Tour;
 use common\models\TourSearch;
+use common\models\UploadedFiles;
+use common\models\Cities;
+use common\models\Itinerary;
+use common\models\ItinerarySearch;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 /**
  * TourController implements the CRUD actions for Tour model.
  */
@@ -51,8 +56,29 @@ class TourController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $cities = ArrayHelper::map(Cities::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
+        $model->cities = join(',', array_values($cities));
+        $tour_themes = Yii::$app->params['tour_themes'];
+        $themes_ids = explode(',', $model->themes);
+        $themes = array();
+        if (is_array($themes_ids)) {
+            foreach ($themes_ids as $value) {
+                $themes[] = $tour_themes[$value];
+            }
+            $model->themes = join(',', array_values($themes));
+        }
+        $months = Yii::$app->params['months'];
+        $best_season_ids = explode(',', $model->best_season);
+        $best_season = array();
+        if (is_array($best_season_ids)) {
+            foreach ($best_season_ids as $value) {
+                $best_season[] = $months[$value];
+            }
+            $model->best_season = join(',', array_values($best_season));
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -65,8 +91,18 @@ class TourController extends Controller
     {
         $model = new Tour();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (is_array($_POST['Tour']['cities'])) {
+                $model->cities = join(',', $_POST['Tour']['cities']);
+                $model->cities_count = count($_POST['Tour']['cities']);
+            }
+            if (is_array($_POST['Tour']['themes'])) {
+                $model->themes = join(',', $_POST['Tour']['themes']);
+            }
+            if($model->save())
+            {
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -83,12 +119,84 @@ class TourController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $p1 = $p2 = [];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (is_array($_POST['Tour']['cities'])) {
+                $model->cities = join(',', $_POST['Tour']['cities']);
+                $model->cities_count = count($_POST['Tour']['cities']);
+            }
+            if (is_array($_POST['Tour']['themes'])) {
+                $model->themes = join(',', $_POST['Tour']['themes']);
+            }
+            if (is_array($_POST['Tour']['best_season'])) {
+                $model->best_season = join(',', $_POST['Tour']['best_season']);
+            }
+
+            $file = \yii\web\UploadedFile::getInstance($model, 'image');
+            if (!empty($file))
+            {
+                $tmp_name = $file->tempName;
+                if ($tmp_name) {
+                    $file_path = UploadedFiles::uploadFile($file);
+                    if ($file_path)
+                    {
+                        $model->pic_title = $file_path;
+                    }
+                }
+            }
+
+            $file_map = \yii\web\UploadedFile::getInstance($model, 'map_image');
+            if (!empty($file_map))
+            {
+                $tmp_name = $file_map->tempName;
+                if ($tmp_name) {
+                    $file_path = UploadedFiles::uploadFile($file_map);
+                    if ($file_path)
+                    {
+                        $model->pic_map = $file_path;
+                    }
+                }
+            }
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
+            $model->cities = explode(',', $model->cities);
+            $model->themes = explode(',', $model->themes);
+            $model->best_season = explode(',', $model->best_season);
+
+            $ftype = Yii::$app->params['biz_type']['tour'];
+            $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
+            $file_use = Yii::$app->db->createCommand($sql)
+            ->queryAll();
+
+            foreach ($file_use as $key => $value) {
+                $path = Yii::$app->params['uploads_url'] . UploadedFiles::getSize($value['path'], 's');
+                $p1[$key] = $path;
+                $p2[$key] = [
+                    // 要删除商品图的地址
+                    'url' => Url::toRoute('/uploaded-files/del-file-use'),
+                    // 商品图对应的商品图id
+                    'key' => $value['fu_id'],
+                    'caption' => $value['org_name'],
+                    'size' => $value['size'],
+                    'width' => "120px",
+                ];
+            }
+
+            $_GET['sort'] = 'day';
+            $searchModel = new ItinerarySearch();
+            $queryParams = Yii::$app->request->queryParams;
+            $dataProvider = $searchModel->search($queryParams);
+
             return $this->render('update', [
                 'model' => $model,
+                'p1' => $p1,
+                'p2' => $p2,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
             ]);
         }
     }

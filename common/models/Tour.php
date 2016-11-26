@@ -33,6 +33,9 @@ use Yii;
  */
 class Tour extends \yii\db\ActiveRecord
 {
+    public $image;
+    public $map_image;
+    public $images;
     /**
      * @inheritdoc
      */
@@ -52,7 +55,7 @@ class Tour extends \yii\db\ActiveRecord
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
             [['overview', 'inclusion', 'exclusion', 'tips'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name', 'themes', 'cities', 'best_season', 'pic_map', 'pic_title', 'link_tour'], 'string', 'max' => 255],
+            [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
             [['keywords'], 'string', 'max' => 512],
         ];

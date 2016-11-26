@@ -17,6 +17,7 @@ use Yii;
  */
 class Itinerary extends \yii\db\ActiveRecord
 {
+    public $images;
     /**
      * @inheritdoc
      */
@@ -47,7 +48,7 @@ class Itinerary extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'tour_id' => Yii::t('app', 'Tour ID'),
-            'day' => Yii::t('app', 'Day'),
+            'day' => Yii::t('app', 'Day No.'),
             'cities_name' => Yii::t('app', 'Cities Name'),
             'description' => Yii::t('app', 'Description'),
             'create_time' => Yii::t('app', 'Create Time'),
