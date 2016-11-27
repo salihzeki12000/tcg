@@ -32,8 +32,8 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title', 'type'], 'required'],
-            [['id', 'type', 'sub_type', 'status'], 'integer'],
+            [['title', 'type'], 'required'],
+            [['type', 'sub_type', 'status'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['title'], 'string', 'max' => 255],

@@ -18,7 +18,7 @@ use common\models\UploadedFiles;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <!-- <?//= $form->field($model, 'status')->textInput() ?> -->
-    <?= $form->field($model, 'status')->dropdownList(['1' => 'Show', '0' => 'Hide']) ?>
+    <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
 
     <!-- <?//= $form->field($model, 'pic_s')->textInput(['maxlength' => true]) ?> -->
     <?= $form->field($model, 'image')->fileInput() ?>

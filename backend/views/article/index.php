@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Articles');
+$this->title = Yii::t('app', ucfirst(Yii::$app->controller->id));
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Article'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create ' . ucfirst(Yii::$app->controller->id)), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,10 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'type',
-            'sub_type',
-            'content:ntext',
-            // 'status',
+            // 'type',
+            // 'sub_type',
+            // 'content:ntext',
+            [
+                'attribute'=>'status',
+                'filter'=> Yii::$app->params['dis_status'],
+                'value' => function ($data) {
+                    return Yii::$app->params['dis_status'][$data['status']];
+                }
+            ],
             // 'create_time',
             // 'update_time',
 

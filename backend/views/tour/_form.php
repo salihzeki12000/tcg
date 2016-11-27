@@ -22,7 +22,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropdownList(['1' => 'Show', '0' => 'Hide']) ?>
+    <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
 
     <?= $form->field($model, 'themes')->checkboxList(Yii::$app->params['tour_themes']) ?>
 

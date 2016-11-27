@@ -20,6 +20,9 @@ use Yii;
  */
 class Album extends \yii\db\ActiveRecord
 {
+    public $image;
+    public $images;
+
     /**
      * @inheritdoc
      */
@@ -51,7 +54,7 @@ class Album extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'type' => Yii::t('app', 'Type'),
             'name' => Yii::t('app', 'Name'),
-            'city_id' => Yii::t('app', 'City ID'),
+            'city_id' => Yii::t('app', 'City'),
             'pic_s' => Yii::t('app', 'Pic S'),
             'overview' => Yii::t('app', 'Overview'),
             'rec_type' => Yii::t('app', 'Rec Type'),

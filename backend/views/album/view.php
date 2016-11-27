@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\UploadedFiles;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Album */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Albums'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', ucfirst(Yii::$app->controller->id)), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="album-view">
@@ -32,7 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'name',
             'city_id',
-            'pic_s',
+            [
+              'attribute'=>'image',
+              'label'=> Yii::t('app', 'Title Picture'),
+              'format' => 'raw',
+              'value' => "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 's') . "' width='200px' /></a>",
+            ],
             'overview:ntext',
             'rec_type',
             'status',

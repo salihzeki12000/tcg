@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use common\models\Cities;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TourSearch */
@@ -27,9 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'code',
-            'status',
+            [
+                'attribute'=>'status',
+                'filter'=> Yii::$app->params['dis_status'],
+                'value' => function ($data) {
+                    return Yii::$app->params['dis_status'][$data['status']];
+                }
+            ],
             // 'themes',
-            // 'cities',
+            [
+                'attribute'=>'cities',
+                'filter'=>ArrayHelper::map(Cities::find()->asArray()->all(), 'id', 'name'),
+                'value' => function ($data) {
+                    $cities = ArrayHelper::map(Cities::find()->where(['id' => explode(',', $data['cities'])])->all(), 'id', 'name');
+                    return join(',', array_values($cities));
+                }
+            ],
             // 'cities_count',
             // 'priority',
             // 'tour_length',

@@ -1,7 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
+use common\models\UploadedFiles;
+use common\models\Cities;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Album */
@@ -12,26 +17,67 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type')->textInput() ?>
+    <?= Html::activeHiddenInput($model, 'type', array('value'=>$type)) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'city_id')->textInput() ?>
+    <?= $form->field($model, 'city_id')->dropdownList(ArrayHelper::map(Cities::find()->all(), 'id', 'name')) ?>
 
-    <?= $form->field($model, 'pic_s')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+    <?php 
+        if ($model->pic_s) {
+            echo "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 's') . "' width='200px' /></a>";
+        }
+    ?>
 
-    <?= $form->field($model, 'overview')->textarea(['rows' => 6]) ?>
+    <?php 
+        if (!$model->isNewRecord) {
+    ?>
+    <?= $form->field($model, 'images')->widget(FileInput::classname(),
+        ['options' => ['multiple' => true,],
+         'pluginOptions' => [
+                'uploadAsync' => true,
+                'minFileCount' => 1,
+                'maxFileCount' => 10,
+                'initialPreviewAsData' => true,
+                'initialPreviewFileType' => 'image',
+                // 预览的文件
+                'initialPreview' => $p1,
+                // 需要展示的图片设置，比如图片的宽度等
+                'initialPreviewConfig' => $p2,
+                'overwriteInitial' => false,
+                'uploadUrl' => Url::toRoute(['/uploaded-files/async-files']),
+                'uploadExtraData' => [
+                    'name' => $model->name,
+                    'cid'  => $model->id,
+                    'type' => Yii::$app->params['biz_type']['album'],
+                ],
+                'fileActionSettings' => [
+                    // 设置具体图片的查看属性为false,默认为true
+                    'showZoom' => false,
+                    // 设置具体图片的上传属性为true,默认为true
+                    'showUpload' => true,
+                    // 设置具体图片的移除属性为true,默认为true
+                    'showRemove' => true,
+                ]
+            ],
+        ]);
+    ?>
 
-    <?= $form->field($model, 'rec_type')->textInput() ?>
+    <?= $form->field($model, 'overview')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '350px',
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'rec_type')->radioList(Yii::$app->params['city_rec_type']) ?>
 
-    <?= $form->field($model, 'create_time')->textInput() ?>
+    <!-- <?//= $form->field($model, 'status')->textInput() ?> -->
 
-    <?= $form->field($model, 'update_time')->textInput() ?>
+    <?php } ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

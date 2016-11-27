@@ -27,7 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'status',
+            [
+                'attribute'=>'status',
+                'filter'=> Yii::$app->params['dis_status'],
+                'value' => function ($data) {
+                    return Yii::$app->params['dis_status'][$data['status']];
+                }
+            ],
             [
                 'attribute' => 'image',
                 'format' => 'html',    
