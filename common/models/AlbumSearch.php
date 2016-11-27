@@ -18,8 +18,8 @@ class AlbumSearch extends Album
     public function rules()
     {
         return [
-            [['id', 'type', 'city_id', 'rec_type', 'status'], 'integer'],
-            [['name', 'pic_s', 'overview', 'create_time', 'update_time'], 'safe'],
+            [['id', 'type', 'city_id', 'status'], 'integer'],
+            [['name', 'rec_type', 'pic_s', 'overview', 'create_time', 'update_time'], 'safe'],
         ];
     }
 
@@ -62,14 +62,13 @@ class AlbumSearch extends Album
             'id' => $this->id,
             'type' => $this->type,
             'city_id' => $this->city_id,
-            'rec_type' => $this->rec_type,
             'status' => $this->status,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'pic_s', $this->pic_s])
+            ->andWhere("('{$this->rec_type}' = '' OR FIND_IN_SET('{$this->rec_type}', rec_type))")
             ->andFilterWhere(['like', 'overview', $this->overview]);
 
         return $dataProvider;

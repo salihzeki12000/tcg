@@ -13,7 +13,7 @@ use Yii;
  * @property integer $city_id
  * @property string $pic_s
  * @property string $overview
- * @property integer $rec_type
+ * @property string $rec_type
  * @property integer $status
  * @property string $create_time
  * @property string $update_time
@@ -38,10 +38,11 @@ class Album extends \yii\db\ActiveRecord
     {
         return [
             [['type', 'name', 'city_id'], 'required'],
-            [['type', 'city_id', 'rec_type', 'status'], 'integer'],
+            [['type', 'city_id', 'status'], 'integer'],
             [['overview'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['name', 'pic_s'], 'string', 'max' => 255],
+            [['rec_type'], 'string', 'max' => 50],
         ];
     }
 
@@ -57,7 +58,7 @@ class Album extends \yii\db\ActiveRecord
             'city_id' => Yii::t('app', 'City'),
             'pic_s' => Yii::t('app', 'Pic S'),
             'overview' => Yii::t('app', 'Overview'),
-            'rec_type' => Yii::t('app', 'Rec Type'),
+            'rec_type' => Yii::t('app', 'Recommendation'),
             'status' => Yii::t('app', 'Status'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),

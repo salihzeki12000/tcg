@@ -60,22 +60,26 @@ class TourController extends Controller
         $cities = ArrayHelper::map(Cities::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
         $model->cities = join(',', array_values($cities));
         $tour_themes = Yii::$app->params['tour_themes'];
-        $themes_ids = explode(',', $model->themes);
-        $themes = array();
-        if (is_array($themes_ids)) {
-            foreach ($themes_ids as $value) {
-                $themes[] = $tour_themes[$value];
+        if (!empty($model->themes)) {
+            $themes_ids = explode(',', $model->themes);
+            $themes = array();
+            if (!empty($themes_ids) && is_array($themes_ids)) {
+                foreach ($themes_ids as $value) {
+                    $themes[] = $tour_themes[$value];
+                }
+                $model->themes = join(',', array_values($themes));
             }
-            $model->themes = join(',', array_values($themes));
         }
         $months = Yii::$app->params['months'];
-        $best_season_ids = explode(',', $model->best_season);
-        $best_season = array();
-        if (is_array($best_season_ids)) {
-            foreach ($best_season_ids as $value) {
-                $best_season[] = $months[$value];
+        if (!empty($model->best_season)) {
+            $best_season_ids = explode(',', $model->best_season);
+            $best_season = array();
+            if (!empty($best_season_ids) && is_array($best_season_ids)) {
+                foreach ($best_season_ids as $value) {
+                    $best_season[] = $months[$value];
+                }
+                $model->best_season = join(',', array_values($best_season));
             }
-            $model->best_season = join(',', array_values($best_season));
         }
         return $this->render('view', [
             'model' => $model,
@@ -132,6 +136,9 @@ class TourController extends Controller
             if (is_array($_POST['Tour']['best_season'])) {
                 $model->best_season = join(',', $_POST['Tour']['best_season']);
             }
+            if (is_array($_POST['Tour']['rec_type'])) {
+                $model->rec_type = join(',', $_POST['Tour']['rec_type']);
+            }
 
             $file = \yii\web\UploadedFile::getInstance($model, 'image');
             if (!empty($file))
@@ -166,6 +173,7 @@ class TourController extends Controller
             $model->cities = explode(',', $model->cities);
             $model->themes = explode(',', $model->themes);
             $model->best_season = explode(',', $model->best_season);
+            $model->rec_type = explode(',', $model->rec_type);
 
             $ftype = Yii::$app->params['biz_type']['tour'];
             $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";

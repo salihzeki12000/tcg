@@ -70,7 +70,7 @@ use common\models\Cities;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'rec_type')->radioList(Yii::$app->params['city_rec_type']) ?>
+    <?= $form->field($model, 'rec_type')->checkboxList(Yii::$app->params['rec_type']) ?>
 
     <!-- <?//= $form->field($model, 'status')->textInput() ?> -->
 

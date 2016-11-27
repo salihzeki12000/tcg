@@ -106,6 +106,9 @@ class ActivityController extends Controller
         $p1 = $p2 = [];
 
         if ($model->load(Yii::$app->request->post())) {
+            if (is_array($_POST['Album']['rec_type'])) {
+                $model->rec_type = join(',', $_POST['Album']['rec_type']);
+            }
 
             $file = \yii\web\UploadedFile::getInstance($model, 'image');
             if (!empty($file))
@@ -123,6 +126,8 @@ class ActivityController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
+            $model->rec_type = explode(',', $model->rec_type);
+
             $ftype = Yii::$app->params['biz_type']['album'];
             $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
             $file_use = Yii::$app->db->createCommand($sql)

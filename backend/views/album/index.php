@@ -38,6 +38,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
+                'attribute'=>'rec_type',
+                'filter'=>Yii::$app->params['rec_type'],
+                'value' => function ($data) {
+                    $arr_data = [];
+                    if (!empty($data['rec_type'])) {
+                        foreach (explode(',', $data['rec_type']) as $value) {
+                            $arr_data[$value] = Yii::$app->params['rec_type'][$value];
+                        }
+                    }
+                    return join(',', array_values($arr_data));
+                }
+            ],
+            [
                 'attribute' => 'image',
                 'format' => 'html',    
                 'value' => function ($data) {
@@ -47,7 +60,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             // 'pic_s',
             // 'overview:ntext',
-            // 'rec_type',
             // 'status',
             // 'create_time',
             // 'update_time',

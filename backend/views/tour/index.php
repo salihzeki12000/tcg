@@ -45,6 +45,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     return join(',', array_values($cities));
                 }
             ],
+            [
+                'attribute'=>'rec_type',
+                'filter'=>Yii::$app->params['rec_type'],
+                'value' => function ($data) {
+                    $arr_data = [];
+                    if (!empty($data['rec_type'])) {
+                        foreach (explode(',', $data['rec_type']) as $value) {
+                            $arr_data[$value] = Yii::$app->params['rec_type'][$value];
+                        }
+                    }
+                    return join(',', array_values($arr_data));
+                }
+            ],
             // 'cities_count',
             // 'priority',
             // 'tour_length',

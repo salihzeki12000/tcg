@@ -14,7 +14,7 @@ use Yii;
  * @property string $pic_l
  * @property string $introduction
  * @property string $food
- * @property integer $rec_type
+ * @property string $rec_type
  * @property string $vr
  * @property string $create_time
  * @property string $update_time
@@ -40,10 +40,10 @@ class Cities extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'status'], 'required'],
-            [['status', 'rec_type'], 'integer'],
+            [['status'], 'integer'],
             [['introduction', 'food'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name'], 'string', 'max' => 100],
+            [['name', 'rec_type'], 'string', 'max' => 100],
             [['pic_s'], 'string', 'max' => 255],
             [['vr'], 'string', 'max' => 512],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],

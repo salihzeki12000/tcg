@@ -55,7 +55,7 @@ class Tour extends \yii\db\ActiveRecord
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
             [['overview', 'inclusion', 'exclusion', 'tips'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour'], 'string', 'max' => 255],
+            [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
             [['keywords'], 'string', 'max' => 512],
         ];
@@ -88,6 +88,7 @@ class Tour extends \yii\db\ActiveRecord
             'tips' => Yii::t('app', 'Tips'),
             'keywords' => Yii::t('app', 'Keywords'),
             'link_tour' => Yii::t('app', 'Link Tour'),
+            'rec_type' => Yii::t('app', 'Recommendation'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
         ];

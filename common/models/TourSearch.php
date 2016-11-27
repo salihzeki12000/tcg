@@ -19,7 +19,7 @@ class TourSearch extends Tour
     {
         return [
             [['id', 'status', 'cities_count', 'priority', 'exp_num'], 'integer'],
-            [['name', 'code', 'themes', 'cities', 'overview', 'best_season', 'pic_map', 'pic_title', 'inclusion', 'exclusion', 'tips', 'keywords', 'link_tour', 'create_time', 'update_time'], 'safe'],
+            [['name', 'code', 'themes', 'cities', 'overview', 'best_season', 'pic_map', 'pic_title', 'inclusion', 'exclusion', 'tips', 'keywords', 'link_tour', 'rec_type', 'create_time', 'update_time'], 'safe'],
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
         ];
     }
@@ -75,7 +75,8 @@ class TourSearch extends Tour
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'code', $this->code])
             ->andFilterWhere(['like', 'themes', $this->themes])
-            ->andFilterWhere(['like', 'cities', $this->cities])
+            ->andWhere("('{$this->cities}' = '' OR FIND_IN_SET('{$this->cities}', cities))")
+            ->andWhere("('{$this->rec_type}' = '' OR FIND_IN_SET('{$this->rec_type}', rec_type))")
             ->andFilterWhere(['like', 'overview', $this->overview])
             ->andFilterWhere(['like', 'best_season', $this->best_season])
             ->andFilterWhere(['like', 'pic_map', $this->pic_map])

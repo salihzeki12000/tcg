@@ -18,8 +18,8 @@ class CitiesSearch extends Cities
     public function rules()
     {
         return [
-            [['id', 'status', 'rec_type'], 'integer'],
-            [['name', 'pic_s', 'pic_l', 'introduction', 'food', 'vr', 'create_time', 'update_time'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['name', 'rec_type', 'pic_s', 'pic_l', 'introduction', 'food', 'vr', 'create_time', 'update_time'], 'safe'],
         ];
     }
 
@@ -61,7 +61,6 @@ class CitiesSearch extends Cities
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'rec_type' => $this->rec_type,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
         ]);
@@ -71,6 +70,7 @@ class CitiesSearch extends Cities
             ->andFilterWhere(['like', 'pic_l', $this->pic_l])
             ->andFilterWhere(['like', 'introduction', $this->introduction])
             ->andFilterWhere(['like', 'food', $this->food])
+            ->andWhere("('{$this->rec_type}' = '' OR FIND_IN_SET('{$this->rec_type}', rec_type))")
             ->andFilterWhere(['like', 'vr', $this->vr]);
 
         return $dataProvider;

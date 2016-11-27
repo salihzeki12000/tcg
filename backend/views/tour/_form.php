@@ -28,6 +28,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(Cities::find()->all(), 'id', 'name')) ?>
 
+    <?= $form->field($model, 'rec_type')->checkboxList(Yii::$app->params['rec_type']) ?>
 
     <?php if (!$model->isNewRecord) { ?>
 
@@ -133,7 +134,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'link_tour')->textInput(['maxlength' => true]) ?>
 
-
+    
     <!-- <?//= $form->field($model, 'create_time')->textInput() ?> -->
 
     <!-- <?//= $form->field($model, 'update_time')->textInput() ?> -->
