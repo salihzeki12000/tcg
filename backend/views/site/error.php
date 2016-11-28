@@ -28,7 +28,7 @@ $this->title = $name;
                 form.
             </p>
 
-            <form class='search-form'>
+            <!-- <form class='search-form'>
                 <div class='input-group'>
                     <input type="text" name="search" class='form-control' placeholder="Search"/>
 
@@ -37,7 +37,7 @@ $this->title = $name;
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 
