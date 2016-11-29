@@ -72,7 +72,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $sql = "SELECT t.id,t.`name`,t.pic_title,t.`status`,GROUP_CONCAT(c.`name`) AS cities FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE t.`status`=1 AND FIND_IN_SET('1', t.rec_type)  GROUP BY t.id ";
+        $tours = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+        return $this->render('index',['tours'=>$tours]);
     }
 
     /**

@@ -1,10 +1,40 @@
 <?php
-
+use common\models\UploadedFiles;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'The China Guide';
 ?>
 <div class="site-index">
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <?php for($i=0; $i<count($tours); $i++) { ?>
+            <li data-target="#carousel-example-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
+        <?php } ?>
+      </ol>
+     
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <?php for($i=0; $i<count($tours); $i++) { $tour=$tours[$i]; ?>
+            <div class="item <?= ($i==0)? 'active' : '' ?> ">
+              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 'm')?>" alt="<?= $tour['name'] ?>">
+              <div class="carousel-caption">
+                <h3><?= $tour['name'] ?></h3>
+                <span><?= $tour['cities']?></span>
+              </div>
+            </div>
+        <?php } ?>
+      </div>
+     
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div> <!-- Carousel -->
 
     <div class="jumbotron">
         <h1>Congratulations!</h1>
@@ -15,6 +45,7 @@ $this->title = 'My Yii Application';
     </div>
 
     <div class="body-content">
+
 
         <div class="row">
             <div class="col-lg-4">
@@ -51,3 +82,12 @@ $this->title = 'My Yii Application';
 
     </div>
 </div>
+
+<?php
+$js = <<<JS
+    $('.carousel').carousel({
+        interval: 3000
+    })
+JS;
+$this->registerJs($js);
+?>
