@@ -106,7 +106,6 @@ class CitiesController extends Controller
                 }
             }
 
-            // echo json_encode($model);exit;
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

@@ -145,7 +145,7 @@ class TourController extends Controller
             {
                 $tmp_name = $file->tempName;
                 if ($tmp_name) {
-                    $file_path = UploadedFiles::uploadFile($file);
+                    $file_path = UploadedFiles::uploadFile($file, 1);
                     if ($file_path)
                     {
                         $model->pic_title = $file_path;

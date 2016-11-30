@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Article;
 use common\models\ArticleSearch;
+use common\models\UploadedFiles;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,7 +15,7 @@ use yii\filters\VerbFilter;
  */
 class ArticleController extends Controller
 {
-    public $article_type = 1;
+    public $article_type = ARTICLE_TYPE_ARTICLE;
 
     /**
      * @inheritdoc
@@ -68,8 +69,23 @@ class ArticleController extends Controller
     {
         $model = new Article();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $file = \yii\web\UploadedFile::getInstance($model, 'image');
+            if (!empty($file))
+            {
+                $tmp_name = $file->tempName;
+                if ($tmp_name) {
+                    $file_path = UploadedFiles::uploadFile($file);
+                    if ($file_path)
+                    {
+                        $model->pic_s = $file_path;
+                    }
+                }
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -87,8 +103,24 @@ class ArticleController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $file = \yii\web\UploadedFile::getInstance($model, 'image');
+            if (!empty($file))
+            {
+                $tmp_name = $file->tempName;
+                if ($tmp_name) {
+                    $file_path = UploadedFiles::uploadFile($file);
+                    if ($file_path)
+                    {
+                        $model->pic_s = $file_path;
+                    }
+                }
+            }
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,

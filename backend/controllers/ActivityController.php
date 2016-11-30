@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
  */
 class ActivityController extends Controller
 {
-    public $album_type = 2;
+    public $album_type = ALBUM_TYPE_ACTIVITY;
     /**
      * @inheritdoc
      */

@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
  */
 class SightController extends Controller
 {
-    public $album_type = 1;
+    public $album_type = ALBUM_TYPE_SIGHT;
     /**
      * @inheritdoc
      */

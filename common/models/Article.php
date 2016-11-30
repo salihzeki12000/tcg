@@ -18,6 +18,8 @@ use Yii;
  */
 class Article extends \yii\db\ActiveRecord
 {
+    public $image;
+
     /**
      * @inheritdoc
      */
@@ -36,7 +38,8 @@ class Article extends \yii\db\ActiveRecord
             [['type', 'sub_type', 'status'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['title'], 'string', 'max' => 255],
+            [['title','pic_s'], 'string', 'max' => 255],
+            ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
         ];
     }
 

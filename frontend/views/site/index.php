@@ -18,10 +18,10 @@ $this->title = 'The China Guide';
       <div class="carousel-inner">
         <?php for($i=0; $i<count($tours); $i++) { $tour=$tours[$i]; ?>
             <div class="item <?= ($i==0)? 'active' : '' ?> ">
-              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 'm')?>" alt="<?= $tour['name'] ?>">
+              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 'mob')?>" alt="<?=  $tour['name'] ?>">
               <div class="carousel-caption">
                 <h3><?= $tour['name'] ?></h3>
-                <span><?= $tour['cities']?></span>
+                <span><?= $tour['tour_length'] . " Days | " .$tour['cities']?></span>
               </div>
             </div>
         <?php } ?>
@@ -35,6 +35,79 @@ $this->title = 'The China Guide';
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
     </div> <!-- Carousel -->
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Popular City Tours</h1>
+            </div>
+
+            <?php foreach ($cities_tour as $city_tour) { ?>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_tour['pic_s'], 's')?>" alt="<?=  $city_tour['name'] ?>">
+                    <div class="carousel-caption">
+                        <h3><?= $city_tour['name'] ?> Tour</h3>
+                    </div>
+                </a>
+            </div>
+            <?php } ?>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Popular Sights</h1>
+            </div>
+
+            <?php foreach ($sights as $sight) { ?>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($sight['pic_s'], 's')?>" alt="<?=  $sight['name'] ?>">
+                    <div class="carousel-caption">
+                        <h3><?= $sight['name'] ?></h3>
+                    </div>
+                </a>
+            </div>
+            <?php } ?>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="list-group">
+            <a href="javascript:void(0);" class="list-group-item"><center><h2>FAQ</h2></center></a>
+            <?php foreach ($faq as $item) { ?>
+            <a href="#" class="list-group-item">
+                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
+                <span><?= $item['title'] ?></span>
+            </a>
+            <?php } ?>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="list-group">
+            <a href="javascript:void(0);" class="list-group-item"><center><h2>Articles</h2></center></a>
+            <?php foreach ($articles as $article) { ?>
+            <a class="col-md-6 list-group-item" href="javascript:void(0);">
+                <div class="media">
+                  <div class="media-left">
+                      <img width="100px" class="media-object" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" alt="<?= $article['title'] ?>">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><?= $article['title'] ?></h4>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio.
+                  </div>
+                </div>
+            </a>
+            <?php } ?>
+        </div>
+    </div>
 
     <div class="jumbotron">
         <h1>Congratulations!</h1>

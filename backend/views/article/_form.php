@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\UploadedFiles;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Article */
@@ -16,8 +17,17 @@ use yii\widgets\ActiveForm;
 
     <?= Html::activeHiddenInput($model, 'type', array('value'=>$type)) ?>
 
-    <?php if ($type == array_search('FAQ', Yii::$app->params['article_type'])) {?>
+    <?php if ($type == ARTICLE_TYPE_FAQ) {?>
     <?= $form->field($model, 'sub_type')->dropdownList(Yii::$app->params['faq_type']) ?>
+    <?php } ?>
+
+    <?php if ($type == ARTICLE_TYPE_ARTICLE) {?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+    <?php 
+        if ($model->pic_s) {
+            echo "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 's') . "' width='200px' /></a>";
+        }
+    ?>
     <?php } ?>
 
     <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [

@@ -60,7 +60,7 @@ class UploadedFiles extends \yii\db\ActiveRecord
 
     static public function getSize($file_path, $size='')
     {
-        if (in_array($size, array('s', 'm')))
+        if (in_array($size, array('s', 'm', 'mob')))
         {
             $rindex = strrpos($file_path, '.jpg');
             if ($rindex)
@@ -72,7 +72,7 @@ class UploadedFiles extends \yii\db\ActiveRecord
         return $file_path;
     }
 
-    static public function uploadFile($file)
+    static public function uploadFile($file, $use_mobile=0)
     {
         if (!empty($file))
         {
@@ -108,6 +108,11 @@ class UploadedFiles extends \yii\db\ActiveRecord
                 ->save($file_path.'.jpg' , ['quality' => 90]);
                 if ($ret)
                 {
+                    if ($use_mobile) {
+                        $newWidth = 720; $newHeight = 880;
+                        Image::thumbnail($tmp_name, $newWidth , $newHeight)
+                        ->save(Yii::getAlias($file_path.'_mob.jpg'), ['quality' => 90]);
+                    }
                     $newWidth = 720; $newHeight = 1440;
                     Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
                     ->save($file_path.'_m.jpg' , ['quality' => 90]);

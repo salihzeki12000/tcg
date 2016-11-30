@@ -20,6 +20,9 @@ use common\models\UploadedFiles;
     <!-- <?//= $form->field($model, 'status')->textInput() ?> -->
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
 
+
+    <?php if (!$model->isNewRecord) { ?>
+
     <!-- <?//= $form->field($model, 'pic_s')->textInput(['maxlength' => true]) ?> -->
     <?= $form->field($model, 'image')->fileInput() ?>
     <?php 
@@ -27,9 +30,7 @@ use common\models\UploadedFiles;
             echo "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 's') . "' width='200px' /></a>";
         }
     ?>
-
-    <?php if (!$model->isNewRecord) { ?>
-
+    
     <?= $form->field($model, 'images')->widget(FileInput::classname(),
         ['options' => ['multiple' => true,],
          'pluginOptions' => [

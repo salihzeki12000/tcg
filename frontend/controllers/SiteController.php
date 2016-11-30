@@ -72,10 +72,28 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $sql = "SELECT t.id,t.`name`,t.pic_title,t.`status`,GROUP_CONCAT(c.`name`) AS cities FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE t.`status`=1 AND FIND_IN_SET('1', t.rec_type)  GROUP BY t.id ";
+
+        $sql = "SELECT t.id,t.`name`,t.pic_title,t.tour_length,GROUP_CONCAT(c.`name`) AS cities FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE FIND_IN_SET('".REC_TYPE_MUST_VISIT."', t.rec_type) AND t.`status` = ".DIS_STATUS_SHOW."  GROUP BY t.id ";
         $tours = Yii::$app->db->createCommand($sql)
         ->queryAll();
-        return $this->render('index',['tours'=>$tours]);
+
+        $sql = "SELECT id,`name`,pic_s FROM cities WHERE FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type) AND `status` = ".DIS_STATUS_SHOW." ";
+        $cities_tour = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $sql = "SELECT id,`name`,pic_s FROM album WHERE FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type) AND type=".ALBUM_TYPE_SIGHT." AND `status` = ".DIS_STATUS_SHOW." ";
+        $sights = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $sql = "SELECT id,title,sub_type FROM article WHERE type=".ARTICLE_TYPE_FAQ." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
+        $faq = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $sql = "SELECT id,title,sub_type,pic_s FROM article WHERE type=".ARTICLE_TYPE_ARTICLE." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
+        $articles = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        return $this->render('index',['tours'=>$tours, 'cities_tour'=>$cities_tour, 'sights'=>$sights, 'faq'=>$faq, 'articles'=>$articles]);
     }
 
     /**
