@@ -48,7 +48,7 @@ use common\models\UploadedFiles;
                 'uploadExtraData' => [
                     'name' => $model->name,
                     'cid'  => $model->id,
-                    'type' => Yii::$app->params['biz_type']['cities'],
+                    'type' => BIZ_TYPE_CITIES,
                 ],
                 'fileActionSettings' => [
                     // 设置具体图片的查看属性为false,默认为true

@@ -53,7 +53,7 @@ use yii\helpers\Url;
                 'uploadExtraData' => [
                     'name' => $model->cities_name,
                     'cid'  => $model->id,
-                    'type' => Yii::$app->params['biz_type']['itinerary'],
+                    'type' => BIZ_TYPE_ITINERARY,
                 ],
                 'fileActionSettings' => [
                     // 设置具体图片的查看属性为false,默认为true

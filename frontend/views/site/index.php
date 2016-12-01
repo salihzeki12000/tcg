@@ -16,12 +16,18 @@ $this->title = 'The China Guide';
      
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <?php for($i=0; $i<count($tours); $i++) { $tour=$tours[$i]; ?>
+        <?php for($i=0; $i<count($tours); $i++) {
+            $tour=$tours[$i];
+            $pic_type = 'l';
+            if (Yii::$app->params['is_mobile']) {
+                $pic_type = 'mob';
+            }
+        ?>
             <div class="item <?= ($i==0)? 'active' : '' ?> ">
-              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 'mob')?>" alt="<?=  $tour['name'] ?>">
+              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], $pic_type)?>" alt="<?=  $tour['name'] ?>">
               <div class="carousel-caption">
                 <h3><?= $tour['name'] ?></h3>
-                <span><?= $tour['tour_length'] . " Days | " .$tour['cities']?></span>
+                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?>  Days | <?= $tour['cities']?></span>
               </div>
             </div>
         <?php } ?>
@@ -101,7 +107,7 @@ $this->title = 'The China Guide';
                   </div>
                   <div class="media-body">
                     <h4 class="media-heading"><?= $article['title'] ?></h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio.
+                    Posted on <?= date('d F, Y', strtotime($article['create_time'])) ?>
                   </div>
                 </div>
             </a>
@@ -120,38 +126,6 @@ $this->title = 'The China Guide';
     <div class="body-content">
 
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
 
     </div>
 </div>
@@ -159,7 +133,7 @@ $this->title = 'The China Guide';
 <?php
 $js = <<<JS
     $('.carousel').carousel({
-        interval: 3000
+        interval: 4000
     })
 JS;
 $this->registerJs($js);

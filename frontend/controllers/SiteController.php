@@ -4,7 +4,6 @@ namespace frontend\controllers;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -12,11 +11,12 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\components\BaseController;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * @inheritdoc
@@ -89,7 +89,7 @@ class SiteController extends Controller
         $faq = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
-        $sql = "SELECT id,title,sub_type,pic_s FROM article WHERE type=".ARTICLE_TYPE_ARTICLE." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
+        $sql = "SELECT id,title,sub_type,pic_s,create_time FROM article WHERE type=".ARTICLE_TYPE_ARTICLE." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
         $articles = Yii::$app->db->createCommand($sql)
         ->queryAll();
 

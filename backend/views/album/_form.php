@@ -50,7 +50,7 @@ use common\models\Cities;
                 'uploadExtraData' => [
                     'name' => $model->name,
                     'cid'  => $model->id,
-                    'type' => Yii::$app->params['biz_type']['album'],
+                    'type' => BIZ_TYPE_ALBUM,
                 ],
                 'fileActionSettings' => [
                     // 设置具体图片的查看属性为false,默认为true

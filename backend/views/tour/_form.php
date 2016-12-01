@@ -77,7 +77,7 @@ use yii\helpers\Url;
                 'uploadExtraData' => [
                     'name' => $model->name,
                     'cid'  => $model->id,
-                    'type' => Yii::$app->params['biz_type']['tour'],
+                    'type' => BIZ_TYPE_TOUR,
                 ],
                 'fileActionSettings' => [
                     // 设置具体图片的查看属性为false,默认为true

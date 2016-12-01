@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'language'=>'zh-CN',
+    // 'language'=>'zh-CN',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -41,8 +41,11 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '.html',
+            'enableStrictParsing' => false,
+            // 'suffix' => '.html',
             'rules' => [
+                'experiences' => 'experience/index',
+                'experience/<id:\d+>' => 'experience/view',
             ],
         ],
 

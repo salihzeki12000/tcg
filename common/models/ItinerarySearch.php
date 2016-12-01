@@ -63,7 +63,7 @@ class ItinerarySearch extends Itinerary
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'tour_id' => $this->tour_id,
+            'tour_id' => $params['tour_id'],
             'day' => $this->day,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
@@ -71,7 +71,6 @@ class ItinerarySearch extends Itinerary
 
         $query->andFilterWhere(['like', 'cities_name', $this->cities_name])
             ->andFilterWhere(['like', 'description', $this->description]);
-
         return $dataProvider;
     }
 }

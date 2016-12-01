@@ -112,7 +112,7 @@ class CitiesController extends Controller
         } else {
             $model->rec_type = explode(',', $model->rec_type);
 
-            $ftype = Yii::$app->params['biz_type']['cities'];
+            $ftype = BIZ_TYPE_CITIES;
             $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
             $file_use = Yii::$app->db->createCommand($sql)
             ->queryAll();

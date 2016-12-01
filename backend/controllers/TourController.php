@@ -103,6 +103,9 @@ class TourController extends Controller
             if (is_array($_POST['Tour']['themes'])) {
                 $model->themes = join(',', $_POST['Tour']['themes']);
             }
+            if (is_array($_POST['Tour']['rec_type'])) {
+                $model->rec_type = join(',', $_POST['Tour']['rec_type']);
+            }
             if($model->save())
             {
                 return $this->redirect(['update', 'id' => $model->id]);
@@ -175,7 +178,7 @@ class TourController extends Controller
             $model->best_season = explode(',', $model->best_season);
             $model->rec_type = explode(',', $model->rec_type);
 
-            $ftype = Yii::$app->params['biz_type']['tour'];
+            $ftype = BIZ_TYPE_TOUR;
             $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
             $file_use = Yii::$app->db->createCommand($sql)
             ->queryAll();
@@ -195,8 +198,10 @@ class TourController extends Controller
             }
 
             $_GET['sort'] = 'day';
+            $_GET['tour_id'] = $id;
             $searchModel = new ItinerarySearch();
             $queryParams = Yii::$app->request->queryParams;
+            unset($queryParams['id']);
             $dataProvider = $searchModel->search($queryParams);
 
             return $this->render('update', [
