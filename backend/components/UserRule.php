@@ -3,7 +3,7 @@ namespace backend\components;
 
 use Yii;
 
-class UserRule extends \yii\rbac\rule
+class UserRule extends \yii\rbac\Rule
 {
 
     public function execute($user, $item, $params)
