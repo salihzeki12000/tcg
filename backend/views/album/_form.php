@@ -70,6 +70,8 @@ use common\models\Cities;
         ],
     ]) ?>
 
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'rec_type')->checkboxList(Yii::$app->params['rec_type']) ?>
 
     <!-- <?//= $form->field($model, 'status')->textInput() ?> -->

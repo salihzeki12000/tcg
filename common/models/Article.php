@@ -13,6 +13,7 @@ use Yii;
  * @property integer $sub_type
  * @property string $content
  * @property integer $status
+ * @property integer $keywords
  * @property string $create_time
  * @property string $update_time
  */
@@ -38,7 +39,7 @@ class Article extends \yii\db\ActiveRecord
             [['type', 'sub_type', 'status'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['title','pic_s'], 'string', 'max' => 255],
+            [['title','pic_s', 'keywords'], 'string', 'max' => 255],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
         ];
     }
@@ -55,6 +56,7 @@ class Article extends \yii\db\ActiveRecord
             'sub_type' => Yii::t('app', 'Sub Type'),
             'content' => Yii::t('app', 'Content'),
             'status' => Yii::t('app', 'Status'),
+            'keywords' => Yii::t('app', 'Keywords'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
         ];

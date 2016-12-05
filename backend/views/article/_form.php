@@ -36,6 +36,8 @@ use common\models\UploadedFiles;
         ],
     ]) ?>
 
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
 
     <!-- <?//= $form->field($model, 'create_time')->textInput() ?> -->
