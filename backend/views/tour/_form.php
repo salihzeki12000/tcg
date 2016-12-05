@@ -91,17 +91,33 @@ use yii\helpers\Url;
         ]);
     ?>
 
-    <?= $form->field($model, 'overview')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'overview')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        ],
+    ]) ?>
 
     <!-- <?//= $form->field($model, 'pic_map')->textInput(['maxlength' => true]) ?> -->
 
     <!-- <?//= $form->field($model, 'pic_title')->textInput(['maxlength' => true]) ?> -->
 
-    <?= $form->field($model, 'inclusion')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'inclusion')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '200px',
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'exclusion')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'exclusion')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '200px',
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'tips')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'tips')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '200px',
+        ],
+    ]) ?>
 
     <div class="form-group">
     <label class="control-label">Itinerary</label>
