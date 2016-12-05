@@ -33,6 +33,7 @@ use common\models\UploadedFiles;
     <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '350px',
+        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
         ],
     ]) ?>
 

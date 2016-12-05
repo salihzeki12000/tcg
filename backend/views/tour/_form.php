@@ -96,6 +96,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'overview')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
+        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
         ],
     ]) ?>
 
@@ -106,18 +107,21 @@ use yii\helpers\Url;
     <?= $form->field($model, 'inclusion')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '200px',
+        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
         ],
     ]) ?>
 
     <?= $form->field($model, 'exclusion')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '200px',
+        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
         ],
     ]) ?>
 
     <?= $form->field($model, 'tips')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '200px',
+        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
         ],
     ]) ?>
 
