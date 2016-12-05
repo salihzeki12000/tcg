@@ -14,6 +14,7 @@ use Yii;
  * @property string $themes
  * @property string $cities
  * @property integer $cities_count
+ * @property string $display_cities
  * @property integer $priority
  * @property string $tour_length
  * @property integer $exp_num
@@ -55,7 +56,7 @@ class Tour extends \yii\db\ActiveRecord
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
             [['overview', 'inclusion', 'exclusion', 'tips'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type'], 'string', 'max' => 255],
+            [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type', 'display_cities'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
             [['keywords'], 'string', 'max' => 512],
         ];
@@ -74,6 +75,7 @@ class Tour extends \yii\db\ActiveRecord
             'themes' => Yii::t('app', 'Themes'),
             'cities' => Yii::t('app', 'Cities'),
             'cities_count' => Yii::t('app', 'Cities Count'),
+            'display_cities' => Yii::t('app', 'Display Cities'),
             'priority' => Yii::t('app', 'Priority'),
             'tour_length' => Yii::t('app', 'Tour Length'),
             'exp_num' => Yii::t('app', 'Exp Num'),

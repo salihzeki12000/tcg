@@ -98,7 +98,6 @@ class TourController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if (is_array($_POST['Tour']['cities'])) {
                 $model->cities = join(',', $_POST['Tour']['cities']);
-                $model->cities_count = count($_POST['Tour']['cities']);
             }
             if (is_array($_POST['Tour']['themes'])) {
                 $model->themes = join(',', $_POST['Tour']['themes']);
@@ -131,7 +130,6 @@ class TourController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if (is_array($_POST['Tour']['cities'])) {
                 $model->cities = join(',', $_POST['Tour']['cities']);
-                $model->cities_count = count($_POST['Tour']['cities']);
             }
             if (is_array($_POST['Tour']['themes'])) {
                 $model->themes = join(',', $_POST['Tour']['themes']);

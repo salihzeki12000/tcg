@@ -26,13 +26,15 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'themes')->checkboxList(Yii::$app->params['tour_themes']) ?>
 
-    <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(Cities::find()->all(), 'id', 'name')) ?>
-
     <?= $form->field($model, 'rec_type')->checkboxList(Yii::$app->params['rec_type']) ?>
+
+    <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(Cities::find()->all(), 'id', 'name')) ?>
 
     <?php if (!$model->isNewRecord) { ?>
 
-    <!-- <?//= $form->field($model, 'cities_count')->textInput() ?> -->
+    <?= $form->field($model, 'display_cities')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'cities_count')->textInput() ?>
 
     <?= $form->field($model, 'image')->fileInput() ?>
     <?php 
