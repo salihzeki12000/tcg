@@ -21,7 +21,7 @@ class ExperienceController extends Controller
      */
     public function actionIndex()
     {
-        $sql = "SELECT t.*,GROUP_CONCAT(c.`name`) AS cities_name FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE t.`status` = ".DIS_STATUS_SHOW."  GROUP BY t.id ORDER BY t.id DESC  LIMIT 0, 10 ";
+        $sql = "SELECT t.*,GROUP_CONCAT(c.`name`) AS cities_name FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE t.`status` = ".DIS_STATUS_SHOW."  GROUP BY t.id ORDER BY t.priority DESC, t.id DESC  LIMIT 0, 10 ";
         $tours = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
