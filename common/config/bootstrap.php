@@ -7,6 +7,8 @@ Yii::setAlias('@root', realpath(dirname(__FILE__).'/../../'));
 Yii::setAlias('@uploads', dirname(dirname(__DIR__)) . '/frontend/web/uploads');
 
 
+define('UPLOADS_URL'   , 'http://www.demo.com/uploads/');
+
 define('BIZ_TYPE_CITIES'   , 1);
 define('BIZ_TYPE_TOUR'     , 2);
 define('BIZ_TYPE_ITINERARY', 3);
@@ -38,3 +40,6 @@ define('ALBUM_TYPE_ACTIVITY', 2);
 
 define('DIS_STATUS_SHOW', 1);
 define('DIS_STATUS_HIDE', 0);
+
+define('HOMEPAGE_TYPE_SLIDE', 1);
+define('HOMEPAGE_TYPE_AD', 2);

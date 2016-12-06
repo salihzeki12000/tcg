@@ -6,38 +6,38 @@ $this->title = 'The China Guide';
 ?>
 <div class="site-index">
 
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <?php for($i=0; $i<count($tours); $i++) { ?>
-            <li data-target="#carousel-example-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
+        <?php for($i=0; $i<count($slides); $i++) { ?>
+            <li data-target="#carousel-slides-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
         <?php } ?>
       </ol>
      
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <?php for($i=0; $i<count($tours); $i++) {
-            $tour=$tours[$i];
+        <?php for($i=0; $i<count($slides); $i++) {
+            $slide=$slides[$i];
             $pic_type = 'l';
             if (Yii::$app->params['is_mobile']) {
                 $pic_type = 'mob';
             }
         ?>
-            <div class="item <?= ($i==0)? 'active' : '' ?> ">
-              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], $pic_type)?>" alt="<?=  $tour['name'] ?>">
+            <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $slide['url'] ?>">
+              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['pic_s'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
               <div class="carousel-caption">
-                <h3><?= $tour['name'] ?></h3>
-                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?>  Days | <?= $tour['cities']?></span>
+                <h3><?= $slide['title'] ?></h3>
+                <span><?= $slide['description']?></span>
               </div>
-            </div>
+            </a>
         <?php } ?>
       </div>
      
       <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <a class="left carousel-control" href="#carousel-slides-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <a class="right carousel-control" href="#carousel-slides-generic" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
     </div> <!-- Carousel -->
@@ -82,6 +82,23 @@ $this->title = 'The China Guide';
         </div>
     </div>
 
+
+    <div id="carousel-ads-generic" class="carousel slide" data-ride="carousel">
+      <!-- Wrapper for ads -->
+      <div class="carousel-inner" style="margin-bottom: 22px;">
+        <?php for($i=0; $i<count($ads); $i++) {
+            $ad=$ads[$i];
+            $pic_type = 'l';
+            if (Yii::$app->params['is_mobile']) {
+                $pic_type = 'm';
+            }
+        ?>
+            <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $slide['url'] ?>">
+              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($ad['pic_s'], $pic_type)?>" alt="<?=  $ad['title'] ?>">
+            </a>
+        <?php } ?>
+      </div>
+    </div> <!-- Carousel -->
 
     <div class="container">
         <div class="list-group">

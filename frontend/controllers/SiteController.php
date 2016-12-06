@@ -73,8 +73,12 @@ class SiteController extends BaseController
     public function actionIndex()
     {
 
-        $sql = "SELECT t.id,t.`name`,t.pic_title,t.tour_length,GROUP_CONCAT(c.`name`) AS cities FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE FIND_IN_SET('".REC_TYPE_MUST_VISIT."', t.rec_type) AND t.`status` = ".DIS_STATUS_SHOW."  GROUP BY t.id ";
-        $tours = Yii::$app->db->createCommand($sql)
+        $sql = "SELECT * FROM homepage WHERE type=".HOMEPAGE_TYPE_SLIDE." AND `status`=".DIS_STATUS_SHOW." ORDER BY priority DESC";
+        $slides = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $sql = "SELECT * FROM homepage WHERE type=".HOMEPAGE_TYPE_AD." AND `status`=".DIS_STATUS_SHOW." ORDER BY priority DESC";
+        $ads = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
         $sql = "SELECT id,`name`,pic_s FROM cities WHERE FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type) AND `status` = ".DIS_STATUS_SHOW." ";
@@ -93,7 +97,7 @@ class SiteController extends BaseController
         $articles = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
-        return $this->render('index',['tours'=>$tours, 'cities_tour'=>$cities_tour, 'sights'=>$sights, 'faq'=>$faq, 'articles'=>$articles]);
+        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'sights'=>$sights, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
     }
 
     /**

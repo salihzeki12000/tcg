@@ -1,6 +1,6 @@
 <?php
 return [
-    'uploads_url' => 'http://www.demo.com/uploads/',
+    'uploads_url' => UPLOADS_URL,
     'biz_type'    => array(
         BIZ_TYPE_CITIES     => 'cities',
         BIZ_TYPE_TOUR       => 'tour',
