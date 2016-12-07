@@ -8,6 +8,7 @@ use common\models\TourSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 /**
  * ExperiencesController implements the CRUD actions for Tour model.
@@ -21,11 +22,29 @@ class ExperienceController extends Controller
      */
     public function actionIndex()
     {
-        $sql = "SELECT t.*,GROUP_CONCAT(c.`name`) AS cities_name FROM tour t JOIN cities c ON FIND_IN_SET(c.id, t.cities) WHERE t.`status` = ".DIS_STATUS_SHOW."  GROUP BY t.id ORDER BY t.priority DESC, t.id DESC  LIMIT 0, 10 ";
-        $tours = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        $type = Yii::$app->request->get('type');
 
-        return $this->render('index',['tours'=>$tours]);
+        $condition = array();
+        $condition['status'] = DIS_STATUS_SHOW;
+        $query = Tour::find()->where($condition);
+        if ($type) {
+            $query->andWhere("FIND_IN_SET('".$type."', rec_type)");
+        }
+
+        $count_query = clone $query;
+        $pages = new Pagination(
+            [
+                'totalCount' => $count_query->count(),
+                'pageSize' => 10,
+                'pageSizeParam' => false,
+            ]);
+        $tours = $query
+            ->orderBy('priority DESC, id DESC')
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('index',['tours'=>$tours,'type'=>$type,'pages'=>$pages]);
     }
 
     /**

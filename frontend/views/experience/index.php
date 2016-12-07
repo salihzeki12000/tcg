@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use common\models\Cities;
 use common\models\UploadedFiles;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TourSearch */
@@ -13,6 +14,26 @@ $this->title = Yii::t('app', 'Experiences');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-index container">
+
+    <!-- Single button -->
+    <div class="input-group type-menu">
+      <span class="input-group-addon">Filter:</span>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <?php if ($type) {
+          echo Yii::$app->params['rec_type'][$type];
+        }
+        else{
+          echo 'Select';
+        } ?>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+          <li><a href="/experiences">All</a></li>
+        <?php foreach (Yii::$app->params['rec_type'] as $id => $name) { ?>
+          <li><a href="/experiences/type/<?= $id ?>"><?= $name ?></a></li>
+        <?php } ?>
+      </ul>
+    </div>
 
     <div class=" file-drop-zone"> 
      <div class="file-preview-thumbnails">
@@ -37,9 +58,14 @@ $this->params['breadcrumbs'][] = $this->title;
        
      </div> 
      <div class="clearfix"></div> 
-     <div class="file-preview-status text-center text-success"></div> 
-     <div class="kv-fileinput-error file-error-message" style="display: none;"></div> 
     </div>
 
+    <?php
+    //显示分页页码
+    echo LinkPager::widget([
+        'pagination' => $pages,
+        'maxButtonCount' => 5,
+    ])
+    ?>
 
 </div>

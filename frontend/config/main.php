@@ -44,6 +44,9 @@ return [
             'enableStrictParsing' => false,
             // 'suffix' => '.html',
             'rules' => [
+                'experiences/type/<type:\d+>/page/<page:\d+>' => 'experience/index',
+                'experiences/type/<type:\d+>' => 'experience/index',
+                'experiences/page/<page:\d+>' => 'experience/index',
                 'experiences' => 'experience/index',
                 'experience/<id:\d+>' => 'experience/view',
             ],

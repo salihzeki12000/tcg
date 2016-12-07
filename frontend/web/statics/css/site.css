@@ -114,6 +114,7 @@ body {
     vertical-align: middle;
     /*margin: 12px 15px 12px 12px;*/
     /*padding: 5px;*/
+    margin-top: 16px;
 }
 .tour-index .file-preview-frame {
     position: relative;
@@ -175,6 +176,24 @@ body {
     font-size: 20px;
 }
 
+.tour-index .type-menu {
+    padding: 8px 8px 0 8px; 
+}
+.tour-index .type-menu .btn{
+  width: 100%;
+}
+.tour-index .type-menu .dropdown-menu{
+  width: 100%;
+}
+.tour-index .type-menu .btn,.tour-index .type-menu .input-group-addon{
+    border-radius: 0px;
+    border-color: rgba(203, 51, 51, 1);
+}
+.tour-index .type-menu .input-group-addon{
+    background: rgba(203, 51, 51, 1);
+    color: #fff;
+    font-weight: bold;
+}
 
 .tour-index .thumbnail{
   border: 0px;
