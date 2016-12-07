@@ -199,15 +199,16 @@ class UploadedFilesController extends Controller
         }
 
         if (!empty($arr_file)) {
-            // 上传之后的商品图是可以进行删除操作的，我们为每一个商品成功的商品图指定删除操作的地址
+            // 上传之后的图是可以进行删除操作的，我们为每一个商品成功的商品图指定删除操作的地址
             
             // 调用图片接口上传后返回的图片地址，注意是可访问到的图片地址哦
             $file_path = UploadedFiles::uploadFile($arr_file);
             $key = 0;
             if ($file_path) {
-                // 保存商品banner图信息
+                // 保存图片信息
+                $pathinfo = pathinfo($arr_file['name']);
                 $model = new UploadedFiles();
-                $model->title = $name;
+                $model->title = $pathinfo['filename'];
                 $model->path = $file_path;
                 $model->org_name = $arr_file['name'];
                 $model->size = $arr_file['size'];
