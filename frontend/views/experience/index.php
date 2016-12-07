@@ -14,7 +14,6 @@ $this->title = Yii::t('app', 'Experiences');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-index container">
-
     <!-- Single button -->
     <div class="input-group type-menu">
       <span class="input-group-addon">Filter:</span>
@@ -69,3 +68,14 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
 </div>
+
+<input size="16" type="text" value="" readonly class="form_datetime">
+
+<?php
+$this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['frontend\assets\AppAsset']]);
+$this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['frontend\assets\AppAsset']]);
+$js = <<<JS
+    $(".form_datetime").datepicker({});
+JS;
+$this->registerJs($js);
+?>
