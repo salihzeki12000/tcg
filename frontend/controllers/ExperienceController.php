@@ -5,15 +5,17 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Tour;
 use common\models\TourSearch;
+use common\models\Itinerary;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
+use frontend\components\BaseController;
 
 /**
  * ExperiencesController implements the CRUD actions for Tour model.
  */
-class ExperienceController extends Controller
+class ExperienceController extends BaseController
 {
 
     /**
@@ -54,8 +56,33 @@ class ExperienceController extends Controller
      */
     public function actionView($id)
     {
+        $tour_info = $this->findModel($id);
+
+        $ftype = BIZ_TYPE_TOUR;
+        $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
+        $tour_images = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $tour_info['images'] = [];
+        if (!empty($tour_images)) {
+            $tour_info['images'] = $tour_images;
+        }
+
+        $itineraries = Itinerary::find()
+        ->where(['tour_id'=>$id])
+        ->orderBy('day ASC')
+        ->all();
+        foreach ($itineraries as &$itinerary) {
+            $ftype = BIZ_TYPE_ITINERARY;
+            $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$itinerary['id']}";
+            $itinerary_images = Yii::$app->db->createCommand($sql)
+            ->queryAll();
+            $itinerary['images'] = $itinerary_images;
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'tour_info' => $tour_info,
+            'itinerary_info' => $itineraries,
         ]);
     }
 

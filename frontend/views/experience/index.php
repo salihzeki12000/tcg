@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use common\models\Cities;
 use common\models\UploadedFiles;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TourSearch */
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <ul class="dropdown-menu" role="menu">
           <li><a href="/experiences">All</a></li>
         <?php foreach (Yii::$app->params['rec_type'] as $id => $name) { ?>
-          <li><a href="/experiences/type/<?= $id ?>"><?= $name ?></a></li>
+          <li><a href="<?= Url::toRoute(['experience/index', 'type'=>$id]) ?>"><?= $name ?></a></li>
         <?php } ?>
       </ul>
     </div>
@@ -41,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php foreach ($tours as $tour) { ?>
 
        <div class="file-preview-frame file-preview-initial" >
-        <a class="kv-file-content" href="#"> 
+        <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'id'=>$tour['id']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
           <div class="content-press">From <br />$<span><?= number_format($tour['price_usd'],0) ?></span> USD</div>
         </a>

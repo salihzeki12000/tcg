@@ -203,6 +203,54 @@ body {
   color: #f0ad4e;
 }
 
+
+.tour-view h1.title{
+  text-align: center;
+}
+.tour-view .tour-info{
+  border: 1px solid #999;
+  margin: 20px 15px;
+  padding: 5px 5px;
+  color: #888
+}
+.tour-view .tour-info .tour-info-row div{
+  float: left;
+  width: 34%;
+  padding: 15px 10px 15px 10px;
+  border-right: 1px dashed #aaa;
+}
+.tour-view .tour-info .tour-info-row div:last-child{
+  border-right: none;
+}
+.tour-view .tour-info .tour-info-row .item-s{
+  width: 15%;
+}
+.tour-view .tour-info span{
+  color: #f0ad4e;
+  font-weight: bold;
+  font-size: 16px;
+}
+.tour-view .tour-info span.price{
+  color: #666;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.tour-view .overview{
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.tour-view .itineraries{
+    background: #dadada;
+    padding-bottom: 20px;
+}
+
+
+.themes-info i{
+  color: rgba(117, 210, 245, 1);
+  margin-right: 10px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
