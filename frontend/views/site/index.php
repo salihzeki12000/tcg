@@ -104,7 +104,7 @@ $this->title = 'The China Guide';
 
     <div class="container">
         <div class="list-group">
-            <a href="javascript:void(0);" class="list-group-item"><center><h2>FAQ</h2></center></a>
+            <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2>FAQ</h2></center></a>
             <?php foreach ($faq as $item) { ?>
             <a href="<?= Url::toRoute(['faq/view', 'id'=>$item['id']]) ?>" class="list-group-item">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
@@ -117,7 +117,7 @@ $this->title = 'The China Guide';
 
     <div class="container">
         <div class="list-group">
-            <a href="javascript:void(0);" class="list-group-item"><center><h2>Articles</h2></center></a>
+            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>Articles</h2></center></a>
             <?php foreach ($articles as $article) { ?>
             <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'id'=>$article['id']]) ?>">
                 <div class="media">
