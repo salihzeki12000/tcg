@@ -54,7 +54,10 @@ return [
                 'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>/page/<page:\d+>' => 'destination/<action>',
                 'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>' => 'destination/<action>',
                 'sight/<id:\d+>' => 'sight/view',
-                'activity/<id:\d+>' => 'activity/view',
+                'articles' => 'article/index',
+                'article/<id:\d+>' => 'article/view',
+                'faq' => 'faq/index',
+                'faq/<id:\d+>' => 'faq/view',
 
             ],
         ],

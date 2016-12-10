@@ -106,7 +106,7 @@ $this->title = 'The China Guide';
         <div class="list-group">
             <a href="javascript:void(0);" class="list-group-item"><center><h2>FAQ</h2></center></a>
             <?php foreach ($faq as $item) { ?>
-            <a href="#" class="list-group-item">
+            <a href="<?= Url::toRoute(['faq/view', 'id'=>$item['id']]) ?>" class="list-group-item">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
                 <span><?= $item['title'] ?></span>
             </a>
@@ -119,7 +119,7 @@ $this->title = 'The China Guide';
         <div class="list-group">
             <a href="javascript:void(0);" class="list-group-item"><center><h2>Articles</h2></center></a>
             <?php foreach ($articles as $article) { ?>
-            <a class="col-md-6 list-group-item" href="javascript:void(0);">
+            <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'id'=>$article['id']]) ?>">
                 <div class="media">
                   <div class="media-left">
                       <img width="100px" class="media-object" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" alt="<?= $article['title'] ?>">
