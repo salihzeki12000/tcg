@@ -49,6 +49,13 @@ return [
                 'experiences/page/<page:\d+>' => 'experience/index',
                 'experiences' => 'experience/index',
                 'experience/<id:\d+>' => 'experience/view',
+                'destinations' => 'destination/index',
+                'destination/<name:[A-Za-z0-9_\']+>' => 'destination/view',
+                'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>/page/<page:\d+>' => 'destination/<action>',
+                'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>' => 'destination/<action>',
+                'sight/<id:\d+>' => 'sight/view',
+                'activity/<id:\d+>' => 'activity/view',
+
             ],
         ],
 

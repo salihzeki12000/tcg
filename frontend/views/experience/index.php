@@ -68,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ?>
 
+    </div>
 </div>
 
 <input size="16" type="text" value="" readonly class="form_datetime">
