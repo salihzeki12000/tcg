@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="input-group type-menu">
       <span class="input-group-addon">Filter:</span>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <?php if ($type) {
-          echo Yii::$app->params['rec_type'][$type];
+        <?php if ($theme_id) {
+          echo Yii::$app->params['tour_themes'][$theme_id];
         }
         else{
           echo 'Select';
@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
       </button>
       <ul class="dropdown-menu" role="menu">
           <li><a href="/experiences">All</a></li>
-        <?php foreach (Yii::$app->params['rec_type'] as $id => $name) { ?>
-          <li><a href="<?= Url::toRoute(['experience/index', 'type'=>$id]) ?>"><?= $name ?></a></li>
+        <?php foreach (Yii::$app->params['tour_themes'] as $id => $name) { ?>
+          <li><a href="<?= Url::toRoute(['experience/index', 'theme'=>$name]) ?>"><?= $name ?></a></li>
         <?php } ?>
       </ul>
     </div>
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php foreach ($tours as $tour) { ?>
 
        <div class="file-preview-frame file-preview-initial" >
-        <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'id'=>$tour['id']]) ?>"> 
+        <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
           <div class="content-press">From <br />$<span><?= number_format($tour['price_usd'],0) ?></span> USD</div>
         </a>

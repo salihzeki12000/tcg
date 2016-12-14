@@ -1,6 +1,185 @@
 html,
 body {
     height: 100%;
+    background-color: #4D423C;
+    color: #eee;
+}
+
+.navbar-inverse{
+  background-color: #E0E3D6;
+  border-color: #E0E3D6;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #E0E3D6;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #4D423C;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #E0E3D6;
+    background-color: #E0E3D6;
+}
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover{
+    color: #4D423C;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #4D423C;
+    background-color: #d4d4d4;
+}
+
+.m-menu{
+    margin-top: 51px;
+    background-color: #010101;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    padding: 0 20px 10px 20px;
+    color: rgba(204, 204, 224, 1);
+    display: none;
+}
+.m-menu ul{
+  border: 1px solid rgba(121, 121, 121, 1);
+  background-color: rgba(40, 40, 40, 1);
+  padding: 0;
+}
+.m-menu li{
+  list-style:none;
+  border-bottom: 1px solid rgba(121, 121, 121, 1);
+  padding: 0;
+  height: 50px;
+  line-height: 50px;
+}
+.m-menu a,.m-menu a:link,.m-menu a:visited,.m-menu a:hover,.m-menu a:active{
+  text-decoration:none;
+  color:rgba(204, 204, 224, 1);
+  display: block;
+}
+.m-menu i{
+  display: block;
+  float: left;
+  width: 28px;
+  height: 27px;
+  background-image: url(/statics/images/icons.png);
+  background-repeat: no-repeat;
+  margin: 10px;
+  background-size:236px;
+}
+.m-menu i.icon-menu-home{
+  background-position: 0px 1px;
+}
+.m-menu i.icon-menu-experiences{
+  background-position: 0px -27px;
+}
+.m-menu i.icon-menu-destinations{
+  background-position: 0px -54px;
+}
+.m-menu i.icon-menu-education{
+  background-position: 0px -81px;
+}
+.m-menu i.icon-menu-mice{
+  background-position: 0px -108px;
+}
+.m-menu i.icon-menu-articles{
+  background-position: 0px -135px;
+}
+.m-menu i.icon-menu-faq{
+  background-position: 0px -162px;
+}
+.m-menu i.icon-menu-aboutus{
+  background-position: 0px -189px;
+}
+
+.container.home-desc{
+  color: #17BEBB;
+  font-size: 18px;
+  margin: 20px 0;
+  font-family: Arial;
+}
+
+.home-whyus{
+  text-align: center;
+}
+.home-whyus i{
+  display: block;
+  width: 60px;
+  height: 61px;
+  background-image: url(/statics/images/icons.png);
+  background-repeat: no-repeat;
+  margin: 15px auto;
+  background-size: 132px;
+}
+.home-whyus i.icon-whyus-service{
+  background-position: -72px 1px;
+}
+.home-whyus i.icon-whyus-expertise{
+  background-position: -72px -58px;
+}
+.home-whyus i.icon-whyus-flexibility{
+  background-position: -72px -116px;
+}
+.home-whyus i.icon-whyus-quality{
+  background-position: -72px -176px;
+}
+
+.home-btn{
+  margin: 20px auto 30px auto;
+  text-align: center;
+}
+.home-btn .btn-danger {
+  width: 80%;
+  border-color: #eee;
+  border-radius: 15px;
+  padding: 9px 15px;
+}
+
+.home-categories .list-group .list-group-item{
+  margin: 5px auto;
+  padding: 2px 0px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  color: #333;
+  font-size: 20px;
+  background-color: #E0E3D6;
+  border: 1px solid #797979;
+}
+.home-categories i.glyphicon{
+  color: #47AAED;
+  margin: 12px 5px;
+}
+.home-categories i.icon{
+  display: block;
+  float: left;
+  width: 45px;
+  height: 44px;
+  background-image: url(/statics/images/icons.png);
+  background-repeat: no-repeat;
+  margin: 15px auto;
+  background-size: 124px;
+  margin: 2px 20px 2px 5px;
+}
+.home-categories .icon-mostpopular{
+  background-position: -19px 1px;
+}
+.home-categories .icon-familyvacation{
+  background-position: -19px -44px;
+}
+.home-categories .icon-culture{
+  background-position: -19px -87px;
+}
+.home-categories .icon-adventurous{
+  background-position: -19px -130px;
+}
+.home-categories .icon-foodie{
+  background-position: -19px -174px;
+}
+.home-categories .icon-ataglance{
+  background-position: -19px -217px;
+}
+
+.home-categories span{
+  line-height: 50px;
 }
 
 /*

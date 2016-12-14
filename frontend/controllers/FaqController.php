@@ -39,9 +39,10 @@ class FaqController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($title)
     {
-        $faq = $this->findModel($id);
+        $faq = $this->findModel($title);
+        $id = $faq['id'];
 
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
@@ -65,9 +66,9 @@ class FaqController extends BaseController
      * @return Tour the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($title)
     {
-        if (($model = Article::findOne($id)) !== null) {
+        if (($model = Article::find()->where(['title' => $title])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

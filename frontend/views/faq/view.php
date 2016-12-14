@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php foreach ($tours as $tour) { ?>
 
        <div class="file-preview-frame file-preview-initial" >
-        <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'id'=>$tour['id']]) ?>"> 
+        <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
           <div class="content-press">From <br />$<span><?= number_format($tour['price_usd'],0) ?></span> USD</div>
         </a>

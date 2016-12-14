@@ -44,6 +44,7 @@ class Album extends \yii\db\ActiveRecord
             [['create_time', 'update_time'], 'safe'],
             [['name', 'pic_s', 'keywords'], 'string', 'max' => 255],
             [['rec_type'], 'string', 'max' => 50],
+            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\-]+$/','message'=>'Name does not conform to the requirements'],
         ];
     }
 

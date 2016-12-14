@@ -49,9 +49,10 @@ class ArticleController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($title)
     {
-        $article = $this->findModel($id);
+        $article = $this->findModel($title);
+        $id = $article['id'];
 
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
@@ -75,9 +76,9 @@ class ArticleController extends BaseController
      * @return Tour the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($title)
     {
-        if (($model = Article::findOne($id)) !== null) {
+        if (($model = Article::find()->where(['title' => $title])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

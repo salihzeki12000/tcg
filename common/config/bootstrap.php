@@ -14,14 +14,15 @@ define('BIZ_TYPE_TOUR'     , 2);
 define('BIZ_TYPE_ITINERARY', 3);
 define('BIZ_TYPE_ALBUM'    , 4);
 
-define('TOUR_THEMES_FAMILY', 1);
-define('TOUR_THEMES_CULTURE', 2);
-define('TOUR_THEMES_NATURE', 3);
+define('TOUR_THEMES_MOST_POPULAR', 1);
+define('TOUR_THEMES_FAMILY', 2);
+define('TOUR_THEMES_CULTURE', 3);
 define('TOUR_THEMES_ADVENTUROUS', 4);
-define('TOUR_THEMES_CRUISE', 5);
-define('TOUR_THEMES_FOODIE', 6);
-define('TOUR_THEMES_ROMANTIC', 7);
-define('TOUR_THEMES_AT_A_GLANCE', 8);
+define('TOUR_THEMES_FOODIE', 5);
+define('TOUR_THEMES_AT_A_GLANCE', 6);
+// define('TOUR_THEMES_NATURE', 7);
+// define('TOUR_THEMES_CRUISE', 8);
+// define('TOUR_THEMES_ROMANTIC', 9);
 
 define('REC_TYPE_MUST_VISIT', 1);
 define('REC_TYPE_POPULAR', 2);

@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -28,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::t('common','The China Guide'),
+        'brandLabel' => Html::img('@web/statics/images/logo.png', ['alt'=>Yii::t('common','The China Guide')]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,10 +37,10 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Experiences', 'url' => ['/experiences']],
-        ['label' => 'Destinations', 'url' => ['/destinations']],
-        ['label' => 'Articles', 'url' => ['/articles']],
-        ['label' => 'FAQ', 'url' => ['/faq']],
+        ['label' => 'Experiences', 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
+        ['label' => 'Destinations', 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
+        ['label' => 'Articles', 'url' => ['/articles'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => 'FAQ', 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
         // ['label' => 'About', 'url' => ['/site/about']],
         // ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
@@ -62,7 +63,20 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
+    <div class="m-menu">
+        <h3>Navigation</h3>
+        <ul class="">
+            <li><i class="icon-menu-home"></i><a href="<?= Url::toRoute(['/']) ?>">HOME</a></li>
+            <li><i class="icon-menu-experiences"></i><a href="<?= Url::toRoute(['experience/index']) ?>">EXPERIENCES</a></li>
+            <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>">DESTINATIONS</a></li>
+            <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['article/view', 'name'=>'educational programs']) ?>">EDUCATIONAL PROGRAMS</a></li>
+            <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['articles/view', 'name'=>'meetings & incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li>
+            <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>">ARTICLES</a></li>
+            <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>">FAQ</a></li>
+            <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['article/view', 'name'=>'about us']) ?>">ABOUT US</a></li>
+        </ul>
+        <span>The China Guide<br />A Beijing-based, foreign-owned travel agency.</span>
+    </div>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -81,6 +95,21 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<?php
+$js = <<<JS
+    $('.navbar-toggle').attr('id', 'bt_toggle');
+    $('.navbar-toggle').click(function(){
+        $('.navbar-collapse.collapse').hide();
+        if($('.m-menu').is(":visible")){
+            $('.m-menu').hide();
+        }
+        else{
+            $('.m-menu').show();
+        }
+    });
+JS;
+$this->registerJs($js);
+?>
 </body>
 </html>
 <?php $this->endPage() ?>

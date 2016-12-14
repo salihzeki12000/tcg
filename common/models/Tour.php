@@ -59,6 +59,7 @@ class Tour extends \yii\db\ActiveRecord
             [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type', 'display_cities'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
             [['keywords'], 'string', 'max' => 512],
+            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\-]+$/','message'=>'Name does not conform to the requirements'],
         ];
     }
 

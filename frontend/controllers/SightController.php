@@ -30,9 +30,10 @@ class SightController extends BaseController
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($name)
     {
-        $sight_info = $this->findModel($id);
+        $sight_info = $this->findModel($name);
+        $id = $sight_info['id'];
 
         $ftype = BIZ_TYPE_ALBUM;
         $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
@@ -62,9 +63,9 @@ class SightController extends BaseController
      * @return Tour the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($name)
     {
-        if (($model = Album::findOne($id)) !== null) {
+        if (($model = Album::find()->where(['name' => $name])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
