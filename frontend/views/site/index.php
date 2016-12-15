@@ -154,13 +154,17 @@ $this->title = 'The China Guide';
             <div class="col-lg-12">
                 <h1 class="page-header">WHAT OUR CLIENTS ARE SAYING</h1>
             </div>
-            <em>"This is the way to see China."</em>
-            <div>Mark D@Tripadvisor</div>
-            <em>"5 star service from beginning to end."</em>
-            <div>MJMaher@Tripadvisor</div>
-            <center>
-                <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-3 col-md-3 col-sm-6 col-xs-7"]) ?>
-            </center>
+            <div class="col-lg-7 col-md-8 col-xs-12">
+                <em>"This is the way to see China."</em>
+                <div>Mark D@Tripadvisor</div>
+                <em>"5 star service from beginning to end."</em>
+                <div>MJMaher@Tripadvisor</div>
+            </div>
+            <div class="col-lg-5 col-md-4 col-xs-12">
+                <center>
+                    <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
+                </center>
+            </div>
         </div>
     </div>
 

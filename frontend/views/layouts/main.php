@@ -129,7 +129,7 @@ $js = <<<JS
     $(function(){
         $('.navbar-toggle').attr('id', 'bt_toggle');
         $('.navbar-toggle').click(function(){
-            $('body,html').animate({scrollTop:0},1000);
+            $('body,html').animate({scrollTop:0},0);
             $('.navbar-collapse.collapse').hide();
             if($('.m-menu').is(":visible")){
                 $('.m-menu').hide();
