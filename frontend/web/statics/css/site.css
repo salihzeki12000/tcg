@@ -5,6 +5,14 @@ body {
     color: #eee;
 }
 
+.page-header {
+  padding-bottom: 9px;
+  margin: 18px 0px;
+  border-bottom: none;
+  font-size: 24px;
+  color: #E9C46C;
+  text-align: center;
+}
 .navbar-inverse{
   background-color: #E0E3D6;
   border-color: #E0E3D6;
@@ -59,7 +67,7 @@ body {
   float: left;
   width: 28px;
   height: 27px;
-  background-image: url(/statics/images/icons.png);
+  background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   margin: 10px;
   background-size:236px;
@@ -103,7 +111,7 @@ body {
   display: block;
   width: 60px;
   height: 61px;
-  background-image: url(/statics/images/icons.png);
+  background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   margin: 15px auto;
   background-size: 132px;
@@ -131,6 +139,15 @@ body {
   border-radius: 15px;
   padding: 9px 15px;
 }
+.home-btn .btn-mine {
+  width: 80%;
+  border-color: #eee;
+  border-radius: 15px;
+  padding: 9px 15px;
+  background-color: #4D423C;
+  font-size: 16px;
+  color: #eee;
+}
 
 .home-categories .list-group .list-group-item{
   margin: 5px auto;
@@ -153,7 +170,7 @@ body {
   float: left;
   width: 45px;
   height: 44px;
-  background-image: url(/statics/images/icons.png);
+  background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   margin: 15px auto;
   background-size: 124px;
@@ -180,6 +197,104 @@ body {
 
 .home-categories span{
   line-height: 50px;
+}
+
+.site-index .thumbnail {
+     padding: 0px; 
+     border-radius: 0px; 
+}
+
+.clients-saying{
+  text-align: center;
+  font-size: 20px;
+}
+.clients-saying img{
+  padding: 10px;
+  float: none;
+}
+
+.site-index .faq .list-group-item, .site-index .article .list-group-item{
+  background-color: #E0E3D6;
+  border-color: #797979;
+}
+.site-index .list-group h2{
+    padding-bottom: 9px;
+    margin: 4px 0px;
+    border-bottom: none;
+    font-size: 24px;
+    text-align: center;
+    padding: 0;
+}
+.site-index .list-group i.glyphicon {
+    color: #47AAED;
+}
+
+div#social-media-icons-container {
+    text-align: center;
+    display: inline-block;
+    margin: 12px auto;
+    width: 100%;
+}
+
+.social-media-icons{
+    color: #333333;
+    font-weight: bold;
+}
+.social-media-icons center{
+  margin: 10px 0;
+}
+.social-media-icons a,.social-media-icons a:link,.social-media-icons a:visited,.social-media-icons a:hover,.social-media-icons a:active{
+  text-decoration:none;
+  color:#666666;
+}
+
+div#social-media-icons-container a {
+  background-image: url(../images/social-media-icons.png);
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  background-size: 370px;
+  background-repeat: no-repeat;
+}
+#social-media-icons-container a#tripadvisor {
+    background-position: 0px 0;
+}
+#social-media-icons-container a#instagram {
+    background-position: -63px 0;
+}
+#social-media-icons-container a#facebook {
+    background-position: -128px 0;
+}
+#social-media-icons-container a#twitter {
+    background-position: -193px 0;
+}
+#social-media-icons-container a#linkedin {
+    background-position: -257px 0;
+}
+#social-media-icons-container a#pinterest {
+    background-position: -321px 0;
+}
+
+.footer .search-box, .footer .pata, .footer .copyright{
+  margin: 15px 0;
+  color: #666;
+  text-align: center;
+}
+
+#gotop{
+  display:none;
+  width:55px;
+  height:55px;
+  position:fixed;
+  right:20px;
+  bottom:40px;
+  background-color: rgba(204, 51, 51, 0.4);
+  border: 1px solid #E4E4E4;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  padding-top: 5px;
 }
 
 /*
@@ -466,10 +581,10 @@ body {
 }
 
 .footer {
-    height: 60px;
-    background-color: #f5f5f5;
+    background-color: #E0E3D6;
     border-top: 1px solid #ddd;
     padding-top: 20px;
+    color: #666;
 }
 
 .jumbotron {

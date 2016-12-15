@@ -88,24 +88,65 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; The China Guide <?= date('Y') ?></p>
+
+    <div class="social-media-icons">
+        <center>FOLLOW US ON</center>
+        <div id="social-media-icons-container">
+            <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" id="tripadvisor" target="_blank"></a>
+            <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
+            <a href="https://www.facebook.com/thechinaguide" id="facebook" target="_blank"></a>
+            <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
+            <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
+            <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
+        </div>
+        <center>QUICK LINKS</center>
+        <center><a href="#">Plan a vacation</a> |  <a href="#">Plan an educational trip</a> | <a href="#">Plan an incentive trip</a> | <a href="#">Company policies</a> | <a href="#">Contact us</a></center>
+    </div>
+    <div class="search-box">
+        <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
+            <input type="text" name="q" placeholder="Powered by Google">
+            <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch">
+            <button id="search-button" type="submit">                     
+                <span>SEARCH</span>
+            </button>
+        </form>
+    </div>
+    <div class="pata">
+        <?= Html::img('@web/statics/images/PATA.jpg', ['alt'=>'PATA member']) ?>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2008 - <?= date('Y') ?> The China Guide</p>
+    </div>
+        
 
         <p class="pull-right"><?//= Yii::powered() ?></p>
     </div>
 </footer>
-
+<div id="gotop"><i class="glyphicon glyphicon-chevron-up"></i><br />TOP</div>
 <?php $this->endBody() ?>
 <?php
 $js = <<<JS
-    $('.navbar-toggle').attr('id', 'bt_toggle');
-    $('.navbar-toggle').click(function(){
-        $('.navbar-collapse.collapse').hide();
-        if($('.m-menu').is(":visible")){
-            $('.m-menu').hide();
-        }
-        else{
-            $('.m-menu').show();
-        }
+    $(function(){
+        $('.navbar-toggle').attr('id', 'bt_toggle');
+        $('.navbar-toggle').click(function(){
+            $('body,html').animate({scrollTop:0},1000);
+            $('.navbar-collapse.collapse').hide();
+            if($('.m-menu').is(":visible")){
+                $('.m-menu').hide();
+            }
+            else{
+                $('.m-menu').show();
+            }
+        });
+        $('#gotop').click(function(){
+            $('body,html').animate({scrollTop:0},1000);
+        });
+        $(window).scroll(function(e) {
+        if($(window).scrollTop()>100)
+            $("#gotop").fadeIn(1000);
+        else
+            $("#gotop").fadeOut(1000);
+        });
     });
 JS;
 $this->registerJs($js);

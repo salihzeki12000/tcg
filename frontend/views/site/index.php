@@ -1,8 +1,8 @@
 <?php
 use common\models\UploadedFiles;
 use yii\helpers\Url;
-
-/* @var $this yii\web\View */
+use yii\helpers\Html
+;/* @var $this yii\web\View */
 
 $this->title = 'The China Guide';
 ?>
@@ -131,9 +131,8 @@ $this->title = 'The China Guide';
 
     <div class="container">
         <div class="row">
-
             <div class="col-lg-12">
-                <h1 class="page-header">Popular City Tours</h1>
+                <h1 class="page-header">POPULAR CITY TOURS</h1>
             </div>
 
             <?php foreach ($cities_tour as $city_tour) { ?>
@@ -148,29 +147,28 @@ $this->title = 'The China Guide';
             <?php } ?>
 
         </div>
+    </div>
 
+    <div class="container clients-saying">
         <div class="row">
-
             <div class="col-lg-12">
-                <h1 class="page-header">Popular Sights</h1>
+                <h1 class="page-header">WHAT OUR CLIENTS ARE SAYING</h1>
             </div>
-
-            <?php foreach ($sights as $sight) { ?>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="<?= Url::toRoute(['sight/view', 'name'=>$sight['name']]) ?>">
-                    <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($sight['pic_s'], 's')?>" alt="<?=  $sight['name'] ?>">
-                    <div class="carousel-caption">
-                        <h3><?= $sight['name'] ?></h3>
-                    </div>
-                </a>
-            </div>
-            <?php } ?>
-
+            <em>"This is the way to see China."</em>
+            <div>Mark D@Tripadvisor</div>
+            <em>"5 star service from beginning to end."</em>
+            <div>MJMaher@Tripadvisor</div>
+            <center>
+                <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-3 col-md-3 col-sm-6 col-xs-7"]) ?>
+            </center>
         </div>
     </div>
 
+    <div class="container home-btn"><button type="button" class="btn btn-mine">More  reviews on Tripadvisor</button></div>
+
+
     <div class="container">
-        <div class="list-group">
+        <div class="list-group faq">
             <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2>FAQ</h2></center></a>
             <?php foreach ($faq as $item) { ?>
             <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item">
@@ -183,7 +181,7 @@ $this->title = 'The China Guide';
 
 
     <div class="container">
-        <div class="list-group">
+        <div class="list-group article">
             <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>Articles</h2></center></a>
             <?php foreach ($articles as $article) { ?>
             <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">

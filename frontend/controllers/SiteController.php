@@ -85,10 +85,6 @@ class SiteController extends BaseController
         $cities_tour = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
-        $sql = "SELECT id,`name`,pic_s FROM album WHERE FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type) AND type=".ALBUM_TYPE_SIGHT." AND `status` = ".DIS_STATUS_SHOW." ";
-        $sights = Yii::$app->db->createCommand($sql)
-        ->queryAll();
-
         $sql = "SELECT id,title,sub_type FROM article WHERE type=".ARTICLE_TYPE_FAQ." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
         $faq = Yii::$app->db->createCommand($sql)
         ->queryAll();
@@ -97,7 +93,7 @@ class SiteController extends BaseController
         $articles = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
-        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'sights'=>$sights, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
+        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
     }
 
     /**
