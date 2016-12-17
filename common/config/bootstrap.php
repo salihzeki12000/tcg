@@ -32,6 +32,7 @@ define('ARTICLE_TYPE_ARTICLE', 1);
 define('ARTICLE_TYPE_ADVERTISEMENT', 2);
 define('ARTICLE_TYPE_FAQ', 3);
 define('ARTICLE_TYPE_PREPARATION', 4);
+define('ARTICLE_TYPE_PAGE', 5);
 
 define('FAQ_TYPE_TRIP_PLANNING', 1);
 define('FAQ_TYPE_IN_CHINA', 2);
@@ -44,3 +45,8 @@ define('DIS_STATUS_HIDE', 0);
 
 define('HOMEPAGE_TYPE_SLIDE', 1);
 define('HOMEPAGE_TYPE_AD', 2);
+
+define('FORM_TYPE_CUSTOM',      1);
+define('FORM_TYPE_QUOTATION',   2);
+define('FORM_TYPE_EDU',         3);
+define('FORM_TYPE_MICE',        1);

@@ -14,11 +14,15 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Destinations');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-<div class="cities-banner">
-  <img src="/statics/images/destination_banner.jpg" width="100%" />
-  <div class="banner-text">Destinations</div>
+<div class="container">
+  <div class="row">
+    <div class="cities-banner hidden-md hidden-lg hidden-sm">
+      <?= Html::img('@web/statics/images/destinations-bg.jpg', ['alt'=>'Destinations', 'width'=>"100%"]) ?>
+      <div class="banner-text">DESTINATIONS</div>
+    </div>
+  </div>
 </div>
+
 <div class="cities-index container">
   <span>Overview introduction about China.</span>
 
@@ -91,9 +95,7 @@ JS;
 $this->registerJs($js);
 
 $css = <<<CSS
-  .breadcrumb{
-    margin-bottom: 0px;
-  }
+
 CSS;
 $this->registerCss($css); 
 ?>

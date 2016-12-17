@@ -5,6 +5,9 @@ body {
     color: #eee;
 }
 
+.datepicker {
+  color: #333;
+}
 .page-header {
   padding-bottom: 9px;
   margin: 18px 0px;
@@ -138,6 +141,7 @@ body {
   border-color: #eee;
   border-radius: 15px;
   padding: 9px 15px;
+  background-color: #B33635;
 }
 .home-btn .btn-mine {
   width: 80%;
@@ -199,9 +203,9 @@ body {
   line-height: 50px;
 }
 
-.site-index .thumbnail {
-     padding: 0px; 
-     border-radius: 0px; 
+.thumbnail {
+   padding: 0px; 
+   border-radius: 0px; 
 }
 
 .clients-saying{
@@ -297,6 +301,75 @@ div#social-media-icons-container a {
   padding-top: 5px;
 }
 
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    line-height: 1;
+    margin: 0 auto;
+}
+
+.index-faq{
+  margin-bottom: 40px;
+}
+.list-group-item:last-child {
+     border-bottom-right-radius: 0px; 
+     border-bottom-left-radius: 0px; 
+}
+.list-group-item:first-child {
+     border-top-right-radius: 0px; 
+     border-top-left-radius: 0px; 
+}
+
+.breadcrumb {
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.container .price{
+  text-align: center;
+}
+.container .price span{
+  font-size: 18px;
+  color: #E9C46C;
+}
+.themes-info .list-group-item{
+  background-color: #E0E3D6;
+  border: 1px solid #797979;
+  color: #333333;
+  font-size: 14px;
+}
+
+.icon-menu-ok{
+    display: block;
+    float: left;
+    width: 24px;
+    height: 23px;
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+    background-size: 236px;
+    background-position: -2px -273px;
+}
+
+.tour-view h2{
+  color: #17BEBB;
+  font-size: 25px;
+}
+.container .map .list-group-item{
+  padding: 0;
+  border: none;
+}
+
+.form-info-create tr>td{
+  padding: 5px 10px;
+}
+.form-info-create tr>td:last-child{
+  padding-right: 0;
+}.form-info-create tr>td:first-child{
+  padding-left: 0;
+}
+.form-info-create table .form-group{
+  margin-bottom: 0;
+}
+
+form-group
 /*
 .navbar-inner {
     background-color: red;
@@ -426,52 +499,67 @@ div#social-media-icons-container a {
     position: relative;
 }
 .tour-index .file-footer-caption {
-    display: block;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
     text-align: left;
     padding: 4px 6px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     margin: 5px auto;
-    background: rgba(224,224,224,0.51);
     margin-top: 0;
+    border: 1px solid #949494;
+    border-top: none;
 }
 .tour-index .file-footer-caption span{
-  color: #f0ad4e;
-  font-weight:normal;
-  display: block;
-  font-size: 14px;
+  font-weight:bold;
+  font-size: 18px;
+  word-wrap: break-word; 
+  word-break: normal; 
+  color: #E9C46C;
 }
-.tour-index .file-footer-caption span{
-  color: #f0ad4e;
-  font-weight:normal;
+.tour-index .file-footer-caption div{
+  margin-bottom: 10px;
 }
+
 .tour-index .file-preview-image {
   width:100%;
   height:auto;
 }
+.kv-file-content{
+  display: block;
+  position: relative;
+}
 .tour-index .kv-file-content .content-press{
-    padding: 10px;
-    float: right;
-    right: 0px;
-    bottom: 89px;
-    position: absolute;
-    font-size: 16px;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-    text-align: left;
-    background: rgba(173, 173, 173, 0.41);
+  padding: 8px;
+  float: left;
+  bottom: 0px;
+  position: absolute;
+  font-size: 16px;
+  color: #E0E3D6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  text-align: left;
 }
 .tour-index .kv-file-content .content-press span{
-    font-size: 20px;
+  color: #E9C46C;
+  font-weight: bold;
+}
+.file-drop-zone h3{
+  margin-top: 10px;
+  color: #17BEBB;
+}
+.file-drop-zone .btn-sm{
+  padding: 4px 16px;
+  font-size: 14px;
+  background-color: #17BEBB;
+  border-radius: 5px;
+  border-color: #fff;
 }
 
 .tour-index .type-menu {
-    padding: 8px 8px 0 8px; 
+  padding: 8px 8px 0 8px;
+  width: 80%;
+  margin: 0 auto;
 }
 .tour-index .type-menu .btn{
   width: 100%;
@@ -480,8 +568,10 @@ div#social-media-icons-container a {
   width: 100%;
 }
 .tour-index .type-menu .btn,.tour-index .type-menu .input-group-addon{
-    border-radius: 0px;
-    border-color: rgba(203, 51, 51, 1);
+  border-radius: 0px;
+  border-color: #B33635;
+  background-color: #4D423C;
+  color: #fff;
 }
 .tour-index .type-menu .input-group-addon{
     background: rgba(203, 51, 51, 1);
@@ -500,24 +590,28 @@ div#social-media-icons-container a {
 
 .tour-view h1.title{
   text-align: center;
+  font-size: 24px;
+  color: #17BEBB;
+}
+.tour-view h1.title small{
+  color: #eee;
 }
 .tour-view .tour-info{
-  border: 1px solid #999;
-  margin: 20px 15px;
+  margin: 10px;
   padding: 5px 5px;
-  color: #888
+}
+.tour-info-row{
+  display: block;
 }
 .tour-view .tour-info .tour-info-row div{
-  float: left;
-  width: 34%;
-  padding: 15px 10px 15px 10px;
+  padding: 0 10px;
   border-right: 1px dashed #aaa;
+  text-align: center;
 }
 .tour-view .tour-info .tour-info-row div:last-child{
   border-right: none;
 }
 .tour-view .tour-info .tour-info-row .item-s{
-  width: 15%;
 }
 .tour-view .tour-info span{
   color: #f0ad4e;
@@ -535,10 +629,28 @@ div#social-media-icons-container a {
     overflow: hidden;
 }
 .tour-view .itineraries{
-    background: #dadada;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
-
+.tour-view .itineraries .pager{
+  margin: 0;
+}
+.tour-view .itineraries nav{
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid #c7c7c7;
+  margin-bottom: 10px;
+}
+.tour-view .itineraries .text{
+  font-size: 16px;
+  color: #B33635;
+}
+.tour-view .itinerary-item{
+  background-color: #E0E3D6;
+  color: #333;
+  padding: 0 10px 10px 10px;
+}
+.tour-index h3{
+  color: #17BEBB;
+}
 .cities-banner{
   text-align:center;
 }
@@ -557,9 +669,23 @@ div#social-media-icons-container a {
   padding: 20px 20px;
   font-weight: bold;
   background: #dadada;
+  color: #333;
 }
 .city-view .h-title .btn-group{
   float: right;
+}
+
+.cities-index .page-header{
+  color: #17BEBB;
+}
+
+.article-view .overview{
+  margin: 20px 0;
+}
+.article-index .list-group-item h2{
+  color: #333;
+  margin: 10px;
+  font-size: 25px;
 }
 
 .themes-info i{
@@ -567,6 +693,28 @@ div#social-media-icons-container a {
   margin-right: 10px;
 }
 
+.dest-title{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.dest-title .btn{
+  padding: 20px 10px;
+  width: 100%;
+  background-color: #E0E3D6;
+  border-radius: 0px;
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+}
+.dest-title .btn i{
+  font-weight: normal;
+  color: #17BEBB;
+  float: right;
+}
+.dest-title .dropdown-menu{
+  width: 100%
+}
 .wrap {
     min-height: 100%;
     height: auto;

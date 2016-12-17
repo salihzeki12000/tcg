@@ -13,6 +13,16 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'FAQ');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<div class="container">
+  <div class="row">
+    <div class="cities-banner hidden-md hidden-lg hidden-sm">
+      <?= Html::img('@web/statics/images/faq-bg.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
+      <div class="banner-text">FAQ</div>
+    </div>
+  </div>
+</div>
+
 <div class="article-index container">
 
     <div class="list-group">

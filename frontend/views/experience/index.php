@@ -14,6 +14,15 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Experiences');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="container">
+  <div class="row">
+    <div class="cities-banner hidden-md hidden-lg hidden-sm">
+      <?= Html::img('@web/statics/images/experiences-bg.jpg', ['alt'=>'EXPERIENCES', 'width'=>"100%"]) ?>
+      <div class="banner-text">EXPERIENCES</div>
+    </div>
+  </div>
+</div>
+
 <div class="tour-index container">
     <!-- Single button -->
     <div class="input-group type-menu">
@@ -44,12 +53,13 @@ $this->params['breadcrumbs'][] = $this->title;
        <div class="file-preview-frame file-preview-initial" >
         <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-          <div class="content-press">From <br />$<span><?= number_format($tour['price_usd'],0) ?></span> USD</div>
+          <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
         </a>
         <div class="file-thumbnail-footer"> 
          <div class="file-footer-caption">
-          <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?> Days | <?= $tour['cities_count'] ?> Cities | <?= $tour['exp_num'] ?> Experiences</span>
             <h3><?= $tour['name'] ?> </h3>
+            <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
+            <div>From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a></div>
          </div> 
         </div> 
        </div>

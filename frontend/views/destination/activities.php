@@ -48,18 +48,16 @@ $this->params['breadcrumbs'][] = 'Activities';
       </a>
     </div> <!-- Carousel -->
 
-    <div class="h-title"><span>Activities</span>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>">Overview</a></li>
-          <?php foreach ($menu as $key => $value) { ?>
-            <li><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
-          <?php } ?>
-        </ul>
-      </div>
+    <div class="btn-group dest-title">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Activities
+        <i class="glyphicon glyphicon-chevron-down"></i>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>">Overview</a></li>
+        <?php foreach ($menu as $key => $value) { ?>
+          <li><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
+        <?php } ?>
+      </ul>
     </div>
 
     <div class="container">
@@ -71,7 +69,7 @@ $this->params['breadcrumbs'][] = 'Activities';
 
             <?php foreach ($activities as $activity) { ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="<?= Url::toRoute(['activity/view', 'id'=>$activity['id']]) ?>">
+                <a class="thumbnail" href="<?= Url::toRoute(['activity/view', 'name'=>$activity['name']]) ?>">
                     <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($activity['pic_s'], 's')?>" alt="<?=  $activity['name'] ?>">
                     <div class="carousel-caption">
                         <h3><?= $activity['name'] ?></h3>

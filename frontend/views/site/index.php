@@ -168,14 +168,14 @@ $this->title = 'The China Guide';
         </div>
     </div>
 
-    <div class="container home-btn"><button type="button" class="btn btn-mine">More  reviews on Tripadvisor</button></div>
+    <div class="container home-btn"><a type="button" class="btn btn-mine" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">More  reviews on Tripadvisor</a></div>
 
 
-    <div class="container">
+    <div class="container index-faq">
         <div class="list-group faq">
             <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2>FAQ</h2></center></a>
             <?php foreach ($faq as $item) { ?>
-            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item">
+            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-6 col-md-6 col-xs-12">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
                 <span><?= $item['title'] ?></span>
             </a>
@@ -186,7 +186,7 @@ $this->title = 'The China Guide';
 
     <div class="container">
         <div class="list-group article">
-            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>Articles</h2></center></a>
+            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>ARTICLES</h2></center></a>
             <?php foreach ($articles as $article) { ?>
             <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
                 <div class="media">

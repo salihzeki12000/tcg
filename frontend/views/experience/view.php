@@ -49,34 +49,33 @@ $this->params['breadcrumbs'][] = $this->title;
     </div> <!-- Carousel -->
 
     <div class="container tour-info">
-        <div class="tour-info-row">
-          <div class="item-s">
+        <div class="tour-info-row row">
+          <div class="item-s col-md-3 col-xs-3">
               <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
-              <br />
               Days
           </div>
-          <div class="item-s">
+          <div class="item-s col-md-4 col-xs-4">
                <span><?= $tour_info['cities_count'] ?></span>
-              <br />
-               Cities
+               Destinations
           </div>
-          <div>
+          <div class="col-md-5 col-xs-5">
                <span><?= $tour_info['exp_num'] ?></span>
-              <br />
                Experiences
           </div>
-          <div>
-               From <br />
-               $<span class="price"><?= number_format($tour_info['price_usd'],0) ?></span> USD
-          </div>
         </div>
+    </div>
+    <div class="container price">
+         From <span>$<?= number_format($tour_info['price_usd'],0) ?></span> USD Per Person
+    </div>
+    <div class="container home-btn">
+      <a type="button" class="btn btn-danger" href="#">Get a Free Quotation</a>
     </div>
 
     <div class="container themes-info">
         <div class="list-group">
             <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { ?>
             <div class="col-md-4 col-xs-6 list-group-item">
-                <i class="glyphicon glyphicon-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
+                <i class="icon-menu-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
             </div>
             <?php } ?>
         </div>
@@ -87,11 +86,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="overview">
           <?= $tour_info['overview'] ?>
         </div>
-        <center><button type="button" id='bt_overview_more' class="btn btn-default">View More</button></center>
+        <center><div id="bt_overview_more" style="display: block;">More<br><i class="glyphicon glyphicon-chevron-down"></i></div></center>
     </div>
 
-    <div class="container">
-        <center><h2>Map</h2></center>
+    <div class="container map">
+        <center><h2>Recommended Itinerary</h2></center>
         <div class="col-md-6 col-xs-12 list-group-item">
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
@@ -133,6 +132,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
                 <div class="item <?= ($i==0)? 'active' : '' ?> ">
                   <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
+                  <div class="carousel-caption">
+                    <span><?= $slide['title']?></span>
+                  </div>
                 </div>
             <?php } ?>
           </div>
@@ -197,15 +199,15 @@ $js = <<<JS
         $('.overview').height(100);
     });
     $('#bt_overview_more').click(function(){
-      if($('#bt_overview_more').text() == 'View More')
+      if($('#bt_overview_more').html().indexOf("More")>=0)
       {
         $('.overview').height(overview_height);
-        $('#bt_overview_more').text('View Fold');
+        $('#bt_overview_more').html('<i class="glyphicon glyphicon-chevron-up"><br>Fold</i>');
       }
       else
       {
         $('.overview').height(100);
-        $('#bt_overview_more').text('View More');
+        $('#bt_overview_more').html('More<br><i class="glyphicon glyphicon-chevron-down"></i>');
       }
     });
 

@@ -14,11 +14,19 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Articles');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="container">
+  <div class="row">
+    <div class="cities-banner hidden-md hidden-lg hidden-sm">
+      <?= Html::img('@web/statics/images/articles-bg.jpg', ['alt'=>'ARTICLES', 'width'=>"100%"]) ?>
+      <div class="banner-text">ARTICLES</div>
+    </div>
+  </div>
+</div>
+
 <div class="article-index container">
     <!-- Single button -->
     <div class="container">
         <div class="list-group">
-            <div class="list-group-item"><center><h2>Articles</h2></center></div>
             <?php foreach ($articles as $article) { ?>
             <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
                 <div class="media">

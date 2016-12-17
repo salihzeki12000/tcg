@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container">
         <center><h2><?= $article['title'] ?></h2></center>
+        <center><?= date('d F, Y', strtotime($article['create_time'])) ?></center>
         <div class="overview">
           <?= $article['content'] ?>
         </div>
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="tour-index container">
-    <center><h2>Popular Tours</h2></center>
+    <center><h3>Popular Tours</h3></center>
     <div class=" file-drop-zone"> 
      <div class="file-preview-thumbnails">
       <div class="file-initial-thumbs">
@@ -34,12 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
        <div class="file-preview-frame file-preview-initial" >
         <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-          <div class="content-press">From <br />$<span><?= number_format($tour['price_usd'],0) ?></span> USD</div>
+          <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
         </a>
         <div class="file-thumbnail-footer"> 
          <div class="file-footer-caption">
-          <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?> Days | <?= $tour['cities_count'] ?> Cities | <?= $tour['exp_num'] ?> Experiences</span>
             <h3><?= $tour['name'] ?> </h3>
+            <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
+            <div>From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a></div>
          </div> 
         </div> 
        </div>
@@ -51,7 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
      </div>
 
     </div>
+
+
 </div>
+<div class="container home-btn"><a type="button" class="btn btn-mine" href="<?= Url::toRoute(['experience/index']) ?>">View more tours</a></div>
 <?php
 $js = <<<JS
 

@@ -47,18 +47,16 @@ $this->params['breadcrumbs'][] = 'Virtualtours';
       </a>
     </div> <!-- Carousel -->
 
-    <div class="h-title"><span>Virtualtours</span>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>">Overview</a></li>
-          <?php foreach ($menu as $key => $value) { ?>
-            <li><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
-          <?php } ?>
-        </ul>
-      </div>
+    <div class="btn-group dest-title">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Virtual Tours
+        <i class="glyphicon glyphicon-chevron-down"></i>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>">Overview</a></li>
+        <?php foreach ($menu as $key => $value) { ?>
+          <li><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
+        <?php } ?>
+      </ul>
     </div>
     <div class="container">
 
