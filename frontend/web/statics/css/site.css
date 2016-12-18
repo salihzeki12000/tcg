@@ -396,108 +396,11 @@ div#social-media-icons-container a {
 .tour-index.container, .cities-index.container{
   margin-top: 20px;
 }
-/*
-.navbar-inner {
-    background-color: red;
-    background-image: linear-gradient(to bottom, blue, green);
-    background-repeat: repeat-x;
-    border: 1px solid yellow;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-    min-height: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
+
+.site-error{
+  padding: 20px;
 }
 
-.dropdown-menu {
-    background-clip: padding-box;
-    background-color: red;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px 6px 6px 6px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    display: none;
-    float: left;
-    left: 0;
-    list-style: none outside none;
-    margin: 2px 0 0;
-    min-width: 160px;
-    padding: 5px 0;
-    position: absolute;
-    top: 100%;
-    z-index: 1000;
-}
-
-.btn-group.open .btn.dropdown-toggle {
-  background-color: red;
-}
-
-.btn-group.open .btn.dropdown-toggle {
-  background-color:lime;
-}
-
-.navbar .nav li.dropdown.open > .dropdown-toggle,
-.navbar .nav li.dropdown.active > .dropdown-toggle,
-.navbar .nav li.dropdown.open.active > .dropdown-toggle {
-  color:white;
-  background-color:Teal;
-}
-
-.navbar .nav > li > a {
-    color: white;
-    float: none;
-    padding: 10px 15px;
-    text-decoration: none;
-    text-shadow: 0 0px 0 #ffffff;
-}
-
-.navbar .brand {
-  display: block;
-  float: left;
-  padding: 10px 20px 10px;
-  margin-left: -20px;
-  font-size: 20px;
-  font-weight: 200;
-  color: white;
-  text-shadow: 0 0px 0 #ffffff;
-}
-
-.navbar .nav > li > a:focus,
-.navbar .nav > li > a:hover {
-  color: white;
-  text-decoration: none;
-  background-color: transparent;
-}
-
-.navbar-text {
-  margin-bottom: 0;
-  line-height: 40px;
-  color: white;
-}
-
-.dropdown-menu li > a {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 20px;
-  color: white;
-  white-space: nowrap;
-}
-
-.navbar-link {
-  color: white;
-}
-
-.navbar-link:hover {
-  color: white;
-}*/
-
-/*.container > .navbar-header {
-  background-color: #000;
-  background-image: none;
-  background-repeat: no-repeat;
-  filter: none;
-}*/
 .thumbnail .carousel-caption {
     bottom: 0px;
 }
