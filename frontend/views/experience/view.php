@@ -177,6 +177,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
+<div class="form-info container">
+  <div class="form-info-create">
+
+    <div class="form-title">Quotation Form</div>
+    <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
+    <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> Days | <?= $tour_info['display_cities'] ?></div>
+    <div class="tips">Tour Code: <?= $tour_info['code'] ?></div>
+    <hr />
+    <?= $this->render('/form-info/_form', [
+        'model' => new common\models\FormInfo(FORM_TYPE_QUOTATION),
+        'form_type' => FORM_TYPE_QUOTATION,
+        'tour_code' => $tour_info['code'],
+        'tour_name' => $tour_info['name'],
+    ]) ?>
+
+    <div class="form-info-bottom">We respond your inquiry by email within 24 hours.</div>
+  </div>
+</div>
+
 <?php
 $js = <<<JS
     $('.carousel').carousel({

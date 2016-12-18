@@ -33,16 +33,16 @@ class FormInfoController extends Controller
      * Lists all FormInfo models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new FormInfoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    // public function actionIndex()
+    // {
+    //     $searchModel = new FormInfoSearch();
+    //     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+    //     return $this->render('index', [
+    //         'searchModel' => $searchModel,
+    //         'dataProvider' => $dataProvider,
+    //     ]);
+    // }
 
     /**
      * Displays a single FormInfo model.
@@ -61,17 +61,31 @@ class FormInfoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($form_type)
     {
-        $model = new FormInfo();
+        // $form_type = FORM_TYPE_CUSTOM;
+        // $form_type = FORM_TYPE_QUOTATION;
+        // $form_type = FORM_TYPE_EDU;
+        // $form_type = FORM_TYPE_MICE;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        $model = new FormInfo($form_type);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if (is_array($_POST['FormInfo']['cities_plan'])) {
+                $model->cities_plan = join(',', $_POST['FormInfo']['cities_plan']);
+            }
+            if (is_array($_POST['FormInfo']['travel_interests'])) {
+                $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+
+        return $this->render('create', [
+            'model' => $model,
+            'form_type' => $form_type,
+        ]);
     }
 
     /**
@@ -80,18 +94,18 @@ class FormInfoController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
+    // public function actionUpdate($id)
+    // {
+    //     $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->id]);
+    //     } else {
+    //         return $this->render('update', [
+    //             'model' => $model,
+    //         ]);
+    //     }
+    // }
 
     /**
      * Deletes an existing FormInfo model.
@@ -99,12 +113,12 @@ class FormInfoController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
+    // public function actionDelete($id)
+    // {
+    //     $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
-    }
+    //     return $this->redirect(['index']);
+    // }
 
     /**
      * Finds the FormInfo model based on its primary key value.

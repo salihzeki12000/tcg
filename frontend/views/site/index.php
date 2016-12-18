@@ -49,25 +49,31 @@ $this->title = 'The China Guide';
     </div>
 
     <div class="container home-whyus">
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <i class="icon-whyus-service"></i>
-            <center>SERVICE</center>
-            <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <i class="icon-whyus-expertise"></i>
-            <center>EXPERTISE</center>
-            <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <i class="icon-whyus-flexibility"></i>
-            <center>FLEXIBILITY</center>
-            <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <i class="icon-whyus-quality"></i>
-            <center>QUALITY</center>
-            <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <i class="icon-whyus-service"></i>
+                    <center>SERVICE</center>
+                    <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <i class="icon-whyus-expertise"></i>
+                    <center>EXPERTISE</center>
+                    <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <i class="icon-whyus-flexibility"></i>
+                    <center>FLEXIBILITY</center>
+                    <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    <i class="icon-whyus-quality"></i>
+                    <center>QUALITY</center>
+                    <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
+                </div>
+            </div>
         </div>
     </div>
 

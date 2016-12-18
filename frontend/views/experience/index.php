@@ -81,13 +81,25 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<input size="16" type="text" value="" readonly class="form_datetime">
+<div class="form-info container">
+  <h2>No ideal itinerary or don't bother to browse? Customize your own tour now!</h2>
+  <div class="form-info-create">
+
+    <div class="form-title">Customization Form</div>
+
+    <?= $this->render('/form-info/_form', [
+        'model' => new common\models\FormInfo(FORM_TYPE_CUSTOM),
+        'form_type' => FORM_TYPE_CUSTOM,
+        'tour_code' => '',
+        'tour_name' => '',
+    ]) ?>
+
+    <div class="form-info-bottom">We respond your inquiry by email within 24 hours.</div>
+  </div>
+</div>
 
 <?php
-$this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['frontend\assets\AppAsset']]);
-$this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['frontend\assets\AppAsset']]);
 $js = <<<JS
-    $(".form_datetime").datepicker({});
 JS;
 $this->registerJs($js);
 ?>

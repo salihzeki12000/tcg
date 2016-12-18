@@ -49,4 +49,4 @@ define('HOMEPAGE_TYPE_AD', 2);
 define('FORM_TYPE_CUSTOM',      1);
 define('FORM_TYPE_QUOTATION',   2);
 define('FORM_TYPE_EDU',         3);
-define('FORM_TYPE_MICE',        1);
+define('FORM_TYPE_MICE',        4);

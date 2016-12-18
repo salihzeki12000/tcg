@@ -45,6 +45,13 @@ use Yii;
  */
 class FormInfo extends \yii\db\ActiveRecord
 {
+    public $form_type;
+
+    public function __construct($form_type=FORM_TYPE_CUSTOM)
+    {
+       $this->form_type = $form_type;
+    }
+
     /**
      * @inheritdoc
      */
@@ -58,8 +65,9 @@ class FormInfo extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+        $arr_required = Yii::$app->params['form_required'][$this->form_type];
         return [
-            [['arrival_date', 'arrival_city', 'departure_date', 'departure_city', 'adults', 'group_type', 'name_prefix', 'name', 'email', 'nationality', 'prefered_travel_agent', 'book_hotels', 'subject_program', 'participants_number', 'ideas', 'school_name', 'position', 'purpose_trip', 'number_participants', 'ideas_trip', 'company_name'], 'required'],
+            [$arr_required, 'required'],
             [['arrival_city', 'departure_city', 'adults', 'children', 'infants', 'group_type', 'cities_plan', 'travel_interests', 'prefered_budget', 'name_prefix', 'prefered_travel_agent', 'book_hotels', 'hotel_preferences'], 'string'],
             [['arrival_date', 'departure_date', 'nationality', 'tour_code', 'number_participants'], 'string', 'max' => 20],
             [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip'], 'string', 'max' => 255],

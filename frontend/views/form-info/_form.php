@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\FormInfo */
@@ -10,45 +11,50 @@ use yii\widgets\ActiveForm;
 
 <div class="form-info-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['action' => Url::toRoute(['form-info/create', 'form_type' => $form_type])]);
+        $form_fields = Yii::$app->params['form_fields'][$form_type]; 
+    ?>
 
-    <div class="container">
-        <div class="row">
-            <?php 
-                // echo $form->field($model, 'arrival_date', [
-                //     'template' => '{input}{error}{hint}'
-                //  ]);
-            ?>
-            <!-- <?//= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>'Select Date' ]) ?> -->
+    <?= !in_array('subject_program', $form_fields) ? '' : $form->field($model, 'subject_program')->textInput(['maxlength' => true]) ?>
 
-            <!-- <?//= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => 'Select City']) ?> -->
-        </div>
-    </div>
+    <?= !in_array('participants_number', $form_fields) ? '' : $form->field($model, 'participants_number')->textInput(['maxlength' => true]) ?>
 
-    <label class="control-label" for="">Arrival (In China) </label>
-    <table width="100%">
-        <tr>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>'Select Date' ])->label(false) ?>
-            </td>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => 'Select City'])->label(false) ?>
-            </td>
-        </tr>
-    </table>
+    <?= !in_array('purpose_trip', $form_fields) ? '' : $form->field($model, 'purpose_trip')->textInput(['maxlength' => true]) ?>
 
-    <label class="control-label" for="">Departure (In China) </label>
-    <table width="100%">
-        <tr>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'departure_date')->textInput(['maxlength' => true, 'placeholder' =>'Select Date' ])->label(false) ?>
-            </td>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'departure_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => 'Select City'])->label(false) ?>
-            </td>
-        </tr>
-    </table>
+    <?= !in_array('number_participants', $form_fields) ? '' : $form->field($model, 'number_participants')->textInput(['maxlength' => true]) ?>
 
+    <?php if(in_array('arrival_date', $form_fields)) { ?>
+        <label class="control-label" for="">Arrival (In China) </label>
+        <table width="100%">
+            <tr>
+                <td width="50%" valign="top">
+                    <?= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>'Select Date' ])->label(false) ?>
+                </td>
+                <td width="50%" valign="top">
+                    <?= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => 'Select City'])->label(false) ?>
+                </td>
+            </tr>
+        </table>
+        <?php if(in_array('departure_date', $form_fields)) { ?>
+            <label class="control-label" for="">Departure (In China) </label>
+            <table width="100%">
+                <tr>
+                    <td width="50%" valign="top">
+                        <?= $form->field($model, 'departure_date')->textInput(['maxlength' => true, 'placeholder' =>'Select Date' ])->label(false) ?>
+                    </td>
+                    <td width="50%" valign="top">
+                        <?= $form->field($model, 'departure_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => 'Select City'])->label(false) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php } ?>
+    <?php } ?>
+
+    <?= !in_array('ideas', $form_fields) ? '' : $form->field($model, 'ideas')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => 'the cities you want to visit, the companies you want to interview, the classes or activities you want to participate, etc.']) ?>
+
+    <?= !in_array('ideas_trip', $form_fields) ? '' : $form->field($model, 'ideas_trip')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => '']) ?>
+
+    <?php if(in_array('adults', $form_fields)) { ?>
     <label class="control-label" for="">Guest Information</label>
     <table width="100%">
         <tr>
@@ -81,18 +87,25 @@ use yii\widgets\ActiveForm;
             </td>
         </tr>
     </table>
+    <?php } ?>
 
+    <?= !in_array('book_hotels', $form_fields) ? '' : $form->field($model, 'book_hotels')->dropDownList([ 'Yes' => 'Yes', 'No' => 'No', ], ['prompt' => 'Please select']) ?>
 
-    <?= $form->field($model, 'group_type')->dropDownList([ 'Family' => 'Family', 'Couple' => 'Couple', 'Friends' => 'Friends', 'Business' => 'Business', 'Solo' => 'Solo', 'Other' => 'Other', ], ['prompt' => 'Select Type']) ?>
+    <?= !in_array('hotel_preferences', $form_fields) ? '' : $form->field($model, 'hotel_preferences')->dropDownList([ '3 star or equal' => '3 star or equal', '4 star or equal' => '4 star or equal', '5 star or equal' => '5 star or equal', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'cities_plan')->checkboxList(['Beijing','Xian','Shanghai','Guilin','Zhangjiajie','Tibet/Lhasa','Guangzhou','Hangzhou','Chengdu','Luoyang','Other']) ?>
+    <?= !in_array('room_requirements', $form_fields) ? '' : $form->field($model, 'room_requirements')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => 'Please let us know how many and what types of rooms you want, as well as other requirements.']) ?>
 
-    <?= $form->field($model, 'travel_interests')->checkboxList(['Chinese culture','Nature','Adventure','Chinese food','Buddhism']) ?>
+    <?= !in_array('group_type', $form_fields) ? '' : $form->field($model, 'group_type')->dropDownList([ 'Family' => 'Family', 'Couple' => 'Couple', 'Friends' => 'Friends', 'Business' => 'Business', 'Solo' => 'Solo', 'Other' => 'Other', ], ['prompt' => 'Select Type']) ?>
 
-    <?= $form->field($model, 'prefered_budget')->dropDownList([ 'Below 1499 USD' => 'Below 1499 USD', '1500 to 2999 USD' => '1500 to 2999 USD', '3000 to 4999 USD' => '3000 to 4999 USD', 'Above 5000 USD' => 'Above 5000 USD', ], ['prompt' => 'Select a budget']) ?>
+    <?= !in_array('cities_plan', $form_fields) ? '' : $form->field($model, 'cities_plan')->checkboxList(['Beijing'=>'Beijing','Xian'=>'Xian','Shanghai'=>'Shanghai','Guilin'=>'Guilin','Zhangjiajie'=>'Zhangjiajie','Tibet/Lhasa'=>'Tibet/Lhasa','Guangzhou'=>'Guangzhou','Hangzhou'=>'Hangzhou','Chengdu'=>'Chengdu','Luoyang'=>'Luoyang','Other'=>'Other']) ?>
 
-    <?= $form->field($model, 'additional_information')->textInput(['maxlength' => true]) ?>
+    <?= !in_array('travel_interests', $form_fields) ? '' : $form->field($model, 'travel_interests')->checkboxList(['Chinese culture'=>'Chinese culture','Nature'=>'Nature','Adventure'=>'Adventure','Chinese food'=>'Chinese food','Buddhism'=>'Buddhism']) ?>
 
+    <?= !in_array('prefered_budget', $form_fields) ? '' : $form->field($model, 'prefered_budget')->dropDownList([ 'Below 1499 USD' => 'Below 1499 USD', '1500 to 2999 USD' => '1500 to 2999 USD', '3000 to 4999 USD' => '3000 to 4999 USD', 'Above 5000 USD' => 'Above 5000 USD', ], ['prompt' => 'Select a budget']) ?>
+
+    <?= !in_array('additional_information', $form_fields) ? '' : $form->field($model, 'additional_information')->textInput(['maxlength' => true]) ?>
+
+    <?php if(in_array('name', $form_fields)) { ?>
     <label class="control-label" for="">Your Name</label>
     <table width="100%">
         <tr>
@@ -104,47 +117,30 @@ use yii\widgets\ActiveForm;
             </td>
         </tr>
     </table>
+    <?php } ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= !in_array('email', $form_fields) ? '' : $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nationality')->textInput(['maxlength' => true]) ?>
+    <?= !in_array('school_name', $form_fields) ? '' : $form->field($model, 'school_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'prefered_travel_agent')->dropDownList([ 'English' => 'English', 'Français' => 'Français', 'Español' => 'Español', 'Deutsch' => 'Deutsch', '中文' => '中文', ], ['prompt' => '']) ?>
+    <?= !in_array('company_name', $form_fields) ? '' : $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tour_code')->textInput(['maxlength' => true]) ?>
+    <?= !in_array('position', $form_fields) ? '' : $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
+    
+    <?= !in_array('nationality', $form_fields) ? '' : $form->field($model, 'nationality')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tour_name')->textInput(['maxlength' => true]) ?>
+    <?= !in_array('prefered_travel_agent', $form_fields) ? '' : $form->field($model, 'prefered_travel_agent')->dropDownList([ 'English' => 'English', 'Français' => 'Français', 'Español' => 'Español', 'Deutsch' => 'Deutsch', '中文' => '中文', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'book_hotels')->dropDownList([ 'Yes' => 'Yes', 'No' => 'No', ], ['prompt' => 'Please select']) ?>
+    <?= !in_array('tour_code', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_code', ['value'=>$tour_code]) ?>
 
-    <?= $form->field($model, 'hotel_preferences')->dropDownList([ '3 star or equal' => '3 star or equal', '4 star or equal' => '4 star or equal', '5 star or equal' => '5 star or equal', ], ['prompt' => '']) ?>
+    <?= !in_array('tour_name', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_name', ['value'=>$tour_name]) ?>
 
-    <?= $form->field($model, 'room_requirements')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => 'Please let us know how many and what types of rooms you want, as well as other requirements.']) ?>
+    <?= !in_array('phone_number', $form_fields) ? '' : $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'subject_program')->textInput(['maxlength' => true]) ?>
+    <?= !in_array('hear_about_us', $form_fields) ? '' : $form->field($model, 'hear_about_us')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'participants_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ideas')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => 'the cities you want to visit, the companies you want to interview, the classes or activities you want to participate, etc.']) ?>
-
-    <?= $form->field($model, 'school_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'hear_about_us')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'purpose_trip')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'number_participants')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ideas_trip')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => '']) ?>
-
-    <?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <div class="form-group bt-submit">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Submit') : Yii::t('app', 'Submit'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
