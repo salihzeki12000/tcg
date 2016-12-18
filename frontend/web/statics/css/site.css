@@ -321,6 +321,7 @@ div#social-media-icons-container a {
 .breadcrumb {
     border-radius: 0px;
     margin-bottom: 0px;
+    display: none;
 }
 
 .container .price{
