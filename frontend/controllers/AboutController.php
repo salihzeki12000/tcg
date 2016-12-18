@@ -76,4 +76,18 @@ class AboutController extends BaseController
         return $this->render('index',['article'=>$article, 'sub_title'=>$article_name]);
     }
 
+    public function actionCompanyPolicies()
+    {
+        $article_name = 'Company policies';
+        $condition = array();
+        $condition['type'] = ARTICLE_TYPE_PAGE;
+        $condition['title'] = $article_name;
+        $query = Article::find()->where($condition);
+
+        $article = $query
+            ->One();
+
+        return $this->render('view',['article'=>$article, 'sub_title'=>$article_name]);
+    }
+
 }

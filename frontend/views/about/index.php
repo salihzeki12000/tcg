@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'About us');
+$this->title = $sub_title . ' - ' . Yii::t('app', 'About us');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">

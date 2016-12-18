@@ -103,7 +103,13 @@ AppAsset::register($this);
             <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
         </div>
         <center>QUICK LINKS</center>
-        <center><a href="#">Plan a vacation</a> |  <a href="#">Plan an educational trip</a> | <a href="#">Plan an incentive trip</a> | <a href="#">Company policies</a> | <a href="#">Contact us</a></center>
+        <center>
+            <a href="<?= Url::toRoute(['experience/index']) . '#form-info-page' ?>">Plan a vacation</a> | 
+            <a href="<?= Url::toRoute(['/educational-programs']) . '#form-info-page' ?>">Plan an educational trip</a> | 
+            <a href="<?= Url::toRoute(['/meetings-incentives']) . '#form-info-page' ?>">Plan an incentive trip</a> | 
+            <a href="<?= Url::toRoute(['about/company-policies']) ?>">Company policies</a> | 
+            <a href="<?= Url::toRoute(['about/contact-us']) ?>">Contact us</a>
+        </center>
     </div>
     <div class="search-box">
         <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
