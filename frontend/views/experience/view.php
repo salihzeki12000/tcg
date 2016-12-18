@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
          From <span>$<?= number_format($tour_info['price_usd'],0) ?></span> USD Per Person
     </div>
     <div class="container home-btn">
-      <a type="button" class="btn btn-danger" href="#">Get a Free Quotation</a>
+      <a type="button" class="btn btn-danger" href="#form-info-page">Get a Free Quotation</a>
     </div>
 
     <div class="container themes-info">
@@ -177,7 +177,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<div class="form-info container">
+<div class="form-info container" id="form-info-page">
   <div class="form-info-create">
 
     <div class="form-title">Quotation Form</div>
