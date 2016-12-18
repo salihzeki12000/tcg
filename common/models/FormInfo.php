@@ -42,7 +42,9 @@ use Yii;
  * @property string $number_participants
  * @property string $ideas_trip
  * @property string $company_name
- */
+ * @property integer $type
+ * @property string $create_time
+*/
 class FormInfo extends \yii\db\ActiveRecord
 {
     public $form_type;
@@ -73,6 +75,7 @@ class FormInfo extends \yii\db\ActiveRecord
             [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip'], 'string', 'max' => 255],
             [['name', 'tour_name', 'subject_program', 'participants_number', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'company_name'], 'string', 'max' => 50],
             ['email', 'email'],
+            [['type'], 'integer'],
         ];
     }
 
@@ -117,6 +120,8 @@ class FormInfo extends \yii\db\ActiveRecord
             'number_participants' => Yii::t('app', 'Number of participants'),
             'ideas_trip' => Yii::t('app', 'Your ideas about the trip'),
             'company_name' => Yii::t('app', 'Name of your company or organization'),
+            'type' => Yii::t('app', 'Type'),
+            'create_time' => Yii::t('app', 'Create Time'),
         ];
     }
 }

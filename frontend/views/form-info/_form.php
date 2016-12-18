@@ -14,6 +14,11 @@ use yii\helpers\Url;
     <?php $form = ActiveForm::begin(['action' => Url::toRoute(['form-info/create', 'form_type' => $form_type])]);
         $form_fields = Yii::$app->params['form_fields'][$form_type]; 
     ?>
+    <?= Html::activeHiddenInput($model, 'type', ['value'=>$form_type]) ?>
+
+    <?= !in_array('tour_code', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_code', ['value'=>$tour_code]) ?>
+
+    <?= !in_array('tour_name', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_name', ['value'=>$tour_name]) ?>
 
     <?= !in_array('subject_program', $form_fields) ? '' : $form->field($model, 'subject_program')->textInput(['maxlength' => true]) ?>
 
@@ -130,10 +135,6 @@ use yii\helpers\Url;
     <?= !in_array('nationality', $form_fields) ? '' : $form->field($model, 'nationality')->textInput(['maxlength' => true]) ?>
 
     <?= !in_array('prefered_travel_agent', $form_fields) ? '' : $form->field($model, 'prefered_travel_agent')->dropDownList([ 'English' => 'English', 'Français' => 'Français', 'Español' => 'Español', 'Deutsch' => 'Deutsch', '中文' => '中文', ], ['prompt' => '']) ?>
-
-    <?= !in_array('tour_code', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_code', ['value'=>$tour_code]) ?>
-
-    <?= !in_array('tour_name', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_name', ['value'=>$tour_name]) ?>
 
     <?= !in_array('phone_number', $form_fields) ? '' : $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
 
