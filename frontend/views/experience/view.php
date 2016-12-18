@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container map">
         <center><h2>Recommended Itinerary</h2></center>
-        <div class="col-md-6 col-xs-12 list-group-item">
+        <div class="col-lg-12 col-md-12 col-xs-12 list-group-item">
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
     </div>
