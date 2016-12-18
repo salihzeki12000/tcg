@@ -39,8 +39,11 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Experiences', 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
         ['label' => 'Destinations', 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
+        ['label' => 'Group', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'Educational Programs', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'Meetings & Incentives', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
         ['label' => 'Articles', 'url' => ['/articles'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => 'FAQ', 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
+        ['label' => 'About', 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],
+
         // ['label' => 'About', 'url' => ['/site/about']],
         // ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
