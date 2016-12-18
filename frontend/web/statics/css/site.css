@@ -483,6 +483,9 @@ div#social-media-icons-container a {
   background-repeat: no-repeat;
   filter: none;
 }*/
+.carousel-caption {
+    bottom: 0px;
+}
 
 .tour-view h2{
     color: #17BEBB;
