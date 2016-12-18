@@ -69,11 +69,11 @@ AppAsset::register($this);
             <li><i class="icon-menu-home"></i><a href="<?= Url::toRoute(['/']) ?>">HOME</a></li>
             <li><i class="icon-menu-experiences"></i><a href="<?= Url::toRoute(['experience/index']) ?>">EXPERIENCES</a></li>
             <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>">DESTINATIONS</a></li>
-            <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['article/view', 'name'=>'educational programs']) ?>">EDUCATIONAL PROGRAMS</a></li>
-            <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['articles/view', 'name'=>'meetings & incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li>
+            <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['/educational-programs']) ?>">EDUCATIONAL PROGRAMS</a></li>
+            <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li>
             <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>">ARTICLES</a></li>
             <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>">FAQ</a></li>
-            <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['article/view', 'name'=>'about us']) ?>">ABOUT US</a></li>
+            <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>">ABOUT US</a></li>
         </ul>
         <span>The China Guide<br />A Beijing-based, foreign-owned travel agency.</span>
     </div>

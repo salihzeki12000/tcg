@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = 'Experiences';
 
           <?php foreach ($tours as $tour) { ?>
 
-           <div class="file-preview-frame file-preview-initial" >
+           <div class="file-preview-frame file-preview-initial col-lg-4 col-md-6 col-xs-12" >
             <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
               <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
@@ -99,6 +99,23 @@ $this->params['breadcrumbs'][] = 'Experiences';
         </div>
     </div>
 
+</div>
+
+<div class="form-info container" id="form-info-page">
+  <h2>No ideal itinerary or don't bother to browse? Customize your own tour now!</h2>
+  <div class="form-info-create">
+
+    <div class="form-title">Customization Form</div>
+
+    <?= $this->render('/form-info/_form', [
+        'model' => new common\models\FormInfo(FORM_TYPE_CUSTOM),
+        'form_type' => FORM_TYPE_CUSTOM,
+        'tour_code' => '',
+        'tour_name' => '',
+    ]) ?>
+
+    <div class="form-info-bottom">We respond your inquiry by email within 24 hours.</div>
+  </div>
 </div>
 
 <?php

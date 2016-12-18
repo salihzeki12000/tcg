@@ -113,7 +113,7 @@ body {
 .home-whyus i{
   display: block;
   width: 60px;
-  height: 61px;
+  height: 60px;
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   margin: 15px auto;
@@ -126,7 +126,7 @@ body {
   background-position: -72px -58px;
 }
 .home-whyus i.icon-whyus-flexibility{
-  background-position: -72px -116px;
+  background-position: -72px -117px;
 }
 .home-whyus i.icon-whyus-quality{
   background-position: -72px -176px;
@@ -261,23 +261,28 @@ div#social-media-icons-container a {
   background-size: 370px;
   background-repeat: no-repeat;
 }
+
+.navbar-brand {
+    padding: 7px 15px;
+}
+
 #social-media-icons-container a#tripadvisor {
-    background-position: 0px 0;
+    background-position: -321px 0;
 }
 #social-media-icons-container a#instagram {
     background-position: -63px 0;
 }
 #social-media-icons-container a#facebook {
-    background-position: -128px 0;
+    background-position: -193px 0;
 }
 #social-media-icons-container a#twitter {
-    background-position: -193px 0;
+    background-position: 0px 0;
 }
 #social-media-icons-container a#linkedin {
     background-position: -257px 0;
 }
 #social-media-icons-container a#pinterest {
-    background-position: -321px 0;
+    background-position: -128px 0;
 }
 
 .footer .search-box, .footer .pata, .footer .copyright{
@@ -380,6 +385,16 @@ div#social-media-icons-container a {
     margin-bottom: 10px;
     border: 0;
     border-top: 1px solid #c5c5c5;
+}
+
+.article-index.container{
+  margin:30px 0;
+}
+.article-index>.container{
+  padding: 0;
+}
+.tour-index.container, .cities-index.container{
+  margin-top: 20px;
 }
 /*
 .navbar-inner {
@@ -494,6 +509,7 @@ div#social-media-icons-container a {
 .form-info h2{
     color: #17BEBB;
     font-size: 20px;
+    text-align: center;
 }
 .form-info-create
 {
@@ -714,14 +730,18 @@ div#social-media-icons-container a {
 }
 .cities-banner{
   text-align:center;
+  position: relative;
 }
 .cities-banner .banner-text{
-  display:inline-block;
-  position: relative;
-  top: -75px;
-  color: white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-  font-size: 20px;
+    position: absolute;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    font-size: 20px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: 50%;
 }
 
 .city-view .h-title, .sight-view .h-title, .activity-view .h-title{

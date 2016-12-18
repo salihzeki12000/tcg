@@ -20,6 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= Html::img('@web/statics/images/faq-bg.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
       <div class="banner-text">FAQ</div>
     </div>
+    <div class="cities-banner hidden-xs">
+      <h2 class="banner-text-d">FAQ</h2>
+    </div>
   </div>
 </div>
 
@@ -39,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php } ?>
     </div>
 </div>
-<br/><br/>
+
 <div class="article-index container">
     <div class="list-group">
         <div class="list-group-item"><center><h2><?= Yii::$app->params['faq_type'][FAQ_TYPE_IN_CHINA] ?></h2></center></div>

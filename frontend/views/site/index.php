@@ -77,7 +77,7 @@ $this->title = 'The China Guide';
         </div>
     </div>
 
-    <div class="container home-btn"><button type="button" class="btn btn-danger">LET'S PLAN YOUR TRIP</button></div>
+    <div class="container home-btn"><a type="button" class="btn btn-danger" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>">LET'S PLAN YOUR TRIP</a></div>
 
     <div id="carousel-ads-generic" class="carousel slide" data-ride="carousel">
       <!-- Wrapper for ads -->

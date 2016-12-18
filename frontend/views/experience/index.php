@@ -20,6 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= Html::img('@web/statics/images/experiences-bg.jpg', ['alt'=>'EXPERIENCES', 'width'=>"100%"]) ?>
       <div class="banner-text">EXPERIENCES</div>
     </div>
+    <div class="cities-banner hidden-xs">
+      <h2 class="banner-text-d">EXPERIENCES</h2>
+    </div>
   </div>
 </div>
 
@@ -81,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<div class="form-info container">
+<div class="form-info container" id="form-info-page">
   <h2>No ideal itinerary or don't bother to browse? Customize your own tour now!</h2>
   <div class="form-info-create">
 

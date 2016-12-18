@@ -20,6 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= Html::img('@web/statics/images/destinations-bg.jpg', ['alt'=>'Destinations', 'width'=>"100%"]) ?>
       <div class="banner-text">DESTINATIONS</div>
     </div>
+    <div class="cities-banner hidden-xs">
+      <h2 class="banner-text-d">DESTINATIONS</h2>
+    </div>
   </div>
 </div>
 

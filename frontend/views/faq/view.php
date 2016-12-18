@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
       <?php foreach ($tours as $tour) { ?>
 
-       <div class="file-preview-frame file-preview-initial" >
+       <div class="file-preview-frame file-preview-initial col-lg-4 col-md-6 col-xs-12" >
         <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
           <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
