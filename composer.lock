@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0d4a39058b82e750264d0ad7f178079a",
-    "content-hash": "a0cfd9519ea9edc0396aeabddac8fa94",
+    "hash": "f9fdd667c338279b0daaed2e014189c0",
+    "content-hash": "ac7878229046f2a8bf4ef61a00a0f89b",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -178,7 +178,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bestiejs/punycode.js.git",
+                "url": "https://github.com/bower-asset/punycode.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {

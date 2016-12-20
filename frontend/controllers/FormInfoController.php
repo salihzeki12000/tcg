@@ -78,7 +78,13 @@ class FormInfoController extends Controller
                 $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
             }
             if ($model->save()) {
+                Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,]) 
+                    ->setTo('15079405@qq.com') 
+                    ->setSubject('Message subject') 
+                    ->send(); 
+
                 return $this->redirect(['view', 'id' => $model->id]);
+
             }
         }
 
