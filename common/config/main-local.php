@@ -29,15 +29,15 @@ return [
             'transport' => [ 
               //这里如果你是qq的邮箱，可以参考qq客户端设置后再进行配置 http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
                 'class' => 'Swift_SmtpTransport', 
-                'host' => 'mail.rong360.com', 
-                'username' => 'mixiaobin@rong360.com', 
-                'password' => 'qweasd123', 
+                'host' => '', 
+                'username' => '', 
+                'password' => '', 
                 'port' => '25', 
                 // 'encryption' => 'tls', 
             ], 
             'messageConfig'=>[ 
                 'charset'=>'UTF-8', 
-                'from'=>['mixiaobin@rong360.com'=>'test'] 
+                'from'=>['@'=>'test'] 
             ], 
         ],
     ],
