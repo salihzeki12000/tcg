@@ -56,6 +56,12 @@ return [
         DIS_STATUS_SHOW => 'Show',
         DIS_STATUS_HIDE => 'Hide',
         ),
+    'form_types' => array(
+        FORM_TYPE_CUSTOM => 'custom',
+        FORM_TYPE_QUOTATION => 'quotation',
+        FORM_TYPE_EDU => 'educational',
+        FORM_TYPE_MICE => 'MICE',
+        ),
     'form_required' => array(
         FORM_TYPE_CUSTOM => array(
             'arrival_date',

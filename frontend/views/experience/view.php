@@ -100,16 +100,16 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php for($j=0; $j<count($itinerary_info); $j++) { 
         $itinerary = $itinerary_info[$j];
       ?>
-      <div id="itinerary-item-<?= $j ?>" class="itinerary-item" style="<?= $j>0?'display: none;':'' ?>">
+      <div id="itinerary-item-<?= $j ?>" class="itinerary-item" data-current="<?= $j ?>" style="<?= $j>0?'display: none;':'' ?>">
 
-        <nav>
+        <nav class="itinerary-swipe">
           <ul class="pager">
             <li class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1"><a href="javascript:void(0);">&lt; Prev</a></li>
             <li class="text">Day <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?>:<?= $itinerary['cities_name'] ?></li>
             <li class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1"><a href="javascript:void(0);">Next &gt;</a></li>
           </ul>
         </nav>
-        <div>
+        <div class="itinerary-swipe">
           <?= $itinerary['description'] ?>
         </div>
 
@@ -201,16 +201,37 @@ $js = <<<JS
     $('.carousel').carousel({
         interval: 4000
     })
+    $('.carousel').hammer().on('swipeleft', function(){  
+        $(this).carousel('next');  
+    });  
+    $('.carousel').hammer().on('swiperight', function(){  
+        $(this).carousel('prev');  
+    }); 
 
     $('.bt-pager').click(function(){
       if($(this).hasClass("disabled")){
         return;
       }
-      var current_id = $(this).attr('data-current');
       var action = $(this).attr('data-action');
+      itinerarysPaging(action);
+    });
+
+    function itinerarysPaging(action){
+      var current_id = $(".itineraries").children(".itinerary-item:visible").attr('data-current');
+      var max_id = $(".itineraries").children(".itinerary-item").length - 1;
+      if((current_id <= 0 && action == -1) || (current_id >= max_id && action == 1))
+      {
+        return;
+      }
       $(".itineraries").children(".itinerary-item").hide();
       $("#itinerary-item-"+(parseInt(current_id)+parseInt(action))).show();
-    });
+    }
+    $('.itinerary-swipe').hammer().on('swiperight', function(){  
+        itinerarysPaging(-1);  
+    }); 
+    $('.itinerary-swipe').hammer().on('swipeleft', function(){  
+        itinerarysPaging(1);  
+    }); 
 
     var overview_height = 100;
     $(function(){

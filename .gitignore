@@ -4,4 +4,4 @@ ehthumbs.db
 Desktop.ini
 
 /frontend/web/uploads/*
-common/config/main-local.php
+/common/config/main-local.php

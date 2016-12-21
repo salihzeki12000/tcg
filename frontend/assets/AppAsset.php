@@ -15,7 +15,9 @@ class AppAsset extends AssetBundle
         'statics/css/site.css',
     ];
     public $js = [
-        // 'statics/js/test.js',
+        // 'statics/js/jgestures.min.js',
+        'statics/js/hammer.min.js',
+        'statics/js/jquery.hammer.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -18,8 +18,8 @@ class FormInfoSearch extends FormInfo
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['arrival_date', 'arrival_city', 'departure_date', 'departure_city', 'adults', 'children', 'infants', 'guest_information', 'group_type', 'cities_plan', 'travel_interests', 'prefered_budget', 'additional_information', 'name_prefix', 'name', 'email', 'nationality', 'prefered_travel_agent', 'tour_code', 'tour_name', 'book_hotels', 'hotel_preferences', 'room_requirements', 'subject_program', 'participants_number', 'ideas', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'number_participants', 'company_name'], 'safe'],
+            [['id', 'type'], 'integer'],
+            [['arrival_date', 'arrival_city', 'departure_date', 'departure_city', 'adults', 'children', 'infants', 'guest_information', 'group_type', 'cities_plan', 'travel_interests', 'prefered_budget', 'additional_information', 'name_prefix', 'name', 'email', 'nationality', 'prefered_travel_agent', 'tour_code', 'tour_name', 'book_hotels', 'hotel_preferences', 'room_requirements', 'subject_program', 'participants_number', 'ideas', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'number_participants', 'ideas_trip', 'company_name', 'create_time'], 'safe'],
         ];
     }
 
@@ -60,6 +60,8 @@ class FormInfoSearch extends FormInfo
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'type' => $this->type,
+            'create_time' => $this->create_time,
         ]);
 
         $query->andFilterWhere(['like', 'arrival_date', $this->arrival_date])
@@ -94,6 +96,7 @@ class FormInfoSearch extends FormInfo
             ->andFilterWhere(['like', 'hear_about_us', $this->hear_about_us])
             ->andFilterWhere(['like', 'purpose_trip', $this->purpose_trip])
             ->andFilterWhere(['like', 'number_participants', $this->number_participants])
+            ->andFilterWhere(['like', 'ideas_trip', $this->ideas_trip])
             ->andFilterWhere(['like', 'company_name', $this->company_name]);
 
         return $dataProvider;

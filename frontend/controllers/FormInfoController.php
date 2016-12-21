@@ -51,8 +51,14 @@ class FormInfoController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        Yii::$app->mailer->compose('form', ['model' => $model]) 
+            ->setTo('15079405@qq.com') 
+            ->setSubject('Message subject') 
+            ->send(); 
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
