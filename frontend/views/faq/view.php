@@ -53,7 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-<div class="container home-btn"><a type="button" class="btn btn-mine" href="<?= Url::toRoute(['experience/index']) ?>">View more tours</a></div>
+<div class="container home-btn">
+  <div class="row btn-row">
+    <a type="button" class="btn btn-mine col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) ?>">View more tours</a>
+  </div>
+</div>
+
 
 <?php
 $js = <<<JS

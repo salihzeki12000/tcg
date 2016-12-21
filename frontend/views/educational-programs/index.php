@@ -27,7 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="container home-btn">
-  <a type="button" class="btn btn-danger" href="#form-info-page">Plan An Educational Trip</a>
+  <div class="row btn-row">
+    <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#form-info-page">Plan An Educational Trip</a>
+  </div>
 </div>
 
 <div class="article-view">

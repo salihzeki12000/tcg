@@ -34,11 +34,15 @@ class ExperienceController extends BaseController
         if ($type) {
             $query->andWhere("FIND_IN_SET('".$type."', rec_type)");
         }
-        if (!empty($theme)) {
+        if (empty($theme)) {
+            $theme_id = TOUR_THEMES_MOST_POPULAR;
+        }
+        else
+        {
             $theme_id = array_search($theme, Yii::$app->params['tour_themes']);
-            if ($theme_id) {
-                $query->andWhere("FIND_IN_SET('".$theme_id."', themes)");
-            }
+        }
+        if ($theme_id) {
+            $query->andWhere("FIND_IN_SET('".$theme_id."', themes)");
         }
 
         $count_query = clone $query;

@@ -67,23 +67,23 @@ use yii\helpers\Url;
                 <?= $form->field($model, 'adults')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
             </td>
             <td width="50%" valign="middle">
-                Adults (> 12 yrs)
+                <label class="control-label">Adults (> 12 yrs)</label>
             </td>
         </tr>
         <tr>
             <td width="50%" valign="middle">
                 <?= $form->field($model, 'children')->dropDownList([ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', ], ['prompt' => ''])->label(false) ?>
             </td>
-            <td width="50%" valign="middle">
-                Children (3 - 12 yrs)
+            <td width="50%" valign="middle" class="control-label">
+                <label class="control-label">Children (3 - 12 yrs)</label>
             </td>
         </tr>
         <tr>
             <td width="50%" valign="middle">
                 <?= $form->field($model, 'infants')->dropDownList([ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', ], ['prompt' => ''])->label(false) ?>
             </td>
-            <td width="50%" valign="middle">
-                Infants (< 3 yrs)
+            <td width="50%" valign="middle" class="control-label">
+                <label class="control-label">Infants (< 3 yrs)</label>
             </td>
         </tr>
         <tr>

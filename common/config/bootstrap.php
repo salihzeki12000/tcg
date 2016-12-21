@@ -19,9 +19,7 @@ define('TOUR_THEMES_CULTURE', 3);
 define('TOUR_THEMES_ADVENTUROUS', 4);
 define('TOUR_THEMES_FOODIE', 5);
 define('TOUR_THEMES_AT_A_GLANCE', 6);
-// define('TOUR_THEMES_NATURE', 7);
-// define('TOUR_THEMES_CRUISE', 8);
-// define('TOUR_THEMES_ROMANTIC', 9);
+define('TOUR_THEMES_POPULAR_CITY', 7);
 
 define('REC_TYPE_MUST_VISIT', 1);
 define('REC_TYPE_POPULAR', 2);

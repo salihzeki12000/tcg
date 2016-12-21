@@ -28,21 +28,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tour-index container">
     <!-- Single button -->
-    <div class="input-group type-menu">
+    <div class="input-group type-menu col-lg-3 col-md-4 col-xs-10">
       <span class="input-group-addon">Filter:</span>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <?php if ($theme_id) {
           echo Yii::$app->params['tour_themes'][$theme_id];
         }
         else{
-          echo 'Select';
+          echo Yii::$app->params['tour_themes'][TOUR_THEMES_MOST_POPULAR];
         } ?>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-          <li><a href="/experiences">All</a></li>
         <?php foreach (Yii::$app->params['tour_themes'] as $id => $name) { ?>
-          <li><a href="<?= Url::toRoute(['experience/index', 'theme'=>$name]) ?>"><?= $name ?></a></li>
+          <li <?= $theme_id==$id?'class="active"':'' ?>><a href="<?= Url::toRoute(['experience/index', 'theme'=>$name]) ?>"><?= $name ?></a></li>
         <?php } ?>
       </ul>
     </div>
@@ -86,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="form-info container" id="form-info-page">
   <h2>No ideal itinerary or don't bother to browse? Customize your own tour now!</h2>
-  <div class="form-info-create">
+  <div class="form-info-create col-lg-6 col-md-6 col-xs-12">
 
     <div class="form-title">Customization Form</div>
 

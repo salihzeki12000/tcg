@@ -77,7 +77,12 @@ $this->title = 'The China Guide';
         </div>
     </div>
 
-    <div class="container home-btn"><a type="button" class="btn btn-danger" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>">LET'S PLAN YOUR TRIP</a></div>
+    <div class="container home-btn">
+        <div class="row btn-row">
+            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>">LET'S PLAN YOUR TRIP</a>
+            
+        </div>
+    </div>
 
     <div id="carousel-ads-generic" class="carousel slide" data-ride="carousel">
       <!-- Wrapper for ads -->
@@ -174,7 +179,11 @@ $this->title = 'The China Guide';
         </div>
     </div>
 
-    <div class="container home-btn"><a type="button" class="btn btn-mine" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">More  reviews on Tripadvisor</a></div>
+    <div class="container home-btn">
+        <div class="row btn-row">
+            <a type="button" class="btn btn-mine col-lg-3 col-md-4 col-xs-10" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">More  reviews on Tripadvisor</a>
+        </div>
+    </div>
 
 
     <div class="container index-faq">

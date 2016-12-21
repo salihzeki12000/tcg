@@ -8,6 +8,9 @@ body {
 .datepicker {
   color: #333;
 }
+.top-ccontainer{
+  width: 100%;
+}
 .page-header {
   padding-bottom: 9px;
   margin: 18px 0px;
@@ -103,8 +106,9 @@ body {
 .container.home-desc{
   color: #17BEBB;
   font-size: 18px;
-  margin: 20px 0;
+  margin: 20px auto;
   font-family: Arial;
+  text-align: center;
 }
 
 .home-whyus{
@@ -134,23 +138,27 @@ body {
 
 .home-btn{
   margin: 20px auto 30px auto;
-  text-align: center;
 }
 .home-btn .btn-danger {
-  width: 80%;
   border-color: #eee;
   border-radius: 15px;
   padding: 9px 15px;
   background-color: #B33635;
+  margin: 0 auto;
+  float: none;
 }
 .home-btn .btn-mine {
-  width: 80%;
   border-color: #eee;
   border-radius: 15px;
   padding: 9px 15px;
   background-color: #4D423C;
   font-size: 16px;
   color: #eee;
+  margin: 0 auto;
+  float: none;
+}
+.btn-row{
+  text-align: center;
 }
 
 .home-categories .list-group .list-group-item{
@@ -388,7 +396,8 @@ div#social-media-icons-container a {
 }
 
 .article-index.container{
-  margin:30px 0;
+  margin: 30px auto;
+  padding: 0;
 }
 .article-index>.container{
   padding: 0;
@@ -421,7 +430,8 @@ div#social-media-icons-container a {
   padding: 30px 10px 10px 10px;
   border-radius: 6px;
   position: relative;
-  margin: 30px 0;
+  margin: 30px auto;
+  float: none;
 }
 .form-info .form-title{
   font-size: 20px;
@@ -538,7 +548,6 @@ div#social-media-icons-container a {
 
 .tour-index .type-menu {
   padding: 8px 8px 0 8px;
-  width: 80%;
   margin: 0 auto;
 }
 .tour-index .type-menu .btn{

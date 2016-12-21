@@ -65,9 +65,9 @@ return [
             'rules' => [
                 'experiences/type/<type:\d+>/page/<page:\d+>' => 'experience/index',
                 'experiences/type/<type:\d+>' => 'experience/index',
-                'experiences/theme/<theme:[A-Za-z0-9_\s]+>/page/<page:\d+>' => 'experience/index',
-                'experiences/theme/<theme:[A-Za-z0-9_\s]+>' => 'experience/index',
                 'experiences/page/<page:\d+>' => 'experience/index',
+                'experiences/<theme:[A-Za-z0-9_\s]+>/page/<page:\d+>' => 'experience/index',
+                'experiences/<theme:[A-Za-z0-9_\s]+>' => 'experience/index',
                 'experiences' => 'experience/index',
                 // 'experience/<id:\d+>' => 'experience/view',
                 'experience/<name:[A-Za-z0-9_\'\s\-]+>' => 'experience/view',

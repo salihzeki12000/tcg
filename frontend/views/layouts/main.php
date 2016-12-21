@@ -80,7 +80,7 @@ AppAsset::register($this);
         </ul>
         <span>The China Guide<br />A Beijing-based, foreign-owned travel agency.</span>
     </div>
-    <div class="container">
+    <div class="container top-ccontainer">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
