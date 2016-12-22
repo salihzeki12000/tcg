@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = 'Activities';
       <ul class="dropdown-menu" role="menu">
         <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>">Overview</a></li>
         <?php foreach ($menu as $key => $value) { ?>
-          <li><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
+          <li <?= (Yii::$app->controller->action->id==$key)? 'class="active"':'' ?>><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
         <?php } ?>
       </ul>
     </div>

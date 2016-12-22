@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
   <div class="row">
-    <div class="cities-banner hidden-md hidden-lg hidden-sm">
+    <div class="cities-banner hidden-md hidden-lg">
       <?= Html::img('@web/statics/images/articles-bg.jpg', ['alt'=>'ARTICLES', 'width'=>"100%"]) ?>
       <div class="banner-text">ARTICLES</div>
     </div>
-    <div class="cities-banner hidden-xs">
+    <div class="cities-banner hidden-xs hidden-sm">
       <h2 class="banner-text-d">ARTICLES</h2>
     </div>
   </div>

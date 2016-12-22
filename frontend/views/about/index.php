@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
   <div class="row">
-    <div class="cities-banner hidden-md hidden-lg hidden-sm">
+    <div class="cities-banner hidden-md hidden-lg">
       <div class="banner-text">ABOUT US</div>
       <?= Html::img('@web/statics/images/aboutus-bg.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
     </div>
-    <div class="cities-banner hidden-xs">
+    <div class="cities-banner hidden-xs hidden-sm">
       <h2 class="banner-text-d">ABOUT US</h2>
     </div>
   </div>
@@ -31,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <i class="glyphicon glyphicon-chevron-down"></i>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="<?= Url::toRoute(['about/index']) ?>">Who Are We</a></li>
-    <li><a href="<?= Url::toRoute(['about/why-book-with-us']) ?>">Why Book With Us?</a></li>
-    <li><a href="<?= Url::toRoute(['about/meet-our-team']) ?>">Meet Our Team</a></li>
-    <li><a href="<?= Url::toRoute(['about/contact-us']) ?>">Contact Us</a></li>
+    <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/index']) ?>">Who Are We</a></li>
+    <li <?= (Yii::$app->controller->action->id=='why-book-with-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/why-book-with-us']) ?>">Why Book With Us?</a></li>
+    <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/meet-our-team']) ?>">Meet Our Team</a></li>
+    <li <?= (Yii::$app->controller->action->id=='contact-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/contact-us']) ?>">Contact Us</a></li>
   </ul>
 </div>
 

@@ -153,13 +153,13 @@ class DestinationController extends BaseController
         ]);
     }
 
-    public function actionFoods($name)
+    public function actionFood($name)
     {
         $city_base = $this->getCityBaseInfo($name);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
-        return $this->render('foods', [
+        return $this->render('food', [
             'city_info' => $city_info,
             'menu' => $menu,
         ]);
@@ -237,7 +237,7 @@ class DestinationController extends BaseController
         }
 
         if (!empty($city_info['food'])) {
-            $menu['foods'] = 'Foods';
+            $menu['food'] = 'Food';
         }
 
         return [

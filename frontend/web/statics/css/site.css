@@ -396,7 +396,7 @@ div#social-media-icons-container a {
 
 .article-index.container{
   margin: 30px auto;
-  padding: 0;
+  padding: 0 15px;
 }
 .article-index>.container{
   padding: 0;
