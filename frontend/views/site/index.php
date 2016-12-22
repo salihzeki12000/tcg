@@ -17,7 +17,7 @@ $this->title = 'The China Guide';
       </ol>
      
       <!-- Wrapper for slides -->
-      <div class="carousel-inner">
+      <div class="carousel-inner full-w">
         <?php for($i=0; $i<count($slides); $i++) {
             $slide=$slides[$i];
             $pic_type = 'l';

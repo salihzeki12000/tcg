@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = 'Sights';
       </ol>
      
       <!-- Wrapper for slides -->
-      <div class="carousel-inner">
+      <div class="carousel-inner full-w">
         <?php for($i=0; $i<count($city_info['images']); $i++) {
             $slide=$city_info['images'][$i];
             $pic_type = 'l';
