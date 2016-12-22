@@ -707,6 +707,9 @@ div#social-media-icons-container a {
 .dest-title .dropdown-menu{
   width: 100%
 }
+.dest-title .dropdown-menu li a{
+  padding: 10px 20px;
+}
 .wrap {
     min-height: 100%;
     height: auto;
