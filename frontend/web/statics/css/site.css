@@ -316,6 +316,7 @@ div#social-media-icons-container a {
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     line-height: 1;
     margin: 0 auto;
+    width: 100%;
 }
 
 .index-faq{
