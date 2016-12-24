@@ -70,15 +70,7 @@ $this->params['breadcrumbs'][] = 'Food';
 
 <?php
 $js = <<<JS
-    $('.carousel').carousel({
-        interval: 4000
-    })
-    $('.carousel').hammer().on('swipeleft', function(){  
-        $(this).carousel('next');  
-    });  
-    $('.carousel').hammer().on('swiperight', function(){  
-        $(this).carousel('prev');  
-    }); 
+
 JS;
 $this->registerJs($js);
 

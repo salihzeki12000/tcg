@@ -343,10 +343,15 @@ div#social-media-icons-container a {
 
 .container .price{
   text-align: center;
+  margin: 20px auto;
 }
 .container .price span{
   font-size: 18px;
   color: #E9C46C;
+}
+.container.tour-left>div{
+  padding-left: 0;
+  padding-right: 0;
 }
 .themes-info .list-group-item{
   background-color: #E0E3D6;
@@ -374,6 +379,10 @@ div#social-media-icons-container a {
 .container .map .list-group-item{
   padding: 0;
   border: none;
+  background-color: #E0E3D6;
+}
+.container .map .list-group-item img{
+  margin: 0 auto;
 }
 
 .form-info-create tr>td{
@@ -597,7 +606,7 @@ div#social-media-icons-container a {
   display: block;
 }
 .tour-view .tour-info .tour-info-row div{
-  padding: 0 10px;
+  padding: 0 5px;
   border-right: 1px dashed #aaa;
   text-align: center;
 }

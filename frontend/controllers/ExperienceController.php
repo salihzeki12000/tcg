@@ -93,9 +93,19 @@ class ExperienceController extends BaseController
             $itinerary['images'] = $itinerary_images;
         }
 
+        $condition = array();
+        $condition['status'] = DIS_STATUS_SHOW;
+        $query = Tour::find()->where($condition);
+        $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
+        $tours = $query
+            ->orderBy('priority DESC, id DESC')
+            ->limit(4)
+            ->all();
+
         return $this->render('view', [
             'tour_info' => $tour_info,
             'itinerary_info' => $itineraries,
+            'tours' => $tours,
         ]);
     }
 

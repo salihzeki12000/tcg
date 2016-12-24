@@ -3683,5 +3683,48 @@
             "wysiwyg",
             "yii2"
         ]
+    },
+    {
+        "name": "codemix/yii2-localeurls",
+        "version": "1.4.5",
+        "version_normalized": "1.4.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/codemix/yii2-localeurls.git",
+            "reference": "b6230b7e7f2d23aba49ba5febbacd4778b5a4e24"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/codemix/yii2-localeurls/b6230b7e7f2d23aba49ba5febbacd4778b5a4e24.zip",
+            "reference": "b6230b7e7f2d23aba49ba5febbacd4778b5a4e24",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2016-10-08 16:09:21",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "codemix\\localeurls\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Härtl",
+                "email": "haertl.mike@gmail.com"
+            }
+        ],
+        "description": "Automatic locale/language management for URLs.",
+        "keywords": [
+            "i18n",
+            "locale",
+            "yii2"
+        ]
     }
 ]

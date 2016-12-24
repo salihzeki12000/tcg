@@ -48,43 +48,46 @@ $this->params['breadcrumbs'][] = $this->title;
       </a>
     </div> <!-- Carousel -->
 
-    <div class="container tour-info">
-        <div class="tour-info-row row">
-          <div class="item-s col-md-3 col-xs-3">
+
+  <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
+    
+    <div class="tour-info">
+        <div class="tour-info-row">
+          <div class="item-s col-lg-3 col-md-3 col-xs-3">
               <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
               Days
           </div>
-          <div class="item-s col-md-4 col-xs-4">
+          <div class="item-s col-lg-4 col-md-4 col-xs-4">
                <span><?= $tour_info['cities_count'] ?></span>
                Destinations
           </div>
-          <div class="col-md-5 col-xs-5">
+          <div class="col-lg-5 col-md-5 col-xs-5">
                <span><?= $tour_info['exp_num'] ?></span>
                Experiences
           </div>
         </div>
     </div>
-    <div class="container price">
+    <div class="price col-lg-12 col-md-12 col-sm-12 col-xs-12">
          From <span>$<?= number_format($tour_info['price_usd'],0) ?></span> USD Per Person
     </div>
 
-    <div class="container home-btn">
-      <div class="row btn-row">
-        <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#form-info-page">Get a Free Quotation</a>
+    <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="btn-row">
+        <a type="button" class="btn btn-danger col-lg-4 col-md-4 col-xs-10" href="#form-info-page">Get a Free Quotation</a>
       </div>
     </div>
 
-    <div class="container themes-info">
+    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="list-group">
             <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { ?>
-            <div class="col-md-4 col-xs-6 list-group-item">
+            <div class="col-lg-4 col-md-4 col-xs-6 list-group-item">
                 <i class="icon-menu-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
             </div>
             <?php } ?>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Overview</h2></center>
         <div class="overview">
           <?= $tour_info['overview'] ?>
@@ -92,14 +95,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <center><div id="bt_overview_more" style="display: block;">More<br><i class="glyphicon glyphicon-chevron-down"></i></div></center>
     </div>
 
-    <div class="container map">
+    <div class="map itinerary-swipe col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Recommended Itinerary</h2></center>
         <div class="col-lg-12 col-md-12 col-xs-12 list-group-item">
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
     </div>
 
-    <div class="container itineraries">
+    <div class="itineraries col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <?php for($j=0; $j<count($itinerary_info); $j++) { 
         $itinerary = $itinerary_info[$j];
       ?>
@@ -157,59 +160,110 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 
-    <div class="container">
+    <div class="inclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Inclusions</h2></center>
         <div>
           <?= $tour_info['inclusion'] ?>
         </div>
     </div>
 
-    <div class="container">
+    <div class="exclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Exclusions</h2></center>
         <div>
           <?= $tour_info['exclusion'] ?>
         </div>
     </div>
 
-    <div class="container">
+    <div class="tips col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Tips</h2></center>
         <div>
           <?= $tour_info['tips'] ?>
         </div>
     </div>
 
-</div>
+    <div class="form-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="form-info-page">
+      <div class="clearfix"></div> 
+      <div class="form-info-create">
 
-<div class="form-info container" id="form-info-page">
-  <div class="form-info-create">
+        <div class="form-title">Quotation Form</div>
+        <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
+        <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> Days | <?= $tour_info['display_cities'] ?></div>
+        <div class="tips">Tour Code: <?= $tour_info['code'] ?></div>
+        <hr />
+        <?= $this->render('/form-info/_form', [
+            'model' => new common\models\FormInfo(FORM_TYPE_QUOTATION),
+            'form_type' => FORM_TYPE_QUOTATION,
+            'tour_code' => $tour_info['code'],
+            'tour_name' => $tour_info['name'],
+        ]) ?>
 
-    <div class="form-title">Quotation Form</div>
-    <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
-    <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> Days | <?= $tour_info['display_cities'] ?></div>
-    <div class="tips">Tour Code: <?= $tour_info['code'] ?></div>
-    <hr />
-    <?= $this->render('/form-info/_form', [
-        'model' => new common\models\FormInfo(FORM_TYPE_QUOTATION),
-        'form_type' => FORM_TYPE_QUOTATION,
-        'tour_code' => $tour_info['code'],
-        'tour_name' => $tour_info['name'],
-    ]) ?>
+        <div class="form-info-bottom">We respond your inquiry by email within 24 hours.</div>
+      </div>
+    </div>
+  </div>
 
-    <div class="form-info-bottom">We respond your inquiry by email within 24 hours.</div>
+  <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
+        <center class="tour-index"><h3>Why book with us?</h3></center>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <i class="icon-whyus-service"></i>
+                <center>SERVICE</center>
+                <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
+            </div>
+            <div class="col-lg-6">
+                <i class="icon-whyus-expertise"></i>
+                <center>EXPERTISE</center>
+                <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <i class="icon-whyus-flexibility"></i>
+                <center>FLEXIBILITY</center>
+                <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
+            </div>
+            <div class="col-lg-6">
+                <i class="icon-whyus-quality"></i>
+                <center>QUALITY</center>
+                <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
+            </div>
+        </div>
+  </div>
+
+  <div class="tour-index col-lg-4 hidden-xs hidden-md hidden-sm">
+      <center><h3>Popular Tours</h3></center>
+      <div class=" file-drop-zone"> 
+       <div class="file-preview-thumbnails">
+        <div class="file-initial-thumbs">
+
+        <?php foreach ($tours as $tour) { ?>
+
+         <div class="file-preview-frame file-preview-initial col-lg-12" >
+          <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
+           <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
+            <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
+          </a>
+          <div class="file-thumbnail-footer"> 
+           <div class="file-footer-caption">
+              <h3><?= $tour['name'] ?> </h3>
+              <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
+              <div>From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a></div>
+           </div> 
+          </div> 
+         </div>
+
+        <?php } ?> 
+         
+       </div> 
+        <div class="clearfix"></div> 
+       </div>
+
+      </div>
   </div>
 </div>
 
 <?php
 $js = <<<JS
-    $('.carousel').carousel({
-        interval: 4000
-    })
-    $('.carousel').hammer().on('swipeleft', function(){  
-        $(this).carousel('next');  
-    });  
-    $('.carousel').hammer().on('swiperight', function(){  
-        $(this).carousel('prev');  
-    }); 
 
     $('.bt-pager').click(function(){
       if($(this).hasClass("disabled")){

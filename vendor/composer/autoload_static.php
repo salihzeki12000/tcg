@@ -51,6 +51,7 @@ class ComposerStaticInitfcfa288df89d0761a1c62bfcf644b93e
         ),
         'c' => 
         array (
+            'codemix\\localeurls\\' => 19,
             'cebe\\markdown\\' => 14,
         ),
         'W' => 
@@ -160,6 +161,10 @@ class ComposerStaticInitfcfa288df89d0761a1c62bfcf644b93e
         'dmstr\\' => 
         array (
             0 => __DIR__ . '/..' . '/dmstr/yii2-adminlte-asset',
+        ),
+        'codemix\\localeurls\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codemix/yii2-localeurls',
         ),
         'cebe\\markdown\\' => 
         array (

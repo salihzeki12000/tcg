@@ -58,6 +58,8 @@ return [
             ],
         ],
         'urlManager' => [
+            'class' => 'codemix\localeurls\UrlManager',
+            'languages' => ['en-US', 'en', 'fr', 'de', 'es-*'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f9fdd667c338279b0daaed2e014189c0",
-    "content-hash": "ac7878229046f2a8bf4ef61a00a0f89b",
+    "hash": "d21374f918478e9e2c5e04462a16b66e",
+    "content-hash": "cc0c178ac6db6bdcde65138d264be3de",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -337,6 +337,47 @@
                 "yii"
             ],
             "time": "2013-12-10 17:49:58"
+        },
+        {
+            "name": "codemix/yii2-localeurls",
+            "version": "1.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codemix/yii2-localeurls.git",
+                "reference": "b6230b7e7f2d23aba49ba5febbacd4778b5a4e24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/codemix/yii2-localeurls/b6230b7e7f2d23aba49ba5febbacd4778b5a4e24.zip",
+                "reference": "b6230b7e7f2d23aba49ba5febbacd4778b5a4e24",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "codemix\\localeurls\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Härtl",
+                    "email": "haertl.mike@gmail.com"
+                }
+            ],
+            "description": "Automatic locale/language management for URLs.",
+            "keywords": [
+                "i18n",
+                "locale",
+                "yii2"
+            ],
+            "time": "2016-10-08 16:09:21"
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
