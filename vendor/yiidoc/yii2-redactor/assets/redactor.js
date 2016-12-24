@@ -100,7 +100,7 @@
         maxHeight: false,
 
         linebreaks: false,
-        replaceDivs: false,
+        replaceDivs: true,
         paragraphize: true,
         cleanStyleOnEnter: false,
         enterKey: true,
