@@ -53,6 +53,32 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 $js = <<<JS
 
+//Meet Our Team
+$('.us-face').mouseover(function(){
+  $(this).attr("src",$(this).attr('data-img2'));
+});
+$('.us-face').mouseout(function(){
+  $(this).attr("src",$(this).attr('data-img1'));
+});
+$('.us-face').hammer().on('tap', function(){
+  if($(this).attr("src") == $(this).attr('data-img1')){
+    $(this).attr("src", $(this).attr('data-img2'));
+  }
+  else{
+    $(this).attr("src",$(this).attr('data-img1'));
+  }
+});
+
 JS;
 $this->registerJs($js);
+
+$css = <<<CSS
+
+  /*Meet Our Team*/
+  .us-face-row>div{
+    height: 530px;
+  }
+CSS;
+$this->registerCss($css); 
+
 ?>
