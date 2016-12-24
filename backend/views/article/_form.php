@@ -34,7 +34,7 @@ use common\models\UploadedFiles;
     'clientOptions' => [
         'minHeight' => '350px',
         'replaceDivs' => false,
-        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
     ]) ?>
 

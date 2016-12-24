@@ -832,3 +832,21 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.nav-stacked .collapse {
+    background-color: #200001;
+    color: #E0E3D6;
+    padding: 15px;
+}
+.nav-stacked .panel{
+    background-color: #200001;
+    border: 1px solid #360000;
+}
+.nav-stacked .panel>a{
+    background-color: #360000;
+    color: #E6D2A1;
+}
+.nav-stacked > li > a:hover, .nav > li > a:focus {
+    background-color: #360000;
+    color: #E6D2A1;
+}

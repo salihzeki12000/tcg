@@ -39,7 +39,8 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Experiences', 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
         ['label' => 'Destinations', 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
-        ['label' => 'Group', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'Educational Programs', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'Meetings & Incentives', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
+        //['label' => 'Group', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'Educational Programs', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'Meetings & Incentives', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
+        ['label' => 'Educational Programs', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
         ['label' => 'Articles', 'url' => ['/articles'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => 'FAQ', 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
         ['label' => 'About', 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],
@@ -73,7 +74,7 @@ AppAsset::register($this);
             <li><i class="icon-menu-experiences"></i><a href="<?= Url::toRoute(['experience/index']) ?>">EXPERIENCES</a></li>
             <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>">DESTINATIONS</a></li>
             <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['/educational-programs']) ?>">EDUCATIONAL PROGRAMS</a></li>
-            <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li>
+            <!-- <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li> -->
             <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>">ARTICLES</a></li>
             <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>">FAQ</a></li>
             <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>">ABOUT US</a></li>
@@ -106,7 +107,7 @@ AppAsset::register($this);
         <center>
             <a href="<?= Url::toRoute(['experience/index']) . '#form-info-page' ?>">Plan a vacation</a> | 
             <a href="<?= Url::toRoute(['/educational-programs']) . '#form-info-page' ?>">Plan an educational trip</a> | 
-            <a href="<?= Url::toRoute(['/meetings-incentives']) . '#form-info-page' ?>">Plan an incentive trip</a> | 
+            <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#form-info-page' ?>">Plan an incentive trip</a> | --> 
             <a href="<?= Url::toRoute(['about/company-policies']) ?>">Company policies</a> | 
             <a href="<?= Url::toRoute(['about/contact-us']) ?>">Contact us</a>
         </center>

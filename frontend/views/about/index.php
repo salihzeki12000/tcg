@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
   </button>
   <ul class="dropdown-menu" role="menu">
     <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/index']) ?>">Who Are We</a></li>
-    <li <?= (Yii::$app->controller->action->id=='why-book-with-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/why-book-with-us']) ?>">Why Book With Us?</a></li>
     <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/meet-our-team']) ?>">Meet Our Team</a></li>
+    <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/our-guides']) ?>">Our Guides</a></li>
+    <li <?= (Yii::$app->controller->action->id=='drivers-and-vehicles')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/drivers-and-vehicles']) ?>">Drivers &amp; Vehicles</a></li>
     <li <?= (Yii::$app->controller->action->id=='contact-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/contact-us']) ?>">Contact Us</a></li>
   </ul>
 </div>

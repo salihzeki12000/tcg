@@ -34,9 +34,9 @@ class AboutController extends BaseController
         return $this->render('index',['article'=>$article, 'sub_title'=>$article_name]);
     }
 
-    public function actionWhyBookWithUs()
+    public function actionOurGuides()
     {
-        $article_name = 'Why Book With Us';
+        $article_name = 'Our Guides';
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -46,6 +46,20 @@ class AboutController extends BaseController
             ->One();
 
         return $this->render('index',['article'=>$article, 'sub_title'=>$article_name.'?']);
+    }
+
+    public function actionDriversAndVehicles()
+    {
+        $article_name = 'Drivers and Vehicles';
+        $condition = array();
+        $condition['type'] = ARTICLE_TYPE_PAGE;
+        $condition['title'] = $article_name;
+        $query = Article::find()->where($condition);
+
+        $article = $query
+            ->One();
+
+        return $this->render('index',['article'=>$article, 'sub_title'=>"Drivers & Vehicles"]);
     }
 
     public function actionMeetOurTeam()

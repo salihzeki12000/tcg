@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </ol>
      
       <!-- Wrapper for slides -->
-      <div class="carousel-inner full-w">
+      <div class="carousel-inner">
         <?php for($i=0; $i<count($tour_info['images']); $i++) {
             $slide=$tour_info['images'][$i];
             $pic_type = 'l';

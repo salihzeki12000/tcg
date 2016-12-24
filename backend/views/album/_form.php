@@ -67,7 +67,7 @@ use common\models\Cities;
     <?= $form->field($model, 'overview')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '350px',
-        'plugins' => ['fontcolor','fontfamily', /*'imagemanager'*/],
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
     ]) ?>
 
