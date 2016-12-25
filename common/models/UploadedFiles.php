@@ -109,11 +109,11 @@ class UploadedFiles extends \yii\db\ActiveRecord
                 ->save($file_path.'.jpg' , ['quality' => $quality]);
                 if ($ret)
                 {
-                    if ($use_mobile) {
+                    // if ($use_mobile) {
                         $newWidth = 720; $newHeight = 360;
                         Image::thumbnail($tmp_name, $newWidth , $newHeight)
                         ->save(Yii::getAlias($file_path.'_mob.jpg'), ['quality' => $quality]);
-                    }
+                    // }
                     $newWidth = 720; $newHeight = 1440;
                     Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
                     ->save($file_path.'_m.jpg' , ['quality' => $quality]);

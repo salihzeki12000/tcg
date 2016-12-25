@@ -14,14 +14,11 @@ $this->title = Yii::t('app', 'FAQ');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="container">
+<div class="container title-bar">
   <div class="row">
-    <div class="cities-banner hidden-md hidden-lg">
-      <?= Html::img('@web/statics/images/faq-bg.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
+    <div class="cities-banner">
+      <?= Html::img('@web/statics/images/faq-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
       <div class="banner-text">FAQ</div>
-    </div>
-    <div class="cities-banner hidden-xs hidden-sm">
-      <h2 class="banner-text-d">FAQ</h2>
     </div>
   </div>
 </div>

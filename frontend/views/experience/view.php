@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             $slide=$tour_info['images'][$i];
             $pic_type = 'l';
             if (Yii::$app->params['is_mobile']) {
-                $pic_type = 'm';
+                $pic_type = 'mob';
             }
         ?>
             <div class="item <?= ($i==0)? 'active' : '' ?> ">
@@ -49,11 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div> <!-- Carousel -->
 
 
-  <div class="container tour-left col-lg-7 col-md-12 col-sm-12 col-xs-12">
+  <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
     
     <div class="tour-info">
         <div class="tour-info-row">
-          <div class="item-s col-lg-4 col-md-3 col-xs-3">
+          <div class="item-s col-lg-4 col-md-3 col-xs-4">
               <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
               Days
           </div>
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                <span><?= $tour_info['cities_count'] ?></span>
                Destinations
           </div>
-          <div class="col-lg-4 col-md-5 col-xs-5">
+          <div class="col-lg-4 col-md-5 col-xs-4">
                <span><?= $tour_info['exp_num'] ?></span>
                Experiences
           </div>
@@ -73,11 +73,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-4 col-md-4 col-xs-10" href="#form-info-page">Get a Free Quotation</a>
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page">Get a Free Quotation</a>
       </div>
     </div>
 
-    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
         <div class="list-group">
             <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { ?>
             <div class="col-lg-6 col-md-6 col-xs-6 list-group-item">
@@ -88,11 +88,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="container-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2>Overview</h2></center>
+        <center><h2 id="nav-overview">Overview</h2></center>
         <div class="overview">
           <?= $tour_info['overview'] ?>
         </div>
-        <center><div id="bt_overview_more" style="display: block;">More<br><i class="glyphicon glyphicon-chevron-down"></i></div></center>
+        <center><a href="#nav-overview" id="bt_overview_more" style="display: block;">More<br><i class="glyphicon glyphicon-chevron-down"></i></a></center>
     </div>
 
     <div class="map itinerary-swipe col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -111,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <nav class="itinerary-swipe">
           <ul class="pager">
             <li class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1"><a href="javascript:void(0);">&lt; Prev</a></li>
-            <li class="text">Day <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?>:<?= $itinerary['cities_name'] ?></li>
+            <li class="text col-xs-7">Day <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?>: <?= $itinerary['cities_name'] ?></li>
             <li class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1"><a href="javascript:void(0);">Next &gt;</a></li>
           </ul>
         </nav>
@@ -131,9 +131,9 @@ $this->params['breadcrumbs'][] = $this->title;
           <div class="carousel-inner">
             <?php for($i=0; $i<count($itinerary['images']); $i++) {
                 $slide=$itinerary['images'][$i];
-                $pic_type = 'l';
+                $pic_type = 'm';
                 if (Yii::$app->params['is_mobile']) {
-                    $pic_type = 'm';
+                    $pic_type = 's';
                 }
             ?>
                 <div class="item <?= ($i==0)? 'active' : '' ?> ">
@@ -179,9 +179,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div>
           <?= $tour_info['tips'] ?>
         </div>
-    </div>
+        <div id="form-info-page"><br><br></div>
+   </div>
 
-    <div class="form-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="form-info-page">
+    <div class="form-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="clearfix"></div> 
       <div class="form-info-create">
 
@@ -202,7 +203,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 
-  <div class="home-whyus col-lg-5 hidden-xs hidden-md hidden-sm">
+  <?php if (!Yii::$app->params['is_mobile']) { ?>
+
+  <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
         <center class="tour-index"><h3>Why book with us?</h3></center>
         <div class="row tour-right">
           <div class="col-lg-12">
@@ -233,7 +236,7 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 
   <?php if ($tours) {?>
-  <div class="tour-index col-lg-5 hidden-xs hidden-md hidden-sm">
+  <div class="tour-index col-lg-4 hidden-xs hidden-md hidden-sm">
       <center><h3 class="tour-right">You May Also Like</h3></center>
       <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">
@@ -269,6 +272,8 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
   </div>
   <?php } ?>
+  <?php } ?>
+
 </div>
 
 <?php
@@ -299,10 +304,10 @@ $js = <<<JS
         itinerarysPaging(1);  
     }); 
 
-    var overview_height = 100;
+    var overview_height = 200;
     $(function(){
         overview_height = $('.overview').height();
-        $('.overview').height(100);
+        $('.overview').height(200);
     });
     $('#bt_overview_more').click(function(){
       if($('#bt_overview_more').html().indexOf("More")>=0)
@@ -312,7 +317,7 @@ $js = <<<JS
       }
       else
       {
-        $('.overview').height(100);
+        $('.overview').height(200);
         $('#bt_overview_more').html('More<br><i class="glyphicon glyphicon-chevron-down"></i>');
       }
     });

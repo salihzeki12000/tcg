@@ -360,6 +360,12 @@ div#social-media-icons-container a {
   padding-left: 0;
   padding-right: 0;
 }
+.container.tour-left .price {
+  margin-bottom: 0;
+}
+.container.tour-left .home-btn {
+    margin: 10px auto 30px auto;
+}
 .themes-info .list-group-item{
   background-color: #E0E3D6;
   border: 1px solid #797979;
@@ -640,13 +646,14 @@ div#social-media-icons-container a {
   margin: 0;
 }
 .tour-view .itineraries nav{
-  padding: 20px 0 10px 0;
+  padding: 20px 0 6px 0;
   border-bottom: 1px solid #c7c7c7;
   margin-bottom: 10px;
 }
 .tour-view .itineraries .text{
   font-size: 16px;
   color: #B33635;
+  padding: 0 5px;
 }
 .tour-view .itinerary-item{
   background-color: #E0E3D6;
@@ -658,23 +665,39 @@ div#social-media-icons-container a {
 }
 
 @media (min-width: 1200px) {
-  .tour-view > .col-lg-7 {
-      padding-left:100px;
+  .tour-view > .col-lg-8 {
+      padding-left:75px;
   }
-  .tour-view > .col-lg-5 {
-      padding-right:85px;
+  .tour-view > .col-lg-4 {
+      padding-right:60px;
   }
   .tour-view > .carousel {
-      margin: 0 100px;
+      margin: 0 75px;
   }
   .tour-view h1.title {
       font-size: 30px;
+  }
+  .cities-banner .banner-text{
+    font-size: 50px !important;
+    top: 40% !important;
+  }
+}
+@media (min-width: 640px) {
+  .tour-view .itineraries .text {
+    float: none;
   }
 }
 .home-whyus .row.tour-right{
   margin: 25px 15px 10px 15px;
   border: 1px solid #949494;
   padding-bottom: 15px;
+}
+.home-whyus .row.tour-right>div{
+  padding: 0;
+  padding-bottom: 15px;
+}
+.home-whyus .row.tour-right>div>div{
+  padding: 10px;
 }
 .file-drop-zone.tour-right {
   margin-top: 0;
@@ -691,11 +714,11 @@ h3.tour-right {
     position: absolute;
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-    font-size: 20px;
+    font-size: 24px;
     margin: auto;
     left: 0;
     right: 0;
-    top: 50%;
+    top: 40%;
     bottom: 50%;
 }
 
@@ -888,4 +911,26 @@ a.desc:after {
 .nav-stacked > li > a:hover, .nav > li > a:focus {
     background-color: #360000;
     color: #E6D2A1;
+}
+
+.container.title-bar{
+  margin: 0;
+  width: 100%;
+}
+
+#bt_overview_more{
+  color: #47AAED;
+  line-height: 7px;
+  margin: 10px;
+}
+
+.itineraries  .pager li > a, .itineraries  .pager li > span {
+    display: inline-block;
+    padding: 5px 9px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+.overview>ul{
+  padding-left: 20px;
 }

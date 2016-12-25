@@ -14,14 +14,11 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Destinations');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container">
+<div class="container title-bar">
   <div class="row">
     <div class="cities-banner hidden-md hidden-lg">
-      <?= Html::img('@web/statics/images/destinations-bg.jpg', ['alt'=>'Destinations', 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'Destinations', 'width'=>"100%"]) ?>
       <div class="banner-text">DESTINATIONS</div>
-    </div>
-    <div class="cities-banner hidden-xs hidden-sm">
-      <h2 class="banner-text-d">DESTINATIONS</h2>
     </div>
   </div>
 </div>
