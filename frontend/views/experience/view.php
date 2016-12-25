@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div> <!-- Carousel -->
 
 
-  <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
+  <div class="container tour-left col-lg-7 col-md-12 col-sm-12 col-xs-12">
     
     <div class="tour-info">
         <div class="tour-info-row">
@@ -202,35 +202,37 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 
-  <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
+  <div class="home-whyus col-lg-5 hidden-xs hidden-md hidden-sm">
         <center class="tour-index"><h3>Why book with us?</h3></center>
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <i class="icon-whyus-service"></i>
-                <center>SERVICE</center>
-                <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
-            </div>
-            <div class="col-lg-6">
-                <i class="icon-whyus-expertise"></i>
-                <center>EXPERTISE</center>
-                <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="col-lg-6">
-                <i class="icon-whyus-flexibility"></i>
-                <center>FLEXIBILITY</center>
-                <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
-            </div>
-            <div class="col-lg-6">
-                <i class="icon-whyus-quality"></i>
-                <center>QUALITY</center>
-                <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
-            </div>
+        <div class="row tour-right">
+          <div class="col-lg-12">
+              <div class="col-lg-6">
+                  <i class="icon-whyus-service"></i>
+                  <center>SERVICE</center>
+                  <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
+              </div>
+              <div class="col-lg-6">
+                  <i class="icon-whyus-expertise"></i>
+                  <center>EXPERTISE</center>
+                  <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
+              </div>
+          </div>
+          <div class="col-lg-12">
+              <div class="col-lg-6">
+                  <i class="icon-whyus-flexibility"></i>
+                  <center>FLEXIBILITY</center>
+                  <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
+              </div>
+              <div class="col-lg-6">
+                  <i class="icon-whyus-quality"></i>
+                  <center>QUALITY</center>
+                  <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
+              </div>
+          </div>
         </div>
   </div>
 
-  <div class="tour-index col-lg-4 hidden-xs hidden-md hidden-sm">
+  <div class="tour-index col-lg-5 hidden-xs hidden-md hidden-sm">
       <center><h3>Popular Tours</h3></center>
       <div class=" file-drop-zone"> 
        <div class="file-preview-thumbnails">

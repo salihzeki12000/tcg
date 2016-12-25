@@ -653,6 +653,24 @@ div#social-media-icons-container a {
 .tour-index h3{
   color: #17BEBB;
 }
+
+@media (min-width: 1200px) {
+  .tour-view > .col-lg-7 {
+      padding-left:100px;
+  }
+  .tour-view > .col-lg-5 {
+      padding-right:100px;
+  }
+  .tour-view > .carousel {
+      margin: 0 100px;
+  }
+}
+.home-whyus .row.tour-right{
+  margin: 10px 15px;
+  border: 1px solid #949494;
+  padding-bottom: 15px;
+}
+
 .cities-banner{
   text-align:center;
   position: relative;

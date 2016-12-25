@@ -74,6 +74,7 @@ class UploadedFiles extends \yii\db\ActiveRecord
 
     static public function uploadFile($file, $use_mobile=0)
     {
+        $quality = 70;
         if (!empty($file))
         {
             $file_size = 0;
@@ -105,21 +106,21 @@ class UploadedFiles extends \yii\db\ActiveRecord
             if ($tmp_name) {
                 $newWidth = 1280; $newHeight = 2560;
                 $ret = Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
-                ->save($file_path.'.jpg' , ['quality' => 90]);
+                ->save($file_path.'.jpg' , ['quality' => $quality]);
                 if ($ret)
                 {
                     if ($use_mobile) {
                         $newWidth = 720; $newHeight = 568;
                         Image::thumbnail($tmp_name, $newWidth , $newHeight)
-                        ->save(Yii::getAlias($file_path.'_mob.jpg'), ['quality' => 90]);
+                        ->save(Yii::getAlias($file_path.'_mob.jpg'), ['quality' => $quality]);
                     }
                     $newWidth = 720; $newHeight = 1440;
                     Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
-                    ->save($file_path.'_m.jpg' , ['quality' => 90]);
+                    ->save($file_path.'_m.jpg' , ['quality' => $quality]);
 
                     $newWidth = 360; $newHeight = 720;
                     Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
-                    ->save($file_path.'_s.jpg' , ['quality' => 90]);
+                    ->save($file_path.'_s.jpg' , ['quality' => $quality]);
 
                     return $file_dir . '/' . $file_name .'.jpg';
                 }
