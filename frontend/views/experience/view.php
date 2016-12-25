@@ -232,8 +232,9 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
   </div>
 
+  <?php if ($tours) {?>
   <div class="tour-index col-lg-5 hidden-xs hidden-md hidden-sm">
-      <center><h3>Popular Tours</h3></center>
+      <center><h3>You May Also Like</h3></center>
       <div class=" file-drop-zone"> 
        <div class="file-preview-thumbnails">
         <div class="file-initial-thumbs">
@@ -262,6 +263,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
       </div>
   </div>
+  <?php } ?>
 </div>
 
 <?php
