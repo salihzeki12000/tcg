@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2 id="nav-overview">Overview</h2></center>
-        <div class="overview">
+        <div class="overview" id="overview-body">
           <?= $tour_info['overview'] ?>
         </div>
         <center><a href="#nav-overview" id="bt_overview_more" style="display: block;">More<br><i class="glyphicon glyphicon-chevron-down"></i></a></center>
@@ -306,18 +306,18 @@ $js = <<<JS
 
     var overview_height = 200;
     $(function(){
-        overview_height = $('.overview').height();
-        $('.overview').height(200);
+        overview_height = $('#overview-body').height();
+        $('#overview-body').height(200);
     });
     $('#bt_overview_more').click(function(){
       if($('#bt_overview_more').html().indexOf("More")>=0)
       {
-        $('.overview').height(overview_height);
+        $('#overview-body').height(overview_height);
         $('#bt_overview_more').html('<i class="glyphicon glyphicon-chevron-up"><br>Fold</i>');
       }
       else
       {
-        $('.overview').height(200);
+        $('#overview-body').height(200);
         $('#bt_overview_more').html('More<br><i class="glyphicon glyphicon-chevron-down"></i>');
       }
     });
