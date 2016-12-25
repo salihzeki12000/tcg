@@ -201,7 +201,7 @@ $this->title = 'The China Guide';
 
     <div class="container">
         <div class="list-group article">
-            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>ARTICLES</h2></center></a>
+            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>BLOGS</h2></center></a>
             <?php foreach ($articles as $article) { ?>
             <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
                 <div class="media">

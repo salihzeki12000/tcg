@@ -9,7 +9,7 @@ use common\models\UploadedFiles;
 /* @var $model common\models\Tour */
 
 $this->title = $article['title'];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Articles'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Blogs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-view">
@@ -41,7 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
          <div class="file-footer-caption">
             <h3><?= $tour['name'] ?> </h3>
             <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
-            <div>From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a></div>
+            <div>
+              <?php if(!empty($tour['price_usd'])) { ?>
+                From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD
+              <?php } ?>
+              <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a>
+            </div>
          </div> 
         </div> 
        </div>

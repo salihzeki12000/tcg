@@ -234,8 +234,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <?php if ($tours) {?>
   <div class="tour-index col-lg-5 hidden-xs hidden-md hidden-sm">
-      <center><h3>You May Also Like</h3></center>
-      <div class=" file-drop-zone"> 
+      <center><h3 class="tour-right">You May Also Like</h3></center>
+      <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">
         <div class="file-initial-thumbs">
 
@@ -250,7 +250,12 @@ $this->params['breadcrumbs'][] = $this->title;
            <div class="file-footer-caption">
               <h3><?= $tour['name'] ?> </h3>
               <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
-              <div>From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a></div>
+              <div>
+                <?php if(!empty($tour['price_usd'])) { ?>
+                  From <span>$<?= number_format($tour['price_usd'],0) ?></span> USD
+                <?php } ?>
+                <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a>
+              </div>
            </div> 
           </div> 
          </div>

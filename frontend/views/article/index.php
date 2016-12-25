@@ -11,17 +11,17 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Articles');
+$this->title = Yii::t('app', 'Blogs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
   <div class="row">
     <div class="cities-banner hidden-md hidden-lg">
-      <?= Html::img('@web/statics/images/articles-bg.jpg', ['alt'=>'ARTICLES', 'width'=>"100%"]) ?>
-      <div class="banner-text">ARTICLES</div>
+      <?= Html::img('@web/statics/images/articles-bg.jpg', ['alt'=>'BLOGS', 'width'=>"100%"]) ?>
+      <div class="banner-text">BLOGS</div>
     </div>
     <div class="cities-banner hidden-xs hidden-sm">
-      <h2 class="banner-text-d">ARTICLES</h2>
+      <h2 class="banner-text-d">BLOGS</h2>
     </div>
   </div>
 </div>

@@ -36,14 +36,15 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/']],
-        ['label' => 'Experiences', 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
-        ['label' => 'Destinations', 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
-        //['label' => 'Group', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'Educational Programs', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'Meetings & Incentives', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
-        ['label' => 'Educational Programs', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => 'Articles', 'url' => ['/articles'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => 'HOME', 'url' => ['/']],
+        ['label' => 'EXPERIENCES', 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
+        ['label' => 'DESTINATIONS', 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
+        //['label' => 'GROUP', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'MEETINGS & INCENTIVES', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
+        ['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+        ['label' => 'MORE', 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => 'BLOGS', 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => 'FAQ', 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
-        ['label' => 'About', 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],
+        ['label' => 'ABOUT US', 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],]],
+        
 
         // ['label' => 'About', 'url' => ['/site/about']],
         // ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -75,7 +76,7 @@ AppAsset::register($this);
             <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>">DESTINATIONS</a></li>
             <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['/educational-programs']) ?>">EDUCATIONAL PROGRAMS</a></li>
             <!-- <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li> -->
-            <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>">ARTICLES</a></li>
+            <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>">BLOGS</a></li>
             <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>">FAQ</a></li>
             <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>">ABOUT US</a></li>
         </ul>

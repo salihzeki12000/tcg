@@ -41,6 +41,10 @@ body {
     color: #4D423C;
     background-color: #d4d4d4;
 }
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #4D423C;
+    background-color: #d4d4d4;
+}
 
 .m-menu{
     margin-top: 51px;
@@ -116,25 +120,26 @@ body {
   text-align: center;
 }
 .home-whyus i{
+  border: 1px solid #d86367;
   display: block;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   margin: 15px auto;
-  background-size: 132px;
+  background-size: 118px;
 }
 .home-whyus i.icon-whyus-service{
-  background-position: -72px 1px;
+  background-position: -67px -2px;
 }
 .home-whyus i.icon-whyus-expertise{
-  background-position: -72px -58px;
+  background-position: -67px -54px;
 }
 .home-whyus i.icon-whyus-flexibility{
-  background-position: -72px -117px;
+  background-position: -67px -107px;
 }
 .home-whyus i.icon-whyus-quality{
-  background-position: -72px -176px;
+  background-position: -67px -159px;
 }
 
 .home-btn{
@@ -190,10 +195,11 @@ body {
   margin: 2px 20px 2px 5px;
 }
 .home-categories .icon-mostpopular{
-  background-position: -19px 1px;
+  background-position: -19px 0px;
 }
-.home-categories .icon-familyvacation{
+.home-categories i.icon.icon-familyvacation {
   background-position: -19px -44px;
+  height: 43px;
 }
 .home-categories .icon-culture{
   background-position: -19px -87px;
@@ -509,14 +515,12 @@ div#social-media-icons-container a {
     text-align: left;
     padding: 4px 6px;
     font-size: 14px;
-    font-weight: bold;
     margin: 5px auto;
     margin-top: 0;
     border: 1px solid #949494;
     border-top: none;
 }
 .tour-index .file-footer-caption span{
-  font-weight:bold;
   font-size: 18px;
   word-wrap: break-word; 
   word-break: normal; 
@@ -546,7 +550,6 @@ div#social-media-icons-container a {
 }
 .tour-index .kv-file-content .content-press span{
   color: #E9C46C;
-  font-weight: bold;
 }
 .file-drop-zone h3{
   margin-top: 10px;
@@ -674,6 +677,12 @@ div#social-media-icons-container a {
   border: 1px solid #949494;
   padding-bottom: 15px;
 }
+.file-drop-zone.tour-right {
+  margin-top: 0;
+}
+h3.tour-right {
+  margin-bottom: 0;
+}
 
 .cities-banner{
   text-align:center;
@@ -754,7 +763,7 @@ div#social-media-icons-container a {
 }
 
 .wrap > .container {
-    padding: 51px 0px 0px;
+    padding: 50px 0px 0px;
     /*padding: 70px 15px 20px;*/
     /*padding: 0;*/
 }

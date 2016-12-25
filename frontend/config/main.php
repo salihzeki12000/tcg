@@ -78,8 +78,8 @@ return [
                 'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>/page/<page:\d+>' => 'destination/<action>',
                 'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>' => 'destination/<action>',
                 'sight/<name:[A-Za-z0-9_\'\s\-]+>' => 'sight/view',
-                'articles' => 'article/index',
-                'article/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'article/view',
+                'blogs' => 'article/index',
+                'blog/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'article/view',
                 'faq' => 'faq/index',
                 'faq/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'faq/view',
 
