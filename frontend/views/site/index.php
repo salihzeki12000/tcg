@@ -106,32 +106,32 @@ $this->title = 'The China Guide';
             <h1 class="page-header">TOURS BY CATEGORIES</h1>
         </div>
         <div class="list-group">
-            <a class="col-lg-6 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_MOST_POPULAR]]) ?>">
+            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_MOST_POPULAR]]) ?>">
                 <i class="icon icon-mostpopular"></i>
                 <span>Most Popular</span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
-            <a class="col-lg-6 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FAMILY]]) ?>">
+            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FAMILY]]) ?>">
                 <i class="icon icon-familyvacation"></i>
                 <span>Family Vacation</span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
-            <a class="col-lg-6 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_CULTURE]]) ?>">
+            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_CULTURE]]) ?>">
                 <i class="icon icon-culture"></i>
                 <span>Chinese Culture</span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
-            <a class="col-lg-6 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_ADVENTUROUS]]) ?>">
+            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_ADVENTUROUS]]) ?>">
                 <i class="icon icon-adventurous"></i>
                 <span>Adventurous</span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
-            <a class="col-lg-6 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FOODIE]]) ?>">
+            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FOODIE]]) ?>">
                 <i class="icon icon-foodie"></i>
                 <span>Foodie</span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
-            <a class="col-lg-6 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_AT_A_GLANCE]]) ?>">
+            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_AT_A_GLANCE]]) ?>">
                 <i class="icon icon-ataglance"></i>
                 <span>At a Glance</span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>

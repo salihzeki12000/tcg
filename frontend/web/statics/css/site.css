@@ -169,15 +169,15 @@ body {
 
 .home-categories .list-group .list-group-item{
   margin: 5px auto;
-  padding: 2px 0px;
+  padding: 0px 0px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
-  color: #333;
+  color: #eee;
   font-size: 20px;
-  background-color: #E0E3D6;
-  border: 1px solid #797979;
+  background-color: #4D423C;
+  border: 1px solid #E0E3D6;
 }
 .home-categories i.glyphicon{
   color: #47AAED;
@@ -186,32 +186,30 @@ body {
 .home-categories i.icon{
   display: block;
   float: left;
-  width: 45px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
-  margin: 15px auto;
-  background-size: 124px;
-  margin: 2px 20px 2px 5px;
+  background-size: 115px;
+  margin: 5px 15px 2px 5px;
 }
 .home-categories .icon-mostpopular{
   background-position: -19px 0px;
 }
-.home-categories i.icon.icon-familyvacation {
-  background-position: -19px -44px;
-  height: 43px;
+.home-categories .icon-familyvacation {
+  background-position: -19px -41px
 }
 .home-categories .icon-culture{
-  background-position: -19px -87px;
+  background-position: -19px -81px;
 }
 .home-categories .icon-adventurous{
-  background-position: -19px -130px;
+  background-position: -19px -121px;
 }
 .home-categories .icon-foodie{
-  background-position: -19px -174px;
+  background-position: -19px -161px;
 }
 .home-categories .icon-ataglance{
-  background-position: -19px -217px;
+  background-position: -19px -201px;
 }
 .home-categories span{
   line-height: 50px;

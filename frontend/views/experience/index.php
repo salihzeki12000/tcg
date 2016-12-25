@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="form-info container" id="form-info-page">
   <h2>No ideal itinerary or don't bother to browse? Customize your own tour now!</h2>
-  <div class="form-info-create col-lg-6 col-md-6 col-xs-12">
+  <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
 
     <div class="form-title">Customization Form</div>
 
