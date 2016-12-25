@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="tour-index container">
     <!-- Single button -->
-    <div class="input-group type-menu col-lg-3 col-md-4 col-xs-10">
+    <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
       <span class="input-group-addon">Filter:</span>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <?php if ($theme_id) {

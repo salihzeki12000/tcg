@@ -584,11 +584,12 @@ div#social-media-icons-container a {
   border-color: #B33635;
   background-color: #4D423C;
   color: #fff;
+  font-size: 20px;
 }
 .tour-index .type-menu .input-group-addon{
     background: rgba(203, 51, 51, 1);
     color: #fff;
-    font-weight: bold;
+    font-size: 20px;
 }
 
 .tour-index .thumbnail{
@@ -774,7 +775,7 @@ h3.tour-right {
 .dest-title .dropdown-menu{
   width: 100%
 }
-.dest-title .dropdown-menu li a{
+.dest-title .dropdown-menu li a, .type-menu .dropdown-menu li a{
   padding: 10px 20px;
 }
 .wrap {
