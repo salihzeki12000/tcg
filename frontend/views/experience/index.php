@@ -27,7 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
       <span class="input-group-addon">Filter:</span>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <?php if ($theme_id) {
+        <?php if($city_name) {
+          echo $city_name . " Tours";
+        }
+        elseif ($theme_id) {
           echo Yii::$app->params['tour_themes'][$theme_id];
         }
         else{
@@ -37,7 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
       </button>
       <ul class="dropdown-menu" role="menu">
         <?php foreach (Yii::$app->params['tour_themes'] as $id => $name) { ?>
-          <li <?= $theme_id==$id?'class="active"':'' ?>><a href="<?= Url::toRoute(['experience/index', 'theme'=>$name]) ?>"><?= $name ?></a></li>
+          <li <?= ($theme_id==$id && empty($city_name))?'class="active"':'' ?>><a href="<?= Url::toRoute(['experience/index', 'theme'=>$name]) ?>"><?= $name ?></a></li>
+        <?php } ?>
+        <li role="presentation" class="divider"></li>
+        <?php foreach ($cities as $city) { ?>
+          <li <?= $city['name']==$city_name?'class="active"':'' ?>><a href="<?= Url::toRoute(['experience/index', 'city_name'=>$city['name']]) ?>"><?= $city['name'] ?> Tours</a></li>
         <?php } ?>
       </ul>
     </div>

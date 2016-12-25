@@ -65,8 +65,8 @@ return [
             'enableStrictParsing' => false,
             // 'suffix' => '.html',
             'rules' => [
-                'experiences/type/<type:\d+>/page/<page:\d+>' => 'experience/index',
-                'experiences/type/<type:\d+>' => 'experience/index',
+                'experiences/city/<city_name:[A-Za-z0-9_\']+>/page/<page:\d+>' => 'experience/index',
+                'experiences/city/<city_name:[A-Za-z0-9_\']+>' => 'experience/index',
                 'experiences/page/<page:\d+>' => 'experience/index',
                 'experiences/<theme:[A-Za-z0-9_\s]+>/page/<page:\d+>' => 'experience/index',
                 'experiences/<theme:[A-Za-z0-9_\s]+>' => 'experience/index',

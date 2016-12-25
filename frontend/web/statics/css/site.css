@@ -15,9 +15,13 @@ body {
   padding-bottom: 9px;
   margin: 18px 0px;
   border-bottom: none;
-  font-size: 24px;
+  font-size: 20px;
   color: #E9C46C;
   text-align: center;
+  margin-top: 38px;
+}
+.carousel-caption h3{
+  font-size: 20px;
 }
 .navbar-inverse{
   background-color: #E0E3D6;
@@ -228,7 +232,10 @@ body {
   padding: 10px;
   float: none;
 }
-
+.clients-saying .row>div>div{
+  font-size: 16px;
+  margin-bottom: 20px;
+}
 .site-index .faq .list-group-item, .site-index .article .list-group-item{
   background-color: #E0E3D6;
   border-color: #797979;
@@ -338,6 +345,8 @@ div#social-media-icons-container a {
 .list-group-item:first-child {
      border-top-right-radius: 0px; 
      border-top-left-radius: 0px; 
+     padding: 5px;
+     margin-top: 30px;
 }
 
 .breadcrumb {
@@ -680,6 +689,23 @@ div#social-media-icons-container a {
   .cities-banner .banner-text{
     font-size: 50px !important;
     top: 40% !important;
+  }
+  .clients-saying img{
+    float: left;
+  }
+  .index-faq{
+    padding-left: 75px;
+    margin-bottom: 30px;
+  }
+  .index-article{
+    padding-right: 75px;
+    margin-bottom: 30px;
+  }
+  .carousel-caption h3{
+    font-size: 30px;
+  }
+  .page-header{
+    font-size: 30px;
   }
 }
 @media (min-width: 640px) {

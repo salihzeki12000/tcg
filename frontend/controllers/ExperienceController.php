@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Tour;
+use common\models\Cities;
 use common\models\TourSearch;
 use common\models\Itinerary;
 use yii\web\Controller;
@@ -27,6 +28,7 @@ class ExperienceController extends BaseController
         $type = Yii::$app->request->get('type');
         $theme = trim(Yii::$app->request->get('theme'));
         $theme_id = '';
+        $city_name = trim(Yii::$app->request->get('city_name'));
 
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
@@ -41,9 +43,28 @@ class ExperienceController extends BaseController
         {
             $theme_id = array_search($theme, Yii::$app->params['tour_themes']);
         }
-        if ($theme_id) {
+
+        $city_condition = array();
+        $city_condition['status'] = DIS_STATUS_SHOW;
+        $city_query = Cities::find()->where($city_condition);
+        $city_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
+        $cities = $city_query
+            ->orderBy('id ASC')
+            ->all();
+
+        if (!empty($city_name))
+        {
+            foreach ($cities as $city_row) {
+                if ($city_name == $city_row['name']) {
+                    $query->andWhere("FIND_IN_SET('".$city_row['id']."', cities)");
+                    break;
+                }
+            }
+        }
+        elseif ($theme_id) {
             $query->andWhere("FIND_IN_SET('".$theme_id."', themes)");
         }
+
 
         $count_query = clone $query;
         $pages = new Pagination(
@@ -58,7 +79,7 @@ class ExperienceController extends BaseController
             ->limit($pages->limit)
             ->all();
 
-        return $this->render('index',['tours'=>$tours,'type'=>$type,'theme_id'=>$theme_id,'pages'=>$pages]);
+        return $this->render('index',['tours'=>$tours,'type'=>$type,'theme_id'=>$theme_id,'pages'=>$pages,'cities'=>$cities, 'city_name'=>$city_name]);
     }
 
     /**

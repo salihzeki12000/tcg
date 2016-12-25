@@ -20,7 +20,7 @@ return [
         TOUR_THEMES_ADVENTUROUS  => 'Adventurous',
         TOUR_THEMES_FOODIE       => 'Foodie',
         TOUR_THEMES_AT_A_GLANCE  => 'At a Glance',
-        TOUR_THEMES_POPULAR_CITY  => 'Popular City Tours',
+        // TOUR_THEMES_POPULAR_CITY  => 'Popular City Tours',
         // TOUR_THEMES_NATURE      => 'Nature',
         // TOUR_THEMES_CRUISE      => 'Cruise',
         // TOUR_THEMES_ROMANTIC    => 'Romantic',

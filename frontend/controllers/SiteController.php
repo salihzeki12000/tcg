@@ -81,7 +81,7 @@ class SiteController extends BaseController
         $ads = Yii::$app->db->createCommand($sql)
         ->queryAll();
 
-        $sql = "SELECT id,`name`,pic_s FROM cities WHERE FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type) AND `status` = ".DIS_STATUS_SHOW." ";
+        $sql = "SELECT id,`name`,pic_s FROM cities WHERE FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type) AND `status` = ".DIS_STATUS_SHOW." ";
         $cities_tour = Yii::$app->db->createCommand($sql)
         ->queryAll();
 

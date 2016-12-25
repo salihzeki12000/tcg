@@ -86,7 +86,7 @@ $this->title = 'The China Guide';
 
     <div id="carousel-ads-generic" class="carousel slide" data-ride="carousel">
       <!-- Wrapper for ads -->
-      <div class="carousel-inner" style="margin-bottom: 22px;">
+      <div class="carousel-inner">
         <?php for($i=0; $i<count($ads); $i++) {
             $ad=$ads[$i];
             $pic_type = 'l';
@@ -148,10 +148,10 @@ $this->title = 'The China Guide';
 
             <?php foreach ($cities_tour as $city_tour) { ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="<?= Url::toRoute(['destination/experiences', 'name'=>$city_tour['name']]) ?>">
+                <a class="thumbnail" href="<?= Url::toRoute(['experience/index', 'city_name'=>$city_tour['name']]) ?>">
                     <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_tour['pic_s'], 's')?>" alt="<?=  $city_tour['name'] ?>">
                     <div class="carousel-caption">
-                        <h3><?= $city_tour['name'] ?> Tour</h3>
+                        <h3><?= $city_tour['name'] ?></h3>
                     </div>
                 </a>
             </div>
@@ -165,16 +165,14 @@ $this->title = 'The China Guide';
             <div class="col-lg-12">
                 <h1 class="page-header">WHAT OUR CLIENTS ARE SAYING</h1>
             </div>
-            <div class="col-lg-7 col-md-8 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-xs-12">
                 <em>"This is the way to see China."</em>
                 <div>Mark D@Tripadvisor</div>
                 <em>"5 star service from beginning to end."</em>
                 <div>MJMaher@Tripadvisor</div>
             </div>
-            <div class="col-lg-5 col-md-4 col-xs-12">
-                <center>
-                    <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
-                </center>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
             </div>
         </div>
     </div>
@@ -186,11 +184,11 @@ $this->title = 'The China Guide';
     </div>
 
 
-    <div class="container index-faq">
+    <div class="container index-faq col-lg-6">
         <div class="list-group faq">
             <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2>FAQ</h2></center></a>
             <?php foreach ($faq as $item) { ?>
-            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-6 col-md-6 col-xs-12">
+            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
                 <span><?= $item['title'] ?></span>
             </a>
@@ -199,11 +197,11 @@ $this->title = 'The China Guide';
     </div>
 
 
-    <div class="container">
+    <div class="container index-article col-lg-6">
         <div class="list-group article">
             <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>BLOGS</h2></center></a>
             <?php foreach ($articles as $article) { ?>
-            <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
+            <a class="col-lg-12 col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
                 <div class="media">
                   <div class="media-left">
                       <img width="100px" class="media-object" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" alt="<?= $article['title'] ?>">
