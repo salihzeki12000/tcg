@@ -115,7 +115,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1"><a href="javascript:void(0);">Next &gt;</a></li>
           </ul>
         </nav>
-        <div class="itinerary-swipe">
+        <div class="itinerary-swipe overview">
           <?= $itinerary['description'] ?>
         </div>
 
@@ -162,21 +162,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="inclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Inclusions</h2></center>
-        <div>
+        <div class="overview">
           <?= $tour_info['inclusion'] ?>
         </div>
     </div>
 
     <div class="exclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Exclusions</h2></center>
-        <div>
+        <div class="overview">
           <?= $tour_info['exclusion'] ?>
         </div>
     </div>
 
     <div class="tips col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2>Tips</h2></center>
-        <div>
+        <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>
         <div id="form-info-page"><br><br></div>
