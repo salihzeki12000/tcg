@@ -21,7 +21,8 @@ body {
 }
 .navbar-inverse{
   background-color: #E0E3D6;
-  border-color: #E0E3D6;
+  box-shadow: 0px 0px 5px #888888;
+  border: none;
 }
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
     background-color: #E0E3D6;
@@ -659,10 +660,13 @@ div#social-media-icons-container a {
       padding-left:100px;
   }
   .tour-view > .col-lg-5 {
-      padding-right:100px;
+      padding-right:85px;
   }
   .tour-view > .carousel {
       margin: 0 100px;
+  }
+  .tour-view h1.title {
+      font-size: 30px;
   }
 }
 .home-whyus .row.tour-right{
