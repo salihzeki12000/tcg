@@ -585,6 +585,7 @@ div#social-media-icons-container a {
   background-color: #4D423C;
   color: #fff;
   font-size: 20px;
+  padding: 3px 10px;
 }
 .tour-index .type-menu .input-group-addon{
     background: rgba(203, 51, 51, 1);
