@@ -610,7 +610,7 @@ div#social-media-icons-container a {
   display: block;
 }
 .tour-view .tour-info .tour-info-row div{
-  padding: 0 5px;
+  padding: 0;
   border-right: 1px dashed #aaa;
   text-align: center;
 }
@@ -620,8 +620,7 @@ div#social-media-icons-container a {
 .tour-view .tour-info .tour-info-row .item-s{
 }
 .tour-view .tour-info span{
-  color: #f0ad4e;
-  font-weight: bold;
+  color: #E9C46C;
   font-size: 16px;
 }
 .tour-view .tour-info span.price{

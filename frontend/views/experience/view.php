@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="tour-info">
         <div class="tour-info-row">
-          <div class="item-s col-lg-3 col-md-3 col-xs-3">
+          <div class="item-s col-lg-4 col-md-3 col-xs-3">
               <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
               Days
           </div>
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                <span><?= $tour_info['cities_count'] ?></span>
                Destinations
           </div>
-          <div class="col-lg-5 col-md-5 col-xs-5">
+          <div class="col-lg-4 col-md-5 col-xs-5">
                <span><?= $tour_info['exp_num'] ?></span>
                Experiences
           </div>
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="list-group">
             <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { ?>
-            <div class="col-lg-4 col-md-4 col-xs-6 list-group-item">
+            <div class="col-lg-6 col-md-6 col-xs-6 list-group-item">
                 <i class="icon-menu-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
             </div>
             <?php } ?>
