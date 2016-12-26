@@ -337,6 +337,7 @@ div#social-media-icons-container a {
 
 .index-faq{
   margin-bottom: 40px;
+  margin-top: 40px;
 }
 .list-group-item:last-child {
      border-bottom-right-radius: 0px; 
@@ -346,7 +347,6 @@ div#social-media-icons-container a {
      border-top-right-radius: 0px; 
      border-top-left-radius: 0px; 
      padding: 5px;
-     margin-top: 30px;
 }
 
 .breadcrumb {
