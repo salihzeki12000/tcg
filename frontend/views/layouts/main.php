@@ -89,7 +89,7 @@ AppAsset::register($this);
         <h3>Currency</h3>
         <ul class="">
             <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
-                <li><i class="icon-menu-<?= Yii::$app->params['currency']==$ckey?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['site/currency', 'currency'=>$ckey]) ?>"><?= $currency['name'] ?></a></li>
+                <li><i class="icon-menu-<?= Yii::$app->params['currency']==$ckey?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['site/currency', 'currency'=>$ckey]) ?>"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
             <?php } ?>
         </ul>
         <span>The China Guide<br />A Beijing-based, foreign-owned travel agency.</span>
