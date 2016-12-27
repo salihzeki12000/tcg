@@ -47,7 +47,7 @@ class Cities extends \yii\db\ActiveRecord
             [['pic_s'], 'string', 'max' => 255],
             [['vr'], 'string', 'max' => 512],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
-            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\']+$/','message'=>'Name does not conform to the requirements'],
+            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\|]+$/','message'=>'Name does not conform to the requirements'],
 
         ];
     }

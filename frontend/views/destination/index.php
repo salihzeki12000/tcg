@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
       ?>
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-          <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'id'=>$city['id']]) ?>">
+          <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'name'=>$city['name']]) ?>">
               <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city['pic_s'], 's')?>" alt="<?=  $city['name'] ?>">
               <div class="carousel-caption">
                   <h3><?= $city['name'] ?></h3>

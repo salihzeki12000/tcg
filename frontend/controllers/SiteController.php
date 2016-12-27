@@ -96,6 +96,11 @@ class SiteController extends BaseController
         return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
     }
 
+    public function actionCurrency()
+    {
+        return $this->redirect(['/']);
+    }
+
     /**
      * Logs in a user.
      *

@@ -80,6 +80,18 @@ AppAsset::register($this);
             <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>">FAQ</a></li>
             <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>">ABOUT US</a></li>
         </ul>
+        <h3>Language</h3>
+        <ul class="">
+            <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
+                <li><i class="icon-menu-<?= Yii::$app->language==$language?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
+            <?php } ?>
+        </ul>
+        <h3>Currency</h3>
+        <ul class="">
+            <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
+                <li><i class="icon-menu-<?= Yii::$app->params['currency']==$ckey?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['site/currency', 'currency'=>$ckey]) ?>"><?= $currency['name'] ?></a></li>
+            <?php } ?>
+        </ul>
         <span>The China Guide<br />A Beijing-based, foreign-owned travel agency.</span>
     </div>
     <div class="container top-ccontainer">

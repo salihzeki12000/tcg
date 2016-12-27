@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    // 'language'=>'zh-CN',
+    'language'=>'en',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -57,16 +57,17 @@ return [
                         ]
             ],
         ],
+
         'urlManager' => [
             'class' => 'codemix\localeurls\UrlManager',
-            'languages' => ['en-US', 'en', 'fr', 'de', 'es-*'],
+            'languages' => ['en', 'fr', 'es', 'de', 'pt'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
             // 'suffix' => '.html',
             'rules' => [
-                'experiences/city/<city_name:[A-Za-z0-9_\']+>/page/<page:\d+>' => 'experience/index',
-                'experiences/city/<city_name:[A-Za-z0-9_\']+>' => 'experience/index',
+                'experiences/city/<city_name:[A-Za-z0-9_\'\s\|]+>/page/<page:\d+>' => 'experience/index',
+                'experiences/city/<city_name:[A-Za-z0-9_\'\s\|]+>' => 'experience/index',
                 'experiences/page/<page:\d+>' => 'experience/index',
                 'experiences/<theme:[A-Za-z0-9_\s]+>/page/<page:\d+>' => 'experience/index',
                 'experiences/<theme:[A-Za-z0-9_\s]+>' => 'experience/index',
@@ -74,15 +75,15 @@ return [
                 // 'experience/<id:\d+>' => 'experience/view',
                 'experience/<name:[A-Za-z0-9_\'\s\-]+>' => 'experience/view',
                 'destinations' => 'destination/index',
-                'destination/<name:[A-Za-z0-9_\']+>' => 'destination/view',
-                'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>/page/<page:\d+>' => 'destination/<action>',
-                'destination/<name:[A-Za-z0-9_\']+>/<action:\w+>' => 'destination/<action>',
+                'destination/<name:[A-Za-z0-9_\'\s\|]+>' => 'destination/view',
+                'destination/<name:[A-Za-z0-9_\'\s\|]+>/<action:\w+>/page/<page:\d+>' => 'destination/<action>',
+                'destination/<name:[A-Za-z0-9_\'\s\|]+>/<action:\w+>' => 'destination/<action>',
                 'sight/<name:[A-Za-z0-9_\'\s\-]+>' => 'sight/view',
                 'blogs' => 'article/index',
                 'blog/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'article/view',
                 'faq' => 'faq/index',
                 'faq/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'faq/view',
-
+                'site/currency/<currency:\w+>' => 'site/currency',
             ],
         ],
 

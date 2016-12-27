@@ -11,9 +11,10 @@ class BaseController extends Controller
 
     public function beforeAction($action)
     {
+        $cookies = Yii::$app->response->cookies;
         Yii::$app->params['is_mobile'] = 0;
         $cookie_name_is_mobile = 'is_mobile';
-        $cookie_is_mobile = Yii::$app->request->cookies->getValue($cookie_name_is_mobile);//设置默认值
+        $cookie_is_mobile = Yii::$app->request->cookies->getValue($cookie_name_is_mobile);
         if (isset($cookie_is_mobile)) {
             if ($cookie_is_mobile == '1') {
                 Yii::$app->params['is_mobile'] = 1;
@@ -25,7 +26,6 @@ class BaseController extends Controller
             if ($Mobile_Detect->isMobile() && !$Mobile_Detect->isTablet()) {
                 Yii::$app->params['is_mobile'] = 1;
             }
-            $cookies = Yii::$app->response->cookies;
             $cookies->add(new \yii\web\Cookie([
                 'name' => 'is_mobile',
                 'value' => Yii::$app->params['is_mobile'],
@@ -33,10 +33,30 @@ class BaseController extends Controller
             ]));
         }
 
-        if (Yii::$app->controller->action->id !== 'update' || Yii::$app->user->id == $params['id']) {
-            return true;
+        $cookie_name_currency = 'currency';
+        $currency = strtoupper(trim(Yii::$app->request->get('currency')));
+        if (!empty($currency) && array_key_exists($currency, Yii::$app->params['currency_name'])) {
+            Yii::$app->params['currency'] = $currency;
+            $cookies->add(new \yii\web\Cookie([
+                'name' => 'currency',
+                'value' => Yii::$app->params['currency'],
+                'expire'=>time()+3600*24*365
+            ]));
         }
-        return false;
+        else{
+            $cookie_currency = Yii::$app->request->cookies->getValue($cookie_name_currency);
+            if (empty($cookie_currency)) {
+                $cookie_currency = 'USD';
+                $cookies->add(new \yii\web\Cookie([
+                    'name' => 'currency',
+                    'value' => $cookie_currency,
+                    'expire'=>time()+3600*24*365
+                ]));
+            }
+            Yii::$app->params['currency'] = $cookie_currency;
+        }
+
+        return true;
     }
 }
 

@@ -111,6 +111,12 @@ body {
 .m-menu i.icon-menu-aboutus{
   background-position: 0px -189px;
 }
+.m-menu i.icon-menu-sel{
+  background-position: 0px -272px;
+}
+.m-menu i.icon-menu-none{
+  background-position: 0px -999px;
+}
 
 .container.home-desc{
   color: #17BEBB;
@@ -707,6 +713,9 @@ div#social-media-icons-container a {
   .page-header{
     font-size: 30px;
   }
+  .overview .overview-img{
+    width: 50%;
+  }
 }
 @media (min-width: 640px) {
   .tour-view .itineraries .text {
@@ -959,4 +968,7 @@ a.desc:after {
 }
 .overview>ul{
   padding-left: 20px;
+}
+.overview .overview-img{
+  width: 100%;
 }

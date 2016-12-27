@@ -1,6 +1,19 @@
 <?php
 return [
     'uploads_url' => UPLOADS_URL,
+    'language_name' => array(
+        'en' => 'English',
+        'fr' => 'Français',
+        'es' => 'Español',
+        'de' => 'Deutsch',
+        'pt' => 'Português',
+        ),
+    'currency_name' => array(
+        'USD' => ['sign'=>'$' ,'name'=>'USD'],
+        'EUR' => ['sign'=>'€' ,'name'=>'EUR'],
+        'GBP' => ['sign'=>'£' ,'name'=>'GBP'],
+        'CNY' => ['sign'=>'¥' ,'name'=>'CNY'],
+        ),
     'biz_type'    => array(
         BIZ_TYPE_CITIES     => 'cities',
         BIZ_TYPE_TOUR       => 'tour',
