@@ -14,4 +14,5 @@ return [
             'imageAllowExtensions'=>['jpg','png','gif']
         ],
     ],
+    'timeZone'=>'Asia/Chongqing',
 ];

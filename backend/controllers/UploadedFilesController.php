@@ -77,6 +77,7 @@ class UploadedFilesController extends Controller
                     {
                         $model->size = $file->size;
                         $model->path = $file_path;
+                        $model->create_time = date('Y-m-d H:i:s',time());
                         if($model->save())
                         {
                             return $this->redirect(['view', 'id' => $model->id]);

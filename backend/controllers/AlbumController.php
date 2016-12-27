@@ -65,6 +65,7 @@ class AlbumController extends Controller
     {
         $model = new Album();
 
+        $model->create_time = date('Y-m-d H:i:s',time());
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

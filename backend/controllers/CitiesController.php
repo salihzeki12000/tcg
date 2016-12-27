@@ -68,6 +68,7 @@ class CitiesController extends Controller
     {
         $model = new Cities();
 
+        $model->create_time = date('Y-m-d H:i:s',time());
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['update', 'id' => $model->id]);
         } else {

@@ -65,6 +65,7 @@ class FormInfoController extends Controller
     {
         $model = new FormInfo();
 
+        $model->create_time = date('Y-m-d H:i:s',time());
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

@@ -105,6 +105,7 @@ class TourController extends Controller
             if (is_array($_POST['Tour']['rec_type'])) {
                 $model->rec_type = join(',', $_POST['Tour']['rec_type']);
             }
+            $model->create_time = date('Y-m-d H:i:s',time());
             if($model->save())
             {
                 return $this->redirect(['update', 'id' => $model->id]);

@@ -68,6 +68,7 @@ class ItineraryController extends Controller
         $model = new Itinerary();
         $tour_info = array();
 
+        $model->create_time = date('Y-m-d H:i:s',time());
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['update', 'id' => $model->id, 'tour_id'=>$model->tour_id]);
         } else {
