@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'priority',
             'tour_length',
             'exp_num',
-            'price_cny',
             'price_usd',
             'overview:ntext',
             'best_season',
