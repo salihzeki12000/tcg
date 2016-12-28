@@ -714,7 +714,7 @@ div#social-media-icons-container a {
     font-size: 30px;
   }
   .overview .overview-img{
-    width: 50%;
+    width: 50% !important;;
   }
 }
 @media (min-width: 640px) {
