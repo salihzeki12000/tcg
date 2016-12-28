@@ -73,25 +73,30 @@ class SiteController extends BaseController
     public function actionIndex()
     {
 
-        $sql = "SELECT * FROM homepage WHERE type=".HOMEPAGE_TYPE_SLIDE." AND `status`=".DIS_STATUS_SHOW." ORDER BY priority DESC";
-        $slides = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        $slides_query = \common\models\Homepage::find()->where(['type'=>HOMEPAGE_TYPE_SLIDE, 'status'=>DIS_STATUS_SHOW]);
+        $slides = $slides_query
+            ->orderBy('priority DESC')
+            ->all();
 
-        $sql = "SELECT * FROM homepage WHERE type=".HOMEPAGE_TYPE_AD." AND `status`=".DIS_STATUS_SHOW." ORDER BY priority DESC";
-        $ads = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        $slides_query = \common\models\Homepage::find()->where(['type'=>HOMEPAGE_TYPE_AD, 'status'=>DIS_STATUS_SHOW]);
+        $ads = $slides_query
+            ->orderBy('priority DESC')
+            ->all();
 
-        $sql = "SELECT id,`name`,pic_s FROM cities WHERE FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type) AND `status` = ".DIS_STATUS_SHOW." ";
-        $cities_tour = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        $cities_query = \common\models\Cities::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $cities_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
+        $cities_tour = $cities_query
+            ->all();
 
-        $sql = "SELECT id,title,sub_type FROM article WHERE type=".ARTICLE_TYPE_FAQ." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
-        $faq = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        $faq_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_FAQ, 'status'=>DIS_STATUS_SHOW]);
+        $faq = $faq_query
+            ->limit(5)
+            ->all();
 
-        $sql = "SELECT id,title,sub_type,pic_s,create_time FROM article WHERE type=".ARTICLE_TYPE_ARTICLE." AND `status` = ".DIS_STATUS_SHOW." LIMIT 5 ";
-        $articles = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        $article_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_ARTICLE, 'status'=>DIS_STATUS_SHOW]);
+        $articles = $article_query
+            ->limit(5)
+            ->all();
 
         return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
     }

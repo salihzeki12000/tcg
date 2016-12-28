@@ -22,7 +22,7 @@ class AboutController extends BaseController
      */
     public function actionIndex()
     {
-        $article_name = 'Who Are We';
+        $article_name = Yii::t('app','Who Are We');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -36,7 +36,7 @@ class AboutController extends BaseController
 
     public function actionOurGuides()
     {
-        $article_name = 'Our Guides';
+        $article_name = Yii::t('app','Our Guides');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -50,7 +50,7 @@ class AboutController extends BaseController
 
     public function actionDriversAndVehicles()
     {
-        $article_name = 'Drivers and Vehicles';
+        $article_name = Yii::t('app','Drivers and Vehicles');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -59,12 +59,12 @@ class AboutController extends BaseController
         $article = $query
             ->One();
 
-        return $this->render('index',['article'=>$article, 'sub_title'=>"Drivers & Vehicles"]);
+        return $this->render('index',['article'=>$article, 'sub_title'=>Yii::t('app','Drivers & Vehicles')]);
     }
 
     public function actionMeetOurTeam()
     {
-        $article_name = 'Meet Our Team';
+        $article_name = Yii::t('app','Meet Our Team');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -78,7 +78,7 @@ class AboutController extends BaseController
 
     public function actionContactUs()
     {
-        $article_name = 'Contact Us';
+        $article_name = Yii::t('app','Contact Us');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -92,7 +92,7 @@ class AboutController extends BaseController
 
     public function actionCompanyPolicies()
     {
-        $article_name = 'Company policies';
+        $article_name = Yii::t('app','Company policies');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;

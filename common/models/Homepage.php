@@ -26,6 +26,10 @@ class Homepage extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
+        $languages = Yii::$app->urlManager->languages;
+        if (in_array(Yii::$app->language, $languages) && Yii::$app->language != Yii::$app->sourceLanguage) {
+            return 'homepage_' . Yii::$app->language;
+        }
         return 'homepage';
     }
 

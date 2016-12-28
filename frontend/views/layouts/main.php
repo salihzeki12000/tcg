@@ -29,21 +29,21 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/statics/images/logo.png', ['alt'=>Yii::t('common','The China Guide')]),
+        'brandLabel' => Html::img('@web/statics/images/logo.png', ['alt'=>Yii::t('app','The China Guide')]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'HOME', 'url' => ['/']],
-        ['label' => 'EXPERIENCES', 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
-        ['label' => 'DESTINATIONS', 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
+        ['label' => Yii::t('app','HOME'), 'url' => ['/']],
+        ['label' => Yii::t('app','EXPERIENCES'), 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
+        ['label' => Yii::t('app','DESTINATIONS'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         //['label' => 'GROUP', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'MEETINGS & INCENTIVES', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
-        ['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => 'MORE', 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => 'BLOGS', 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
-        ['label' => 'FAQ', 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
-        ['label' => 'ABOUT US', 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],]],
+        ['label' => Yii::t('app','EDUCATIONAL PROGRAMS'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+        ['label' => Yii::t('app','MORE'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => Yii::t('app','BLOGS'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
+        ['label' => Yii::t('app','ABOUT US'), 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],]],
         
 
         // ['label' => 'About', 'url' => ['/site/about']],
@@ -69,30 +69,30 @@ AppAsset::register($this);
     NavBar::end();
     ?>
     <div class="m-menu">
-        <h3>Navigation</h3>
+        <h3><?= Yii::t('app','Navigation') ?></h3>
         <ul class="">
             <li><i class="icon-menu-home"></i><a href="<?= Url::toRoute(['/']) ?>">HOME</a></li>
-            <li><i class="icon-menu-experiences"></i><a href="<?= Url::toRoute(['experience/index']) ?>">EXPERIENCES</a></li>
-            <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>">DESTINATIONS</a></li>
-            <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['/educational-programs']) ?>">EDUCATIONAL PROGRAMS</a></li>
-            <!-- <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>">MEETINGS &amp; INCENTIVES</a></li> -->
-            <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>">BLOGS</a></li>
-            <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>">FAQ</a></li>
-            <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>">ABOUT US</a></li>
+            <li><i class="icon-menu-experiences"></i><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','EXPERIENCES') ?></a></li>
+            <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','DESTINATIONS') ?></a></li>
+            <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','EDUCATIONAL PROGRAMS') ?></a></li>
+            <!-- <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>"><?= Yii::t('app','MEETINGS &amp; INCENTIVES') ?></a></li> -->
+            <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','BLOGS') ?></a></li>
+            <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
+            <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>"><?= Yii::t('app','ABOUT US') ?></a></li>
         </ul>
-        <h3>Language</h3>
+        <h3><?= Yii::t('app','Language') ?></h3>
         <ul class="">
             <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
                 <li><i class="icon-menu-<?= Yii::$app->language==$language?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
             <?php } ?>
         </ul>
-        <h3>Currency</h3>
+        <h3><?= Yii::t('app','Currency') ?></h3>
         <ul class="">
             <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
                 <li><i class="icon-menu-<?= Yii::$app->params['currency']==$ckey?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['site/currency', 'currency'=>$ckey]) ?>"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
             <?php } ?>
         </ul>
-        <span>The China Guide<br />A Beijing-based, foreign-owned travel agency.</span>
+        <span><?=Yii::t('app','The China Guide')?><br /><?= Yii::t('app','A Beijing-based, foreign-owned travel agency.') ?></span>
     </div>
     <div class="container top-ccontainer">
         <?= Breadcrumbs::widget([
@@ -107,7 +107,7 @@ AppAsset::register($this);
     <div class="container">
 
     <div class="social-media-icons">
-        <center>FOLLOW US ON</center>
+        <center><?=Yii::t('app','FOLLOW US ON')?></center>
         <div id="social-media-icons-container">
             <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" id="tripadvisor" target="_blank"></a>
             <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
@@ -116,21 +116,21 @@ AppAsset::register($this);
             <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
             <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
         </div>
-        <center>QUICK LINKS</center>
+        <center><?=Yii::t('app','QUICK LINKS')?></center>
         <center>
-            <a href="<?= Url::toRoute(['experience/index']) . '#form-info-page' ?>">Plan a vacation</a> | 
-            <a href="<?= Url::toRoute(['/educational-programs']) . '#form-info-page' ?>">Plan an educational trip</a> | 
-            <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#form-info-page' ?>">Plan an incentive trip</a> | --> 
-            <a href="<?= Url::toRoute(['about/company-policies']) ?>">Company policies</a> | 
-            <a href="<?= Url::toRoute(['about/contact-us']) ?>">Contact us</a>
+            <a href="<?= Url::toRoute(['experience/index']) . '#form-info-page' ?>"><?=Yii::t('app','Plan a vacation')?></a> | 
+            <a href="<?= Url::toRoute(['/educational-programs']) . '#form-info-page' ?>"><?=Yii::t('app','Plan an educational trip')?></a> | 
+            <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#form-info-page' ?>"><?=Yii::t('app','Plan an incentive trip')?></a> | --> 
+            <a href="<?= Url::toRoute(['about/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a> | 
+            <a href="<?= Url::toRoute(['about/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
         </center>
     </div>
     <div class="search-box">
         <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
-            <input type="text" name="q" placeholder="Powered by Google">
+            <input type="text" name="q" placeholder="<?=Yii::t('app','Powered by Google')?>">
             <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch">
             <button id="search-button" type="submit">                     
-                <span>SEARCH</span>
+                <span><?=Yii::t('app','SEARCH')?></span>
             </button>
         </form>
     </div>
@@ -138,14 +138,14 @@ AppAsset::register($this);
         <?= Html::img('@web/statics/images/PATA.jpg', ['alt'=>'PATA member']) ?>
     </div>
     <div class="copyright">
-        <p>&copy; 2008 - <?= date('Y') ?> The China Guide</p>
+        <p>&copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
     </div>
         
 
         <p class="pull-right"><?//= Yii::powered() ?></p>
     </div>
 </footer>
-<div id="gotop"><i class="glyphicon glyphicon-chevron-up"></i><br />TOP</div>
+<div id="gotop"><i class="glyphicon glyphicon-chevron-up"></i><br /><?=Yii::t('app','TOP')?></div>
 <?php $this->endBody() ?>
 <?php
 $js = <<<JS

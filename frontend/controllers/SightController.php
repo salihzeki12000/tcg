@@ -22,7 +22,7 @@ class SightController extends BaseController
      */
     public function actionIndex()
     {
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
     }
 
     /**
@@ -45,9 +45,9 @@ class SightController extends BaseController
             $sight_info['images'] = $album_images;
         }
 
-        $sql = "select id, name from cities WHERE id=" . $sight_info['city_id'];
-        $city_info = Yii::$app->db->createCommand($sql)
-        ->queryOne();
+        $cities_query = \common\models\Cities::find()->where(['id'=>$sight_info['city_id']]);
+        $city_info = $cities_query
+            ->One();
 
         return $this->render('view', [
             'sight_info' => $sight_info,
@@ -68,7 +68,7 @@ class SightController extends BaseController
         if (($model = Album::find()->where(['name' => $name])->One()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
         }
     }
 }

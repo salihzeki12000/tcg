@@ -51,9 +51,20 @@ class ExchangeUsd extends \yii\db\ActiveRecord
         if ($currency == 'USD') {
             return $limit;
         }
-        $ret = self::findOne($currency);
-        if ($ret) {
-            $rate = $ret['rate'];
+
+        $cache = Yii::$app->cache;
+        $cache_key = 'RATE_USD_'.$currency;
+        $rate = $cache->get($cache_key);
+        if (empty($rate)) {
+            $ret = self::findOne($currency);
+            if ($ret) {
+                $rate = $ret['rate'];
+                $cache->set($cache_key, $rate, 60*5); 
+                return round(($limit * $rate), 0);
+            }
+        }
+        else
+        {
             return round(($limit * $rate), 0);
         }
         return false;

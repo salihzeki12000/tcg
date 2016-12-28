@@ -22,7 +22,7 @@ class ActivityController extends BaseController
      */
     public function actionIndex()
     {
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
     }
 
     /**
@@ -45,9 +45,9 @@ class ActivityController extends BaseController
             $activity_info['images'] = $album_images;
         }
 
-        $sql = "select id, name from cities WHERE id=" . $activity_info['city_id'];
-        $city_info = Yii::$app->db->createCommand($sql)
-        ->queryOne();
+        $cities_query = \common\models\Cities::find()->where(['id'=>$activity_info['city_id']]);
+        $city_info = $cities_query
+            ->One();
 
         return $this->render('view', [
             'activity_info' => $activity_info,
@@ -68,7 +68,7 @@ class ActivityController extends BaseController
         if (($model = Album::find()->where(['name' => $name])->One()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
         }
     }
 }

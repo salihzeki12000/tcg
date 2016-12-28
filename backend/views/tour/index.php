@@ -42,7 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>ArrayHelper::map(Cities::find()->asArray()->all(), 'id', 'name'),
                 'value' => function ($data) {
                     $cities = ArrayHelper::map(Cities::find()->where(['id' => explode(',', $data['cities'])])->all(), 'id', 'name');
-                    return join(',', array_values($cities));
+                    $show_cities = join(',', array_values($cities));
+                    if (strlen($show_cities)>30) {
+                        $show_cities = substr($show_cities,0, 30) . '...';
+                    }
+                    return $show_cities;
                 }
             ],
             [

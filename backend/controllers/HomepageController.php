@@ -117,6 +117,7 @@ class HomepageController extends Controller
                     }
                 }
             }
+            $model->update_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

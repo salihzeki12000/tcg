@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page">Get a Free Quotation</a>
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Get a Free Quotation')?></a>
       </div>
     </div>
 
@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="container-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2 id="nav-overview">Overview</h2></center>
+        <center><h2 id="nav-overview"><?=Yii::t('app','Overview')?></h2></center>
         <div class="overview" id="overview-body">
           <?= $tour_info['overview'] ?>
         </div>
@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="map itinerary-swipe col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2>Recommended Itinerary</h2></center>
+        <center><h2><?=Yii::t('app','Recommended Itinerary')?></h2></center>
         <div class="col-lg-12 col-md-12 col-xs-12 list-group-item">
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
@@ -110,9 +110,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <nav class="itinerary-swipe">
           <ul class="pager">
-            <li class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1"><a href="javascript:void(0);">&lt; Prev</a></li>
-            <li class="text col-xs-7">Day <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?>: <?= $itinerary['cities_name'] ?></li>
-            <li class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1"><a href="javascript:void(0);">Next &gt;</a></li>
+            <li class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1"><a href="javascript:void(0);">&lt; <?=Yii::t('app','Prev')?></a></li>
+            <li class="text col-xs-7"><?=Yii::t('app','Day')?> <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?>: <?= $itinerary['cities_name'] ?></li>
+            <li class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1"><a href="javascript:void(0);"><?=Yii::t('app','Next')?> &gt;</a></li>
           </ul>
         </nav>
         <div class="itinerary-swipe overview">
@@ -161,21 +161,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="inclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2>Inclusions</h2></center>
+        <center><h2><?=Yii::t('app','Inclusions')?></h2></center>
         <div class="overview">
           <?= $tour_info['inclusion'] ?>
         </div>
     </div>
 
     <div class="exclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2>Exclusions</h2></center>
+        <center><h2><?=Yii::t('app','Exclusions')?></h2></center>
         <div class="overview">
           <?= $tour_info['exclusion'] ?>
         </div>
     </div>
 
     <div class="tips col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2>Tips</h2></center>
+        <center><h2><?=Yii::t('app','Tips')?></h2></center>
         <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>
@@ -186,10 +186,10 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="clearfix"></div> 
       <div class="form-info-create">
 
-        <div class="form-title">Quotation Form</div>
+        <div class="form-title"><?=Yii::t('app','Quotation Form')?></div>
         <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
-        <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> Days | <?= $tour_info['display_cities'] ?></div>
-        <div class="tips">Tour Code: <?= $tour_info['code'] ?></div>
+        <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=Yii::t('app','Days:')?> | <?= $tour_info['display_cities'] ?></div>
+        <div class="tips"><?=Yii::t('app','Tour Code:')?> <?= $tour_info['code'] ?></div>
         <hr />
         <?= $this->render('/form-info/_form', [
             'model' => new common\models\FormInfo(FORM_TYPE_QUOTATION),
@@ -198,7 +198,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tour_name' => $tour_info['name'],
         ]) ?>
 
-        <div class="form-info-bottom">We respond your inquiry by email within 24 hours.</div>
+        <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within 24 hours.')?></div>
       </div>
     </div>
   </div>
@@ -206,30 +206,30 @@ $this->params['breadcrumbs'][] = $this->title;
   <?php if (!Yii::$app->params['is_mobile']) { ?>
 
   <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
-        <center class="tour-index"><h3>Why book with us?</h3></center>
+        <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
         <div class="row tour-right">
           <div class="col-lg-12">
               <div class="col-lg-6">
                   <i class="icon-whyus-service"></i>
-                  <center>SERVICE</center>
-                  <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
+                  <center><?=Yii::t('app','SERVICE')?></center>
+                  <span><?=Yii::t('app','Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip')?></span>
               </div>
               <div class="col-lg-6">
                   <i class="icon-whyus-expertise"></i>
-                  <center>EXPERTISE</center>
-                  <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
+                  <center><?=Yii::t('app','EXPERTISE')?></center>
+                  <span><?=Yii::t('app','With over ten years of trip planning across 40 destinations under our belts, we are China experts')?></span>
               </div>
           </div>
           <div class="col-lg-12">
               <div class="col-lg-6">
                   <i class="icon-whyus-flexibility"></i>
-                  <center>FLEXIBILITY</center>
-                  <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
+                  <center><?=Yii::t('app','FLEXIBILITY')?></center>
+                  <span><?=Yii::t('app','We know that no two travel experiences are the same. Let us customize your perfect trip')?></span>
               </div>
               <div class="col-lg-6">
                   <i class="icon-whyus-quality"></i>
-                  <center>QUALITY</center>
-                  <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
+                  <center><?=Yii::t('app','QUALITY')?></center>
+                  <span><?=Yii::t('app','A stress-free travel experience so you can concentrate on the most important part of your tour: you')?></span>
               </div>
           </div>
         </div>
@@ -237,7 +237,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <?php if ($tours) {?>
   <div class="tour-index col-lg-4 hidden-xs hidden-md hidden-sm">
-      <center><h3 class="tour-right">You May Also Like</h3></center>
+      <center><h3 class="tour-right"><?=Yii::t('app','You May Also Like')?></h3></center>
       <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">
         <div class="file-initial-thumbs">
@@ -247,7 +247,7 @@ $this->params['breadcrumbs'][] = $this->title;
          <div class="file-preview-frame file-preview-initial col-lg-12" >
           <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
            <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-            <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
+            <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Cities')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
           </a>
           <div class="file-thumbnail-footer"> 
            <div class="file-footer-caption">
@@ -257,7 +257,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if(!empty($tour['price_usd'])) { ?>
                   From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_usd']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
                 <?php } ?>
-                <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a>
+                <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
               </div>
            </div> 
           </div> 

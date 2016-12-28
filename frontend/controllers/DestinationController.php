@@ -190,7 +190,7 @@ class DestinationController extends BaseController
         if (($model = Cities::find()->where(['name' => $name])->One()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
         }
     }
 
@@ -211,10 +211,11 @@ class DestinationController extends BaseController
 
         $menu = array();
 
-        $sql = "SELECT count(1) AS `count` FROM tour WHERE FIND_IN_SET('{$id}', cities) AND `status`=".DIS_STATUS_SHOW;
-        $exp_count = Yii::$app->db->createCommand($sql)
-        ->queryOne();
-        if ($exp_count['count']>0) {
+        $tour_query = Tour::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $tour_query->andWhere("FIND_IN_SET('".$id."', cities)");
+        $exp_count = $tour_query
+            ->count();
+        if ($exp_count>0) {
             $menu['experiences'] = 'Experiences';
         }
 
@@ -222,17 +223,17 @@ class DestinationController extends BaseController
             $menu['virtualtours'] = 'Virtual Tours';
         }
 
-        $sql = "SELECT count(1) AS `count` FROM album WHERE city_id = {$id} AND type=".ALBUM_TYPE_SIGHT." AND `status`=".DIS_STATUS_SHOW;
-        $sight_count = Yii::$app->db->createCommand($sql)
-        ->queryOne();
-        if ($sight_count['count']>0) {
+        $album_query = \common\models\Album::find()->where(['city_id'=>$id, 'type'=>ALBUM_TYPE_SIGHT, 'status'=>DIS_STATUS_SHOW]);
+        $sight_count = $album_query
+            ->count();
+        if ($sight_count>0) {
             $menu['sights'] = 'Sights';
         }
 
-        $sql = "SELECT count(1) AS `count` FROM album WHERE city_id = {$id} AND type=".ALBUM_TYPE_ACTIVITY." AND `status`=".DIS_STATUS_SHOW;
-        $act_count = Yii::$app->db->createCommand($sql)
-        ->queryOne();
-        if ($act_count['count']>0) {
+        $album_query = \common\models\Album::find()->where(['city_id'=>$id, 'type'=>ALBUM_TYPE_ACTIVITY, 'status'=>DIS_STATUS_SHOW]);
+        $act_count = $album_query
+            ->count();
+        if ($act_count>0) {
             $menu['activities'] = 'Activities';
         }
 

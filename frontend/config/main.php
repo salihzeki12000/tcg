@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'language'=>'en',
+    'sourceLanguage' => 'en',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -90,20 +91,21 @@ return [
 
         'i18n' => [
             'translations' => [
-                'common' => [
+                'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     //'basePath' => '/messages',
                     'fileMap' => [
-                        'common' => 'common.php',
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
                     ],
                 ],
-                'power' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    //'basePath' => '/messages',
-                    'fileMap' => [
-                        'power' => 'power.php',
-                    ],
-                ],
+                // 'power' => [
+                //     'class' => 'yii\i18n\PhpMessageSource',
+                //     //'basePath' => '/messages',
+                //     'fileMap' => [
+                //         'power' => 'power.php',
+                //     ],
+                // ],
             ],
         ],
     ],

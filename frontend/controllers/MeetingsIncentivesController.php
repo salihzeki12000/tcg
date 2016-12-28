@@ -22,7 +22,7 @@ class MeetingsIncentivesController extends BaseController
      */
     public function actionIndex()
     {
-        $article_name = 'Meetings Incentives';
+        $article_name = Yii::t('Meetings Incentives');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;

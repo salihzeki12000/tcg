@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="tour-index container">
-    <center><h3>Popular Tours</h3></center>
+    <center><h3><?=Yii::t('app','Popular Tours')?></h3></center>
     <div class=" file-drop-zone"> 
      <div class="file-preview-thumbnails">
       <div class="file-initial-thumbs">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
        <div class="file-preview-frame file-preview-initial col-lg-4 col-md-6 col-xs-12" >
         <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-          <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> Days | <span><?= $tour['cities_count'] ?></span> Cities | <span><?= $tour['exp_num'] ?></span> Experiences</div>
+          <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Cities')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
         </a>
         <div class="file-thumbnail-footer"> 
          <div class="file-footer-caption">
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <?php if(!empty($tour['price_usd'])) { ?>
                 From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_usd']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
               <?php } ?>
-              <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">View</a>
+              <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
             </div>
          </div> 
         </div> 

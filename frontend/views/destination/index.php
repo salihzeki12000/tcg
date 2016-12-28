@@ -18,17 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="cities-banner hidden-md hidden-lg">
       <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'Destinations', 'width'=>"100%"]) ?>
-      <div class="banner-text">DESTINATIONS</div>
+      <div class="banner-text"><?=Yii::t('app','DESTINATIONS')?></div>
     </div>
   </div>
 </div>
 
 <div class="cities-index container">
-  <span>Overview introduction about China.</span>
+  <span><?=Yii::t('app','Overview introduction about China.')?></span>
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center>Must Visit</center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Must Visit')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_MUST_VISIT.'') === false) {
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center>Popular Cities</center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Popular Cities')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false) {
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center>Off-The-Beaten-Track</center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Off-The-Beaten-Track')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {

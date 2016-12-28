@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -21,6 +22,16 @@ use yii\helpers\Html;
 
                 <!-- User Account: style can be found in dropdown.less -->
 
+                <li class="dropdown lang-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="hidden-xs"><?= Yii::$app->params['language_name'][Yii::$app->language] ?> </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
+                            <li><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/> -->

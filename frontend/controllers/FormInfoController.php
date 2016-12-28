@@ -144,7 +144,7 @@ class FormInfoController extends Controller
         if (($model = FormInfo::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
         }
     }
 }

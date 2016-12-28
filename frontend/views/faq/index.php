@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/faq-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
-      <div class="banner-text">FAQ</div>
+      <div class="banner-text"><?=Yii::t('app','FAQ')?></div>
     </div>
   </div>
 </div>

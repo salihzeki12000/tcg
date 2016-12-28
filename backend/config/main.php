@@ -7,6 +7,8 @@ $params = array_merge(
 );
 
 return [
+    'language'=>'en',
+    'sourceLanguage' => 'en',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
@@ -65,6 +67,8 @@ return [
         ],
 
         'urlManager' => [
+            'class' => 'codemix\localeurls\UrlManager',
+            'languages' => ['en', 'fr', 'es', 'de', 'pt'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [

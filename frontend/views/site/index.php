@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
-$this->title = 'The China Guide';
+$this->title = Yii::t('app','The China Guide');
 ?>
 <div class="site-index">
 
@@ -45,7 +45,7 @@ $this->title = 'The China Guide';
     </div> <!-- Carousel -->
 
     <div class="container home-desc">
-        We create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.
+        <?=Yii::t('app','We create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
     </div>
 
     <div class="container home-whyus">
@@ -53,25 +53,25 @@ $this->title = 'The China Guide';
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="col-lg-6 col-md-6 col-xs-6">
                     <i class="icon-whyus-service"></i>
-                    <center>SERVICE</center>
-                    <span>Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip</span>
+                    <center><?=Yii::t('app','SERVICE')?></center>
+                    <span><?=Yii::t('app','Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip')?></span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6">
                     <i class="icon-whyus-expertise"></i>
-                    <center>EXPERTISE</center>
-                    <span>With over ten years of trip planning across 40 destinations under our belts, we are China experts</span>
+                    <center><?=Yii::t('app','EXPERTISE')?></center>
+                    <span><?=Yii::t('app','With over ten years of trip planning across 40 destinations under our belts, we are China experts')?></span>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="col-lg-6 col-md-6 col-xs-6">
                     <i class="icon-whyus-flexibility"></i>
-                    <center>FLEXIBILITY</center>
-                    <span>We know that no two travel experiences are the same. Let us customize your perfect trip</span>
+                    <center><?=Yii::t('app','FLEXIBILITY')?></center>
+                    <span><?=Yii::t('app','We know that no two travel experiences are the same. Let us customize your perfect trip')?></span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6">
                     <i class="icon-whyus-quality"></i>
-                    <center>QUALITY</center>
-                    <span>A stress-free travel experience so you can concentrate on the most important part of your tour: you</span>
+                    <center><?=Yii::t('app','QUALITY')?></center>
+                    <span><?=Yii::t('app','A stress-free travel experience so you can concentrate on the most important part of your tour: you')?></span>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@ $this->title = 'The China Guide';
 
     <div class="container home-btn">
         <div class="row btn-row">
-            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>">LET'S PLAN YOUR TRIP</a>
+            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>"><?=Yii::t('app',"LET'S PLAN YOUR TRIP")?></a>
             
         </div>
     </div>
@@ -103,37 +103,37 @@ $this->title = 'The China Guide';
 
     <div class="container home-categories">
         <div class="col-lg-12">
-            <h1 class="page-header">TOURS BY CATEGORIES</h1>
+            <h1 class="page-header"><?=Yii::t('app','TOURS BY CATEGORIES')?></h1>
         </div>
         <div class="list-group">
             <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_MOST_POPULAR]]) ?>">
                 <i class="icon icon-mostpopular"></i>
-                <span>Most Popular</span>
+                <span><?=Yii::t('app','Most Popular')?></span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
             <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FAMILY]]) ?>">
                 <i class="icon icon-familyvacation"></i>
-                <span>Family Vacation</span>
+                <span><?=Yii::t('app','Family Vacation')?></span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
             <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_CULTURE]]) ?>">
                 <i class="icon icon-culture"></i>
-                <span>Chinese Culture</span>
+                <span><?=Yii::t('app','Chinese Culture')?></span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
             <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_ADVENTUROUS]]) ?>">
                 <i class="icon icon-adventurous"></i>
-                <span>Adventurous</span>
+                <span><?=Yii::t('app','Adventurous')?></span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
             <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FOODIE]]) ?>">
                 <i class="icon icon-foodie"></i>
-                <span>Foodie</span>
+                <span><?=Yii::t('app','Foodie')?></span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
             <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_AT_A_GLANCE]]) ?>">
                 <i class="icon icon-ataglance"></i>
-                <span>At a Glance</span>
+                <span><?=Yii::t('app','At a Glance')?></span>
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
             </a>
         </div>
@@ -143,7 +143,7 @@ $this->title = 'The China Guide';
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">POPULAR CITY TOURS</h1>
+                <h1 class="page-header"><?=Yii::t('app','POPULAR CITY TOURS')?></h1>
             </div>
 
             <?php foreach ($cities_tour as $city_tour) { ?>
@@ -163,13 +163,13 @@ $this->title = 'The China Guide';
     <div class="container clients-saying">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">WHAT OUR CLIENTS ARE SAYING</h1>
+                <h1 class="page-header"><?=Yii::t('app','WHAT OUR CLIENTS ARE SAYING')?></h1>
             </div>
             <div class="col-lg-8 col-md-8 col-xs-12">
-                <em>"This is the way to see China."</em>
-                <div>Mark D@Tripadvisor</div>
-                <em>"5 star service from beginning to end."</em>
-                <div>MJMaher@Tripadvisor</div>
+                <em><?=Yii::t('app','"This is the way to see China."')?></em>
+                <div><?=Yii::t('app','Mark D@Tripadvisor')?></div>
+                <em><?=Yii::t('app','"5 star service from beginning to end."')?></em>
+                <div><?=Yii::t('app','MJMaher@Tripadvisor')?></div>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-12">
                 <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
@@ -179,14 +179,14 @@ $this->title = 'The China Guide';
 
     <div class="container home-btn">
         <div class="row btn-row">
-            <a type="button" class="btn btn-mine col-lg-3 col-md-4 col-xs-10" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">More  reviews on Tripadvisor</a>
+            <a type="button" class="btn btn-mine col-lg-3 col-md-4 col-xs-10" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank"><?=Yii::t('app','More  reviews on Tripadvisor')?></a>
         </div>
     </div>
 
 
     <div class="container index-faq col-lg-6">
         <div class="list-group faq">
-            <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2>FAQ</h2></center></a>
+            <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','FAQ')?></h2></center></a>
             <?php foreach ($faq as $item) { ?>
             <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
@@ -199,7 +199,7 @@ $this->title = 'The China Guide';
 
     <div class="container index-article col-lg-6">
         <div class="list-group article">
-            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2>BLOGS</h2></center></a>
+            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','BLOGS')?></h2></center></a>
             <?php foreach ($articles as $article) { ?>
             <a class="col-lg-12 col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
                 <div class="media">

@@ -12,7 +12,7 @@ use yii\widgets\LinkPager;
 $this->title = $city_info['name'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Destinations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url'=>Url::toRoute(['destination/view', 'name'=>$city_info['name']])];
-$this->params['breadcrumbs'][] = 'Sights';
+$this->params['breadcrumbs'][] = Yii::t('app','Sights');
 ?>
 <div class="city-view">
 
@@ -49,11 +49,11 @@ $this->params['breadcrumbs'][] = 'Sights';
     </div> <!-- Carousel -->
 
     <div class="btn-group dest-title">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sights
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><?=Yii::t('app','Sights')?>
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>">Overview</a></li>
+        <li><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>"><?=Yii::t('app','Overview')?></a></li>
         <?php foreach ($menu as $key => $value) { ?>
           <li <?= (Yii::$app->controller->action->id==$key)? 'class="active"':'' ?>><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
         <?php } ?>

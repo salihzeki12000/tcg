@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/blogs-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'BLOGS', 'width'=>"100%"]) ?>
-      <div class="banner-text">BLOGS</div>
+      <div class="banner-text"><?=Yii::t('app','BLOGS')?></div>
     </div>
   </div>
 </div>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   </div>
                   <div class="media-body">
                     <h4 class="media-heading"><?= $article['title'] ?></h4>
-                    Posted on <?= date('d F, Y', strtotime($article['create_time'])) ?>
+                    <?=Yii::t('app','Posted on')?> <?= date('d F, Y', strtotime($article['create_time'])) ?>
                   </div>
                 </div>
             </a>

@@ -22,7 +22,7 @@ class EducationalProgramsController extends BaseController
      */
     public function actionIndex()
     {
-        $article_name = 'Educational Programs';
+        $article_name = Yii::t('Educational Programs');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
