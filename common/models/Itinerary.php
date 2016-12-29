@@ -23,7 +23,12 @@ class Itinerary extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'itinerary';
+        $table_name = 'itinerary';
+        $languages = Yii::$app->urlManager->languages;
+        if (in_array(Yii::$app->language, $languages) && Yii::$app->language != Yii::$app->sourceLanguage) {
+            return $table_name . '_' . Yii::$app->language;
+        }
+        return $table_name;
     }
 
     /**

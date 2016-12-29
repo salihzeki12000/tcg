@@ -26,7 +26,12 @@ class Article extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'article';
+        $table_name = 'article';
+        $languages = Yii::$app->urlManager->languages;
+        if (in_array(Yii::$app->language, $languages) && Yii::$app->language != Yii::$app->sourceLanguage) {
+            return $table_name . '_' . Yii::$app->language;
+        }
+        return $table_name;
     }
 
     /**
