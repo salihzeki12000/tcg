@@ -35,16 +35,20 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $languages_menu = [];
+    foreach (Yii::$app->urlManager->languages as $language) {
+        $languages_menu[] = ['label' => Yii::$app->params['language_name_upper'][$language], 'url' => Url::toRoute(['/', 'language'=>$language])];
+    }
     $menuItems = [
         ['label' => Yii::t('app','HOME'), 'url' => ['/']],
         ['label' => Yii::t('app','EXPERIENCES'), 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
         ['label' => Yii::t('app','DESTINATIONS'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         //['label' => 'GROUP', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'MEETINGS & INCENTIVES', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
         ['label' => Yii::t('app','EDUCATIONAL PROGRAMS'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+        ['label' => Yii::$app->params['language_name_upper'][Yii::$app->language], 'items'=>$languages_menu],
         ['label' => Yii::t('app','MORE'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => Yii::t('app','BLOGS'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
         ['label' => Yii::t('app','ABOUT US'), 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],]],
-        
 
         // ['label' => 'About', 'url' => ['/site/about']],
         // ['label' => 'Contact', 'url' => ['/site/contact']],
