@@ -112,7 +112,7 @@ return [
     'Submit' => '',
     'TOP' => '',
     'TOURS BY CATEGORIES' => '',
-    'The China Guide' => 'The China Guide fr',
+    'The China Guide' => 'The China Guide',
     'Tips' => '',
     'Tour Code:' => '',
     'Type' => '',
