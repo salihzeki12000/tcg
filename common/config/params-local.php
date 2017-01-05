@@ -20,6 +20,7 @@ return [
         'EUR' => ['sign'=>'€' ,'name'=>'EUR'],
         'GBP' => ['sign'=>'£' ,'name'=>'GBP'],
         'CNY' => ['sign'=>'¥' ,'name'=>'CNY'],
+        'HKD' => ['sign'=>'$' ,'name'=>'HKD'],
         ),
     'biz_type'    => array(
         BIZ_TYPE_CITIES     => 'cities',

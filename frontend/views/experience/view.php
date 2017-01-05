@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="price col-lg-12 col-md-12 col-sm-12 col-xs-12">
-         From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour_info['price_usd']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?> Per Person
+         From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour_info['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?> Per Person
     </div>
 
     <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -254,8 +254,8 @@ $this->params['breadcrumbs'][] = $this->title;
               <h3><?= $tour['name'] ?> </h3>
               <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
               <div>
-                <?php if(!empty($tour['price_usd'])) { ?>
-                  From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_usd']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
+                <?php if(!empty($tour['price_cny'])) { ?>
+                  From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
                 <?php } ?>
                 <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
               </div>

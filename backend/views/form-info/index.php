@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\FormInfoSearch */
@@ -15,9 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Form Info'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -25,10 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'name',
             'arrival_date',
             'arrival_city',
-            'departure_date',
-            'departure_city',
+            // 'departure_date',
+            // 'departure_city',
             // 'adults',
             // 'children',
             // 'infants',
@@ -39,7 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'prefered_budget',
             // 'additional_information',
             // 'name_prefix',
-            // 'name',
             // 'email:email',
             // 'nationality',
             // 'prefered_travel_agent',
@@ -62,7 +60,18 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'type',
             // 'create_time',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return Url::to(['form-info/view', 'id'=>$model->id]);
+                    }
+                    if ($action === 'delete') {
+                        return Url::to(['form-info/delete', 'id'=>$model->id]);
+                    }
+                },
+            ],
         ],
     ]); ?>
 </div>

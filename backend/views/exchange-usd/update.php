@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model common\models\ExchangeUsd */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Exchange USD',
+    'modelClass' => 'Exchange CNY',
 ]) . $model->code;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Exchange USD'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Exchange CNY'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->code, 'url' => ['view', 'id' => $model->code]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>

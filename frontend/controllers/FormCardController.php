@@ -3,17 +3,17 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\FormInfo;
-use common\models\FormInfoSearch;
+use common\models\FormCard;
+use common\models\FormCardSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\components\BaseController;
 
 /**
- * FormInfoController implements the CRUD actions for FormInfo model.
+ * FormCardController implements the CRUD actions for FormCard model.
  */
-class FormInfoController extends BaseController
+class FormCardController extends BaseController
 {
     /**
      * @inheritdoc
@@ -31,12 +31,12 @@ class FormInfoController extends BaseController
     }
 
     /**
-     * Lists all FormInfo models.
+     * Lists all FormCard models.
      * @return mixed
      */
     // public function actionIndex()
     // {
-    //     $searchModel = new FormInfoSearch();
+    //     $searchModel = new FormCardSearch();
     //     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
     //     return $this->render('index', [
@@ -46,14 +46,14 @@ class FormInfoController extends BaseController
     // }
 
     /**
-     * Displays a single FormInfo model.
+     * Displays a single FormCard model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        Yii::$app->mailer->compose('form', ['model' => $model]) 
+        Yii::$app->mailer->compose('card', ['model' => $model]) 
             ->setTo('15079405@qq.com') 
             ->setSubject('Message subject') 
             ->send(); 
@@ -64,45 +64,25 @@ class FormInfoController extends BaseController
     }
 
     /**
-     * Creates a new FormInfo model.
+     * Creates a new FormCard model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($form_type)
+    public function actionCreate()
     {
-        // $form_type = FORM_TYPE_CUSTOM;
-        // $form_type = FORM_TYPE_QUOTATION;
-        // $form_type = FORM_TYPE_EDU;
-        // $form_type = FORM_TYPE_MICE;
+        $model = new FormCard();
 
-        $model = new FormInfo($form_type);
-
-        if ($model->load(Yii::$app->request->post())) {
-            if (array_key_exists('cities_plan', $_POST['FormInfo'])) {
-                $model->cities_plan = join(',', $_POST['FormInfo']['cities_plan']);
-            }
-            if (array_key_exists('travel_interests', $_POST['FormInfo'])) {
-                $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
-            }
-            if ($model->save()) {
-                Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,]) 
-                    ->setTo('15079405@qq.com') 
-                    ->setSubject('Message subject') 
-                    ->send(); 
-
-                return $this->redirect(['view', 'id' => $model->id]);
-
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-            'form_type' => $form_type,
-        ]);
     }
 
     /**
-     * Updates an existing FormInfo model.
+     * Updates an existing FormCard model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -121,7 +101,7 @@ class FormInfoController extends BaseController
     // }
 
     /**
-     * Deletes an existing FormInfo model.
+     * Deletes an existing FormCard model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -134,18 +114,18 @@ class FormInfoController extends BaseController
     // }
 
     /**
-     * Finds the FormInfo model based on its primary key value.
+     * Finds the FormCard model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return FormInfo the loaded model
+     * @return FormCard the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = FormInfo::findOne($id)) !== null) {
+        if (($model = FormCard::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 }

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\ExchangeUsd */
 
 $this->title = $model->code;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Exchange USD'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Exchange CNY'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="exchange-usd-view">

@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\ExchangeUsdSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Exchange USD');
+$this->title = Yii::t('app', 'Exchange CNY');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="exchange-usd-index">

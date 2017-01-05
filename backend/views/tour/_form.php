@@ -51,9 +51,9 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'best_season')->checkboxList(Yii::$app->params['months']) ?>
 
-    <!-- <?//= $form->field($model, 'price_cny')->textInput(['maxlength' => true]) ?> -->
+    <?= $form->field($model, 'price_cny')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'price_usd')->textInput(['maxlength' => true]) ?>
+    <!-- <?//= $form->field($model, 'price_usd')->textInput(['maxlength' => true]) ?> -->
 
     <?= $form->field($model, 'map_image')->fileInput() ?>
     <?php 

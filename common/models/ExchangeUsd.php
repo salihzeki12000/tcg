@@ -41,26 +41,26 @@ class ExchangeUsd extends \yii\db\ActiveRecord
     {
         return [
             'code' => Yii::t('app', 'Currency'),
-            'rate' => Yii::t('app', 'Rate USD'),
+            'rate' => Yii::t('app', 'Rate CNY'),
             'update_time' => Yii::t('app', 'Update Time'),
         ];
     }
 
     public static function convertCurrency($currency , $limit)
     {
-        if ($currency == 'USD') {
+        if ($currency == 'CNY') {
             return $limit;
         }
 
         $cache = Yii::$app->cache;
-        $cache_key = 'RATE_USD_'.$currency;
+        $cache_key = 'RATE_CNY_'.$currency;
         $rate = $cache->get($cache_key);
-        if (empty($rate)) {
+        if (true || empty($rate)) {
             $ret = self::findOne($currency);
             if ($ret) {
                 $rate = $ret['rate'];
                 $cache->set($cache_key, $rate, 60*5); 
-                return round(($limit * $rate), 0);
+                return round(($limit / $rate), 0);
             }
         }
         else

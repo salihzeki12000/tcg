@@ -42,8 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3><?= $tour['name'] ?> </h3>
             <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
             <div>
-              <?php if(!empty($tour['price_usd'])) { ?>
-                From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_usd']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
+              <?php if(!empty($tour['price_cny'])) { ?>
+                From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
               <?php } ?>
               <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
             </div>
