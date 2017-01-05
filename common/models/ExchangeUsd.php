@@ -55,7 +55,7 @@ class ExchangeUsd extends \yii\db\ActiveRecord
         $cache = Yii::$app->cache;
         $cache_key = 'RATE_CNY_'.$currency;
         $rate = $cache->get($cache_key);
-        if (true || empty($rate)) {
+        if (empty($rate)) {
             $ret = self::findOne($currency);
             if ($ret) {
                 $rate = $ret['rate'];
