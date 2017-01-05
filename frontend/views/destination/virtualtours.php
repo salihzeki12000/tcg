@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Virtual Tours');
       </a>
     </div> <!-- Carousel -->
 
-    <div class="btn-group dest-title">
+    <div class="btn-group dest-title" style="margin-bottom:0;">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><?=Yii::t('app','Virtual Tours')?>
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
@@ -58,14 +58,12 @@ $this->params['breadcrumbs'][] = Yii::t('app','Virtual Tours');
         <?php } ?>
       </ul>
     </div>
-    <div class="container">
-
-        <div class="overview">
-          <?= $city_info['vr'] ?>
-        </div>
-    </div>
 
 </div>
+
+  <div class="overview">
+    <?= $city_info['vr'] ?>
+  </div>
 
 <?php
 $js = <<<JS
