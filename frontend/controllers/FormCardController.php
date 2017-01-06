@@ -8,12 +8,11 @@ use common\models\FormCardSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use frontend\components\BaseController;
 
 /**
  * FormCardController implements the CRUD actions for FormCard model.
  */
-class FormCardController extends BaseController
+class FormCardController extends Controller
 {
     /**
      * @inheritdoc

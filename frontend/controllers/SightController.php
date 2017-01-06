@@ -8,12 +8,11 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
-use frontend\components\BaseController;
 
 /**
  * ExperiencesController implements the CRUD actions for Tour model.
  */
-class SightController extends BaseController
+class SightController extends Controller
 {
 
     /**

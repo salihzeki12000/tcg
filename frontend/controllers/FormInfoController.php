@@ -8,12 +8,11 @@ use common\models\FormInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use frontend\components\BaseController;
 
 /**
  * FormInfoController implements the CRUD actions for FormInfo model.
  */
-class FormInfoController extends BaseController
+class FormInfoController extends Controller
 {
     /**
      * @inheritdoc

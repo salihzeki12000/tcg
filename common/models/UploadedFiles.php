@@ -74,7 +74,7 @@ class UploadedFiles extends \yii\db\ActiveRecord
 
     static public function uploadFile($file, $use_mobile=0)
     {
-        $quality = 70;
+        $quality = 80;
         if (!empty($file))
         {
             $file_size = 0;

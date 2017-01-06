@@ -16,9 +16,24 @@ use frontend\components\BaseController;
 /**
  * ExperiencesController implements the CRUD actions for Tour model.
  */
-class ExperienceController extends BaseController
+class ExperienceController extends Controller
 {
 
+    public function behaviors()
+    {
+        return [
+            'pageCache' => [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 60,
+                'variations' => [
+                    Yii::$app->language,
+                    Yii::$app->params['currency'],
+                    Yii::$app->params['is_mobile'],
+                ],
+            ],
+        ];
+    }
     /**
      * Lists all Tour models.
      * @return mixed

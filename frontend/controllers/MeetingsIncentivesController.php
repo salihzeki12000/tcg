@@ -8,12 +8,11 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
-use frontend\components\BaseController;
 
 /**
  * MeetingsIncentivesController implements the CRUD actions for Tour model.
  */
-class MeetingsIncentivesController extends BaseController
+class MeetingsIncentivesController extends Controller
 {
 
     /**

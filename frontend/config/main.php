@@ -11,7 +11,7 @@ return [
     'sourceLanguage' => 'en',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','FGlobalClass'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -84,7 +84,7 @@ return [
                 'blog/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'article/view',
                 'faq' => 'faq/index',
                 'faq/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'faq/view',
-                'site/currency/<currency:\w+>' => 'site/currency',
+                // 'site/currency/<currency:\w+>' => 'site/currency',
             ],
         ],
 
@@ -101,10 +101,9 @@ return [
                 ],
             ],
         ],
-
-        'fcache' => [
-            'class'     => 'yii\caching\FileCache',
-        ]
+        'FGlobalClass'=>[
+            'class'=>'frontend\components\FGlobalClass',
+        ],
     ],
     'params' => $params,
 ];

@@ -11,13 +11,19 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use frontend\components\BaseController;
+use yii\web\Controller;
 
 /**
  * Site controller
  */
-class SiteController extends BaseController
+class SiteController extends Controller
 {
+
+    // public function beforeAction($action)
+    // {
+
+    //     return true;
+    // }
     /**
      * @inheritdoc
      */
@@ -26,13 +32,13 @@ class SiteController extends BaseController
         return [
             'pageCache' => [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['data'],
+                'only' => ['index'],
                 'duration' => 60,
                 'variations' => [
-                    \Yii::$app->language,
+                    Yii::$app->language,
+                    Yii::$app->params['currency'],
+                    Yii::$app->params['is_mobile'],
                 ],
-                'cache' => 'fcache',
-                'enabled'    => true,
             ],
             'access' => [
                 'class' => AccessControl::className(),
@@ -82,7 +88,6 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-
         $slides_query = \common\models\Homepage::find()->where(['type'=>HOMEPAGE_TYPE_SLIDE, 'status'=>DIS_STATUS_SHOW]);
         $slides = $slides_query
             ->orderBy('priority DESC')
@@ -252,25 +257,4 @@ class SiteController extends BaseController
         ]);
     }
 
-    public function actionData(){
-        echo '页面缓存：'.microtime(true).'<br>';
-        $key = 'userlist';
-        $start = microtime(true);
-        //         \Yii::$app->cache->delete($key);  // 如果user表有写操作，就删除缓存，以便更新缓存
-
-        $userList = \Yii::$app->cache->get($key);  // 读取缓存
-        if ($userList===false) { // 如果缓存不存在
-            echo '从数据库中读取数据！'.'<br>';
-            $userList = \common\models\Homepage::find()->all();   // 从数据库中查询数据
-            $end = microtime(true);
-
-            \Yii::$app->cache->set($key, $userList, 60);    // 写入缓存，过期时间为10秒，0表示永不过期
-        } else {
-            echo '从缓存中读取数据！'.'<br>';
-            $end = microtime(true);
-        }
-
-        echo $end-$start.'<br>';  // 查看读取数据所有的时间
-        var_dump($userList);
-    }
 }
