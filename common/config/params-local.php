@@ -8,13 +8,6 @@ return [
         'de' => 'Deutsch',
         'pt' => 'Português',
         ),
-    'language_name_upper' => array(
-        'en' => 'ENGLISH',
-        'fr' => 'FRANÇAIS',
-        'es' => 'ESPAÑOL',
-        'de' => 'DEUTSCH',
-        'pt' => 'PORTUGUÊS',
-        ),
     'currency_name' => array(
         'USD' => ['sign'=>'$' ,'name'=>'USD'],
         'EUR' => ['sign'=>'€' ,'name'=>'EUR'],
