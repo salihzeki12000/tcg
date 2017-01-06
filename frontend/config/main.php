@@ -99,15 +99,12 @@ return [
                         'app/error' => 'error.php',
                     ],
                 ],
-                // 'power' => [
-                //     'class' => 'yii\i18n\PhpMessageSource',
-                //     //'basePath' => '/messages',
-                //     'fileMap' => [
-                //         'power' => 'power.php',
-                //     ],
-                // ],
             ],
         ],
+
+        'fcache' => [
+            'class'     => 'yii\caching\FileCache',
+        ]
     ],
     'params' => $params,
 ];
