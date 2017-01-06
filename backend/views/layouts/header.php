@@ -22,7 +22,7 @@ use yii\helpers\Url;
 
                 <!-- User Account: style can be found in dropdown.less -->
 
-                <li class="dropdown lang-menu">
+                <!-- <li class="dropdown lang-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="hidden-xs"><?= Yii::$app->params['language_name'][Yii::$app->language] ?> </span>
                     </a>
@@ -31,7 +31,7 @@ use yii\helpers\Url;
                             <li><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
                         <?php } ?>
                     </ul>
-                </li>
+                </li> -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/> -->
