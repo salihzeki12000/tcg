@@ -65,7 +65,7 @@ class ExchangeUsd extends \yii\db\ActiveRecord
         }
         else
         {
-            return round(($limit * $rate), 0);
+            return round(($limit / $rate), 0);
         }
         return false;
     }
