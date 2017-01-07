@@ -288,7 +288,10 @@ div#social-media-icons-container a {
 }
 
 .navbar-brand {
-    padding: 7px 15px;
+    padding: 0 8px;
+}
+.navbar-brand img{
+    width: 190px;
 }
 
 #social-media-icons-container a#tripadvisor {
