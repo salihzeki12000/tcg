@@ -209,7 +209,7 @@ class UploadedFilesController extends Controller
                 // 保存图片信息
                 $pathinfo = pathinfo($arr_file['name']);
                 $model = new UploadedFiles();
-                $model->title = $pathinfo['filename'];
+                $model->title = str_replace('_', '\'', $pathinfo['filename']);
                 $model->path = $file_path;
                 $model->org_name = $arr_file['name'];
                 $model->size = $arr_file['size'];
