@@ -31,6 +31,7 @@ class ExperienceController extends Controller
                     Yii::$app->params['currency'],
                     Yii::$app->params['is_mobile'],
                 ],
+                'enabled' => false,
             ],
         ];
     }

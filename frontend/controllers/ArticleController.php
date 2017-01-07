@@ -40,7 +40,15 @@ class ArticleController extends Controller
             ->limit($pages->limit)
             ->all();
 
-        return $this->render('index',['articles'=>$articles,'pages'=>$pages]);
+        $condition = array();
+        $condition['status'] = DIS_STATUS_SHOW;
+        $query = Tour::find()->where($condition);
+        $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
+        $tours = $query
+            ->orderBy('priority DESC, id DESC')
+            ->all();
+
+        return $this->render('index',['articles'=>$articles,'pages'=>$pages,'tours' => $tours]);
     }
 
     /**

@@ -390,6 +390,10 @@ div#social-media-icons-container a {
   padding: 8px 4px;
 }
 
+.container.tour-left .article-index{
+  margin: 25px 0;
+}
+
 .icon-menu-ok{
     display: block;
     float: left;
@@ -974,4 +978,101 @@ a.desc:after {
 }
 .overview .overview-img{
   width: 100%;
+}
+
+
+.nomadicmatt-page .teaser {
+    margin-top: 10px;
+}
+.blog .entry {
+    background: #fff;
+    padding: 30px 35px;
+    position: relative;
+    box-sizing: border-box;
+    clear: both;
+    content: " ";
+    display: table;
+}
+
+.entry {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 16px;
+}
+.first {
+    clear: both;
+    margin-left: 0;
+}
+.entry-title {
+    font-size: 24px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+.entry-title a, .sidebar .widget-title a {
+    color: #222;
+    font-weight: 500;
+}
+.entry-content {
+    clear: both;
+    content: " ";
+    display: table;
+}
+.entry-content a {
+    color: #2da1c4;
+    font-weight: 600;
+    box-sizing: border-box;
+
+}
+
+a.alignright, img.alignright, .wp-caption.alignright {
+    margin: 0 0 24px 24px;
+}
+@media only screen and (max-width: 660px)
+{
+  .alignleft, .alignright {
+      margin: 0 auto!important;
+      display: block;
+      float: none;
+  }
+}
+.alignright {
+    float: right;
+    text-align: right;
+}
+.entry-image-link img{
+  height: auto;
+  max-width: 100%;  
+}
+.entry-content ol, .entry-content p, .entry-content ul, .quote-caption {
+    margin-bottom: 26px;
+    margin: 0 0 24px;
+    padding: 0;
+}
+a.more-link {
+    background: #f26a44;
+    width: 120px;
+    height: 40px;
+    background-size: contain;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    float: right;
+    text-align: center;
+    line-height: 2.3;
+}
+.blog .entry-meta {
+    position: absolute;
+    bottom: 0;
+    margin: 0 0 24px;
+    padding: 0;
+}
+.entry-meta {
+    font-size: 15px;
+}
+@media only screen and (max-width: 380px)
+{
+  .blog .entry-meta {
+      position: relative;
+  }  
 }

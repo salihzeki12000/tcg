@@ -23,36 +23,53 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 </div>
 
-<div class="article-index container">
-    <!-- Single button -->
-    <div class="container">
-        <div class="list-group">
-            <?php foreach ($articles as $article) { ?>
-            <a class="col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
-                <div class="media">
-                  <div class="media-left">
-                      <img width="100px" class="media-object" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" alt="<?= $article['title'] ?>">
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading"><?= $article['title'] ?></h4>
-                    <?=Yii::t('app','Posted on')?> <?= date('d F, Y', strtotime($article['create_time'])) ?>
-                  </div>
-                </div>
-            </a>
-            <?php } ?>
+<div class="tour-view">
+  <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
+
+    <div class="article-index blog">
+
+      <?php foreach ($articles as $article) { ?>
+
+      <article class="entry teaser first">
+        <header class="entry-header">
+          <h2 class="entry-title" itemprop="headline">
+            <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" rel="bookmark"><?= $article['title'] ?></a>
+          </h2>
+        </header>
+        <div class="entry-content" itemprop="text">
+          <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
+            <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
+          </a>
+          <p><?= substr(strip_tags($article['content']), 0, 250)  ?>...</p>
         </div>
+        <div class="article-index">
+        <a href="http://www.nomadicmatt.com/travel-blogs/my-must-see-to-do-list-in-austin/" class="more-link" title="Read More">Read more</a>
+        <p class="entry-meta">
+          <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d Y', strtotime($article['create_time'])) ?></time>
+        </p>
+      </article>
+
+      <?php } ?>
+
+
+      <center>
+        <?php
+        //显示分页页码
+        echo LinkPager::widget([
+            'pagination' => $pages,
+            'maxButtonCount' => 5,
+        ])
+        ?>
+      </center>
+
     </div>
+  </div>
 
-
-    <center>
-      <?php
-      //显示分页页码
-      echo LinkPager::widget([
-          'pagination' => $pages,
-          'maxButtonCount' => 5,
-      ])
-      ?>
-    </center>
+  <?php if (!Yii::$app->params['is_mobile']) { ?>
+    <?= $this->render('/layouts/_exp-right', [
+        'tours' => $tours,
+    ]) ?>
+  <?php } ?>
 
 </div>
 

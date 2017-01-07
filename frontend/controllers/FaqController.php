@@ -30,7 +30,18 @@ class FaqController extends Controller
             ->orderBy('create_time ASC')
             ->all();
 
-        return $this->render('index',['faq'=>$faq]);
+        $condition = array();
+        $condition['status'] = DIS_STATUS_SHOW;
+        $query = Tour::find()->where($condition);
+        $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
+        $tours = $query
+            ->orderBy('priority DESC, id DESC')
+            ->all();
+
+        return $this->render('index', [
+            'faq' => $faq,
+            'tours' => $tours,
+        ]);
     }
 
     /**
