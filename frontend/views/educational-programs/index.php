@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="form-info container" id="form-info-page">
-  <div class="form-info-create">
+  <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
 
     <div class="form-title"><?=Yii::t('app','Information Form')?></div>
 
