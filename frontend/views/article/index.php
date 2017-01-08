@@ -63,6 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </center>
 
     </div>
+    <div class="clearfix"></div>
   </div>
 
     <?= $this->render('/layouts/_exp-right', [

@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 use common\models\UploadedFiles;
 use yii\helpers\Url;
 ?>
+  <div class="clearfix"></div>
 
   <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
         <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
@@ -38,7 +39,6 @@ use yii\helpers\Url;
 
   <?php if ($tours) {?>
   <div class="tour-index col-lg-4">
-      <div class="clearfix"></div>
       <center><h3 class="tour-right"><?=Yii::t('app','You May Also Like')?></h3></center>
       <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">
