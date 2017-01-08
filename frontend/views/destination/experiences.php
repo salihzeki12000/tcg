@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Experiences');
 
 <div class="form-info container" id="form-info-page">
   <h2><?=Yii::t('app',"No ideal itinerary or don't bother to browse? Customize your own tour now!")?></h2>
-  <div class="form-info-create">
+  <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
 
     <div class="form-title"><?=Yii::t('app',"Customization Form")?></div>
 
