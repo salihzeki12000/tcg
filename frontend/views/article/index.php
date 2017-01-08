@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
             <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
           </a>
-          <p><?= substr(strip_tags($article['content']), 0, 250)  ?>...</p>
+          <p><?= substr(strip_tags($article['content']), 0, 275)  ?>...</p>
         </div>
         <div class="article-index">
         <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="more-link" title="Read More">Read more</a>
