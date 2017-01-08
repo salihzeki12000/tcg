@@ -4,7 +4,7 @@ body {
     background-color: #4D423C;
     color: #eee;
 }
-
+.clearfix{overflow: auto;zoom: 1;}
 .datepicker {
   color: #333;
 }
@@ -136,7 +136,7 @@ body {
   height: 50px;
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
-  margin: 15px auto;
+  margin: 9px auto;
   background-size: 118px;
 }
 .home-whyus i.icon-whyus-service{
@@ -584,14 +584,16 @@ div#social-media-icons-container a {
   margin-top: 10px;
   color: #17BEBB;
 }
-.file-drop-zone .btn-sm{
+.file-drop-zone .btn-sm, .btn-sm.more-link{
   padding: 4px 16px;
   font-size: 14px;
   background-color: #17BEBB;
   border-radius: 5px;
   border-color: #fff;
 }
-
+.btn-sm.more-link{
+  margin-top: 15px;
+}
 .tour-index .type-menu {
   padding: 8px 8px 0 8px;
   margin: 0 auto;
@@ -746,7 +748,6 @@ div#social-media-icons-container a {
 }
 .home-whyus .row.tour-right>div{
   padding: 0;
-  padding-bottom: 15px;
 }
 .home-whyus .row.tour-right>div>div{
   padding: 10px;
@@ -996,7 +997,7 @@ a.desc:after {
 }
 .blog .entry {
     background: #fff;
-    padding: 30px 35px;
+    padding: 20px 20px;
     position: relative;
     box-sizing: border-box;
     clear: both;
@@ -1036,7 +1037,7 @@ a.desc:after {
 }
 
 a.alignright, img.alignright, .wp-caption.alignright {
-    margin: 0 0 24px 24px;
+    margin: 0 0 15px 15px;
 }
 @media only screen and (max-width: 660px)
 {
@@ -1055,21 +1056,11 @@ a.alignright, img.alignright, .wp-caption.alignright {
   max-width: 100%;  
 }
 .entry-content ol, .entry-content p, .entry-content ul, .quote-caption {
-    margin-bottom: 26px;
-    margin: 0 0 24px;
+    margin-bottom: 20px;
+    margin: 0 0 20px;
     padding: 0;
 }
 a.more-link {
-    background: #f26a44;
-    width: 120px;
-    height: 40px;
-    background-size: contain;
-    font-size: 17px;
-    font-weight: 600;
-    color: #fff;
-    float: right;
-    text-align: center;
-    line-height: 2.3;
 }
 .blog .entry-meta {
     position: absolute;

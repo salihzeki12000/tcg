@@ -35,13 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             }
           ?>
           <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
-              <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
+              <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>
           <?php } ?>
       </div>
-      <div class="clearfix"></div> 
     </div>
+
 
     <div class="article-index">
       <div class="list-group">
@@ -52,13 +52,12 @@ $this->params['breadcrumbs'][] = $this->title;
             }
           ?>
           <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
-              <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
+              <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>
           <?php } ?>
       </div>
     </div>
-    <div class="clearfix"></div>
   </div>
 
 
