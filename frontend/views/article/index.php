@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="article-index">
         <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="more-link" title="Read More">Read more</a>
         <p class="entry-meta">
-          <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d Y', strtotime($article['create_time'])) ?></time>
+          <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
         </p>
       </article>
 
