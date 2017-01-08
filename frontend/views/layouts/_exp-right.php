@@ -72,5 +72,12 @@ use yii\helpers\Url;
        </div>
 
       </div>
+      
+      <div class=" home-btn">
+        <div class="row btn-row">
+          <a type="button" class="btn btn-mine col-lg-10 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) ?>">View more tours</a>
+        </div>
+      </div>
+
   </div>
   <?php } ?>

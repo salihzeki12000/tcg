@@ -27,11 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 
-    <div class=" home-btn">
-      <div class="row btn-row">
-        <a type="button" class="btn btn-mine col-lg-5 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) ?>">View more tours</a>
-      </div>
-    </div>
   </div>
 
     <?= $this->render('/layouts/_exp-right', [

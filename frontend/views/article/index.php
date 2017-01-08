@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <p><?= substr(strip_tags($article['content']), 0, 275)  ?>...</p>
         </div>
         <div class="article-index">
-        <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="more-link" title="Read More">Read more</a>
+        <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="more-link" title="<?=Yii::t('app','Read More')?>"><?=Yii::t('app','Read More')?></a>
         <p class="entry-meta">
           <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
         </p>
