@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use common\models\UploadedFiles;
 use yii\helpers\Url;
 ?>
-  <div class="clearfix"></div>
+  <div class="clearfix col-lg-4"></div>
 
   <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
         <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
@@ -72,7 +72,7 @@ use yii\helpers\Url;
        </div>
 
       </div>
-      
+
       <div class=" home-btn">
         <div class="row btn-row">
           <a type="button" class="btn btn-mine col-lg-10 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) ?>">View more tours</a>
