@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use common\models\UploadedFiles;
 use yii\helpers\Url;
 ?>
-  <div class="clearfix col-lg-4"></div>
+  <div class="clearfix col-lg-3"></div>
 
   <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
         <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
