@@ -395,6 +395,8 @@ div#social-media-icons-container a {
 
 .container.tour-left .article-index{
   margin: 25px 0;
+  float: left;
+  width: 100%;
 }
 
 .icon-menu-ok{

@@ -42,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
 
-
     <div class="article-index">
       <div class="list-group">
           <div class="list-group-item"><center><h2><?= Yii::$app->params['faq_type'][FAQ_TYPE_IN_CHINA] ?></h2></center></div>
