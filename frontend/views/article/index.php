@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <p><?= substr(strip_tags($article['content']), 0, 250)  ?>...</p>
         </div>
         <div class="article-index">
-        <a href="http://www.nomadicmatt.com/travel-blogs/my-must-see-to-do-list-in-austin/" class="more-link" title="Read More">Read more</a>
+        <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="more-link" title="Read More">Read more</a>
         <p class="entry-meta">
           <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d Y', strtotime($article['create_time'])) ?></time>
         </p>
@@ -65,11 +65,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 
-  <?php if (!Yii::$app->params['is_mobile']) { ?>
     <?= $this->render('/layouts/_exp-right', [
         'tours' => $tours,
     ]) ?>
-  <?php } ?>
 
 </div>
 

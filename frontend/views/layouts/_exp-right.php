@@ -38,6 +38,7 @@ use yii\helpers\Url;
 
   <?php if ($tours) {?>
   <div class="tour-index col-lg-4">
+      <div class="clearfix"></div>
       <center><h3 class="tour-right"><?=Yii::t('app','You May Also Like')?></h3></center>
       <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">

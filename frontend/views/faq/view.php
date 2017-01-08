@@ -34,11 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 
-  <?php if (!Yii::$app->params['is_mobile']) { ?>
     <?= $this->render('/layouts/_exp-right', [
         'tours' => $tours,
     ]) ?>
-  <?php } ?>
 
 </div>
 
