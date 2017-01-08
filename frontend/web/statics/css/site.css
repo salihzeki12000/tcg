@@ -741,6 +741,13 @@ div#social-media-icons-container a {
     float: none;
   }
 }
+@media (max-width: 767px){
+  .tour-view .tour-index {
+    padding-right: 0;
+    padding-left: 0;
+  }  
+}
+
 .home-whyus .row.tour-right{
   margin: 25px 15px 10px 15px;
   border: 1px solid #949494;
@@ -996,7 +1003,7 @@ a.desc:after {
     margin-top: 10px;
 }
 .blog .entry {
-    background: #fff;
+    background: #E0E3D6;
     padding: 20px 20px;
     position: relative;
     box-sizing: border-box;
@@ -1076,4 +1083,24 @@ a.more-link {
   .blog .entry-meta {
       position: relative;
   }  
+}
+
+.content-body{
+  background: #E0E3D6;
+  color: #333;
+  padding: 20px 20px;
+  margin: 25px 0;
+}
+.content-body h2{
+  color: #222;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.content-body > img{
+  width: 100%;
+}
+.content-body h2 small{
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
 }
