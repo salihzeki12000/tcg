@@ -36,6 +36,7 @@ class FaqController extends Controller
         $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
         $tours = $query
             ->orderBy('priority DESC, id DESC')
+            ->limit(4)
             ->all();
 
         return $this->render('index', [
@@ -60,6 +61,7 @@ class FaqController extends Controller
         $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
         $tours = $query
             ->orderBy('priority DESC, id DESC')
+            ->limit(4)
             ->all();
 
         return $this->render('view', [
