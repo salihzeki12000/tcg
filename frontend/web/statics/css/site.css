@@ -623,7 +623,9 @@ div#social-media-icons-container a {
 .tour-index .list-info{
   color: #f0ad4e;
 }
-
+.tour-index .tourlist-price{
+  height: 25px
+}
 
 .tour-view h1.title{
   text-align: center;
