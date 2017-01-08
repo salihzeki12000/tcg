@@ -197,23 +197,27 @@ $this->title = Yii::t('app','The China Guide');
     </div>
 
 
-    <div class="container index-article col-lg-6">
-        <div class="list-group article">
-            <a href="<?= Url::toRoute(['article/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','BLOGS')?></h2></center></a>
-            <?php foreach ($articles as $article) { ?>
-            <a class="col-lg-12 col-md-6 list-group-item" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>">
-                <div class="media">
-                  <div class="media-left">
-                      <img width="100px" class="media-object" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" alt="<?= $article['title'] ?>">
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading"><?= $article['title'] ?></h4>
-                    Posted on <?= date('d F, Y', strtotime($article['create_time'])) ?>
-                  </div>
-                </div>
-            </a>
-            <?php } ?>
-        </div>
+    <div class="container index-article col-lg-6 blog">
+        <?php foreach ($articles as $article) { ?>
+          <article class="entry teaser first">
+            <header class="entry-header">
+              <h2 class="entry-title" itemprop="headline">
+                <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" rel="bookmark"><?= $article['title'] ?></a>
+              </h2>
+            </header>
+            <div class="entry-content" itemprop="text">
+              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
+                <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
+              </a>
+              <p><?= substr(strip_tags($article['content']), 0, 275)  ?>...</p>
+            </div>
+            <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','Read More')?>"><?=Yii::t('app','Read More')?></a>
+            <p class="entry-meta">
+              <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
+            </p>
+          </article>
+        <?php } ?>
+
     </div>
 
 

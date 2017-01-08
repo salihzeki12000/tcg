@@ -1051,9 +1051,10 @@ a.alignright, img.alignright, .wp-caption.alignright {
 @media only screen and (max-width: 660px)
 {
   .alignleft, .alignright {
-      margin: 0 auto!important;
+      margin: 0 auto !important;
       display: block;
       float: none;
+      width: 100% !important;
   }
 }
 .alignright {
@@ -1119,5 +1120,5 @@ a.more-link {
   margin-bottom: 20px;
 }
 .back-container .back-body{
-  margin-top: 25px;
+  margin: 25px 0;
 }

@@ -39,6 +39,7 @@ class SiteController extends Controller
                     Yii::$app->params['currency'],
                     Yii::$app->params['is_mobile'],
                 ],
+                'enabled' => false,
             ],
             'access' => [
                 'class' => AccessControl::className(),
@@ -112,7 +113,7 @@ class SiteController extends Controller
         $article_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_ARTICLE, 'status'=>DIS_STATUS_SHOW]);
         $articles = $article_query
             ->orderBy('priority DESC, create_time DESC')
-            ->limit(5)
+            ->limit(1)
             ->all();
 
         return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
