@@ -1105,4 +1105,10 @@ a.more-link {
   display: block;
   margin-top: 15px;
   font-size: 14px;
+  text-transform: lowercase;
+}
+
+.article-index .list-group-item{
+  background-color: #E0E3D6;
+  border: 1px solid #797979;
 }
