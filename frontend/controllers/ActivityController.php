@@ -34,20 +34,30 @@ class ActivityController extends Controller
         $activity_info = $this->findModel($name);
         $id = $activity_info['id'];
 
-        $ftype = BIZ_TYPE_ALBUM;
-        $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
-        $album_images = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        // $ftype = BIZ_TYPE_ALBUM;
+        // $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
+        // $album_images = Yii::$app->db->createCommand($sql)
+        // ->queryAll();
 
-        $activity_info['images'] = [];
-        if (!empty($album_images)) {
-            $activity_info['images'] = $album_images;
-        }
+        // $activity_info['images'] = [];
+        // if (!empty($album_images)) {
+        //     $activity_info['images'] = $album_images;
+        // }
 
         $cities_query = \common\models\Cities::find()->where(['id'=>$activity_info['city_id']]);
         $city_info = $cities_query
             ->One();
 
+        $ftype = BIZ_TYPE_CITIES;
+        $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$city_info['id']}";
+        $city_images = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $city_info['images'] = [];
+        if (!empty($city_images)) {
+            $city_info['images'] = $city_images;
+        }
+        
         return $this->render('view', [
             'activity_info' => $activity_info,
             'city_info' => $city_info,

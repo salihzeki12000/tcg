@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'format' => 'raw',
               'value' => "<a href='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 'l') . "' target='_blank'><img src='" . Yii::$app->params['uploads_url'] . UploadedFiles::getSize($model->pic_s, 's') . "' width='200px' /></a>",
             ],
+            'priority',
             'introduction:ntext',
             'food:ntext',
             'rec_type',

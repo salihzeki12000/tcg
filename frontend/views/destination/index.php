@@ -28,27 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Must Visit')?></center></h1>
-      </div>
-      <?php foreach ($cities as $city) { 
-        if (strpos($city['rec_type'], REC_TYPE_MUST_VISIT.'') === false) {
-          continue;
-        }
-      ?>
-      <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-          <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'name'=>$city['name']]) ?>">
-              <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city['pic_s'], 's')?>" alt="<?=  $city['name'] ?>">
-              <div class="carousel-caption">
-                  <h3><?= $city['name'] ?></h3>
-              </div>
-          </a>
-      </div>
-      <?php } ?>
-  </div>
-
-  <div class="row">
-      <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Popular Cities')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Popular Destinations')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false) {
@@ -68,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Off-The-Beaten-Track')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Other Destinations')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {

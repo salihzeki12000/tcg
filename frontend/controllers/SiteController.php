@@ -101,6 +101,7 @@ class SiteController extends Controller
         $cities_query = \common\models\Cities::find()->where(['status'=>DIS_STATUS_SHOW]);
         $cities_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
         $cities_tour = $cities_query
+            ->orderBy('priority DESC, id ASC')
             ->all();
 
         $faq_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_FAQ, 'status'=>DIS_STATUS_SHOW]);
@@ -110,6 +111,7 @@ class SiteController extends Controller
 
         $article_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_ARTICLE, 'status'=>DIS_STATUS_SHOW]);
         $articles = $article_query
+            ->orderBy('priority DESC, create_time DESC')
             ->limit(5)
             ->all();
 

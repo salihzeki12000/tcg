@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="content-body">
             <center>
-              <h2><?= $faq['title'] ?><small><?= date('F d, Y', strtotime($faq['create_time'])) ?></small></h2>
+              <h2><?= $faq['title'] ?></h2>
             </center>
             <?php if($faq['pic_s']) {?>
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($faq['pic_s'], 'm')?>" alt="<?= $faq['title'] ?>"/>

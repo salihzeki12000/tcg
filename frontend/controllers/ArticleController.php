@@ -35,7 +35,7 @@ class ArticleController extends Controller
                 'pageSizeParam' => false,
             ]);
         $articles = $query
-            ->orderBy('create_time DESC')
+            ->orderBy('priority DESC, create_time DESC')
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->all();

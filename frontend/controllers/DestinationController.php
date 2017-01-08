@@ -30,7 +30,7 @@ class DestinationController extends Controller
         $condition['status'] = DIS_STATUS_SHOW;
         $query = Cities::find()->where($condition);
         $cities = $query
-            ->orderBy('id ASC')
+            ->orderBy('priority DESC, id ASC')
             ->all();
 
         return $this->render('index',['cities'=>$cities]);
@@ -106,7 +106,7 @@ class DestinationController extends Controller
                 'pageSizeParam' => false,
             ]);
         $sights = $query
-            ->orderBy('id ASC')
+            ->orderBy('priority DESC, id ASC')
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
@@ -139,7 +139,7 @@ class DestinationController extends Controller
                 'pageSizeParam' => false,
             ]);
         $activities = $query
-            ->orderBy('id ASC')
+            ->orderBy('priority DESC, id ASC')
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->all();

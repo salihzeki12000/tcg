@@ -41,7 +41,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'type'], 'required'],
-            [['type', 'sub_type', 'status'], 'integer'],
+            [['type', 'sub_type', 'status', 'priority'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['title','pic_s', 'keywords'], 'string', 'max' => 255],
@@ -65,6 +65,7 @@ class Article extends \yii\db\ActiveRecord
             'keywords' => Yii::t('app', 'Keywords'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
+            'priority' => Yii::t('app', 'Priority'),
         ];
     }
 }

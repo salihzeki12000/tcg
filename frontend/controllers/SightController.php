@@ -34,19 +34,29 @@ class SightController extends Controller
         $sight_info = $this->findModel($name);
         $id = $sight_info['id'];
 
-        $ftype = BIZ_TYPE_ALBUM;
-        $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
-        $album_images = Yii::$app->db->createCommand($sql)
-        ->queryAll();
+        // $ftype = BIZ_TYPE_ALBUM;
+        // $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
+        // $album_images = Yii::$app->db->createCommand($sql)
+        // ->queryAll();
 
-        $sight_info['images'] = [];
-        if (!empty($album_images)) {
-            $sight_info['images'] = $album_images;
-        }
+        // $sight_info['images'] = [];
+        // if (!empty($album_images)) {
+        //     $sight_info['images'] = $album_images;
+        // }
 
         $cities_query = \common\models\Cities::find()->where(['id'=>$sight_info['city_id']]);
         $city_info = $cities_query
             ->One();
+
+        $ftype = BIZ_TYPE_CITIES;
+        $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$city_info['id']}";
+        $city_images = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+
+        $city_info['images'] = [];
+        if (!empty($city_images)) {
+            $city_info['images'] = $city_images;
+        }
 
         return $this->render('view', [
             'sight_info' => $sight_info,

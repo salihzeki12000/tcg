@@ -44,7 +44,7 @@ class Album extends \yii\db\ActiveRecord
     {
         return [
             [['type', 'name', 'city_id'], 'required'],
-            [['type', 'city_id', 'status'], 'integer'],
+            [['type', 'city_id', 'status', 'priority'], 'integer'],
             [['overview'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['name', 'pic_s', 'keywords'], 'string', 'max' => 255],
@@ -70,6 +70,7 @@ class Album extends \yii\db\ActiveRecord
             'keywords' => Yii::t('app', 'Keywords'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
+            'priority' => Yii::t('app', 'Priority'),
         ];
     }
 }

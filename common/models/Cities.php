@@ -45,7 +45,7 @@ class Cities extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'status'], 'required'],
-            [['status'], 'integer'],
+            [['status', 'priority'], 'integer'],
             [['introduction', 'food'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['name', 'rec_type'], 'string', 'max' => 100],
@@ -74,6 +74,7 @@ class Cities extends \yii\db\ActiveRecord
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
             'image' => Yii::t('app', 'Title Image'),
+            'priority' => Yii::t('app', 'Priority'),
         ];
     }
 }

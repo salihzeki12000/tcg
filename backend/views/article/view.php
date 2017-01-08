@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sub_type',
             'content:ntext',
             'status',
+            'priority',
             'create_time',
             'update_time',
         ],

@@ -1112,3 +1112,12 @@ a.more-link {
   background-color: #E0E3D6;
   border: 1px solid #797979;
 }
+
+.back-container h1{
+  color: #17BEBB;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.back-container .back-body{
+  margin-top: 25px;
+}

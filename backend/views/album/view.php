@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'name',
             'city_id',
+            'priority',
             [
               'attribute'=>'image',
               'label'=> Yii::t('app', 'Title Picture'),
