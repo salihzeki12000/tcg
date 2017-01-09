@@ -106,36 +106,18 @@ $this->title = Yii::t('app','The China Guide');
             <h1 class="page-header"><?=Yii::t('app','TOURS BY CATEGORIES')?></h1>
         </div>
         <div class="list-group">
-            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_MOST_POPULAR]]) ?>">
-                <i class="icon icon-mostpopular"></i>
-                <span><?=Yii::t('app','Most Popular')?></span>
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-            </a>
-            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FAMILY]]) ?>">
-                <i class="icon icon-familyvacation"></i>
-                <span><?=Yii::t('app','Family Vacation')?></span>
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-            </a>
-            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_CULTURE]]) ?>">
-                <i class="icon icon-culture"></i>
-                <span><?=Yii::t('app','Chinese Culture')?></span>
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-            </a>
-            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_ADVENTUROUS]]) ?>">
-                <i class="icon icon-adventurous"></i>
-                <span><?=Yii::t('app','Adventurous')?></span>
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-            </a>
-            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_FOODIE]]) ?>">
-                <i class="icon icon-foodie"></i>
-                <span><?=Yii::t('app','Foodie')?></span>
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-            </a>
-            <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>Yii::$app->params['tour_themes'][TOUR_THEMES_AT_A_GLANCE]]) ?>">
-                <i class="icon icon-ataglance"></i>
-                <span><?=Yii::t('app','At a Glance')?></span>
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-            </a>
+            <?php foreach ($themes as $theme) {  
+                if (empty($theme['class_name'])) {
+                    continue;
+                }
+            ?>
+                <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['name']]) ?>">
+                    <i class="icon <?= $theme['class_name'] ?>"></i>
+                    <span><?= $theme['name'] ?></span>
+                    <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
+                </a>
+            <?php } ?>
+
         </div>
     </div>
 

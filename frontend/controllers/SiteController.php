@@ -116,7 +116,12 @@ class SiteController extends Controller
             ->limit(1)
             ->all();
 
-        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads]);
+        $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $themes = $themes_query
+            ->orderBy('priority DESC, create_time ASC')
+            ->all();
+
+        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes]);
     }
 
     public function actionCurrency()

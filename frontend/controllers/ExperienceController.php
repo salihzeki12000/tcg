@@ -44,43 +44,30 @@ class ExperienceController extends Controller
         $type = Yii::$app->request->get('type');
         $theme = trim(Yii::$app->request->get('theme'));
         $theme_id = '';
-        $city_name = trim(Yii::$app->request->get('city_name'));
 
+        if (empty($theme)) {
+            $theme_id = TOUR_THEMES_MOST_POPULAR;
+            $theme_info = \common\models\Theme::find()->where(['id' => $theme_id])->One();
+            $tour_ids = $theme_info['use_ids'];
+        }
+        elseif (($theme_info = \common\models\Theme::find()->where(['name' => $theme])->One()) !== null) {
+            $tour_ids = $theme_info['use_ids'];
+            $theme_id = $theme_info['id'];
+        }
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
+        if (!empty($tour_ids)) {
+            $tour_ids = explode(',', $tour_ids);
+            $condition['id'] = $tour_ids;
+            
+        }
         $query = Tour::find()->where($condition);
         if ($type) {
             $query->andWhere("FIND_IN_SET('".$type."', rec_type)");
         }
-        if (empty($theme)) {
-            $theme_id = TOUR_THEMES_MOST_POPULAR;
+        if (!empty($tour_ids)) {
+            $query->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')]);
         }
-        else
-        {
-            $theme_id = array_search($theme, Yii::$app->params['tour_themes']);
-        }
-
-        $city_condition = array();
-        $city_condition['status'] = DIS_STATUS_SHOW;
-        $city_query = Cities::find()->where($city_condition);
-        $city_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
-        $cities = $city_query
-            ->orderBy('id ASC')
-            ->all();
-
-        if (!empty($city_name))
-        {
-            foreach ($cities as $city_row) {
-                if ($city_name == $city_row['name']) {
-                    $query->andWhere("FIND_IN_SET('".$city_row['id']."', cities)");
-                    break;
-                }
-            }
-        }
-        elseif ($theme_id) {
-            $query->andWhere("FIND_IN_SET('".$theme_id."', themes)");
-        }
-
 
         $count_query = clone $query;
         $pages = new Pagination(
@@ -90,12 +77,16 @@ class ExperienceController extends Controller
                 'pageSizeParam' => false,
             ]);
         $tours = $query
-            ->orderBy('priority DESC, id DESC')
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
 
-        return $this->render('index',['tours'=>$tours,'type'=>$type,'theme_id'=>$theme_id,'pages'=>$pages,'cities'=>$cities, 'city_name'=>$city_name]);
+        $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $themes = $themes_query
+            ->orderBy('priority DESC, id ASC')
+            ->all();
+
+        return $this->render('index',['tours'=>$tours,'type'=>$type,'themes'=>$themes,'theme_id'=>$theme_id,'pages'=>$pages]);
     }
 
     /**

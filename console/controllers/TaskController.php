@@ -26,7 +26,7 @@ class TaskController extends Controller
             'tips',
             ];
         echo "sync task begin:" . date('Y-m-d H:i:s',time()) . "\n";
-        $tables = ['album','article','cities','homepage','itinerary','tour',];
+        $tables = ['album','article','cities','homepage','itinerary','tour','theme',];
         $languages = array_keys(Yii::$app->params['language_name']);
         unset($languages[0]);
 

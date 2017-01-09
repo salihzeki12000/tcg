@@ -65,6 +65,7 @@ class Tour extends \yii\db\ActiveRecord
             [['code'], 'string', 'max' => 20],
             [['keywords'], 'string', 'max' => 512],
             [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\-]+$/','message'=>'Name does not conform to the requirements'],
+            [['link_tour'],'match','pattern'=>'/^(\d+[,])*(\d+)$/','message'=>'Name does not conform to the requirements'],
         ];
     }
 
