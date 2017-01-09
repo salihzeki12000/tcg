@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <?= $itinerary['description'] ?>
         </div>
 
-        <? if (!empty($itinerary['images'])) { ?>
+        <?php if (!empty($itinerary['images'])) { ?>
           <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
