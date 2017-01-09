@@ -126,11 +126,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if (count($itinerary['images']) > 0) { ?>
           <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
+            <?php if (count($itinerary['images']) > 0) { ?>
             <ol class="carousel-indicators">
               <?php for($i=0; $i<count($itinerary['images']); $i++) { ?>
                   <li data-target="#carousel-slides-itinerary-<?= $j ?>" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
               <?php } ?>
             </ol>
+            <?php } ?>
            
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
@@ -150,6 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <?php } ?>
             </div>
            
+           <?php if (count($itinerary['images']) > 0) { ?>
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left"></span>
@@ -157,6 +160,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <a class="right carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="next">
               <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
+            <?php } ?>
           </div> <!-- Carousel -->
 
         <?php } ?>
