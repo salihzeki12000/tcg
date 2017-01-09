@@ -119,40 +119,44 @@ $this->params['breadcrumbs'][] = $this->title;
           <?= $itinerary['description'] ?>
         </div>
 
-        <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <?php for($i=0; $i<count($itinerary['images']); $i++) { ?>
-                <li data-target="#carousel-slides-itinerary-<?= $j ?>" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
-            <?php } ?>
-          </ol>
-         
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-            <?php for($i=0; $i<count($itinerary['images']); $i++) {
-                $slide=$itinerary['images'][$i];
-                $pic_type = 'm';
-                if (Yii::$app->params['is_mobile']) {
-                    $pic_type = 's';
-                }
-            ?>
-                <div class="item <?= ($i==0)? 'active' : '' ?> ">
-                  <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
-                  <div class="carousel-caption">
-                    <span><?= $slide['title']?></span>
+        <? if (!empty($itinerary['images'])) { ?>
+          <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <?php for($i=0; $i<count($itinerary['images']); $i++) { ?>
+                  <li data-target="#carousel-slides-itinerary-<?= $j ?>" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
+              <?php } ?>
+            </ol>
+           
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <?php for($i=0; $i<count($itinerary['images']); $i++) {
+                  $slide=$itinerary['images'][$i];
+                  $pic_type = 'm';
+                  if (Yii::$app->params['is_mobile']) {
+                      $pic_type = 's';
+                  }
+              ?>
+                  <div class="item <?= ($i==0)? 'active' : '' ?> ">
+                    <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
+                    <div class="carousel-caption">
+                      <span><?= $slide['title']?></span>
+                    </div>
                   </div>
-                </div>
-            <?php } ?>
-          </div>
-         
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-          </a>
-          <a class="right carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-        </div> <!-- Carousel -->
+              <?php } ?>
+            </div>
+           
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div> <!-- Carousel -->
+
+        <?php } ?>
+
 
       </div>
 
