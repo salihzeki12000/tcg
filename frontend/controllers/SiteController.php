@@ -121,7 +121,23 @@ class SiteController extends Controller
             ->orderBy('priority DESC, create_time ASC')
             ->all();
 
-        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes]);
+        $tours = [];
+        if (($mp_theme = \common\models\Theme::find()->where(['id' => TOUR_THEMES_MOST_POPULAR])->One()) !== null)
+        {
+            if (!empty($mp_theme['use_ids'])) {
+                $tour_ids = explode(',', $mp_theme['use_ids']);
+                $condition = array();
+                $condition['status'] = DIS_STATUS_SHOW;
+                $condition['id'] = $tour_ids;
+                $query = \common\models\Tour::find()->where($condition);
+                $tours = $query
+                ->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')])
+                ->limit(6)
+                ->all();
+            }
+        }
+
+        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes, 'tours'=>$tours]);
     }
 
     public function actionCurrency()

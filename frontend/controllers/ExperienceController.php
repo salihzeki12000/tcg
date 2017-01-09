@@ -49,10 +49,12 @@ class ExperienceController extends Controller
             $theme_id = TOUR_THEMES_MOST_POPULAR;
             $theme_info = \common\models\Theme::find()->where(['id' => $theme_id])->One();
             $tour_ids = $theme_info['use_ids'];
+            $theme_name = $theme_info['name'];
         }
         elseif (($theme_info = \common\models\Theme::find()->where(['name' => $theme])->One()) !== null) {
             $tour_ids = $theme_info['use_ids'];
             $theme_id = $theme_info['id'];
+            $theme_name = $theme_info['name'];
         }
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
@@ -86,7 +88,7 @@ class ExperienceController extends Controller
             ->orderBy('priority DESC, id ASC')
             ->all();
 
-        return $this->render('index',['tours'=>$tours,'type'=>$type,'themes'=>$themes,'theme_id'=>$theme_id,'pages'=>$pages]);
+        return $this->render('index',['tours'=>$tours,'type'=>$type,'themes'=>$themes,'theme_id'=>$theme_id,'theme_name'=>$theme_name,'pages'=>$pages]);
     }
 
     /**

@@ -27,12 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
       <span class="input-group-addon"><?=Yii::t('app','Filter:')?></span>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <?php if($theme_id) {
-          echo Yii::$app->params['tour_themes'][$theme_id];
-        }
-        else{
-          echo Yii::$app->params['tour_themes'][TOUR_THEMES_MOST_POPULAR];
-        } ?>
+        <?= $theme_name ?>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">

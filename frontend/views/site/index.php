@@ -121,6 +121,41 @@ $this->title = Yii::t('app','The China Guide');
         </div>
     </div>
 
+    <div class="tour-index container">
+        <div class="col-lg-12">
+            <h1 class="page-header" style="margin-bottom: 0;"><?=Yii::t('app','MOST POPULAR TOURS')?></h1>
+        </div>
+        <div class=" file-drop-zone"> 
+         <div class="file-preview-thumbnails">
+          <div class="file-initial-thumbs row">
+
+          <?php foreach ($tours as $tour) { ?>
+
+           <div class="file-preview-frame file-preview-initial col-lg-4 col-md-6 col-xs-12" >
+            <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
+             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
+              <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Cities')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
+            </a>
+            <div class="file-thumbnail-footer"> 
+             <div class="file-footer-caption">
+                <h3><?= $tour['name'] ?> </h3>
+                <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
+                <div class="tourlist-price">
+                  <?php if(!empty($tour['price_cny'])) { ?>
+                    From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
+                  <?php } ?>
+                  <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
+                </div>
+             </div> 
+            </div> 
+           </div>
+
+          <?php } ?> 
+           
+         </div> 
+         <div class="clearfix"></div> 
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -199,7 +234,11 @@ $this->title = Yii::t('app','The China Guide');
             </p>
           </article>
         <?php } ?>
-
+        <div class="home-btn">
+            <div class="row btn-row">
+                <a type="button" class="btn btn-mine col-lg-8 col-md-4 col-xs-10" href="<?= Url::toRoute(['article/index']) ?>"><?=Yii::t('app','More  Blogs')?></a>
+            </div>
+        </div>
     </div>
 
 
