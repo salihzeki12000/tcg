@@ -123,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <?= $itinerary['description'] ?>
         </div>
 
-        <?php if (count($itinerary['images']) > 0) { ?>
+        <?php if (count($itinerary['images']) > 1) { ?>
           <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <?php if (count($itinerary['images']) > 0) { ?>
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <?php } ?>
             </div>
            
-           <?php if (count($itinerary['images']) > 0) { ?>
+           <?php if (count($itinerary['images']) > 1) { ?>
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-slides-itinerary-<?= $j ?>" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left"></span>
