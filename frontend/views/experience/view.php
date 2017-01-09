@@ -79,7 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
         <div class="list-group">
-            <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { ?>
+            <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { 
+              if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
+                continue;
+              }
+              ?>
             <div class="col-lg-6 col-md-6 col-xs-6 list-group-item">
                 <i class="icon-menu-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
             </div>
@@ -119,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <?= $itinerary['description'] ?>
         </div>
 
-        <?php if (!empty($itinerary['images'])) { ?>
+        <?php if (count($itinerary['images']) > 0) { ?>
           <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
