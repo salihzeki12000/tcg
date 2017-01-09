@@ -123,10 +123,10 @@ $this->params['breadcrumbs'][] = $this->title;
           <?= $itinerary['description'] ?>
         </div>
 
-        <?php if (count($itinerary['images']) > 1) { ?>
+        <?php if (count($itinerary['images']) > 0) { ?>
           <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
-            <?php if (count($itinerary['images']) > 0) { ?>
+            <?php if (count($itinerary['images']) > 1) { ?>
             <ol class="carousel-indicators">
               <?php for($i=0; $i<count($itinerary['images']); $i++) { ?>
                   <li data-target="#carousel-slides-itinerary-<?= $j ?>" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
