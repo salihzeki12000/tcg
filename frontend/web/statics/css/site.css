@@ -957,22 +957,29 @@ a.desc:after {
     outline: none;
 }
 
-.nav-stacked .collapse {
-    background-color: #200001;
-    color: #E0E3D6;
+.nav-stacked .collapse,.nav-stacked .collapse.in{
+    background-color: #E0E3D6;
+    color: #333;
     padding: 15px;
 }
+.nav-stacked .carousel-inner{
+  margin-top: 20px;
+}
 .nav-stacked .panel{
-    background-color: #200001;
-    border: 1px solid #360000;
+    background-color: #E0E3D6;
+    border: 1px solid #ababab;
+    color: #333;
+}
+.nav-stacked .panel > div{
+    padding: 15px;
 }
 .nav-stacked .panel>a{
-    background-color: #360000;
-    color: #E6D2A1;
+    background-color: #ababab;
+    color: #333;
 }
 .nav-stacked > li > a:hover, .nav > li > a:focus {
-    background-color: #360000;
-    color: #E6D2A1;
+    background-color: #ababab;
+    color: #333;
 }
 
 .container.title-bar{
