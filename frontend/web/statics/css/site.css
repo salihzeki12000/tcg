@@ -1122,3 +1122,9 @@ a.more-link {
 .back-container .back-body{
   margin: 25px 0;
 }
+.sight-title-img{
+    float: none;
+    margin: 10px auto;
+    padding-left: 0;
+    padding-right: 0;
+}
