@@ -155,6 +155,7 @@ $this->title = Yii::t('app','The China Guide');
          </div> 
          <div class="clearfix"></div> 
         </div>
+       </div>
     </div>
 
     <div class="container">
