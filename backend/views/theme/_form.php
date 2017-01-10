@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'use_ids')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'priority')->dropdownList([0,1,2,3,4,5,6,7,8,9]) ?>
+    <?= $form->field($model, 'priority')->textInput(['type' => 'number', 'maxlength' => true]) ?>
 
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
     
