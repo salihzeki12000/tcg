@@ -105,7 +105,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
     <div class="tour-index container">
         <div class="col-lg-12">
-            <h1 class="page-header" style="margin-bottom: 0;"><?=Yii::t('app','MOST POPULAR TOURS')?></h1>
+            <h1 class="page-header" style="margin-bottom: 0;margin-top: 10px;"><?=Yii::t('app','MOST POPULAR TOURS')?></h1>
         </div>
         <div class=" file-drop-zone"> 
          <div class="file-preview-thumbnails">
