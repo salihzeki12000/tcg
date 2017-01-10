@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Experiences');
         <div class="file-thumbnail-footer"> 
          <div class="file-footer-caption">
             <h3><?= $tour['name'] ?> </h3>
-            <div><?= substr(strip_tags($tour['overview']), 0, 120)  ?>...</div>
+            <div><?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?></div>
             <div class="tourlist-price">
               <?php if(!empty($tour['price_cny'])) { ?>
                 From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
