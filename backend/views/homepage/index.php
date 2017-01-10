@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if (Yii::$app->language == Yii::$app->sourceLanguage) { ?>
         <p>
-            <?= Html::a(Yii::t('app', 'Create ' . ucfirst(Yii::$app->controller->id)), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= (Yii::$app->language != Yii::$app->sourceLanguage) ? '' : Html::a(Yii::t('app', 'Create ' . ucfirst(Yii::$app->controller->id)), ['create'], ['class' => 'btn btn-success']) ?>
         </p>
     <?php } ?>
 

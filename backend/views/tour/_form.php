@@ -149,7 +149,7 @@ use yii\helpers\Url;
                 ],
             ]); ?>
     </div>
-    <?= Html::button(Yii::t('app', 'Add Itinerary Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['itinerary/create', 'tour_id'=>$model->id]).'\';']) ?>
+    <?= (Yii::$app->language != Yii::$app->sourceLanguage) ? '' : Html::button(Yii::t('app', 'Add Itinerary Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['itinerary/create', 'tour_id'=>$model->id]).'\';']) ?>
     </div>
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
