@@ -457,10 +457,6 @@ div#social-media-icons-container a {
   margin-top: 20px;
 }
 
-.site-error{
-  padding: 20px;
-}
-
 .thumbnail .carousel-caption {
     bottom: 0px;
 }
@@ -1134,4 +1130,27 @@ a.more-link {
     margin: 10px auto;
     padding-left: 0;
     padding-right: 0;
+}
+
+.site-error{
+  font-size: 16px;
+}
+.site-error h1, .site-error h2, .site-error h3{
+  color: #E9C46C;
+}
+.site-error h1{
+  text-align: center;
+  margin: 30px 0;
+}
+.site-error .content{
+  float: none;
+  margin: 20px auto;
+}
+.site-error ul{
+  list-style-type: none;
+  padding-left: 20px;
+}
+.site-error a{
+  color: #eee;
+  text-decoration: underline;
 }
