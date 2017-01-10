@@ -12,6 +12,7 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = $sub_title;
+$this->description = $description;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">

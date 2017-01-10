@@ -10,6 +10,7 @@ use yii\widgets\LinkPager;
 /* @var $model common\models\city */
 
 $this->title = $city_info['name'];
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($city_info['introduction']), 30)) . '…';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Destinations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url'=>Url::toRoute(['destination/view', 'name'=>$city_info['name']])];
 $this->params['breadcrumbs'][] = Yii::t('app','Activities');

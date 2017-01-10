@@ -11,7 +11,9 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'About us');
+$this->title = Yii::t('app', 'Customized Student Program Planning Services');
+$this->description = Yii::t('app', 'After almost 10 years of experience organizing student travel, The China Guide knows how to make every program exceptional, engaging, and exciting. Each trip is filled with chances to learn, whether through person-to-person interaction, site visits, or cultural awakening.');
+$this->keywords = Yii::t('app', 'student program planning, student tour, educational program, educational travel, educational trip');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">

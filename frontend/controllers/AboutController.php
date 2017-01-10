@@ -92,6 +92,7 @@ class AboutController extends Controller
     public function actionCompanyPolicies()
     {
         $article_name = Yii::t('app','Company policies');
+        $description = Yii::t('app','Booking terms and conditions');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -100,7 +101,7 @@ class AboutController extends Controller
         $article = $query
             ->One();
 
-        return $this->render('view',['article'=>$article, 'sub_title'=>$article_name]);
+        return $this->render('view',['article'=>$article, 'sub_title'=>$article_name, 'description'=>$description]);
     }
 
 }

@@ -9,6 +9,8 @@ use yii\helpers\Url;
 /* @var $model common\models\Tour */
 
 $this->title = $tour_info['name'];
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($tour_info['overview']), 30)) . '…';
+$this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -4,7 +4,9 @@ use yii\helpers\Url;
 use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
-$this->title = Yii::t('app','The China Guide');
+$this->title = Yii::t('app','The China Guide') . ' - ' . Yii::t('app','A Beijing-based, Foreign-owned Travel Agency');
+$this->description = Yii::t('app','The China Guide create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
+$this->keywords = Yii::t('app','China travel agency, China guide, China travel guide, China tours, private China tours, customized China tours, China travel FAQs, China travel blogs');
 ?>
 <div class="site-index">
 

@@ -11,7 +11,8 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $sub_title . ' - ' . Yii::t('app', 'About us');
+$this->title = Yii::t('app', 'About us');
+$this->description = Yii::t('app', 'The China Guide create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">

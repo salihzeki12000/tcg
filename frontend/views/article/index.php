@@ -11,8 +11,9 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Blogs');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'China travel blogs');
+$this->description = Yii::t('app', 'China travel blog, China travel article');
+$this->params['breadcrumbs'][] = Yii::t('app','Blogs');
 ?>
 <div class="container title-bar">
   <div class="row">

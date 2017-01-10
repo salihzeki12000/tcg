@@ -12,6 +12,7 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Destinations');
+$this->description = 'China travel destinations, China tourist cities, China tourist sights';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">

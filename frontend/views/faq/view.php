@@ -9,6 +9,8 @@ use common\models\UploadedFiles;
 /* @var $model common\models\Tour */
 
 $this->title = $faq['title'];
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($faq['content']), 30)) . '…';
+$this->keywords = Html::encode($faq['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'FAQ'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
