@@ -103,26 +103,6 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
       </div>
     </div> <!-- Carousel -->
 
-    <div class="container home-categories">
-        <div class="col-lg-12">
-            <h1 class="page-header"><?=Yii::t('app','TOURS BY CATEGORIES')?></h1>
-        </div>
-        <div class="list-group">
-            <?php foreach ($themes as $theme) {  
-                if (empty($theme['class_name'])) {
-                    continue;
-                }
-            ?>
-                <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['name']]) ?>">
-                    <i class="icon <?= $theme['class_name'] ?>"></i>
-                    <span><?= $theme['name'] ?></span>
-                    <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-                </a>
-            <?php } ?>
-
-        </div>
-    </div>
-
     <div class="tour-index container">
         <div class="col-lg-12">
             <h1 class="page-header" style="margin-bottom: 0;"><?=Yii::t('app','MOST POPULAR TOURS')?></h1>
@@ -158,6 +138,26 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
          <div class="clearfix"></div> 
         </div>
        </div>
+    </div>
+
+    <div class="container home-categories">
+        <div class="col-lg-12">
+            <h1 class="page-header"><?=Yii::t('app','TOURS BY CATEGORIES')?></h1>
+        </div>
+        <div class="list-group">
+            <?php foreach ($themes as $theme) {  
+                if (empty($theme['class_name'])) {
+                    continue;
+                }
+            ?>
+                <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['name']]) ?>">
+                    <i class="icon <?= $theme['class_name'] ?>"></i>
+                    <span><?= $theme['name'] ?></span>
+                    <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
+                </a>
+            <?php } ?>
+
+        </div>
     </div>
 
     <div class="container">
