@@ -6,7 +6,7 @@ use Yii;
 
 class Tools
 {
-    static function wordcut($string, $cutlength = 250, $replace = '…'){ 
+    static function wordcut($string, $cutlength = 250, $replace = '...'){ 
         if(mb_strlen($string) <= $cutlength){ 
             return $string; 
         }

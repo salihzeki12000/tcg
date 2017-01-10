@@ -9,6 +9,8 @@ use yii\helpers\Url;
 /* @var $model common\models\city */
 
 $this->title = $activity_info['name'];
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($activity_info['overview']), 30)) . ' ...';
+$this->keywords = Html::encode($activity_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => $city_info['name'], 'url'=>Url::toRoute(['destination/view', 'name'=>$city_info['name']])];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Activities'), 'url'=>Url::toRoute(['destination/activities', 'name'=>$city_info['name']])];
 $this->params['breadcrumbs'][] = $this->title;

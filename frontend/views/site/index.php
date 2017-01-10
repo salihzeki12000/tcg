@@ -229,7 +229,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
               <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
                 <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
               </a>
-              <p><?= substr(strip_tags($article['content']), 0, 275)  ?>...</p>
+              <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 275)) ?></p>
             </div>
             <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','Read More')?>"><?=Yii::t('app','Read More')?></a>
             <p class="entry-meta">
