@@ -47,6 +47,17 @@ class FGlobalClass extends \yii\base\Component
             }
             Yii::$app->params['currency'] = $cookie_currency;
         }
+
+        if (!isset($_COOKIE['_language']))
+        {
+            $supportedLanguages = Yii::$app->urlManager->languages;
+            $preferredLanguage = Yii::$app->request->getPreferredLanguage($supportedLanguages);
+            if (empty($preferredLanguage)) {
+                $preferredLanguage = Yii::$app->sourceLanguage;
+            }
+            Yii::$app->language = $preferredLanguage;
+        }
+
         parent::init();
     }
 }
