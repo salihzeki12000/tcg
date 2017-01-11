@@ -39,7 +39,10 @@ AppAsset::register($this);
     ]);
     $languages_menu = [];
     foreach (Yii::$app->urlManager->languages as $language) {
-        $languages_menu[] = ['label' => mb_strtoupper(Yii::$app->params['language_name'][$language],'utf-8'), 'url' => Url::toRoute(['/', 'language'=>$language])];
+        $languages_menu[] = ['language'=>$language, 'label' => mb_strtoupper(Yii::$app->params['language_name'][$language],'utf-8'), 'url' => Url::toRoute(['/', 'language'=>$language])];
+    }
+    foreach (Yii::$app->params['currency_name'] as $currency_item){
+        $currency_menu[] = ['sign'=>$currency_item['sign'], 'label' => $currency_item['name'], 'url' => Url::toRoute(['site/currency', 'currency'=> $currency_item['name']])];
     }
     $menuItems = [
         ['label' => Yii::t('app','HOME'), 'url' => ['/']],
@@ -47,13 +50,10 @@ AppAsset::register($this);
         ['label' => Yii::t('app','DESTINATIONS'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         //['label' => 'GROUP', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'MEETINGS & INCENTIVES', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
         ['label' => Yii::t('app','EDUCATIONAL PROGRAMS'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => mb_strtoupper(Yii::$app->params['language_name'][Yii::$app->language],'utf-8'), 'items'=>$languages_menu],
         ['label' => Yii::t('app','MORE'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => Yii::t('app','BLOGS'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
         ['label' => Yii::t('app','ABOUT US'), 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],]],
 
-        // ['label' => 'About', 'url' => ['/site/about']],
-        // ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -68,12 +68,37 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+
+    $p_menu = '<div class="p-menu">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-lang" data-toggle="dropdown">
+                '. strtoupper(Yii::$app->language) .'
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="p-menu-lang">';
+            foreach ($languages_menu as $language_item) {
+                $p_menu .= '<li role="presentation" ' . (strtoupper(Yii::$app->language)==strtoupper($language_item['language'])?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $language_item['url'] . '">' . $language_item['label'] . '</a></li>';
+            }
+            $p_menu .= '</ul></div><i></i>';
+    $p_menu .=  '<div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-curr" data-toggle="dropdown">
+                '. Yii::$app->params['currency'] .'
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="p-menu-curr">';
+            foreach ($currency_menu as $currency_item) {
+                $p_menu .= '<li role="presentation"><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
+            }
+    $p_menu .= '</ul></div>';
+    $p_menu .= '</div>';
+
+    echo $p_menu;
     NavBar::end();
     ?>
+
     <div class="m-menu">
         <h3><?= Yii::t('app','Navigation') ?></h3>
         <ul class="">
