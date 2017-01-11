@@ -90,7 +90,7 @@ AppAsset::register($this);
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="p-menu-curr">';
             foreach ($currency_menu as $currency_item) {
-                $p_menu .= '<li role="presentation"><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
+                $p_menu .= '<li role="presentation" ' . ($currency_item['label']==Yii::$app->params['currency']?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
             }
     $p_menu .= '</ul></div>';
     $p_menu .= '</div>';
