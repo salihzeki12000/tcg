@@ -45,7 +45,7 @@ class Tools
         return implode(" ",array_splice($words,0,$word_limit));
     }
 
-    static public function getMostPopularTours()
+    static public function getMostPopularTours($count=6)
     {
         $tours = [];
         if (($mp_theme = \common\models\Theme::find()->where(['id' => TOUR_THEMES_MOST_POPULAR])->One()) !== null)
@@ -58,7 +58,7 @@ class Tools
                 $query = \common\models\Tour::find()->where($condition);
                 $tours = $query
                 ->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')])
-                ->limit(6)
+                ->limit($count)
                 ->all();
             }
         }
