@@ -690,7 +690,7 @@ div#social-media-icons-container a {
 .tour-view .overview{
     text-overflow: ellipsis;
     overflow: hidden;
-    box-shadow: inset 0 -10px 20px 0px #4D423C;
+    box-shadow: inset 0 -10px 20px -2px #4D423C;
     display: inline-block;
 }
 .tour-view .overview > p{
