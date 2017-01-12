@@ -155,7 +155,7 @@ class ExperienceController extends Controller
         if (($model = Tour::find()->where(['name' => $name])->One()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
 }
