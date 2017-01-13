@@ -58,6 +58,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['width' => '70px']);
                  },
             ],
+            [
+                'attribute'=>'status',
+                'filter'=> Yii::$app->params['dis_status'],
+                'value' => function ($data) {
+                    return Yii::$app->params['dis_status'][$data['status']];
+                }
+            ],
             // 'pic_s',
             // 'overview:ntext',
             // 'status',

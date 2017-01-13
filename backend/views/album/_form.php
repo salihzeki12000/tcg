@@ -25,6 +25,8 @@ use common\models\Cities;
 
     <?= $form->field($model, 'priority')->textInput(['type' => 'number', 'maxlength' => true]) ?>
 
+    <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
+
     <?= $form->field($model, 'image')->fileInput() ?>
     <?php 
         if ($model->pic_s) {
