@@ -7,28 +7,28 @@ use yii\helpers\Url;
 ?>
   <div class="clearfix col-lg-3"></div>
 
-  <div class="home-whyus col-lg-4 hidden-xs hidden-md hidden-sm">
+  <div class="home-whyus col-lg-4">
         <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
         <div class="row tour-right">
           <div class="col-lg-12">
-              <div class="col-lg-6">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                   <i class="icon-whyus-service"></i>
                   <center><?=Yii::t('app','SERVICE')?></center>
                   <span><?=Yii::t('app','Our multilingual team of native speakers is there for you 24/7, from your first enquiry to the end of your trip')?></span>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                   <i class="icon-whyus-expertise"></i>
                   <center><?=Yii::t('app','EXPERTISE')?></center>
                   <span><?=Yii::t('app','With over ten years of trip planning across 40 destinations under our belts, we are China experts')?></span>
               </div>
           </div>
           <div class="col-lg-12">
-              <div class="col-lg-6">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                   <i class="icon-whyus-flexibility"></i>
                   <center><?=Yii::t('app','FLEXIBILITY')?></center>
                   <span><?=Yii::t('app','We know that no two travel experiences are the same. Let us customize your perfect trip')?></span>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                   <i class="icon-whyus-quality"></i>
                   <center><?=Yii::t('app','QUALITY')?></center>
                   <span><?=Yii::t('app','A stress-free travel experience so you can concentrate on the most important part of your tour: you')?></span>
