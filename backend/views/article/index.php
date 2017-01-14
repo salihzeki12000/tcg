@@ -36,6 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Yii::$app->params['dis_status'][$data['status']];
                 }
             ],
+            [
+                'attribute'=>'rec_type',
+                'filter'=>Yii::$app->params['rec_type'],
+                'value' => function ($data) {
+                    $arr_data = [];
+                    if (!empty($data['rec_type'])) {
+                        foreach (explode(',', $data['rec_type']) as $value) {
+                            $arr_data[$value] = Yii::$app->params['rec_type'][$value];
+                        }
+                    }
+                    return join(',', array_values($arr_data));
+                }
+            ],
+            'priority',
             // 'create_time',
             // 'update_time',
 

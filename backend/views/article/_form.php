@@ -44,7 +44,8 @@ use common\models\UploadedFiles;
 
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
 
-    <!-- <?//= $form->field($model, 'create_time')->textInput() ?> -->
+    <?= $form->field($model, 'rec_type')->checkboxList(Yii::$app->params['rec_type']) ?>
+   <!-- <?//= $form->field($model, 'create_time')->textInput() ?> -->
 
     <!-- <?//= $form->field($model, 'update_time')->textInput() ?> -->
 

@@ -140,9 +140,7 @@ class SightController extends Controller
                 $path = Yii::$app->params['uploads_url'] . UploadedFiles::getSize($value['path'], 's');
                 $p1[$key] = $path;
                 $p2[$key] = [
-                    // 要删除商品图的地址
                     'url' => Url::toRoute('/uploaded-files/del-file-use'),
-                    // 商品图对应的商品图id
                     'key' => $value['fu_id'],
                     'caption' => $value['org_name'],
                     'size' => $value['size'],

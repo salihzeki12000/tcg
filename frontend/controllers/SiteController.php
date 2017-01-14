@@ -106,7 +106,9 @@ class SiteController extends Controller
             ->all();
 
         $faq_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_FAQ, 'status'=>DIS_STATUS_SHOW]);
+        $faq_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
         $faq = $faq_query
+            ->orderBy('priority DESC, create_time DESC')
             ->limit(5)
             ->all();
 

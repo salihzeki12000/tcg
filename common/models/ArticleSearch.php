@@ -18,8 +18,8 @@ class ArticleSearch extends Article
     public function rules()
     {
         return [
-            [['id', 'type', 'sub_type', 'status'], 'integer'],
-            [['title', 'content', 'create_time', 'update_time'], 'safe'],
+            [['id', 'type', 'sub_type', 'status', 'rec_type'], 'integer'],
+            [['title', 'rec_type', 'content', 'create_time', 'update_time'], 'safe'],
         ];
     }
 
@@ -68,6 +68,7 @@ class ArticleSearch extends Article
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+            ->andWhere("('{$this->rec_type}' = '' OR FIND_IN_SET('{$this->rec_type}', rec_type))")
             ->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;

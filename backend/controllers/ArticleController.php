@@ -70,6 +70,9 @@ class ArticleController extends Controller
         $model = new Article();
 
         if ($model->load(Yii::$app->request->post())) {
+            if (is_array($_POST['Article']['rec_type'])) {
+                $model->rec_type = join(',', $_POST['Article']['rec_type']);
+            }
             $file = \yii\web\UploadedFile::getInstance($model, 'image');
             if (!empty($file))
             {
@@ -106,6 +109,9 @@ class ArticleController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+            if (is_array($_POST['Article']['rec_type'])) {
+                $model->rec_type = join(',', $_POST['Article']['rec_type']);
+            }
             $file = \yii\web\UploadedFile::getInstance($model, 'image');
             if (!empty($file))
             {
