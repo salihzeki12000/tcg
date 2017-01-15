@@ -39,7 +39,7 @@ use yii\helpers\Url;
 
   <?php if ($tours) {?>
   <div class="tour-index col-lg-4">
-      <center><h3 class="tour-right"><?=Yii::t('app','Our Popular Tours')?></h3></center>
+      <center class="tour-index"><h3 class="tour-right"><?=Yii::t('app','Our Popular Tours')?></h3></center>
       <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">
         <div class="file-initial-thumbs">

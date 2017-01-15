@@ -781,8 +781,12 @@ div#social-media-icons-container a {
   color: #333;
   padding: 0 10px 10px 10px;
 }
+
+.tour-index > h3{
+  color: #E6D2A1 !important;
+}
 .tour-index h3{
-  color: #E6D2A1;
+  color: #17BEBB;
   overflow: hidden;
   height: 26px;
   text-overflow: ellipsis;
@@ -890,7 +894,7 @@ div#social-media-icons-container a {
 .home-whyus .row.tour-right>div{
   padding: 0;
 }
-.home-whyus .row.tour-right>div>div{
+.home-whyus .row>div>div{
   padding: 10px;
 }
 .file-drop-zone.tour-right {
