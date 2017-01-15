@@ -33,6 +33,11 @@ body {
   font-size: 18px;
   margin-bottom: 8px;
 }
+.carousel-caption.s-text h3{
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.0;
+}
 .carousel-indicators li{
   width: 6px;
   height: 6px;
