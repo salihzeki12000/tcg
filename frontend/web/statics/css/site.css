@@ -312,6 +312,32 @@ div#social-media-icons-container a {
   background-repeat: no-repeat;
 }
 
+#featured-in-container{
+  text-align: center;
+}
+#featured-in-container a {
+  background-image: url(../images/references.png);
+  display: inline-block;
+  margin: 15px;
+  height: 40px;
+  background-repeat: no-repeat;
+}
+#featured-in-container .the-guardian{
+  width: 225px;
+}
+#featured-in-container .cnn-travel{
+  width: 225px;
+  background-position: 0px -45px;
+}
+#featured-in-container .ted-ed{
+  width: 143px;
+  background-position: 0px -85px;
+}
+#featured-in-container .fodors-travel{
+  width: 201px;
+  background-position: 0px -125px;
+}
+
 .navbar-brand {
     padding: 0 8px;
 }
