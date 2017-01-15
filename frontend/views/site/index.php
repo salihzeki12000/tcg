@@ -142,7 +142,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
     <div class="container home-categories">
         <div class="col-lg-12">
-            <h1 class="page-header"><?=Yii::t('app','TOURS BY CATEGORIES')?></h1>
+            <h1 class="page-header"><?=Yii::t('app','CHOOSE A THEME')?></h1>
         </div>
         <div class="list-group">
             <?php foreach ($themes as $theme) {  
@@ -163,12 +163,12 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><?=Yii::t('app','POPULAR CITY TOURS')?></h1>
+                <h1 class="page-header" style="margin: 38px 0;"><?=Yii::t('app','POPULAR DESTINATIONS')?></h1>
             </div>
 
             <?php foreach ($cities_tour as $city_tour) { ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="<?= Url::toRoute(['experience/index', 'city_name'=>$city_tour['name']]) ?>">
+                <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'name'=>$city_tour['name']]) ?>">
                     <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_tour['pic_s'], 's')?>" alt="<?=  $city_tour['name'] ?>">
                     <div class="carousel-caption">
                         <h3><?= $city_tour['name'] ?></h3>
