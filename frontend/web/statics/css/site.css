@@ -821,20 +821,31 @@ div#social-media-icons-container a {
   .page-header{
     font-size: 30px;
   }
-  .overview .overview-img{
-    width: 50% !important;;
-  }
 }
 @media (min-width: 640px) {
   .tour-view .itineraries .text {
     float: none;
   }
 }
+@media (min-width: 767px){
+  .overview .overview-img{
+    width: 50% !important;
+  }
+  .overview .overview-vr{
+    width: 80% !important;
+    height: 480px !important;
+  }
+}
 @media (max-width: 767px){
   .tour-view .tour-index {
     padding-right: 0;
     padding-left: 0;
-  }  
+  }
+}
+
+.overview .overview-vr{
+  width: 100%;
+  height: 320px;
 }
 
 .home-whyus .row.tour-right{

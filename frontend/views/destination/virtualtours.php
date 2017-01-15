@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Virtual Tours');
 ]) ?>
 
 <div class="city-view">
-  <div class="overview">
+  <div class="overview" style="text-align: center;">
     <?= $city_info['vr'] ?>
   </div>
 
