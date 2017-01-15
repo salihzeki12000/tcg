@@ -23,6 +23,7 @@ body {
 .carousel-caption{
   bottom: 5px;
   line-height: 1.1;
+  text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
 }
 .carousel-indicators{
   bottom: 0px;
@@ -642,8 +643,8 @@ div#social-media-icons-container a {
   bottom: 0px;
   position: absolute;
   font-size: 16px;
-  color: #E0E3D6;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  color: #eee;
+  text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
   text-align: left;
 }
 .tour-index .kv-file-content .content-press span{
@@ -900,7 +901,7 @@ h3.tour-right {
 .cities-banner .banner-text{
     position: absolute;
     color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
     font-size: 24px;
     margin: auto;
     left: 0;
