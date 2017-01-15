@@ -10,7 +10,7 @@ use yii\helpers\Url;
   <div class="home-whyus col-lg-4">
         <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
         <div class="row tour-right">
-          <div class="col-lg-12">
+          <div class="col-lg-12 col-xs-12">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                   <i class="icon-whyus-service"></i>
                   <center><?=Yii::t('app','SERVICE')?></center>

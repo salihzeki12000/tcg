@@ -26,6 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
+            [
+                'attribute'=>'Url Title',
+                'value' => function ($data) {
+                    return urlencode($data['title']);
+                }
+            ],
             // 'type',
             // 'sub_type',
             // 'content:ntext',

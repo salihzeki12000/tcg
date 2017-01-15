@@ -307,7 +307,7 @@ body {
     text-align: center;
     padding: 0;
 }
-.site-index .list-group i.glyphicon {
+.site-index .list-group i.glyphicon, .article-index .list-group i.glyphicon {
   font-size: 16px;
   color: #47AAED;
 }
@@ -782,10 +782,11 @@ div#social-media-icons-container a {
   padding: 0 10px 10px 10px;
 }
 .tour-index h3{
-  color: #17BEBB;
+  color: #E6D2A1;
   overflow: hidden;
   height: 26px;
   text-overflow: ellipsis;
+  margin-top: 30px;
 }
 
 @media (max-width: 990px) {
@@ -820,7 +821,7 @@ div#social-media-icons-container a {
       margin-top: 20px;
   }
   .tour-view > .col-lg-4 {
-      padding-right:60px;
+      padding-right:60px !important;
       margin-top: 20px;
   }
   .tour-view > .carousel {
@@ -874,7 +875,9 @@ div#social-media-icons-container a {
     padding-left: 0;
   }
 }
-
+.tour-view > .col-lg-4{
+  padding: 0;
+}
 .overview .overview-vr{
   width: 100%;
   height: 320px;
@@ -1256,7 +1259,7 @@ a.list-group-item{
 
 .article-index .list-group-item{
   background-color: #E0E3D6;
-  border: 1px solid #797979;
+  border: 1px solid #b7b7b7;
 }
 
 .back-container h1{

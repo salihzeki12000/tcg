@@ -21,7 +21,7 @@ class AboutController extends Controller
      */
     public function actionIndex()
     {
-        $article_name = Yii::t('app','Who Are We');
+        $article_name = Yii::t('app','Our Mission');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
@@ -44,7 +44,7 @@ class AboutController extends Controller
         $article = $query
             ->One();
 
-        return $this->render('index',['article'=>$article, 'sub_title'=>$article_name.'?']);
+        return $this->render('index',['article'=>$article, 'sub_title'=>$article_name]);
     }
 
     public function actionDriversAndVehicles()
