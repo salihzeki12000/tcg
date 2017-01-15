@@ -109,7 +109,6 @@ class SiteController extends Controller
         $faq_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
         $faq = $faq_query
             ->orderBy('priority DESC, create_time DESC')
-            ->limit(5)
             ->all();
 
         $article_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_ARTICLE, 'status'=>DIS_STATUS_SHOW]);
@@ -134,7 +133,6 @@ class SiteController extends Controller
                 $query = \common\models\Tour::find()->where($condition);
                 $tours = $query
                 ->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')])
-                ->limit(6)
                 ->all();
             }
         }
