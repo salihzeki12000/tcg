@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     background-color: #4D423C;
-    color: #eee;
+    color: #E0E3D6;
 }
 .clearfix{overflow: auto;zoom: 1;}
 .datepicker {
@@ -20,9 +20,24 @@ body {
   text-align: center;
   margin-top: 38px;
 }
+.carousel-caption{
+  bottom: 0px;
+}
+.carousel-indicators{
+  bottom: 0px;
+}
 .carousel-caption h3{
   font-size: 18px;
 }
+.carousel-indicators li{
+  width: 6px;
+  height: 6px;
+}
+.carousel-indicators .active{
+  width: 8px;
+  height: 8px;
+}
+
 .navbar-inverse{
   background-color: #E0E3D6;
   box-shadow: 0px 0px 5px #888888;
@@ -269,7 +284,7 @@ body {
 }
 .clients-saying .row>div>div{
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 .site-index .faq .list-group-item, .site-index .article .list-group-item{
   background-color: #E0E3D6;
@@ -1182,7 +1197,7 @@ a.alignright, img.alignright, .wp-caption.alignright {
 }
 .entry-content ol, .entry-content p, .entry-content ul, .quote-caption {
     margin-bottom: 20px;
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     padding: 0;
 }
 a.more-link {
@@ -1203,6 +1218,9 @@ a.more-link {
   }  
 }*/
 
+a.list-group-item{
+  color: #333 !important;
+}
 .content-body{
   background: #E0E3D6;
   color: #333;
