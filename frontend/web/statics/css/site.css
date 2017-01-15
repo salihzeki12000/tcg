@@ -16,7 +16,7 @@ body {
   margin: 18px 0px;
   border-bottom: none;
   font-size: 20px;
-  color: #E9C46C;
+  color: #E6D2A1;
   text-align: center;
   margin-top: 38px;
 }
@@ -950,6 +950,7 @@ h3.tour-right {
     border-top: 1px solid #ddd;
     padding-top: 20px;
     color: #666;
+    margin-top: 30px;
 }
 
 .jumbotron {
