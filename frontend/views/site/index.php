@@ -86,7 +86,8 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         </div>
     </div>
 
-    <div id="carousel-ads-generic" class="carousel slide" data-ride="carousel">
+    <?php if (0<count($ads)) { ?>
+    <div id="carousel-ads-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 30px;">
       <!-- Wrapper for ads -->
       <div class="carousel-inner">
         <?php for($i=0; $i<count($ads); $i++) {
@@ -102,10 +103,11 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         <?php } ?>
       </div>
     </div> <!-- Carousel -->
+    <?php } ?>
 
     <div class="tour-index container">
         <div class="col-lg-12">
-            <h1 class="page-header" style="margin-bottom: 0;margin-top: 10px;"><?=Yii::t('app','MOST POPULAR TOURS')?></h1>
+            <h1 class="page-header" style="margin-bottom: 0;margin-top: 10px;padding-bottom: 0px"><?=Yii::t('app','MOST POPULAR TOURS')?></h1>
         </div>
         <div class=" file-drop-zone"> 
          <div class="file-preview-thumbnails">
@@ -163,7 +165,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="margin: 38px 0;"><?=Yii::t('app','POPULAR DESTINATIONS')?></h1>
+                <h1 class="page-header" style="margin: 38px 0 20px 0;"><?=Yii::t('app','POPULAR DESTINATIONS')?></h1>
             </div>
 
             <?php foreach ($cities_tour as $city_tour) { ?>
