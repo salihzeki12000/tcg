@@ -244,7 +244,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="margin-top: 10px;"><?=Yii::t('app','FEATURED IN')?></h1>
+                <h1 class="page-header" style="margin-top: 10px;margin-bottom: 0px;"><?=Yii::t('app','FEATURED IN')?></h1>
             </div>
             <div id="featured-in-container">
                 <a class="the-guardian" href="https://www.theguardian.com/travel/2012/aug/24/best-accessible-disabled-holidays" target="_blank"></a>
