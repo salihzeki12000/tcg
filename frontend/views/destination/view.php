@@ -16,21 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('_des-header', [
     'city_info' => $city_info,
+    'menu' => $menu,
 ]) ?>
 
 <div class="city-view">
 
-    <div class="btn-group dest-title">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><?=Yii::t('app','Overview')?>
-        <i class="glyphicon glyphicon-chevron-down"></i>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li class="active"><a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>"><?=Yii::t('app','Overview')?></a></li>
-        <?php foreach ($menu as $key => $value) { ?>
-          <li><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
-        <?php } ?>
-      </ul>
-    </div>
     <div class="container">
 
         <div class="overview">

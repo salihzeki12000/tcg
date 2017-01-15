@@ -83,7 +83,7 @@ class FaqController extends Controller
         if (($model = Article::find()->where(['title' => $title])->One()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
 }

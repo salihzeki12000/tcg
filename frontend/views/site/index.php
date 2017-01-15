@@ -231,17 +231,13 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
               </a>
               <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 275)) ?></p>
             </div>
+            <a href="<?= Url::toRoute(['article/index']) ?>" class="btn btn-info pull-right btn-sm more-link hidden-xs" title="<?=Yii::t('app','More Blogs')?>" style="margin-left: 15px;background-color: #B33635;"><?=Yii::t('app','More Blogs')?></a>
             <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','Read More')?>"><?=Yii::t('app','Read More')?></a>
             <p class="entry-meta">
               <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
             </p>
           </article>
         <?php } ?>
-        <div class="home-btn">
-            <div class="row btn-row">
-                <a type="button" class="btn btn-mine col-lg-8 col-md-4 col-xs-10" href="<?= Url::toRoute(['article/index']) ?>"><?=Yii::t('app','More  Blogs')?></a>
-            </div>
-        </div>
     </div>
 
 

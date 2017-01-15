@@ -21,7 +21,7 @@ class ActivityController extends Controller
      */
     public function actionIndex()
     {
-        throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
     /**
@@ -77,7 +77,7 @@ class ActivityController extends Controller
         if (($model = Album::find()->where(['name' => $name])->One()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
 }

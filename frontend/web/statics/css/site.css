@@ -478,9 +478,6 @@ div#social-media-icons-container a {
 .article-index>.container{
   padding: 0;
 }
-.tour-index.container, .cities-index.container{
-  margin-top: 20px;
-}
 
 .thumbnail .carousel-caption {
     bottom: 0px;
@@ -617,28 +614,41 @@ div#social-media-icons-container a {
 .btn-sm.more-link{
   margin-top: 15px;
 }
-.tour-index .type-menu {
-  padding: 8px 8px 0 8px;
+.type-menu {
   margin: 0 auto;
 }
-.tour-index .type-menu .btn{
+.type-menu .btn{
   width: 100%;
 }
-.tour-index .type-menu .dropdown-menu{
+.type-menu .dropdown-menu{
   width: 100%;
 }
-.tour-index .type-menu .btn,.tour-index .type-menu .input-group-addon{
+.type-menu .btn,.type-menu .input-group-addon{
   border-radius: 0px;
   border-color: #B33635;
   background-color: #4D423C;
   color: #fff;
   font-size: 20px;
-  padding: 3px 10px;
+  padding: 0;
+  line-height: 36px;
 }
-.tour-index .type-menu .input-group-addon{
+.type-menu .open > .dropdown-toggle.btn-default:hover,.type-menu .btn-default:active:focus, .open > .dropdown-toggle.btn-default:focus{
+  border-color: #B33635;
+  background-color: #4D423C;
+  color: #fff;
+}
+.type-menu .input-group-addon{
     background: rgba(203, 51, 51, 1);
     color: #fff;
     font-size: 20px;
+    padding: 0 10px;
+}
+.type-menu .glyphicon{
+  float: right;
+  padding: 12px;
+  background-color: #B33635;
+  font-size: 10px;
+  top: 0;
 }
 
 .tour-index .thumbnail{
@@ -824,6 +834,7 @@ h3.tour-right {
 .cities-banner{
   text-align:center;
   position: relative;
+  margin-bottom: 30px;
 }
 .cities-banner .banner-text{
     position: absolute;
@@ -847,6 +858,9 @@ h3.tour-right {
 }
 .city-view .h-title .btn-group{
   float: right;
+}
+.city-view .overview{
+  margin-top: 30px;
 }
 
 .cities-index .page-header{
@@ -1141,12 +1155,12 @@ a.more-link {
 .entry-meta {
     font-size: 15px;
 }
-@media only screen and (max-width: 380px)
+/*@media only screen and (max-width: 380px)
 {
   .blog .entry-meta {
       position: relative;
   }  
-}
+}*/
 
 .content-body{
   background: #E0E3D6;

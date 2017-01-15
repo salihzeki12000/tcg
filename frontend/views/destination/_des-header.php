@@ -22,3 +22,15 @@ use yii\helpers\Url;
     </div>
   </div>
 </div>
+
+<div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <?= $menu[Yii::$app->controller->action->id] ?>
+    <i class="glyphicon glyphicon-chevron-down"></i>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <?php foreach ($menu as $key => $value) { ?>
+      <li <?= (Yii::$app->controller->action->id==$key)? 'class="active"':'' ?>><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
+    <?php } ?>
+  </ul>
+</div>
