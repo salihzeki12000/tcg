@@ -22,6 +22,7 @@ body {
 }
 .carousel-caption{
   bottom: 5px;
+  line-height: 1.1;
 }
 .carousel-indicators{
   bottom: 0px;
@@ -29,6 +30,7 @@ body {
 }
 .carousel-caption h3{
   font-size: 18px;
+  margin-bottom: 8px;
 }
 .carousel-indicators li{
   width: 6px;
@@ -855,6 +857,9 @@ div#social-media-icons-container a {
   .overview .overview-vr{
     width: 80% !important;
     height: 480px !important;
+  }
+  .carousel-caption{
+    font-size: 18px !important;
   }
 }
 @media (max-width: 767px){
