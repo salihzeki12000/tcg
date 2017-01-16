@@ -40,16 +40,7 @@ class ArticleController extends Controller
             ->limit($pages->limit)
             ->all();
 
-        $condition = array();
-        $condition['status'] = DIS_STATUS_SHOW;
-        $query = Tour::find()->where($condition);
-        $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
-        $tours = $query
-            ->orderBy('priority DESC, id DESC')
-            ->limit(4)
-            ->all();
-
-        return $this->render('index',['articles'=>$articles,'pages'=>$pages,'tours' => $tours]);
+        return $this->render('index',['articles'=>$articles,'pages'=>$pages]);
     }
 
     /**
@@ -62,18 +53,8 @@ class ArticleController extends Controller
         $article = $this->findModel($title);
         $id = $article['id'];
 
-        $condition = array();
-        $condition['status'] = DIS_STATUS_SHOW;
-        $query = Tour::find()->where($condition);
-        $query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
-        $tours = $query
-            ->orderBy('priority DESC, id DESC')
-            ->limit(4)
-            ->all();
-
         return $this->render('view', [
             'article' => $article,
-            'tours' => $tours,
         ]);
     }
 

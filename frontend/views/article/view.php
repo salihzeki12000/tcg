@@ -44,9 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   </div>
 
-    <?= $this->render('/layouts/_exp-right', [
-        'tours' => $tours,
-    ]) ?>
+    <?= $this->render('/layouts/_exp-right', []) ?>
   
 </div>
 

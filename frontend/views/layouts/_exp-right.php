@@ -37,7 +37,10 @@ use yii\helpers\Url;
         </div>
   </div>
 
-  <?php if ($tours) {?>
+  <?php if (isset($tours) || ($tours = \common\models\Tools::getMostPopularTours(4) ) ) {
+
+    if (!empty($tours)) {  ?>
+
   <div class="tour-index col-lg-4">
       <center class="tour-index"><h3 class="tour-right" style="margin-top: 40px;"><?=Yii::t('app','Our Popular Tours')?></h3></center>
       <div class=" file-drop-zone tour-right"> 
@@ -46,7 +49,7 @@ use yii\helpers\Url;
 
         <?php foreach ($tours as $tour) { ?>
 
-         <div class="file-preview-frame file-preview-initial col-lg-12 col-xs-12" >
+         <div class="file-preview-frame file-preview-initial col-lg-12 col-md-4 col-sm-6 col-xs-12" >
           <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
            <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
             <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Cities')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
@@ -79,4 +82,4 @@ use yii\helpers\Url;
       </div>
 
   </div>
-  <?php } ?>
+  <?php } } ?>

@@ -61,9 +61,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'FAQ');
   </div>
 
 
-    <?= $this->render('/layouts/_exp-right', [
-        'tours' => $tours,
-    ]) ?>
+    <?= $this->render('/layouts/_exp-right', []) ?>
 
 </div>
 
