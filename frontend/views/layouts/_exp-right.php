@@ -37,7 +37,7 @@ use yii\helpers\Url;
         </div>
   </div>
 
-  <?php if (isset($tours) || ($tours = \common\models\Tools::getMostPopularTours(4) ) ) {
+  <?php if (isset($tours) || ($tours = \common\models\Tools::getMostPopularTours(3) ) ) {
 
     if (!empty($tours)) {  ?>
 
