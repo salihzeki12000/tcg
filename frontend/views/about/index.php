@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $sub_title ?>
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
-      <ul class="dropdown-menu" role="menu">
+      <ul class="dropdown-menu sub-menu" role="menu">
         <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/index']) ?>"><?=Yii::t('app','Our Mission')?></a></li>
         <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/meet-our-team']) ?>"><?=Yii::t('app','Meet Our Team')?></a></li>
         <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/our-guides']) ?>"><?=Yii::t('app','Our Guides')?></a></li>

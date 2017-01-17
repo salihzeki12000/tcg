@@ -39,20 +39,20 @@ AppAsset::register($this);
     ]);
     $languages_menu = [];
     foreach (Yii::$app->urlManager->languages as $language) {
-        $languages_menu[] = ['language'=>$language, 'label' => mb_strtoupper(Yii::$app->params['language_name'][$language],'utf-8'), 'url' => Url::toRoute(['/', 'language'=>$language])];
+        $languages_menu[] = ['language'=>$language, 'label' => Yii::$app->params['language_name'][$language], 'url' => Url::toRoute(['/', 'language'=>$language])];
     }
     foreach (Yii::$app->params['currency_name'] as $currency_item){
         $currency_menu[] = ['sign'=>$currency_item['sign'], 'label' => $currency_item['name'], 'url' => Url::toRoute(['site/currency', 'currency'=> $currency_item['name']])];
     }
     $menuItems = [
-        ['label' => Yii::t('app','HOME'), 'url' => ['/']],
-        ['label' => Yii::t('app','EXPERIENCES'), 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
-        ['label' => Yii::t('app','DESTINATIONS'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
+        ['label' => Yii::t('app','Home'), 'url' => ['/']],
+        ['label' => Yii::t('app','Experiences'), 'url' => ['/experiences'], 'active' => \Yii::$app->controller->id == 'experience'],
+        ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         //['label' => 'GROUP', 'active' => (\Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'meetings-incentives'), 'items' =>[['label' => 'EDUCATIONAL PROGRAMS', 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],['label' => 'MEETINGS & INCENTIVES', 'url' => ['/meetings-incentives'], 'active' => \Yii::$app->controller->id == 'meetings-incentives'],]],
-        ['label' => Yii::t('app','EDUCATIONAL PROGRAMS'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => Yii::t('app','MORE'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => Yii::t('app','BLOGS'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => Yii::t('app','Educational Programs'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => Yii::t('app','Blogs'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
-        ['label' => Yii::t('app','ABOUT US'), 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about'],]],
+        ['label' => Yii::t('app','About Us'), 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about', ],]],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -75,24 +75,30 @@ AppAsset::register($this);
     ]);
 
     $p_menu = '<div class="p-menu">
+            <i></i>
             <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-lang" data-toggle="dropdown">
-                '. strtoupper(Yii::$app->language) .'
-              </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="p-menu-lang">';
-            foreach ($languages_menu as $language_item) {
-                $p_menu .= '<li role="presentation" ' . (strtoupper(Yii::$app->language)==strtoupper($language_item['language'])?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $language_item['url'] . '">' . $language_item['label'] . '</a></li>';
-            }
-            $p_menu .= '</ul></div><i></i>';
-    $p_menu .=  '<div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-curr" data-toggle="dropdown">
-                '. Yii::$app->params['currency'] .'
-              </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="p-menu-curr">';
-            foreach ($currency_menu as $currency_item) {
-                $p_menu .= '<li role="presentation" ' . ($currency_item['label']==Yii::$app->params['currency']?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
-            }
-    $p_menu .= '</ul></div>';
+              <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-search" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span></button>
+              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="p-menu-search">
+              <li class="p-menu-search"><form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
+            <input type="text" name="q" placeholder="'.Yii::t('app','SEARCH').'">
+            <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch" />
+            </form>
+            </li>';
+    $p_menu .= '</ul></div>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-setting" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span></button>
+              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="p-menu-setting">
+                <li role="presentation" class="dropdown-header">'. Yii::t('app','Language') .'</li>';
+                    foreach ($languages_menu as $language_item) {
+                        $p_menu .= '<li role="presentation" ' . (strtoupper(Yii::$app->language)==strtoupper($language_item['language'])?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $language_item['url'] . '">' . $language_item['label'] . '</a></li>';
+                    }
+    $p_menu .= '<li role="presentation" class="dropdown-header">'. Yii::t('app','Currency') .'</li>';
+                    foreach ($currency_menu as $currency_item) {
+                        $p_menu .= '<li role="presentation" ' . ($currency_item['label']==Yii::$app->params['currency']?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
+                    }
+
+            $p_menu .= '</ul></div>';
+    $p_menu .= '<a type="button" class="btn btn-danger pull-right" href="'.Url::toRoute(['experience/index']) .  '#form-info-page' . '">'.Yii::t('app',"Let's Plan Your Trip").'</a>';
     $p_menu .= '</div>';
 
     echo $p_menu;
@@ -100,30 +106,73 @@ AppAsset::register($this);
     ?>
 
     <div class="m-menu">
-        <h3><?= Yii::t('app','Navigation') ?></h3>
         <ul class="">
-            <li><i class="icon-menu-home"></i><a href="<?= Url::toRoute(['/']) ?>">HOME</a></li>
-            <li><i class="icon-menu-experiences"></i><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','EXPERIENCES') ?></a></li>
-            <li><i class="icon-menu-destinations"></i><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','DESTINATIONS') ?></a></li>
-            <li><i class="icon-menu-education"></i><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','EDUCATIONAL PROGRAMS') ?></a></li>
-            <!-- <li><i class="icon-menu-mice"></i><a href="<?= Url::toRoute(['/meetings-incentives']) ?>"><?= Yii::t('app','MEETINGS &amp; INCENTIVES') ?></a></li> -->
-            <li><i class="icon-menu-articles"></i><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','BLOGS') ?></a></li>
-            <li><i class="icon-menu-faq"></i><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
-            <li><i class="icon-menu-aboutus"></i><a href="<?= Url::toRoute(['/about']) ?>"><?= Yii::t('app','ABOUT US') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/']) ?>"><?= Yii::t('app','Home') ?></a></li>
+            <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
+            <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
+            <li><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blogs') ?></a></li>
+            <li><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
         </ul>
-        <h3><?= Yii::t('app','Language') ?></h3>
         <ul class="">
-            <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
-                <li><i class="icon-menu-<?= Yii::$app->language==$language?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
-            <?php } ?>
+            <li><a href="<?= Url::toRoute(['/about']) ?>"><?= Yii::t('app','About Us') ?></a></li>
+            <li class="dropdown">
+                <a data-toggle="dropdown">
+                <?= Yii::t('app','Call Us') ?>
+                <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu sub-menu" role="menu">
+                    <li><a href="tel:+861085321860">CN: +86 10 85321860</a></li>
+                    <li><a href="tel:+16468637038">US: +1 646 863 7038</a></li>
+                    <li><a href="tel:+442038070401">UK: +44 203 807 0401</a></li>
+                </ul>
+            </li>
         </ul>
-        <h3><?= Yii::t('app','Currency') ?></h3>
-        <ul class="">
-            <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
-                <li><i class="icon-menu-<?= Yii::$app->params['currency']==$ckey?'sel':'none' ?>"></i><a href="<?= Url::toRoute(['site/currency', 'currency'=>$ckey]) ?>"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
-            <?php } ?>
+
+        <ul class="menu-group row">
+            <li class="dropdown col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <a data-toggle="dropdown" class="dropdown">
+                <?= Yii::$app->params['language_name'][Yii::$app->language]  ?>
+                <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu sub-menu" role="menu">
+                <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
+                    <li <?= Yii::$app->language==$language?'class="active"':'' ?>><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
+                <?php } ?>
+                </ul>
+            </li>
+            <li class="dropdown col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <a data-toggle="dropdown" class="dropdown">
+                <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?>
+                <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
+                <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu sub-menu" role="menu">
+                <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
+                    <li <?= Yii::$app->params['currency']==$ckey?'class="active"':'' ?>><a href="<?= Url::toRoute(['site/currency', 'currency'=>$ckey]) ?>"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
+                <?php } ?>
+                </ul>
+            </li>
         </ul>
-        <span><?=Yii::t('app','The China Guide')?><br /><?= Yii::t('app','A Beijing-based, foreign-owned travel agency.') ?></span>
+
+        <div class="search-box">
+            <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
+                <input type="text" name="q" placeholder="<?=Yii::t('app','Powered by Google')?>">
+                <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch">
+                <button id="search-button" type="submit">                     
+                    <span><?=Yii::t('app','Search')?></span>
+                </button>
+            </form>
+        </div>
+
+        <div class="home-btn">
+            <div class="row btn-row">
+                <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
+                
+            </div>
+        </div>
+
+        <span class="desc"><?=Yii::t('app','The China Guide')?><br /><?= Yii::t('app','A Beijing-based, foreign-owned travel agency.') ?></span>
     </div>
     <div class="container top-ccontainer">
         <?= Breadcrumbs::widget([
