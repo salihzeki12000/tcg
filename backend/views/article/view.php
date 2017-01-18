@@ -30,6 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
+            [
+              'attribute'=>'title',
+              'label'=> Yii::t('app', 'Url Title'),
+              'format' => 'raw',
+              'value' => urlencode($model->title),
+            ],
+
             'type',
             'sub_type',
             'content:ntext',
