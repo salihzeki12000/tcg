@@ -1366,7 +1366,7 @@ a.list-group-item{
 
 .exp-search-form{
   float: none;
-  margin: 10px auto 25px auto;
+  margin: 0 auto 25px auto;
 }
 .exp-search-form .type-menu{
   width: 100%;
@@ -1390,4 +1390,35 @@ a.list-group-item{
 .tours-count{
   font-size: 18px;
   color: #E6D2A1;
+}
+
+.exp-tab{
+  padding: 0;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.exp-tab .tabs{
+  padding: 0;
+  margin: 0 auto;
+  float: none;
+}
+.exp-tab .tab a, .exp-tab .tab a:hover{
+  display: block;
+  color: #333;
+  text-decoration: none;
+}
+.exp-tab .tab{
+  width: 50%;
+  float: left;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #E0E3D6;
+  color: #333;
+  font-size: 18px;
+}
+.exp-tab .tab.active{
+  background-color: #4D423C;
+  color: #E0E3D6;
+/*  border-left: 1px solid #E0E3D6;
+  border-right: 1px solid #E0E3D6;*/
 }

@@ -17,12 +17,20 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
-    <div class="cities-banner">
+    <div class="cities-banner" style="margin-bottom: 0;">
       <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','EXPERIENCES'), 'width'=>"100%"]) ?>
       <div class="banner-text"><?=Yii::t('app','EXPERIENCES')?></div>
     </div>
   </div>
 </div>
+<div class="container exp-tab">
+  <div class="tabs col-lg-6 col-md-6 col-sm-10 col-xs-12">
+    <div class="tab"><a href="<?= Url::toRoute(['experience/index']) ?>">Filter</a></div>
+    <div class="tab active">Search</div>
+  </div>
+</div>
+
+
 <div class="tour-index container">
 
   <form id="tours_search" action="<?= Url::toRoute(['experience/search']) ?>"  method="post">
