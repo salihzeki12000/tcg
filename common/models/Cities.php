@@ -24,6 +24,7 @@ class Cities extends \yii\db\ActiveRecord
 
     public $image;
     public $images;
+    public $sel;
 
     /**
      * @inheritdoc

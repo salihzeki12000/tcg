@@ -67,6 +67,7 @@ return [
             'enableStrictParsing' => false,
             // 'suffix' => '.html',
             'rules' => [
+                'experiences/search' => 'experience/search',
                 'experiences/city/<city_name:[A-Za-z0-9_\'\s\|]+>/page/<page:\d+>' => 'experience/index',
                 'experiences/city/<city_name:[A-Za-z0-9_\'\s\|]+>' => 'experience/index',
                 'experiences/page/<page:\d+>' => 'experience/index',

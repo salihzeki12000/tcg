@@ -18,6 +18,7 @@ use frontend\components\BaseController;
  */
 class ExperienceController extends Controller
 {
+    public $enableCsrfValidation = false;
 
     public function behaviors()
     {
@@ -89,6 +90,62 @@ class ExperienceController extends Controller
             ->all();
 
         return $this->render('index',['tours'=>$tours,'type'=>$type,'themes'=>$themes,'theme_id'=>$theme_id,'theme_name'=>$theme_name,'pages'=>$pages]);
+    }
+
+    public function actionSearch()
+    {
+        $default_cids = ['1','2','3'];
+        $default_leng = 9;
+        $tours = [];
+
+        if ($post_data = Yii::$app->request->post()) {
+            if (isset($post_data['tour_cities'])) {
+                $tour_cities = $post_data['tour_cities'];
+            }
+            else
+            {
+                $tour_cities = $default_cids;
+            }
+            $tour_length = $post_data['tour_length'];
+
+            if (empty($tour_cities)) {
+                $tour_cities = $default_cids;
+            }
+            if (empty($tour_length)) {
+                $tour_length = $default_leng;
+            }
+            $condition = array();
+            $condition['status'] = DIS_STATUS_SHOW;
+            $query = Tour::find()->where($condition);
+            $query->andWhere("tour_length >= " . ($tour_length-1));
+            $query->andWhere("tour_length <= " . ($tour_length+2));
+            $arr_or = ['or'];
+            foreach ($tour_cities as $city_id) {
+                $arr_or[] = new \yii\db\Expression("FIND_IN_SET('".$city_id."', cities)");
+            }
+            $query->andFilterWhere($arr_or);
+            // echo $query->createCommand()->sql;exit;
+            $tours = $query
+            ->limit(9)
+            ->all();
+        }
+        else{
+            $tour_cities = $default_cids;
+            $tour_length = $default_leng;
+        }
+        $cities_query = \common\models\Cities::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $cities = $cities_query
+            ->orderBy('priority DESC, id ASC')
+            ->all();
+
+        foreach ($cities as &$city) {
+            $city->sel = 0;
+            if (in_array($city['id'], $tour_cities) ) {
+                $city->sel = 1;
+            }
+        }
+
+        return $this->render('search',['cities'=>$cities, 'tours'=>$tours, 'tour_length'=>$tour_length]);
     }
 
     /**

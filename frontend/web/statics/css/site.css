@@ -724,7 +724,7 @@ div#social-media-icons-container a {
   border-radius: 0px;
   border-color: #B33635;
   background-color: #4D423C;
-  color: #fff;
+  color: #E0E3D6;
   font-size: 20px;
   padding: 0;
   line-height: 36px;
@@ -1349,4 +1349,45 @@ a.list-group-item{
 .site-error a{
   color: #eee;
   text-decoration: underline;
+}
+
+.modal-dialog{
+  margin-top: 55px;
+}
+.modal-dialog .modal-content{
+  background-color: #E0E3D6;
+  color: #333;
+}
+.modal-dialog .modal-header{
+  background-color: #ababab;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.exp-search-form{
+  float: none;
+  margin: 10px auto 25px auto;
+}
+.exp-search-form .type-menu{
+  width: 100%;
+  margin: 15px 0 0 0;
+}
+.exp-search-form .input-group-title{
+  font-size: 18px;
+}
+.exp-search-form .short-input{
+  width: 150px;
+  border-radius: 0px;
+  border-color: #B33635;
+  background-color: #4D423C;
+  color: #E0E3D6;
+  font-size: 20px;
+  padding: 0;
+  line-height: 36px;
+  height: 36px;
+  padding-left: 10px;
+}
+.tours-count{
+  font-size: 18px;
+  color: #E6D2A1;
 }
