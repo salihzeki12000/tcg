@@ -18,9 +18,16 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= Html::activeHiddenInput($model, 'type', array('value'=>$type)) ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
+
+    <?php if ($type == TOUR_TYPE_GROUP) { ?>
+        <?= $form->field($model, 'begin_date')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'end_date')->textInput(['maxlength' => true]) ?>
+    <?php } ?>
 
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>
 
@@ -170,3 +177,14 @@ use yii\helpers\Url;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['backend\assets\AppAsset']]);
+$this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
+$js = <<<JS
+    $(function(){
+        $("#tour-begin_date, #tour-end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+    });
+JS;
+$this->registerJs($js);
+?>

@@ -30,8 +30,11 @@ use Yii;
  * @property string $keywords
  * @property string $link_tour
  * @property string $create_time
- * @property string $update_time
+ * @property string $begin_date
+ * @property string $end_date
+ * @property integer $type
  */
+
 class Tour extends \yii\db\ActiveRecord
 {
     public $image;
@@ -57,10 +60,10 @@ class Tour extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'status', 'themes', 'cities'], 'required'],
-            [['status', 'cities_count', 'priority', 'exp_num'], 'integer'],
+            [['status', 'cities_count', 'priority', 'exp_num', 'type'], 'integer'],
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
             [['overview', 'inclusion', 'exclusion', 'tips'], 'string'],
-            [['create_time', 'update_time'], 'safe'],
+            [['create_time', 'update_time', 'begin_date', 'end_date'], 'safe'],
             [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type', 'display_cities'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
             [['keywords'], 'string', 'max' => 512],
@@ -100,6 +103,9 @@ class Tour extends \yii\db\ActiveRecord
             'rec_type' => Yii::t('app', 'Recommendation'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
+            'begin_date' => Yii::t('app', 'Begin Date'),
+            'end_date' => Yii::t('app', 'End Date'),
+            'type' => Yii::t('app', 'Type'),
         ];
     }
 }

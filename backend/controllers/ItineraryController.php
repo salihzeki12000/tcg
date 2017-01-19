@@ -101,7 +101,12 @@ class ItineraryController extends Controller
             if (Yii::$app->request->post('add_next')) {
                 return $this->redirect(['create', 'tour_id' => $model->tour_id]);
             }
-            return $this->redirect(['tour/update', 'id' => $model->tour_id]);
+            $to_route = 'tour/update';
+            if($tour_info['type'] == TOUR_TYPE_GROUP)
+            {
+                $to_route = 'group-tour/update';
+            }
+            return $this->redirect([$to_route, 'id' => $model->tour_id]);
         } else {
             $ftype = BIZ_TYPE_ITINERARY;
             $sql = "select a.id as `fu_id`,b.* from file_use a join uploaded_files b on a.fid=b.id where a.type={$ftype} and a.cid={$id}";
@@ -141,9 +146,15 @@ class ItineraryController extends Controller
     {
         $model = $this->findModel($id);
         $tour_id = $model->tour_id;
+        $tour_info = Tour::find()->where(['id' => $tour_id])->one();
         $model->delete();
 
-        return $this->redirect(['tour/update', 'id' => $tour_id]);
+        $to_route = 'tour/update';
+        if($tour_info['type'] == TOUR_TYPE_GROUP)
+        {
+            $to_route = 'group-tour/update';
+        }
+        return $this->redirect([$to_route, 'id' => $tour_id]);
     }
 
     /**

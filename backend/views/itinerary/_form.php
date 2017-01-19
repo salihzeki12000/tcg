@@ -83,8 +83,13 @@ use yii\helpers\Url;
         <?php } ?>
         <?php 
         if ($model->tour_id) {
+            $to_route = 'tour/update';
+            if($tour_info['type'] == TOUR_TYPE_GROUP)
+            {
+                $to_route = 'group-tour/update';
+            }
         ?>
-        <a href="<?= Url::toRoute(['tour/update', 'id'=>$model->tour_id]) ?>"><?= Yii::t('app', 'Back to Tour') ?></a>
+        <a href="<?= Url::toRoute([$to_route, 'id'=>$model->tour_id]) ?>"><?= Yii::t('app', 'Back to Tour') ?></a>
         <?php } ?>
     </div>
 

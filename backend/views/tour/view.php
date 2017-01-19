@@ -8,7 +8,7 @@ use common\models\UploadedFiles;
 /* @var $model common\models\Tour */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tours'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', ucfirst(Yii::$app->controller->id)), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-view">
@@ -61,6 +61,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'link_tour',
             'create_time',
             'update_time',
+            'begin_date',
+            'end_date',
         ],
     ]) ?>
 

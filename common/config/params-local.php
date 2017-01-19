@@ -75,6 +75,7 @@ return [
         FORM_TYPE_QUOTATION => 'quotation',
         FORM_TYPE_EDU => 'educational',
         FORM_TYPE_MICE => 'MICE',
+        FORM_TYPE_GROUP => 'group',
         ),
     'form_required' => array(
         FORM_TYPE_CUSTOM => array(
@@ -129,6 +130,14 @@ return [
             'position',
             'company_name',
         ),
+        FORM_TYPE_GROUP => array(
+            'adults',
+            'name_prefix',
+            'name',
+            'email',
+            'nationality',
+            'prefered_travel_agent',
+        ),
     ),
     'form_fields' => array(
         FORM_TYPE_CUSTOM => array(
@@ -154,6 +163,7 @@ return [
         FORM_TYPE_QUOTATION => array(
             'tour_code',
             'tour_name',
+            'tour_type',
             'arrival_date',
             'arrival_city',
             'adults',
@@ -202,6 +212,22 @@ return [
             'phone_number',
             'hear_about_us',
         ),
+        FORM_TYPE_GROUP => array(
+            'tour_code',
+            'tour_name',
+            'tour_type',
+            'adults',
+            'children',
+            'infants',
+            'transport_info',
+            'other_info',
+            'name_prefix',
+            'name',
+            'email',
+            'nationality',
+            'prefered_travel_agent',
+        ),
+
     ),
 
 ];

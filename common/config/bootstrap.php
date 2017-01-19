@@ -22,6 +22,9 @@ define('TOUR_THEMES_AT_A_GLANCE', 6);
 define('TOUR_THEMES_ROMANTIC', 7);
 define('TOUR_THEMES_NATURE', 8);
 
+define('TOUR_TYPE_NORMAL', 0);
+define('TOUR_TYPE_GROUP', 1);
+
 define('REC_TYPE_MUST_VISIT', 1);
 define('REC_TYPE_POPULAR', 2);
 define('REC_TYPE_OFF_THE_BEATEN_TRACK', 3);
@@ -48,3 +51,4 @@ define('FORM_TYPE_CUSTOM',      1);
 define('FORM_TYPE_QUOTATION',   2);
 define('FORM_TYPE_EDU',         3);
 define('FORM_TYPE_MICE',        4);
+define('FORM_TYPE_GROUP',       5);

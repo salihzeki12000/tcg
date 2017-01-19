@@ -44,6 +44,10 @@ use Yii;
  * @property string $company_name
  * @property integer $type
  * @property string $create_time
+ * @property string transport_info
+ * @property string other_info
+ * @property integer tour_type
+
 */
 class FormInfo extends \yii\db\ActiveRecord
 {
@@ -72,10 +76,10 @@ class FormInfo extends \yii\db\ActiveRecord
             [$arr_required, 'required'],
             [['arrival_city', 'departure_city', 'adults', 'children', 'infants', 'group_type', 'cities_plan', 'travel_interests', 'prefered_budget', 'name_prefix', 'prefered_travel_agent', 'book_hotels', 'hotel_preferences'], 'string'],
             [['arrival_date', 'departure_date', 'nationality', 'tour_code', 'number_participants'], 'string', 'max' => 20],
-            [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip'], 'string', 'max' => 255],
+            [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip', 'transport_info', 'other_info'], 'string', 'max' => 255],
             [['name', 'tour_name', 'subject_program', 'participants_number', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'company_name'], 'string', 'max' => 50],
             ['email', 'email'],
-            [['type'], 'integer'],
+            [['type', 'tour_type'], 'integer'],
         ];
     }
 
@@ -122,6 +126,9 @@ class FormInfo extends \yii\db\ActiveRecord
             'company_name' => Yii::t('app', 'Name of your company or organization'),
             'type' => Yii::t('app', 'Type'),
             'create_time' => Yii::t('app', 'Create Time'),
+            'transport_info' => Yii::t('app', 'Ship or Flight information'),
+            'other_info' => Yii::t('app', 'Other information you want us to know'),
+            'tour_type' => Yii::t('app', 'Tour Type'),
         ];
     }
 }

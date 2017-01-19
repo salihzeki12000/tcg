@@ -61,6 +61,7 @@ class DestinationController extends Controller
 
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
+        $condition['type'] = TOUR_TYPE_NORMAL;
         $query = Tour::find()->where($condition);
         $query->andWhere("FIND_IN_SET('".$city_info['id']."', cities)");
 
@@ -211,7 +212,7 @@ class DestinationController extends Controller
         $menu = array();
         $menu['view'] = Yii::t('app', 'Overview');
 
-        $tour_query = Tour::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $tour_query = Tour::find()->where(['status'=>DIS_STATUS_SHOW, 'type' => TOUR_TYPE_NORMAL]);
         $tour_query->andWhere("FIND_IN_SET('".$id."', cities)");
         $exp_count = $tour_query
             ->count();

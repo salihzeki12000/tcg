@@ -19,6 +19,7 @@ use frontend\components\BaseController;
 class ExperienceController extends Controller
 {
     public $enableCsrfValidation = false;
+    public $tour_type = TOUR_TYPE_NORMAL;
 
     public function behaviors()
     {
@@ -59,6 +60,7 @@ class ExperienceController extends Controller
         }
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
+        $condition['type'] = $this->tour_type;
         if (!empty($tour_ids)) {
             $tour_ids = explode(',', $tour_ids);
             $condition['id'] = $tour_ids;
@@ -116,6 +118,7 @@ class ExperienceController extends Controller
             }
             $condition = array();
             $condition['status'] = DIS_STATUS_SHOW;
+            $condition['type'] = $this->tour_type;
             $query = Tour::find()->where($condition);
             $query->andWhere("tour_length >= " . ($tour_length-1));
             $query->andWhere("tour_length <= " . ($tour_length+2));
@@ -184,6 +187,7 @@ class ExperienceController extends Controller
         $rec_ids = explode(',', $rec_ids);
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
+        $condition['type'] = $this->tour_type;
         $query = Tour::find()->where($condition);
         if (!empty($rec_ids)) {
             $query->andWhere(['id' => $rec_ids]);
@@ -209,7 +213,7 @@ class ExperienceController extends Controller
      */
     protected function findModel($name)
     {
-        if (($model = Tour::find()->where(['name' => $name])->One()) !== null) {
+        if (($model = Tour::find()->where(['name' => $name, 'type' => $this->tour_type])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

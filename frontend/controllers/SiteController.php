@@ -129,6 +129,7 @@ class SiteController extends Controller
                 $tour_ids = explode(',', $mp_theme['use_ids']);
                 $condition = array();
                 $condition['status'] = DIS_STATUS_SHOW;
+                $condition['type'] = TOUR_TYPE_NORMAL;
                 $condition['id'] = $tour_ids;
                 $query = \common\models\Tour::find()->where($condition);
                 $tours = $query

@@ -19,6 +19,8 @@ use yii\filters\VerbFilter;
  */
 class TourController extends Controller
 {
+    public $tour_type = TOUR_TYPE_NORMAL;
+
     /**
      * @inheritdoc
      */
@@ -41,6 +43,7 @@ class TourController extends Controller
     public function actionIndex()
     {
         $searchModel = new TourSearch();
+        $_GET['TourSearch']['type'] = $this->tour_type;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -241,5 +244,12 @@ class TourController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function render($view, $params = [])
+    {
+        $params['type'] = $this->tour_type;
+        $view = '/tour/' . $view;
+        return parent::render($view, $params);
     }
 }

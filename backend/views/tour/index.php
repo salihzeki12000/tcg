@@ -9,7 +9,7 @@ use common\models\Cities;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Tours');
+$this->title = Yii::t('app', ucfirst(Yii::$app->controller->id));
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-index">

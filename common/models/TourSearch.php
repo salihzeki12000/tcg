@@ -18,8 +18,8 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['id', 'status', 'cities_count', 'priority', 'exp_num'], 'integer'],
-            [['name', 'code', 'themes', 'cities', 'overview', 'best_season', 'pic_map', 'pic_title', 'inclusion', 'exclusion', 'tips', 'keywords', 'link_tour', 'rec_type', 'create_time', 'update_time'], 'safe'],
+            [['id', 'status', 'cities_count', 'priority', 'exp_num', 'type'], 'integer'],
+            [['name', 'code', 'themes', 'cities', 'overview', 'best_season', 'pic_map', 'pic_title', 'inclusion', 'exclusion', 'tips', 'keywords', 'link_tour', 'rec_type', 'create_time', 'update_time', 'begin_date', 'end_date'], 'safe'],
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
         ];
     }
@@ -70,6 +70,9 @@ class TourSearch extends Tour
             'price_usd' => $this->price_usd,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
+            'begin_date' => $this->begin_date,
+            'end_date' => $this->end_date,
+            'type' => $this->type,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
