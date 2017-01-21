@@ -1393,7 +1393,7 @@ a.list-group-item{
   border-color: #B33635;
   background-color: #4D423C;
   color: #E0E3D6;
-  font-size: 20px;
+  font-size: 16px;
   padding: 0;
   line-height: 36px;
   height: 36px;
@@ -1443,4 +1443,5 @@ a.list-group-item{
 
 #txt_cities_name{
   font-size: 16px;
+  line-height: 33px;
 }
