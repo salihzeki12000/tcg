@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <option value="<?=$i?>" <?= ($tour_length==$i)?'selected':'' ?>><?=$i?></option>
           <?php } ?>
         </select>
-        <span class="input-group-title" style="margin-left: 20px;"><?=Yii::t('app','Day(s)')?></span>
+        <span class="input-group-title" style="margin-left: 16px;"><?=Yii::t('app','Day(s)')?></span>
       </div>
     </div>
 
