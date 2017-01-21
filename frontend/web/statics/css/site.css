@@ -189,6 +189,7 @@ body {
 }
 .m-menu .sub-menu{
   width: 100%;
+  min-width: 130px;
 }
 .m-menu .glyphicon{
   float: right;
