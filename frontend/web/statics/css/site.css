@@ -929,6 +929,11 @@ div#social-media-icons-container a {
 .tour-view > .col-lg-4{
   padding: 0;
 }
+.tour-view > .form-info.col-lg-4 {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 30px;
+}
 .overview .overview-vr{
   width: 100%;
   height: 320px;

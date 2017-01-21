@@ -86,13 +86,19 @@ use yii\helpers\Url;
                 <label class="control-label"><?=Yii::t('app','Infants (< 3 yrs)')?></label>
             </td>
         </tr>
-        <tr>
-            <td colspan="2">
-                <?= $form->field($model, 'guest_information')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please let us know if someone needs particular assistance in your group. Please tell us children\'s height for a possible discount.')])->label(false) ?>
-            </td>
-        </tr>
+        <?php if (in_array('guest_information', $form_fields)) { ?>
+            <tr>
+                <td colspan="2">
+                    <?= $form->field($model, 'guest_information')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please let us know if someone needs particular assistance in your group. Please tell us children\'s height for a possible discount.')])->label(false) ?>
+                </td>
+            </tr>
+        <?php } ?>
     </table>
     <?php } ?>
+
+    <?= !in_array('transport_info', $form_fields) ? '' : $form->field($model, 'transport_info')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => '']) ?>
+
+    <?= !in_array('other_info', $form_fields) ? '' : $form->field($model, 'other_info')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => '']) ?>
 
     <?= !in_array('book_hotels', $form_fields) ? '' : $form->field($model, 'book_hotels')->dropDownList([ 'Yes' => 'Yes', 'No' => 'No', ], ['prompt' => 'Please select']) ?>
 

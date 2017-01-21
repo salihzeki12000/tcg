@@ -43,7 +43,6 @@ class ExperienceController extends Controller
      */
     public function actionIndex()
     {
-        $type = Yii::$app->request->get('type');
         $theme = trim(Yii::$app->request->get('theme'));
         $theme_id = '';
 
@@ -67,9 +66,7 @@ class ExperienceController extends Controller
             
         }
         $query = Tour::find()->where($condition);
-        if ($type) {
-            $query->andWhere("FIND_IN_SET('".$type."', rec_type)");
-        }
+
         if (!empty($tour_ids)) {
             $query->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')]);
         }
@@ -91,7 +88,7 @@ class ExperienceController extends Controller
             ->orderBy('priority DESC, id ASC')
             ->all();
 
-        return $this->render('index',['tours'=>$tours,'type'=>$type,'themes'=>$themes,'theme_id'=>$theme_id,'theme_name'=>$theme_name,'pages'=>$pages]);
+        return $this->render('index',['tours'=>$tours,'type'=>$this->tour_type,'themes'=>$themes,'theme_id'=>$theme_id,'theme_name'=>$theme_name,'pages'=>$pages]);
     }
 
     public function actionSearch()
