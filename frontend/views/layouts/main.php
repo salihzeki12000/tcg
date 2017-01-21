@@ -230,6 +230,17 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 <?php
 $js = <<<JS
+  var _is_mobile = 0;
+JS;
+if (Yii::$app->params['is_mobile']) {
+$js = <<<JS
+  var _is_mobile = 1;
+JS;
+}
+$this->registerJs($js);
+?>
+<?php
+$js = <<<JS
     $(function(){
         $('.navbar-toggle').attr('id', 'bt_toggle');
         $('.navbar-toggle').click(function(){

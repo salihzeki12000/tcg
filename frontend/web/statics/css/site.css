@@ -542,6 +542,10 @@ div#social-media-icons-container a {
   margin: 0 auto;
 }
 
+.wrap > .form-info.container{
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .form-info-create tr>td{
   padding: 5px 10px;
 }
@@ -1373,6 +1377,8 @@ a.list-group-item{
 .exp-search-form{
   float: none;
   margin: 0 auto 25px auto;
+  padding-left: 0;
+  padding-right: 0;
 }
 .exp-search-form .type-menu{
   width: 100%;

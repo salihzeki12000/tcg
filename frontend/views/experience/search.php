@@ -40,15 +40,30 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="input-group type-menu">
         <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="modal" data-target="#tour_cities">
           <span id='txt_cities_name' class="">
-            <?php foreach ($cities as $city) { 
-              if (!$city['sel']) {
-                continue;
+            <?php 
+              $show_cities_count = 4;
+              if (Yii::$app->params['is_mobile']) {
+                $show_cities_count = 3;
               }
+              $i = 0;
+              foreach ($cities as $city) {
+                if (!$city['sel']) {
+                  continue;
+                }
+                if ($i+1<=$show_cities_count) {
+                  if ($i > 0) {
+                    echo ', ';
+                  }
+                  echo $city['name'];
+                }
+                else{
+                  echo ' ...';
+                  break;
+                }
               ?>
-              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"><?=$city['name']?></div>
-            <?php } ?>
+            <?php $i++; } ?>
           </span>
-          <span class="caret"></span>
+          <i class="glyphicon glyphicon-chevron-down"></i>
         </button>
       </div>
     </div>
@@ -158,11 +173,24 @@ $this->params['breadcrumbs'][] = $this->title;
 $js = <<<JS
   $(function(){
     $('#bt_cities_confirm').click(function(){
+      var show_count = 4;
+      if(_is_mobile){
+        show_count = 3;
+      }
       var i = 0;
       var htmlCitiesName = '';
       jQuery("input[name='tour_cities[]']:checked").each(function(){
           var strCitiesName = jQuery(this).attr('data-cityname');
-          htmlCitiesName += '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">'+strCitiesName+'</div>';
+          if(i+1 <= show_count){
+            if(i > 0){
+              htmlCitiesName += ', ';
+            }
+            htmlCitiesName += strCitiesName;
+          }
+          else{
+            htmlCitiesName += ' ...';
+            return false;
+          }
           i++;
       });
       if(htmlCitiesName!=''){
