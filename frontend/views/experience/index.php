@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 </div>
 <div class="container exp-tab">
-  <div class="tabs col-lg-6 col-md-6 col-sm-10 col-xs-12">
+  <div class="tabs">
     <div class="tab active">Filter</div>
     <div class="tab"><a href="<?= Url::toRoute(['experience/search']) ?>">Search</a></div>
   </div>
@@ -33,10 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tour-index container">
     <!-- Single button -->
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
-      <span class="input-group-addon"><?=Yii::t('app','Filter:')?></span>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <?= $theme_name ?>
-        <span class="caret"></span>
+        <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu" role="menu">
         <?php foreach ($themes as $theme) { ?>

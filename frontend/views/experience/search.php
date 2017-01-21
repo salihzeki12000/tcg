@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 </div>
 <div class="container exp-tab">
-  <div class="tabs col-lg-6 col-md-6 col-sm-10 col-xs-12">
+  <div class="tabs">
     <div class="tab"><a href="<?= Url::toRoute(['experience/index']) ?>">Filter</a></div>
     <div class="tab active">Search</div>
   </div>

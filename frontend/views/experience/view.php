@@ -186,7 +186,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="tips col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2><?=Yii::t('app','Tips')?></h2></center>
+        <center><h2><?=Yii::t('app','Notes')?></h2></center>
         <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>

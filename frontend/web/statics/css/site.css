@@ -1407,7 +1407,7 @@ a.list-group-item{
 }
 .exp-tab .tab a, .exp-tab .tab a:hover{
   display: block;
-  color: #333;
+  color: #a28a50;
   text-decoration: none;
 }
 .exp-tab .tab{
@@ -1415,15 +1415,13 @@ a.list-group-item{
   float: left;
   text-align: center;
   padding: 10px 20px;
-  background-color: #E0E3D6;
-  color: #333;
-  font-size: 18px;
+  background-color: #333;
+  color: #a28a50;
+  font-size: 30px;
 }
 .exp-tab .tab.active{
   background-color: #4D423C;
-  color: #E0E3D6;
-/*  border-left: 1px solid #E0E3D6;
-  border-right: 1px solid #E0E3D6;*/
+  color: #E9C46C;
 }
 
 .placeholder {
