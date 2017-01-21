@@ -848,7 +848,7 @@ div#social-media-icons-container a {
   text-overflow: ellipsis;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 1240px) {
     .navbar-header {
         float: none;
     }
