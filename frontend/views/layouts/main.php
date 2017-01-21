@@ -110,7 +110,7 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find A Tour') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
-            <li><a href="<?= Url::toRoute(['educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
             <li><a href="<?= Url::toRoute(['count-me-in/index']) ?>"><?= Yii::t('app','Count Me In') ?></a></li>
             <li class="container">
                 <ul class="menu-group">
