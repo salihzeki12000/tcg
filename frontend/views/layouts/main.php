@@ -98,7 +98,7 @@ AppAsset::register($this);
                     }
 
             $p_menu .= '</ul></div>';
-    $p_menu .= '<a type="button" class="btn btn-danger pull-right" href="'.Url::toRoute(['experience/index']) .  '#form-info-page' . '">'.Yii::t('app',"Let's Plan Your Trip").'</a>';
+    $p_menu .= '<a type="button" class="btn btn-danger pull-right" href="'.Url::toRoute(['experience/index']) .  '#inquiry-form' . '">'.Yii::t('app',"Let's Plan Your Trip").'</a>';
     $p_menu .= '</div>';
 
     echo $p_menu;
@@ -168,7 +168,7 @@ AppAsset::register($this);
 
         <div class="home-btn">
             <div class="row btn-row">
-                <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
+                <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
                 
             </div>
         </div>
@@ -199,9 +199,9 @@ AppAsset::register($this);
         </div>
         <center><?=Yii::t('app','QUICK LINKS')?></center>
         <center>
-            <a href="<?= Url::toRoute(['experience/index']) . '#form-info-page' ?>"><?=Yii::t('app','Plan a vacation')?></a> | 
-            <a href="<?= Url::toRoute(['/educational-programs']) . '#form-info-page' ?>"><?=Yii::t('app','Plan an educational trip')?></a> | 
-            <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#form-info-page' ?>"><?=Yii::t('app','Plan an incentive trip')?></a> | --> 
+            <a href="<?= Url::toRoute(['experience/index']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan a vacation')?></a> | 
+            <a href="<?= Url::toRoute(['/educational-programs']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan an educational trip')?></a> | 
+            <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan an incentive trip')?></a> | --> 
             <a href="<?= Url::toRoute(['about/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a> | 
             <a href="<?= Url::toRoute(['about/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
         </center>

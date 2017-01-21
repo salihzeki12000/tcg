@@ -81,7 +81,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
     <div class="container home-btn">
         <div class="row btn-row">
-            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#form-info-page' ?>"><?=Yii::t('app',"LET'S PLAN YOUR TRIP")?></a>
+            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"LET'S PLAN YOUR TRIP")?></a>
             
         </div>
     </div>

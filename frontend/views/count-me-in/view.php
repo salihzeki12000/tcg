@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="home-btn hidden-lg col-md-12 col-sm-12 col-xs-12">
       <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Join This Tour')?></a>
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Join This Tour')?></a>
       </div>
     </div>
 
@@ -203,7 +203,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" >
     <div class="clearfix"></div> 
     <div class="form-info-create">
-      <span class="placeholder" id="form-info-page"></span>
+      <span class="placeholder" id="inquiry-form"></span>
 
       <div class="form-title"><?=Yii::t('app','Application Form')?></div>
       <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>

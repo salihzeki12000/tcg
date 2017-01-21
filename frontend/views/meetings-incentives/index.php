@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="container home-btn">
   <div class="row btn-row">
-    <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Plan an Incentive Trip')?></a>
+    <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Plan an Incentive Trip')?></a>
   </div>
 </div>
 
@@ -38,9 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<div class="form-info container" id="form-info-page">
+<div class="form-info container">
   <div class="form-info-create">
-
+    <span class="placeholder" id="inquiry-form"></span>
     <div class="form-title"><?=Yii::t('app','Information Form')?></div>
 
     <?= $this->render('/form-info/_form', [

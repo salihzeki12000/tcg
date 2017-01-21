@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Get a Free Quotation')?></a>
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Get a Free Quotation')?></a>
       </div>
     </div>
 
@@ -190,13 +190,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>
-        <div id="form-info-page"><br><br></div>
    </div>
 
     <div class="form-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="clearfix"></div> 
       <div class="form-info-create">
-
+        <span class="placeholder" id="inquiry-form"></span>
         <div class="form-title"><?=Yii::t('app','Quotation Form')?></div>
         <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
         <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=Yii::t('app','Days:')?> | <?= $tour_info['display_cities'] ?></div>

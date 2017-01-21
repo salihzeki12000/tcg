@@ -1439,8 +1439,8 @@ a.list-group-item{
   position: absolute;
   display:block; 
   width:100px;
-  height:90px;
-  top: -90px;
+  height:140px;
+  top: -140px;
 }
 
 #txt_cities_name{

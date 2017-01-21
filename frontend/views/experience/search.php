@@ -112,7 +112,11 @@ $this->params['breadcrumbs'][] = $this->title;
   </form>
   <?php $count_tours = count($tours); ?>
   <?php if (Yii::$app->request->post()) { ?>
-    <span class="tours-count"><?=Yii::t('app','Found {0} tours', $count_tours)?></span>:
+    <?php if ($count_tours>0) { ?>
+      <span class="tours-count"><?=Yii::t('app','Found {0} Itineraries', $count_tours)?></span>:
+    <?php }else{ ?>
+      <span class="tours-count"><?=Yii::t('app','No itinerary found matching your search criteria. Please refine your search or {0}let us customize your tour{1}.', ['<a href="#inquiry-form">', '</a>'])?></span>
+    <?php } ?>
   <?php } ?>
   <?php if ($count_tours > 0) { ?>
     <div class=" file-drop-zone"> 
@@ -151,10 +155,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<div class="form-info container" id="form-info-page">
+<div class="form-info container">
   <h2><?=Yii::t('app',"No ideal itinerary or don't bother to browse? Customize your own tour now!")?></h2>
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
-
+    <span class="placeholder" id="inquiry-form"></span>
     <div class="form-title"><?=Yii::t('app','Customization Form')?></div>
 
     <?= $this->render('/form-info/_form', [
