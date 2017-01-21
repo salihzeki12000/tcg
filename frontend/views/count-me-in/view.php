@@ -201,9 +201,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
   </div>
 
-  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12"  id="form-info-page">
+  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" >
     <div class="clearfix"></div> 
     <div class="form-info-create">
+      <span class="placeholder" id="form-info-page"></span>
 
       <div class="form-title"><?=Yii::t('app','Application Form')?></div>
       <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>

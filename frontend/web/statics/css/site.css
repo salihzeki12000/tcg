@@ -1430,3 +1430,11 @@ a.list-group-item{
 /*  border-left: 1px solid #E0E3D6;
   border-right: 1px solid #E0E3D6;*/
 }
+
+.placeholder {
+  position: absolute;
+  display:block; 
+  width:100px;
+  height:90px;
+  top: -90px;
+}
