@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2 id="nav-overview"><?=Yii::t('app','Tour Prices')?></h2></center>
-        <div class="overview" id="overview-body">
+        <div class="overview">
           <?= $tour_info['overview'] ?>
         </div>
     </div>
