@@ -47,24 +47,17 @@ class CountMeInController extends Controller
         $condition['type'] = $this->tour_type;
         $query = Tour::find()->where($condition);
 
-        $count_query = clone $query;
-        $pages = new Pagination(
-            [
-                'totalCount' => $count_query->count(),
-                'pageSize' => 12,
-                'pageSizeParam' => false,
-            ]);
         $tours = $query
-            ->offset($pages->offset)
-            ->limit($pages->limit)
+            ->orderBy('begin_date ASC')
             ->all();
 
-        $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
-        $themes = $themes_query
-            ->orderBy('priority DESC, id ASC')
-            ->all();
+        $month_tours = [];
+        foreach ($tours as $tour) {
+            $tour_month = date('F, Y', strtotime($tour['begin_date']));
+            $month_tours[$tour_month][] = $tour;
+        }
 
-        return $this->render('index',['tours'=>$tours,'type'=>$this->tour_type,'pages'=>$pages]);
+        return $this->render('index',['month_tours'=>$month_tours,'type'=>$this->tour_type]);
     }
 
     /**

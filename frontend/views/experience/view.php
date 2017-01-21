@@ -70,12 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <?php if ($tour_info['price_cny']) { ?>
-      <div class="price col-lg-12 col-md-12 col-sm-12 col-xs-12">
-           From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour_info['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?> Per Person
-      </div>
-    <?php } ?>
-
     <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="btn-row">
         <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Get a Free Quotation')?></a>

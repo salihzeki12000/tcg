@@ -70,18 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <?php if ($tour_info['price_cny']) { ?>
-      <div class="price col-lg-12 col-md-12 col-sm-12 col-xs-12">
-           From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour_info['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?> Per Person
-      </div>
-    <?php } ?>
-
-    <div class="home-btn hidden-lg col-md-12 col-sm-12 col-xs-12">
-      <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Get a Free Quotation')?></a>
-      </div>
-    </div>
-
     <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview" style="margin-top: 20px;">
         <div class="list-group">
             <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { 
@@ -96,6 +84,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+    <div class="group-date col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <center><h2 id="nav-overview"><?=Yii::t('app','Tour Date')?></h2></center>
+        <div class="overview">
+          <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
+        </div>
+    </div>
+
     <div class="container-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2 id="nav-overview"><?=Yii::t('app','Overview')?></h2></center>
         <div class="overview" id="overview-body">
@@ -104,8 +99,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <center><a href="#nav-overview" id="bt_overview_more" style="display: block;">More<br><i class="glyphicon glyphicon-chevron-down"></i></a></center>
     </div>
 
+    <div class="home-btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="btn-row">
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#form-info-page"><?=Yii::t('app','Join This Tour')?></a>
+      </div>
+    </div>
+
     <div class="map itinerary-swipe col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2><?=Yii::t('app','Recommended Itinerary')?></h2></center>
+        <center><h2><?=Yii::t('app','Itinerary')?></h2></center>
         <div class="col-lg-12 col-md-12 col-xs-12 list-group-item">
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
@@ -196,12 +197,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>
-        <div id="form-info-page"><br><br></div>
    </div>
 
   </div>
 
-  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12">
+  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12"  id="form-info-page">
     <div class="clearfix"></div> 
     <div class="form-info-create">
 

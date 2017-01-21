@@ -825,6 +825,9 @@ div#social-media-icons-container a {
   color: #333;
   padding: 0 10px 10px 10px;
 }
+.tour-view .group-date{
+  text-align: center;
+}
 
 .tour-index > h3{
   color: #E6D2A1 !important;
