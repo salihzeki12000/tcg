@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><?=Yii::t('app','Close')?></span></button>
-            <h4 class="modal-title" id="tour_citiesLabel"><?=Yii::t('app','Select Cities')?></h4>
+            <h4 class="modal-title" id="tour_citiesLabel"><?=Yii::t('app','Select Destinations')?></h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -97,8 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><?=Yii::t('app','Close')?></button>
-            <button type="button" class="btn btn-primary" id="bt_cities_confirm"><?=Yii::t('app','Confirm')?></button>
+            <button type="button" class="btn btn-danger" id="bt_cities_confirm"><?=Yii::t('app','Done')?></button>
           </div>
         </div>
       </div>
@@ -193,9 +192,7 @@ $js = <<<JS
           }
           i++;
       });
-      if(htmlCitiesName!=''){
-        $('#txt_cities_name').html(htmlCitiesName);
-      }
+      $('#txt_cities_name').html(htmlCitiesName);
       $('#tour_cities').modal('hide');
     });
   });

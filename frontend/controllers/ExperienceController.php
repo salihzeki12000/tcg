@@ -101,14 +101,11 @@ class ExperienceController extends Controller
             if (isset($post_data['tour_cities'])) {
                 $tour_cities = $post_data['tour_cities'];
             }
-            else
-            {
-                $tour_cities = $default_cids;
-            }
+
             $tour_length = $post_data['tour_length'];
 
             if (empty($tour_cities)) {
-                $tour_cities = $default_cids;
+                $tour_cities = [];
             }
             if (empty($tour_length)) {
                 $tour_length = $default_leng;
@@ -117,15 +114,14 @@ class ExperienceController extends Controller
             $condition['status'] = DIS_STATUS_SHOW;
             $condition['type'] = $this->tour_type;
             $query = Tour::find()->where($condition);
-            $query->andWhere("tour_length >= " . ($tour_length-1));
-            $query->andWhere("tour_length <= " . ($tour_length+2));
-            $arr_or = ['or'];
+            $arr_and = ['and'];
             foreach ($tour_cities as $city_id) {
-                $arr_or[] = new \yii\db\Expression("FIND_IN_SET('".$city_id."', cities)");
+                $arr_and[] = new \yii\db\Expression("FIND_IN_SET('".$city_id."', cities)");
             }
-            $query->andFilterWhere($arr_or);
+            $query->andFilterWhere($arr_and);
             // echo $query->createCommand()->sql;exit;
             $tours = $query
+            ->orderBy('ABS(`tour_length` - '.$tour_length.') ASC')
             ->limit(9)
             ->all();
         }
