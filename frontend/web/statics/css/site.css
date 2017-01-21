@@ -896,6 +896,9 @@ div#social-media-icons-container a {
   .page-header{
     font-size: 30px;
   }
+  .exp-tab .tab{
+    font-size: 30px !important;
+  }
 }
 @media (min-width: 640px) {
   .tour-view .itineraries .text {
@@ -1417,7 +1420,7 @@ a.list-group-item{
   padding: 10px 20px;
   background-color: #333;
   color: #a28a50;
-  font-size: 30px;
+  font-size: 20px;
 }
 .exp-tab .tab.active{
   background-color: #4D423C;
