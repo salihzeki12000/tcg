@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
 
-    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
+    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview" style="margin-top: 20px;">
         <div class="list-group">
             <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { 
               if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
