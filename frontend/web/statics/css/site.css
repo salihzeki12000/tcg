@@ -150,16 +150,18 @@ body {
     background-color: #010101;
     position: absolute;
     z-index: 100;
-    width: 100%;
+    width: 85%;
     padding: 0 20px 10px 20px;
     color: rgba(204, 204, 224, 1);
     display: none;
+    right: 0;
+    box-shadow: 0px 0px 5px #888888;
 }
 .m-menu > ul{
   border: 1px solid rgba(121, 121, 121, 1);
   background-color: rgba(40, 40, 40, 1);
   padding: 0;
-  margin: 30px 0;
+  margin: 18px 0;
 }
 .m-menu > ul > li{
   list-style:none;
@@ -193,8 +195,16 @@ body {
   line-height: 44px;
   color: rgba(204, 204, 224, 1);
 }
+.m-menu .menu-group{
+  padding-left: 0;
+}
+.m-menu .menu-group >li > a{
+  text-align: center;
+}
 .m-menu .menu-group > li{
   border-bottom: none;
+  list-style: none;
+  padding: 0;
 }
 .m-menu .menu-group > li:first-child{
   border-right: 1px solid rgba(121, 121, 121, 1);
@@ -203,7 +213,7 @@ body {
   color: #17BEBB;
 }
 .m-menu .search-box input{
-    width: 250px;
+    width: 200px;
     height: 34px;
     color: #4D423C;
 }

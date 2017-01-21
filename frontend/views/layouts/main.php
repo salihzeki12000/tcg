@@ -112,8 +112,12 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
             <li><a href="<?= Url::toRoute(['count-me-in/index']) ?>"><?= Yii::t('app','Count Me In') ?></a></li>
-            <li><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blogs') ?></a></li>
-            <li><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
+            <li class="container">
+                <ul class="menu-group">
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blogs') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
+                </ul>
+            </li>
         </ul>
         <ul class="">
             <li><a href="<?= Url::toRoute(['/about']) ?>"><?= Yii::t('app','About Us') ?></a></li>
