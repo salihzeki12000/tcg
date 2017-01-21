@@ -209,7 +209,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tour_name' => $tour_info['name'],
         ]) ?>
 
-        <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within 24 hours.')?></div>
+        <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within one working day.')?></div>
       </div>
     </div>
   </div>

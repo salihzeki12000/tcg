@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Experiences');
         'tour_name' => '',
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within 24 hours.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within one working day.')?></div>
   </div>
 </div>
 
