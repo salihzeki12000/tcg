@@ -1440,3 +1440,7 @@ a.list-group-item{
   height:90px;
   top: -90px;
 }
+
+#txt_cities_name{
+  font-size: 16px;
+}
