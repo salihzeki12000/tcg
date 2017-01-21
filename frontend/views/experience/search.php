@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="modal" data-target="#tour_cities">
           <span id='txt_cities_name' class="">
             <?php 
-              $show_cities_count = 4;
+              $show_cities_count = 3;
               if (Yii::$app->params['is_mobile']) {
-                $show_cities_count = 3;
+                $show_cities_count = 1;
               }
               $i = 0;
               foreach ($cities as $city) {
@@ -173,9 +173,9 @@ $this->params['breadcrumbs'][] = $this->title;
 $js = <<<JS
   $(function(){
     $('#bt_cities_confirm').click(function(){
-      var show_count = 4;
+      var show_count = 3;
       if(_is_mobile){
-        show_count = 3;
+        show_count = 1;
       }
       var i = 0;
       var htmlCitiesName = '';
