@@ -59,7 +59,7 @@ class Tour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'status', 'themes', 'cities'], 'required'],
+            [['code', 'status', 'themes', 'cities', 'tour_length'], 'required'],
             [['status', 'cities_count', 'priority', 'exp_num', 'type'], 'integer'],
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
             [['overview', 'inclusion', 'exclusion', 'tips'], 'string'],
