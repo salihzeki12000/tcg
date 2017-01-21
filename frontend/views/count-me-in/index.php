@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3><?= $tour['name'] ?> </h3>
             <div><?= date('F d, Y', strtotime($tour['begin_date'])) ?> - <?= date('F d, Y', strtotime($tour['end_date'])) ?></div>
             <div class="tourlist-price">
-              <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['count-me-in/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','Learn more')?></a>
+              <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['count-me-in/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
             </div>
          </div> 
         </div> 
