@@ -160,6 +160,13 @@ AppAsset::register($this);
             </li>
         </ul>
 
+        <div class="home-btn">
+            <div class="row btn-row">
+                <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
+                
+            </div>
+        </div>
+
         <div class="search-box">
             <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
                 <input type="text" name="q" placeholder="<?=Yii::t('app','Powered by Google')?>">
@@ -168,13 +175,6 @@ AppAsset::register($this);
                     <span><?=Yii::t('app','Search')?></span>
                 </button>
             </form>
-        </div>
-
-        <div class="home-btn">
-            <div class="row btn-row">
-                <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
-                
-            </div>
         </div>
 
         <span class="desc"><?=Yii::t('app','The China Guide')?><br /><?= Yii::t('app','A Beijing-based, foreign-owned travel agency.') ?></span>
