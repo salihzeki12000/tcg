@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
     
     <div class="tour-info">
-        <div class="tour-info-row">
+        <div class="tour-info-row row">
           <div class="item-s col-lg-4 col-md-3 col-xs-4">
               <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
               Days

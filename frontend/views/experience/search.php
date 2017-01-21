@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <?php $count_tours = count($tours); ?>
   <?php if (Yii::$app->request->post()) { ?>
     <?php if ($count_tours>0) { ?>
-      <span class="tours-count"><?=Yii::t('app','Found {0} Itineraries', $count_tours)?></span>:
+      <span class="tours-count"><?=Yii::t('app','Found {0} itineraries', $count_tours)?></span>:
     <?php }else{ ?>
       <span class="tours-count"><?=Yii::t('app','No itinerary found matching your search criteria. Please refine your search or {0}let us customize your tour{1}.', ['<a href="#inquiry-form">', '</a>'])?></span>
     <?php } ?>

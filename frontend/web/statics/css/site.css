@@ -69,12 +69,16 @@ body {
     color: #4D423C;
     background-color: #d4d4d4;
 }
+.navbar-inverse .navbar-nav > .active > a:hover{
+    color: #4D423C;
+}
+
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     color: #4D423C;
     background-color: #d4d4d4;
 }
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-    color: #4D423C;
+    color: #B33635;
 }
 
 .p-menu{
@@ -94,12 +98,18 @@ body {
   border-color: #E0E3D6;
   color: #4D423C;
 }
+.p-menu .btn-default:hover,.p-menu .open > .dropdown-toggle.btn-default:hover,.p-menu .open > .dropdown-toggle.btn-default:hover{
+  color: #B33635;
+}
 .p-menu .btn-danger {
     border-color: #eee;
     border-radius: 15px;
     background-color: #B33635;
     font-size: 12px;
     padding: 6px 12px;
+}
+.p-menu .btn-danger:hover{
+  background-color: #d9534f;
 }
 .p-menu .btn-default{
   padding-right: 7px;
@@ -415,7 +425,7 @@ div#social-media-icons-container a {
     padding: 0 8px;
 }
 .navbar-brand img{
-    width: 190px;
+    width: 192px;
 }
 
 #social-media-icons-container a#tripadvisor {
