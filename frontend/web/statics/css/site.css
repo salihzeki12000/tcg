@@ -523,15 +523,10 @@ div#social-media-icons-container a {
   width: 100%;
 }
 
-.icon-menu-ok{
-    display: block;
-    float: left;
-    width: 24px;
-    height: 23px;
-    background-image: url(../images/icons.png);
-    background-repeat: no-repeat;
-    background-size: 236px;
-    background-position: -2px -273px;
+.themes-info .icon-menu-ok{
+    color: #6cd63c;
+    margin: 0 10px 0 5px;
+    font-size: 16px;
 }
 
 .tour-view h2{

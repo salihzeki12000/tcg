@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
               }
               ?>
             <div class="col-lg-6 col-md-6 col-xs-6 list-group-item">
-                <i class="icon-menu-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
+                <i class="icon-menu-ok glyphicon glyphicon-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
             </div>
             <?php } ?>
         </div>
