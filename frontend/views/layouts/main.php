@@ -105,15 +105,18 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="m-menu">
+    <div class="modal" id="m-menu" tabindex="-1" role="dialog" aria-labelledby="m-menu-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content m-menu">
+
         <ul class="">
             <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find A Tour') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
             <li><a href="<?= Url::toRoute(['count-me-in/index']) ?>"><?= Yii::t('app','Count Me In') ?></a></li>
-            <li class="container">
-                <ul class="menu-group">
+            <li class="">
+                <ul class="menu-group row">
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blogs') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
                 </ul>
@@ -178,6 +181,8 @@ AppAsset::register($this);
         </div>
 
         <span class="desc"><?=Yii::t('app','The China Guide')?><br /><?= Yii::t('app','A Beijing-based, foreign-owned travel agency.') ?></span>
+    </div>
+    </div>
     </div>
     <div class="container top-ccontainer">
         <?= Breadcrumbs::widget([
@@ -250,12 +255,13 @@ $js = <<<JS
         $('.navbar-toggle').click(function(){
             $('body,html').animate({scrollTop:0},0);
             $('.navbar-collapse.collapse').hide();
-            if($('.m-menu').is(":visible")){
-                $('.m-menu').hide();
-            }
-            else{
-                $('.m-menu').show();
-            }
+            // if($('.m-menu').is(":visible")){
+            //     $('.m-menu').hide();
+            // }
+            // else{
+            //     $('.m-menu').show();
+            // }
+            $('#m-menu').modal('toggle');
         });
         $('#gotop').click(function(){
             $('body,html').animate({scrollTop:0},1000);
