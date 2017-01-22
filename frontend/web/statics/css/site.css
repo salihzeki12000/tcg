@@ -51,6 +51,7 @@ body {
   background-color: #E0E3D6;
   box-shadow: 0px 0px 5px #888888;
   border: none;
+  z-index: 1200;
 }
 .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
     background-color: #4D423C;
