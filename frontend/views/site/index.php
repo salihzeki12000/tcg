@@ -333,6 +333,16 @@ $js = <<<JS
                 $('#city-map-detail-'+city_id).show();
             }
         });
+        $('.map-poi').hammer().on('tap', function(){
+            if(!$(this).hasClass('active'))
+            {
+                $('.map-poi').removeClass('active');
+                $(this).addClass('active');
+                var city_id = $(this).attr('data-cid');
+                $('.map-detail article').hide();
+                $('#city-map-detail-'+city_id).show();
+            }
+        });
     });
 JS;
 $this->registerJs($js);
