@@ -324,18 +324,6 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 $js = <<<JS
     $(function(){
         $('.map-poi').click(function(){
-            alert(11111111111);
-            if(!$(this).hasClass('active'))
-            {
-                $('.map-poi').removeClass('active');
-                $(this).addClass('active');
-                var city_id = $(this).attr('data-cid');
-                $('.map-detail article').hide();
-                $('#city-map-detail-'+city_id).show();
-            }
-        });
-        $('.map-poi').hammer().on('tap', function(){
-            alert(222222222);
             if(!$(this).hasClass('active'))
             {
                 $('.map-poi').removeClass('active');
