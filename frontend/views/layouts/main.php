@@ -165,7 +165,7 @@ AppAsset::register($this);
 
         <div class="home-btn">
             <div class="row btn-row">
-                <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
+                <a type="button" class="btn btn-danger col-lg-10 col-md-10 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"Let's Plan Your Trip")?></a>
                 
             </div>
         </div>

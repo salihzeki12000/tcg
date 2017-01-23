@@ -930,6 +930,9 @@ div#social-media-icons-container a {
   .exp-tab .tab{
     font-size: 30px !important;
   }
+  .map-view{
+    margin-left: 15%;
+  }
 }
 @media (min-width: 640px) {
   .tour-view .itineraries .text {
@@ -1473,4 +1476,89 @@ a.list-group-item{
 #txt_cities_name{
   font-size: 16px;
   line-height: 33px;
+}
+
+.map-poi{
+  display: block;
+  position: absolute;
+}
+.map-poi i{
+  color: #d8cbb6;
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+}
+.map-poi img, .map-poi i{
+  float: left;
+  margin-right: 0px;
+}
+.map-poi.poi-right img, .map-poi.poi-right i{
+  float: right;
+  margin-left: 0px;
+}
+.map-poi.poi-right .map-span{
+  float: right;
+}
+.map-poi:hover span, .map-poi:hover i{
+  color: #cd2930;
+}
+.map-poi.active span, .map-poi.active i{
+  color: #cd2930;
+}
+
+.map-div  {
+  width: 100%;
+  position: relative;
+}
+.map-span {
+  color: #d8cbb6;
+  display: block;
+  font-size: 14px;
+  float: left;
+}
+.map-poi-lasa {
+  left: 26%;
+  top: 61%;
+}
+.map-poi-guilin {
+  left: 54%;
+  top: 76%;
+}
+.map-poi-greatwall {
+  left: 53%;
+  top: 29%;
+}
+.map-poi-beijing {
+  left: 72%;
+  top: 33%;
+}
+.map-poi-xian {;
+  left: 62%;
+  top: 48%;
+}
+.map-poi-shanghai {
+  left: 84%;
+  top: 55%;
+}
+.map-poi-zhangjiajie {
+  display: block;
+  height: 20px;
+  position: absolute;
+  left: 70%;
+  top: 65%;
+}
+.map-poi-yangshuo {
+  left: 64%;
+  top: 78%;
+}
+
+.index-map.map-detail .entry-title a, .sidebar .widget-title a {
+    color: #d8cbb6;
+    font-weight: 500;
+}
+.index-map.map-detail .entry-title {
+    text-transform: none;
+}
+.index-map.map-detail .entry {
+    color: #d8cbb6;
 }

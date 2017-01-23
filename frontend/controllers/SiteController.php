@@ -139,7 +139,13 @@ class SiteController extends Controller
             }
         }
 
-        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes, 'tours'=>$tours]);
+
+        $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,20]]);
+        $cities_map = $cities_map_query
+            ->all();
+
+
+        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes, 'tours'=>$tours, 'cities_map'=>$cities_map]);
     }
 
     public function actionCurrency()
