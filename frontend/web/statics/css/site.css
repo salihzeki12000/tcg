@@ -1478,6 +1478,9 @@ a.list-group-item{
   line-height: 33px;
 }
 
+.map-container{
+  margin: 0 auto;
+}
 .map-poi{
   display: block;
   position: absolute;

@@ -182,66 +182,69 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         </div>
     </div>
 
-    <div class="container index-map col-lg-4 col-md-6 col-sm-6 col-xs-12 map-view">
-        <div class="map-div">
-            <?= Html::img('@web/statics/images/china-map.png', ['alt'=>'China Map', 'width'=>'100%']) ?>
+    <div class="map-container container row">
+        <div class="index-map col-lg-4 col-md-6 col-sm-6 col-xs-12 map-view">
+            <div class="map-div">
+                <?= Html::img('@web/statics/images/china-map.png', ['alt'=>'China Map', 'width'=>'100%']) ?>
 
-            <a href="javascript:void(0);" class="map-poi map-poi-lasa" id="map-poi-lasa" data-cid="7">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Tibet/Lhasa</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi poi-right map-poi-guilin" id="map-poi-guilin" data-cid="9">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Guilin</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi map-poi-yangshuo" id="map-poi-yangshuo" data-cid="6">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Yangshuo</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi map-poi-zhangjiajie" id="map-poi-zhangjiajie" data-cid="5">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Zhangjiajie</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi map-poi-shanghai" id="map-poi-shanghai" data-cid="3">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Shanghai</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi map-poi-xian" id="map-poi-xian" data-cid="2">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Xi'an</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi map-poi-beijing active" id="map-poi-beijing" data-cid="1">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">Beijing</span>
-            </a>
-            <a href="javascript:void(0);" class="map-poi poi-right map-poi-greatwall" id="map-poi-greatwall" data-cid="20">
-                <i class="glyphicon glyphicon-map-marker"></i>
-                <span class="map-span">The Great Wall</span>
-            </a>
+                <a href="javascript:void(0);" class="map-poi map-poi-lasa" id="map-poi-lasa" data-cid="7">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Tibet/Lhasa</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi poi-right map-poi-guilin" id="map-poi-guilin" data-cid="9">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Guilin</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi map-poi-yangshuo" id="map-poi-yangshuo" data-cid="6">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Yangshuo</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi map-poi-zhangjiajie" id="map-poi-zhangjiajie" data-cid="5">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Zhangjiajie</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi map-poi-shanghai" id="map-poi-shanghai" data-cid="3">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Shanghai</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi map-poi-xian" id="map-poi-xian" data-cid="2">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Xi'an</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi map-poi-beijing active" id="map-poi-beijing" data-cid="1">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Beijing</span>
+                </a>
+                <a href="javascript:void(0);" class="map-poi poi-right map-poi-greatwall" id="map-poi-greatwall" data-cid="20">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">The Great Wall</span>
+                </a>
 
+            </div>
+        </div>
+        <div class="index-map col-lg-4 col-md-6 col-sm-6 col-xs-12 map-detail">
+            <?php foreach ($cities_map as $city_info) { ?>
+              <article class="entry teaser" id="city-map-detail-<?= $city_info['id'] ?>" <?= ($city_info['id']==1) ? '': 'style="display: none;"' ?>>
+                <header class="entry-header">
+                  <h2 class="entry-title" itemprop="headline">
+                    <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" rel="bookmark"><?= $city_info['name'] ?></a>
+                  </h2>
+                </header>
+                <div class="entry-content" itemprop="text">
+                  <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" aria-hidden="true">
+                    <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
+                  </a>
+                  <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
+                </div>
+                <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','View')?>"><?=Yii::t('app','View')?></a>
+                <p class="entry-meta">
+                  <time class="entry-time" itemprop="datePublished" datetime="">&nbsp;</time>
+                </p>
+              </article>
+            <?php } ?>
         </div>
     </div>
-    <div class="container index-map col-lg-4 col-md-6 col-sm-6 col-xs-12 map-detail">
-        <?php foreach ($cities_map as $city_info) { ?>
-          <article class="entry teaser" id="city-map-detail-<?= $city_info['id'] ?>" <?= ($city_info['id']==1) ? '': 'style="display: none;"' ?>>
-            <header class="entry-header">
-              <h2 class="entry-title" itemprop="headline">
-                <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" rel="bookmark"><?= $city_info['name'] ?></a>
-              </h2>
-            </header>
-            <div class="entry-content" itemprop="text">
-              <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" aria-hidden="true">
-                <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
-              </a>
-              <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
-            </div>
-            <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','View')?>"><?=Yii::t('app','View')?></a>
-            <p class="entry-meta">
-              <time class="entry-time" itemprop="datePublished" datetime="">&nbsp;</time>
-            </p>
-          </article>
-        <?php } ?>
-    </div>
+
 
     <div class="container clients-saying">
         <div class="row">
