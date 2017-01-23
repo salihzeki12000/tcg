@@ -182,65 +182,6 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         </div>
     </div>
 
-    <div class="container clients-saying">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header"><?=Yii::t('app','WHAT OUR CLIENTS ARE SAYING')?></h1>
-            </div>
-            <div class="col-lg-8 col-md-8 col-xs-12">
-                <em><?=Yii::t('app','"This is the way to see China."')?></em>
-                <div><?=Yii::t('app','Mark D@Tripadvisor')?></div>
-                <em><?=Yii::t('app','"5 star service from beginning to end."')?></em>
-                <div><?=Yii::t('app','MJMaher@Tripadvisor')?></div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-                <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="container home-btn">
-        <div class="row btn-row">
-            <a type="button" class="btn btn-mine col-lg-3 col-md-4 col-xs-10" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank"><?=Yii::t('app','More  reviews on Tripadvisor')?></a>
-        </div>
-    </div>
-
-
-    <div class="container index-faq col-lg-6">
-        <div class="list-group faq">
-            <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','FAQ')?></h2></center></a>
-            <?php foreach ($faq as $item) { ?>
-            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
-                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
-                <span><?= $item['title'] ?></span>
-            </a>
-            <?php } ?>
-        </div>
-    </div>
-
-
-    <div class="container index-article col-lg-6 blog">
-        <?php foreach ($articles as $article) { ?>
-          <article class="entry teaser first">
-            <header class="entry-header">
-              <h2 class="entry-title" itemprop="headline">
-                <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" rel="bookmark"><?= $article['title'] ?></a>
-              </h2>
-            </header>
-            <div class="entry-content" itemprop="text">
-              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
-                <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
-              </a>
-              <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 240)) ?></p>
-            </div>
-            <a href="<?= Url::toRoute(['article/index']) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','More Blogs')?>" style="background-color: #B33635;"><?=Yii::t('app','More Blogs')?></a>
-            <p class="entry-meta">
-              <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
-            </p>
-          </article>
-        <?php } ?>
-    </div>
-
     <div class="container index-map col-lg-4 col-md-6 col-sm-6 col-xs-12 map-view">
         <div class="map-div">
             <?= Html::img('@web/statics/images/china-map.png', ['alt'=>'China Map', 'width'=>'100%']) ?>
@@ -297,6 +238,65 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
             <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','View')?>"><?=Yii::t('app','View')?></a>
             <p class="entry-meta">
               <time class="entry-time" itemprop="datePublished" datetime="">&nbsp;</time>
+            </p>
+          </article>
+        <?php } ?>
+    </div>
+
+    <div class="container clients-saying">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"><?=Yii::t('app','WHAT OUR CLIENTS ARE SAYING')?></h1>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <em><?=Yii::t('app','"This is the way to see China."')?></em>
+                <div><?=Yii::t('app','Mark D@Tripadvisor')?></div>
+                <em><?=Yii::t('app','"5 star service from beginning to end."')?></em>
+                <div><?=Yii::t('app','MJMaher@Tripadvisor')?></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="container home-btn">
+        <div class="row btn-row">
+            <a type="button" class="btn btn-mine col-lg-3 col-md-4 col-xs-10" href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank"><?=Yii::t('app','More  reviews on Tripadvisor')?></a>
+        </div>
+    </div>
+
+
+    <div class="container index-faq col-lg-6">
+        <div class="list-group faq">
+            <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','FAQ')?></h2></center></a>
+            <?php foreach ($faq as $item) { ?>
+            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
+                <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
+                <span><?= $item['title'] ?></span>
+            </a>
+            <?php } ?>
+        </div>
+    </div>
+
+
+    <div class="container index-article col-lg-6 blog">
+        <?php foreach ($articles as $article) { ?>
+          <article class="entry teaser first">
+            <header class="entry-header">
+              <h2 class="entry-title" itemprop="headline">
+                <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" rel="bookmark"><?= $article['title'] ?></a>
+              </h2>
+            </header>
+            <div class="entry-content" itemprop="text">
+              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
+                <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
+              </a>
+              <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 240)) ?></p>
+            </div>
+            <a href="<?= Url::toRoute(['article/index']) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','More Blogs')?>" style="background-color: #B33635;"><?=Yii::t('app','More Blogs')?></a>
+            <p class="entry-meta">
+              <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
             </p>
           </article>
         <?php } ?>
