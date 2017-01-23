@@ -1491,21 +1491,27 @@ a.list-group-item{
   height: 20px;
   font-size: 18px;
 }
-.map-poi img, .map-poi i{
+.map-poi i{
   float: left;
   margin-right: 0px;
 }
-.map-poi.poi-right img, .map-poi.poi-right i{
+.map-poi.poi-right i{
   float: right;
   margin-left: 0px;
 }
 .map-poi.poi-right .map-span{
   float: right;
 }
-.map-poi:hover span, .map-poi:hover i{
+.map-poi:hover span{
+  color: #E9C46C;
+}
+.map-poi:hover i{
   color: #cd2930;
 }
-.map-poi.active span, .map-poi.active i{
+.map-poi.active span{
+  color: #E9C46C;
+}
+.map-poi.active i{
   color: #cd2930;
 }
 
@@ -1556,7 +1562,7 @@ a.list-group-item{
 }
 
 .index-map.map-detail .entry-title a, .sidebar .widget-title a {
-    color: #d8cbb6;
+    color: #E9C46C;
     font-weight: 500;
 }
 .index-map.map-detail .entry-title {
