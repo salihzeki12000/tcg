@@ -322,7 +322,6 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
 <?php
 $js = <<<JS
-    $(function(){
         $('.map-poi').click(function(){
             if(!$(this).hasClass('active'))
             {
@@ -333,7 +332,6 @@ $js = <<<JS
                 $('#city-map-detail-'+city_id).show();
             }
         });
-    });
 JS;
 $this->registerJs($js);
 ?>
