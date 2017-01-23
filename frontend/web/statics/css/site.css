@@ -1479,7 +1479,7 @@ a.list-group-item{
 }
 
 .map-container{
-  margin: 0 auto;
+  margin: 30px auto 10px auto;
 }
 .map-poi{
   display: block;
