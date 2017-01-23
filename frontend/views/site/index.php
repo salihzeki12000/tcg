@@ -290,7 +290,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
             </header>
             <div class="entry-content" itemprop="text">
               <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" aria-hidden="true">
-                <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
+                <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
               </a>
               <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
             </div>
