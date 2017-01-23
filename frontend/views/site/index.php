@@ -182,7 +182,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         </div>
     </div>
 
-    <div class="map-container container row">
+    <div class="map-container row">
         <div class="index-map col-lg-4 col-md-6 col-sm-6 col-xs-12 map-view">
             <div class="map-div">
                 <?= Html::img('@web/statics/images/china-map.png', ['alt'=>'China Map', 'width'=>'100%']) ?>
