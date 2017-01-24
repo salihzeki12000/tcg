@@ -18,8 +18,7 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" /> 
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?><?php if(\Yii::$app->controller->id == 'site' && \Yii::$app->controller->action->id == 'index') {} else { ?> - <?=Yii::t('app','The China Guide')?><?php } ?></title>
     <meta name="description" content="<?= $this->description ?>" />
