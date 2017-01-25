@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
 
-    <div class="exp-search-form col-lg-6 col-md-6 col-xs-12">
+    <div class="exp-search-form col-lg-6 col-md-6 col-sm-10 col-xs-12">
       <span class="input-group-title"><?=Yii::t('app','Tour Length')?>:</span>
       <div class="input-group type-menu">
         <select id="formsearch-tour_length" class="short-input" name="tour_length">
@@ -105,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container home-btn">
         <div class="row btn-row">
-            <button type="submit" class="btn btn-danger col-lg-3 col-md-4 col-xs-11"><?=Yii::t('app',"Search")?></button>
+            <button type="submit" class="btn btn-danger col-lg-3 col-md-4 col-sm-8 col-xs-11"><?=Yii::t('app',"Search")?></button>
         </div>
     </div>
 
