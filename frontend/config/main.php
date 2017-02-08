@@ -83,6 +83,7 @@ return [
                 'destination/<name:[A-Za-z0-9_\'\s\|\-]+>/<action:\w+>/page/<page:\d+>' => 'destination/<action>',
                 'destination/<name:[A-Za-z0-9_\'\s\|\-]+>/<action:\w+>' => 'destination/<action>',
                 'sight/<name:[A-Za-z0-9_\'\s\-]+>' => 'sight/view',
+                'activity/<name:[A-Za-z0-9_\'\s\-]+>' => 'activity/view',
                 'blogs' => 'article/index',
                 'blog/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'article/view',
                 'misc/<title:[A-Za-z0-9_\'\s\-\?]+>' => 'misc/view',
