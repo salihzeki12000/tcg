@@ -44,6 +44,7 @@ class ExperienceController extends Controller
     public function actionIndex()
     {
         $theme = trim(Yii::$app->request->get('theme'));
+        $theme = str_replace('-', ' ', $theme);
         $theme_id = '';
 
         if (empty($theme)) {
@@ -151,6 +152,7 @@ class ExperienceController extends Controller
      */
     public function actionView($name)
     {
+        $name = str_replace('-', ' ', $name);
         $tour_info = $this->findModel($name);
         $id = $tour_info['id'];
 

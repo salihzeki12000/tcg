@@ -353,6 +353,12 @@ class UrlManager extends Component
             foreach ($params as $key => $value) {
                 if ($value !== null) {
                     $cacheKey .= $key . '&';
+
+                    /////////////add by mxb///////////////
+                    if (in_array($key, ['name', 'title', 'city_name', 'theme'])) {
+                        $params[$key] = str_replace(' ', '-', $value);
+                    }
+                    //////////////////////////////////////
                 }
             }
 

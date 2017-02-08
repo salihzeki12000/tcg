@@ -196,6 +196,7 @@ class DestinationController extends Controller
 
     protected function getCityBaseInfo($name)
     {
+        $name = str_replace('-', ' ', $name);
         $city_info = $this->findModel($name);
         $id = $city_info->id;
 

@@ -50,6 +50,7 @@ class ArticleController extends Controller
      */
     public function actionView($title)
     {
+        $title = str_replace('-', ' ', $title);
         $article = $this->findModel($title);
         $id = $article['id'];
 

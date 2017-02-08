@@ -67,6 +67,7 @@ class CountMeInController extends Controller
      */
     public function actionView($name)
     {
+        $name = str_replace('-', ' ', $name);
         $tour_info = $this->findModel($name);
         $id = $tour_info['id'];
 

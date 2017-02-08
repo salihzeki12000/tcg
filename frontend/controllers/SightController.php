@@ -31,6 +31,7 @@ class SightController extends Controller
      */
     public function actionView($name)
     {
+        $name = str_replace('-', ' ', $name);
         $sight_info = $this->findModel($name);
         $id = $sight_info['id'];
 

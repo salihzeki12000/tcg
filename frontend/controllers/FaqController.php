@@ -42,6 +42,7 @@ class FaqController extends Controller
      */
     public function actionView($title)
     {
+        $title = str_replace('-', ' ', $title);
         $faq = $this->findModel($title);
         $id = $faq['id'];
 

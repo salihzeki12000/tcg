@@ -31,6 +31,7 @@ class ActivityController extends Controller
      */
     public function actionView($name)
     {
+        $name = str_replace('-', ' ', $name);
         $activity_info = $this->findModel($name);
         $id = $activity_info['id'];
 

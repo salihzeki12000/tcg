@@ -46,7 +46,7 @@ class Article extends \yii\db\ActiveRecord
             [['create_time', 'update_time'], 'safe'],
             [['title','pic_s', 'keywords'], 'string', 'max' => 255],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
-            [['title'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\-\?]+$/','message'=>'Title does not conform to the requirements'],
+            [['title'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\?]+$/','message'=>'Title does not conform to the requirements'],
         ];
     }
 

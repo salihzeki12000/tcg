@@ -43,6 +43,8 @@ class Theme extends \yii\db\ActiveRecord
             [['name', 'class_name'], 'string', 'max' => 50],
             [['use_ids'], 'string', 'max' => 255],
             [['use_ids'],'match','pattern'=>'/^(\d+[,])*(\d+)$/','message'=>'Name does not conform to the requirements'],
+            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\s]+$/','message'=>'Name does not conform to the requirements'],
+
         ];
     }
 
