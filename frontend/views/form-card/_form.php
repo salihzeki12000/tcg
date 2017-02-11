@@ -58,11 +58,11 @@ use yii\widgets\ActiveForm;
     <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
     <table width="100%">
         <tr>
-            <td valign="top">
+            <td valign="top" width="50%">
                 <?= $form->field($model, 'client_name')->textInput(['maxlength' => true])->label(false) ?>
             </td>
-            <td width="220px" valign="top" align="center">
-                <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> Same as the name on  card</label>
+            <td width="50%" valign="top" align="center">
+                <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> Name on  card</label>
             </td>
         </tr>
     </table>
