@@ -25,20 +25,7 @@ use yii\widgets\ActiveForm;
     </table>
 
     
-
-    <?= $form->field($model, 'client_name')->textInput(['maxlength' => true]) ?>
-
-    <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Name on card')?></label>
-    <table width="100%">
-        <tr>
-            <td valign="top">
-                <?= $form->field($model, 'name_on_card')->textInput(['maxlength' => true])->label(false) ?>
-            </td>
-            <td width="150px" valign="top" align="center">
-                <label><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> same as above</label>
-            </td>
-        </tr>
-    </table>
+    <?= $form->field($model, 'name_on_card')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'card_number')->textInput(['maxlength' => true]) ?>
 
@@ -62,8 +49,20 @@ use yii\widgets\ActiveForm;
             <td valign="top">
                 <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true])->label(false) ?>
             </td>
-            <td width="150px" valign="top" align="center">
+            <td width="150px" valign="top" align="left">
                 CNY
+            </td>
+        </tr>
+    </table>
+
+    <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
+    <table width="100%">
+        <tr>
+            <td valign="top">
+                <?= $form->field($model, 'client_name')->textInput(['maxlength' => true])->label(false) ?>
+            </td>
+            <td width="220px" valign="top" align="center">
+                <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> Same as the name on  card</label>
             </td>
         </tr>
     </table>
@@ -74,9 +73,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'card_holder_email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'travel_agent')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'travel_agent')->dropDownList(\common\models\Tools::getFormTravelAgents(), ['prompt' => '']) ?>
 
     <?= $form->field($model, 'tour_date')->textInput(['maxlength' => true]) ?>
 
@@ -97,15 +94,15 @@ $js = <<<JS
 
         $('#same_as_client').click(function(){
             if(this.checked){
-                if($('#formcard-client_name').val()){
-                    $('#formcard-name_on_card').val($('#formcard-client_name').val()).attr("readonly","readonly");
+                if($('#formcard-name_on_card').val()){
+                    $('#formcard-client_name').val($('#formcard-name_on_card').val()).attr("readonly","readonly");
                 }
                 else{
                     $(this).attr("checked", false);
                 }
             }
             else{
-                $('#formcard-name_on_card').attr("readonly",false);
+                $('#formcard-client_name').attr("readonly",false);
             }
         });
     });

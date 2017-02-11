@@ -40,7 +40,7 @@ class FormCard extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['card_type', 'client_name', 'name_on_card', 'card_number', 'card_security_code', 'expiry_month', 'expiry_year', 'amount_to_bill', 'billing_address', 'contact_phone', 'email', 'card_holder_email', 'travel_agent', 'tour_date'], 'required'],
+            [['card_type', 'client_name', 'name_on_card', 'card_number', 'card_security_code', 'expiry_month', 'expiry_year', 'amount_to_bill', 'billing_address', 'contact_phone', 'email', 'travel_agent', 'tour_date'], 'required' , 'message' => Yii::t('app', 'Required')],
             [['card_number', 'amount_to_bill'], 'number'],
             [['card_number', 'amount_to_bill'], 'string', 'max' => 18],
             ['card_security_code', 'integer'],
@@ -51,7 +51,7 @@ class FormCard extends \yii\db\ActiveRecord
             [['expiry_month', 'expiry_year'], 'string', 'max' => 10],
             [['billing_address'], 'string', 'max' => 50],
             [['tour_date'], 'string', 'max' => 12],
-            [['email', 'card_holder_email'], 'email'],
+            [['email'], 'email'],
         ];
     }
 
@@ -63,7 +63,7 @@ class FormCard extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'card_type' => Yii::t('app', 'Card type'),
-            'client_name' => Yii::t('app', 'Client name'),
+            'client_name' => Yii::t('app', 'Your full name'),
             'name_on_card' => Yii::t('app', 'Name on card'),
             'card_number' => Yii::t('app', 'Card number'),
             'card_security_code' => Yii::t('app', 'Card security code'),
@@ -71,11 +71,11 @@ class FormCard extends \yii\db\ActiveRecord
             'expiry_year' => Yii::t('app', 'Expiry date Year'),
             'amount_to_bill' => Yii::t('app', 'Amount to bill'),
             'billing_address' => Yii::t('app', 'Billing address'),
-            'contact_phone' => Yii::t('app', 'Contact phone'),
-            'email' => Yii::t('app', 'Email'),
+            'contact_phone' => Yii::t('app', 'Your phone number'),
+            'email' => Yii::t('app', 'Your email'),
             'card_holder_email' => Yii::t('app', 'Card holder\'s email'),
-            'travel_agent' => Yii::t('app', 'Travel agent'),
-            'tour_date' => Yii::t('app', 'Tour date'),
+            'travel_agent' => Yii::t('app', 'Your travel agent'),
+            'tour_date' => Yii::t('app', 'Your tour start date'),
             'create_time' => Yii::t('app', 'Create Time'),
         ];
     }

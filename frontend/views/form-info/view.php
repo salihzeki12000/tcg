@@ -12,6 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="form-info-view container">
 
-    <h3>Thank's, We have received your infomation. </h3>
+    <h3><?=Yii::t('app','Thank you for your inquiry. ')?></h3>
+    <p><?=Yii::t('app','If you don\'t receive a reply within 24 hours, please check your spam folder.')?></p>
+    <a href="<?= Url::toRoute(['/']) ?>"><?=Yii::t('app','back to homepage')?></a>.
 
 </div>

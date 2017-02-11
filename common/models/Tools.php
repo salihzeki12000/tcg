@@ -92,4 +92,15 @@ class Tools
         }
     }
 
+    static public function getFormTravelAgents()
+    {
+        $list = Yii::$app->params['travel_agents_mail'];
+        $data = [];
+        foreach ($list as $key => $value) {
+            $data[$key] = $key;
+        }
+        $data['Not Sure'] = 'Not Sure';
+        return $data;
+    }
+
 }

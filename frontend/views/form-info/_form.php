@@ -198,7 +198,7 @@ $js = <<<JS
         $('#forminfo-book_hotels').change(function(){
             if(this.value=='Yes'){
                 $('.field-forminfo-hotel_preferences').show();
-                $('.field-forminfo-hotel_preferences').show();
+                $('.field-forminfo-room_requirements').show();
                 $('#form-info-form').yiiActiveForm('add', {
                     id: 'hotel_preferences',
                     name: 'hotel_preferences',
