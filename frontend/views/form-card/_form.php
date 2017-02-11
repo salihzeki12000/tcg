@@ -46,10 +46,10 @@ use yii\widgets\ActiveForm;
     <label class="control-label" for="formcard-amount_to_bill"><?=Yii::t('app','Amount to bill')?></label>
     <table width="100%">
         <tr>
-            <td valign="top">
+            <td valign="top" width="50%">
                 <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true])->label(false) ?>
             </td>
-            <td width="150px" valign="top" align="left">
+            <td width="50%" valign="top" align="left">
                 CNY
             </td>
         </tr>
