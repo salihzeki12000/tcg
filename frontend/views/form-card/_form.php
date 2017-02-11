@@ -46,10 +46,10 @@ use yii\widgets\ActiveForm;
     <label class="control-label" for="formcard-amount_to_bill"><?=Yii::t('app','Amount to bill')?></label>
     <table width="100%">
         <tr>
-            <td valign="top" width="50%">
+            <td valign="middle" width="50%">
                 <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true])->label(false) ?>
             </td>
-            <td width="50%" valign="top" align="left">
+            <td width="50%" valign="middle" align="left">
                 CNY
             </td>
         </tr>
@@ -58,10 +58,10 @@ use yii\widgets\ActiveForm;
     <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
     <table width="100%">
         <tr>
-            <td valign="top" width="50%">
+            <td valign="middle" width="50%">
                 <?= $form->field($model, 'client_name')->textInput(['maxlength' => true])->label(false) ?>
             </td>
-            <td width="50%" valign="top" align="center">
+            <td width="50%" valign="middle" align="left">
                 <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> Name on  card</label>
             </td>
         </tr>
