@@ -67,6 +67,7 @@ return [
             'enableStrictParsing' => false,
             // 'suffix' => '.html',
             'rules' => [
+                'secure-credit-card-form' => 'form-card/create',
                 'experiences/search' => 'experience/search',
                 'experiences/city/<city_name:[A-Za-z0-9_\'\s\|\-]+>/page/<page:\d+>' => 'experience/index',
                 'experiences/city/<city_name:[A-Za-z0-9_\'\s\|\-]+>' => 'experience/index',
