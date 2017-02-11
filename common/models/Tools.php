@@ -64,4 +64,32 @@ class Tools
         }
         return $tours;
     }
+
+    static public function getFormPopularCities()
+    {
+
+        $cache = Yii::$app->cache;
+        $cache_key = 'FORM_POPULAR_CITIES';
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $cities_query = \common\models\Cities::find()->where(['status'=>DIS_STATUS_SHOW]);
+            $cities_query->andWhere("FIND_IN_SET('".REC_TYPE_POPULAR."', rec_type)");
+            $cities = $cities_query
+                ->orderBy('priority DESC, id ASC')
+                ->all();
+            if (!empty($cities)) {
+                $data = [];
+                foreach ($cities as $city) {
+                    $data[$city['id']] = $city['name'];
+                }
+                $cache->set($cache_key, $data, 60*10); 
+                return $data;
+            }
+        }
+        else
+        {
+            return $data;
+        }
+    }
+
 }

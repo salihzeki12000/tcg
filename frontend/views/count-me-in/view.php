@@ -217,9 +217,10 @@ $this->params['breadcrumbs'][] = $this->title;
           'form_type' => FORM_TYPE_GROUP,
           'tour_code' => $tour_info['code'],
           'tour_name' => $tour_info['name'],
+          'bt_submit_txt' => Yii::t('app', 'Join This Group Tour') ,
       ]) ?>
 
-      <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within one working day.')?></div>
+      <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
     </div>
   </div>
 

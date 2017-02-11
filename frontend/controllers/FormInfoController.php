@@ -77,10 +77,10 @@ class FormInfoController extends Controller
         $model = new FormInfo($form_type);
 
         if ($model->load(Yii::$app->request->post())) {
-            if (array_key_exists('cities_plan', $_POST['FormInfo'])) {
+            if (array_key_exists('cities_plan', $_POST['FormInfo']) && !empty($_POST['FormInfo']['cities_plan'])) {
                 $model->cities_plan = join(',', $_POST['FormInfo']['cities_plan']);
             }
-            if (array_key_exists('travel_interests', $_POST['FormInfo'])) {
+            if (array_key_exists('travel_interests', $_POST['FormInfo']) && !empty($_POST['FormInfo']['travel_interests'])) {
                 $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
             }
             if ($model->save()) {

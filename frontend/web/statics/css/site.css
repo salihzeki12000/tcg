@@ -627,6 +627,13 @@ div#social-media-icons-container a {
   margin: 30px auto;
   float: none;
 }
+.form-info-create .has-success .control-label, .form-info-create .has-error .control-label{
+  color: #333;
+}
+.form-info-create .desc-label, .form-info-create .form-group>div>label{
+  font-weight: normal;
+  color: #444;
+}
 .form-info .form-title{
   font-size: 20px;
   background-color: #B33635;
@@ -654,7 +661,7 @@ div#social-media-icons-container a {
   background-color: #B33635;
   border-color: #E4E4E4;
   border-radius: 15px;
-  padding: 8px 106px;
+  padding: 8px 80px;
 }
 
 .tour-index .file-drop-zone {
