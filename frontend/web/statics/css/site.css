@@ -898,6 +898,14 @@ div#social-media-icons-container a {
         padding-bottom: 10px;
     }
 }
+@media (min-width: 1080px) {
+    .navbar-inverse>.container{
+      margin-left: 0px !important;
+    }
+    .navbar-inverse .navbar-nav{
+      margin-right: 0px;
+    }
+}
 @media (min-width: 1200px) {
   .tour-view > .col-lg-8 {
       padding-left:75px;
