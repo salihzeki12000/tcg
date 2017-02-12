@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Join A Group'), 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Join A Group'), 'width'=>"100%"]) ?>
       <div class="banner-text"><?= Yii::t('app', 'Join A Group') ?></div>
     </div>
   </div>
