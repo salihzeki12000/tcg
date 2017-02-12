@@ -99,12 +99,6 @@ class SiteController extends Controller
             ->orderBy('priority DESC')
             ->all();
 
-        $cities_query = \common\models\Cities::find()->where(['status'=>DIS_STATUS_SHOW]);
-        $cities_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
-        $cities_tour = $cities_query
-            ->orderBy('priority DESC, id ASC')
-            ->all();
-
         $faq_query = \common\models\Article::find()->where(['type'=>ARTICLE_TYPE_FAQ, 'status'=>DIS_STATUS_SHOW]);
         $faq_query->andWhere("FIND_IN_SET('".REC_TYPE_MUST_VISIT."', rec_type)");
         $faq = $faq_query
@@ -140,12 +134,12 @@ class SiteController extends Controller
         }
 
 
-        $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,20]]);
+        $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,10,20]]);
         $cities_map = $cities_map_query
             ->all();
 
 
-        return $this->render('index',['slides'=>$slides, 'cities_tour'=>$cities_tour, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes, 'tours'=>$tours, 'cities_map'=>$cities_map]);
+        return $this->render('index',['slides'=>$slides, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes, 'tours'=>$tours, 'cities_map'=>$cities_map]);
     }
 
     public function actionCurrency()

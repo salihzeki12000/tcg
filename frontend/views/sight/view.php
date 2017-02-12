@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $model common\models\city */
 
 $this->title = $sight_info['name'];
-$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($sight_info['overview']), 30)) . '…';
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($sight_info['overview']), 30)) . '...';
 $this->keywords = Html::encode($sight_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => $city_info['name'], 'url'=>Url::toRoute(['destination/view', 'name'=>$city_info['name']])];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sights'), 'url'=>Url::toRoute(['destination/sights', 'name'=>$city_info['name']])];

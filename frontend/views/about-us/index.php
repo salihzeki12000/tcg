@@ -12,7 +12,7 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'About us');
-$this->description = Yii::t('app', 'The China Guide create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
+$this->description = Yii::t('app', 'The China Guide creates private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
@@ -32,11 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu sub-menu" role="menu">
-        <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/index']) ?>"><?=Yii::t('app','Our Mission')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/meet-our-team']) ?>"><?=Yii::t('app','Meet Our Team')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/our-guides']) ?>"><?=Yii::t('app','Our Guides')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='drivers-and-vehicles')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers &amp; Vehicles')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='contact-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about/contact-us']) ?>"><?=Yii::t('app','Contact Us')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/index']) ?>"><?=Yii::t('app','Our Mission')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet Our Team')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our Guides')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='drivers-and-vehicles')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers &amp; Vehicles')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='contact-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact Us')?></a></li>
       </ul>
     </div>
 

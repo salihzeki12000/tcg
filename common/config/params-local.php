@@ -71,8 +71,9 @@ return [
         ARTICLE_TYPE_PREPARATION    => Yii::t('app', 'Preparation'),
         ),
     'faq_type' => array(
-        FAQ_TYPE_TRIP_PLANNING => Yii::t('app', 'Trip Planning'),
-        FAQ_TYPE_IN_CHINA      => Yii::t('app', 'In China'),
+        FAQ_TYPE_TRIP_PLANNING => Yii::t('app', 'Before You Leave'),
+        FAQ_TYPE_IN_CHINA      => Yii::t('app', 'During You Trip'),
+        FAQ_TYPE_FAQ        => Yii::t('app', 'FAQ'),
         ),
     'album_type' => array(
         ALBUM_TYPE_SIGHT    => Yii::t('app', 'sight'),

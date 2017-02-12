@@ -14,9 +14,9 @@ use yii\data\Pagination;
 use frontend\components\BaseController;
 
 /**
- * CountMeInController implements the CRUD actions for Tour model.
+ * JoinAGroupController implements the CRUD actions for Tour model.
  */
-class CountMeInController extends Controller
+class JoinAGroupController extends Controller
 {
     public $tour_type = TOUR_TYPE_GROUP;
 

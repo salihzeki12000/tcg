@@ -50,10 +50,10 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Experiences'), 'url' => ['experience/index'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         ['label' => Yii::t('app','Educational Programs'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => Yii::t('app','Count Me In'), 'url' => ['count-me-in/index'], 'active' => \Yii::$app->controller->id == 'count-me-in'],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'faq' || \Yii::$app->controller->id == 'about'), 'items' =>[['label' => Yii::t('app','Blogs'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
-        ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],
-        ['label' => Yii::t('app','About Us'), 'url' => ['/about'], 'active' => \Yii::$app->controller->id == 'about', ],]],
+        ['label' => Yii::t('app','Join A Group'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'about-us'), 'items' =>[['label' => Yii::t('app','Blogs'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
+        ['label' => Yii::t('app','About Us'), 'url' => ['/about-us'], 'active' => \Yii::$app->controller->id == 'about-us', ],]],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -115,16 +115,16 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
-            <li><a href="<?= Url::toRoute(['count-me-in/index']) ?>"><?= Yii::t('app','Count Me In') ?></a></li>
+            <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Join A Group') ?></a></li>
             <li class="">
                 <ul class="menu-group row">
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blogs') ?></a></li>
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['faq/index']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['preparation/index']) ?>"><?= Yii::t('app','Preparation') ?></a></li>
                 </ul>
             </li>
         </ul>
         <ul class="">
-            <li><a href="<?= Url::toRoute(['/about']) ?>"><?= Yii::t('app','About Us') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/about-us']) ?>"><?= Yii::t('app','About Us') ?></a></li>
             <li class="dropdown">
                 <a data-toggle="dropdown">
                 <?= Yii::t('app','Call Us') ?>
@@ -212,8 +212,8 @@ AppAsset::register($this);
             <a href="<?= Url::toRoute(['experience/index']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan a vacation')?></a> | 
             <a href="<?= Url::toRoute(['/educational-programs']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan an educational trip')?></a> | 
             <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan an incentive trip')?></a> | --> 
-            <a href="<?= Url::toRoute(['about/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a> | 
-            <a href="<?= Url::toRoute(['about/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
+            <a href="<?= Url::toRoute(['/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a> | 
+            <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
         </center>
     </div>
     <div class="search-box">

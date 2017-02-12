@@ -37,6 +37,7 @@ define('ARTICLE_TYPE_PAGE', 5);
 
 define('FAQ_TYPE_TRIP_PLANNING', 1);
 define('FAQ_TYPE_IN_CHINA', 2);
+define('FAQ_TYPE_FAQ', 3);
 
 define('ALBUM_TYPE_SIGHT', 1);
 define('ALBUM_TYPE_ACTIVITY', 2);

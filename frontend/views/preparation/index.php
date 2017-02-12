@@ -10,16 +10,16 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China travel FAQs');
-$this->description = Yii::t('app', 'China travel FAQs, China travel tips');
-$this->params['breadcrumbs'][] = Yii::t('app', 'FAQ');
+$this->title = Yii::t('app', 'China travel Preparations');
+$this->description = Yii::t('app', 'China travel Preparations, China travel tips');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
 ?>
 
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','FAQ')?></div>
+      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'Preparation', 'width'=>"100%"]) ?>
+      <div class="banner-text"><?=Yii::t('app','Preparation')?></div>
     </div>
   </div>
 </div>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'FAQ');
               continue;
             }
           ?>
-          <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+          <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
               <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>
@@ -51,7 +51,23 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'FAQ');
               continue;
             }
           ?>
-          <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+          <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+              <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
+              <span><?= $item['title'] ?></span>
+          </a>
+          <?php } ?>
+      </div>
+    </div>
+
+    <div class="article-index">
+      <div class="list-group">
+          <div class="list-group-item"><center><h2><?= Yii::$app->params['faq_type'][FAQ_TYPE_FAQ] ?></h2></center></div>
+          <?php foreach ($faq as $item) { 
+            if ($item['sub_type'] != FAQ_TYPE_FAQ) {
+              continue;
+            }
+          ?>
+          <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
               <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>

@@ -9,16 +9,16 @@ use common\models\UploadedFiles;
 /* @var $model common\models\Tour */
 
 $this->title = $faq['title'];
-$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($faq['content']), 30)) . '…';
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($faq['content']), 30)) . '...';
 $this->keywords = Html::encode($faq['keywords']);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'FAQ'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Preparation'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'FAQ', 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','FAQ')?></div>
+      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'Preparation', 'width'=>"100%"]) ?>
+      <div class="banner-text"><?=Yii::t('app','Preparation')?></div>
     </div>
   </div>
 </div>

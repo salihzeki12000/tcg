@@ -12,7 +12,7 @@ use yii\data\Pagination;
 /**
  * AboutController implements the CRUD actions for Tour model.
  */
-class AboutController extends Controller
+class AboutUsController extends Controller
 {
 
     /**

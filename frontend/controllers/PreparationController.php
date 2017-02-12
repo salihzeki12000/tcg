@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * ExperiencesController implements the CRUD actions for Tour model.
  */
-class FaqController extends Controller
+class PreparationController extends Controller
 {
 
     /**

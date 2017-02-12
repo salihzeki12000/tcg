@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Experiences, Search');
+$this->title = Yii::t('app', 'China Experiences');
 $this->description = Yii::t('app', 'China experiences, China tours, private China tours, customized China tours');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tour-index container">
 
-  <form id="tours_search" action="<?= Url::toRoute(['experience/search']) ?>"  method="post">
+  <form id="tours_search" action="<?= Url::toRoute(['experience/search']) ?>#search-results"  method="post">
     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
     <div class="exp-search-form col-lg-6 col-md-6 col-sm-10 col-xs-12">
       <span class="input-group-title"><?=Yii::t('app','Destinations')?>:</span>
@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
 
-    <div class="container home-btn">
+    <div class="container home-btn" id="search-results">
         <div class="row btn-row">
             <button type="submit" class="btn btn-danger col-lg-3 col-md-4 col-sm-8 col-xs-11"><?=Yii::t('app',"Search")?></button>
         </div>
@@ -156,7 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="form-info container">
-  <h2><?=Yii::t('app',"No ideal itinerary or don't bother to browse? Customize your own tour now!")?></h2>
+  <h2><?=Yii::t('app',"Can't find what you're looking for? Contact us today to customize your tour.")?></h2>
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
     <div class="form-title"><?=Yii::t('app','Customization Form')?></div>

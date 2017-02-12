@@ -20,9 +20,9 @@ $tours = \common\models\Tools::getMostPopularTours();
         <table class="pagebox_small">
             <tbody><tr>
                 <td>
-                    <?=Yii::t('app','Unfortunately, the page you were trying to retrieve does not exist on thechinaguide.com.')?> 
+                    <?=Yii::t('app','Sorry, we couldn\'t find the page you were looking for.')?> 
                     <h3><?=Yii::t('app','Most Popular Pages')?></h3>
-                    <?=Yii::t('app','You may have been trying to reach one of these pages:')?>
+                    <?=Yii::t('app','You might have been trying to find one of these pages:')?>
                     <ul>
                         <?php foreach ($tours as $tour) { ?>
                         <li>
@@ -33,7 +33,7 @@ $tours = \common\models\Tools::getMostPopularTours();
                     </ul>
 
                     <h3><?=Yii::t('app','Try the Homepage')?></h3>
-                    <?=Yii::t('app','Or you can simply try to start from the')?>
+                    <?=Yii::t('app','Start your journey on our')?>
                     <a href="<?= Url::toRoute(['/']) ?>"><?=Yii::t('app','homepage')?></a>.
                 </td>
             </tr>

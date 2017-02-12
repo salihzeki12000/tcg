@@ -5,8 +5,8 @@ use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
 $this->title = Yii::t('app','The China Guide') . ' - ' . Yii::t('app','A Beijing-based, Foreign-owned Travel Agency');
-$this->description = Yii::t('app','The China Guide create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
-$this->keywords = Yii::t('app','China travel agency, China guide, China travel guide, China tours, private China tours, customized China tours, China travel FAQs, China travel blogs');
+$this->description = Yii::t('app','The China Guide creates private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
+$this->keywords = Yii::t('app','China travel agency, China guide, China travel guide, China tours, private China tours, customized China tours, China travel Preparations, China travel blogs');
 ?>
 <div class="site-index">
 
@@ -167,18 +167,6 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
             <div class="col-lg-12">
                 <h1 class="page-header" style="margin: 38px 0 20px 0;"><?=Yii::t('app','POPULAR DESTINATIONS')?></h1>
             </div>
-
-            <?php foreach ($cities_tour as $city_tour) { ?>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'name'=>$city_tour['name']]) ?>">
-                    <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_tour['pic_s'], 's')?>" alt="<?=  $city_tour['name'] ?>">
-                    <div class="carousel-caption">
-                        <h3><?= $city_tour['name'] ?></h3>
-                    </div>
-                </a>
-            </div>
-            <?php } ?>
-
         </div>
     </div>
 
@@ -203,7 +191,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
                     <i class="glyphicon glyphicon-map-marker"></i>
                     <span class="map-span">Zhangjiajie</span>
                 </a>
-                <a href="javascript:void(0);" class="map-poi map-poi-shanghai" id="map-poi-shanghai" data-cid="3">
+                <a href="javascript:void(0);" class="map-poi  poi-right map-poi-shanghai" id="map-poi-shanghai" data-cid="3">
                     <i class="glyphicon glyphicon-map-marker"></i>
                     <span class="map-span">Shanghai</span>
                 </a>
@@ -219,6 +207,10 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
                     <i class="glyphicon glyphicon-map-marker"></i>
                     <span class="map-span">The Great Wall</span>
                 </a>
+                <a href="javascript:void(0);" class="map-poi poi-right map-poi-chengdu" id="map-poi-chengdu" data-cid="10">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="map-span">Chengdu</span>
+                </a>
 
             </div>
         </div>
@@ -233,10 +225,9 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
                 <div class="entry-content" itemprop="text">
                   <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" aria-hidden="true">
                     <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
+                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
                   </a>
-                  <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
                 </div>
-                <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','View')?>"><?=Yii::t('app','View')?></a>
                 <p class="entry-meta">
                   <time class="entry-time" itemprop="datePublished" datetime="">&nbsp;</time>
                 </p>
@@ -251,13 +242,13 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
             <div class="col-lg-12">
                 <h1 class="page-header"><?=Yii::t('app','WHAT OUR CLIENTS ARE SAYING')?></h1>
             </div>
-            <div class="col-lg-8 col-md-8 col-xs-12">
+            <div class="col-lg-7 col-md-8 col-xs-12">
                 <em><?=Yii::t('app','"This is the way to see China."')?></em>
                 <div><?=Yii::t('app','Mark D@Tripadvisor')?></div>
                 <em><?=Yii::t('app','"5 star service from beginning to end."')?></em>
                 <div><?=Yii::t('app','MJMaher@Tripadvisor')?></div>
             </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="col-lg-5 col-md-4 col-xs-12">
                 <?= Html::img('@web/statics/images/TripAdvisor-Award.png', ['alt'=>'TripAdvisor Award', 'class'=>"col-lg-6 col-md-8 col-sm-6 col-xs-8"]) ?>
             </div>
         </div>
@@ -272,9 +263,9 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
     <div class="container index-faq col-lg-6">
         <div class="list-group faq">
-            <a href="<?= Url::toRoute(['faq/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','FAQ')?></h2></center></a>
+            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','Preparation')?></h2></center></a>
             <?php foreach ($faq as $item) { ?>
-            <a href="<?= Url::toRoute(['faq/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
+            <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
                 <span><?= $item['title'] ?></span>
             </a>
