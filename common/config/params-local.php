@@ -38,18 +38,6 @@ return [
         TOUR_THEMES_NATURE       => Yii::t('app', 'Nature'),
         // TOUR_THEMES_CRUISE      => Yii::t('app', 'Cruise'),
         ),
-    'travel_agents_mail' => array(
-        'Anissa' => 'temp@thechinaguide.com',
-        'Dora' => 'temp@thechinaguide.com',
-        'Francisco' => 'temp@thechinaguide.com',
-        'Ignacio' => 'temp@thechinaguide.com',
-        'Lian' => 'temp@thechinaguide.com',
-        'Lina' => 'temp@thechinaguide.com',
-        'Linda' => 'temp@thechinaguide.com',
-        'Sarah' => 'temp@thechinaguide.com',
-        'Sheree' => 'temp@thechinaguide.com',
-        'Swannie' => 'temp@thechinaguide.com',
-        ),
     'months' => array(
         1 => 'Jan',
         2 => 'Feb',
