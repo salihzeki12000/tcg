@@ -37,6 +37,8 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(Cities::find()->all(), 'id', 'name')) ?>
 
+    <?= $form->field($model, 'tour_length')->textInput(['maxlength' => true]) ?>
+
     <?php if (!$model->isNewRecord) { ?>
 
     <?= $form->field($model, 'display_cities')->textInput(['maxlength' => true]) ?>
@@ -52,7 +54,6 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'priority')->textInput(['type' => 'number', 'maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tour_length')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'exp_num')->textInput() ?>
 
