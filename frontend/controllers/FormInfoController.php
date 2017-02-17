@@ -52,10 +52,6 @@ class FormInfoController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        Yii::$app->mailer->compose('form', ['model' => $model]) 
-            ->setTo('15079405@qq.com') 
-            ->setSubject('Message subject') 
-            ->send(); 
 
         return $this->render('view', [
             'model' => $model,
@@ -83,10 +79,16 @@ class FormInfoController extends Controller
             if (array_key_exists('travel_interests', $_POST['FormInfo']) && !empty($_POST['FormInfo']['travel_interests'])) {
                 $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
             }
+            $model->create_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
+
+                $mail_subject = "Inquiry-{$model->prefered_travel_agent}-" . Yii::$app->params['form_types'][$model->type] . ($model->tour_length?"-{$model->tour_length} Days":"") . "-{$model->adults} Guests-{$model->arrival_date}-{$model->name}";
+                $receiver[] = 'book@thechinaguide.com';
+                $receiver = ['15079405@qq.com','mxbin@sina.com'];
+
                 Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,]) 
-                    ->setTo('15079405@qq.com') 
-                    ->setSubject('Message subject') 
+                    ->setTo($receiver) 
+                    ->setSubject($mail_subject) 
                     ->send(); 
 
                 return $this->redirect(['view', 'id' => $model->id]);

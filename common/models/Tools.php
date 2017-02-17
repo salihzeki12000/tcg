@@ -94,7 +94,7 @@ class Tools
 
     static public function getFormTravelAgents()
     {
-        if (($row = EnvironmentVariables::findOne('travel_agents_mail')) !== null) {
+        if (($row = \common\models\EnvironmentVariables::findOne('travel_agents_mail')) !== null) {
             $json_val = $row['value'];
             $list = json_decode($json_val, true);
             $data = [];

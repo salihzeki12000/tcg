@@ -52,10 +52,6 @@ class FormCardController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        Yii::$app->mailer->compose('card', ['model' => $model]) 
-            ->setTo('15079405@qq.com') 
-            ->setSubject('Message subject') 
-            ->send(); 
 
         return $this->render('view', [
             'model' => $model,
@@ -71,8 +67,39 @@ class FormCardController extends Controller
     {
         $model = new FormCard();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (($cfg_row = \common\models\EnvironmentVariables::findOne('travel_agents_mail')) !== null) {
+                $json_val = $cfg_row['value'];
+                $agent_list = json_decode($json_val, true);
+                if (!empty($agent_list) && $agent_list[$model->travel_agent]) {
+                    $model->agent_mail = $agent_list[$model->travel_agent];
+                }
+            }
+            $model->create_time = date('Y-m-d H:i:s',time());
+            if ($model->save()) {
+                $mail_subject = "CreditCard-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
+                $receiver[] = 'creditcard@thechinaguide.com';
+                if (!empty($model->agent_mail)) {
+                    $receiver[] = $model->agent_mail;
+                }
+                $receiver = ['15079405@qq.com','mxbin@sina.com'];
+                $model->card_number = '****' . substr($model->card_number, -4);
+                $model->card_security_code = '****';
+                $model->expiry_month = '**';
+                $model->expiry_year = '**';
+                $model->billing_address = '****';
+                Yii::$app->mailer->compose('card', ['model' => $model]) 
+                    ->setTo($receiver) 
+                    ->setSubject($mail_subject) 
+                    ->send();
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else{
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,

@@ -72,11 +72,11 @@ return [
         DIS_STATUS_HIDE => 'Hide',
         ),
     'form_types' => array(
-        FORM_TYPE_CUSTOM => 'custom',
-        FORM_TYPE_QUOTATION => 'quotation',
-        FORM_TYPE_EDU => 'educational',
+        FORM_TYPE_CUSTOM => 'Customize',
+        FORM_TYPE_QUOTATION => 'Standard',
+        FORM_TYPE_EDU => 'Education',
         FORM_TYPE_MICE => 'MICE',
-        FORM_TYPE_GROUP => 'group',
+        FORM_TYPE_GROUP => 'GroupTour',
         ),
     'form_required' => array(
         FORM_TYPE_CUSTOM => array(

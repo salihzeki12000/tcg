@@ -62,7 +62,6 @@ use yii\helpers\Html;
 <body>
     <?php $this->beginBody() ?>
     <?= $content ?>
-    <div class="footer">With kind regards, <?= Yii::$app->name ?> team</div>
     <?php $this->endBody() ?>
 </body>
 </html>

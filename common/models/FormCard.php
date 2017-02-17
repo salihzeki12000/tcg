@@ -23,6 +23,8 @@ use Yii;
  * @property string $travel_agent
  * @property string $tour_date
  * @property string $create_time
+ * @property string $agent_mail
+ * @property integer $status
  */
 class FormCard extends \yii\db\ActiveRecord
 {
@@ -41,7 +43,7 @@ class FormCard extends \yii\db\ActiveRecord
     {
         return [
             [['card_type', 'client_name', 'name_on_card', 'card_number', 'card_security_code', 'expiry_month', 'expiry_year', 'amount_to_bill', 'billing_address', 'contact_phone', 'email', 'travel_agent', 'tour_date'], 'required' , 'message' => Yii::t('app', 'Required')],
-            [['card_number', 'amount_to_bill'], 'number'],
+            [['card_number', 'amount_to_bill', 'status'], 'number'],
             [['card_number', 'amount_to_bill'], 'string', 'max' => 18],
             ['card_security_code', 'integer'],
             ['card_security_code', 'string', 'max' => 6],
@@ -49,7 +51,7 @@ class FormCard extends \yii\db\ActiveRecord
             [['card_type'], 'string', 'max' => 20],
             [['client_name', 'name_on_card', 'contact_phone', 'email', 'card_holder_email', 'travel_agent'], 'string', 'max' => 28],
             [['expiry_month', 'expiry_year'], 'string', 'max' => 10],
-            [['billing_address'], 'string', 'max' => 50],
+            [['billing_address','agent_mail'], 'string', 'max' => 50],
             [['tour_date'], 'string', 'max' => 12],
             [['email'], 'email'],
         ];
@@ -77,6 +79,8 @@ class FormCard extends \yii\db\ActiveRecord
             'travel_agent' => Yii::t('app', 'Your travel agent'),
             'tour_date' => Yii::t('app', 'Your tour start date'),
             'create_time' => Yii::t('app', 'Create Time'),
+            'agent_mail' => Yii::t('app', 'Agent mail'),
+            'status' => Yii::t('app', 'status'),
         ];
     }
 }

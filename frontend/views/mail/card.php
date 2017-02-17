@@ -26,7 +26,6 @@ $this->title = 'Secure Credit Card Form';
             'billing_address',
             'contact_phone',
             'email',
-            'card_holder_email',
             'travel_agent',
             'tour_date',
             'create_time',
