@@ -19,7 +19,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="theme-color" content="#4D423C">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?><?php if(\Yii::$app->controller->id == 'site' && \Yii::$app->controller->action->id == 'index') {} else { ?> - <?=Yii::t('app','The China Guide')?><?php } ?></title>
     <meta name="description" content="<?= $this->description ?>" />
@@ -80,9 +80,9 @@ AppAsset::register($this);
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="p-menu-search" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span></button>
               <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="p-menu-search">
-              <li class="p-menu-search"><form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
+              <li class="p-menu-search"><form id="search-form" method="get" action="https://www.google.com/search" target="_blank">
             <input type="text" name="q" placeholder="'.Yii::t('app','SEARCH').'">
-            <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch" />
+            <input type="hidden" value="thechinaguide.com" name="sitesearch" />
             </form>
             </li>';
     $p_menu .= '</ul></div>
@@ -172,9 +172,9 @@ AppAsset::register($this);
         </div>
 
         <div class="search-box">
-            <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
+            <form id="search-form" method="get" action="https://www.google.com/search" target="_blank">
                 <input type="text" name="q" placeholder="<?=Yii::t('app','Powered by Google')?>">
-                <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch">
+                <input type="hidden" value="thechinaguide.com" name="sitesearch">
                 <button id="search-button" type="submit">                     
                     <span><?=Yii::t('app','Search')?></span>
                 </button>
@@ -217,9 +217,9 @@ AppAsset::register($this);
         </center>
     </div>
     <div class="search-box">
-        <form id="search-form" method="get" action="http://www.google.com/search" target="_blank">
+        <form id="search-form" method="get" action="https://www.google.com/search" target="_blank">
             <input type="text" name="q" placeholder="<?=Yii::t('app','Powered by Google')?>">
-            <input type="hidden" value="http://www.thechinaguide.com" name="sitesearch">
+            <input type="hidden" value="thechinaguide.com" name="sitesearch">
             <button id="search-button" type="submit">                     
                 <span><?=Yii::t('app','SEARCH')?></span>
             </button>
