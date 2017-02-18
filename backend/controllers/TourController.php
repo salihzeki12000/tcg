@@ -99,13 +99,16 @@ class TourController extends Controller
         $model = new Tour();
 
         if ($model->load(Yii::$app->request->post())) {
-            if (is_array($_POST['Tour']['cities'])) {
+            if (isset($_POST['Tour']['cities']) && is_array($_POST['Tour']['cities'])) {
                 $model->cities = join(',', $_POST['Tour']['cities']);
             }
-            if (is_array($_POST['Tour']['themes'])) {
+            if (isset($_POST['Tour']['themes']) && is_array($_POST['Tour']['themes'])) {
                 $model->themes = join(',', $_POST['Tour']['themes']);
             }
-            if (is_array($_POST['Tour']['rec_type'])) {
+            if (isset($_POST['Tour']['best_season']) && is_array($_POST['Tour']['best_season'])) {
+                $model->best_season = join(',', $_POST['Tour']['best_season']);
+            }
+            if (isset($_POST['Tour']['rec_type']) && is_array($_POST['Tour']['rec_type'])) {
                 $model->rec_type = join(',', $_POST['Tour']['rec_type']);
             }
             $model->create_time = date('Y-m-d H:i:s',time());
@@ -132,16 +135,16 @@ class TourController extends Controller
         $p1 = $p2 = [];
 
         if ($model->load(Yii::$app->request->post())) {
-            if (is_array($_POST['Tour']['cities'])) {
+            if (isset($_POST['Tour']['cities']) && is_array($_POST['Tour']['cities'])) {
                 $model->cities = join(',', $_POST['Tour']['cities']);
             }
-            if (is_array($_POST['Tour']['themes'])) {
+            if (isset($_POST['Tour']['themes']) && is_array($_POST['Tour']['themes'])) {
                 $model->themes = join(',', $_POST['Tour']['themes']);
             }
-            if (is_array($_POST['Tour']['best_season'])) {
+            if (isset($_POST['Tour']['best_season']) && is_array($_POST['Tour']['best_season'])) {
                 $model->best_season = join(',', $_POST['Tour']['best_season']);
             }
-            if (is_array($_POST['Tour']['rec_type'])) {
+            if (isset($_POST['Tour']['rec_type']) && is_array($_POST['Tour']['rec_type'])) {
                 $model->rec_type = join(',', $_POST['Tour']['rec_type']);
             }
 

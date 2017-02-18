@@ -60,7 +60,7 @@ return [
         ),
     'faq_type' => array(
         FAQ_TYPE_TRIP_PLANNING => Yii::t('app', 'Before You Leave'),
-        FAQ_TYPE_IN_CHINA      => Yii::t('app', 'During You Trip'),
+        FAQ_TYPE_IN_CHINA      => Yii::t('app', 'During Your Trip'),
         FAQ_TYPE_FAQ        => Yii::t('app', 'FAQ'),
         ),
     'album_type' => array(

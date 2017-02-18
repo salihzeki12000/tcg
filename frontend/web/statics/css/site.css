@@ -913,6 +913,7 @@ div#social-media-icons-container a {
   .tour-view > .col-lg-8 {
       padding-left:75px;
       margin-top: 20px;
+      min-height: 650px;
   }
   .tour-view > .col-lg-4 {
       padding-right:60px !important;
@@ -930,6 +931,7 @@ div#social-media-icons-container a {
   }
   .clients-saying img{
     float: left;
+    width: 186px;
   }
   .index-faq{
     padding-left: 75px;
@@ -1594,6 +1596,7 @@ a.list-group-item{
 .index-map.map-detail .entry-title a, .sidebar .widget-title a {
     color: #E9C46C;
     font-weight: 500;
+    font-size: 19px;
 }
 .index-map.map-detail .entry-title {
     text-transform: none;

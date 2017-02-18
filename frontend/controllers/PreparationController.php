@@ -27,7 +27,7 @@ class PreparationController extends Controller
         $query = Article::find()->where($condition);
 
         $faq = $query
-            ->orderBy('create_time ASC')
+            ->orderBy('priority DESC, create_time ASC')
             ->all();
 
         return $this->render('index', [
