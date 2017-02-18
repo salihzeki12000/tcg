@@ -84,7 +84,6 @@ class FormInfoController extends Controller
 
                 $mail_subject = "Inquiry-{$model->prefered_travel_agent}-" . Yii::$app->params['form_types'][$model->type] . ($model->tour_code?"-{$model->tour_code}":"") . ($model->tour_length?"-{$model->tour_length} Days":"") . "-{$model->adults} Guests-{$model->arrival_date}-{$model->name}";
                 $receiver[] = 'book@thechinaguide.com';
-                $receiver = ['15079405@qq.com','mxbin@sina.com'];
 
                 Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
                     ->setTo($receiver)

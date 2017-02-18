@@ -82,7 +82,6 @@ class FormCardController extends Controller
                 if (!empty($model->agent_mail)) {
                     $receiver[] = $model->agent_mail;
                 }
-                $receiver = ['15079405@qq.com','mxbin@sina.com'];
                 $model->card_number = '****' . substr($model->card_number, -4);
                 $model->card_security_code = '****';
                 $model->expiry_month = '**';
