@@ -6,6 +6,16 @@ use Yii;
 
 class Tools
 {
+    static public function cut_str($str, $len)
+    {
+        if (strlen($str) <= $len) {
+            return $str;
+        }
+        else{
+            $ret = substr($str,0, $len) . '...';
+            return $ret;
+        }
+    }
     static function wordcut($string, $cutlength = 250, $replace = '...'){ 
         if(mb_strlen($string) <= $cutlength){ 
             return $string; 
