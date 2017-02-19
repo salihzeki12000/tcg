@@ -50,13 +50,29 @@ class FGlobalClass extends \yii\base\Component
 
         if (!isset($_COOKIE['_language']))
         {
-            $supportedLanguages = Yii::$app->urlManager->languages;
-            $preferredLanguage = Yii::$app->request->getPreferredLanguage($supportedLanguages);
-            if (empty($preferredLanguage)) {
-                $preferredLanguage = Yii::$app->sourceLanguage;
-            }
-            Yii::$app->language = $preferredLanguage;
+            //auto set language from browser
+            // $supportedLanguages = Yii::$app->urlManager->languages;
+            // $preferredLanguage = Yii::$app->request->getPreferredLanguage($supportedLanguages);
+            // if (empty($preferredLanguage)) {
+            //     $preferredLanguage = Yii::$app->sourceLanguage;
+            // }
+            // Yii::$app->language = $preferredLanguage;
         }
+
+        //temp language jump
+        if(isset($_SERVER['REDIRECT_URL']))
+        {
+            $supportedLanguages = Yii::$app->urlManager->languages;
+            $url = $_SERVER['REDIRECT_URL'];
+            foreach ($supportedLanguages as $language) {
+                $lang_path = "/{$language}/";
+                if ((strpos($url, $lang_path) === 0 || "/{$language}" == $url)&& $language != Yii::$app->sourceLanguage) {
+                    header('Location: https://'.$language.'.thechinaguide.com');
+                    exit;
+                }
+            }           
+        }
+
 
         parent::init();
     }

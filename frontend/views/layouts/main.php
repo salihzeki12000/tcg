@@ -40,7 +40,7 @@ AppAsset::register($this);
     ]);
     $languages_menu = [];
     foreach (Yii::$app->urlManager->languages as $language) {
-        $languages_menu[] = ['language'=>$language, 'label' => Yii::$app->params['language_name'][$language], 'url' => Url::toRoute(['/', 'language'=>$language])];
+        $languages_menu[] = ['language'=>$language, 'label' => Yii::$app->params['language_name'][$language], 'url' => Url::toRoute([\common\models\Tools::getCurrentUrl(), 'language'=>$language])];
     }
     foreach (Yii::$app->params['currency_name'] as $currency_item){
         $currency_menu[] = ['sign'=>$currency_item['sign'], 'label' => $currency_item['name'], 'url' => Url::toRoute(['site/currency', 'currency'=> $currency_item['name']])];
@@ -146,7 +146,7 @@ AppAsset::register($this);
                 </a>
                 <ul class="dropdown-menu sub-menu" role="menu">
                 <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
-                    <li <?= Yii::$app->language==$language?'class="active"':'' ?>><a href="<?= Url::toRoute(['/', 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
+                    <li <?= Yii::$app->language==$language?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
                 <?php } ?>
                 </ul>
             </li>

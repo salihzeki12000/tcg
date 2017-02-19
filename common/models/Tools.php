@@ -16,6 +16,25 @@ class Tools
             return $ret;
         }
     }
+    static public function getCurrentUrl()
+    {
+        $url = \yii\helpers\Url::current();
+        $languages = Yii::$app->urlManager->languages;
+        foreach ($languages as $language) {
+            $lang_path = "/{$language}/";
+            if (strpos($url, $lang_path) === 0) {
+                $url = substr($url, strlen($lang_path)-1);
+            }
+            elseif ($url == "/{$language}") {
+                $url = '/';
+            }
+        }
+        if ($url=='/site/index') {
+            $url = '/';
+        }
+        // var_dump($url);exit;
+        return $url;
+    }
     static function wordcut($string, $cutlength = 250, $replace = '...'){ 
         if(mb_strlen($string) <= $cutlength){ 
             return $string; 
