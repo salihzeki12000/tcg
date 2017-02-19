@@ -111,7 +111,6 @@ class Tools
             foreach ($list as $key => $value) {
                 $data[$key] = $key;
             }
-            $data['Not Sure'] = 'Not Sure';
             return $data;
         } else {
             return [];

@@ -27,9 +27,7 @@ if (Yii::$app->params['is_mobile']) {
       <?php for($i=0; $i<count($city_info['images']); $i++) {
           $slide=$city_info['images'][$i];
       ?>
-        <div class="sight-title-img col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type), ['alt'=>$slide['title'], 'width'=>"100%"]) ?>
-        </div>
+        <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type), ['alt'=>$slide['title'], 'width'=>"100%"]) ?>
       <?php break; } ?>
       
       <div class="banner-text"><?= $city_info['name'] ?></div>
@@ -41,7 +39,9 @@ if (Yii::$app->params['is_mobile']) {
 
     <div class="container back-container">
         <center><h1><?= $activity_info['name'] ?></h1></center>
-        <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($activity_info['pic_s'], $pic_type), ['alt'=>$activity_info['name'], 'width'=>"100%"]) ?>
+        <div class="sight-title-img col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($activity_info['pic_s'], $pic_type), ['alt'=>$activity_info['name'], 'width'=>"100%"]) ?>
+        </div>
         <div class="overview back-body">
           <?= $activity_info['overview'] ?>
         </div>
