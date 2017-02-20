@@ -15,6 +15,8 @@ use Yii;
  * @property string $create_time
  * @property string $update_time
  * @property string $sync_time
+ * @property string $url_id
+
  */
 class Theme extends \yii\db\ActiveRecord
 {

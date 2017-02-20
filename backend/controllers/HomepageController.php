@@ -83,6 +83,7 @@ class HomepageController extends Controller
                 }
             }
             $model->create_time = date('Y-m-d H:i:s',time());
+            $model->url_id = str_replace(' ', '-', $model->title);
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -118,6 +119,7 @@ class HomepageController extends Controller
                 }
             }
             $model->update_time = date('Y-m-d H:i:s',time());
+            $model->url_id = str_replace(' ', '-', $model->title);
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

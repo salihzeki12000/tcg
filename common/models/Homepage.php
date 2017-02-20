@@ -17,7 +17,8 @@ use Yii;
  * @property integer $status
  * @property string $create_time
  * @property string $update_time
- */
+ * @property string $url_id
+*/
 class Homepage extends \yii\db\ActiveRecord
 {
     public $image;

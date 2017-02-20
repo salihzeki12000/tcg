@@ -18,6 +18,7 @@ use Yii;
  * @property string $vr
  * @property string $create_time
  * @property string $update_time
+ * @property string $url_id
  */
 class Cities extends \yii\db\ActiveRecord
 {
@@ -47,7 +48,7 @@ class Cities extends \yii\db\ActiveRecord
         return [
             [['name', 'status'], 'required'],
             [['status', 'priority'], 'integer'],
-            [['introduction', 'food'], 'string'],
+            [['introduction', 'food', 'url_id'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['name', 'rec_type'], 'string', 'max' => 100],
             [['pic_s'], 'string', 'max' => 255],

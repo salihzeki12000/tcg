@@ -33,6 +33,7 @@ use Yii;
  * @property string $begin_date
  * @property string $end_date
  * @property integer $type
+ * @property string $url_id
  */
 
 class Tour extends \yii\db\ActiveRecord

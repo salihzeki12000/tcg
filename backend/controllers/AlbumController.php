@@ -66,6 +66,7 @@ class AlbumController extends Controller
         $model = new Album();
 
         $model->create_time = date('Y-m-d H:i:s',time());
+        $model->url_id = str_replace(' ', '-', $model->name);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -86,6 +87,7 @@ class AlbumController extends Controller
         $model = $this->findModel($id);
 
         $model->update_time = date('Y-m-d H:i:s',time());
+        $model->url_id = str_replace(' ', '-', $model->name);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

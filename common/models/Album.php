@@ -18,6 +18,7 @@ use Yii;
  * @property integer $keywords
  * @property string $create_time
  * @property string $update_time
+ * @property string $url_id
  */
 class Album extends \yii\db\ActiveRecord
 {
@@ -45,7 +46,7 @@ class Album extends \yii\db\ActiveRecord
         return [
             [['type', 'name', 'city_id'], 'required'],
             [['type', 'city_id', 'status', 'priority'], 'integer'],
-            [['overview'], 'string'],
+            [['overview', 'url_id'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['name', 'pic_s', 'keywords'], 'string', 'max' => 255],
             [['rec_type'], 'string', 'max' => 50],

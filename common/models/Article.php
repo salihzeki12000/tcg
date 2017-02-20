@@ -16,6 +16,7 @@ use Yii;
  * @property integer $keywords
  * @property string $create_time
  * @property string $update_time
+ * @property string $url_id
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -42,7 +43,7 @@ class Article extends \yii\db\ActiveRecord
         return [
             [['title', 'type'], 'required'],
             [['type', 'sub_type', 'status', 'priority','rec_type'], 'integer'],
-            [['content'], 'string'],
+            [['content','url_id'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['title','pic_s', 'keywords'], 'string', 'max' => 255],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
