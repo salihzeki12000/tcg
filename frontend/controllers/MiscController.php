@@ -48,10 +48,9 @@ class MiscController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($title)
+    public function actionView($url_id)
     {
-        $title = str_replace('-', ' ', $title);
-        $article = $this->findModel($title);
+        $article = $this->findModel($url_id);
         $id = $article['id'];
 
         return $this->render('/article/view', [
@@ -67,9 +66,9 @@ class MiscController extends Controller
      * @return Tour the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($title)
+    protected function findModel($url_id)
     {
-        if (($model = Article::find()->where(['title' => $title])->One()) !== null) {
+        if (($model = Article::find()->where(['url_id' => $url_id])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

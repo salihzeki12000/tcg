@@ -116,7 +116,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
           <?php foreach ($tours as $tour) { ?>
 
            <div class="file-preview-frame file-preview-initial col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-            <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"> 
+            <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"> 
              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
               <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Cities')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
             </a>
@@ -128,7 +128,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
                   <?php if(!empty($tour['price_cny'])) { ?>
                     From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
                   <?php } ?>
-                  <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>"><?=Yii::t('app','View')?></a>
+                  <a type="button" class="btn btn-info pull-right btn-sm" href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"><?=Yii::t('app','View')?></a>
                 </div>
              </div> 
             </div> 
@@ -219,11 +219,11 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
               <article class="entry teaser" id="city-map-detail-<?= $city_info['id'] ?>" <?= ($city_info['id']==1) ? '': 'style="display: none;"' ?>>
                 <header class="entry-header">
                   <h2 class="entry-title" itemprop="headline">
-                    <a href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" rel="bookmark"><?= $city_info['name'] ?></a>
+                    <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" rel="bookmark"><?= $city_info['name'] ?></a>
                   </h2>
                 </header>
                 <div class="entry-content" itemprop="text">
-                  <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'name'=>$city_info['name']]) ?>" aria-hidden="true">
+                  <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" aria-hidden="true">
                     <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
                     <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
                   </a>
@@ -265,7 +265,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         <div class="list-group faq">
             <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','Preparation')?></h2></center></a>
             <?php foreach ($faq as $item) { ?>
-            <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
+            <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>
                 <span><?= $item['title'] ?></span>
             </a>
@@ -279,11 +279,11 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
           <article class="entry teaser first">
             <header class="entry-header">
               <h2 class="entry-title" itemprop="headline">
-                <a href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" rel="bookmark"><?= $article['title'] ?></a>
+                <a href="<?= Url::toRoute(['article/view', 'url_id'=>$article['url_id']]) ?>" rel="bookmark"><?= $article['title'] ?></a>
               </h2>
             </header>
             <div class="entry-content" itemprop="text">
-              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'title'=>$article['title']]) ?>" aria-hidden="true">
+              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'url_id'=>$article['url_id']]) ?>" aria-hidden="true">
                 <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
               </a>
               <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 240)) ?></p>

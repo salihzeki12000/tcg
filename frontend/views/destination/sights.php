@@ -12,7 +12,7 @@ use yii\widgets\LinkPager;
 $this->title = $city_info['name'] . ' Travel Guide';
 $this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($city_info['introduction']), 30)) . '...';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Destinations'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $this->title, 'url'=>Url::toRoute(['destination/view', 'name'=>$city_info['name']])];
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url'=>Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']])];
 $this->params['breadcrumbs'][] = Yii::t('app','Sights');
 ?>
 
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Sights');
 
             <?php foreach ($sights as $sight) { ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="<?= Url::toRoute(['sight/view', 'name'=>$sight['name']]) ?>">
+                <a class="thumbnail" href="<?= Url::toRoute(['sight/view', 'url_id'=>$sight['url_id']]) ?>">
                     <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($sight['pic_s'], 's')?>" alt="<?=  $sight['name'] ?>">
                     <div class="carousel-caption s-text">
                         <h3><?= $sight['name'] ?></h3>

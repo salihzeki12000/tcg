@@ -30,7 +30,7 @@ use yii\helpers\Url;
   </button>
   <ul class="dropdown-menu" role="menu">
     <?php foreach ($menu as $key => $value) { ?>
-      <li <?= (Yii::$app->controller->action->id==$key)? 'class="active"':'' ?>><a href="<?= Url::toRoute(['destination/'.$key, 'name'=>$city_info['name']]) ?>"><?= $value ?></a></li>
+      <li <?= (Yii::$app->controller->action->id==$key)? 'class="active"':'' ?>><a href="<?= Url::toRoute(['destination/'.$key, 'url_id'=>$city_info['url_id']]) ?>"><?= $value ?></a></li>
     <?php } ?>
   </ul>
 </div>

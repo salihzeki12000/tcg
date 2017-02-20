@@ -29,10 +29,9 @@ class SightController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($name)
+    public function actionView($url_id)
     {
-        $name = str_replace('-', ' ', $name);
-        $sight_info = $this->findModel($name);
+        $sight_info = $this->findModel($url_id);
         $id = $sight_info['id'];
 
         // $ftype = BIZ_TYPE_ALBUM;
@@ -73,9 +72,9 @@ class SightController extends Controller
      * @return Tour the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($name)
+    protected function findModel($url_id)
     {
-        if (($model = Album::find()->where(['name' => $name])->One()) !== null) {
+        if (($model = Album::find()->where(['name' => $url_id])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

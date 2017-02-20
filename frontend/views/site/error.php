@@ -26,7 +26,7 @@ $tours = \common\models\Tools::getMostPopularTours();
                     <ul>
                         <?php foreach ($tours as $tour) { ?>
                         <li>
-                            <a href="<?= Url::toRoute(['experience/view', 'name'=>$tour['name']]) ?>">
+                            <a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>">
                                 <?= $tour['name'] ?></a>
                         </li>
                         <?php } ?>

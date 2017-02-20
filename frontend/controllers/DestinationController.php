@@ -41,9 +41,9 @@ class DestinationController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($name)
+    public function actionView($url_id)
     {
-        $city_base = $this->getCityBaseInfo($name);
+        $city_base = $this->getCityBaseInfo($url_id);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
@@ -53,9 +53,9 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function actionExperiences($name)
+    public function actionExperiences($url_id)
     {
-        $city_base = $this->getCityBaseInfo($name);
+        $city_base = $this->getCityBaseInfo($url_id);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
@@ -87,9 +87,9 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function actionSights($name)
+    public function actionSights($url_id)
     {
-        $city_base = $this->getCityBaseInfo($name);
+        $city_base = $this->getCityBaseInfo($url_id);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
@@ -120,9 +120,9 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function actionActivities($name)
+    public function actionActivities($url_id)
     {
-        $city_base = $this->getCityBaseInfo($name);
+        $city_base = $this->getCityBaseInfo($url_id);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
@@ -153,9 +153,9 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function actionFood($name)
+    public function actionFood($url_id)
     {
-        $city_base = $this->getCityBaseInfo($name);
+        $city_base = $this->getCityBaseInfo($url_id);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
@@ -165,9 +165,9 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function actionVirtualtours($name)
+    public function actionVirtualtours($url_id)
     {
-        $city_base = $this->getCityBaseInfo($name);
+        $city_base = $this->getCityBaseInfo($url_id);
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
@@ -185,19 +185,18 @@ class DestinationController extends Controller
      * @return Tour the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($name)
+    protected function findModel($url_id)
     {
-        if (($model = Cities::find()->where(['name' => $name])->One()) !== null) {
+        if (($model = Cities::find()->where(['url_id' => $url_id])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 
-    protected function getCityBaseInfo($name)
+    protected function getCityBaseInfo($url_id)
     {
-        $name = str_replace('-', ' ', $name);
-        $city_info = $this->findModel($name);
+        $city_info = $this->findModel($url_id);
         $id = $city_info->id;
 
         $ftype = BIZ_TYPE_CITIES;

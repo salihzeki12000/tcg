@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
               continue;
             }
           ?>
-          <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+          <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
               <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
               continue;
             }
           ?>
-          <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+          <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
               <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
               continue;
             }
           ?>
-          <a href="<?= Url::toRoute(['preparation/view', 'title'=>$item['title']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+          <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
               <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
               <span><?= $item['title'] ?></span>
           </a>
