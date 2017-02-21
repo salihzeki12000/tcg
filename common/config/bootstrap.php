@@ -6,7 +6,8 @@ Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
 Yii::setAlias('@root', realpath(dirname(__FILE__).'/../../'));
 Yii::setAlias('@uploads', dirname(dirname(__DIR__)) . '/frontend/web/uploads');
 
-define('UPLOADS_URL'   , 'http://www.demo.com/uploads/');
+define('SITE_BASE_URL'   , 'http://www.demo.com');
+define('UPLOADS_URL'   , SITE_BASE_URL.'/uploads/');
 
 define('BIZ_TYPE_CITIES'   , 1);
 define('BIZ_TYPE_TOUR'     , 2);

@@ -19,7 +19,7 @@ class SitemapController extends Controller
      */
     public function actionIndex()
     {
-        $site_root = 'https://new.thechinaguide.com';
+        $site_root = SITE_BASE_URL;
         $data = [];
 
         $pages = [
@@ -62,7 +62,7 @@ class SitemapController extends Controller
             ->orderBy('priority DESC, create_time DESC')
             ->all();
 
-        $query = \common\models\Tour::find()->where(['status'=>DIS_STATUS_SHOW, 'type' => ALBUM_TYPE_ACTIVITY]);
+        $query = \common\models\Album::find()->where(['status'=>DIS_STATUS_SHOW, 'type' => ALBUM_TYPE_ACTIVITY]);
         $data['activity'] = $query
             ->orderBy('priority DESC, create_time DESC')
             ->all();

@@ -224,7 +224,7 @@ class FGlobalClass extends \yii\base\Component
             foreach ($url_dir as $key => $value) {
                 if (strpos($query_string, $key) !== false) {
                     header("HTTP/1.1 301 Moved Permanently"); 
-                    header("Location: {$value}"); 
+                    header("Location: ".SITE_BASE_URL."{$value}"); 
                     exit();
                 }
             }
@@ -238,7 +238,7 @@ class FGlobalClass extends \yii\base\Component
             foreach ($supportedLanguages as $language) {
                 $lang_path = "/{$language}/";
                 if ((strpos($url, $lang_path) === 0 || "/{$language}" == $url)&& $language != Yii::$app->sourceLanguage) {
-                    header('Location: https://'.$language.'.thechinaguide.com');
+                    header('Location: http://'.$language.'.thechinaguide.com');
                     exit;
                 }
             }
@@ -252,7 +252,7 @@ class FGlobalClass extends \yii\base\Component
             foreach ($red_dir as $key => $value) {
                 if (strpos($url, $key) === 0) {
                     header("HTTP/1.1 301 Moved Permanently"); 
-                    header("Location: {$value}"); 
+                    header("Location: ".SITE_BASE_URL."{$value}"); 
                     exit();
                 }
             }
