@@ -207,26 +207,31 @@ AppAsset::register($this);
             <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
             <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
         </div>
-        <center><?=Yii::t('app','QUICK LINKS')?></center>
+        <center><?=Yii::t('app','THE COMPANY')?></center>
         <center>
-            <a href="<?= Url::toRoute(['experience/index']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan a vacation')?></a> | 
-            <a href="<?= Url::toRoute(['/educational-programs']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan an educational trip')?></a> | 
-            <!-- <a href="<?= Url::toRoute(['/meetings-incentives']) . '#inquiry-form' ?>"><?=Yii::t('app','Plan an incentive trip')?></a> | --> 
-            <a href="<?= Url::toRoute(['/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a> | 
-            <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
+            <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Why choose us')?></a> | 
+            <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a> | 
+            <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a> | 
+            <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a> | 
+            <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a> | 
+            <a href="<?= Url::toRoute(['/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a>
+        </center>
+        <center><?=Yii::t('app','WHERE TO GO')?></center>
+        <center>
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'The Great Wall']) ?>"><?=Yii::t('app','The Great Wall')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Beijing']) ?>"><?=Yii::t('app','Beijing')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Xi\'an']) ?>"><?=Yii::t('app','Xi\'an')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Shanghai']) ?>"><?=Yii::t('app','Shanghai')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Zhangjiajie']) ?>"><?=Yii::t('app','Zhangjiajie')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Guilin']) ?>"><?=Yii::t('app','Guilin')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Yangshuo']) ?>"><?=Yii::t('app','Yangshuo')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Tibet-|-Lhasa']) ?>"><?=Yii::t('app','Tibet/Lhasa')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Chengdu']) ?>"><?=Yii::t('app','Chengdu')?></a> | 
         </center>
     </div>
-    <div class="search-box">
-        <form id="search-form" method="get" action="https://www.google.com/search" target="_blank">
-            <input type="text" name="q" placeholder="<?=Yii::t('app','Powered by Google')?>">
-            <input type="hidden" value="thechinaguide.com" name="sitesearch">
-            <button id="search-button" type="submit">                     
-                <span><?=Yii::t('app','SEARCH')?></span>
-            </button>
-        </form>
-    </div>
+
     <div class="pata">
-        <?= Html::img('@web/statics/images/PATA.jpg', ['alt'=>'PATA member']) ?>
+        <?= Html::img('@web/statics/images/PATA.jpg', ['alt'=>'PATA member', 'width'=>'100px']) ?>
     </div>
     <div class="copyright">
         <p>&copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>

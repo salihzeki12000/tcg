@@ -82,7 +82,16 @@ class FormInfoController extends Controller
             $model->create_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
 
-                $mail_subject = "Inquiry-{$model->prefered_travel_agent}-" . Yii::$app->params['form_types'][$model->type] . ($model->tour_code?"-{$model->tour_code}":"") . ($model->tour_length?"-{$model->tour_length} Days":"") . "-{$model->adults} Guests-{$model->arrival_date}-{$model->name}";
+                $mail_subject = "Inquiry"
+                    . ($model->prefered_travel_agent?"-{$model->prefered_travel_agent}":"")
+                    . '-' . Yii::$app->params['form_types'][$model->type]
+                    . ($model->tour_code?"-{$model->tour_code}":"")
+                    . ($model->tour_length?"-{$model->tour_length} Days":"")
+                    . ($model->adults?"-{$model->adults} Guests":'')
+                    . ($model->participants_number?"-{$model->participants_number} Guests":'')
+                    . ($model->arrival_date?"-{$model->arrival_date}":'')
+                    . ($model->name?"-{$model->name}":'');
+
                 $receiver[] = 'book@thechinaguide.com';
 
                 Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
