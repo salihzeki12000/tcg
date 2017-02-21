@@ -28,6 +28,7 @@ use Yii;
  */
 class FormCard extends \yii\db\ActiveRecord
 {
+    public $secretKey = SECRET_SECRET_KEY;
     /**
      * @inheritdoc
      */
@@ -83,4 +84,32 @@ class FormCard extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'status'),
         ];
     }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            // ...custom code here...
+            $secretKey = $this->secretKey;
+
+            $this->card_number = base64_encode(\yii::$app->security->encryptByPassword($this->card_number, $secretKey));
+            $this->card_security_code = base64_encode(\yii::$app->security->encryptByPassword($this->card_security_code, $secretKey));
+            $this->expiry_month = base64_encode(\yii::$app->security->encryptByPassword($this->expiry_month, $secretKey));
+            $this->expiry_year = base64_encode(\yii::$app->security->encryptByPassword($this->expiry_year, $secretKey));
+            $this->billing_address = base64_encode(\yii::$app->security->encryptByPassword($this->billing_address, $secretKey));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function afterFind()
+    {
+        $secretKey = $this->secretKey;
+        $this->card_number = \yii::$app->security->decryptByPassword(base64_decode($this->card_number),$secretKey);
+        $this->card_security_code = \yii::$app->security->decryptByPassword(base64_decode($this->card_security_code),$secretKey);
+        $this->expiry_month = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_month),$secretKey);
+        $this->expiry_year = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_year),$secretKey);
+        $this->billing_address = \yii::$app->security->decryptByPassword(base64_decode($this->billing_address),$secretKey);
+        parent::afterFind();
+    }
+
 }

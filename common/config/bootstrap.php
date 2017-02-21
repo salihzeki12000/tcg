@@ -8,6 +8,7 @@ Yii::setAlias('@uploads', dirname(dirname(__DIR__)) . '/frontend/web/uploads');
 
 define('SITE_BASE_URL'   , 'http://www.demo.com');
 define('UPLOADS_URL'   , SITE_BASE_URL.'/uploads/');
+define('SECRET_SECRET_KEY'   , '3567bd0855afc34c');
 
 define('BIZ_TYPE_CITIES'   , 1);
 define('BIZ_TYPE_TOUR'     , 2);
