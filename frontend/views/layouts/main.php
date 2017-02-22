@@ -226,7 +226,7 @@ AppAsset::register($this);
             <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Guilin']) ?>"><?=Yii::t('app','Guilin')?></a> | 
             <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Yangshuo']) ?>"><?=Yii::t('app','Yangshuo')?></a> | 
             <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Tibet-|-Lhasa']) ?>"><?=Yii::t('app','Tibet/Lhasa')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Chengdu']) ?>"><?=Yii::t('app','Chengdu')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Chengdu']) ?>"><?=Yii::t('app','Chengdu')?></a>
         </center>
     </div>
 
