@@ -218,7 +218,7 @@ AppAsset::register($this);
         </center>
         <center><?=Yii::t('app','WHERE TO GO')?></center>
         <center>
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'The Great Wall']) ?>"><?=Yii::t('app','The Great Wall')?></a> | 
+            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'The-Great-Wall']) ?>"><?=Yii::t('app','The Great Wall')?></a> | 
             <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Beijing']) ?>"><?=Yii::t('app','Beijing')?></a> | 
             <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Xi\'an']) ?>"><?=Yii::t('app','Xi\'an')?></a> | 
             <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Shanghai']) ?>"><?=Yii::t('app','Shanghai')?></a> | 
