@@ -75,7 +75,7 @@ class HomepageController extends Controller
             {
                 $tmp_name = $file->tempName;
                 if ($tmp_name) {
-                    $file_path = UploadedFiles::uploadFile($file, 1);
+                    $file_path = UploadedFiles::uploadFile($file);
                     if ($file_path)
                     {
                         $model->pic_s = $file_path;
@@ -111,7 +111,7 @@ class HomepageController extends Controller
             {
                 $tmp_name = $file->tempName;
                 if ($tmp_name) {
-                    $file_path = UploadedFiles::uploadFile($file, 1);
+                    $file_path = UploadedFiles::uploadFile($file);
                     if ($file_path)
                     {
                         $model->pic_s = $file_path;

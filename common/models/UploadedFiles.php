@@ -72,22 +72,25 @@ class UploadedFiles extends \yii\db\ActiveRecord
         return $file_path;
     }
 
-    static public function uploadFile($file, $use_mobile=0)
+    static public function uploadFile($file, &$fid=0)
     {
         $quality = 90;
         if (!empty($file))
         {
             $file_size = 0;
             $tmp_name = '';
+            $org_name = '';
             if (is_array($file))
             {
                 $file_size = $file['size'];
                 $tmp_name = $file['tmp_name'];
+                $org_name = $file['name'];
             }
             elseif (is_object($file))
             {
                 $tmp_name = $file->tempName;
                 $file_size = $file->size;
+                $org_name = $file->name;
             }
             if($file_size > 1024*1024*5)
             {
@@ -103,17 +106,39 @@ class UploadedFiles extends \yii\db\ActiveRecord
             }
             $file_name = uniqid();
             $file_path = $server_dir . '/' . $file_name;
+            $main_file = $file_path.'.jpg';
+            $web_path  = $file_dir . '/' . $file_name .'.jpg';
             if ($tmp_name) {
                 $newWidth = 1280; $newHeight = 2560;
                 $ret = Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
-                ->save($file_path.'.jpg' , ['quality' => $quality]);
+                ->save($main_file , ['quality' => $quality]);
+                if ($ret){
+                    $md5file = md5_file($main_file);
+                    if (($ext_row = self::findOne(['md5'=>$md5file])) !== null) {
+                        $fid = $ext_row->id;
+                        unlink($main_file);
+                        return $ext_row->path;
+                    }
+                    else{
+                        $pathinfo = pathinfo($org_name);
+                        $model = new UploadedFiles();
+                        $model->title = str_replace('_', '\'', $pathinfo['filename']);
+                        $model->path = $web_path;
+                        $model->org_name = $org_name;
+                        $model->size = $file_size;
+                        $model->md5 = $md5file;
+                        if ($model->save(false)) {
+                            $fid = $model->id;
+                        }
+                    }
+                }
+
                 if ($ret)
                 {
-                    // if ($use_mobile) {
-                        $newWidth = 720; $newHeight = 360;
-                        Image::thumbnail($tmp_name, $newWidth , $newHeight)
-                        ->save(Yii::getAlias($file_path.'_mob.jpg'), ['quality' => $quality]);
-                    // }
+                    $newWidth = 720; $newHeight = 360;
+                    Image::thumbnail($tmp_name, $newWidth , $newHeight)
+                    ->save(Yii::getAlias($file_path.'_mob.jpg'), ['quality' => $quality]);
+
                     $newWidth = 720; $newHeight = 1440;
                     Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
                     ->save($file_path.'_m.jpg' , ['quality' => $quality]);
@@ -122,7 +147,7 @@ class UploadedFiles extends \yii\db\ActiveRecord
                     Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
                     ->save($file_path.'_s.jpg' , ['quality' => $quality]);
 
-                    return $file_dir . '/' . $file_name .'.jpg';
+                    return $web_path;
                 }
             }
         }

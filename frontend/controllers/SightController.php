@@ -74,7 +74,7 @@ class SightController extends Controller
      */
     protected function findModel($url_id)
     {
-        if (($model = Album::find()->where(['name' => $url_id])->One()) !== null) {
+        if (($model = Album::find()->where(['url_id' => $url_id])->One()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

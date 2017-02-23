@@ -69,15 +69,14 @@ class UploadedFilesController extends Controller
             $file = \yii\web\UploadedFile::getInstance($model, 'image');
             if (!empty($file))
             {
-                $model->org_name = $file->name;
                 $tmp_name = $file->tempName;
+                $title = $model->title;
                 if ($tmp_name) {
-                    $file_path = UploadedFiles::uploadFile($file);
-                    if ($file_path)
+                    $file_path = UploadedFiles::uploadFile($file, $fid);
+                    if (($model = UploadedFiles::findOne($fid)) !== null)
                     {
-                        $model->size = $file->size;
-                        $model->path = $file_path;
-                        $model->create_time = date('Y-m-d H:i:s',time());
+                        $model->title = $title;
+                        $model->update_time = date('Y-m-d H:i:s',time());
                         if($model->save())
                         {
                             return $this->redirect(['view', 'id' => $model->id]);
@@ -111,14 +110,14 @@ class UploadedFilesController extends Controller
             $file = \yii\web\UploadedFile::getInstance($model, 'image');
             if (!empty($file))
             {
-                $model->org_name = $file->name;
                 $tmp_name = $file->tempName;
+                $title = $model->title;
                 if ($tmp_name) {
-                    $file_path = UploadedFiles::uploadFile($file);
-                    if ($file_path)
+                    $file_path = UploadedFiles::uploadFile($file, $fid);
+                    if (($model = UploadedFiles::findOne($fid)) !== null)
                     {
-                        $model->size = $file->size;
-                        $model->path = $file_path;
+                        $model->title = $title;
+                        $model->update_time = date('Y-m-d H:i:s',time());
                         if($model->save())
                         {
                             return $this->redirect(['view', 'id' => $model->id]);
@@ -203,28 +202,32 @@ class UploadedFilesController extends Controller
             // 上传之后的图是可以进行删除操作的，我们为每一个商品成功的商品图指定删除操作的地址
             
             // 调用图片接口上传后返回的图片地址，注意是可访问到的图片地址哦
-            $file_path = UploadedFiles::uploadFile($arr_file);
+            $file_path = UploadedFiles::uploadFile($arr_file, $fid);
             $key = 0;
             if ($file_path) {
                 // 保存图片信息
-                $pathinfo = pathinfo($arr_file['name']);
-                $model = new UploadedFiles();
-                $model->title = str_replace('_', '\'', $pathinfo['filename']);
-                $model->path = $file_path;
-                $model->org_name = $arr_file['name'];
-                $model->size = $arr_file['size'];
-                $fid = 0;
-                if ($model->save(false)) {
-                    $fid = $model->id;
-                    $fu_model = new FileUse();
-                    $fu_model->type = $type;
-                    $fu_model->fid = $fid;
-                    $fu_model->cid = $cid;
-                    if ($fu_model->save(false))
+                if ($fid) {
+                    if (($model = UploadedFiles::findOne($fid)) !== null)
                     {
-                        $key = $fu_model->id;
-                        $del_url = '/uploaded-files/del-file-use';
+                        $pathinfo = pathinfo($arr_file['name']);
+                        $model->title = str_replace('_', '\'', $pathinfo['filename']);
+                        $model->update_time = date('Y-m-d H:i:s',time());
+                        $model->save();
                     }
+                    if (($fu_model = \common\models\FileUse::findOne(['type'=>$type, 'fid'=>$fid, 'cid'=>$cid])) !== null)
+                    {
+
+                    }
+                    else{
+                        $fu_model = new FileUse();
+                        $fu_model->type = $type;
+                        $fu_model->fid = $fid;
+                        $fu_model->cid = $cid;
+                        $fu_model->save(false);
+                    }
+
+                    $key = $fu_model->id;
+                    $del_url = '/uploaded-files/del-file-use';
                 }
             }
             // 这是一些额外的其他信息，如果你需要的话
