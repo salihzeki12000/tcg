@@ -241,7 +241,7 @@ class FGlobalClass extends \yii\base\Component
             $url = $_SERVER['REQUEST_URI'];
             foreach ($supportedLanguages as $language) {
                 $lang_path = "/{$language}/";
-                if ((strpos($url, $lang_path) === 0 || "/{$language}" == $url)&& $language != Yii::$app->sourceLanguage) {
+                if ((strpos($url, $lang_path) === 0 || "/{$language}" == $url) && $language != Yii::$app->sourceLanguage && strpos($url, 'secure-credit-card-form') === false) {
                     header('Location: http://'.$language.'.thechinaguide.com');
                     exit;
                 }
