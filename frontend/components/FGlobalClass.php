@@ -228,6 +228,10 @@ class FGlobalClass extends \yii\base\Component
                     exit();
                 }
             }
+
+            header("HTTP/1.1 301 Moved Permanently"); 
+            header("Location: ".SITE_BASE_URL.'/site/error');
+            exit;
         }
 
         //temp language jump
