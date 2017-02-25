@@ -28,7 +28,9 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<?php if(\Yii::$app->controller->id != 'form-card') { ?>
+<?= $this->render('analyticstracking', []) ?>
+<?php } ?>
 <div class="wrap">
     <?php
     NavBar::begin([
