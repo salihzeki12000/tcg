@@ -252,6 +252,7 @@ class FGlobalClass extends \yii\base\Component
                 '/nightlife/houhai.html' => '/sight/Houhai-Lake',
                 '/forbidden_city/forbidden_city_map_2.jpg' => '/sight/The-Forbidden-City',
                 '/mp3' => '/',
+                '/tcg2/tours/cc' => '/secure-credit-card-form',
             ];
             foreach ($red_dir as $key => $value) {
                 if (strpos($url, $key) === 0) {
