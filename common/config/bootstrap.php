@@ -6,7 +6,8 @@ Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
 Yii::setAlias('@root', realpath(dirname(__FILE__).'/../../'));
 Yii::setAlias('@uploads', dirname(dirname(__DIR__)) . '/frontend/web/uploads');
 
-define('SITE_BASE_URL'   , 'http://www.demo.com');
+define('SITE_SERVER_NAME'   , 'www.demo.com');
+define('SITE_BASE_URL'   , 'http://'.SITE_SERVER_NAME);
 define('UPLOADS_URL'   , SITE_BASE_URL.'/uploads/');
 define('SECRET_SECRET_KEY'   , '3567bd0855afc34c');
 

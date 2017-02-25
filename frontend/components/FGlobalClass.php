@@ -257,9 +257,15 @@ class FGlobalClass extends \yii\base\Component
                 }
             }
             if (strpos($url, 'promo-viajeros-callejeros=1') !== false) {
-                    header("HTTP/1.1 301 Moved Permanently"); 
-                    header("Location: /"); 
-                    exit();
+                header("HTTP/1.1 301 Moved Permanently"); 
+                header("Location: ".SITE_BASE_URL); 
+                exit();
+            }
+
+            if ($_SERVER['SERVER_NAME'] != SITE_SERVER_NAME) {
+                header("HTTP/1.1 301 Moved Permanently"); 
+                header("Location: ".SITE_BASE_URL.$url); 
+                exit();
             }
         }
 
