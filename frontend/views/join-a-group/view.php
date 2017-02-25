@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="home-btn hidden-lg col-md-12 col-sm-12 col-xs-12">
       <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Submit')?></a>
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Join This Group Tour')?></a>
       </div>
     </div>
 
@@ -217,7 +217,7 @@ $this->params['breadcrumbs'][] = $this->title;
           'form_type' => FORM_TYPE_GROUP,
           'tour_code' => $tour_info['code'],
           'tour_name' => $tour_info['name'],
-          'bt_submit_txt' => Yii::t('app', 'Join This Group Tour') ,
+          'bt_submit_txt' => Yii::t('app', 'Submit') ,
       ]) ?>
 
       <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>

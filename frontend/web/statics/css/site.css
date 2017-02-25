@@ -400,6 +400,7 @@ div#social-media-icons-container {
 .social-media-icons a,.social-media-icons a:link,.social-media-icons a:visited,.social-media-icons a:hover,.social-media-icons a:active{
   text-decoration:none;
   color:#666666;
+  font-weight: normal;
 }
 
 div#social-media-icons-container a {
