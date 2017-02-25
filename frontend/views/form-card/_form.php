@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
     <table width="100%">
         <tr>
             <td valign="top">
-                <?= $form->field($model, 'card_type')->dropDownList([ 'Visa'=>'Visa','Mastercard'=>'Mastercard','American Express'=>'American Express' ], ['prompt' => 'Select'])->label(false) ?>
+                <?= $form->field($model, 'card_type')->dropDownList([ 'Visa'=>Yii::t('app','Visa'),'Mastercard'=>Yii::t('app','Mastercard'),'American Express'=>Yii::t('app','American Express') ], ['prompt' => 'Select'])->label(false) ?>
             </td>
             <td width="150px" valign="top" align="center">
                 <?= Html::img('@web/statics/images/creditcards.jpg', ['alt'=>'creditcards', 'width'=>"100px"]) ?>
@@ -35,10 +35,10 @@ use yii\widgets\ActiveForm;
     <table width="100%">
         <tr>
             <td width="50%" valign="top">
-                <?= $form->field($model, 'expiry_month')->dropDownList([ '01 Jan'=>'01 Jan','02 Feb'=>'02 Feb','03 Mar'=>'03 Mar','04 Apr'=>'04 Apr','05 May'=>'05 May','06 Jun'=>'06 Jun','07 Jul'=>'07 Jul','08 Aug'=>'08 Aug','09 Sep'=>'09 Sep','10 Oct'=>'10 Oct','11 Nov'=>'11 Nov','12 Dec'=>'12 Dec', ], ['prompt' => 'Month'])->label(false) ?>
+                <?= $form->field($model, 'expiry_month')->dropDownList([ '01 Jan'=>'01 Jan','02 Feb'=>'02 Feb','03 Mar'=>'03 Mar','04 Apr'=>'04 Apr','05 May'=>'05 May','06 Jun'=>'06 Jun','07 Jul'=>'07 Jul','08 Aug'=>'08 Aug','09 Sep'=>'09 Sep','10 Oct'=>'10 Oct','11 Nov'=>'11 Nov','12 Dec'=>'12 Dec', ], ['prompt' => Yii::t('app','Month')])->label(false) ?>
             </td>
             <td width="50%" valign="top">
-                <?= $form->field($model, 'expiry_year')->dropDownList([ '2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025','2026'=>'2026','2027'=>'2027','2028'=>'2028','2029'=>'2029', ], ['prompt' => 'Year'])->label(false) ?>
+                <?= $form->field($model, 'expiry_year')->dropDownList([ '2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025','2026'=>'2026','2027'=>'2027','2028'=>'2028','2029'=>'2029', ], ['prompt' => Yii::t('app','Year')])->label(false) ?>
             </td>
         </tr>
     </table>    
@@ -62,7 +62,7 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($model, 'client_name')->textInput(['maxlength' => true])->label(false) ?>
             </td>
             <td width="50%" valign="middle" align="left">
-                <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> Name on  card</label>
+                <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> <?=Yii::t('app','Name on card') ?></label>
             </td>
         </tr>
     </table>

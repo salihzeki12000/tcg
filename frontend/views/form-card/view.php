@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="form-card-view container">
 
-    <center><h3><?=Yii::t('app','Thank you. ')?></h3></center>
+    <center><h3><?=Yii::t('app','Thank you.')?></h3></center>
     <p><?=Yii::t('app','We have received your credit card information. Your agent will contact you once we have charged your credit card.')?></p>
     <a href="javascript:history.go(-1);"><?=Yii::t('app','BACK TO PREVIOUS PAGE')?></a>
 
