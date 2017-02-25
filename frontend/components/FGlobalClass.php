@@ -232,6 +232,7 @@ class FGlobalClass extends \yii\base\Component
             // header("HTTP/1.1 301 Moved Permanently"); 
             // header("Location: ".SITE_BASE_URL.'/site/error');
             http_response_code(404);
+            include(dirname(dirname(__DIR__)) . '/frontend/web/statics/pages/404.html');
             exit;
         }
 
