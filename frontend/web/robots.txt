@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Disallow: /secure-credit-card-form/
+Disallow: /form-submission/
