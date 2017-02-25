@@ -119,7 +119,7 @@ class FormInfo extends \yii\db\ActiveRecord
             'ideas' => Yii::t('app', 'Rough outline of your program'),
             'school_name' => Yii::t('app', 'Name of your school or organization'),
             'position' => Yii::t('app', 'Your position'),
-            'phone_number' => Yii::t('app', 'Your phone/skype number'),
+            'phone_number' => Yii::t('app', 'Your cellphone number/Skype number'),
             'hear_about_us' => Yii::t('app', 'How did you hear about us?'),
             'purpose_trip' => Yii::t('app', 'Purpose of your trip'),
             'number_participants' => Yii::t('app', 'Number of participants'),

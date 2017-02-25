@@ -210,6 +210,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         return $this->render('about');
     }
 
@@ -220,6 +221,7 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
@@ -241,6 +243,7 @@ class SiteController extends Controller
      */
     public function actionRequestPasswordReset()
     {
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
@@ -266,6 +269,7 @@ class SiteController extends Controller
      */
     public function actionResetPassword($token)
     {
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidParamException $e) {

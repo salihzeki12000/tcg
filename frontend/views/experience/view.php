@@ -222,6 +222,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <?php if (!Yii::$app->params['is_mobile']) { ?>
     <?= $this->render('/layouts/_exp-right', [
         'tours' => $tours,
+        'exp_title' => Yii::t('app','You May Also Like'),
     ]) ?>
   <?php } ?>
 

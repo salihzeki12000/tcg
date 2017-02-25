@@ -85,6 +85,22 @@ class FormCardController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $mail_subject = "CreditCard-".Yii::$app->params['card_status'][$model->status]."-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
+            $receiver[] = 'creditcard@thechinaguide.com';
+            if (!empty($model->agent_mail)) {
+                $receiver[] = $model->agent_mail;
+            }
+            $model->card_number = '****' . substr($model->card_number, -4);
+            $model->card_security_code = '****';
+            $model->expiry_month = '**';
+            $model->expiry_year = '**';
+            $model->billing_address = '****';
+            Yii::$app->mailer->compose('card', ['model' => $model]) 
+                ->setTo($receiver) 
+                ->setSubject($mail_subject) 
+                ->send();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

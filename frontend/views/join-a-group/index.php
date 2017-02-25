@@ -11,15 +11,15 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Experiences') . ', ' . Yii::t('app', 'Join A Group');
+$this->title = Yii::t('app', 'China Experiences') . ', ' . Yii::t('app', 'Theme Tour');
 $this->description = Yii::t('app', 'A group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours.');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Join A Group'), 'width'=>"100%"]) ?>
-      <div class="banner-text"><?= Yii::t('app', 'Join A Group') ?></div>
+      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Theme Tour'), 'width'=>"100%"]) ?>
+      <div class="banner-text"><?= Yii::t('app', 'Theme Tour') ?></div>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
        <div class="file-preview-frame file-preview-initial col-lg-4 col-md-4 col-sm-6 col-xs-12" >
         <a class="kv-file-content" href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>"> 
          <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-          <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Cities')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
+          <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Destinations')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Experiences')?></div>
         </a>
         <div class="file-thumbnail-footer"> 
          <div class="file-footer-caption">

@@ -29,6 +29,13 @@ $this->title = 'Secure Credit Card Form';
             'travel_agent',
             'tour_date',
             'create_time',
+            [
+              'attribute'=>'status',
+              'label'=> Yii::t('app', 'Status'),
+              'format' => 'raw',
+              'value' => Yii::$app->params['card_status'][$model->status],
+            ],
+
         ],
     ]) ?>
 

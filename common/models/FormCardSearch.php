@@ -18,7 +18,7 @@ class FormCardSearch extends FormCard
     public function rules()
     {
         return [
-            [['id', 'card_security_code'], 'integer'],
+            [['id', 'card_security_code','status'], 'integer'],
             [['card_type', 'client_name', 'name_on_card', 'expiry_month', 'expiry_year', 'billing_address', 'contact_phone', 'email', 'card_holder_email', 'travel_agent', 'tour_date', 'create_time'], 'safe'],
             [['card_number', 'amount_to_bill'], 'number'],
         ];
@@ -65,6 +65,7 @@ class FormCardSearch extends FormCard
             'card_security_code' => $this->card_security_code,
             'amount_to_bill' => $this->amount_to_bill,
             'create_time' => $this->create_time,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'card_type', $this->card_type])

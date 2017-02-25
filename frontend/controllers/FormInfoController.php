@@ -58,6 +58,12 @@ class FormInfoController extends Controller
         ]);
     }
 
+    public function actionSuccess()
+    {
+
+        return $this->render('view', []);
+    }
+
     /**
      * Creates a new FormInfo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -99,7 +105,7 @@ class FormInfoController extends Controller
                     ->setSubject($mail_subject)
                     ->send();
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['success']);
 
             }
         }

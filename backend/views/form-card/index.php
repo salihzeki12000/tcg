@@ -25,9 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'card_type',
+            'create_time',
             'client_name',
-            'name_on_card',
-            'card_number',
+            [
+                'attribute'=>'status',
+                'filter'=> Yii::$app->params['card_status'],
+                'value' => function ($data) {
+                    return Yii::$app->params['card_status'][$data['status']];
+                }
+            ],
+            // 'name_on_card',
+            // 'card_number',
             // 'card_security_code',
             // 'expiry_month',
             // 'expiry_year',
@@ -40,18 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'tour_date',
             // 'create_time',
 
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {delete}',
-                'urlCreator' => function ($action, $model, $key, $index) {
-                    if ($action === 'view') {
-                        return Url::to(['form-card/view', 'id'=>$model->id]);
-                    }
-                    if ($action === 'delete') {
-                        return Url::to(['form-card/delete', 'id'=>$model->id]);
-                    }
-                },
-            ],
+            ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 </div>

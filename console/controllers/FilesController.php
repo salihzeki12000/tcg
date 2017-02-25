@@ -26,23 +26,27 @@ class FilesController extends Controller
         //         echo "empty file: " . $path . "\n\n";
         //     }
         // }
-        $sql = "SELECT min(id) as id,md5,COUNT(1) as ccount FROM uploaded_files where md5<>'' GROUP BY md5 having ccount>1 ORDER BY ccount DESC;";
-        $md5_data = Yii::$app->db->createCommand($sql)
-        ->queryAll();
-        foreach ($md5_data as $item) {
-            $one_file = \common\models\UploadedFiles::findOne($item['id']);
-            $files = \common\models\UploadedFiles::find()->where(['md5'=>$item['md5']])->all();
-            foreach ($files as $file) {
-                if ($one_file->path == $file->path) {
-                    continue;
-                }
-                $path = $file->path;
-                $file->path = $one_file->path;
-                $file->save();
-                $data = [$file->id, $path, $item['md5'], $one_file->path];
-                echo join("\t", $data) . "\n";
-            }
-        }
+
+        // $sql = "SELECT min(id) as id,md5,COUNT(1) as ccount FROM uploaded_files where md5<>'' GROUP BY md5 having ccount>1 ORDER BY ccount DESC;";
+        // $md5_data = Yii::$app->db->createCommand($sql)
+        // ->queryAll();
+        // foreach ($md5_data as $item) {
+        //     $one_file = \common\models\UploadedFiles::findOne($item['id']);
+        //     $files = \common\models\UploadedFiles::find()->where(['md5'=>$item['md5']])->all();
+        //     foreach ($files as $file) {
+        //         if ($one_file->path == $file->path) {
+        //             continue;
+        //         }
+        //         $path = $file->path;
+        //         $file->path = $one_file->path;
+        //         $file->save();
+        //         $data = [$file->id, $path, $item['md5'], $one_file->path];
+        //         echo join("\t", $data) . "\n";
+        //     }
+        // }
+
+        $tmp = Yii::$app->getSecurity()->generatePasswordHash('VlmHw94');
+        echo $tmp . "\n\n";
         
         echo "sync task end:" . date('Y-m-d H:i:s',time()) . "\n\n\n";
     }

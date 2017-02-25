@@ -56,3 +56,7 @@ define('FORM_TYPE_QUOTATION',   2);
 define('FORM_TYPE_EDU',         3);
 define('FORM_TYPE_MICE',        4);
 define('FORM_TYPE_GROUP',       5);
+
+define('CARD_STATUS_CHARGED',     0);
+define('CARD_STATUS_SUCCESSFULY', 1);
+define('CARD_STATUS_FAILED',      2);

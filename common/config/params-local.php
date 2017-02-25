@@ -71,6 +71,11 @@ return [
         DIS_STATUS_SHOW => 'Show',
         DIS_STATUS_HIDE => 'Hide',
         ),
+    'card_status' => array(
+        CARD_STATUS_CHARGED     => 'To be Charged',
+        CARD_STATUS_SUCCESSFULY => 'Successfuly Charged',
+        CARD_STATUS_FAILED      => 'Charge Failed',
+        ),
     'form_types' => array(
         FORM_TYPE_CUSTOM => 'Customize',
         FORM_TYPE_QUOTATION => 'Standard',

@@ -58,6 +58,12 @@ class FormCardController extends Controller
         ]);
     }
 
+    public function actionSuccess()
+    {
+
+        return $this->render('view', []);
+    }
+
     /**
      * Creates a new FormCard model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -92,7 +98,7 @@ class FormCardController extends Controller
                     ->setSubject($mail_subject) 
                     ->send();
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['success']);
             }
             else{
                 return $this->render('create', [

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\FormInfo */
 
-$this->title = $model->name;
+$this->title = Yii::t('app','Success');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Form Infos'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
