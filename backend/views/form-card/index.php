@@ -50,10 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update}',
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {
-                        return Url::to(['form-info/view', 'id'=>$model->id]);
+                        return Url::to(['form-card/view', 'id'=>$model->id]);
                     }
                     if ($action === 'update') {
-                        return Url::to(['form-info/update', 'id'=>$model->id]);
+                        return Url::to(['form-card/update', 'id'=>$model->id]);
                     }
                 },
             ],
