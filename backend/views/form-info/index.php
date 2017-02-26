@@ -21,27 +21,46 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            // 'name',
+            // 'type',
             [
-                'attribute'=>'Title',
+                'attribute'=>'type',
+                'filter'=> Yii::$app->params['form_types'],
                 'value' => function ($data) {
-                    $title =  Yii::$app->params['form_types'][$data['type']]
-                    . ($data['prefered_travel_agent']?"-{$data['prefered_travel_agent']}":"")
-                    . ($data['tour_code']?"-{$data['tour_code']}":"")
-                    . ($data['tour_length']?"-{$data['tour_length']} Days":"")
-                    . ($data['adults']?"-{$data['adults']} Guests":'')
-                    . ($data['participants_number']?"-{$data['participants_number']} Guests":'')
-                    . ($data['arrival_date']?"-{$data['arrival_date']}":'')
-                    . ($data['name']?"-{$data['name']}":'');
-
-                    return $title;
+                    return Yii::$app->params['form_types'][$data['type']];
                 }
             ],
-            //'arrival_date',
+            'prefered_travel_agent',
+            'tour_code',
+            // 'adults',
+            [
+                'attribute'=>'Guests',
+                'value' => function ($data) {
+                    if($data['type'] == FORM_TYPE_EDU)
+                        return $data['participants_number'];
+                    else
+                        return $data['adults'];
+                }
+            ],
+            'arrival_date',
+            'name',
+            // [
+            //     'attribute'=>'Title',
+            //     'value' => function ($data) {
+            //         $title =  Yii::$app->params['form_types'][$data['type']]
+            //         . ($data['prefered_travel_agent']?"-{$data['prefered_travel_agent']}":"")
+            //         . ($data['tour_code']?"-{$data['tour_code']}":"")
+            //         . ($data['tour_length']?"-{$data['tour_length']} Days":"")
+            //         . ($data['adults']?"-{$data['adults']} Guests":'')
+            //         . ($data['participants_number']?"-{$data['participants_number']} Guests":'')
+            //         . ($data['arrival_date']?"-{$data['arrival_date']}":'')
+            //         . ($data['name']?"-{$data['name']}":'');
+
+            //         return $title;
+            //     }
+            // ],
             //'arrival_city',
             // 'departure_date',
             // 'departure_city',
-            // 'adults',
             // 'children',
             // 'infants',
             // 'guest_information',
@@ -53,8 +72,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'name_prefix',
             // 'email:email',
             // 'nationality',
-            // 'prefered_travel_agent',
-            // 'tour_code',
             // 'tour_name',
             // 'book_hotels',
             // 'hotel_preferences',
@@ -70,7 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'number_participants',
             // 'ideas_trip',
             // 'company_name',
-            // 'type',
             'create_time',
 
             [

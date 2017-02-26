@@ -22,26 +22,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            [
-                'attribute'=>'Title',
-                'value' => function ($data) {
-                    $title =  "{$data['amount_to_bill']}-{$data['tour_date']}-{$data['client_name']}-Agent:{$data['travel_agent']}";
+            'amount_to_bill',
+            'tour_date',
+            'client_name',
+            'travel_agent',
 
-                    return $title;
-                }
-            ],
+            // [
+            //     'attribute'=>'Title',
+            //     'value' => function ($data) {
+            //         $title =  "{$data['amount_to_bill']}-{$data['tour_date']}-{$data['client_name']}-Agent:{$data['travel_agent']}";
+
+            //         return $title;
+            //     }
+            // ],
             // 'name_on_card',
             // 'card_number',
             // 'card_security_code',
             // 'expiry_month',
             // 'expiry_year',
-            // 'amount_to_bill',
             // 'billing_address',
             // 'contact_phone',
             // 'email:email',
             // 'card_holder_email:email',
-            // 'travel_agent',
-            // 'tour_date',
             [
                 'attribute'=>'status',
                 'filter'=> Yii::$app->params['card_status'],

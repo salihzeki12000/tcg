@@ -94,7 +94,8 @@ class FormCardController extends Controller
             if (!empty($model->agent_mail)) {
                 $receiver[] = $model->agent_mail;
             }
-            $model->card_number = '****' . substr($model->card_number, -4);
+            $real_card_number = \yii::$app->security->decryptByPassword(base64_decode($model->card_number),SECRET_SECRET_KEY);
+            $model->card_number = '****' . substr($real_card_number, -4);
             $model->card_security_code = '****';
             $model->expiry_month = '**';
             $model->expiry_year = '**';
