@@ -42,9 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'card_holder_email:email',
             // 'travel_agent',
             // 'tour_date',
-            'status',
+            [
+                'attribute'=>'status',
+                'filter'=> Yii::$app->params['card_status'],
+                'value' => function ($data) {
+                    return Yii::$app->params['card_status'][$data['status']];
+                }
+            ],
             'create_time',
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update}',
