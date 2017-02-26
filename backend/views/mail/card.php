@@ -36,7 +36,7 @@ $this->title = 'Secure Credit Card Form';
               'format' => 'raw',
               'value' => Yii::$app->params['card_status'][$model->status],
             ],
-
+            'note',
         ],
     ]) ?>
 

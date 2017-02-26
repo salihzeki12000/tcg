@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\FormInfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Form Infos');
+$this->title = Yii::t('app', 'Inquiries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="form-info-index">
@@ -20,12 +20,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'name',
-            'arrival_date',
-            'arrival_city',
+            // 'name',
+            [
+                'attribute'=>'Title',
+                'value' => function ($data) {
+                    $title =  Yii::$app->params['form_types'][$data['type']]
+                    . ($data['prefered_travel_agent']?"-{$data['prefered_travel_agent']}":"")
+                    . ($data['tour_code']?"-{$data['tour_code']}":"")
+                    . ($data['tour_length']?"-{$data['tour_length']} Days":"")
+                    . ($data['adults']?"-{$data['adults']} Guests":'')
+                    . ($data['participants_number']?"-{$data['participants_number']} Guests":'')
+                    . ($data['arrival_date']?"-{$data['arrival_date']}":'')
+                    . ($data['name']?"-{$data['name']}":'');
+
+                    return $title;
+                }
+            ],
+            //'arrival_date',
+            //'arrival_city',
             // 'departure_date',
             // 'departure_city',
             // 'adults',
@@ -58,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'ideas_trip',
             // 'company_name',
             // 'type',
-            // 'create_time',
+            'create_time',
 
             [
                 'class' => 'yii\grid\ActionColumn',

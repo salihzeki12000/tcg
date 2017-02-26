@@ -35,6 +35,9 @@ class FormInfoController extends Controller
      */
     public function actionIndex()
     {
+        if (!isset($_GET['sort'])) {
+            $_GET['sort'] = '-create_time';
+        }
         $searchModel = new FormInfoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

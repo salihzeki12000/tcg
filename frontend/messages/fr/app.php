@@ -35,7 +35,7 @@ return [
     'Success' => 'Success',
     'Thank you.' => 'Merci, nous avons bien reçu les renseignements relatifs à votre carte de crédit.',
     'We have received your credit card information. Your agent will contact you once we have charged your credit card.' => 'Votre agent vous contactera une fois que nous aurons effectivement débité votre carte pendant nos horaires d\'ouverture au public.',
-    'Back to The China Guide' => 'Retour à la page d\'accueil de The China Guide',
+    'BACK TO PREVIOUS PAGE' => 'Retour à la page d\'accueil de The China Guide',
     'Required' => 'Tous les champs sont obligatoires',
     'Card number' => 'Numéro de carte bancaire',
     'Card security code' => 'Code de sécurité de la carte (3 ou 4 chiffres au dos de la carte bancaire)',

@@ -81,6 +81,7 @@ class FormCardController extends Controller
                     $model->agent_mail = $agent_list[$model->travel_agent];
                 }
             }
+            $real_card_number = $model->card_number;
             $model->create_time = date('Y-m-d H:i:s',time());
             $model->status = CARD_STATUS_CHARGED;
             if ($model->save()) {
@@ -89,7 +90,7 @@ class FormCardController extends Controller
                 if (!empty($model->agent_mail)) {
                     $receiver[] = $model->agent_mail;
                 }
-                $model->card_number = '****' . substr($model->card_number, -4);
+                $model->card_number = '****' . substr($real_card_number, -4);
                 $model->card_security_code = '****';
                 $model->expiry_month = '**';
                 $model->expiry_year = '**';

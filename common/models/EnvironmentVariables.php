@@ -28,7 +28,7 @@ class EnvironmentVariables extends \yii\db\ActiveRecord
         return [
             [['key', 'value'], 'required'],
             [['key'], 'string', 'max' => 20],
-            [['value'], 'string', 'max' => 512],
+            [['value'], 'string', 'max' => 1024],
             [['value'],'match','pattern'=>'/^\{[\s*"\w+":"A-Za-z0-9@.",*\s*]+\}$/','message'=>'Value does not conform to the requirements'],
         ];
     }

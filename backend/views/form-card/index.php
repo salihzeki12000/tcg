@@ -21,19 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'card_type',
-            'create_time',
-            'client_name',
             [
-                'attribute'=>'status',
-                'filter'=> Yii::$app->params['card_status'],
+                'attribute'=>'Title',
                 'value' => function ($data) {
-                    return Yii::$app->params['card_status'][$data['status']];
+                    $title =  "{$data['amount_to_bill']}-{$data['tour_date']}-{$data['client_name']}-Agent:{$data['travel_agent']}";
+
+                    return $title;
                 }
             ],
+            'create_time',
             // 'name_on_card',
             // 'card_number',
             // 'card_security_code',
@@ -48,8 +45,18 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'tour_date',
             // 'create_time',
 
-            ['class' => 'yii\grid\ActionColumn'],
-
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return Url::to(['form-info/view', 'id'=>$model->id]);
+                    }
+                    if ($action === 'update') {
+                        return Url::to(['form-info/update', 'id'=>$model->id]);
+                    }
+                },
+            ],
         ],
     ]); ?>
 </div>

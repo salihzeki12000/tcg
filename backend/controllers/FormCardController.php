@@ -35,6 +35,9 @@ class FormCardController extends Controller
      */
     public function actionIndex()
     {
+        if (!isset($_GET['sort'])) {
+            $_GET['sort'] = '-create_time';
+        }
         $searchModel = new FormCardSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

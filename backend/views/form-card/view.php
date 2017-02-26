@@ -16,13 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
     <?= DetailView::widget([
@@ -40,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'billing_address',
             'contact_phone',
             'email:email',
-            'card_holder_email:email',
             'travel_agent',
             'tour_date',
             'create_time',
@@ -51,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'format' => 'raw',
               'value' => Yii::$app->params['card_status'][$model->status],
             ],
+            'note',
         ],
     ]) ?>
 

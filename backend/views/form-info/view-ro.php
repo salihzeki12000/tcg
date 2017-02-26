@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\FormInfo */
 
-$this->title = 'Information Form';
+$this->title = 'Inquiries';
 
 $fields = Yii::$app->params['form_fields'][$model->type];
 foreach ($fields as &$field) {
