@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
     <table width="100%">
         <tr>
             <td valign="top">
-                <?= $form->field($model, 'card_type')->dropDownList([ 'Visa'=>Yii::t('app','Visa'),'Mastercard'=>Yii::t('app','Mastercard'),'American Express'=>Yii::t('app','American Express') ], ['prompt' => Yii::t('app','Select')])->label(false) ?>
+                <?= $form->field($model, 'card_type')->dropDownList([ 'Visa'=>Yii::t('app','Visa'),'Mastercard'=>Yii::t('app','Mastercard'),'American Express'=>Yii::t('app','American Express'),'JCB'=>Yii::t('app','JCB') ], ['prompt' => Yii::t('app','Select')])->label(false) ?>
             </td>
             <td width="150px" valign="top" align="center">
                 <?= Html::img('@web/statics/images/creditcards.jpg', ['alt'=>'creditcards', 'width'=>"100px"]) ?>

@@ -22,6 +22,7 @@ return [
     'Visa' => 'Visa',
     'Mastercard' => 'Mastercard',
     'American Express' => 'American Express',
+    'JCB' => 'JCB',
     'Expiry Date' => 'Date d\'expiration',
     'Month' => 'Mois',
     'Year' => 'Année',
