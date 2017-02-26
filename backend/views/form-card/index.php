@@ -30,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $title;
                 }
             ],
-            'create_time',
             // 'name_on_card',
             // 'card_number',
             // 'card_security_code',
@@ -43,7 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'card_holder_email:email',
             // 'travel_agent',
             // 'tour_date',
-            // 'create_time',
+            'status',
+            'create_time',
 
             [
                 'class' => 'yii\grid\ActionColumn',
