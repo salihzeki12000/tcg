@@ -44,7 +44,7 @@ class ExperienceController extends Controller
     public function actionIndex()
     {
         $theme = trim(Yii::$app->request->get('theme'));
-        $theme = str_replace('-', ' ', $theme);
+        // $theme = str_replace('-', ' ', $theme);
         $theme_id = '';
 
         if (empty($theme)) {
@@ -53,7 +53,7 @@ class ExperienceController extends Controller
             $tour_ids = $theme_info['use_ids'];
             $theme_name = $theme_info['name'];
         }
-        elseif (($theme_info = \common\models\Theme::find()->where(['name' => $theme])->One()) !== null) {
+        elseif (($theme_info = \common\models\Theme::find()->where(['url_id' => $theme])->One()) !== null) {
             $tour_ids = $theme_info['use_ids'];
             $theme_id = $theme_info['id'];
             $theme_name = $theme_info['name'];
