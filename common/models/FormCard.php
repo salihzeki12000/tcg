@@ -108,12 +108,14 @@ class FormCard extends \yii\db\ActiveRecord
 
     public function afterFind()
     {
-        $secretKey = $this->secretKey;
-        $this->card_number = \yii::$app->security->decryptByPassword(base64_decode($this->card_number),$secretKey);
-        $this->card_security_code = \yii::$app->security->decryptByPassword(base64_decode($this->card_security_code),$secretKey);
-        $this->expiry_month = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_month),$secretKey);
-        $this->expiry_year = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_year),$secretKey);
-        $this->billing_address = \yii::$app->security->decryptByPassword(base64_decode($this->billing_address),$secretKey);
+        if (Yii::$app->controller->id == 'form-card' && Yii::$app->controller->action->id != 'index') {
+            $secretKey = $this->secretKey;
+            $this->card_number = \yii::$app->security->decryptByPassword(base64_decode($this->card_number),$secretKey);
+            $this->card_security_code = \yii::$app->security->decryptByPassword(base64_decode($this->card_security_code),$secretKey);
+            $this->expiry_month = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_month),$secretKey);
+            $this->expiry_year = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_year),$secretKey);
+            $this->billing_address = \yii::$app->security->decryptByPassword(base64_decode($this->billing_address),$secretKey);
+        }
         parent::afterFind();
     }
 
