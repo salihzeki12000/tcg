@@ -255,6 +255,7 @@ class FGlobalClass extends \yii\base\Component
                 '/forbidden_city/forbidden_city_map_2.jpg' => '/sight/The-Forbidden-City',
                 '/mp3' => '/',
                 '/tcg2/tours/cc' => '/secure-credit-card-form',
+                '/sleeponthewall' => '/experiences/Great+Wall+Hiking+and+Camping',
             ];
             foreach ($red_dir as $key => $value) {
                 if (strpos($url, $key) === 0) {
