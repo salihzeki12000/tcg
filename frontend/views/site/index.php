@@ -152,7 +152,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
                     continue;
                 }
             ?>
-                <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['name']]) ?>">
+                <a class="col-lg-4 col-md-6 col-xs-12 list-group-item" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>">
                     <i class="icon <?= $theme['class_name'] ?>"></i>
                     <span><?= $theme['name'] ?></span>
                     <i class="glyphicon glyphicon-chevron-right pull-right" /></i>

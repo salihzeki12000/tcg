@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </button>
       <ul class="dropdown-menu" role="menu">
         <?php foreach ($themes as $theme) { ?>
-          <li <?= ($theme_id==$theme['id'])?'class="active"':'' ?>><a href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['name']]) ?>"><?= $theme['name'] ?></a></li>
+          <li <?= ($theme_id==$theme['id'])?'class="active"':'' ?>><a href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>"><?= $theme['name'] ?></a></li>
         <?php } ?>
       </ul>
     </div>
