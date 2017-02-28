@@ -69,6 +69,7 @@ class Article extends \yii\db\ActiveRecord
             'priority' => Yii::t('app', 'Priority'),
             'rec_type' => Yii::t('app', 'Recommendation'),
             'image' => Yii::t('app', 'Image（720 x 380 pixels）'),
+            'url_id' => Yii::t('app', 'Url Title'),
         ];
     }
 }
