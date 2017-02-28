@@ -58,6 +58,7 @@ class Itinerary extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
+            'images' => Yii::t('app', 'Images （540 x 340 pixels）'),
         ];
     }
 }
