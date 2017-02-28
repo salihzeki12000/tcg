@@ -10,6 +10,12 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Inquiries');
 $this->params['breadcrumbs'][] = $this->title;
+
+$action_template = [];
+$action_template[] = '{view}';
+if (!in_array(Yii::$app->user->identity->id, [6])) {
+    $action_template[] = '{delete}';
+}
 ?>
 <div class="form-info-index">
 
@@ -91,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {delete}',
+                'template' => join(' ', $action_template),
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {
                         return Url::to(['form-info/view', 'id'=>$model->id]);

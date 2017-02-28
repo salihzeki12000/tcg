@@ -10,6 +10,15 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Form Cards');
 $this->params['breadcrumbs'][] = $this->title;
+
+$action_template = [];
+if (!in_array(Yii::$app->user->identity->id, [6])) {
+    $action_template[] = '{view}';
+    $action_template[] = '{update}';
+}
+if (in_array(Yii::$app->user->identity->id, [1,2,6])) {
+    $action_template[] = '{delete}';
+}
 ?>
 <div class="form-card-index">
 
@@ -54,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'create_time',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update}',
+                'template' => join(' ', $action_template),
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {
                         return Url::to(['form-card/view', 'id'=>$model->id]);
@@ -62,6 +71,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ($action === 'update') {
                         return Url::to(['form-card/update', 'id'=>$model->id]);
                     }
+                    if ($action === 'delete' && in_array(Yii::$app->user->identity->id, [1,2])) {
+                        return Url::to(['form-card/delete', 'id'=>$model->id]);
+                    }
+                    
                 },
             ],
         ],
