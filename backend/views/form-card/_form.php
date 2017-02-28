@@ -14,6 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['card_status']) ?>
 
+    <?= $form->field($model, 'travel_agent')->dropDownList(\common\models\Tools::getFormTravelAgents(), ['prompt' => '']) ?>
+
     <?= $form->field($model, 'note')->textarea(['rows'=>3]) ?>
 
 

@@ -87,24 +87,33 @@ class FormCardController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            $mail_subject = "CreditCard-".Yii::$app->params['card_status'][$model->status]."-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
-            $receiver[] = 'creditcard@thechinaguide.com';
-            if (!empty($model->agent_mail)) {
-                $receiver[] = $model->agent_mail;
+        if ($model->load(Yii::$app->request->post())) {
+            if (($cfg_row = \common\models\EnvironmentVariables::findOne('travel_agents_mail')) !== null) {
+                $json_val = $cfg_row['value'];
+                $agent_list = json_decode($json_val, true);
+                if (!empty($agent_list) && $agent_list[$model->travel_agent]) {
+                    $model->agent_mail = $agent_list[$model->travel_agent];
+                }
             }
-            $real_card_number = \yii::$app->security->decryptByPassword(base64_decode($model->card_number),SECRET_SECRET_KEY);
-            $model->card_number = '****' . substr($real_card_number, -4);
-            $model->card_security_code = '****';
-            $model->expiry_month = '**';
-            $model->expiry_year = '**';
-            $model->billing_address = '****';
-            Yii::$app->mailer->compose('card', ['model' => $model]) 
-                ->setTo($receiver) 
-                ->setSubject($mail_subject) 
-                ->send();
 
+            if ($model->save()) {
+
+                $mail_subject = "CreditCard-".Yii::$app->params['card_status'][$model->status]."-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
+                $receiver[] = 'creditcard@thechinaguide.com';
+                if (!empty($model->agent_mail)) {
+                    $receiver[] = $model->agent_mail;
+                }
+                $real_card_number = \yii::$app->security->decryptByPassword(base64_decode($model->card_number),SECRET_SECRET_KEY);
+                $model->card_number = '****' . substr($real_card_number, -4);
+                $model->card_security_code = '****';
+                $model->expiry_month = '**';
+                $model->expiry_year = '**';
+                $model->billing_address = '****';
+                Yii::$app->mailer->compose('card', ['model' => $model]) 
+                    ->setTo($receiver) 
+                    ->setSubject($mail_subject) 
+                    ->send();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
