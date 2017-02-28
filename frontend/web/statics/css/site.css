@@ -835,7 +835,7 @@ div#social-media-icons-container a {
     display: inline-block;
 }
 .tour-view .container-overview .overview > p{
-    z-index: -1;
+    /*z-index: -1;*/
     position: relative;
 }
 .tour-view .itineraries{
