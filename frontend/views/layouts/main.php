@@ -97,7 +97,7 @@ AppAsset::register($this);
                     }
     $p_menu .= '<li role="presentation" class="dropdown-header">'. Yii::t('app','Currency') .'</li>';
                     foreach ($currency_menu as $currency_item) {
-                        $p_menu .= '<li role="presentation" ' . ($currency_item['label']==Yii::$app->params['currency']?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
+                        $p_menu .= '<li role="presentation" ' . ($currency_item['label']==Yii::$app->params['currency']?'class="active"':'') . '><a role="menuitem" tabindex="-1" href="' . $currency_item['url'] . '" rel="nofollow">' . $currency_item['sign'] . ' ' . $currency_item['label'] . '</a></li>';
                     }
 
             $p_menu .= '</ul></div>';
@@ -160,7 +160,7 @@ AppAsset::register($this);
                 </a>
                 <ul class="dropdown-menu sub-menu" role="menu">
                 <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
-                    <li <?= Yii::$app->params['currency']==$ckey?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=>$ckey]) ?>"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
+                    <li <?= Yii::$app->params['currency']==$ckey?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=>$ckey]) ?>" rel="nofollow"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
                 <?php } ?>
                 </ul>
             </li>
