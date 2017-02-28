@@ -15,7 +15,7 @@ foreach ($fields as &$field) {
           'attribute'=>'tour_name',
           'label'=> Yii::t('app', 'Tour name'),
           'format' => 'raw',
-          'value' => "<a href='//thechinaguide.com/experience/" . urlencode($model->url_id) . "' target='_blank'>".$model->tour_name."</a>",
+          'value' => "<a href='//thechinaguide.com/experience/" . urlencode(str_replace(' ', '-', $model->tour_name)) . "' target='_blank'>".$model->tour_name."</a>",
         ];
     }
 }
