@@ -65,6 +65,7 @@ class Homepage extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
+            'image' => Yii::t('app', 'Image（1280 x 500 pixels）'),
         ];
     }
 }

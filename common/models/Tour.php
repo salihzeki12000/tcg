@@ -107,6 +107,9 @@ class Tour extends \yii\db\ActiveRecord
             'begin_date' => Yii::t('app', 'Begin Date'),
             'end_date' => Yii::t('app', 'End Date'),
             'type' => Yii::t('app', 'Type'),
+            'image' => Yii::t('app', 'Image（1280 x 500 pixels）'),
+            'map_image' => Yii::t('app', 'Map image（540 x 340  pixels）'),
+            'images' => Yii::t('app', 'Images（1280 x 500 pixels）'),
         ];
     }
 }

@@ -72,6 +72,7 @@ class Album extends \yii\db\ActiveRecord
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
             'priority' => Yii::t('app', 'Priority'),
+            'image' => Yii::t('app', 'Image（540 x 340 pixels）'),
         ];
     }
 }

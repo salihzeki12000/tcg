@@ -68,14 +68,15 @@ class Cities extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'status' => Yii::t('app', 'Status'),
-            'pic_s' => Yii::t('app', 'Title Image'),
+            'pic_s' => Yii::t('app', 'Title Image（540 x 340 pixels）'),
             'introduction' => Yii::t('app', 'Introduction'),
             'food' => Yii::t('app', 'Food'),
             'rec_type' => Yii::t('app', 'Recommendation'),
             'vr' => Yii::t('app', 'Vr'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
-            'image' => Yii::t('app', 'Title Image'),
+            'image' => Yii::t('app', 'Title Image （540 x 340 pixels）'),
+            'images' => Yii::t('app', 'Images （1280 x 320 pixels）'),
             'priority' => Yii::t('app', 'Priority'),
         ];
     }

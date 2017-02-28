@@ -37,35 +37,35 @@ use common\models\Cities;
     <?php 
         if (!$model->isNewRecord) {
     ?>
-    <?= $form->field($model, 'images')->widget(FileInput::classname(),
-        ['options' => ['multiple' => true,],
-         'pluginOptions' => [
-                'uploadAsync' => true,
-                'minFileCount' => 1,
-                'maxFileCount' => 10,
-                'initialPreviewAsData' => true,
-                'initialPreviewFileType' => 'image',
-                // 预览的文件
-                'initialPreview' => $p1,
-                // 需要展示的图片设置，比如图片的宽度等
-                'initialPreviewConfig' => $p2,
-                'overwriteInitial' => false,
-                'uploadUrl' => Url::toRoute(['/uploaded-files/async-files']),
-                'uploadExtraData' => [
-                    'name' => $model->name,
-                    'cid'  => $model->id,
-                    'type' => BIZ_TYPE_ALBUM,
-                ],
-                'fileActionSettings' => [
-                    // 设置具体图片的查看属性为false,默认为true
-                    'showZoom' => false,
-                    // 设置具体图片的上传属性为true,默认为true
-                    'showUpload' => true,
-                    // 设置具体图片的移除属性为true,默认为true
-                    'showRemove' => true,
-                ]
-            ],
-        ]);
+    <?php //= $form->field($model, 'images')->widget(FileInput::classname(),
+        // ['options' => ['multiple' => true,],
+        //  'pluginOptions' => [
+        //         'uploadAsync' => true,
+        //         'minFileCount' => 1,
+        //         'maxFileCount' => 10,
+        //         'initialPreviewAsData' => true,
+        //         'initialPreviewFileType' => 'image',
+        //         // 预览的文件
+        //         'initialPreview' => $p1,
+        //         // 需要展示的图片设置，比如图片的宽度等
+        //         'initialPreviewConfig' => $p2,
+        //         'overwriteInitial' => false,
+        //         'uploadUrl' => Url::toRoute(['/uploaded-files/async-files']),
+        //         'uploadExtraData' => [
+        //             'name' => $model->name,
+        //             'cid'  => $model->id,
+        //             'type' => BIZ_TYPE_ALBUM,
+        //         ],
+        //         'fileActionSettings' => [
+        //             // 设置具体图片的查看属性为false,默认为true
+        //             'showZoom' => false,
+        //             // 设置具体图片的上传属性为true,默认为true
+        //             'showUpload' => true,
+        //             // 设置具体图片的移除属性为true,默认为true
+        //             'showRemove' => true,
+        //         ]
+        //     ],
+        // ]);
     ?>
 
     <?= $form->field($model, 'overview')->widget(\yii\redactor\widgets\Redactor::className(), [
