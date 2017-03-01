@@ -256,6 +256,11 @@ class FGlobalClass extends \yii\base\Component
                 '/mp3' => '/',
                 '/tcg2/tours/cc' => '/secure-credit-card-form',
                 '/sleeponthewall' => '/experiences/Great-Wall-Hiking-and-Camping',
+                '/experiences/Adventurous' => '/experiences/Adventure',
+                '/experiences/Foodie' => '/experiences/Gourmet',
+                '/experiences/At-a-Glance' => '/experiences/China-at-a-Glance',
+                // 'theme-tour' => '/themed-tours',
+                '/blogs' => '/the-china-guide-blog',
             ];
             foreach ($red_dir as $key => $value) {
                 if (strpos($url, $key) === 0) {
