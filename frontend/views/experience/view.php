@@ -228,6 +228,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
+<?= $this->render('/layouts/_tawk_script', []) ?>
+
 <?php
 $js = <<<JS
 

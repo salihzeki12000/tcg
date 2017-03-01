@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-
+<?= Yii::$app->controller->action->id=='contact-us'?$this->render('/layouts/_tawk_script', []):'' ?>
 
 <?php
 $js = <<<JS

@@ -306,6 +306,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
                 <a class="cnn-travel" href="http://travel.cnn.com/explorations/play/asias-most-bike-friendly-cities-982373/" target="_blank"></a>
                 <a class="ted-ed" href="http://ed.ted.com/on/oCg0iCyT#digdeeper" target="_blank"></a>
                 <a class="fodors-travel" href="http://www.fodors.com/world/asia/china/beijing/travel-tips/tours-2780308" target="_blank"></a>
+                <a class="treasure-leasure" href="http://www.travelandleisure.com/attractions/great-wall-of-china-sledding" target="_blank"></a>
             </div>
         </div>
     </div>

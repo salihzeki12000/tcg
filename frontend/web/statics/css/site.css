@@ -438,6 +438,10 @@ div#social-media-icons-container a {
   width: 201px;
   background-position: 0px -125px;
 }
+#featured-in-container .treasure-leasure{
+  width: 130px;
+  background-position: 0px -166px;
+}
 
 .navbar-brand {
     padding: 0 8px;
