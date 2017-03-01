@@ -54,6 +54,9 @@ class FormCardController extends Controller
      */
     public function actionView($id)
     {
+        if (!in_array(Yii::$app->user->identity->id, [1,2,5])) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -130,6 +133,9 @@ class FormCardController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!in_array(Yii::$app->user->identity->id, [1,2,6])) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
