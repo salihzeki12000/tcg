@@ -149,7 +149,7 @@ use yii\helpers\Url;
     <table width="100%">
         <tr>
             <td width="30%" valign="top">
-                <?= $form->field($model, 'name_prefix')->dropDownList([ 'Mr.' => 'Mr.', 'Mrs.' => 'Mrs.', 'Miss' => 'Miss', ], ['prompt' => ''])->label(false) ?>
+                <?= $form->field($model, 'name_prefix')->dropDownList([ 'Mr.' => 'Mr.', 'Mrs.' => 'Mrs.', 'Miss' => 'Miss', 'Other'=>'Other'], ['prompt' => ''])->label(false) ?>
             </td>
             <td width="70%" valign="top">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label(false) ?>

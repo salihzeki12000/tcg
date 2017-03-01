@@ -11,26 +11,24 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Experiences') . ', ' . Yii::t('app', 'Theme Tour');
+$this->title = Yii::t('app', 'China Experiences') . ', ' . Yii::t('app', 'Themed Tours');
 $this->description = Yii::t('app', 'A group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours.');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Theme Tour'), 'width'=>"100%"]) ?>
-      <div class="banner-text"><?= Yii::t('app', 'Theme Tour') ?></div>
+      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Themed Tours'), 'width'=>"100%"]) ?>
+      <div class="banner-text"><?= Yii::t('app', 'Themed Tours') ?></div>
     </div>
   </div>
 </div>
 
 <div class="tour-index container">
 
-  <p><?=Yii::t('app','Although we specialize in private tours, we realize that for some people, the cost of a group tour may be more approachable. That’s why we organize one-off group tours to different destinations on fixed dates throughout the year.')?></p>
+  <p><?=Yii::t('app','Although we specialize in private tours, we realize that for some people, the cost of a group tour may be more approachable. That’s why we organize one-off themed tours to different destinations on fixed dates throughout the year that are designed with small groups in mind.')?></p>
 
-  <p><?=Yii::t('app','A group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours. ')?></p>
-
-  <p><?=Yii::t('app','This page is frequently updated with new tour dates, so be sure to check back regularly. ')?></p>
+  <p><?=Yii::t('app','Joining a group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours.')?></p>
 
   <?php foreach ($month_tours as $month => $tours) { ?>
    <h3 class="tours-month"><center><?= $month ?></center></h3>

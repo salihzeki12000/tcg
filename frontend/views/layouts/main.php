@@ -53,12 +53,12 @@ AppAsset::register($this);
         $currency_menu[] = ['sign'=>$currency_item['sign'], 'label' => $currency_item['name'], 'url' => Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=> $currency_item['name']])];
     }
     $menuItems = [
-        ['label' => Yii::t('app','Find A Tour'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
+        ['label' => Yii::t('app','Find a Tour'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','Experiences'), 'url' => ['experience/index'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         ['label' => Yii::t('app','Educational Programs'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => Yii::t('app','Theme Tour'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'about-us'), 'items' =>[['label' => Yii::t('app','Blogs'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'about-us'), 'items' =>[['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
         ['label' => Yii::t('app','About Us'), 'url' => ['/about-us'], 'active' => \Yii::$app->controller->id == 'about-us', ],]],
 
@@ -118,14 +118,14 @@ AppAsset::register($this);
         <div class="modal-content m-menu">
 
         <ul class="">
-            <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find A Tour') ?></a></li>
+            <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find a Tour') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
-            <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Theme Tour') ?></a></li>
+            <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Themed Tours') ?></a></li>
             <li class="">
                 <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blogs') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['preparation/index']) ?>"><?= Yii::t('app','Preparation') ?></a></li>
                 </ul>
             </li>
@@ -209,7 +209,7 @@ AppAsset::register($this);
     </script>
     </center>
     <div class="social-media-icons">
-        <center><?=Yii::t('app','FOLLOW US ON')?></center>
+        <center><?=Yii::t('app','FOLLOW US')?></center>
         <div id="social-media-icons-container">
             <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" id="tripadvisor" target="_blank"></a>
             <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>

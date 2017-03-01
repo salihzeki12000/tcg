@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <div class="tour-index container">
-
+  <p><?=Yii::t('app','We know that no two travel experiences are the same, so no matter what sort of China experience you are looking for – romantic, family friendly, off the beaten path – we can mold and shape our itineraries to suit your needs. The itineraries below are just a taste of what we can offer. If there is a particular activity you want to do or sight you want to visit, just let us know. ')?></p>
   <form id="tours_search" action="<?= Url::toRoute(['experience/search']) ?>#search-results"  method="post">
     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
     <div class="exp-search-form col-lg-6 col-md-6 col-sm-10 col-xs-12">

@@ -41,7 +41,7 @@ class Theme extends \yii\db\ActiveRecord
         return [
             [['name', 'use_ids'], 'required'],
             [['priority', 'status'], 'integer'],
-            [['create_time', 'update_time', 'sync_time'], 'safe'],
+            [['create_time', 'update_time', 'sync_time', 'url_id'], 'safe'],
             [['name', 'class_name'], 'string', 'max' => 50],
             [['use_ids'], 'string', 'max' => 255],
             [['use_ids'],'match','pattern'=>'/^(\d+[,])*(\d+)$/','message'=>'Name does not conform to the requirements'],
@@ -65,6 +65,7 @@ class Theme extends \yii\db\ActiveRecord
             'update_time' => Yii::t('app', 'Update Time'),
             'sync_time' => Yii::t('app', 'Sync Time'),
             'status' => Yii::t('app', 'Status'),
+            'url_id' => Yii::t('app', 'Url Title'),
         ];
     }
 }

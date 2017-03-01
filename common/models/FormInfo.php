@@ -108,7 +108,7 @@ class FormInfo extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Your full name'),
             'email' => Yii::t('app', 'Your email'),
             'nationality' => Yii::t('app', 'Your nationality'),
-            'prefered_travel_agent' => Yii::t('app', 'Prefered travel agent'),
+            'prefered_travel_agent' => Yii::t('app', 'Preferred travel agent'),
             'tour_code' => Yii::t('app', 'Tour code'),
             'tour_name' => Yii::t('app', 'Tour name'),
             'book_hotels' => Yii::t('app', 'Do you want us to book hotels for you?'),

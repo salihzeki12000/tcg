@@ -25,9 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="cities-index container">
-  <p><?=Yii::t('app','A lifetime would hardly be enough to explore everything that China has to offer. From historic architecture to mysterious cultre, from futuristic cityscapes to boundless deserts and mist-shrouded karst landscapes, there is something to discover around every corner, no matter what kind of travel experience you are looking for.')?></p>
+  <p><?=Yii::t('app','A lifetime would hardly be enough to explore everything that China has to offer. From historic architecture to mysterious culture, from futuristic cityscapes to boundless deserts and mist-shrouded karst landscapes, there is something to discover around every corner, no matter what kind of travel experience you are looking for.')?></p>
 
-  <p><?=Yii::t('app','As a result, where you visit very much depends on what you are interested in and how long you can allow for your trip. The destinations below are just a taste of what we can offer. We can arrange tours in cities across the whole of China. If there is a city or cities missing below but you want to visit, just let your travel agent know.')?></p>
+  <p><?=Yii::t('app','As a result, where you visit very much depends on what you are interested in and how long you can allow for your trip. The destinations below are just a taste of what we can offer. We can arrange tours in cities across the whole of China. If the city that you want to visit is missing from the list below, just let your travel agent know.')?></p>
 
   <div class="row">
       <div class="col-lg-12">

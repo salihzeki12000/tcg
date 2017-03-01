@@ -25,8 +25,8 @@ class SitemapController extends Controller
         $pages = [
             '/destinations',
             '/experiences',
-            '/theme-tour',
-            '/blogs',
+            '/themed-tours',
+            '/the-china-guide-blog',
             '/preparation',
             '/about-us',
             '/about-us/drivers-and-vehicles',

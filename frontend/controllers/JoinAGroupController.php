@@ -53,7 +53,7 @@ class JoinAGroupController extends Controller
 
         $month_tours = [];
         foreach ($tours as $tour) {
-            $tour_month = date('F, Y', strtotime($tour['begin_date']));
+            $tour_month = date('F Y', strtotime($tour['begin_date']));
             $month_tours[$tour_month][] = $tour;
         }
 
