@@ -7,6 +7,7 @@ use common\models\FormCard;
 use common\models\FormCardSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 
 /**
@@ -55,7 +56,7 @@ class FormCardController extends Controller
     public function actionView($id)
     {
         if (!in_array(Yii::$app->user->identity->id, [1,2,5])) {
-            throw new yii\web\ForbiddenHttpException('You are not allowed to perform this action.');
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
         return $this->render('view', [
             'model' => $this->findModel($id),
