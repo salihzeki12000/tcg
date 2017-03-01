@@ -71,7 +71,7 @@ if (in_array(Yii::$app->user->identity->id, [1,2,6])) {
                     if ($action === 'update') {
                         return Url::to(['form-card/update', 'id'=>$model->id]);
                     }
-                    if ($action === 'delete' && in_array(Yii::$app->user->identity->id, [1,2])) {
+                    if ($action === 'delete') {
                         return Url::to(['form-card/delete', 'id'=>$model->id]);
                     }
                     
