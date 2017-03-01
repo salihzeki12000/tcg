@@ -7,6 +7,7 @@ use common\models\FormInfo;
 use common\models\FormInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 
 /**
@@ -105,6 +106,9 @@ class FormInfoController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!in_array(Yii::$app->user->identity->id, [1,2])) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

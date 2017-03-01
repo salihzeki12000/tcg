@@ -89,6 +89,9 @@ class FormCardController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!in_array(Yii::$app->user->identity->id, [1,2,5])) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
