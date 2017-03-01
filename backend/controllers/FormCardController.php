@@ -55,7 +55,7 @@ class FormCardController extends Controller
     public function actionView($id)
     {
         if (!in_array(Yii::$app->user->identity->id, [1,2,5])) {
-            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+            throw new yii\web\ForbiddenHttpException('You are not allowed to perform this action.');
         }
         return $this->render('view', [
             'model' => $this->findModel($id),
