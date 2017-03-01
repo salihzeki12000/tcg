@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\FormCard */
 
-$this->title = $model->id;
+$this->title = $model->client_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Form Cards'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

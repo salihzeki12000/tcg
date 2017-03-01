@@ -7,9 +7,9 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Form Card',
-]) . $model->id;
+]) . $model->client_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Form Cards'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->client_name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="form-card-update">
