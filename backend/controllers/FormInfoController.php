@@ -109,7 +109,11 @@ class FormInfoController extends Controller
         if (!in_array(Yii::$app->user->identity->id, [1,2])) {
             throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
-        $this->findModel($id)->delete();
+        if (($model = FormInfo::findOne($id)) !== null) {
+            $ret = Yii::$app->db->createCommand()->update('form_info', ['status' => -1], 'id = '.$id)->execute();
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
 
         return $this->redirect(['index']);
     }

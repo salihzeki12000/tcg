@@ -102,7 +102,7 @@ class FormCardController extends Controller
                     $model->agent_mail = $agent_list[$model->travel_agent];
                 }
             }
-
+            $model->update_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
 
                 $mail_subject = "CreditCard-".Yii::$app->params['card_status'][$model->status]."-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
@@ -140,7 +140,13 @@ class FormCardController extends Controller
         if (!in_array(Yii::$app->user->identity->id, [1,2,6])) {
             throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
-        $this->findModel($id)->delete();
+        if (($model = FormCard::findOne($id)) !== null) {
+            $model->update_time = date('Y-m-d H:i:s',time());
+            $model->status = -1;
+            $model->save();
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
 
         return $this->redirect(['index']);
     }

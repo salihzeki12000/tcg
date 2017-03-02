@@ -68,7 +68,8 @@ class FormCardSearch extends FormCard
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'card_type', $this->card_type])
+        $query->andFilterWhere(['>=', 'status', '0'])
+            ->andFilterWhere(['like', 'card_type', $this->card_type])
             ->andFilterWhere(['like', 'client_name', $this->client_name])
             ->andFilterWhere(['like', 'name_on_card', $this->name_on_card])
             ->andFilterWhere(['like', 'expiry_month', $this->expiry_month])

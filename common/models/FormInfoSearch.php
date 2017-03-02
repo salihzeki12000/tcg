@@ -64,7 +64,8 @@ class FormInfoSearch extends FormInfo
             'create_time' => $this->create_time,
         ]);
 
-        $query->andFilterWhere(['like', 'arrival_date', $this->arrival_date])
+        $query->andFilterWhere(['>=', 'status', '0'])
+            ->andFilterWhere(['like', 'arrival_date', $this->arrival_date])
             ->andFilterWhere(['like', 'arrival_city', $this->arrival_city])
             ->andFilterWhere(['like', 'departure_date', $this->departure_date])
             ->andFilterWhere(['like', 'departure_city', $this->departure_city])
