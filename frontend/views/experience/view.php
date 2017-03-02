@@ -267,7 +267,7 @@ $js = <<<JS
       if($('#bt_overview_more').html().indexOf("More")>=0)
       {
         $('#overview-body').height(overview_height);
-        $('#bt_overview_more').html('<i class="glyphicon glyphicon-chevron-up"><br>Fold</i>');
+        $('#bt_overview_more').html('<i class="glyphicon glyphicon-chevron-up"><br>Less</i>');
       }
       else
       {
