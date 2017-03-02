@@ -23,6 +23,7 @@ $this->title = 'Secure Credit Card Form';
             'expiry_month',
             'expiry_year',
             'amount_to_bill',
+            'donation',
             'billing_address',
             'contact_phone',
             'email',

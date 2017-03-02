@@ -315,6 +315,8 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
 </div>
 
+<?= $this->render('/layouts/_tawk_script', []) ?>
+
 <?php
 $js = <<<JS
         $('.map-poi').click(function(){

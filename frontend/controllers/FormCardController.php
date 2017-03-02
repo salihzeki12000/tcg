@@ -81,6 +81,17 @@ class FormCardController extends Controller
                     $model->agent_mail = $agent_list[$model->travel_agent];
                 }
             }
+            if (isset($_POST['FormCard']['donation'])) {
+                if ($model->donation == 'other_donation') {
+                    if (isset($_POST['other_donation']) && !empty($_POST['other_donation'])) {
+                        $model->donation = $_POST['other_donation'];
+                    }
+                    else{
+                        $model->donation = '';
+                    }
+                }
+            }
+
             $real_card_number = $model->card_number;
             $model->create_time = date('Y-m-d H:i:s',time());
             $model->status = CARD_STATUS_CHARGED;
@@ -95,10 +106,10 @@ class FormCardController extends Controller
                 $model->expiry_month = '**';
                 $model->expiry_year = '**';
                 $model->billing_address = '****';
-                Yii::$app->mailer->compose('card', ['model' => $model]) 
-                    ->setTo($receiver) 
-                    ->setSubject($mail_subject) 
-                    ->send();
+                // Yii::$app->mailer->compose('card', ['model' => $model]) 
+                //     ->setTo($receiver) 
+                //     ->setSubject($mail_subject) 
+                //     ->send();
 
                 return $this->redirect(['success']);
             }

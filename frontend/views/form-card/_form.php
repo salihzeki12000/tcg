@@ -55,6 +55,18 @@ use yii\widgets\ActiveForm;
         </tr>
     </table>
 
+    <div class="form-group field-formcard-donation">
+        <label class="control-label"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to Animals Asia')?></label>
+        <div id="formcard-donation" style="display: none;">
+            <label><input type="radio" name="FormCard[donation]" value="50">50 CNY </label>
+            <label><input type="radio" name="FormCard[donation]" value="100">100 CNY </label>
+            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> <?=Yii::t('app','Other amount')?> </label>
+            <label id="lab_other_donation" style="display: none;"><input type="input" name="other_donation" value="" disabled="disabled" style="width:68px"></label>
+        </div>
+
+        <div class="help-block"></div>
+    </div>
+
     <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
     <table width="100%">
         <tr>
@@ -103,6 +115,22 @@ $js = <<<JS
             }
             else{
                 $('#formcard-client_name').attr("readonly",false);
+            }
+        });
+        $('#ck_donation').click(function(){
+            if(this.checked){
+                $('#formcard-donation').show().find('input[type=radio]').removeAttr('disabled');
+            }
+            else{
+                $('#formcard-donation').hide().find('input').removeAttr('checked').attr('disabled','disabled');
+            }
+        });
+        $('#formcard-donation input[type=radio]').click(function(){
+            if(this.value=='other_donation'){
+                $('#lab_other_donation').show().children("input").removeAttr('disabled');
+            }
+            else{
+                $('#lab_other_donation').hide().children("input").attr('disabled','disabled');
             }
         });
     });

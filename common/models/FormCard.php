@@ -27,6 +27,7 @@ use Yii;
  * @property integer $status
  * @property string $update_time
  * @property string $note
+ * @property string $donation
  */
 class FormCard extends \yii\db\ActiveRecord
 {
@@ -47,7 +48,7 @@ class FormCard extends \yii\db\ActiveRecord
         return [
             [['card_type', 'client_name', 'name_on_card', 'card_number', 'card_security_code', 'expiry_month', 'expiry_year', 'amount_to_bill', 'billing_address', 'contact_phone', 'email', 'travel_agent', 'tour_date'], 'required' , 'message' => Yii::t('app', 'Required')],
             [['card_number', 'status'], 'number'],
-            [['card_number', 'amount_to_bill'], 'string', 'max' => 18],
+            [['card_number', 'amount_to_bill', 'donation'], 'string', 'max' => 18],
             [['note'], 'string'],
             ['card_security_code', 'integer'],
             ['card_security_code', 'string', 'max' => 6],
@@ -87,6 +88,7 @@ class FormCard extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'status'),
             'update_time' => Yii::t('app', 'Update time'),
             'note' => Yii::t('app', 'note'),
+            'donation' => Yii::t('app', 'Donate to Animals Asia'),
         ];
     }
 

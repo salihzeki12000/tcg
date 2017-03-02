@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'expiry_month',
             'expiry_year',
             'amount_to_bill',
+            'donation',
             'billing_address',
             'contact_phone',
             'email:email',
