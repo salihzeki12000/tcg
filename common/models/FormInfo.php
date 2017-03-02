@@ -73,7 +73,6 @@ class FormInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         $arr_required = Yii::$app->params['form_required'][$this->form_type];
-        var_dump($this->form_type);exit;
         return [
             [$arr_required, 'required' , 'message' => Yii::t('app', 'Required')],
             [['arrival_city', 'departure_city', 'adults', 'children', 'infants', 'group_type', 'cities_plan', 'travel_interests', 'prefered_budget', 'name_prefix', 'prefered_travel_agent', 'book_hotels', 'hotel_preferences'], 'string'],
