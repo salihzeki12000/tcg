@@ -60,7 +60,7 @@ use yii\widgets\ActiveForm;
         <div id="formcard-donation" style="display: none;">
             <label><input type="radio" name="FormCard[donation]" value="50">50 CNY </label>
             <label><input type="radio" name="FormCard[donation]" value="100">100 CNY </label>
-            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> <?=Yii::t('app','Other amount')?> </label>
+            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"><?=Yii::t('app','Other amount')?> </label>
             <label id="lab_other_donation" style="display: none;"><input type="input" name="other_donation" value="" disabled="disabled" style="width:68px"></label>
         </div>
 
