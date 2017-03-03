@@ -296,7 +296,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
         <?php } ?>
     </div>
 
-    <div class="container">
+    <div class="container clearfix">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" style="margin-top: 10px;margin-bottom: 0px;"><?=Yii::t('app','FEATURED IN')?></h1>
