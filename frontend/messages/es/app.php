@@ -46,6 +46,6 @@ return [
     'Card holder\'s email' => 'Email del dueño de la tarjeta',
     'Your travel agent' => 'Agente de viajes',
     'Your tour start date' => 'Fecha del Tour',
-    'Donate to Animals Asia' => 'Donar a Animals Asia',
+    'Donate to {0}Animals Asia{1}' => 'Donar a {0}Animals Asia{1}',
     'Other amount' => 'Otra Cantidad',
 ];

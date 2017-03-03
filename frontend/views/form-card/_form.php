@@ -56,11 +56,11 @@ use yii\widgets\ActiveForm;
     </table>
 
     <div class="form-group field-formcard-donation">
-        <label class="control-label"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to Animals Asia')?></label>
-        <div id="formcard-donation" style="display: none;">
-            <label><input type="radio" name="FormCard[donation]" value="50">50 CNY </label>
-            <label><input type="radio" name="FormCard[donation]" value="100">100 CNY </label>
-            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"><?=Yii::t('app','Other amount')?> </label>
+        <label class="control-label"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to {0}Animals Asia{1}', ['<a target="_blank" href="/misc/animals-asia">', '</a>'])?></label>
+        <div id="formcard-donation" style="display: none;padding-left: 15px;">
+            <label><input type="radio" name="FormCard[donation]" value="50"> 50 CNY </label><br>
+            <label><input type="radio" name="FormCard[donation]" value="100"> 100 CNY </label><br>
+            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> <?=Yii::t('app','Other amount')?>: </label>
             <label id="lab_other_donation" style="display: none;"><input type="input" name="other_donation" value="" disabled="disabled" style="width:100px"></label>
         </div>
 
@@ -133,6 +133,20 @@ $js = <<<JS
                 $('#lab_other_donation').hide().children("input").attr('disabled','disabled');
             }
         });
+        setTimeout(function(){
+            if($('#ck_donation').is( ":checked" )){
+                $('#formcard-donation').show().find('input[type=radio]').removeAttr('disabled');
+                if($('#ck_other_donation').is( ":checked" )){
+                    $('#lab_other_donation').show().children("input").removeAttr('disabled');
+                }
+                else{
+                    $('#lab_other_donation').hide().children("input").attr('disabled','disabled');
+                }
+            }
+            else{
+                $('#formcard-donation').hide().find('input').removeAttr('checked').attr('disabled','disabled');
+            }
+        }, 2000);
     });
 JS;
 $this->registerJs($js);

@@ -47,7 +47,7 @@ return [
     'Your travel agent' => 'Agent de voyages',
     'Your tour start date' => 'Date du circuit',
     'Select' => 'Selectionnez',
-    'Donate to Animals Asia' => 'faire une donation à Animals Asia',
+    'Donate to {0}Animals Asia{1}' => 'faire une donation à {0}Animals Asia{1}',
     'Other amount' => 'autre montant',
 
 ];
