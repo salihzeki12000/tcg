@@ -56,7 +56,7 @@ use yii\widgets\ActiveForm;
     </table>
 
     <div class="form-group field-formcard-donation">
-        <label class="control-label"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to {0}Animals Asia{1}', ['<a target="_blank" href="/misc/animals-asia">', '</a>'])?></label>
+        <label class="control-label" style="font-weight: normal;"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to {0}Animals Asia{1}', ['<a target="_blank" href="/misc/animals-asia">', '</a>'])?></label>
         <div id="formcard-donation" style="display: none;padding-left: 15px;">
             <label><input type="radio" name="FormCard[donation]" value="50"> 50 CNY </label><br>
             <label><input type="radio" name="FormCard[donation]" value="100"> 100 CNY </label><br>
