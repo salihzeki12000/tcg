@@ -275,11 +275,11 @@ class FGlobalClass extends \yii\base\Component
                 exit();
             }
 
-            // if ($_SERVER['SERVER_NAME'] != SITE_SERVER_NAME) {
-            //     header("HTTP/1.1 301 Moved Permanently"); 
-            //     header("Location: ".SITE_BASE_URL.$url); 
-            //     exit();
-            // }
+            if ($_SERVER['SERVER_NAME'] != SITE_SERVER_NAME) {
+                header("HTTP/1.1 301 Moved Permanently"); 
+                header("Location: ".SITE_BASE_URL.$url); 
+                exit();
+            }
         }
 
 
