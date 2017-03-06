@@ -239,6 +239,9 @@ $css = <<<CSS
 .grid-view{
     overflow-x: scroll;
 }
+.table [aria-label]{
+    margin: 6px;
+}
 CSS;
 $this->registerCss($css);
 ?>
