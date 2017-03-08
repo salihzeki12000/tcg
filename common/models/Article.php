@@ -40,6 +40,10 @@ class Article extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+        $name_rule = [['title'], 'string', 'max' => 255];
+        if (Yii::$app->language == Yii::$app->sourceLanguage) {
+            $name_rule = [['title'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\?]+$/','message'=>'Title does not conform to the requirements'];
+        }
         return [
             [['title', 'type'], 'required'],
             [['type', 'sub_type', 'status', 'priority','rec_type'], 'integer'],
@@ -47,7 +51,7 @@ class Article extends \yii\db\ActiveRecord
             [['create_time', 'update_time'], 'safe'],
             [['title','pic_s', 'keywords'], 'string', 'max' => 255],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
-            [['title'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\?]+$/','message'=>'Title does not conform to the requirements'],
+            $name_rule,
         ];
     }
 

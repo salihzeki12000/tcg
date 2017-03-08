@@ -85,7 +85,9 @@ class SightController extends Controller
             }
 
             $model->create_time = date('Y-m-d H:i:s',time());
-            $model->url_id = str_replace(' ', '-', $model->name);
+            if (Yii::$app->language == Yii::$app->sourceLanguage) {
+                $model->url_id = str_replace(' ', '-', $model->name);
+            }
             if ($model->save()) {
                 return $this->redirect(['update', 'id' => $model->id]);
             }
@@ -126,7 +128,9 @@ class SightController extends Controller
                 }
             }
             $model->update_time = date('Y-m-d H:i:s',time());
-            $model->url_id = str_replace(' ', '-', $model->name);
+            if (Yii::$app->language == Yii::$app->sourceLanguage) {
+                $model->url_id = str_replace(' ', '-', $model->name);
+            }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

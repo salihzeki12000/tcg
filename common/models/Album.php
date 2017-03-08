@@ -43,6 +43,10 @@ class Album extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+        $name_rule = [['name'], 'string', 'max' => 255];
+        if (Yii::$app->language == Yii::$app->sourceLanguage) {
+            $name_rule = [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s]+$/','message'=>'Name does not conform to the requirements'];
+        }
         return [
             [['type', 'name', 'city_id'], 'required'],
             [['type', 'city_id', 'status', 'priority'], 'integer'],
@@ -50,7 +54,7 @@ class Album extends \yii\db\ActiveRecord
             [['create_time', 'update_time'], 'safe'],
             [['name', 'pic_s', 'keywords'], 'string', 'max' => 255],
             [['rec_type'], 'string', 'max' => 50],
-            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s]+$/','message'=>'Name does not conform to the requirements'],
+            $name_rule,
         ];
     }
 

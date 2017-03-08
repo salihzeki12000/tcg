@@ -38,6 +38,10 @@ class Theme extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+        $name_rule = [['name'], 'string', 'max' => 255];
+        if (Yii::$app->language == Yii::$app->sourceLanguage) {
+            $name_rule = [['name'],'match','pattern'=>'/^[A-Za-z0-9_\s]+$/','message'=>'Name does not conform to the requirements'];
+        }
         return [
             [['name', 'use_ids'], 'required'],
             [['priority', 'status'], 'integer'],
@@ -45,7 +49,7 @@ class Theme extends \yii\db\ActiveRecord
             [['name', 'class_name'], 'string', 'max' => 50],
             [['use_ids'], 'string', 'max' => 255],
             [['use_ids'],'match','pattern'=>'/^(\d+[,])*(\d+)$/','message'=>'Name does not conform to the requirements'],
-            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\s]+$/','message'=>'Name does not conform to the requirements'],
+            $name_rule,
 
         ];
     }

@@ -45,6 +45,10 @@ class Cities extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+        $name_rule = [['name'], 'string', 'max' => 255];
+        if (Yii::$app->language == Yii::$app->sourceLanguage) {
+            $name_rule = [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\|]+$/','message'=>'Name does not conform to the requirements'];
+        }
         return [
             [['name', 'status'], 'required'],
             [['status', 'priority'], 'integer'],
@@ -54,7 +58,7 @@ class Cities extends \yii\db\ActiveRecord
             [['pic_s'], 'string', 'max' => 255],
             [['vr'], 'string', 'max' => 512],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
-            [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\|]+$/','message'=>'Name does not conform to the requirements'],
+            $name_rule,
 
         ];
     }
