@@ -1,3 +1,4 @@
+<?php if(!YII_DEBUG) { ?>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var $_Tawk_API={},$_Tawk_LoadStart=new Date();
@@ -11,3 +12,4 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+<?php } ?>
