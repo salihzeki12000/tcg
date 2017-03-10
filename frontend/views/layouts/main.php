@@ -33,7 +33,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?php if(\Yii::$app->controller->id != 'form-card') { ?>
+<?php if(!YII_DEBUG && \Yii::$app->controller->id != 'form-card') { ?>
 <?= $this->render('analyticstracking', []) ?>
 <?php } ?>
 <div class="wrap">
