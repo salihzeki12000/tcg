@@ -25,6 +25,11 @@ AppAsset::register($this);
     <meta name="description" content="<?= $this->description ?>" />
     <meta name="keywords" content="<?= $this->keywords ?>" />
     <?php $this->head() ?>
+    <script type="text/javascript"> //<![CDATA[ 
+        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+        //]]>
+    </script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -199,10 +204,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
     <center>
-    <script type="text/javascript"> //<![CDATA[ 
-        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-        //]]>
+    <script language="JavaScript" type="text/javascript">
     TrustLogo("https://thechinaguide.com/statics/images/comodo_secure_seal_113x59_transp.png", "CL1", "none");
     </script>
     </center>
