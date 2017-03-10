@@ -199,7 +199,10 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
     <center>
-    <script language="JavaScript" type="text/javascript">
+    <script type="text/javascript"> //<![CDATA[ 
+        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+        //]]>
     TrustLogo("https://thechinaguide.com/statics/images/comodo_secure_seal_113x59_transp.png", "CL1", "none");
     </script>
     </center>
@@ -249,11 +252,6 @@ AppAsset::register($this);
 </footer>
 <div id="gotop"><i class="glyphicon glyphicon-chevron-up"></i><br /><?=Yii::t('app','TOP')?></div>
 <?php $this->endBody() ?>
-    <script type="text/javascript"> //<![CDATA[ 
-        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-        //]]>
-    </script>
 <?php
 $js = <<<JS
   var _is_mobile = 0;
