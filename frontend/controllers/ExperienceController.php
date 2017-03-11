@@ -84,10 +84,7 @@ class ExperienceController extends Controller
             ->limit($pages->limit)
             ->all();
 
-        $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
-        $themes = $themes_query
-            ->orderBy('priority DESC, id ASC')
-            ->all();
+        $themes = \common\models\Tools::getAllTheme();
 
         return $this->render('index',['tours'=>$tours,'type'=>$this->tour_type,'themes'=>$themes,'theme_id'=>$theme_id,'theme_name'=>$theme_name,'pages'=>$pages]);
     }

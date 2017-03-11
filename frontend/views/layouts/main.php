@@ -245,17 +245,17 @@ AppAsset::register($this);
             <a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
 
         </div>
-        <div class="fitem col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="fitem col-lg-5 col-md-5 col-sm-12 col-xs-12">
             <h3><?=Yii::t('app','Experiences')?></h3>
             <div class="flink">
-                <?php if( ($tours = \common\models\Tools::getMostPopularTours(9) )!== null) {
-                 foreach ($tours as $tour) {
+                <?php if( ($themes = \common\models\Tools::getAllTheme() )!== null) {
+                 foreach ($themes as $theme) {
                 ?>
-                <a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"><?= $tour['name'] ?></a> 
+                <a href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>"><?= $theme['name'] ?></a> 
                 <?php } } ?>
             </div>
         </div>
-        <div class="fitem col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="fitem col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <h3><?=Yii::t('app','Destinations')?></h3>
             <div class="flink">
                 <?php if( ($cities = \common\models\Tools::getMostPopularCities(9) )!== null) {

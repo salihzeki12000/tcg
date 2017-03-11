@@ -152,9 +152,20 @@ class Tools
     {
         $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,10,20]]);
         $cities = $cities_map_query
+            ->orderBy('priority DESC, id ASC')
             ->limit($count)
             ->all();
         return $cities;
+    }
+
+    static public function getAllTheme()
+    {
+        $themes = [];
+        $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $themes = $themes_query
+            ->orderBy('priority DESC, id ASC')
+            ->all();
+        return $themes;
     }
 
     static public function getFormPopularCities()
