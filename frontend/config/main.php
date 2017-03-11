@@ -88,7 +88,7 @@ return [
                 'destination/<url_id:[A-Za-z0-9_\'\s\|\-]+>/<action:\w+>' => 'destination/<action>',
                 'sight/<url_id:[A-Za-z0-9_\'\s\-]+>' => 'sight/view',
                 'activity/<url_id:[A-Za-z0-9_\'\s\-]+>' => 'activity/view',
-                'the-china-guide-blog' => 'article/index',
+                'blog' => 'article/index',
                 'blog/<url_id:[A-Za-z0-9_\'\s\-\?]+>' => 'article/view',
                 'misc/<url_id:[A-Za-z0-9_\'\s\-\?]+>' => 'misc/view',
                 'preparation' => 'preparation/index',

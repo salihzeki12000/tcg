@@ -11,8 +11,9 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Destinations');
-$this->description = 'China travel destinations, China tourist cities, China tourist sights';
+$this->title = Yii::t('app', 'China Tourist Destinations');
+$this->description = 'Explore everything that China has to offer, from historic architecture to captivating culture, from futuristic cityscapes to mist-shrouded karst landscapes.';
+$this->keywords = Yii::t('app','China destinations, China\'s tourist destinations, China\'s top tourist cities, China\'s top tourist sights, cities in China, China city guide, China travel guide, China guide');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
@@ -25,9 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="cities-index container">
-  <p><?=Yii::t('app','A lifetime would hardly be enough to explore everything that China has to offer. From historic architecture to mysterious culture, from futuristic cityscapes to boundless deserts and mist-shrouded karst landscapes, there is something to discover around every corner, no matter what kind of travel experience you are looking for.')?></p>
+  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','A lifetime would hardly be enough to explore everything that China has to offer. From historic architecture to mysterious culture, from futuristic cityscapes to boundless deserts and mist-shrouded karst landscapes, there is something to discover around every corner, no matter what kind of travel experience you are looking for.')?></p>
 
-  <p><?=Yii::t('app','As a result, where you visit very much depends on what you are interested in and how long you can allow for your trip. The destinations below are just a taste of what we can offer. We can arrange tours in cities across the whole of China. If the city that you want to visit is missing from the list below, just let your travel agent know.')?></p>
+  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','As a result, where you visit very much depends on what you are interested in and how long you can allow for your trip. The destinations below are just a taste of what we can offer. We can arrange tours in cities across the whole of China. If the city that you want to visit is missing from the list below, just let your travel agent know.')?></p>
 
   <div class="row">
       <div class="col-lg-12">

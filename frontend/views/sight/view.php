@@ -42,7 +42,7 @@ if (Yii::$app->params['is_mobile']) {
         <div class="sight-title-img col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($sight_info['pic_s'], $pic_type), ['alt'=>$sight_info['name'], 'width'=>"100%"]) ?>
         </div>
-        <div class="overview back-body">
+        <div class="overview back-body full-text col-lg-9 col-md-10">
           <?= $sight_info['overview'] ?>
         </div>
     </div>

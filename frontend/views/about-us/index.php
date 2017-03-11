@@ -11,8 +11,9 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'About us');
-$this->description = Yii::t('app', 'The China Guide creates private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
+$this->title = Yii::t('app', 'About Us');
+$this->description = Yii::t('app', 'The China Guide provides Western-style travel customization services to China\'s top destinations, including Beijing, the Great Wall, Xi\'an, Shanghai, Tibet, and more.');
+$this->keywords = Yii::t('app', 'China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">

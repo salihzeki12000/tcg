@@ -19,13 +19,16 @@ use Yii;
  * @property string $create_time
  * @property string $update_time
  * @property string $url_id
- */
+ * @property string $keywords
+*/
 class Cities extends \yii\db\ActiveRecord
 {
 
     public $image;
     public $images;
     public $sel;
+    public $have_sight;
+    public $have_activity;
 
     /**
      * @inheritdoc
@@ -57,6 +60,7 @@ class Cities extends \yii\db\ActiveRecord
             [['name', 'rec_type'], 'string', 'max' => 100],
             [['pic_s'], 'string', 'max' => 255],
             [['vr'], 'string', 'max' => 512],
+            [['keywords'], 'string', 'max' => 512],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
             $name_rule,
 
@@ -82,6 +86,7 @@ class Cities extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Title Image （540 x 340 pixels）'),
             'images' => Yii::t('app', 'Images （1280 x 320 pixels）'),
             'priority' => Yii::t('app', 'Priority'),
+            'keywords' => Yii::t('app', 'Keywords'),
         ];
     }
 }

@@ -42,6 +42,9 @@ class TourController extends Controller
      */
     public function actionIndex()
     {
+        if (!isset($_GET['sort'])) {
+            $_GET['sort'] = '-priority';
+        }
         $searchModel = new TourSearch();
         $_GET['TourSearch']['type'] = $this->tour_type;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

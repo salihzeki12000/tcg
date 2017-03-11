@@ -39,16 +39,34 @@ use yii\helpers\Url;
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
-    <url>
-        <loc><?= $site_root ?><?= Url::toRoute(['destination/sights', 'url_id'=>$value['url_id']]) ?></loc>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
+    <?php if ($value['have_sight']) { ?>
+        <url>
+            <loc><?= $site_root ?><?= Url::toRoute(['destination/sights', 'url_id'=>$value['url_id']]) ?></loc>
+            <changefreq>daily</changefreq>
+            <priority>0.8</priority>
+        </url>
+    <?php } ?>
+    <?php if ($value['have_activity']) { ?>
     <url>
         <loc><?= $site_root ?><?= Url::toRoute(['destination/activities', 'url_id'=>$value['url_id']]) ?></loc>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
+    <?php } ?>
+    <?php if ($value['vr']) { ?>
+    <url>
+        <loc><?= $site_root ?><?= Url::toRoute(['destination/food', 'url_id'=>$value['url_id']]) ?></loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <?php } ?>
+    <?php if ($value['food']) { ?>
+    <url>
+        <loc><?= $site_root ?><?= Url::toRoute(['destination/virtualtours', 'url_id'=>$value['url_id']]) ?></loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <?php } ?>
     <?php } ?>
     <?php foreach ($data['themes'] as $value) { ?>
     <url>

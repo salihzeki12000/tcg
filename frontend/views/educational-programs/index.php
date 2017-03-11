@@ -11,15 +11,16 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Customized Student Program Planning Services');
-$this->description = Yii::t('app', 'After almost 10 years organizing student travel, The China Guide knows how to make every program exceptional, engaging, and exciting. Each trip is filled with chances to learn and grow, whether through person-to-person interaction, site visits, or cultural experiences.');
-$this->keywords = Yii::t('app', 'student program planning, student tour, educational program, educational travel, educational trip');
+$this->title = Yii::t('app', 'Student Trip to China');
+$this->description = Yii::t('app', 'After almost 10 years of organizing student travel, The China Guide knows how to make every educational program exceptional, engaging, and exciting.');
+$this->keywords = Yii::t('app', 'Educational travel, faculty-led program, academic program, China student tour, student travel to China, student tours to China');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <div class="banner-text"><?=Yii::t('app','EDUCATIONAL PROGRAMS')?></div>
+      <div class="banner-text"><?=Yii::t('app','EDUCATIONAL PROGRAMS')?><br><small><?=Yii::t('app','CUSTOMIZED STUDENT PROGRAM PLANNING SERVICES')?></small></div>
+      
       <?= Html::img('@web/statics/images/educationalprograms-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
     </div>
   </div>
@@ -33,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="article-view">
 
-    <div class="container">
+    <div class="container full-text col-lg-9 col-md-10">
         <div class="overview">
           <?= $article['content'] ?>
         </div>

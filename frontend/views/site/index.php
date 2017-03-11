@@ -4,9 +4,9 @@ use yii\helpers\Url;
 use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
-$this->title = Yii::t('app','The China Guide') . ' - ' . Yii::t('app','A Beijing-based, Foreign-owned Travel Agency');
-$this->description = Yii::t('app','The China Guide creates private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.');
-$this->keywords = Yii::t('app','China travel agency, China guide, China travel guide, China tours, private China tours, customized China tours, China travel Preparations, China travel blogs');
+$this->title = Yii::t('app','China Tours | Private Tours | Custom Tours');
+$this->description = Yii::t('app','The China Guide provides Western-style travel customization services to China’s top destinations, including Beijing, the Great Wall, Xi’an, Shanghai, Tibet, and more.');
+$this->keywords = Yii::t('app','China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 ?>
 <div class="site-index">
 
@@ -46,7 +46,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
       </a>
     </div> <!-- Carousel -->
 
-    <div class="container home-desc">
+    <div class="container home-desc col-lg-9 col-md-10">
         <?=Yii::t('app','We create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
     </div>
 
@@ -263,7 +263,7 @@ $this->keywords = Yii::t('app','China travel agency, China guide, China travel g
 
     <div class="container index-faq col-lg-6">
         <div class="list-group faq">
-            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','Preparation')?></h2></center></a>
+            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','PREPARATION')?></h2></center></a>
             <?php foreach ($faq as $item) { ?>
             <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-6 col-xs-12">
                 <i class="glyphicon glyphicon-chevron-right pull-right" /></i>

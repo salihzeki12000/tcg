@@ -11,15 +11,16 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'The China Guide Blog');
-$this->description = Yii::t('app', 'China travel blog, China travel article');
-$this->params['breadcrumbs'][] = Yii::t('app','Blogs');
+$this->title = Yii::t('app', 'Blog');
+$this->description = Yii::t('app', 'Share the costs of your travel with others and meet new friends. Our most popular group tour is sleeping on the Great Wall.');
+$this->keywords = Yii::t('app', 'Sleep on the wall, China group tours, great wall, China small group tours');
+$this->params['breadcrumbs'][] = Yii::t('app','Blog');
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'BLOGS', 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','The China Guide Blog')?></div>
+      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'BLOG', 'width'=>"100%"]) ?>
+      <div class="banner-text"><?=Yii::t('app','THE CHINA GUIDE BLOG')?></div>
     </div>
   </div>
 </div>

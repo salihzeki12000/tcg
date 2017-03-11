@@ -80,6 +80,8 @@ use common\models\UploadedFiles;
 
     <?= $form->field($model, 'rec_type')->checkboxList(Yii::$app->params['rec_type']) ?>
 
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'vr')->textarea(['maxlength' => true, 'rows'=>3]) ?>
 
     <?php } ?>

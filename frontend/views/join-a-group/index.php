@@ -12,13 +12,14 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'China Experiences') . ', ' . Yii::t('app', 'Themed Tours');
-$this->description = Yii::t('app', 'A group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours.');
+$this->description = Yii::t('app', 'Share the costs of your travel with others and meet new friends. Our most popular group tour is sleeping on the Great Wall.');
+$this->keywords = Yii::t('app', 'Sleep on the wall, China group tours, great wall, China small group tours');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Themed Tours'), 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'THEMED TOURS'), 'width'=>"100%"]) ?>
       <div class="banner-text"><?= Yii::t('app', 'Themed Tours') ?></div>
     </div>
   </div>
@@ -26,9 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tour-index container">
 
-  <p><?=Yii::t('app','Although we specialize in private tours, we realize that for some people, the cost of a group tour may be more approachable. That’s why we organize one-off themed tours to different destinations on fixed dates throughout the year that are designed with small groups in mind.')?></p>
+  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','Although we specialize in private tours, we realize that for some people, the cost of a group tour may be more approachable. That’s why we organize one-off themed tours to different destinations on fixed dates throughout the year that are designed with small groups in mind.')?></p>
 
-  <p><?=Yii::t('app','Joining a group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours.')?></p>
+  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','Joining a group tour is a great way to share the costs of your travel with others and meet new friends with similar interests. Even though you’ll only be paying the price of a group tour, you’ll still enjoy the same, high-standard service as our private tours.')?></p>
 
   <?php foreach ($month_tours as $month => $tours) { ?>
    <h3 class="tours-month"><center><?= $month ?></center></h3>

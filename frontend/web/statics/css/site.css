@@ -240,9 +240,14 @@ body {
 .container.home-desc{
   color: #17BEBB;
   font-size: 18px;
-  margin: 20px auto;
+  margin: 0px auto;
   font-family: Arial;
   text-align: center;
+  float: none;
+}
+.full-text{
+  float: none;
+  margin: 20px auto;
 }
 
 .home-whyus{
@@ -469,9 +474,10 @@ div#social-media-icons-container a {
 }
 
 .footer .search-box, .footer .pata, .footer .copyright{
-  margin: 15px 0;
+  margin: 15px 0 0 0;
   color: #666;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 #gotop{
@@ -730,7 +736,7 @@ div#social-media-icons-container a {
   position: absolute;
   font-size: 16px;
   color: #eee;
-  text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0px 4px rgba(0, 0, 0);
   text-align: left;
 }
 .tour-index .kv-file-content .content-press span{
@@ -1032,6 +1038,10 @@ h3.tour-right {
     top: 40%;
     bottom: 50%;
 }
+.cities-banner .banner-text small{
+  font-size: 50%;
+  font-weight: normal;
+}
 
 .city-view .h-title, .sight-view .h-title, .activity-view .h-title{
   text-align:center;
@@ -1119,11 +1129,11 @@ h3.tour-right {
   font-weight: bold;
   color: #666;
 }
-.footer .flink a{
+.footer a{
   display: block;
   color: #666;
 }
-.footer .flink a:hover{
+.footer a:hover, .footer a h3:hover{
   color: #B33635;
 }
 .footer-icons{

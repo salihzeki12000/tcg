@@ -46,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'introduction:ntext',
             'food:ntext',
             'rec_type',
+            'keywords',
             'vr',
             'create_time',
             'update_time',

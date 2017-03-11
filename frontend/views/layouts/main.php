@@ -21,7 +21,7 @@ AppAsset::register($this);
     <meta name="theme-color" content="#4D423C">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?><?php if(\Yii::$app->controller->id == 'site' && \Yii::$app->controller->action->id == 'index') {} else { ?> - <?=Yii::t('app','The China Guide')?><?php } ?></title>
+    <title><?= Html::encode($this->title) ?> | <?=Yii::t('app','The China Guide')?></title>
     <meta name="description" content="<?= $this->description ?>" />
     <meta name="keywords" content="<?= $this->keywords ?>" />
     <?php $this->head() ?>
@@ -261,7 +261,7 @@ AppAsset::register($this);
                 <?php if( ($cities = \common\models\Tools::getMostPopularCities(9) )!== null) {
                     foreach ($cities as $city) {
                 ?>
-                <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'The-Great-Wall']) ?>"><?= $city['name'] ?></a> 
+                <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>"><?= $city['name'] ?></a> 
                 <?php } } ?>
             </div>
         </div>
@@ -269,7 +269,7 @@ AppAsset::register($this);
 
     </div>
     <div class="copyright">
-        <p>&copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
+        <p>Copyright &copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
     </div>
         
 

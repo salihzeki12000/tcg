@@ -260,7 +260,7 @@ class FGlobalClass extends \yii\base\Component
                 '/experiences/Foodie' => '/experiences/Gourmet',
                 '/experiences/At-a-Glance' => '/experiences/China-at-a-Glance',
                 // 'theme-tour' => '/themed-tours',
-                '/blogs' => '/the-china-guide-blog',
+                '/the-china-guide-blog' => '/blog',
             ];
             foreach ($red_dir as $key => $value) {
                 if (strpos($url, $key) === 0) {

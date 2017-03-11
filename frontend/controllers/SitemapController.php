@@ -51,6 +51,16 @@ class SitemapController extends Controller
         $data['cities'] = $cities_query
             ->orderBy('priority DESC, create_time DESC')
             ->all();
+        foreach ($data['cities'] as &$city) {
+            $city['have_sight'] = 0;
+            $city['have_activity'] = 0;
+            if (($tmp = \common\models\Album::find()->where(['city_id'=>$city['id'], 'type'=>ALBUM_TYPE_SIGHT, 'status'=>DIS_STATUS_SHOW])->One()) !== null) {
+                $city['have_sight'] = 1;
+            }
+            if (($tmp = \common\models\Album::find()->where(['city_id'=>$city['id'], 'type'=>ALBUM_TYPE_ACTIVITY, 'status'=>DIS_STATUS_SHOW])->One()) !== null){
+                $city['have_activity'] = 1;
+            }
+        }
 
         $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
         $data['themes'] = $themes_query

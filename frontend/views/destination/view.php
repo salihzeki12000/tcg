@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container">
 
-        <div class="overview">
+        <div class="overview full-text col-lg-9 col-md-10">
           <?= $city_info['introduction'] ?>
         </div>
     </div>

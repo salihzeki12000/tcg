@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             // 'cities_count',
-            // 'priority',
+            'priority',
             // 'tour_length',
             // 'exp_num',
             // 'price_cny',
