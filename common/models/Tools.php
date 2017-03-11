@@ -148,6 +148,15 @@ class Tools
         return $tours;
     }
 
+    static public function getMostPopularCities($count=6)
+    {
+        $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,10,20]]);
+        $cities = $cities_map_query
+            ->limit($count)
+            ->all();
+        return $cities;
+    }
+
     static public function getFormPopularCities()
     {
 

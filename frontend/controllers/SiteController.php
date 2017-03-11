@@ -134,9 +134,7 @@ class SiteController extends Controller
         }
 
 
-        $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,10,20]]);
-        $cities_map = $cities_map_query
-            ->all();
+        $cities_map = \common\models\Tools::getMostPopularCities(9);
 
 
         return $this->render('index',['slides'=>$slides, 'faq'=>$faq, 'articles'=>$articles, 'ads'=>$ads, 'themes'=>$themes, 'tours'=>$tours, 'cities_map'=>$cities_map]);

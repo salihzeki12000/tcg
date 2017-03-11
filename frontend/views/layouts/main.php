@@ -25,11 +25,6 @@ AppAsset::register($this);
     <meta name="description" content="<?= $this->description ?>" />
     <meta name="keywords" content="<?= $this->keywords ?>" />
     <?php $this->head() ?>
-    <script type="text/javascript"> //<![CDATA[ 
-        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-        //]]>
-    </script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -203,46 +198,75 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-    <center>
-    <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://thechinaguide.com/statics/images/comodo_secure_seal_113x59_transp.png", "CL1", "none");
-    </script>
-    </center>
-    <div class="social-media-icons">
-        <center><?=Yii::t('app','FOLLOW US')?></center>
-        <div id="social-media-icons-container">
-            <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" id="tripadvisor" target="_blank"></a>
-            <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
-            <a href="https://www.facebook.com/thechinaguide" id="facebook" target="_blank"></a>
-            <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
-            <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
-            <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
+    <div class="container fleft col-lg-5 col-md-4 col-sm-12 col-xs-12"> 
+        <div class="fitem social-media-icons">
+            <h3><?=Yii::t('app','Follow us')?></h3>
+            <div id="social-media-icons-container">
+                <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" id="tripadvisor" target="_blank"></a>
+                <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
+                <a href="https://www.facebook.com/thechinaguide" id="facebook" target="_blank"></a>
+                <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
+                <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
+                <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
+            </div>
         </div>
-        <center><?=Yii::t('app','THE COMPANY')?></center>
-        <center>
-            <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Why choose us')?></a> | 
-            <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a> | 
-            <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a> | 
-            <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a> | 
-            <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a> | 
-            <a href="<?= Url::toRoute(['/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a>
-        </center>
-        <center><?=Yii::t('app','WHERE TO GO')?></center>
-        <center>
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'The-Great-Wall']) ?>"><?=Yii::t('app','The Great Wall')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Beijing']) ?>"><?=Yii::t('app','Beijing')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Xi\'an']) ?>"><?=Yii::t('app','Xi\'an')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Shanghai']) ?>"><?=Yii::t('app','Shanghai')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Zhangjiajie']) ?>"><?=Yii::t('app','Zhangjiajie')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Guilin']) ?>"><?=Yii::t('app','Guilin')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Yangshuo']) ?>"><?=Yii::t('app','Yangshuo')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Tibet-|-Lhasa']) ?>"><?=Yii::t('app','Tibet/Lhasa')?></a> | 
-            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'Chengdu']) ?>"><?=Yii::t('app','Chengdu')?></a>
-        </center>
+        <div class="fitem payment-icons col-lg-7 col-md-12 col-sm-12 col-xs-12">
+            <h3><?=Yii::t('app','Payment')?></h3>
+            <div>
+                <i class="footer-icons payment"></i>
+            </div>
+        </div>
+        <div class="fitem social-media-icons col-lg-5 col-md-12 col-sm-12 col-xs-12">
+            <h3><?=Yii::t('app','Security')?></h3>
+            <div>
+                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="/statics/images/comodo_secure_seal_113x59_transp.png"></a>
+            </div>
+        </div>
+        <div class="fitem partnership-membership col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3><?=Yii::t('app','Partnership & Membership')?></h3>
+            <div>
+                <i class="footer-icons partnership"></i>
+                <a href="/misc/animals-asia" class="icon-link"><i class="footer-icons membership"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container fright col-lg-7 col-md-8 col-sm-12 col-xs-12">
+        <div class="fitem col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <h3><?=Yii::t('app','The Company')?></h3>
+            <div class="flink">
+                <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Why choose us')?></a>
+                <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a>
+                <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a>
+                <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>
+                <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
+                <a href="<?= Url::toRoute(['/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a>
+            </div>
+            <a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>"><h3><?=Yii::t('app','Email us your plan')?></h3></a>
+            <a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
+
+        </div>
+        <div class="fitem col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <h3><?=Yii::t('app','Experiences')?></h3>
+            <div class="flink">
+                <?php if( ($tours = \common\models\Tools::getMostPopularTours(9) )!== null) {
+                 foreach ($tours as $tour) {
+                ?>
+                <a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"><?= $tour['name'] ?></a> 
+                <?php } } ?>
+            </div>
+        </div>
+        <div class="fitem col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <h3><?=Yii::t('app','Destinations')?></h3>
+            <div class="flink">
+                <?php if( ($cities = \common\models\Tools::getMostPopularCities(9) )!== null) {
+                    foreach ($cities as $city) {
+                ?>
+                <a href="<?= Url::toRoute(['destination/view', 'url_id'=>'The-Great-Wall']) ?>"><?= $city['name'] ?></a> 
+                <?php } } ?>
+            </div>
+        </div>
     </div>
 
-    <div class="pata">
-        <?= Html::img('@web/statics/images/PATA.jpg', ['alt'=>'PATA member', 'width'=>'100px']) ?>
     </div>
     <div class="copyright">
         <p>&copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
@@ -250,7 +274,6 @@ AppAsset::register($this);
         
 
         <p class="pull-right"><?//= Yii::powered() ?></p>
-    </div>
 </footer>
 <div id="gotop"><i class="glyphicon glyphicon-chevron-up"></i><br /><?=Yii::t('app','TOP')?></div>
 <?php $this->endBody() ?>
