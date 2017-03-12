@@ -9,8 +9,9 @@ use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $model common\models\city */
 
-$this->title = $city_info['name'] . ' Travel Guide';
+$this->title = $city_info['name'] . ' ' . Yii::t('app','Travel Guide') . ' - ' . Yii::t('app','Activities');
 $this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($city_info['introduction']), 30)) . '...';
+$this->keywords = Html::encode($city_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Destinations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url'=>Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']])];
 $this->params['breadcrumbs'][] = Yii::t('app','Activities');
