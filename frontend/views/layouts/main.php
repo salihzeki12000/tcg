@@ -211,7 +211,7 @@ AppAsset::register($this);
             </div>
         </div>
         <div class="fitem payment-icons col-lg-7 col-md-12 col-sm-12 col-xs-12">
-            <h3><?=Yii::t('app','Payment')?></h3>
+            <h3><?=Yii::t('app','Payment Options')?></h3>
             <div>
                 <i class="footer-icons payment"></i>
             </div>
