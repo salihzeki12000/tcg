@@ -130,42 +130,62 @@ class Tools
 
     static public function getMostPopularTours($count=6)
     {
-        $tours = [];
-        if (($mp_theme = \common\models\Theme::find()->where(['id' => TOUR_THEMES_MOST_POPULAR])->One()) !== null)
-        {
-            if (!empty($mp_theme['use_ids'])) {
-                $tour_ids = explode(',', $mp_theme['use_ids']);
-                $condition = array();
-                $condition['status'] = DIS_STATUS_SHOW;
-                $condition['id'] = $tour_ids;
-                $query = \common\models\Tour::find()->where($condition);
-                $tours = $query
-                ->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')])
-                ->limit($count)
-                ->all();
+        $cache = Yii::$app->cache;
+        $cache_key = 'MOST_POPULAR_TOURS_'.$count;
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            if (($mp_theme = \common\models\Theme::find()->where(['id' => TOUR_THEMES_MOST_POPULAR])->One()) !== null)
+            {
+                if (!empty($mp_theme['use_ids'])) {
+                    $tour_ids = explode(',', $mp_theme['use_ids']);
+                    $condition = array();
+                    $condition['status'] = DIS_STATUS_SHOW;
+                    $condition['id'] = $tour_ids;
+                    $query = \common\models\Tour::find()->where($condition);
+                    $data = $query
+                    ->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')])
+                    ->limit($count)
+                    ->all();
+                    $cache->set($cache_key, $data, 60*10);
+                }
             }
         }
-        return $tours;
+        return $data;
     }
 
     static public function getMostPopularCities($count=6)
     {
-        $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,10,20]]);
-        $cities = $cities_map_query
-            ->orderBy('priority DESC, id ASC')
-            ->limit($count)
-            ->all();
-        return $cities;
+        $cache = Yii::$app->cache;
+        $cache_key = 'MOST_POPULAR_CITIES_'.$count;
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            $cities_map_query = \common\models\Cities::find()->where(['id'=>[1,2,3,5,6,7,9,10,20]]);
+            $data = $cities_map_query
+                ->orderBy('priority DESC, id ASC')
+                ->limit($count)
+                ->all();
+            $cache->set($cache_key, $data, 60*10); 
+        }
+
+        return $data;
     }
 
     static public function getAllTheme()
     {
-        $themes = [];
-        $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
-        $themes = $themes_query
-            ->orderBy('priority DESC, id ASC')
-            ->all();
-        return $themes;
+        $cache = Yii::$app->cache;
+        $cache_key = 'ALL_THEME';
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            $themes_query = \common\models\Theme::find()->where(['status'=>DIS_STATUS_SHOW]);
+            $data = $themes_query
+                ->orderBy('priority DESC, id ASC')
+                ->all();
+            $cache->set($cache_key, $data, 60*10); 
+        }
+        return $data;
     }
 
     static public function getFormPopularCities()
@@ -209,5 +229,36 @@ class Tools
             return [];
         }
     }
+    
+    static public function getFormRedirectUrl($type='query')
+    {
+        $cache = Yii::$app->cache;
+        $cache_key = 'CONFIG_REDIRECT_URL';
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            if (($row = \common\models\EnvironmentVariables::findOne('redirect_url')) !== null) {
+                $json_val = $row['value'];
+                $list = json_decode($json_val, true);
+                $data = [];
+                foreach ($list as $key => $value) {
+                    if (strpos($key, 'action') === 0) {
+                        $data['query'][$key] = $value;
+                    }
+                    else{
+                        $data['uri'][$key] = $value;
+                    }
+                }
+                $cache->set($cache_key, $data, 60*5);
+                return $data[$type];
+            } else {
+                return [];
+            }
+        }
+        else{
+            return $data[$type];
+        }
+    }
+    
 
 }
