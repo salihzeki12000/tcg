@@ -12,8 +12,8 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Blog');
-$this->description = Yii::t('app', 'Share the costs of your travel with others and meet new friends. Our most popular group tour is sleeping on the Great Wall.');
-$this->keywords = Yii::t('app', 'Sleep on the wall, China group tours, great wall, China small group tours');
+$this->description = Yii::t('app', 'China travel guide, China travel tips, and news from The China Guide team');
+$this->keywords = Yii::t('app', 'China travel blog, China travel guide, China travel tips, travel blog');
 $this->params['breadcrumbs'][] = Yii::t('app','Blog');
 ?>
 <div class="container title-bar">

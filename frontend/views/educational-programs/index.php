@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 </div>
 
-<div class="article-view">
+<div class="article-view container">
 
-    <div class="container full-text col-lg-9 col-md-10">
+    <div class="full-text col-lg-9 col-md-10">
         <div class="overview">
           <?= $article['content'] ?>
         </div>

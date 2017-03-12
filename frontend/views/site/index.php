@@ -46,7 +46,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
       </a>
     </div> <!-- Carousel -->
 
-    <div class="container home-desc col-lg-9 col-md-10">
+    <div class="container home-desc col-lg-9 col-md-10 col-sm-6 col-xs-12">
         <?=Yii::t('app','We create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
     </div>
 

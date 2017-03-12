@@ -18,7 +18,7 @@ body {
   font-size: 20px;
   color: #E9C46C;
   text-align: center;
-  margin-top: 38px;
+  margin-top: 25px;
 }
 .carousel-caption{
   bottom: 5px;
@@ -240,14 +240,15 @@ body {
 .container.home-desc{
   color: #17BEBB;
   font-size: 18px;
-  margin: 0px auto;
+  margin: 20px auto 0 auto;
   font-family: Arial;
   text-align: center;
   float: none;
 }
 .full-text{
   float: none;
-  margin: 20px auto;
+  margin: 0 auto 20px auto;
+  padding: 0;
 }
 
 .home-whyus{

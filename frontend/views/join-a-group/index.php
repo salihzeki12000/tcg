@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Experiences') . ', ' . Yii::t('app', 'Themed Tours');
+$this->title = Yii::t('app', 'Themed Tours') . ', ' . Yii::t('app', 'Themed Tours');
 $this->description = Yii::t('app', 'Share the costs of your travel with others and meet new friends. Our most popular group tour is sleeping on the Great Wall.');
 $this->keywords = Yii::t('app', 'Sleep on the wall, China group tours, great wall, China small group tours');
 $this->params['breadcrumbs'][] = $this->title;
