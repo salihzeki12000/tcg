@@ -737,7 +737,7 @@ div#social-media-icons-container a {
   position: absolute;
   font-size: 16px;
   color: #eee;
-  text-shadow: 0 0px 4px rgba(0, 0, 0);
+  text-shadow: 0 0px 4px rgba(0, 0, 0, 1);
   text-align: left;
 }
 .tour-index .kv-file-content .content-press span{
