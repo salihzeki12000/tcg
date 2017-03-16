@@ -87,7 +87,7 @@ class ArticleController extends Controller
             }
             $model->create_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = str_replace(' ', '-', $model->title);
+                $model->url_id = strtolower(str_replace(' ', '-', $model->title));
             }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -129,7 +129,7 @@ class ArticleController extends Controller
             }
             $model->update_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = str_replace(' ', '-', $model->title);
+                $model->url_id = strtolower(str_replace(' ', '-', $model->title));
             }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);

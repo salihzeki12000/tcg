@@ -68,7 +68,8 @@ class ArticleController extends Controller
      */
     protected function findModel($url_id)
     {
-        if (($model = Article::find()->where(['url_id' => $url_id])->One()) !== null) {
+        // if (($model = Article::find()->where('BINARY [[url_id]]=:url_id', ['url_id'=>$url_id])->one()) !== null) {
+        if (($model = Article::find()->where(['url_id'=>$url_id])->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));

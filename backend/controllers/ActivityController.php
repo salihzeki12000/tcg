@@ -85,7 +85,7 @@ class ActivityController extends Controller
             }
             $model->create_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = str_replace(' ', '-', $model->name);
+                $model->url_id = strtolower(str_replace(' ', '-', $model->name));
             }
             if ($model->save()) {
                 return $this->redirect(['update', 'id' => $model->id]);
@@ -127,7 +127,7 @@ class ActivityController extends Controller
             }
             $model->update_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = str_replace(' ', '-', $model->name);
+                $model->url_id = strtolower(str_replace(' ', '-', $model->name));
             }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
