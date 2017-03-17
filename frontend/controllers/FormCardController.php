@@ -97,9 +97,9 @@ class FormCardController extends Controller
             $model->status = CARD_STATUS_CHARGED;
             if ($model->save()) {
                 $mail_subject = "CreditCard-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
-                $receiver[] = 'creditcard@thechinaguide.com';
+                $receiver[] = 'creditcard@thechinaguide.com.test-google-a.com';
                 if (!empty($model->donation)) {
-                    $receiver[] = 'operations@thechinaguide.com';
+                    $receiver[] = 'operations@thechinaguide.com.test-google-a.com';
                 }
                 if (!empty($model->agent_mail)) {
                     $receiver[] = $model->agent_mail;
