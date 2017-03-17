@@ -106,7 +106,7 @@ class FormCardController extends Controller
             if ($model->save()) {
 
                 $mail_subject = "CreditCard-".Yii::$app->params['card_status'][$model->status]."-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
-                $receiver[] = '@thechinaguide.com.test-google-a.com';
+                $receiver[] = 'creditcard@thechinaguide.com';
                 if (!empty($model->agent_mail)) {
                     $receiver[] = $model->agent_mail;
                 }

@@ -98,7 +98,7 @@ class FormInfoController extends Controller
                     . ($model->arrival_date?"-{$model->arrival_date}":'')
                     . ($model->name?"-{$model->name}":'');
 
-                $receiver[] = 'book@thechinaguide.com.test-google-a.com';
+                $receiver[] = 'book@thechinaguide.com';
 
                 Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
                     ->setTo($receiver)
