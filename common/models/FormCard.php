@@ -55,7 +55,7 @@ class FormCard extends \yii\db\ActiveRecord
             [['create_time'], 'safe'],
             [['card_type'], 'string', 'max' => 20],
             [['client_name', 'name_on_card', 'contact_phone', 'card_holder_email', 'travel_agent'], 'string', 'max' => 28],
-            [['email'], 'string', 'max' => 128],
+            [['email'], 'string', 'max' => 50],
             [['expiry_month', 'expiry_year'], 'string', 'max' => 10],
             [['billing_address','agent_mail'], 'string', 'max' => 50],
             [['tour_date'], 'string', 'max' => 12],
