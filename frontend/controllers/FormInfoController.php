@@ -89,14 +89,14 @@ class FormInfoController extends Controller
             if ($model->save()) {
 
                 $mail_subject = "Inquiry"
-                    . ($model->prefered_travel_agent?"-{$model->prefered_travel_agent}":"")
+                    . ($model->name?"-{$model->name}":'')
                     . '-' . Yii::$app->params['form_types'][$model->type]
                     . ($model->tour_code?"-{$model->tour_code}":"")
                     . ($model->tour_length?"-{$model->tour_length} Days":"")
                     . ($model->adults?"-{$model->adults} Guests":'')
                     . ($model->participants_number?"-{$model->participants_number} Guests":'')
                     . ($model->arrival_date?"-{$model->arrival_date}":'')
-                    . ($model->name?"-{$model->name}":'');
+                    . ($model->prefered_travel_agent?"-{$model->prefered_travel_agent}":"");
 
                 $receiver[] = 'book@thechinaguide.com';
 
