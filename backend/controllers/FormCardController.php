@@ -105,7 +105,7 @@ class FormCardController extends Controller
             $model->update_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
 
-                $mail_subject = "CreditCard-".Yii::$app->params['card_status'][$model->status]."-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
+                $mail_subject = "CreditCard-{$model->client_name}-{$model->amount_to_bill}-{$model->tour_date}-Agent:{$model->travel_agent}-" . Yii::$app->params['card_status'][$model->status];
                 $receiver[] = 'creditcard@thechinaguide.com';
                 if (!empty($model->agent_mail)) {
                     $receiver[] = $model->agent_mail;
