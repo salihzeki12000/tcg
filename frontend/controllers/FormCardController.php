@@ -96,7 +96,7 @@ class FormCardController extends Controller
             $model->create_time = date('Y-m-d H:i:s',time());
             $model->status = CARD_STATUS_CHARGED;
             if ($model->save()) {
-                $mail_subject = "CreditCard-{$model->amount_to_bill}-{$model->tour_date}-{$model->client_name}-Agent:{$model->travel_agent}";
+                $mail_subject = "CreditCard-{$model->client_name}-{$model->amount_to_bill}-{$model->tour_date}-Agent:{$model->travel_agent}";
                 $receiver[] = 'creditcard@thechinaguide.com';
                 if (!empty($model->donation)) {
                     $receiver[] = 'operations@thechinaguide.com';
