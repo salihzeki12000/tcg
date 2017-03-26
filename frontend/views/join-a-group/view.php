@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
           </div>
           <div class="col-lg-4 col-md-5 col-xs-4">
                <span><?= $tour_info['exp_num'] ?></span>
-               Experiences
+               Activities
           </div>
         </div>
     </div>
