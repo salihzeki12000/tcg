@@ -99,7 +99,7 @@ class FormInfoController extends Controller
                     . ' - ' . Yii::$app->params['form_types'][$model->type]
                     . ($model->tour_code?" - {$model->tour_code}":"")
                     . ($model->tour_length?" - {$model->tour_length} Days":"")
-                    . ($guests?" - {$model->adults} Guests":'')
+                    . ($guests?" - {$guests} Guests":'')
                     . ($model->participants_number?" - {$model->participants_number} Guests":'')
                     . ($model->arrival_date?" - {$model->arrival_date}":'')
                     . ($model->prefered_travel_agent?" - {$model->prefered_travel_agent}":"");
