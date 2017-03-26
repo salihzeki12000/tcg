@@ -1557,6 +1557,7 @@ a.list-group-item{
   width:100px;
   height:140px;
   top: -140px;
+  z-index: -1;
 }
 
 #txt_cities_name{
@@ -1663,4 +1664,8 @@ a.list-group-item{
     color: #E0E3D6;
     font-weight: normal;
     text-decoration: none;
+}
+
+.addthis_inline_share_toolbox{
+    padding: 20px 0;
 }

@@ -87,16 +87,22 @@ class FormInfoController extends Controller
             }
             $model->create_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
-
+                $guests = $model->adults;
+                if (isset($model->children)) {
+                    $guests += $model->children;
+                }
+                if (isset($model->infants)) {
+                    $guests += $model->infants;
+                }
                 $mail_subject = "Inquiry"
-                    . ($model->name?"-{$model->name}":'')
-                    . '-' . Yii::$app->params['form_types'][$model->type]
-                    . ($model->tour_code?"-{$model->tour_code}":"")
-                    . ($model->tour_length?"-{$model->tour_length} Days":"")
-                    . ($model->adults?"-{$model->adults} Guests":'')
-                    . ($model->participants_number?"-{$model->participants_number} Guests":'')
-                    . ($model->arrival_date?"-{$model->arrival_date}":'')
-                    . ($model->prefered_travel_agent?"-{$model->prefered_travel_agent}":"");
+                    . ($model->name?" - {$model->name}":'')
+                    . ' - ' . Yii::$app->params['form_types'][$model->type]
+                    . ($model->tour_code?" - {$model->tour_code}":"")
+                    . ($model->tour_length?" - {$model->tour_length} Days":"")
+                    . ($guests?" - {$model->adults} Guests":'')
+                    . ($model->participants_number?" - {$model->participants_number} Guests":'')
+                    . ($model->arrival_date?" - {$model->arrival_date}":'')
+                    . ($model->prefered_travel_agent?" - {$model->prefered_travel_agent}":"");
 
                 $receiver[] = 'book@thechinaguide.com';
 

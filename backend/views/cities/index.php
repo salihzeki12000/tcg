@@ -47,14 +47,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     return join(',', array_values($arr_data));
                 }
             ],
-            [
-                'attribute' => 'image',
-                'format' => 'html',    
-                'value' => function ($data) {
-                    return Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($data['pic_s'], 's'),
-                        ['width' => '70px']);
-                 },
-            ],
+            // [
+            //     'attribute' => 'image',
+            //     'format' => 'html',    
+            //     'value' => function ($data) {
+            //         return Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($data['pic_s'], 's'),
+            //             ['width' => '70px']);
+            //      },
+            // ],
+            'priority',
             // 'introduction:ntext',
             // 'food:ntext',
             // 'rec_type',

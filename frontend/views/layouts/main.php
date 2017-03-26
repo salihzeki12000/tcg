@@ -48,7 +48,7 @@ AppAsset::register($this);
         $currency_menu[] = ['sign'=>$currency_item['sign'], 'label' => $currency_item['name'], 'url' => Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=> $currency_item['name']])];
     }
     $menuItems = [
-        ['label' => Yii::t('app','Find a Tour'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
+        ['label' => Yii::t('app','Find an Experience'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','Experiences'), 'url' => ['experience/index'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         ['label' => Yii::t('app','Educational Programs'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
@@ -84,7 +84,7 @@ AppAsset::register($this);
               <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="p-menu-search">
               <li class="p-menu-search"><form id="search-form" method="get" action="https://www.google.com/search" target="_blank">
             <input type="text" name="q" placeholder="'.Yii::t('app','SEARCH').'">
-            <input type="hidden" value="thechinaguide.com" name="sitesearch" />
+            <input type="hidden" value="www.thechinaguide.com" name="sitesearch" />
             </form>
             </li>';
     $p_menu .= '</ul></div>
@@ -113,7 +113,7 @@ AppAsset::register($this);
         <div class="modal-content m-menu">
 
         <ul class="">
-            <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find a Tour') ?></a></li>
+            <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find an Experience') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>

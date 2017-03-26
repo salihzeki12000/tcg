@@ -38,6 +38,9 @@ class CitiesController extends Controller
      */
     public function actionIndex()
     {
+        if (!isset($_GET['sort'])) {
+            $_GET['sort'] = '-priority';
+        }
         $searchModel = new CitiesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
