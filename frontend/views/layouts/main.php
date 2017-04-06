@@ -47,9 +47,15 @@ AppAsset::register($this);
     foreach (Yii::$app->params['currency_name'] as $currency_item){
         $currency_menu[] = ['sign'=>$currency_item['sign'], 'label' => $currency_item['name'], 'url' => Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=> $currency_item['name']])];
     }
+    $themes_menu = [];
+    if( ($menu_themes = \common\models\Tools::getAllTheme() )!== null){
+        foreach ($menu_themes as $theme) {
+            $themes_menu[] = ['label' => $theme['name'], 'url' => Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]), 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index' && Yii::$app->request->get('theme') == $theme['url_id'])];
+        }
+    }
     $menuItems = [
         ['label' => Yii::t('app','Find an Experience'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
-        ['label' => Yii::t('app','Experiences'), 'url' => ['experience/index'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
+        ['label' => Yii::t('app','Experiences'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         ['label' => Yii::t('app','Educational Programs'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
         ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],

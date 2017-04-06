@@ -59,31 +59,34 @@ class DestinationController extends Controller
         $city_info = $city_base['city_info'];
         $menu = $city_base['menu'];
 
+        //only this city
+        $city_condition = array();
+        $city_condition['status'] = DIS_STATUS_SHOW;
+        $city_condition['type'] = TOUR_TYPE_NORMAL;
+        $city_condition['cities'] = $city_info['id'].'';
+        $query = Tour::find()->where($city_condition);
+        $tours = $query
+            ->orderBy('priority DESC, id DESC')
+            ->all();
+
+        //all cities except only this city
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
         $condition['type'] = TOUR_TYPE_NORMAL;
         $query = Tour::find()->where($condition);
         $query->andWhere("FIND_IN_SET('".$city_info['id']."', cities)");
+        $query->andWhere("cities <> '".$city_info['id']."'");
 
-        $count_query = clone $query;
-        $pages = new Pagination(
-            [
-                'totalCount' => $count_query->count(),
-                'pageSize' => 12,
-                'pageSizeParam' => false,
-            ]);
-        $tours = $query
+        $tours_all = $query
             ->orderBy('priority DESC, id DESC')
-            ->offset($pages->offset)
-            ->limit($pages->limit)
             ->all();
 
+        $tours = array_merge($tours, $tours_all);
 
         return $this->render('experiences', [
             'city_info' => $city_info,
             'menu' => $menu,
-            'tours'=>$tours,
-            'pages'=>$pages,
+            'tours' => $tours,
         ]);
     }
 

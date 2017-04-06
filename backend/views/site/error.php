@@ -24,8 +24,7 @@ $this->title = $name;
             <p>
                 The above error occurred while the Web server was processing your request.
                 Please contact us if you think this is a server error. Thank you.
-                Meanwhile, you may <a href='<?= Yii::$app->homeUrl ?>'>return to dashboard</a> or try using the search
-                form.
+                Meanwhile, you may <a href='javascript:void(0);' onclick="history.go(-1);">return to previous page</a>.
             </p>
 
             <!-- <form class='search-form'>

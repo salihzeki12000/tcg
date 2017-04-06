@@ -55,14 +55,6 @@ $this->params['breadcrumbs'][] = Yii::t('app','Experiences');
      <div class="clearfix"></div> 
     </div>
 
-    <?php
-    //显示分页页码
-    echo LinkPager::widget([
-        'pagination' => $pages,
-        'maxButtonCount' => 5,
-    ])
-    ?>
-
     </div>
 </div>
 
