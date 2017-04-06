@@ -77,7 +77,7 @@ return [
         CARD_STATUS_FAILED      => 'Charge Failed',
         ),
     'form_types' => array(
-        FORM_TYPE_CUSTOM => 'Customize',
+        FORM_TYPE_CUSTOM => 'Custom',
         FORM_TYPE_QUOTATION => 'Standard',
         FORM_TYPE_EDU => 'Education',
         FORM_TYPE_MICE => 'MICE',

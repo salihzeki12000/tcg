@@ -883,7 +883,7 @@ div#social-media-icons-container a {
   text-overflow: ellipsis;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
     .navbar-header {
         float: none;
     }
@@ -909,7 +909,7 @@ div#social-media-icons-container a {
         padding-bottom: 10px;
     }
 }
-@media (min-width: 1080px) {
+@media (min-width: 1200px) {
     .navbar-inverse>.container{
       margin-left: 0px !important;
     }
