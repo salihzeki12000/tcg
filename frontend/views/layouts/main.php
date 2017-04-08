@@ -58,7 +58,8 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Experiences'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group'), 'items' =>[['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group'), 'items' =>[
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
         ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],]],
         ['label' => Yii::t('app','About Us'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
