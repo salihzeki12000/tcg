@@ -24,7 +24,7 @@ class AboutUsController extends Controller
         $article_name = Yii::t('app','Our Mission');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
-        $condition['title'] = $article_name;
+        $condition['url_id'] = 'our-mission';
         $query = Article::find()->where($condition);
 
         $article = $query
@@ -38,7 +38,7 @@ class AboutUsController extends Controller
         $article_name = Yii::t('app','Our Guides');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
-        $condition['title'] = $article_name;
+        $condition['url_id'] = 'our-guides';
         $query = Article::find()->where($condition);
 
         $article = $query
@@ -52,7 +52,7 @@ class AboutUsController extends Controller
         $article_name = Yii::t('app','Drivers and Vehicles');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
-        $condition['title'] = $article_name;
+        $condition['url_id'] = 'drivers-and-vehicles';
         $query = Article::find()->where($condition);
 
         $article = $query
@@ -66,7 +66,7 @@ class AboutUsController extends Controller
         $article_name = Yii::t('app','Meet Our Team');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
-        $condition['title'] = $article_name;
+        $condition['url_id'] = 'meet-our-team';
         $query = Article::find()->where($condition);
 
         $article = $query
@@ -80,7 +80,7 @@ class AboutUsController extends Controller
         $article_name = Yii::t('app','Contact Us');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
-        $condition['title'] = $article_name;
+        $condition['url_id'] = 'contact-us';
         $query = Article::find()->where($condition);
 
         $article = $query
@@ -91,11 +91,11 @@ class AboutUsController extends Controller
 
     public function actionCompanyPolicies()
     {
-        $article_name = Yii::t('app','Company policies');
+        $article_name = Yii::t('app','Terms of Service');
         $description = Yii::t('app','Booking terms and conditions');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
-        $condition['title'] = $article_name;
+        $condition['url_id'] = 'terms-of-service';
         $query = Article::find()->where($condition);
 
         $article = $query

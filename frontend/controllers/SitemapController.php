@@ -23,8 +23,10 @@ class SitemapController extends Controller
         $data = [];
 
         $pages = [
+            '',
             '/destinations',
             '/experiences',
+            '/experiences/search',
             '/themed-tours',
             '/the-china-guide-blog',
             '/preparation',
@@ -33,7 +35,7 @@ class SitemapController extends Controller
             '/about-us/contact-us',
             '/about-us/meet-our-team',
             '/about-us/our-guides',
-            '/company-policies',
+            '/terms-of-service',
             '/educational-programs',
         ];
 

@@ -93,7 +93,7 @@ return [
                 'misc/<url_id:[A-Za-z0-9_\'\s\-\?]+>' => 'misc/view',
                 'preparation' => 'preparation/index',
                 'preparation/<url_id:[A-Za-z0-9_\'\s\-\?]+>' => 'preparation/view',
-                'company-policies' => 'about-us/company-policies',
+                'terms-of-service' => 'about-us/company-policies',
                 'sitemap.xml' => 'sitemap/index',
                 // 'site/currency/<currency:\w+>' => 'site/currency',
             ],

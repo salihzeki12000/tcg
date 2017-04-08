@@ -57,12 +57,17 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Find an Experience'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','Experiences'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
-        ['label' => Yii::t('app','Educational Programs'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'about-us'), 'items' =>[['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
+        ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'article' || \Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group'), 'items' =>[['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => \Yii::$app->controller->id == 'article'],
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
-        ['label' => Yii::t('app','About Us'), 'url' => ['/about-us'], 'active' => \Yii::$app->controller->id == 'about-us', ],]],
-
+        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],]],
+        ['label' => Yii::t('app','About Us'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
+            ['label' => Yii::t('app','Why choose us'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
+            ['label' => Yii::t('app','Meet our team'), 'url' => ['about-us/meet-our-team'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'about-us/meet-our-team')],
+            ['label' => Yii::t('app','Our guides'), 'url' => ['about-us/our-guides'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'our-guides')],
+            ['label' => Yii::t('app','Drivers & Vehicles'), 'url' => ['about-us/drivers-and-vehicles'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'drivers-and-vehicles')],
+            ['label' => Yii::t('app','Contact us'), 'url' => ['about-us/contact-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'contact-us')],
+        ]],
     ];
     if (Yii::$app->user->isGuest) {
         // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -122,7 +127,7 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find an Experience') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
-            <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Programs') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Education') ?></a></li>
             <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Themed Tours') ?></a></li>
             <li class="">
                 <ul class="menu-group row">
@@ -245,7 +250,7 @@ AppAsset::register($this);
                 <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a>
                 <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>
                 <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
-                <a href="<?= Url::toRoute(['/company-policies']) ?>"><?=Yii::t('app','Company policies')?></a>
+                <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
             </div>
             <a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>"><h3><?=Yii::t('app','Email us your plan')?></h3></a>
             <a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
