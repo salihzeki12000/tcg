@@ -46,7 +46,7 @@ class FormCard extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['card_type', 'client_name', 'name_on_card', 'card_number', 'card_security_code', 'expiry_month', 'expiry_year', 'amount_to_bill', 'billing_address', 'contact_phone', 'email', 'travel_agent', 'tour_date'], 'required' , 'message' => Yii::t('app', 'Required')],
+            [['card_type', 'client_name', 'name_on_card', 'card_number', 'expiry_month', 'expiry_year', 'amount_to_bill', 'billing_address', 'contact_phone', 'email', 'travel_agent', 'tour_date'], 'required' , 'message' => Yii::t('app', 'Required')],
             [['card_number', 'status'], 'number'],
             [['card_number', 'amount_to_bill', 'donation'], 'string', 'max' => 18],
             [['note'], 'string'],

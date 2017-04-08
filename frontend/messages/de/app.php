@@ -48,4 +48,5 @@ return [
     'Your tour start date' => 'Tourbeginn',
     'Donate to {0}Animals Asia{1}' => 'Spenden an {0}Animals Asia{1}',
     'Other amount' => 'Anderer Betrag',
+    'I have read and agree to the {0}Terms of Service{1}' => 'Ich habe die {0}Geschäftsbedingungen{1} gelesen und bin mit diesen einverstanden',
 ];

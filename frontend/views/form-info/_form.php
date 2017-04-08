@@ -185,6 +185,11 @@ use yii\helpers\Url;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script type="text/javascript">
+    var form_msg_required = "<?=Yii::t('app','Required')?>";
+</script>
+
 <?php
 $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['frontend\assets\AppAsset']]);
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['frontend\assets\AppAsset']]);
@@ -206,7 +211,7 @@ $js = <<<JS
                     input: '#forminfo-hotel_preferences',
                     error: '.help-block',
                     validate:  function (attribute, value, messages, deferred, form) {
-                        yii.validation.required(value, messages, {message: "Required"});
+                        yii.validation.required(value, messages, {message: form_msg_required});
                     }
                 });
             }

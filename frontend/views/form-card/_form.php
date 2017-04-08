@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\FormCard */
@@ -10,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 <div class="form-card-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id'=>'form-card-form']) ?>;
 
     <label class="control-label" for="formcard-card_type"><?=Yii::t('app','Card type')?></label>
     <table width="100%">
@@ -28,8 +29,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name_on_card')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'card_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'card_security_code')->textInput(['maxlength' => true]) ?>
 
     <label class="control-label" for="formcard-expiry_month"><?=Yii::t('app','Expiry Date')?></label>
     <table width="100%">
@@ -89,6 +88,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tour_date')->textInput(['maxlength' => true]) ?>
 
+    <div  class="form-group field-formcard-policies" style="text-align: center;margin-bottom: 30px;">
+        <div style="display: inline-block;text-align: left;">
+            <label class="control-label" style="font-weight: normal;"><input type="checkbox" id='ck_policies' value="1" name="ck_policies"> <?=Yii::t('app','I have read and agree to the {0}Terms of Service{1}', ['<a href="'.Url::toRoute(['about-us/company-policies']).'" target="_blank">', '</a>'])?></label>
+            <div class="help-block"></div>
+        </div>
+    </div>
+
     <div class="form-group bt-submit">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Submit') : Yii::t('app', 'Submit'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
@@ -96,13 +102,26 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-
+<script type="text/javascript">
+    var form_msg_required = "<?=Yii::t('app','Required')?>";
+</script>
 <?php
 $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['frontend\assets\AppAsset']]);
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['frontend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
         $("#formcard-tour_date").attr("readonly","readonly").datepicker({});
+
+        $('#form-card-form').yiiActiveForm('add', {
+            id: 'ck_policies',
+            name: 'ck_policies',
+            container: '.field-formcard-policies',
+            input: '#ck_policies',
+            error: '.help-block',
+            validate:  function (attribute, value, messages, deferred, form) {
+                yii.validation.required(value, messages, {message: form_msg_required});
+            }
+        });
 
         $('#same_as_client').click(function(){
             if(this.checked){
