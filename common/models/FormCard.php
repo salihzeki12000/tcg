@@ -115,9 +115,14 @@ class FormCard extends \yii\db\ActiveRecord
             $secretKey = $this->secretKey;
             $this->card_number = \yii::$app->security->decryptByPassword(base64_decode($this->card_number),$secretKey);
             $this->card_security_code = \yii::$app->security->decryptByPassword(base64_decode($this->card_security_code),$secretKey);
-            $this->expiry_month = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_month),$secretKey);
-            $this->expiry_year = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_year),$secretKey);
             $this->billing_address = \yii::$app->security->decryptByPassword(base64_decode($this->billing_address),$secretKey);
+            if ((time() - strtotime($this->create_time)) > 3600*24*30) {
+                $this->expiry_month = $this->expiry_year = null;
+            }
+            else{
+                $this->expiry_month = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_month),$secretKey);
+                $this->expiry_year = \yii::$app->security->decryptByPassword(base64_decode($this->expiry_year),$secretKey);
+            }
         }
         parent::afterFind();
     }
