@@ -11,7 +11,7 @@ use yii\helpers\Url;
 
 <div class="form-card-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'form-card-form']) ?>;
+    <?php $form = ActiveForm::begin(['id'=>'form-card-form']) ?>
 
     <label class="control-label" for="formcard-card_type"><?=Yii::t('app','Card type')?></label>
     <table width="100%">
@@ -88,7 +88,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'tour_date')->textInput(['maxlength' => true]) ?>
 
-    <div  class="form-group field-formcard-policies" style="text-align: center;margin-bottom: 30px;">
+    <div  class="form-group field-formcard-policies" style="text-align: center;margin-bottom: 20px;">
         <div style="display: inline-block;text-align: left;">
             <label class="control-label" style="font-weight: normal;"><input type="checkbox" id='ck_policies' value="1" name="ck_policies"> <?=Yii::t('app','I have read and agree to the {0}Terms of Service{1}', ['<a href="'.Url::toRoute(['about-us/company-policies']).'" target="_blank">', '</a>'])?></label>
             <div class="help-block"></div>

@@ -66,6 +66,10 @@ body {
     border-color: #E0E3D6;
     background-color: #E0E3D6;
 }
+ul.navbar-nav li:not(:last-child) b.caret{
+    display: none;
+}
+
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover{
     color: #4D423C;
 }

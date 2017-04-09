@@ -59,16 +59,23 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
         ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
         ['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group'), 'items' =>[
-        ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
-        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],]],
         ['label' => Yii::t('app','About Us'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
             ['label' => Yii::t('app','Why choose us'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
             ['label' => Yii::t('app','Meet our team'), 'url' => ['about-us/meet-our-team'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'about-us/meet-our-team')],
             ['label' => Yii::t('app','Our guides'), 'url' => ['about-us/our-guides'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'our-guides')],
             ['label' => Yii::t('app','Drivers & Vehicles'), 'url' => ['about-us/drivers-and-vehicles'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'drivers-and-vehicles')],
             ['label' => Yii::t('app','Contact us'), 'url' => ['about-us/contact-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'contact-us')],
+            '<li class="divider"></li>',
+            ['label' => 'book@thechinaguide.com', 'url' => ['mailto:book@thechinaguide.com?subject='.Yii::t('app','Booking or Consultation')],],
+            '<li class="divider"></li>',
+            ['label' => Yii::t('app','Visit our office'), 'url' => ['about-us/contact-us'],],
+            '<li class="dropdown-header">CN: +8610  8532 1860</li>',
+            '<li class="dropdown-header">US: +1 646 863 7038</li>',
+            '<li class="dropdown-header">UK: +44 203 807 0401</li>',
         ]],
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group'), 'items' =>[
+        ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
+        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],]],
     ];
     if (Yii::$app->user->isGuest) {
         // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
