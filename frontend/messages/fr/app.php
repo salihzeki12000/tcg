@@ -50,4 +50,5 @@ return [
     'Donate to {0}Animals Asia{1}' => 'faire une donation à {0}Animals Asia{1}',
     'Other amount' => 'autre montant',
     'I have read and agree to the {0}Terms of Service{1}' => 'J\'ai lu et j\'accepte les {0}conditions générales de vente{1}',
+    'Terms of Service' => 'conditions générales de vente',
 ];
