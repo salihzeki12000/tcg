@@ -60,3 +60,12 @@
         </ul> 
     </section>
 </aside>
+
+<?php
+$css = <<<CSS
+.sidebar-menu>li>a {
+    padding: 8px 5px 8px 15px;
+}
+CSS;
+$this->registerCss($css);
+?>
