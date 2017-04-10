@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
-$this->title = Yii::t('app','China Tours | Private Tours | Custom Tours');
+$this->title = Yii::t('app','China Tours | Private Tours | China Travel Agency');
 $this->description = Yii::t('app','The China Guide provides Western-style travel customization services to China’s top destinations, including Beijing, the Great Wall, Xi’an, Shanghai, Tibet, and more.');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 ?>
