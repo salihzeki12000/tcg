@@ -8,11 +8,10 @@ return [
         'de' => 'Deutsch',
         ),
     'currency_name' => array(
+        'CNY' => ['sign'=>'¥' ,'name'=>'CNY'],
         'USD' => ['sign'=>'$' ,'name'=>'USD'],
         'EUR' => ['sign'=>'€' ,'name'=>'EUR'],
         'GBP' => ['sign'=>'£' ,'name'=>'GBP'],
-        'CHF' => ['sign'=>'SFr.' ,'name'=>'CHF'],
-        'CNY' => ['sign'=>'¥' ,'name'=>'CNY'],
         ),
     'biz_type'    => array(
         BIZ_TYPE_CITIES     => 'cities',
@@ -61,6 +60,7 @@ return [
         FAQ_TYPE_TRIP_PLANNING => Yii::t('app', 'Before You Leave'),
         FAQ_TYPE_IN_CHINA      => Yii::t('app', 'During Your Trip'),
         FAQ_TYPE_FAQ        => Yii::t('app', 'FAQ'),
+        FAQ_CHINESE_CULTURE => Yii::t('app', 'Chinese Culture'),
         ),
     'album_type' => array(
         ALBUM_TYPE_SIGHT    => Yii::t('app', 'sight'),

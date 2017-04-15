@@ -75,8 +75,23 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
           <?php } ?>
       </div>
     </div>
-  </div>
 
+    <div class="article-index">
+      <div class="list-group">
+          <div class="list-group-item"><center><h2><?= Yii::$app->params['faq_type'][FAQ_CHINESE_CULTURE] ?></h2></center></div>
+          <?php foreach ($faq as $item) { 
+            if ($item['sub_type'] != FAQ_CHINESE_CULTURE) {
+              continue;
+            }
+          ?>
+          <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
+              <i class="glyphicon glyphicon-chevron-right pull-right" ></i>
+              <span><?= $item['title'] ?></span>
+          </a>
+          <?php } ?>
+      </div>
+    </div>
+  </div>
 
     <?= $this->render('/layouts/_exp-right', []) ?>
 

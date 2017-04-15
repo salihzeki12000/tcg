@@ -4,8 +4,66 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\UploadedFiles;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+
 ?>
   <div class="clearfix col-lg-3"></div>
+
+<?php if (\Yii::$app->controller->id == 'article') { ?>
+  <div class="home-whyus col-lg-4">
+        <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
+        <div class="row tour-right subscribe-mail-form">
+          <center><?=Yii::t('app','Subscribe to our mailing list')?></center>
+          <?php $form = ActiveForm::begin(['action' => '//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf', 'id'=>"mc-embedded-subscribe-form"]);
+          ?>
+            <div class="form-group field-mce-EMAIL">
+              <label class="control-label" for="mce-EMAIL"><?=Yii::t('app','Email Address')?> *</label>
+              <input type="text" id="mce-EMAIL" class="form-control" name="EMAIL">
+              <div class="help-block"></div>
+            </div>
+            <div class="form-group field-mce-FNAME">
+              <label class="control-label" for="mce-FNAME"><?=Yii::t('app','First Name')?></label>
+              <input type="text" id="mce-FNAME" class="form-control" name="FNAME">
+              <div class="help-block"></div>
+            </div>
+            <div class="form-group field-mce-LNAME">
+              <label class="control-label" for="mce-LNAME"><?=Yii::t('app','Last Name')?></label>
+              <input type="text" id="mce-LNAME" class="form-control" name="LNAME">
+              <div class="help-block"></div>
+            </div>
+
+            <div class="form-group bt-submit form-info">
+              <input type="hidden" name="b_d995462fd30382f7e33e816d0_a0d17736bf" tabindex="-1" value="">
+              <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-success','name'=>"subscribe", 'id'=>"mc-embedded-subscribe"]) ?>
+            </div>
+          <?php ActiveForm::end(); ?>
+
+        </div>
+  </div>
+
+<script type="text/javascript">
+    var form_valid_msg_email = "<?=Yii::t('app','not a valid email address')?>";
+</script>
+
+<?php
+$this->registerJsFile('@web/statics/js/yii.validation.js',['depends'=>['frontend\assets\AppAsset']]);
+$js = <<<JS
+    $(function(){
+        $('#mc-embedded-subscribe-form').yiiActiveForm('add', {
+            id: 'mce-EMAIL',
+            name: 'EMAIL',
+            container: '.field-mce-EMAIL',
+            input: '#mce-EMAIL',
+            error: '.help-block',
+            validate:  function (attribute, value, messages, deferred, form) {
+                yii.validation.email(value, messages, {message: form_valid_msg_email});
+            }
+        });
+    });
+JS;
+$this->registerJs($js);
+?>
+<?php }else{ ?>
 
   <div class="home-whyus col-lg-4">
         <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
@@ -36,6 +94,8 @@ use yii\helpers\Url;
           </div>
         </div>
   </div>
+<?php } ?>
+
 
   <?php if (isset($tours) || ($tours = \common\models\Tools::getMostPopularTours(3) ) ) {
 

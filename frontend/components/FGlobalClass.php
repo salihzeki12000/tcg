@@ -99,7 +99,7 @@ class FGlobalClass extends \yii\base\Component
             $red_dir = \common\models\Tools::getFormRedirectUrl('uri');
 
             foreach ($red_dir as $key => $value) {
-                if (strpos($url, $key) === 0) {
+                if (stripos($url, $key) === 0) {
                     header("HTTP/1.1 301 Moved Permanently"); 
                     header("Location: ".SITE_BASE_URL."{$value}"); 
                     exit();

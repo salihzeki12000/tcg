@@ -307,6 +307,8 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
                 <a class="ted-ed" href="http://ed.ted.com/on/oCg0iCyT#digdeeper" target="_blank"></a>
                 <a class="fodors-travel" href="http://www.fodors.com/world/asia/china/beijing/travel-tips/tours-2780308" target="_blank"></a>
                 <a class="treasure-leasure" href="http://www.travelandleisure.com/attractions/great-wall-of-china-sledding" target="_blank"></a>
+                <a class="traveller" href="http://www.traveller.com.au/spree-de-corps-3965h" target="_blank"></a>
+
             </div>
         </div>
     </div>

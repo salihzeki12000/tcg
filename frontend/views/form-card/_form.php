@@ -45,11 +45,11 @@ use yii\helpers\Url;
     <label class="control-label" for="formcard-amount_to_bill"><?=Yii::t('app','Amount to bill')?></label>
     <table width="100%">
         <tr>
-            <td valign="middle" width="50%">
-                <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true])->label(false) ?>
+            <td width="70px" valign="middle" align="right">
+                <strong>CN¥</strong>
             </td>
-            <td width="50%" valign="middle" align="left">
-                CNY
+            <td valign="middle">
+                <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','in Chinese Yuan')])->label(false) ?>
             </td>
         </tr>
     </table>
@@ -57,10 +57,10 @@ use yii\helpers\Url;
     <div class="form-group field-formcard-donation">
         <label class="control-label" style="font-weight: normal;"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to {0}Animals Asia{1}', ['<a href="/misc/animals-asia">', '</a>'])?></label>
         <div id="formcard-donation" style="display: none;padding-left: 15px;">
-            <label><input type="radio" name="FormCard[donation]" value="50"> 50 CNY </label><br>
-            <label><input type="radio" name="FormCard[donation]" value="100"> 100 CNY </label><br>
-            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> <?=Yii::t('app','Other amount')?>: </label>
-            <label id="lab_other_donation" style="display: none;"><input type="input" name="other_donation" value="" disabled="disabled" style="width:100px"></label>
+            <label><input type="radio" name="FormCard[donation]" value="50"> CN¥ 50 </label><br>
+            <label><input type="radio" name="FormCard[donation]" value="100"> CN¥ 100 </label><br>
+            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> CN¥ </label>
+            <label id="lab_other_donation"><input type="input" class="form-control" name="other_donation" value="" disabled="disabled" style="width:150px" placeholder="<?=Yii::t('app','in Chinese Yuan')?>"></label>
         </div>
 
         <div class="help-block"></div>
@@ -146,20 +146,20 @@ $js = <<<JS
         });
         $('#formcard-donation input[type=radio]').click(function(){
             if(this.value=='other_donation'){
-                $('#lab_other_donation').show().children("input").removeAttr('disabled');
+                $('#lab_other_donation').children("input").removeAttr('disabled');
             }
             else{
-                $('#lab_other_donation').hide().children("input").attr('disabled','disabled');
+                $('#lab_other_donation').children("input").attr('disabled','disabled');
             }
         });
         setTimeout(function(){
             if($('#ck_donation').is( ":checked" )){
                 $('#formcard-donation').show().find('input[type=radio]').removeAttr('disabled');
                 if($('#ck_other_donation').is( ":checked" )){
-                    $('#lab_other_donation').show().children("input").removeAttr('disabled');
+                    $('#lab_other_donation').children("input").removeAttr('disabled');
                 }
                 else{
-                    $('#lab_other_donation').hide().children("input").attr('disabled','disabled');
+                    $('#lab_other_donation').children("input").attr('disabled','disabled');
                 }
             }
             else{

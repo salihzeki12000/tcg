@@ -51,4 +51,5 @@ return [
     'Other amount' => 'autre montant',
     'I have read and agree to the {0}Terms of Service{1}' => 'J\'ai lu et j\'accepte les {0}conditions générales de vente{1}',
     'Terms of Service' => 'conditions générales de vente',
+    'in Chinese Yuan' => 'en Yuan chinois',
 ];
