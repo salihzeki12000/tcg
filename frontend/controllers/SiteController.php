@@ -285,4 +285,21 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSettoursight()
+    {
+        $condition = array();
+        $condition['type'] = ALBUM_TYPE_SIGHT;
+        $condition['status'] = DIS_STATUS_SHOW;
+        $query = \common\models\Album::find()->where($condition);
+        $sights = $query
+            ->all();
+
+        $itineraries = \common\models\Itinerary::find()
+        ->all();
+
+        foreach ($itineraries as $itinerarie) {
+            $content = $itinerarie['description'];
+            var_dump($content);exit;
+        }
+    }
 }

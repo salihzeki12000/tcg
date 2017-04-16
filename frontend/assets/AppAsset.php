@@ -12,7 +12,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'statics/css/site.css?_t=201704090000',
+        'statics/css/site.css?_t=201704160000',
     ];
     public $js = [
         // 'statics/js/jgestures.min.js',

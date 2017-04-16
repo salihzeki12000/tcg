@@ -1348,6 +1348,13 @@ a.desc:after {
   width: 100%;
 }
 
+.overview a.sight{
+  color: #e36c09;
+  text-decoration: underline;
+}
+.overview a.sight:hover{
+  color: #B33635;
+}
 
 .nomadicmatt-page .teaser {
     margin-top: 10px;
