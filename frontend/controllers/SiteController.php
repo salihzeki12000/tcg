@@ -288,7 +288,6 @@ class SiteController extends Controller
     public function actionSettoursight()
     {
         $condition = array();
-        $condition['type'] = ALBUM_TYPE_SIGHT;
         $condition['status'] = DIS_STATUS_SHOW;
         $query = \common\models\Album::find()->where($condition);
         $sights = $query
