@@ -11,9 +11,8 @@ use yii\widgets\ActiveForm;
 
 <?php if (\Yii::$app->controller->id == 'article') { ?>
   <div class="home-whyus col-lg-4">
-        <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
+        <center class="tour-index"><h3><?=Yii::t('app','Subscribe to our mailing list')?></h3></center>
         <div class="row tour-right subscribe-mail-form">
-          <center><?=Yii::t('app','Subscribe to our mailing list')?></center>
           <?php $form = ActiveForm::begin(['action' => '//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf', 'id'=>"mc-embedded-subscribe-form"]);
           ?>
             <div class="form-group field-mce-EMAIL">
