@@ -299,7 +299,23 @@ class SiteController extends Controller
 
         foreach ($itineraries as $itinerarie) {
             $content = $itinerarie['description'];
-            var_dump($content);exit;
+            foreach ($sights as $sight) {
+                $to_url = '';
+                if (ALBUM_TYPE_SIGHT == $sight['type']) {
+                    $to_url = \yii\helpers\Url::toRoute(['sight/view', 'url_id'=>$sight['url_id']]);
+                }
+                elseif (ALBUM_TYPE_ACTIVITY == $sight['type']){
+                    $to_url = \yii\helpers\Url::toRoute(['activity/view', 'url_id'=>$sight['url_id']]);
+                }
+                if (!empty($to_url)) {
+                    $content = str_replace("<span style=\"color: rgb(227, 108, 9);\">{$sight['name']}</span>",
+                     "<a class=\"sight\" href=\"{$to_url}\">{$sight['name']}</a>",
+                     $content);
+                }
+            }
+            $itinerarie->description = $content;
+            $itinerarie->save();
+            echo "done";exit;
         }
     }
 }
