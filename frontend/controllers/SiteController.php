@@ -315,7 +315,7 @@ class SiteController extends Controller
             }
             $itinerarie->description = $content;
             $itinerarie->save();
-            echo "done";exit;
         }
+        echo "done";exit;
     }
 }
