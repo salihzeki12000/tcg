@@ -308,7 +308,7 @@ class SiteController extends Controller
                     $to_url = \yii\helpers\Url::toRoute(['activity/view', 'url_id'=>$sight['url_id']]);
                 }
                 if (!empty($to_url)) {
-                    $content = str_replace("<span style=\"color: rgb(227, 108, 9);\">{$sight['name']}</span>",
+                    $content = str_ireplace("<span style=\"color: rgb(227, 108, 9);\">{$sight['name']}</span>",
                      "<a class=\"sight\" href=\"{$to_url}\"  target=\"_blank\">{$sight['name']}</a>",
                      $content);
                 }
