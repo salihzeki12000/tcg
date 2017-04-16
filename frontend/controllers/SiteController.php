@@ -309,7 +309,7 @@ class SiteController extends Controller
                 }
                 if (!empty($to_url)) {
                     $content = str_replace("<span style=\"color: rgb(227, 108, 9);\">{$sight['name']}</span>",
-                     "<a class=\"sight\" href=\"{$to_url}\">{$sight['name']}</a>",
+                     "<a class=\"sight\" href=\"{$to_url}\"  target=\"_blank\">{$sight['name']}</a>",
                      $content);
                 }
             }
