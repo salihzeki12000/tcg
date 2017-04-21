@@ -65,7 +65,7 @@ class FGlobalClass extends \yii\base\Component
             $url_dir = \common\models\Tools::getFormRedirectUrl('query');
 
             foreach ($url_dir as $key => $value) {
-                if (strpos($query_string, $key) !== false) {
+                if (stripos($query_string, $key) !== false) {
                     header("HTTP/1.1 301 Moved Permanently"); 
                     header("Location: ".SITE_BASE_URL."{$value}"); 
                     exit();
@@ -87,8 +87,8 @@ class FGlobalClass extends \yii\base\Component
             foreach ($supportedLanguages as $language) {
                 $lang_path = "/{$language}/";
                 if ((strpos($url, $lang_path) === 0 || "/{$language}" == $url) && $language != Yii::$app->sourceLanguage 
-                    && strpos($url, 'secure-credit-card-form') === false
-                    && strpos($url, 'terms-of-service') === false
+                    && stripos($url, 'secure-credit-card-form') === false
+                    && stripos($url, 'terms-of-service') === false
                     && !YII_DEBUG
                     ) {
                     header('Location: http://'.$language.'.thechinaguide.com');
@@ -105,7 +105,7 @@ class FGlobalClass extends \yii\base\Component
                     exit();
                 }
             }
-            if (strpos($url, 'promo-viajeros-callejeros=1') !== false) {
+            if (stripos($url, 'promo-viajeros-callejeros=1') !== false) {
                 header("HTTP/1.1 301 Moved Permanently"); 
                 header("Location: ".SITE_BASE_URL); 
                 exit();
