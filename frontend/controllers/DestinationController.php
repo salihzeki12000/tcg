@@ -78,7 +78,7 @@ class DestinationController extends Controller
         $query->andWhere("cities_count <= '2'");
         $query->andWhere("cities <> '".$city_info['id']."'");
         $tours_two_cities = $query
-            ->orderBy('priority DESC, id DESC')
+            ->orderBy('cities_count ASC,priority DESC, id DESC')
             ->all();
 
         //all cities except only this city
