@@ -63,21 +63,10 @@ class DestinationController extends Controller
         $city_condition = array();
         $city_condition['status'] = DIS_STATUS_SHOW;
         $city_condition['type'] = TOUR_TYPE_NORMAL;
-        $city_condition['cities'] = $city_info['id'].'';
-        $query = Tour::find()->where($city_condition);
-        $tours = $query
-            ->orderBy('priority DESC, id DESC')
-            ->all();
-
-        //two city
-        $city_condition = array();
-        $city_condition['status'] = DIS_STATUS_SHOW;
-        $city_condition['type'] = TOUR_TYPE_NORMAL;
         $query = Tour::find()->where($city_condition);
         $query->andWhere("FIND_IN_SET('".$city_info['id']."', cities)");
-        $query->andWhere("cities_count <= '2'");
-        $query->andWhere("cities <> '".$city_info['id']."'");
-        $tours_two_cities = $query
+        $query->andWhere("cities_count < '2'");
+        $tours = $query
             ->orderBy('cities_count ASC,priority DESC, id DESC')
             ->all();
 
@@ -88,13 +77,13 @@ class DestinationController extends Controller
         $query = Tour::find()->where($condition);
         $query->andWhere("FIND_IN_SET('".$city_info['id']."', cities)");
         $query->andWhere("cities <> '".$city_info['id']."'");
-        $query->andWhere("cities_count > '2'");
+        $query->andWhere("cities_count >= '2'");
 
         $tours_all = $query
             ->orderBy('priority DESC, id DESC')
             ->all();
 
-        $tours = array_merge($tours, $tours_two_cities, $tours_all);
+        $tours = array_merge($tours, $tours_all);
 
         return $this->render('experiences', [
             'city_info' => $city_info,
