@@ -73,9 +73,9 @@ class DestinationController extends Controller
         $city_condition = array();
         $city_condition['status'] = DIS_STATUS_SHOW;
         $city_condition['type'] = TOUR_TYPE_NORMAL;
-        $city_condition['cities_count'] = '2';
         $query = Tour::find()->where($city_condition);
         $query->andWhere("FIND_IN_SET('".$city_info['id']."', cities)");
+        $query->andWhere("cities_count <= '2'");
         $tours_two_cities = $query
             ->orderBy('priority DESC, id DESC')
             ->all();
