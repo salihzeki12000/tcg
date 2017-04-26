@@ -482,6 +482,15 @@ div#social-media-icons-container a {
 #social-media-icons-container a#pinterest {
     background-position: -128px 0;
 }
+#social-media-icons-container a#youtube {
+  background-image: url(../images/social-media-icons-youtube.png);
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 9px;
+  background-size: 48px;
+  background-repeat: no-repeat;
+}
 
 .footer .search-box, .footer .pata, .footer .copyright{
   margin: 15px 0 0 0;

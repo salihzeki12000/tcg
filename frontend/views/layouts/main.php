@@ -225,6 +225,7 @@ AppAsset::register($this);
                 <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
                 <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
                 <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
+                <a href="https://www.youtube.com/channel/UCp9ksc2bXXWcbE-CZG5iEMQ" id="youtube" target="_blank"></a>
             </div>
         </div>
         <div class="fitem payment-icons col-lg-7 col-md-12 col-sm-12 col-xs-12">
