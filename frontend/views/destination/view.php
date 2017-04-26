@@ -8,11 +8,11 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\city */
 
-$this->title = $city_info['name'] . ' ' . Yii::t('app','Tours') . ' - ' . $city_info['name'] . ' ' . Yii::t('app','Travel Guide');
+$this->title = $city_info['name'] . ' ' . Yii::t('app','Travel Guide');
 $this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($city_info['introduction']), 30)) . '...';
 $this->keywords = Html::encode($city_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Destinations'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $city_info['name'];
 ?>
 
 <?= $this->render('_des-header', [

@@ -12,11 +12,11 @@ $this->title = $tour_info['name'] . ' - ' . Yii::t('app', 'China Tours');
 $this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($tour_info['overview']), 30)) . '...';
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $tour_info['name'];
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?= Html::encode($this->title) ?> <br /><small><?= Html::encode($tour_info['display_cities']) ?></small></h1>
+    <h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= Html::encode($tour_info['display_cities']) ?></small></h1>
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
