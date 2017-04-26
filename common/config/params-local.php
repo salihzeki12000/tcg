@@ -6,6 +6,7 @@ return [
         'fr' => 'Français',
         'es' => 'Español',
         'de' => 'Deutsch',
+        'pt' => 'Português',
         ),
     'currency_name' => array(
         'CNY' => ['sign'=>'¥' ,'name'=>'CNY'],

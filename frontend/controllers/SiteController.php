@@ -128,7 +128,7 @@ class SiteController extends Controller
                 $query = \common\models\Tour::find()->where($condition);
                 $tours = $query
                 ->orderBy([new \yii\db\Expression('FIELD (id, ' . implode(',', $tour_ids) . ')')])
-                ->limit(6)
+                ->limit(9)
                 ->all();
             }
         }

@@ -5,7 +5,7 @@ use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
 $this->title = Yii::t('app','China Tours | Private Tours | China Travel Agency');
-$this->description = Yii::t('app','The China Guide provides Western-style travel customization services to China’s top destinations, including Beijing, the Great Wall, Xi’an, Shanghai, Tibet, and more.');
+$this->description = Yii::t('app','Our multilingual team of native speakers provides Western-style travel customization services to China\'s top destinations, including Beijing, the Great Wall, Xi\'an, Shanghai, Tibet, and more.');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 ?>
 <div class="site-index">
@@ -318,6 +318,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 </div>
 
 <?= $this->render('/layouts/_tawk_script', []) ?>
+<script src="//my.hellobar.com/74e24eabbac970c8d9108d35dcaee0d202bf388b.js" type="text/javascript" charset="utf-8" async="async"></script>
 
 <?php
 $js = <<<JS
