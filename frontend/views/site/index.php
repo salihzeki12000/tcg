@@ -12,7 +12,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 
     <?php if(!Yii::$app->params['is_mobile']) { ?>
     <div class="slide-video">
-        <video width="100%" loop=1 autoplay=1 >
+        <video width="100%" loop=1 autoplay=1 poster="https://www.thechinaguide.com/uploads/201702/23/58aee9ea9a2fe.jpg">
           <source src="/statics/videos/tcg_2017.3gp">
           Your browser doesn't support HTML5 video tag.
         </video>
