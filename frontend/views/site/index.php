@@ -155,6 +155,19 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
        </div>
     </div>
 
+    <div class="subscribe-bar">
+        <h3><?=Yii::t('app','Subscribe to Our Newsletter')?></h3>
+        <form action="//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf" id="mc-embedded-subscribe-form" method="post">
+          <div class="subscribe-bar-input">
+            <input type="text" id="mce-EMAIL" class="form-control" name="EMAIL" placeholder="<?=Yii::t('app','Enter your email address')?>">
+            <input type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn btn-info btn-sm">     
+          </div>
+          <input type="hidden" name="b_d995462fd30382f7e33e816d0_a0d17736bf" tabindex="-1" value="">
+        </form>
+        <div class='subscribe-bar-desc'><?=Yii::t('app','Wanderlust-inducing content and insider tips from our China travel experts
+')?></div>
+    </div>
+
     <div class="container home-categories">
         <div class="col-lg-12">
             <h1 class="page-header"><?=Yii::t('app','CHOOSE A CATEGORY')?></h1>
@@ -331,7 +344,6 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 </div>
 
 <?= $this->render('/layouts/_tawk_script', []) ?>
-<script src="//my.hellobar.com/74e24eabbac970c8d9108d35dcaee0d202bf388b.js" type="text/javascript" charset="utf-8" async="async"></script>
 
 <?php
 $js = <<<JS
