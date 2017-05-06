@@ -61,7 +61,7 @@ class Tour extends \yii\db\ActiveRecord
     {
         $name_rule = [['name'], 'string', 'max' => 255];
         if (Yii::$app->language == Yii::$app->sourceLanguage) {
-            $name_rule = [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s]+$/','message'=>'Name does not conform to the requirements'];
+            $name_rule = [['name'],'match','pattern'=>'/^[A-Za-z0-9_\'\s\:\,\+]+$/','message'=>'Name does not conform to the requirements'];
         }
         return [
             [['code', 'status', 'themes', 'cities', 'tour_length'], 'required'],

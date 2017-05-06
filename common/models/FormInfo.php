@@ -131,6 +131,7 @@ class FormInfo extends \yii\db\ActiveRecord
             'other_info' => Yii::t('app', 'Anything else you think we should know?'),
             'tour_type' => Yii::t('app', 'Tour type'),
             'tour_length' => Yii::t('app', 'Tour length'),
+            'promotion_code' => Yii::t('app', 'Promotion Code'),
             'status' => Yii::t('app', 'Status'),
         ];
     }

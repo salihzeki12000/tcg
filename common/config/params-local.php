@@ -151,6 +151,7 @@ return [
             'nationality',
             'prefered_travel_agent',
             'phone_number',
+            'promotion_code',
         ),
         FORM_TYPE_QUOTATION => array(
             'tour_code',
@@ -171,6 +172,7 @@ return [
             'nationality',
             'prefered_travel_agent',
             'phone_number',
+            'promotion_code',
         ),
         FORM_TYPE_EDU => array(
             'subject_program',

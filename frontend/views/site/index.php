@@ -10,6 +10,20 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 ?>
 <div class="site-index">
 
+    <?php if(!Yii::$app->params['is_mobile']) { ?>
+    <div class="slide-video">
+        <video width="100%" loop=1 autoplay=1 >
+          <source src="/statics/videos/tcg_2017.3gp">
+          Your browser doesn't support HTML5 video tag.
+        </video>
+        <div class="carousel-caption">
+            <h3></h3>
+            <span></span>
+        </div>
+    </div>
+
+    <?php }else{ ?>
+
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -17,7 +31,6 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
             <li data-target="#carousel-slides-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
         <?php } ?>
       </ol>
-     
       <!-- Wrapper for slides -->
       <div class="carousel-inner full-w">
         <?php for($i=0; $i<count($slides); $i++) {
@@ -36,7 +49,6 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
             </a>
         <?php } ?>
       </div>
-     
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-slides-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -45,6 +57,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
     </div> <!-- Carousel -->
+    <?php } ?>
 
     <div class="container home-desc col-lg-9 col-md-10 col-sm-6 col-xs-12">
         <?=Yii::t('app','We create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
@@ -97,7 +110,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
                 $pic_type = 'm';
             }
         ?>
-            <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $slide['url'] ?>">
+            <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $ad['url'] ?>">
               <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($ad['pic_s'], $pic_type)?>" alt="<?=  $ad['title'] ?>">
             </a>
         <?php } ?>
@@ -118,10 +131,10 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
            <div class="file-preview-frame file-preview-initial col-lg-4 col-md-4 col-sm-6 col-xs-12" >
             <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"> 
              <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-              <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=Yii::t('app','Days')?> | <span><?= $tour['cities_count'] ?></span> <?=Yii::t('app','Destinations')?> | <span><?= $tour['exp_num'] ?></span> <?=Yii::t('app','Activities')?></div>
             </a>
             <div class="file-thumbnail-footer"> 
              <div class="file-footer-caption">
+                <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')?> | <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')?></div>
                 <h3><?= $tour['name'] ?> </h3>
                 <div><?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?></div>
                 <div class="tourlist-price">

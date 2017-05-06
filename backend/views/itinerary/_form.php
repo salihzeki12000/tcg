@@ -70,6 +70,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'description')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '300px',
+        'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
     ]) ?>

@@ -174,6 +174,8 @@ use yii\helpers\Url;
 
     <?= !in_array('hear_about_us', $form_fields) ? '' : $form->field($model, 'hear_about_us')->textInput(['maxlength' => true]) ?>
 
+    <?= !in_array('promotion_code', $form_fields) ? '' : $form->field($model, 'promotion_code')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group bt-submit">
         <?php if(isset($bt_submit_txt)) {?>
             <?= Html::submitButton($bt_submit_txt, ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
