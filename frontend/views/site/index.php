@@ -332,7 +332,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
                 <a class="the-guardian" href="https://www.theguardian.com/travel/2012/aug/24/best-accessible-disabled-holidays" target="_blank"></a>
                 <a class="cnn-travel" href="http://travel.cnn.com/explorations/play/asias-most-bike-friendly-cities-982373/" target="_blank"></a>
                 <a class="ted-ed" href="http://ed.ted.com/on/oCg0iCyT#digdeeper" target="_blank"></a>
-                <a class="fodors-travel" href="javascript:void(0);" target="_blank"></a>
+                <a class="fodors-travel" href="javascript:void(0);" style="cursor: default" target="_blank"></a>
                 <a class="treasure-leasure" href="http://www.travelandleisure.com/attractions/great-wall-of-china-sledding" target="_blank"></a>
                 <a class="traveller" href="http://www.traveller.com.au/spree-de-corps-3965h" target="_blank"></a>
 
