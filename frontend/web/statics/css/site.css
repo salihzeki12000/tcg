@@ -757,9 +757,6 @@ div#social-media-icons-container a {
   word-break: normal; 
   color: #E9C46C;
 }
-.tour-index .file-footer-caption div{
-  margin-bottom: 10px;
-}
 
 .tour-index .file-preview-image {
   width:100%;
@@ -773,7 +770,6 @@ div#social-media-icons-container a {
   font-size: 16px;
   color: #E0E3D6;
   text-align: right;
-  margin: 7px 0;
 }
 .tour-index .kv-file-content .content-press span{
   color: #E9C46C;
