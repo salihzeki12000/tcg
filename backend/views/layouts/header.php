@@ -87,8 +87,8 @@ use yii\helpers\Url;
 <?php
 $css = <<<CSS
 .dropdown.lang-menu span{
-    color: #dd4b39;
-    font-size: 18px;
+    color: #fff000;
+    font-size: 20px;
     font-weight: bold;
 }
 CSS;
