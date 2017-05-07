@@ -220,12 +220,12 @@ AppAsset::register($this);
             <h3><?=Yii::t('app','Follow us')?></h3>
             <div id="social-media-icons-container">
                 <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" id="tripadvisor" target="_blank"></a>
+                <a href="https://www.youtube.com/channel/UCp9ksc2bXXWcbE-CZG5iEMQ" id="youtube" target="_blank"></a>
                 <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
                 <a href="https://www.facebook.com/thechinaguide" id="facebook" target="_blank"></a>
                 <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
                 <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
                 <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
-                <a href="https://www.youtube.com/channel/UCp9ksc2bXXWcbE-CZG5iEMQ" id="youtube" target="_blank"></a>
             </div>
         </div>
         <div class="fitem payment-icons col-lg-7 col-md-12 col-sm-12 col-xs-12">
@@ -342,9 +342,9 @@ $js = <<<JS
         });
 
         $('ul.nav li.dropdown').hover(function() {
-          $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+          $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
         }, function() {
-          $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+          $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(0);
         });
     });
 JS;

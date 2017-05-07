@@ -421,7 +421,7 @@ div#social-media-icons-container a {
   display: inline-block;
   width: 50px;
   height: 50px;
-  margin: 0 9px;
+  margin: 0 5px;
   background-size: 370px;
   background-repeat: no-repeat;
 }
@@ -491,7 +491,7 @@ div#social-media-icons-container a {
   display: inline-block;
   width: 50px;
   height: 50px;
-  margin: 0 9px;
+  margin: 0 5px;
   background-size: 48px;
   background-repeat: no-repeat;
 }
@@ -769,15 +769,11 @@ div#social-media-icons-container a {
   display: block;
   position: relative;
 }
-.tour-index .kv-file-content .content-press{
-  padding: 8px;
-  float: left;
-  bottom: 0px;
-  position: absolute;
+.tour-index .content-press{
   font-size: 16px;
-  color: #eee;
-  text-shadow: 0 0px 4px rgba(0, 0, 0, 1);
-  text-align: left;
+  color: #E0E3D6;
+  text-align: right;
+  margin: 7px 0;
 }
 .tour-index .kv-file-content .content-press span{
   color: #E9C46C;
@@ -915,11 +911,14 @@ div#social-media-icons-container a {
 .tour-index > h3{
   color: #E9C46C !important;
 }
-.tour-index h3{
+.tour-index h3,.tour-index h3>a{
   color: #17BEBB;
   overflow: hidden;
   height: 26px;
   text-overflow: ellipsis;
+}
+.tour-index .tourlist-desc>a{
+  color: #E0E3D6;
 }
 
 @media (max-width: 1200px) {
@@ -1365,6 +1364,9 @@ a.desc:after {
   color: #e36c09;
   text-decoration: underline;
 }
+.overview .sight{
+  color: #e36c09;
+}
 .overview a.sight:hover{
   color: #B33635;
 }
@@ -1732,7 +1734,7 @@ a.list-group-item{
   color: #333;
 }
 .subscribe-bar .form-control{
-  width: 200px;
+  width: 240px;
   display: inline;
   margin-right: 10px;
 }

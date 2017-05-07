@@ -84,3 +84,13 @@ use yii\helpers\Url;
         </div>
     </nav>
 </header>
+<?php
+$css = <<<CSS
+.dropdown.lang-menu span{
+    color: #dd4b39;
+    font-size: 18px;
+    font-weight: bold;
+}
+CSS;
+$this->registerCss($css);
+?>
