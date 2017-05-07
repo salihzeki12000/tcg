@@ -57,15 +57,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="tour-info-row row">
           <div class="item-s col-lg-4 col-md-3 col-xs-4">
               <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
-              Days
+              <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?>
           </div>
           <div class="item-s col-lg-4 col-md-4 col-xs-4">
                <span><?= $tour_info['cities_count'] ?></span>
-               Destinations
+               <?=($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')?>
           </div>
           <div class="col-lg-4 col-md-5 col-xs-4">
                <span><?= $tour_info['exp_num'] ?></span>
-               Activities
+               <?=($tour_info['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')?>
           </div>
         </div>
     </div>
