@@ -31,7 +31,7 @@ return [
         TOUR_THEMES_FAMILY       => Yii::t('app', 'Family Vacation'),
         TOUR_THEMES_CULTURE      => Yii::t('app', 'Chinese Culture'),
         TOUR_THEMES_ADVENTUROUS  => Yii::t('app', 'Adventurous'),
-        TOUR_THEMES_FOODIE       => Yii::t('app', 'Foodie'),
+        TOUR_THEMES_FOODIE       => Yii::t('app', 'Gourmet'),
         TOUR_THEMES_AT_A_GLANCE  => Yii::t('app', 'At a Glance'),
         TOUR_THEMES_ROMANTIC     => Yii::t('app', 'Romantic'),
         TOUR_THEMES_NATURE       => Yii::t('app', 'Nature'),

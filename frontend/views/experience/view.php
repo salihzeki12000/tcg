@@ -9,7 +9,8 @@ use yii\helpers\Url;
 /* @var $model common\models\Tour */
 
 $this->title = $tour_info['name'] . ' - ' . (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app', 'China Tour');
-$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($tour_info['overview']), 30)) . '...';
+$this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ',' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ',' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')) . '; '
+  . $tour_info['display_cities'] . ' tour with private guide & vehicle; ';
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $tour_info['name'];
@@ -84,15 +85,23 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
     </div>
 
     <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
+        <center><h2 id="nav-overview"><?=Yii::t('app','Themes')?></h2></center>
         <div class="list-group">
-            <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { 
+            <?php 
+            $i = 0;
+            foreach (explode(',', $tour_info['themes']) as $theme_id) { 
               if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
                 continue;
               }
+              if ($i !== 0) {
+                echo ", ";
+                $this->description .= ',';
+              }
+              $this->description .= Yii::$app->params['tour_themes'][$theme_id];
+              $i++;
               ?>
-            <div class="col-lg-6 col-md-6 col-xs-6 list-group-item">
-                <i class="icon-menu-ok glyphicon glyphicon-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
-            </div>
+            <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span>
+                
             <?php } ?>
         </div>
     </div>

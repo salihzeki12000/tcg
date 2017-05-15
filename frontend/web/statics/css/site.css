@@ -950,6 +950,12 @@ div#social-media-icons-container a {
     .navbar-inverse .navbar-nav{
       margin-right: 0px;
     }
+    .tour-view .tour-info .tour-info-row div{
+      font-size: 18px;
+    }
+    .tour-view .tour-info span {
+        font-size: 20px;
+    }
 }
 @media (min-width: 1200px) {
   .navbar-inverse .navbar-nav{
