@@ -10,7 +10,8 @@ use yii\helpers\Url;
 
 $this->title = $tour_info['name'] . ' - ' . (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app', 'China Tour');
 $this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')) . '; '
-  . $tour_info['display_cities'] . ' tour with private guide & vehicle; ';
+  . $tour_info['display_cities'] . ' tour with private guide & vehicle; '
+  . Yii::t('app','Tour Themes') . ': ';
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $tour_info['name'];
@@ -87,7 +88,6 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
     <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
         <center><h2 id="nav-overview"><?=Yii::t('app','Themes')?></h2></center>
         <div class="list-group">
-            <span><?=Yii::t('app','Tour Themes')?>: </span>
             <?php 
             $i = 0;
             foreach (explode(',', $tour_info['themes']) as $theme_id) { 
