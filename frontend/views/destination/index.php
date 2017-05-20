@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="cities-index container">
   <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','A lifetime would hardly be enough to explore everything that China has to offer, from historic architecture to captivating culture, from futuristic cityscapes to mist-shrouded karst landscapes, there is something to discover around every corner, no matter what kind of travel experience you are looking for.')?></p>
 
-  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','As a result, where you visit very much depends on what you are interested in and how long you can allow for your trip. The destinations below are just a taste of what we can offer. We can arrange tours in cities across the whole of China. If the city that you want to visit is missing from the list below, just let your travel agent know.')?></p>
+  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','As a result, where you visit very much depends on what you are interested in and how long you can allow for your China trip. The destinations below are just a taste of what we can offer. We can arrange tours in cities across the whole of China. If the city that you want to visit is missing from the list below, just let your travel agent know.')?></p>
 
   <div class="row">
       <div class="col-lg-12">
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Off the Beaten Path')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Off the Beaten Track')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {
