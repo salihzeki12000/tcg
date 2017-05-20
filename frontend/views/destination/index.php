@@ -13,7 +13,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'China Tourist Destinations');
 $this->description = 'China\'s popular & off-the-beaten-track tourist destinations, including Great Wall of China, Beijing, Xi\'an, Shanghai, Yangshuo, Zhangjiajie, Tibet and more.';
-$this->keywords = Yii::t('app','allow for your China trip');
+$this->keywords = Yii::t('app','China destinations, China\'s tourist destinations, China\'s top tourist cities, China\'s top tourist sights, cities in China, China city guide, China travel guide, China guide');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
