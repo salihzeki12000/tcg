@@ -50,13 +50,44 @@ AppAsset::register($this);
     $themes_menu = [];
     if( ($menu_themes = \common\models\Tools::getAllTheme() )!== null){
         foreach ($menu_themes as $theme) {
-            $themes_menu[] = ['label' => $theme['name'], 'url' => Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]), 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index' && Yii::$app->request->get('theme') == $theme['url_id'])];
+            $themes_menu[] = ['label' => $theme['name'], 'url' => Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]), 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index' && Yii::$app->request->get('theme') == $theme['url_id']),];
+        }
+    }
+    $cities_popular_menu = [];
+    if( ($menu_cities = \common\models\Tools::getCitiesByRecType(REC_TYPE_POPULAR) )!== null){
+        foreach ($menu_cities as $city_item) {
+            $cities_popular_menu[] = ['label' => $city_item['name'], 'url' => Url::toRoute(['destination/view', 'url_id'=>$city_item['url_id']]), 'active' => (\Yii::$app->controller->id == 'destination' && \Yii::$app->controller->action->id == 'view' && Yii::$app->request->get('url_id') == $city_item['url_id']),];
+        }
+    }
+    $cities_beaten_menu = [];
+    if( ($menu_cities = \common\models\Tools::getCitiesByRecType(REC_TYPE_OFF_THE_BEATEN_TRACK) )!== null){
+        foreach ($menu_cities as $city_item) {
+            $cities_beaten_menu[] = ['label' => $city_item['name'], 'url' => Url::toRoute(['destination/view', 'url_id'=>$city_item['url_id']]), 'active' => (\Yii::$app->controller->id == 'destination' && \Yii::$app->controller->action->id == 'view' && Yii::$app->request->get('url_id') == $city_item['url_id']),];
         }
     }
     $menuItems = [
         ['label' => Yii::t('app','Find an Experience'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','Experiences'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
-        ['label' => Yii::t('app','Destinations'), 'url' => ['/destinations'], 'active' => \Yii::$app->controller->id == 'destination'],
+        ['label' => Yii::t('app','Destinations'), 'active' => \Yii::$app->controller->id == 'destination',
+            'items' => [
+            [
+                'label' => Yii::t('app','Popularus'),
+                'active' => false, 
+                'items' => $cities_popular_menu,
+                'submenuOptions' => ['class' => 'dropdown-menu'],
+            ],
+            [
+                'label' => Yii::t('app','Off the beaten'),
+                'active' => false, 
+                'items' => $cities_beaten_menu,
+                'submenuOptions' => ['class' => 'dropdown-menu'],
+            ],
+            [
+                'label' => Yii::t('app','See All'),
+                'url' => ['destination/index'],
+                'active' => false,
+            ],
+        ]],
         ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
         ['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
         ['label' => Yii::t('app','About Us'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
@@ -342,9 +373,9 @@ $js = <<<JS
         });
 
         $('ul.nav li.dropdown').hover(function() {
-          $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
+          $(this).find('>.dropdown-menu').stop(true, true).delay(0).fadeIn(0);
         }, function() {
-          $(this).find('.dropdown-menu').stop(true, true).delay(0).fadeOut(0);
+          $(this).find('>.dropdown-menu').stop(true, true).delay(0).fadeOut(0);
         });
     });
 JS;

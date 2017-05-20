@@ -188,6 +188,24 @@ class Tools
         return $data;
     }
 
+    static public function getCitiesByRecType($rec_type = REC_TYPE_POPULAR)
+    {
+        $cache = Yii::$app->cache;
+        $cache_key = 'CITIES_INFO_REC_TYPE_'.$rec_type;
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            $cities_query = \common\models\Cities::find()->select(['id','name','pic_s','pic_l','rec_type','url_id'])->where(['status'=>DIS_STATUS_SHOW]);
+            $cities_query->andWhere("FIND_IN_SET('".$rec_type."', rec_type)");
+            $data = $cities_query
+                ->orderBy('priority DESC, id ASC')
+                ->all();
+            $cache->set($cache_key, $data, 60*10); 
+        }
+
+        return $data;
+    }
+
     static public function getFormPopularCities()
     {
 

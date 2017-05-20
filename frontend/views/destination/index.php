@@ -12,8 +12,8 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'China Tourist Destinations');
-$this->description = 'Explore everything that China has to offer, from historic architecture to captivating culture, from futuristic cityscapes to mist-shrouded karst landscapes.';
-$this->keywords = Yii::t('app','China destinations, China\'s tourist destinations, China\'s top tourist cities, China\'s top tourist sights, cities in China, China city guide, China travel guide, China guide');
+$this->description = 'China\'s popular & off-the-beaten-track tourist destinations, including Great Wall of China, Beijing, Xi\'an, Shanghai, Yangshuo, Zhangjiajie, Tibet and more.';
+$this->keywords = Yii::t('app','allow for your China trip');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Popular Destinations')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Popular Tourist Destinations')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false) {
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Other Destinations')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Off the Beaten Path')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {
@@ -68,6 +68,21 @@ $this->params['breadcrumbs'][] = $this->title;
           </a>
       </div>
       <?php } ?>
+  </div>
+
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header"><center><?=Yii::t('app','Other Tourist Cities')?></center></h1>
+      </div>
+      <?php foreach ($cities as $city) { 
+        if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false && strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {
+      ?>
+        <div class="col-lg-2 col-md-2 col-xs-6 dest-other">
+          <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>">
+            <h3><?= $city['name'] ?></h3>
+          </a>
+        </div>
+      <?php } }?>
   </div>
 
 </div>
