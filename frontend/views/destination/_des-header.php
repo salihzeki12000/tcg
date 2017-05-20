@@ -18,7 +18,7 @@ use yii\helpers\Url;
         <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type), ['alt'=>$slide['title'], 'width'=>"100%"]) ?>
       <?php break; } ?>
       
-      <h1 class="banner-text"><?= $city_info['name'] ?></h1>
+      <h1 class="banner-text"><?= $city_info['name'] ?> <?=Yii::t('app','Travel Guide')?></h1>
     </div>
   </div>
 </div>
