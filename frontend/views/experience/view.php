@@ -18,8 +18,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?>
-              <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Tour')?></small></h1>
+    <h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Tour')?></small></h1>
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->

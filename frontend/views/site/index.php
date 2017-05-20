@@ -252,7 +252,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
                 <div class="entry-content" itemprop="text">
                   <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" aria-hidden="true">
                     <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
-                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 240)) ?></p>
+                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 350)) ?></p>
                   </a>
                 </div>
                 <p class="entry-meta">
