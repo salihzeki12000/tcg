@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
-$this->title = Yii::t('app','Private China Tours | China Travel Agency | The China Guide');
+$this->title = Yii::t('app','Private China Tours | China Travel Agency');
 $this->description = Yii::t('app','The China Guide is a Beijing-based travel agency run by a multilingual team of native speakers, offering private tours & Western-style travel customization services across China');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 ?>
@@ -252,7 +252,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
                 <div class="entry-content" itemprop="text">
                   <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" aria-hidden="true">
                     <img style="float: right;" width="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image">
-                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 350)) ?></p>
+                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 330)) ?></p>
                   </a>
                 </div>
                 <p class="entry-meta">
