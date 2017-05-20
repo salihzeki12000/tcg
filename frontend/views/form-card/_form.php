@@ -54,18 +54,6 @@ use yii\helpers\Url;
         </tr>
     </table>
 
-    <div class="form-group field-formcard-donation">
-        <label class="control-label" style="font-weight: normal;"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to {0}Animals Asia{1}', ['<a href="/misc/animals-asia">', '</a>'])?></label>
-        <div id="formcard-donation" style="display: none;padding-left: 15px;">
-            <label><input type="radio" name="FormCard[donation]" value="50"> CN¥ 50 </label><br>
-            <label><input type="radio" name="FormCard[donation]" value="100"> CN¥ 100 </label><br>
-            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> CN¥ </label>
-            <label id="lab_other_donation"><input type="input" class="form-control" name="other_donation" value="" disabled="disabled" style="width:150px" placeholder="<?=Yii::t('app','in Chinese Yuan')?>"></label>
-        </div>
-
-        <div class="help-block"></div>
-    </div>
-
     <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
     <table width="100%">
         <tr>
@@ -88,7 +76,19 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'tour_date')->textInput(['maxlength' => true]) ?>
 
-    <div  class="form-group field-formcard-policies" style="text-align: center;margin-bottom: 20px;">
+    <div class="form-group field-formcard-donation">
+        <label class="control-label"><input type="checkbox" id='ck_donation' value="50"> <?=Yii::t('app','Donate to {0}Animals Asia{1}', ['', ''])?></label>
+        <div id="formcard-donation" style="display: none;padding-left: 15px;">
+            <label><input type="radio" name="FormCard[donation]" value="50"> CN¥ 50 </label><br>
+            <label><input type="radio" name="FormCard[donation]" value="100"> CN¥ 100 </label><br>
+            <label><input type="radio" name="FormCard[donation]" id="ck_other_donation" value="other_donation"> CN¥ </label>
+            <label id="lab_other_donation"><input type="input" class="form-control" name="other_donation" value="" disabled="disabled" style="width:150px" placeholder="<?=Yii::t('app','in Chinese Yuan')?>"></label>
+        </div>
+
+        <div><?=Yii::t('app', 'The China Guide has partnered with animal welfare organization {0}Animals Asia{1} to support their ongoing efforts to improve welfare for dogs, cats, moon bears, and animals in captivity in China and beyond.', ['<a href="/misc/animals-asia">', '</a>']) ?></div>
+    </div>
+
+    <div  class="form-group field-formcard-policies" style="text-align: center;margin-bottom: 0px;">
         <div style="display: inline-block;text-align: left;">
             <label class="control-label" style="font-weight: normal;"><input type="checkbox" id='ck_policies' value="1" name="ck_policies"> <?=Yii::t('app','I have read and agree to the {0}Terms of Service{1}', ['<a href="'.Url::toRoute(['about-us/company-policies']).'" target="_blank">', '</a>'])?></label>
             <div class="help-block"></div>

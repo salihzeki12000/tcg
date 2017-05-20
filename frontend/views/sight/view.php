@@ -30,7 +30,7 @@ if (Yii::$app->params['is_mobile']) {
         <?= Html::img(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type), ['alt'=>$slide['title'], 'width'=>"100%"]) ?>
       <?php break; } ?>
       
-      <div class="banner-text"><?= $city_info['name'] ?></div>
+      <div class="banner-text"><?= $city_info['name'] ?> <?=Yii::t('app','Travel Guide')?></div>
     </div>
   </div>
 </div>

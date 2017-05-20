@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Sights');
                 <a class="thumbnail" href="<?= Url::toRoute(['sight/view', 'url_id'=>$sight['url_id']]) ?>">
                     <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($sight['pic_s'], 's')?>" alt="<?=  $sight['name'] ?>">
                     <div class="carousel-caption s-text">
-                        <h3><?= $sight['name'] ?></h3>
+                        <h3><?= $sight['name'] ?> <?= Yii::t('app', 'Travel Guide') ?></h3>
                     </div>
                 </a>
             </div>
