@@ -71,19 +71,19 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Destinations'), 'active' => \Yii::$app->controller->id == 'destination',
             'items' => [
             [
-                'label' => Yii::t('app','Popularus'),
+                'label' => Yii::t('app','Popular Tourist Destinations'),
                 'active' => false, 
                 'items' => $cities_popular_menu,
                 'submenuOptions' => ['class' => 'dropdown-menu'],
             ],
             [
-                'label' => Yii::t('app','Off the beaten'),
+                'label' => Yii::t('app','Off the Beaten Track'),
                 'active' => false, 
                 'items' => $cities_beaten_menu,
                 'submenuOptions' => ['class' => 'dropdown-menu'],
             ],
             [
-                'label' => Yii::t('app','See All'),
+                'label' => Yii::t('app','All Destinations'),
                 'url' => ['destination/index'],
                 'active' => false,
             ],
