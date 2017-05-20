@@ -1436,6 +1436,9 @@ a.desc:after {
 .overview a.sight:hover{
   color: #B33635;
 }
+.overview .content-title{
+  color: #aaa96f;
+}
 
 .nomadicmatt-page .teaser {
     margin-top: 10px;
