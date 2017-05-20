@@ -4,8 +4,8 @@ use yii\helpers\Url;
 use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
-$this->title = Yii::t('app','China Tours | Private Tours | China Travel Agency');
-$this->description = Yii::t('app','Our multilingual team of native speakers provides Western-style travel customization services to China\'s top destinations, including Beijing, the Great Wall, Xi\'an, Shanghai, Tibet, and more.');
+$this->title = Yii::t('app','Private China Tours | China Travel Agency | The China Guide');
+$this->description = Yii::t('app','The China Guide is a Beijing-based travel agency run by a multilingual team of native speakers, offering private tours & Western-style travel customization services across China');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 ?>
 <div class="site-index">
@@ -192,7 +192,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="margin: 38px 0 20px 0;"><?=Yii::t('app','POPULAR DESTINATIONS')?></h1>
+                <h1 class="page-header" style="margin: 38px 0 20px 0;"><?=Yii::t('app','POPULAR TOURIST DESTINATIONS')?></h1>
             </div>
         </div>
     </div>

@@ -910,8 +910,11 @@ div#social-media-icons-container a {
 .tour-index h3,.tour-index h3>a{
   color: #17BEBB;
   overflow: hidden;
-  height: 26px;
+  height: 36px;
   text-overflow: ellipsis;
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 18px;
 }
 .tour-index .tourlist-desc>a{
   color: #E0E3D6;
@@ -1713,9 +1716,7 @@ a.list-group-item{
 .index-map.map-detail .entry-image-link {
     color: #E0E3D6;
     font-weight: normal;
-    text-decoration: none;
 }
-
 .addthis_inline_share_toolbox{
     padding: 20px 0;
 }
