@@ -118,3 +118,9 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.language-hint{
+    color: #ff0000;
+    margin-left: 10px;
+    font-size: 16px;
+}

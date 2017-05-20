@@ -92,6 +92,7 @@ use yii\helpers\Url;
         ?>
         <a href="<?= Url::toRoute([$to_route, 'id'=>$model->tour_id]) ?>"><?= Yii::t('app', 'Back to Tour') ?></a>
         <?php } ?>
+        <?= (Yii::$app->language==Yii::$app->sourceLanguage) ?'': Html::Label(Yii::$app->params['language_name'][Yii::$app->language], '', ['class'=>'text text-danger language-hint']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
