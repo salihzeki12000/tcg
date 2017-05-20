@@ -32,11 +32,13 @@ body {
 .carousel-caption h3{
   font-size: 18px;
   margin-bottom: 8px;
+  margin-top: 8px;
 }
 .carousel-caption.s-text h3{
-    font-size: 14px;
-    margin-bottom: 8px;
-    line-height: 1.0;
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  line-height: 1.0;
 }
 .carousel-indicators li{
   width: 6px;
@@ -365,7 +367,8 @@ ul.navbar-nav li:not(:last-child) b.caret{
 
 .thumbnail {
    padding: 0px; 
-   border-radius: 0px; 
+   border-radius: 0px;
+   position: relative;
 }
 
 .clients-saying{
@@ -639,6 +642,11 @@ div#social-media-icons-container a {
 
 .thumbnail .carousel-caption {
     bottom: 0px;
+    padding: 0px;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.43);
+    position: absolute;
+    left: 0;
 }
 
 .tour-view h2{
@@ -967,7 +975,7 @@ div#social-media-icons-container a {
   }
   .tour-view > .col-lg-8 {
       padding-left:75px;
-      margin-top: 20px;
+      margin-top: 0px;
       min-height: 650px;
   }
   .tour-view > .col-lg-4 {

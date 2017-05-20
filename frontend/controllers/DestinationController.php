@@ -108,7 +108,7 @@ class DestinationController extends Controller
         $pages = new Pagination(
             [
                 'totalCount' => $count_query->count(),
-                'pageSize' => 24,
+                'pageSize' => 36,
                 'pageSizeParam' => false,
             ]);
         $sights = $query
@@ -141,7 +141,7 @@ class DestinationController extends Controller
         $pages = new Pagination(
             [
                 'totalCount' => $count_query->count(),
-                'pageSize' => 24,
+                'pageSize' => 36,
                 'pageSizeParam' => false,
             ]);
         $activities = $query
