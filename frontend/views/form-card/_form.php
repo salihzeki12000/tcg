@@ -85,7 +85,7 @@ use yii\helpers\Url;
             <label id="lab_other_donation"><input type="input" class="form-control" name="other_donation" value="" disabled="disabled" style="width:150px" placeholder="<?=Yii::t('app','in Chinese Yuan')?>"></label>
         </div>
 
-        <div><?=Yii::t('app', 'The China Guide has partnered with animal welfare organization {0}Animals Asia{1} to support their ongoing efforts to improve welfare for dogs, cats, moon bears, and animals in captivity in China and beyond.', ['<a href="/misc/animals-asia">', '</a>']) ?></div>
+        <div><?=Yii::t('app', 'The China Guide has partnered with animal welfare organization {0}Animals Asia{1} to support their ongoing efforts to improve welfare for dogs, cats, moon bears, and animals in captivity in China and beyond.', ['<a href="/misc/animals-asia" target="_blank">', '</a>']) ?></div>
     </div>
 
     <div  class="form-group field-formcard-policies" style="text-align: center;margin-bottom: 0px;">
