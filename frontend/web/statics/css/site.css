@@ -1821,3 +1821,8 @@ a.list-group-item{
   font-size: 18px;
   margin: 0 0 20px 0;
 }
+
+div.required label.control-label:after {
+    content: " *";
+    color: red;
+}

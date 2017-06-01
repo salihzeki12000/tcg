@@ -13,58 +13,66 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(['id'=>'form-card-form']) ?>
 
-    <label class="control-label" for="formcard-card_type"><?=Yii::t('app','Card type')?></label>
-    <table width="100%">
-        <tr>
-            <td valign="top">
-                <?= $form->field($model, 'card_type')->dropDownList([ 'Visa'=>Yii::t('app','Visa'),'Mastercard'=>Yii::t('app','Mastercard'),'American Express'=>Yii::t('app','American Express'),'JCB'=>Yii::t('app','JCB') ], ['prompt' => Yii::t('app','Select')])->label(false) ?>
-            </td>
-            <td width="150px" valign="top" align="center">
-                <?= Html::img('@web/statics/images/creditcards.jpg', ['alt'=>'creditcards', 'width'=>"100px"]) ?>
-            </td>
-        </tr>
-    </table>
+    <div class="required">
+        <label class="control-label" for="formcard-card_type"><?=Yii::t('app','Card type')?></label>
+        <table width="100%">
+            <tr>
+                <td valign="top">
+                    <?= $form->field($model, 'card_type')->dropDownList([ 'Visa'=>Yii::t('app','Visa'),'Mastercard'=>Yii::t('app','Mastercard'),'American Express'=>Yii::t('app','American Express'),'JCB'=>Yii::t('app','JCB') ], ['prompt' => Yii::t('app','Select')])->label(false) ?>
+                </td>
+                <td width="150px" valign="top" align="center">
+                    <?= Html::img('@web/statics/images/creditcards.jpg', ['alt'=>'creditcards', 'width'=>"100px"]) ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     
     <?= $form->field($model, 'name_on_card')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'card_number')->textInput(['maxlength' => true]) ?>
 
-    <label class="control-label" for="formcard-expiry_month"><?=Yii::t('app','Expiry Date')?></label>
-    <table width="100%">
-        <tr>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'expiry_month')->dropDownList([ '01 Jan'=>'01 Jan','02 Feb'=>'02 Feb','03 Mar'=>'03 Mar','04 Apr'=>'04 Apr','05 May'=>'05 May','06 Jun'=>'06 Jun','07 Jul'=>'07 Jul','08 Aug'=>'08 Aug','09 Sep'=>'09 Sep','10 Oct'=>'10 Oct','11 Nov'=>'11 Nov','12 Dec'=>'12 Dec', ], ['prompt' => Yii::t('app','Month')])->label(false) ?>
-            </td>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'expiry_year')->dropDownList([ '2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025','2026'=>'2026','2027'=>'2027','2028'=>'2028','2029'=>'2029', ], ['prompt' => Yii::t('app','Year')])->label(false) ?>
-            </td>
-        </tr>
-    </table>    
+    <div class="required">
+        <label class="control-label" for="formcard-expiry_month"><?=Yii::t('app','Expiry Date')?></label>
+        <table width="100%">
+            <tr>
+                <td width="50%" valign="top">
+                    <?= $form->field($model, 'expiry_month')->dropDownList([ '01 Jan'=>'01 Jan','02 Feb'=>'02 Feb','03 Mar'=>'03 Mar','04 Apr'=>'04 Apr','05 May'=>'05 May','06 Jun'=>'06 Jun','07 Jul'=>'07 Jul','08 Aug'=>'08 Aug','09 Sep'=>'09 Sep','10 Oct'=>'10 Oct','11 Nov'=>'11 Nov','12 Dec'=>'12 Dec', ], ['prompt' => Yii::t('app','Month')])->label(false) ?>
+                </td>
+                <td width="50%" valign="top">
+                    <?= $form->field($model, 'expiry_year')->dropDownList([ '2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025','2026'=>'2026','2027'=>'2027','2028'=>'2028','2029'=>'2029', ], ['prompt' => Yii::t('app','Year')])->label(false) ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-    <label class="control-label" for="formcard-amount_to_bill"><?=Yii::t('app','Amount to bill')?></label>
-    <table width="100%">
-        <tr>
-            <td width="70px" valign="middle" align="right">
-                <strong>CN¥</strong>
-            </td>
-            <td valign="middle">
-                <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','in Chinese Yuan')])->label(false) ?>
-            </td>
-        </tr>
-    </table>
+    <div class="required">
+        <label class="control-label" for="formcard-amount_to_bill"><?=Yii::t('app','Amount to bill')?></label>
+        <table width="100%">
+            <tr>
+                <td width="70px" valign="middle" align="right">
+                    <strong>CN¥</strong>
+                </td>
+                <td valign="middle">
+                    <?= $form->field($model, 'amount_to_bill')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','in Chinese Yuan')])->label(false) ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-    <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
-    <table width="100%">
-        <tr>
-            <td valign="middle" width="50%">
-                <?= $form->field($model, 'client_name')->textInput(['maxlength' => true])->label(false) ?>
-            </td>
-            <td width="50%" valign="middle" align="left">
-                <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> <?=Yii::t('app','Name on card') ?></label>
-            </td>
-        </tr>
-    </table>
+    <div class="required">
+        <label class="control-label" for="formcard-name_on_card"><?=Yii::t('app','Your full name')?></label>
+        <table width="100%">
+            <tr>
+                <td valign="middle" width="50%">
+                    <?= $form->field($model, 'client_name')->textInput(['maxlength' => true])->label(false) ?>
+                </td>
+                <td width="50%" valign="middle" align="left">
+                    <label class="desc-label"><input type="checkbox" name="same_as_client" id="same_as_client" value="0"> <?=Yii::t('app','Name on card') ?></label>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <?= $form->field($model, 'billing_address')->textInput(['maxlength' => true]) ?>
 

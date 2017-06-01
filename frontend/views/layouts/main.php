@@ -66,8 +66,8 @@ AppAsset::register($this);
         }
     }
     $menuItems = [
-        ['label' => Yii::t('app','Find an Experience'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
-        ['label' => Yii::t('app','Experiences'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
+        ['label' => Yii::t('app','Find a Tour'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
+        ['label' => Yii::t('app','Tours'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Destinations'), 'active' => \Yii::$app->controller->id == 'destination',
             'items' => [
             [
@@ -161,8 +161,8 @@ AppAsset::register($this);
         <div class="modal-content m-menu">
 
         <ul class="">
-            <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find an Experience') ?></a></li>
-            <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Experiences') ?></a></li>
+            <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find a Tour') ?></a></li>
+            <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Tours') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Education') ?></a></li>
             <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Themed Tours') ?></a></li>

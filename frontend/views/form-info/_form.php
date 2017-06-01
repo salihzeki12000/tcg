@@ -29,17 +29,19 @@ use yii\helpers\Url;
     <?= !in_array('number_participants', $form_fields) ? '' : $form->field($model, 'number_participants')->textInput(['maxlength' => true]) ?>
 
     <?php if(in_array('arrival_date', $form_fields)) { ?>
-        <label class="control-label" for=""><?=Yii::t('app','Arrival (In China)')?> </label>
-        <table width="100%">
-            <tr>
-                <td width="50%" valign="top">
-                    <?= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('app','Select Date') ])->label(false) ?>
-                </td>
-                <td width="50%" valign="top">
-                    <?= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => Yii::t('app','Select City')])->label(false) ?>
-                </td>
-            </tr>
-        </table>
+        <div class="required">
+            <label class="control-label" for=""><?=Yii::t('app','Arrival (In China)')?> </label>
+            <table width="100%">
+                <tr>
+                    <td width="50%" valign="top">
+                        <?= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('app','Select Date') ])->label(false) ?>
+                    </td>
+                    <td width="50%" valign="top">
+                        <?= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => Yii::t('app','Select City')])->label(false) ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <?php if(in_array('departure_date', $form_fields)) { ?>
             <label class="control-label" for=""><?=Yii::t('app','Departure (In China)')?> </label>
             <table width="100%">
@@ -56,17 +58,19 @@ use yii\helpers\Url;
     <?php } ?>
 
     <?php if(in_array('tour_length', $form_fields)) { ?>
-    <label class="control-label" for=""><?= $form_type==FORM_TYPE_EDU? Yii::t('app','Program length') : Yii::t('app','Tour length')?></label>
-    <table width="100%">
-        <tr>
-            <td width="50%" valign="middle">
-                <?= $form->field($model, 'tour_length')->dropDownList([ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15', '16' => '16', '17' => '17', '18' => '18', '19' => '19', '20' => '20', '>20' => '>20', ], ['prompt' => ''])->label(false) ?>
-            </td>
-            <td width="50%" valign="middle">
-                <label class="desc-label"><?=Yii::t('app','Day(s)')?></label>
-            </td>
-        </tr>
-    </table>
+    <div class="required">
+        <label class="control-label" for=""><?= $form_type==FORM_TYPE_EDU? Yii::t('app','Program length') : Yii::t('app','Tour length')?></label>
+        <table width="100%">
+            <tr>
+                <td width="50%" valign="middle">
+                    <?= $form->field($model, 'tour_length')->dropDownList([ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15', '16' => '16', '17' => '17', '18' => '18', '19' => '19', '20' => '20', '>20' => '>20', ], ['prompt' => ''])->label(false) ?>
+                </td>
+                <td width="50%" valign="middle">
+                    <label class="desc-label"><?=Yii::t('app','Day(s)')?></label>
+                </td>
+            </tr>
+        </table>
+    </div>
     <?php } ?>
 
     <?= !in_array('ideas', $form_fields) ? '' : $form->field($model, 'ideas')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please provide us with as much detail as possible, for example, the cities you want to visit and any classes or activities you want to participate in.')]) ?>
@@ -74,40 +78,42 @@ use yii\helpers\Url;
     <?= !in_array('ideas_trip', $form_fields) ? '' : $form->field($model, 'ideas_trip')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => '']) ?>
 
     <?php if(in_array('adults', $form_fields)) { ?>
-    <label class="control-label" for=""><?=Yii::t('app','Guest Information')?></label>
-    <table width="100%">
-        <tr>
-            <td width="50%" valign="middle">
-                <?= $form->field($model, 'adults')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
-            </td>
-            <td width="50%" valign="middle">
-                <label class="desc-label"><?=Yii::t('app','Adults (> 12 yrs)')?></label>
-            </td>
-        </tr>
-        <tr>
-            <td width="50%" valign="middle">
-                <?= $form->field($model, 'children')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
-            </td>
-            <td width="50%" valign="middle" class="control-label">
-                <label class="desc-label"><?=Yii::t('app','Children (2 - 12 yrs)')?></label>
-            </td>
-        </tr>
-        <tr>
-            <td width="50%" valign="middle">
-                <?= $form->field($model, 'infants')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
-            </td>
-            <td width="50%" valign="middle" class="control-label">
-                <label class="desc-label"><?=Yii::t('app','Infants (< 2 yrs)')?></label>
-            </td>
-        </tr>
-        <?php if (in_array('guest_information', $form_fields)) { ?>
+    <div class="required">
+        <label class="control-label" for=""><?=Yii::t('app','Guest Information')?></label>
+        <table width="100%">
             <tr>
-                <td colspan="2">
-                    <?= $form->field($model, 'guest_information')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please let us know if someone needs particular assistance in your group. Please tell us children\'s height for a possible discount.')])->label(false) ?>
+                <td width="50%" valign="middle">
+                    <?= $form->field($model, 'adults')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
+                </td>
+                <td width="50%" valign="middle">
+                    <label class="desc-label"><?=Yii::t('app','Adults (> 12 yrs)')?></label>
                 </td>
             </tr>
-        <?php } ?>
-    </table>
+            <tr>
+                <td width="50%" valign="middle">
+                    <?= $form->field($model, 'children')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
+                </td>
+                <td width="50%" valign="middle" class="control-label">
+                    <label class="desc-label"><?=Yii::t('app','Children (2 - 12 yrs)')?></label>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" valign="middle">
+                    <?= $form->field($model, 'infants')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
+                </td>
+                <td width="50%" valign="middle" class="control-label">
+                    <label class="desc-label"><?=Yii::t('app','Infants (< 2 yrs)')?></label>
+                </td>
+            </tr>
+            <?php if (in_array('guest_information', $form_fields)) { ?>
+                <tr>
+                    <td colspan="2">
+                        <?= $form->field($model, 'guest_information')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please let us know if someone needs particular assistance in your group. Please tell us children\'s height for a possible discount.')])->label(false) ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
     <?php } ?>
 
     <?= !in_array('transport_info', $form_fields) ? '' : $form->field($model, 'transport_info')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => '']) ?>
@@ -145,17 +151,19 @@ use yii\helpers\Url;
     <?= !in_array('additional_information', $form_fields) ? '' : $form->field($model, 'additional_information')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => '']) ?>
 
     <?php if(in_array('name', $form_fields)) { ?>
-    <label class="control-label" for=""><?=Yii::t('app','Your full name')?></label>
-    <table width="100%">
-        <tr>
-            <td width="30%" valign="top">
-                <?= $form->field($model, 'name_prefix')->dropDownList([ 'Mr.' => Yii::t('app','Mr.'), 'Mrs.' => Yii::t('app','Mrs.'), 'Miss' => Yii::t('app','Miss'), 'Other'=>Yii::t('app','Other')], ['prompt' => ''])->label(false) ?>
-            </td>
-            <td width="70%" valign="top">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label(false) ?>
-            </td>
-        </tr>
-    </table>
+    <div class="required">
+        <label class="control-label" for=""><?=Yii::t('app','Your full name')?></label>
+        <table width="100%">
+            <tr>
+                <td width="30%" valign="top">
+                    <?= $form->field($model, 'name_prefix')->dropDownList([ 'Mr.' => Yii::t('app','Mr.'), 'Mrs.' => Yii::t('app','Mrs.'), 'Miss' => Yii::t('app','Miss'), 'Other'=>Yii::t('app','Other')], ['prompt' => ''])->label(false) ?>
+                </td>
+                <td width="70%" valign="top">
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label(false) ?>
+                </td>
+            </tr>
+        </table>
+    </div>
     <?php } ?>
 
     <?= !in_array('email', $form_fields) ? '' : $form->field($model, 'email')->textInput(['maxlength' => true]) ?>

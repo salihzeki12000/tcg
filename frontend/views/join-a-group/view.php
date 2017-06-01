@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
           </div>
           <div class="col-lg-4 col-md-5 col-xs-4">
                <span><?= $tour_info['exp_num'] ?></span>
-               <?=($tour_info['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')?>
+               <?=($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')?>
           </div>
         </div>
     </div>

@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $model common\models\Tour */
 
 $this->title = $tour_info['name'] . ' - ' . (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app', 'China Tour');
-$this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')) . '; '
+$this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
   . $tour_info['display_cities'] . ' tour with private guide & vehicle; '
   . Yii::t('app','Tour Themes') . ': ';
 $this->keywords = Html::encode($tour_info['keywords']);
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
           </div>
           <div class="col-lg-4 col-md-5 col-xs-4">
                <span><?= $tour_info['exp_num'] ?></span>
-               <?=($tour_info['exp_num']>1)?Yii::t('app','Activities'):Yii::t('app','Activity')?>
+               <?=($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')?>
           </div>
         </div>
     </div>
