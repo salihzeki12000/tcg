@@ -91,7 +91,7 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
         ['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
         ['label' => Yii::t('app','About Us'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
-            ['label' => Yii::t('app','Why choose us'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
+            ['label' => Yii::t('app','Who We Are'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
             ['label' => Yii::t('app','Meet our team'), 'url' => ['about-us/meet-our-team'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'about-us/meet-our-team')],
             ['label' => Yii::t('app','Our guides'), 'url' => ['about-us/our-guides'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'our-guides')],
             ['label' => Yii::t('app','Drivers & Vehicles'), 'url' => ['about-us/drivers-and-vehicles'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'drivers-and-vehicles')],
@@ -283,7 +283,7 @@ AppAsset::register($this);
         <div class="fitem col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <h3><?=Yii::t('app','The Company')?></h3>
             <div class="flink">
-                <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Why choose us')?></a>
+                <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Who We Are')?></a>
                 <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a>
                 <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a>
                 <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>

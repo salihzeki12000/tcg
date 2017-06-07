@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $theme_name . ' ' . Yii::t('app', 'Tours') . ' - ' . Yii::t('app', 'China Tours');
+$this->title = $theme_name . ' - ' . Yii::t('app', 'Private China Tours');
 $this->description = Yii::t('app', 'Travel to China on a private, customized tour.');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, China package tours, customize China tours, China travel packages, China vacations, China travel');
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner" style="margin-bottom: 0;">
-      <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','EXPERIENCES'), 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','EXPERIENCES')?></div>
+      <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','Private China Tours'), 'width'=>"100%"]) ?>
+      <hi class="banner-text"><?=Yii::t('app','Private China Tours')?></h1>
     </div>
   </div>
 </div>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Single button -->
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <?= \common\models\Tools::wordcut($theme_name, 20) ?>
+        <h2 class="in-input-group"><?= \common\models\Tools::wordcut($theme_name, 20) ?></h2>
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu" role="menu">

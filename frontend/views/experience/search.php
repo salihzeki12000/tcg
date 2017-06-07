@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Tours - Search');
+$this->title = Yii::t('app', 'Search') . ' - ' . Yii::t('app', 'Private China Tours');
 $this->description = Yii::t('app', 'Search for a private, customized tour to China.');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, China package tours, customize China tours, China travel packages, China vacations, China travel');
 $this->params['breadcrumbs'][] = $this->title;

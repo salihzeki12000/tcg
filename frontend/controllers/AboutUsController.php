@@ -21,7 +21,7 @@ class AboutUsController extends Controller
      */
     public function actionIndex()
     {
-        $article_name = Yii::t('app','Our Mission');
+        $article_name = Yii::t('app','Who We Are');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'our-mission';

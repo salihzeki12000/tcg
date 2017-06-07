@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 <?php if (\Yii::$app->controller->id == 'article') { ?>
   <div class="home-whyus col-lg-4">
-        <center class="tour-index"><h3><?=Yii::t('app','Subscribe to our mailing list')?></h3></center>
+        <center class="tour-index"><h3 class="tour-right-title"><?=Yii::t('app','Subscribe to our mailing list')?></h3></center>
         <div class="row tour-right subscribe-mail-form">
           <?php $form = ActiveForm::begin(['action' => '//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf', 'id'=>"mc-embedded-subscribe-form"]);
           ?>
@@ -65,7 +65,7 @@ $this->registerJs($js);
 <?php }else{ ?>
 
   <div class="home-whyus col-lg-4">
-        <center class="tour-index"><h3><?=Yii::t('app','Why book with us?')?></h3></center>
+        <center class="tour-index"><h3 class="tour-right-title"><?=Yii::t('app','Why book with us?')?></h3></center>
         <div class="row tour-right">
           <div class="col-lg-12 col-xs-12">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -101,7 +101,7 @@ $this->registerJs($js);
     if (!empty($tours)) {  ?>
 
   <div class="tour-index col-lg-4">
-      <center class="tour-index"><h3 class="tour-right" style="margin-top: 40px;"><?= isset($exp_title)? $exp_title:Yii::t('app','Our Popular Tours')?></h3></center>
+      <center class="tour-index"><h3 class="tour-right-title" style="margin-top: 40px;"><?= isset($exp_title)? $exp_title:Yii::t('app','Our Popular Tours')?></h3></center>
       <div class=" file-drop-zone tour-right"> 
        <div class="file-preview-thumbnails">
         <div class="file-initial-thumbs">

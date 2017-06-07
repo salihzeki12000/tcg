@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu sub-menu" role="menu">
-        <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/index']) ?>"><?=Yii::t('app','Our Mission')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/index']) ?>"><?=Yii::t('app','Who We Are')?></a></li>
         <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet Our Team')?></a></li>
         <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our Guides')?></a></li>
         <li <?= (Yii::$app->controller->action->id=='drivers-and-vehicles')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers &amp; Vehicles')?></a></li>

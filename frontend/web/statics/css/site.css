@@ -1126,6 +1126,10 @@ div#social-media-icons-container a {
 h3.tour-right {
   margin-bottom: 0;
 }
+h3.tour-right-title{
+  color: #17BEBB !important;
+  font-size: 20px;
+}
 
 .cities-banner{
   text-align:center;
@@ -1438,6 +1442,7 @@ a.desc:after {
 }
 .overview .content-title{
   color: #aaa96f;
+  font-family: 'Times New Roman';
 }
 
 .nomadicmatt-page .teaser {
@@ -1825,4 +1830,10 @@ a.list-group-item{
 div.required label.control-label:after {
     content: " *";
     color: red;
+}
+
+h2.in-input-group{
+  font-size: 16px;
+  margin: 0 0 0 0;
+  display: inline;
 }

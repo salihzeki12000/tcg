@@ -5,7 +5,7 @@ use yii\helpers\Html
 ;/* @var $this yii\web\View */
 
 $this->title = Yii::t('app','Private China Tours | China Travel Agency');
-$this->description = Yii::t('app','The China Guide is a Beijing-based travel agency run by a multilingual team of native speakers, offering private tours & Western-style travel customization services across China');
+$this->description = Yii::t('app','The China Guide, a Beijing-based travel agency run by a multilingual team of native speakers, creates private China tours & travel customization services');
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 ?>
 <div class="site-index">
@@ -59,9 +59,9 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
     </div> <!-- Carousel -->
     <?php } ?>
 
-    <div class="container home-desc col-lg-9 col-md-10 col-sm-6 col-xs-12">
-        <?=Yii::t('app','We create private, customized China tours. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
-    </div>
+    <h1 class="container home-desc col-lg-9 col-md-10 col-sm-6 col-xs-12">
+        <?=Yii::t('app','We are a Beijing-based travel agency that creates private, guided tours and travel customization services all over China. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
+    </h1>
 
     <div class="container home-whyus">
         <div class="row">

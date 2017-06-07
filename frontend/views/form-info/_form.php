@@ -122,7 +122,12 @@ use yii\helpers\Url;
 
     <?= !in_array('book_hotels', $form_fields) ? '' : $form->field($model, 'book_hotels')->dropDownList([ 'Yes' => Yii::t('app','Yes'), 'No' => Yii::t('app','No'), ], ['prompt' => Yii::t('app','Please select')]) ?>
 
-    <?= !in_array('hotel_preferences', $form_fields) ? '' : $form->field($model, 'hotel_preferences')->dropDownList([ '3 star or equal' => Yii::t('app','3 star or equal'), '4 star or equal' => Yii::t('app','4 star or equal'), '5 star or equal' => Yii::t('app','5 star or equal'), ], ['prompt' => '']) ?>
+    <?php if(in_array('hotel_preferences', $form_fields)) {?>
+    <div class="form-group field-forminfo-hotel_preferences required">
+    <label class="control-label" for="forminfo-hotel_preferences">Hotel preferences</label>
+    <?= $form->field($model, 'hotel_preferences')->dropDownList([ '3 star or equal' => Yii::t('app','3 star or equal'), '4 star or equal' => Yii::t('app','4 star or equal'), '5 star or equal' => Yii::t('app','5 star or equal'), ], ['prompt' => ''])->label(false) ?>
+    </div>
+    <?php } ?>
 
     <?= !in_array('room_requirements', $form_fields) ? '' : $form->field($model, 'room_requirements')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => Yii::t('app','Please let us know how many and what types of rooms you want, as well as other requirements.')]) ?>
 

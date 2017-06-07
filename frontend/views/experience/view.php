@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
 
-$this->title = $tour_info['name'] . ' - ' . (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app', 'China Tour');
+$this->title = $tour_info['name'] . ' - ' . (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['display_cities']. ' ' . Yii::t('app', 'Private Tour');
 $this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
   . $tour_info['display_cities'] . ' tour with private guide & vehicle; '
   . Yii::t('app','Tour Themes') . ': ';
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Tour')?></small></h1>
+    <h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -218,7 +218,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
         <div class="form-title"><?=Yii::t('app','Quotation Form')?></div>
         <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
         <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?>
-              <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Tour')?></div>
+              <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></div>
         <div class="tips"><?=Yii::t('app','Tour Code:')?> <?= $tour_info['code'] ?></div>
         <hr />
         <?= $this->render('/form-info/_form', [
