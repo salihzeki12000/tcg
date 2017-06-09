@@ -1451,6 +1451,13 @@ a.desc:after {
 .city-view .overview a:hover{
   color: #B33635;
 }
+.article-view .overview a{
+  color: #333;
+  text-decoration: underline;
+}
+.article-view .overview a:hover{
+  color: #B33635;
+}
 .nomadicmatt-page .teaser {
     margin-top: 10px;
 }
