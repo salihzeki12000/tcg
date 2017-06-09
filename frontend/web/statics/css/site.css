@@ -1444,7 +1444,13 @@ a.desc:after {
   color: #aaa96f;
   font-family: 'Times New Roman';
 }
-
+.city-view .overview a{
+  color: #E0E3D6;
+  text-decoration: underline;
+}
+.city-view .overview a:hover{
+  color: #B33635;
+}
 .nomadicmatt-page .teaser {
     margin-top: 10px;
 }
