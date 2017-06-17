@@ -31,7 +31,7 @@ class ArticleController extends Controller
         $pages = new Pagination(
             [
                 'totalCount' => $count_query->count(),
-                'pageSize' => 20,
+                'pageSize' => 10,
                 'pageSizeParam' => false,
             ]);
         $articles = $query

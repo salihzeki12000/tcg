@@ -19,16 +19,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <h2 class="banner-text"><?= mb_strtoupper($sub_title, 'UTF-8') ?></h2>
+      <h1 class="banner-text"><?= $sub_title ?></h1>
       <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
     </div>
   </div>
 </div>
 
-<div class="article-view">
+<div class="activity-view">
 
-    <div class="container">
-        <div class="overview">
+    <div class="container back-container">
+        <div class="overview full-text col-lg-9 col-md-10">
           <?= $article['content'] ?>
         </div>
     </div>

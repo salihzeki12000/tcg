@@ -19,6 +19,7 @@ body {
   color: #E9C46C;
   text-align: center;
   margin-top: 25px;
+  font-family: "Times New Roman";
 }
 .carousel-caption{
   bottom: 5px;
@@ -311,6 +312,12 @@ ul.navbar-nav li:not(:last-child) b.caret{
   float: none;
   margin: 0 auto 20px auto;
   padding: 0;
+  font-size: 16px;
+
+}
+.page-top-desc {
+  font-family: "Times New Roman";
+  color: #E9C46C;  
 }
 
 .home-whyus{
@@ -647,6 +654,7 @@ div#social-media-icons-container a {
 .tour-view h2{
   color: #17BEBB;
   font-size: 25px;
+  font-family: "Times New Roman";
 }
 .container .map .list-group-item{
   padding: 0;
@@ -701,10 +709,6 @@ div#social-media-icons-container a {
     left: 0;
 }
 
-.tour-view h2{
-    color: #17BEBB;
-    font-size: 25px;
-}
 .form-info h2{
     color: #17BEBB;
     font-size: 20px;
@@ -898,9 +902,10 @@ div#social-media-icons-container a {
   text-align: center;
   font-size: 24px;
   color: #17BEBB;
+  font-family: "Times New Roman";
 }
 .tour-view h1.title small{
-  color: #eee;
+  color: #E0E3D6;
 }
 .tour-view .tour-info{
   margin: 10px;
@@ -939,6 +944,9 @@ div#social-media-icons-container a {
 .tour-view .container-overview .overview > p{
     /*z-index: -1;*/
     position: relative;
+}
+.overview {
+  font-size: 16px;
 }
 .tour-view .itineraries{
     padding-bottom: 15px;
@@ -1127,8 +1135,9 @@ h3.tour-right {
   margin-bottom: 0;
 }
 h3.tour-right-title{
-  color: #17BEBB !important;
+  color: #E0E3D6 !important;
   font-size: 20px;
+  font-family: "Times New Roman";
 }
 
 .cities-banner{
@@ -1421,7 +1430,8 @@ a.desc:after {
   padding-left: 20px;
 }
 .overview a{
-  color: #47AAED;
+    color: #E0E3D6;
+    text-decoration: underline;;
 }
 .overview a:hover{
   color: #B33635;
@@ -1443,6 +1453,12 @@ a.desc:after {
 .overview .content-title{
   color: #aaa96f;
   font-family: 'Times New Roman';
+}
+.overview img.overview-img-fullwidth{
+  width: 100%;
+}
+.overview  .content-color-1{
+  color: #aaa96f;
 }
 .city-view .overview a{
   color: #E0E3D6;
@@ -1547,6 +1563,7 @@ a.more-link {
 
 a.list-group-item{
   color: #333 !important;
+  font-size: 16px;
 }
 .content-body{
   background: #E0E3D6;
@@ -1558,6 +1575,12 @@ a.list-group-item{
   color: #222;
   font-weight: 500;
   text-transform: uppercase;
+}
+.content-body h1{
+  color: #222;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 25px;
 }
 .content-body > img{
   width: 100%;
@@ -1575,13 +1598,22 @@ a.list-group-item{
 }
 
 .back-container h1{
-  color: #17BEBB;
-  font-size: 28px;
-  margin-bottom: 30px;
+    color: #aaa96f;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-family: Times New Roman;
 }
 .back-container .back-body{
   margin: 25px 0;
 }
+.back-container p{
+  font-size: 16px;
+}
+.back-container a {
+    color: #E0E3D6;
+    text-decoration: underline;
+}
+
 .sight-title-img{
     float: none;
     margin: 10px auto;
@@ -1849,4 +1881,11 @@ h2.in-input-group{
   font-size: 16px;
   margin: 0 0 0 0;
   display: inline;
+}
+
+.btn h1{
+  margin: 0;
+  display: inline;
+  font-size: 24px;
+  color: #E9C46C;
 }

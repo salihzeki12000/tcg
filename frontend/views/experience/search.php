@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner" style="margin-bottom: 0;">
-      <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','EXPERIENCES'), 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','EXPERIENCES')?></div>
+      <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','Private China Tours'), 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><?=Yii::t('app','Private China Tours')?></h1>
     </div>
   </div>
 </div>
@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <div class="tour-index container">
-  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','We know that no two travel experiences are the same, so no matter what sort of China experience you are looking for – romantic, family friendly, off the beaten path – we can mold and shape our itineraries to suit your needs. The itineraries below are just a taste of what we can offer. If there is a particular activity you want to do or sight you want to visit, just let us know. ')?></p>
   <form id="tours_search" action="<?= Url::toRoute(['experience/search']) ?>#search-results"  method="post">
     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
     <div class="exp-search-form col-lg-6 col-md-6 col-sm-10 col-xs-12">

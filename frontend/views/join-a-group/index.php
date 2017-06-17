@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'THEMED TOURS'), 'width'=>"100%"]) ?>
-      <div class="banner-text"><?= Yii::t('app', 'Themed Tours') ?></div>
+      <h1 class="banner-text"><?= Yii::t('app', 'Themed Tours') ?></h1>
     </div>
   </div>
 </div>

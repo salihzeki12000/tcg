@@ -25,7 +25,7 @@ use yii\helpers\Url;
 
 <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <?= $menu[Yii::$app->controller->action->id] ?>
+    <h1><?= $menu[Yii::$app->controller->action->id] ?></h1>
     <i class="glyphicon glyphicon-chevron-down"></i>
   </button>
   <ul class="dropdown-menu" role="menu">

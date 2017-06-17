@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Single button -->
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <h2 class="in-input-group"><?= \common\models\Tools::wordcut($theme_name, 20) ?></h2>
+        <h1 class="in-input-group"><?= \common\models\Tools::wordcut($theme_name, 15) ?></h1>
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu" role="menu">

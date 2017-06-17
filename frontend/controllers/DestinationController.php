@@ -222,7 +222,7 @@ class DestinationController extends Controller
         $exp_count = $tour_query
             ->count();
         if ($exp_count>0) {
-            $menu['experiences'] = $city_info['name'] . ' ' . Yii::t('app', 'Tours');
+            $menu['experiences'] = Yii::t('app', 'Private Tours');
         }
 
         if (!empty($city_info['vr'])) {

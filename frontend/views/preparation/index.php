@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Travel Preparation');
+$this->title = Yii::t('app', 'Travel Preparation');
 $this->description = Yii::t('app', 'China travel tips, China travel FAQs');
 $this->keywords = Yii::t('app', 'China travel tips, China travel FAQs, China travel preparation');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'Preparation', 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','PREPARATION')?></div>
+      <h1 class="banner-text"><?=Yii::t('app','Travel Preparation')?></h1>
     </div>
   </div>
 </div>

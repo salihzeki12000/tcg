@@ -8,7 +8,7 @@ use common\models\UploadedFiles;
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
 
-$this->title = $faq['title'];
+$this->title = $faq['title'] . ' - ' . Yii::t('app', 'Travel Preparation');
 $this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($faq['content']), 30)) . '...';
 $this->keywords = Html::encode($faq['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Preparation'), 'url' => ['index']];
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'Preparation', 'width'=>"100%"]) ?>
-      <div class="banner-text"><?=Yii::t('app','PREPARATION')?></div>
+      <h1 class="banner-text"><?=Yii::t('app','Travel Preparation')?></h1>
     </div>
   </div>
 </div>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="content-body">
             <center>
-              <h2><?= $faq['title'] ?></h2>
+              <h1><?= $faq['title'] ?></h1>
             </center>
             <?php if($faq['pic_s']) {?>
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($faq['pic_s'], 'm')?>" alt="<?= $faq['title'] ?>"/>

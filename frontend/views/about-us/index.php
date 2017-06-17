@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'About Us');
+$this->title = $sub_title . ' - ' . Yii::t('app', 'About Us');
 $this->description = Yii::t('app', 'The China Guide provides Western-style travel customization services to China\'s top destinations, including Beijing, the Great Wall, Xi\'an, Shanghai, Tibet, and more.');
 $this->keywords = Yii::t('app', 'China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,17 +19,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <h2 class="banner-text"><?=Yii::t('app','ABOUT US')?></h2>
+      <h1 class="banner-text"><?=Yii::t('app','About Us')?></h1>
       <?= Html::img('@web/statics/images/aboutus-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
     </div>
   </div>
 </div>
 
-<div class="article-view">
+<div class="activity-view">
 
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <?= $sub_title ?>
+        <h1><?= $sub_title ?></h1>
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu sub-menu" role="menu">
@@ -41,8 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
       </ul>
     </div>
 
-    <div class="container">
-        <div class="overview">
+    <div class="container back-container">
+        <div class="overview full-text col-lg-9 col-md-10">
           <?= $article['content'] ?>
         </div>
     </div>
