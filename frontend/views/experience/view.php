@@ -161,7 +161,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
                   <div class="item <?= ($i==0)? 'active' : '' ?> ">
                     <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
                     <div class="carousel-caption">
-                      <span><?= $slide['title']?></span>
+                      <span></span>
                     </div>
                   </div>
               <?php } ?>
