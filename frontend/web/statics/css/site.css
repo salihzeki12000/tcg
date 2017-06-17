@@ -317,7 +317,6 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 .page-top-desc {
   font-family: "Times New Roman";
-  color: #E9C46C;  
 }
 
 .home-whyus{
@@ -906,6 +905,7 @@ div#social-media-icons-container a {
 }
 .tour-view h1.title small{
   color: #E0E3D6;
+  font-family: none;
 }
 .tour-view .tour-info{
   margin: 10px;
@@ -1135,7 +1135,7 @@ h3.tour-right {
   margin-bottom: 0;
 }
 h3.tour-right-title{
-  color: #E0E3D6 !important;
+  color: #E9C46C !important;
   font-size: 20px;
   font-family: "Times New Roman";
 }
@@ -1177,7 +1177,8 @@ h3.tour-right-title{
 }
 
 .cities-index .page-header{
-  color: #17BEBB;
+  color: #E9C46C;
+  font-family: "Times New Roman";
 }
 
 .article-view .overview{
@@ -1888,4 +1889,5 @@ h2.in-input-group{
   display: inline;
   font-size: 24px;
   color: #E9C46C;
+  font-family: "Times New Roman";
 }

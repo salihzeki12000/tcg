@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 </div>
-
 <div class="activity-view">
 
     <div class="input-group type-menu col-lg-6 col-md-6 col-xs-10">
@@ -41,8 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
       </ul>
     </div>
 
+    <br>
     <div class="container back-container">
-        <div class="overview full-text col-lg-9 col-md-10">
+        <?php if (Yii::$app->controller->action->id == 'meet-our-team') { ?>
+          <div class="overview">
+        <?php } else { ?>
+          <div class="overview full-text col-lg-9 col-md-10">
+        <?php } ?>
           <?= $article['content'] ?>
         </div>
     </div>

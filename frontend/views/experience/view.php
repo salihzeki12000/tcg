@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
 
     <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
         <center><h2 id="nav-overview"><?=Yii::t('app','Themes')?></h2></center>
-        <div class="list-group">
+        <div class="overview list-group">
             <?php 
             $i = 0;
             foreach (explode(',', $tour_info['themes']) as $theme_id) { 
