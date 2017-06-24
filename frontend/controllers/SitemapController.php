@@ -37,6 +37,8 @@ class SitemapController extends Controller
             '/about-us/our-guides',
             '/terms-of-service',
             '/educational-programs',
+            '/faq',
+            '/mice',
         ];
 
         $query = \common\models\Tour::find()->where(['status'=>DIS_STATUS_SHOW, 'type' => TOUR_TYPE_NORMAL]);
