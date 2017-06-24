@@ -167,13 +167,11 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Private Tours') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Education') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE') ?></a></li>
             <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Themed Tours') ?></a></li>
-            <li class="">
-                <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['preparation/index']) ?>"><?= Yii::t('app','Preparation') ?></a></li>
-                </ul>
-            </li>
+            <li><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
+            <li><a href="<?= Url::toRoute(['preparation/index']) ?>"><?= Yii::t('app','Preparation') ?></a></li>
+            <li><a href="<?= Url::toRoute(['/faq']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
         </ul>
         <ul class="">
             <li><a href="<?= Url::toRoute(['/about-us']) ?>"><?= Yii::t('app','About Us') ?></a></li>

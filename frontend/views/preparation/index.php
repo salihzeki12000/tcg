@@ -12,7 +12,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Travel Preparation');
 $this->description = Yii::t('app', 'China travel tips, China travel FAQs');
-$this->keywords = Yii::t('app', 'China travel tips, China travel FAQs, China travel preparation');
+$this->keywords = Yii::t('app', 'China travel tips, China travel preparation');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
 ?>
 

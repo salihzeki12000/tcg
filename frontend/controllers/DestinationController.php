@@ -233,7 +233,7 @@ class DestinationController extends Controller
         $sight_count = $album_query
             ->count();
         if ($sight_count>0) {
-            $menu['sights'] = Yii::t('app', 'Travel Sights');
+            $menu['sights'] = Yii::t('app', 'Travel Attractions');
         }
 
         $album_query = \common\models\Album::find()->where(['city_id'=>$id, 'type'=>ALBUM_TYPE_ACTIVITY, 'status'=>DIS_STATUS_SHOW]);
