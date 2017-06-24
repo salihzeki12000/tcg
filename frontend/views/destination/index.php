@@ -11,16 +11,16 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'China Tourist Destinations');
-$this->description = 'China\'s popular & off-the-beaten-track tourist destinations, including Great Wall of China, Beijing, Xi\'an, Shanghai, Yangshuo, Zhangjiajie, Tibet and more.';
+$this->title = Yii::t('app', 'China Travel Destinations');
+$this->description = 'China\'s popular & off-the-beaten-track travel destinations, including Great Wall of China, Beijing, Xi\'an, Shanghai, Yangshuo, Zhangjiajie, Tibet and more.';
 $this->keywords = Yii::t('app','China destinations, China\'s tourist destinations, China\'s top tourist cities, China\'s top tourist sights, cities in China, China city guide, China travel guide, China guide');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'China Tourist Destinations', 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?=Yii::t('app','China Tourist Destinations')?></h1>
+      <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'China Travel Destinations', 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><?=Yii::t('app','China Travel Destinations')?></h1>
     </div>
   </div>
 </div>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Popular Tourist Destinations')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Popular Travel Destinations')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false) {
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header"><center><?=Yii::t('app','Other Tourist Cities')?></center></h1>
+          <h1 class="page-header"><center><?=Yii::t('app','Other Travel Cities')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false && strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {

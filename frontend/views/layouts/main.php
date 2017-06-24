@@ -102,9 +102,10 @@ AppAsset::register($this);
             '<li class="dropdown-header">US: +1 646 863 7038</li>',
             '<li class="dropdown-header">UK: +44 203 807 0401</li>',
         ]],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group'), 'items' =>[
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'faq'), 'items' =>[
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
-        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],]],
+        ['label' => Yii::t('app','Themed Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
+        ['label' => Yii::t('app','FAQ'), 'url' => ['join-a-group/faq'], 'active' => \Yii::$app->controller->id == 'faq'],]],
     ];
     if (Yii::$app->user->isGuest) {
         // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -289,6 +290,7 @@ AppAsset::register($this);
                 <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>
                 <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
                 <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
+                <a href="<?= Url::toRoute(['/faq']) ?>"><?=Yii::t('app','FAQ')?></a>
             </div>
             <a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>"><h3><?=Yii::t('app','Email us your plan')?></h3></a>
             <a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>

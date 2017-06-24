@@ -10,9 +10,9 @@ use yii\filters\VerbFilter;
 use yii\data\Pagination;
 
 /**
- * MeetingsIncentivesController implements the CRUD actions for Tour model.
+ * EducationalProgramsController implements the CRUD actions for Tour model.
  */
-class MeetingsIncentivesController extends Controller
+class MiceController extends Controller
 {
 
     /**
@@ -21,7 +21,7 @@ class MeetingsIncentivesController extends Controller
      */
     public function actionIndex()
     {
-        $article_name = Yii::t('Meetings Incentives');
+        $article_name = Yii::t('app','MICE');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['title'] = $article_name;
