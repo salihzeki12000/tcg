@@ -972,7 +972,7 @@ div#social-media-icons-container a {
 .tour-index > h3{
   color: #E9C46C !important;
 }
-.tour-index h3,.tour-index h3>a{
+.tour-index h2,.tour-index h2>a{
   color: #17BEBB;
   overflow: hidden;
   height: 40px;

@@ -76,7 +76,7 @@ class ExperienceController extends Controller
         $pages = new Pagination(
             [
                 'totalCount' => $count_query->count(),
-                'pageSize' => 12,
+                'pageSize' => 24,
                 'pageSizeParam' => false,
             ]);
         $tours = $query

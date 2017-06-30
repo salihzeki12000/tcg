@@ -135,7 +135,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
             <div class="file-thumbnail-footer"> 
              <div class="file-footer-caption">
                 <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')?> | <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')?></div>
-                <h3><a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"><?= $tour['name'] ?></a></h3>
+                <h2><a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"><?= $tour['name'] ?></a></h2>
                 <div class="tourlist-desc"><a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"><?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?></a></div>
                 <div class="tourlist-price">
                   <?php if(!empty($tour['price_cny'])) { ?>
@@ -171,7 +171,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 
     <div class="container home-categories">
         <div class="col-lg-12">
-            <h1 class="page-header"><?=Yii::t('app','CHOOSE A CATEGORY')?></h1>
+            <h1 class="page-header"><?=Yii::t('app','TOURS BY CATEGORY')?></h1>
         </div>
         <div class="list-group">
             <?php foreach ($themes as $theme) {  
@@ -192,7 +192,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="margin: 38px 0 20px 0;"><?=Yii::t('app','POPULAR TOURIST DESTINATIONS')?></h1>
+                <h1 class="page-header" style="margin: 38px 0 20px 0;"><?=Yii::t('app','POPULAR TRAVEL DESTINATIONS')?></h1>
             </div>
         </div>
     </div>
