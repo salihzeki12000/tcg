@@ -147,7 +147,8 @@ class SiteController extends Controller
 
     public function actionVideo()
     {
-        echo '<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube-nocookie.com/embed/2ft1P9O_YGc?rel=0&amp;controls=0?ecver=2&amp;autoplay=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>';
+        echo '<!DOCTYPE html><html><head><title></title></head><body><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube-nocookie.com/embed/2ft1P9O_YGc?rel=0&amp;controls=0?ecver=2&amp;autoplay=1" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div></body></html>';
+        exit;
     }
 
     /**
