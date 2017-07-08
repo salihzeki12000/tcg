@@ -19,6 +19,7 @@ use Yii;
  * @property string $create_time
  * @property string $update_time
  * @property string $url_id
+ * @property string $description
  */
 class Album extends \yii\db\ActiveRecord
 {
@@ -52,7 +53,7 @@ class Album extends \yii\db\ActiveRecord
             [['type', 'city_id', 'status', 'priority'], 'integer'],
             [['overview', 'url_id'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name', 'pic_s', 'keywords'], 'string', 'max' => 255],
+            [['name', 'pic_s', 'keywords', 'description'], 'string', 'max' => 255],
             [['rec_type'], 'string', 'max' => 50],
             $name_rule,
         ];
@@ -70,6 +71,7 @@ class Album extends \yii\db\ActiveRecord
             'city_id' => Yii::t('app', 'City'),
             'pic_s' => Yii::t('app', 'Pic S'),
             'overview' => Yii::t('app', 'Overview'),
+            'description' => Yii::t('app', 'Description'),
             'rec_type' => Yii::t('app', 'Recommendation'),
             'status' => Yii::t('app', 'Status'),
             'keywords' => Yii::t('app', 'Keywords'),

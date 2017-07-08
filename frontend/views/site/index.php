@@ -1,8 +1,10 @@
 <?php
 use common\models\UploadedFiles;
 use yii\helpers\Url;
-use yii\helpers\Html
-;/* @var $this yii\web\View */
+use yii\helpers\Html;
+use yii\bootstrap\Modal;
+
+/* @var $this yii\web\View */
 
 $this->title = Yii::t('app','Private China Tours | China Travel Agency');
 $this->description = Yii::t('app','The China Guide, a Beijing-based travel agency run by a multilingual team of native speakers, creates private China tours & travel customization services');
@@ -56,8 +58,28 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
       <a class="right carousel-control" href="#carousel-slides-generic" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
+
+    <a  id="bt-show-video" class="video_preview" href="javascript:void(0);"  data-toggle="modal" data-target="#video-modal">
+        <span class="preview_img">
+            <img src="/statics/images/company-video-icon.jpg">
+            <span></span>
+        </span>
+        <!-- <span class="preview_text vert_centre">See highlights of this destination<br></span> -->
+    </a>
     </div> <!-- Carousel -->
     <?php } ?>
+
+<?php 
+
+Modal::begin([
+    'id' => 'video-modal',
+    'header' => '<h4 class="modal-title">Visit China: Enchanting Land of Contrasts | The China Guide
+</h4>',
+    'footer' => '',
+    'size' => "modal-lg",
+]); 
+Modal::end();
+?>
 
     <h1 class="container home-desc col-lg-9 col-md-10 col-sm-6 col-xs-12">
         <?=Yii::t('app','We are a Beijing-based travel agency that creates private, guided tours and travel customization services all over China. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
@@ -154,19 +176,6 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
          <div class="clearfix"></div> 
         </div>
        </div>
-    </div>
-
-    <div class="subscribe-bar">
-        <h3><?=Yii::t('app','Subscribe to Our Newsletter')?></h3>
-        <form action="//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf" id="mc-embedded-subscribe-form" method="post">
-          <div class="subscribe-bar-input">
-            <input type="text" id="mce-EMAIL" class="form-control" name="EMAIL" placeholder="<?=Yii::t('app','Enter your email address')?>">
-            <input type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn btn-info btn-sm">     
-          </div>
-          <input type="hidden" name="b_d995462fd30382f7e33e816d0_a0d17736bf" tabindex="-1" value="">
-        </form>
-        <div class='subscribe-bar-desc'><?=Yii::t('app','Wanderlust-inducing content and insider tips from our China travel experts
-')?></div>
     </div>
 
     <div class="container home-categories">
@@ -340,6 +349,18 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
         </div>
     </div>
 
+    <div class="subscribe-bar">
+        <h3 class="col-lg-6 col-md-12 col-xs-12"><?=Yii::t('app','Subscribe to Our Newsletter')?></h3>
+        <form action="//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf" id="mc-embedded-subscribe-form" method="post" class="subscribe-bar-form col-lg-6 col-md-12 col-xs-12">
+          <div class="subscribe-bar-input">
+            <input type="text" id="mce-EMAIL" class="form-control" name="EMAIL" placeholder="<?=Yii::t('app','Enter your email address')?>">
+            <input type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn btn-info btn-sm">     
+          </div>
+          <input type="hidden" name="b_d995462fd30382f7e33e816d0_a0d17736bf" tabindex="-1" value="">
+        </form>
+        <div class='subscribe-bar-desc'><?=Yii::t('app','Wanderlust-inducing content and insider tips from our China travel experts
+')?></div>
+    </div>
 
 
 </div>
@@ -347,6 +368,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 <?= $this->render('/layouts/_tawk_script', []) ?>
 
 <?php
+$requestUrl = $requestUrl = Url::toRoute('site/video');
 $js = <<<JS
         $('.map-poi').click(function(){
             if(!$(this).hasClass('active'))
@@ -358,6 +380,17 @@ $js = <<<JS
                 $('#city-map-detail-'+city_id).show();
             }
         });
+
+    $(document).on('click', '#bt-show-video', function () {
+        $.get('{$requestUrl}', {},
+            function (data) {
+                $('.modal-body').html(data);
+            }  
+        );
+    });
+    $('#video-modal').on('hidden.bs.modal', function () {
+        $('.modal-body').html('');
+    });
 JS;
 $this->registerJs($js);
 ?>

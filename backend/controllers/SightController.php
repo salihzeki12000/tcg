@@ -87,6 +87,9 @@ class SightController extends Controller
                 }
             }
 
+            if (empty($model->description)) {
+                $model->description = \common\models\Tools::wordcut(strip_tags($model->overview), 160);
+            }
             $model->create_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
                 $model->url_id = strtolower(str_replace(' ', '-', $model->name));
@@ -129,6 +132,9 @@ class SightController extends Controller
                         $model->pic_s = $file_path;
                     }
                 }
+            }
+            if (empty($model->description)) {
+                $model->description = \common\models\Tools::wordcut(strip_tags($model->overview), 160);
             }
             $model->update_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
