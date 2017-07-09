@@ -26,6 +26,10 @@ body {
   line-height: 1.1;
   text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
 }
+.site-index .carousel-caption{
+    right: 25%;
+    left: 25%;
+}
 .carousel-indicators{
   bottom: 0px;
   margin-bottom: 5px;
