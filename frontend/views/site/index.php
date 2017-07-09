@@ -73,8 +73,7 @@ $this->keywords = Yii::t('app','China tours, China private tours, China family t
 
 Modal::begin([
     'id' => 'video-modal',
-    'header' => '<h4 class="modal-title">Visit China: Enchanting Land of Contrasts | The China Guide
-</h4>',
+    'header' => '<h4 class="modal-title"></h4>',
     'footer' => '',
     'size' => "modal-lg",
 ]); 
