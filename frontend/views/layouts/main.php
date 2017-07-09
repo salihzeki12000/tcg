@@ -105,7 +105,7 @@ AppAsset::register($this);
         ]],
         ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'faq'), 'items' =>[
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
-        ['label' => Yii::t('app','Small Group Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
+        ['label' => Yii::t('app','Small Group'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
         ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],]],
     ];
     if (Yii::$app->user->isGuest) {
@@ -174,7 +174,7 @@ AppAsset::register($this);
             </li>
             <li class="">
                 <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group Tours') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
                 </ul>
             </li>
