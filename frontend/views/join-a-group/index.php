@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Themed Tours');
+$this->title = Yii::t('app', 'Small Group Tours');
 $this->description = Yii::t('app', 'Share the costs of your travel with others and meet new friends. Our most popular group tour is sleeping on the Great Wall.');
 $this->keywords = Yii::t('app', 'Sleep on the wall, China group tours, great wall, China small group tours');
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'THEMED TOURS'), 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?= Yii::t('app', 'Themed Tours') ?></h1>
+      <?= Html::img('@web/statics/images/joinagroup-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app', 'Small Group Tours'), 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><?= Yii::t('app', 'Small Group Tours') ?></h1>
     </div>
   </div>
 </div>
