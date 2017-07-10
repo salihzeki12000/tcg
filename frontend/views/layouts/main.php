@@ -395,7 +395,7 @@ JS;
 $this->registerJs($js);
 ?>
 
-<?php if(\Yii::$app->controller->id == 'site' || \Yii::$app->controller->action->id == 'index') { ?>
+<?php if(\Yii::$app->controller->id == 'site' && \Yii::$app->controller->action->id == 'index') { ?>
 <script src="//my.hellobar.com/74e24eabbac970c8d9108d35dcaee0d202bf388b.js" type="text/javascript" charset="utf-8" async="async"></script>
 <?php } ?>
 
