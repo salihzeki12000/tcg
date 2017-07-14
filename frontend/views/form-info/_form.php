@@ -89,6 +89,7 @@ use yii\helpers\Url;
                     <label class="desc-label"><?=Yii::t('app','Adults (> 12 yrs)')?></label>
                 </td>
             </tr>
+            <?php if(in_array('children', $form_fields)) { ?>
             <tr>
                 <td width="50%" valign="middle">
                     <?= $form->field($model, 'children')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
@@ -97,6 +98,8 @@ use yii\helpers\Url;
                     <label class="desc-label"><?=Yii::t('app','Children (2 - 12 yrs)')?></label>
                 </td>
             </tr>
+            <?php } ?>
+            <?php if(in_array('infants', $form_fields)) { ?>
             <tr>
                 <td width="50%" valign="middle">
                     <?= $form->field($model, 'infants')->dropDownList([ 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10', 11 => '11', 12 => '12', 13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18', 19 => '19', 20 => '20', ], ['prompt' => ''])->label(false) ?>
@@ -105,6 +108,7 @@ use yii\helpers\Url;
                     <label class="desc-label"><?=Yii::t('app','Infants (< 2 yrs)')?></label>
                 </td>
             </tr>
+            <?php } ?>
             <?php if (in_array('guest_information', $form_fields)) { ?>
                 <tr>
                     <td colspan="2">
