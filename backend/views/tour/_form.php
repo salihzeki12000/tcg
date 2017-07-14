@@ -27,6 +27,14 @@ use yii\helpers\Url;
     <?php if ($type == TOUR_TYPE_GROUP) { ?>
         <?= $form->field($model, 'begin_date')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'end_date')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'other_dates')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'prices_detail')->widget(\yii\redactor\widgets\Redactor::className(), [
+        'clientOptions' => [
+            'minHeight' => '250px',
+            'replaceDivs' => false,
+            'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+            ],
+        ]) ?>
     <?php } ?>
 
     <?= $form->field($model, 'status')->dropdownList(Yii::$app->params['dis_status']) ?>

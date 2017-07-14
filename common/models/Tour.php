@@ -34,6 +34,8 @@ use Yii;
  * @property string $end_date
  * @property integer $type
  * @property string $url_id
+ * @property string $other_dates
+ * @property string $prices_detail
  */
 
 class Tour extends \yii\db\ActiveRecord
@@ -67,11 +69,11 @@ class Tour extends \yii\db\ActiveRecord
             [['code', 'status', 'themes', 'cities', 'tour_length'], 'required'],
             [['status', 'cities_count', 'priority', 'exp_num', 'type'], 'integer'],
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
-            [['overview', 'inclusion', 'exclusion', 'tips'], 'string'],
+            [['overview', 'inclusion', 'exclusion', 'tips', 'prices_detail'], 'string'],
             [['create_time', 'update_time', 'begin_date', 'end_date'], 'safe'],
             [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type', 'display_cities'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
-            [['keywords'], 'string', 'max' => 512],
+            [['keywords', 'other_dates'], 'string', 'max' => 512],
             $name_rule,
             [['link_tour'],'match','pattern'=>'/^(\d+[,])*(\d+)$/','message'=>'Link Tour does not conform to the requirements'],
         ];
@@ -114,6 +116,8 @@ class Tour extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Image（1280 x 500 pixels）'),
             'map_image' => Yii::t('app', 'Map image（540 x 340  pixels）'),
             'images' => Yii::t('app', 'Images（1280 x 500 pixels）'),
+            'other_dates' => Yii::t('app', 'Other Dates'),
+            'prices_detail' => Yii::t('app', 'Prices'),
         ];
     }
 }

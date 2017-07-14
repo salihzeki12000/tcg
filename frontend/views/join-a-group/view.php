@@ -7,16 +7,17 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
-
-$this->title = $tour_info['name'];
-$this->description = Html::encode($tour_info['name']);
+$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Small Group Tour');
+$this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
+  . $tour_info['display_cities'] . ' ' . Yii::t('app','guided tour package') . '; '
+  . Yii::t('app','Tour Themes') . ': ';
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?= Html::encode($this->title) ?> <br /><small><?= Html::encode($tour_info['display_cities']) ?></small></h1>
+    <h1 class="title"><?= Html::encode($this->title) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Small Group Tour')?></small></h1>
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -70,29 +71,40 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview" style="margin-top: 20px;">
-        <div class="list-group">
-            <?php foreach (explode(',', $tour_info['themes']) as $theme_id) { 
+    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
+        <center><h2 id="nav-overview"><?=Yii::t('app','Themes')?></h2></center>
+        <div class="overview list-group">
+            <?php 
+            $i = 0;
+            foreach (explode(',', $tour_info['themes']) as $theme_id) { 
               if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
                 continue;
               }
+              if ($i !== 0) {
+                echo ", ";
+                $this->description .= ', ';
+              }
+              $this->description .= Yii::$app->params['tour_themes'][$theme_id];
+              $i++;
               ?>
-            <div class="col-lg-6 col-md-6 col-xs-6 list-group-item">
-                <i class="icon-menu-ok glyphicon glyphicon-ok"></i><?= Yii::$app->params['tour_themes'][$theme_id] ?>
-            </div>
+            <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span>
+                
             <?php } ?>
+            <?=Yii::t('app','Small Group Tour')?>
         </div>
     </div>
 
     <div class="group-date col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2 id="nav-overview"><?=Yii::t('app','Tour Date')?></h2></center>
+        <center><h2 id="nav-overview"><?=Yii::t('app','Dates & Prices')?></h2></center>
         <div class="overview">
-          <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
+          <span class="content-color-1">Dates:</span> <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?><?php if(!empty($tour_info['other_dates'])) {?>,
+            <?=$tour_info['other_dates']?>
+          <?php } ?>
         </div>
     </div>
 
     <div class="group-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2 id="nav-overview"><?=Yii::t('app','Tour price')?></h2></center>
+        <center><h2 id="nav-overview"><?=Yii::t('app','Overview')?></h2></center>
         <div class="overview">
           <?= $tour_info['overview'] ?>
         </div>
@@ -151,7 +163,6 @@ $this->params['breadcrumbs'][] = $this->title;
                   <div class="item <?= ($i==0)? 'active' : '' ?> ">
                     <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
                     <div class="carousel-caption">
-                      <span><?= $slide['title']?></span>
                     </div>
                   </div>
               <?php } ?>
@@ -207,9 +218,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
       <div class="form-title"><?=Yii::t('app','Application Form')?></div>
       <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
-      <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=Yii::t('app','Days:')?>
-        (<?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>)
-      </div>
       <div class="tips"><?=Yii::t('app','Tour Code:')?> <?= $tour_info['code'] ?></div>
       <hr />
       <?= $this->render('/form-info/_form', [

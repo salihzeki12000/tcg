@@ -211,7 +211,6 @@ return [
             'tour_type',
             'adults',
             'children',
-            'infants',
             'transport_info',
             'additional_information',
             'name_prefix',
