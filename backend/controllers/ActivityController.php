@@ -86,7 +86,7 @@ class ActivityController extends Controller
                     }
                 }
             }
-            if (empty($model->description)) {
+            if (empty($model->description) && !empty($model->overview)) {
                 $model->description = \common\models\Tools::wordcut(strip_tags($model->overview), 160);
             }
             $model->create_time = date('Y-m-d H:i:s',time());

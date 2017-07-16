@@ -12,7 +12,7 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', '{0} & {1} China Guided Small Group Tour Packages', [date('Y'), date('Y', strtotime('+1 years'))]);
-$this->description = Yii::t('app', 'China guided tour packages, best {0} & {1} small group itineraries to Beijing, Xi\'an, Shanghai, Zhangjiajie, Guilin, Yangshuo, Chengdu, Tibet, etc.', [date('Y'), date('Y', strtotime('+1 years'))]);
+$this->description = Yii::t('app', 'China guided tour packages, best {0} & {1} small group tour itineraries to Beijing, Xi\'an, Shanghai, Zhangjiajie, Guilin, Yangshuo, Chengdu, Tibet, etc.', [date('Y'), date('Y', strtotime('+1 years'))]);
 $this->keywords = Yii::t('app', 'China guided tours, China small group tour itineraries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>

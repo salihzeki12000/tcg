@@ -70,7 +70,7 @@ class AlbumController extends Controller
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
                 $model->url_id = strtolower(str_replace(' ', '-', $model->name));
             }
-            if (empty($model->description)) {
+            if (empty($model->description) && !empty($model->overview)) {
                 $model->description = \common\models\Tools::wordcut(strip_tags($model->overview), 160);
             }
             if($model->save()){

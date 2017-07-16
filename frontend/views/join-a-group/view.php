@@ -7,7 +7,7 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
-$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Small Group Tour');
+$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app','China Guided') . ' ' . Yii::t('app','Small Group Tour') . ' ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Itinerary');
 $this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
   . $tour_info['display_cities'] . ' ' . Yii::t('app','guided tour package') . '; '
   . Yii::t('app','Tour Themes') . ': ';
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?= Html::encode($this->title) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Small Group Tour')?></small></h1>
+    <h1 class="title"><?=$tour_info['name']?><br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Small Group Tour')?></small></h1>
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -75,31 +75,35 @@ $this->params['breadcrumbs'][] = $this->title;
         <center><h2 id="nav-overview"><?=Yii::t('app','Themes')?></h2></center>
         <div class="overview list-group">
             <?php 
+            $this->description .= Yii::t('app','Small Group Tour');
+            echo '<span>' . Yii::t('app','Small Group Tour') . '<span>';
             $i = 0;
             foreach (explode(',', $tour_info['themes']) as $theme_id) { 
               if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
                 continue;
               }
-              if ($i !== 0) {
-                echo ", ";
-                $this->description .= ', ';
-              }
-              $this->description .= Yii::$app->params['tour_themes'][$theme_id];
+              $this->description .= ', ' . Yii::$app->params['tour_themes'][$theme_id];
               $i++;
               ?>
+              ,
             <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span>
                 
             <?php } ?>
-            <?=Yii::t('app','Small Group Tour')?>
         </div>
     </div>
 
     <div class="group-date col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <center><h2 id="nav-overview"><?=Yii::t('app','Dates & Prices')?></h2></center>
         <div class="overview">
-          <span class="content-color-1">Dates:</span> <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?><?php if(!empty($tour_info['other_dates'])) {?>,
-            <?=$tour_info['other_dates']?>
+          <span class="content-color-1">Dates:</span>
+          <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - 
+          <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
+          <?php if(!empty($tour_info['other_dates'])) {?>
+             / <?=$tour_info['other_dates']?>
           <?php } ?>
+        </div>
+        <div class="overview">
+          <?= $tour_info['prices_detail'] ?>
         </div>
     </div>
 

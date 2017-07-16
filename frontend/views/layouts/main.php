@@ -71,7 +71,7 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Destinations'), 'active' => \Yii::$app->controller->id == 'destination',
             'items' => [
             [
-                'label' => Yii::t('app','Popular Tourist Destinations'),
+                'label' => Yii::t('app','Popular Travel Destinations'),
                 'active' => false, 
                 'items' => $cities_popular_menu,
                 'submenuOptions' => ['class' => 'dropdown-menu'],
@@ -88,6 +88,7 @@ AppAsset::register($this);
                 'active' => false,
             ],
         ]],
+        ['label' => Yii::t('app','Small Group'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
         ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
         ['label' => Yii::t('app','MICE'), 'url' => ['/mice'], 'active' => \Yii::$app->controller->id == 'mice'],
         ['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
@@ -103,9 +104,8 @@ AppAsset::register($this);
             '<li class="dropdown-header">US: +1 646 863 7038</li>',
             '<li class="dropdown-header">UK: +44 203 807 0401</li>',
         ]],
-        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'faq'), 'items' =>[
+        ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'faq'), 'items' =>[
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
-        ['label' => Yii::t('app','Small Group'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
         ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],]],
     ];
     if (Yii::$app->user->isGuest) {
