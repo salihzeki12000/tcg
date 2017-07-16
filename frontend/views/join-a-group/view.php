@@ -211,8 +211,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>
-   </div>
+    </div>
 
+    <?= $this->render('/layouts/_share_icon_links') ?>
   </div>
 
   <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" >
