@@ -213,11 +213,21 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <?= $this->render('/layouts/_share_icon_links') ?>
   </div>
 
   <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" >
     <div class="clearfix"></div> 
+    <center class="tour-index"><h3 class="tour-right-title"><?=Yii::t('app','Share')?></h3></center>
+    <div class="social-share-links">
+     <center>
+      <?php $encode_this_url = urlencode(SITE_BASE_URL.$_SERVER['REQUEST_URI']); ?>
+      <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?=$encode_this_url?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
+      <a class="share-twitter" href="http://twitter.com/share?url=<?=$encode_this_url?>&amp;text=<?=urlencode($this->title)?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
+      <a class="share-googleplus" href="https://plus.google.com/share?url=<?=$encode_this_url?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
+      <a class="share-mail" href="mailto:?subject=<?=urlencode($this->title)?>&amp;body=<?=$encode_this_url?>"></a>
+      </center>
+    </div>
+
     <div class="form-info-create">
       <span class="placeholder" id="inquiry-form"></span>
 
