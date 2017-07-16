@@ -328,7 +328,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
   height: 35px;
   background-image: url(../images/social_share_btns.png);
   background-repeat: no-repeat;
-  margin: 9px auto;
+  margin: 9px 3px;
   background-size: 140px;
 }
 .social-share-links a.share-facebook{
