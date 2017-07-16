@@ -215,7 +215,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
   </div>
 
-  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" >
+  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px;">
     <div class="clearfix"></div> 
     <center class="tour-index"><h3 class="tour-right-title" style="margin-top: 0;"><?=Yii::t('app','Share')?></h3></center>
     <div class="social-share-links">
@@ -228,6 +228,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </center>
     </div>
 
+    <div class="clearfix"></div> 
     <div class="form-info-create">
       <span class="placeholder" id="inquiry-form"></span>
 
