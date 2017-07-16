@@ -46,9 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
          <div class="file-footer-caption">
             <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')?> | <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')?></div>
             <h2><a href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>"><?= $tour['name'] ?></a></h2>
-            <div class="tourlist-desc"><a href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>"><?= date('F d, Y', strtotime($tour['begin_date'])) ?><?php if(!empty($tour['other_dates'])) {?>,
-            <?=$tour['other_dates']?>
-            <?php } ?></a></div>
+            <div class="tourlist-desc"><a href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>"><?= date('F d, Y', strtotime($tour['begin_date'])) ?> - 
+              <?= date('F d, Y', strtotime($tour['end_date'])) ?>
+              <?php if(!empty($tour['other_dates'])) {?>
+                 / <?=$tour['other_dates']?>
+              <?php } ?></a>
+            </div>
             <div class="tourlist-price">
             </div>
          </div> 

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
-$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app','China Guided') . ' ' . Yii::t('app','Small Group Tour') . ' ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Itinerary');
+$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app','China Guided') . ' ' . Yii::t('app','Small Group Tour') . ': ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Itinerary');
 $this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
   . $tour_info['display_cities'] . ' ' . Yii::t('app','guided tour package') . '; '
   . Yii::t('app','Tour Themes') . ': ';

@@ -24,6 +24,7 @@ class TaskController extends Controller
             'inclusion',
             'exclusion',
             'tips',
+            'prices_detail',
             ];
         echo "sync task begin:" . date('Y-m-d H:i:s',time()) . "\n";
         $tables = ['album','article','cities','homepage','itinerary','tour','theme',];
