@@ -168,13 +168,13 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li class="">
                 <ul class="menu-group row">
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Education') ?></a></li>
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE') ?></a></li>
                 </ul>
             </li>
             <li class="">
                 <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
                 </ul>
             </li>
