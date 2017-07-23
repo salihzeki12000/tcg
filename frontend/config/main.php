@@ -88,6 +88,7 @@ return [
                 'destination/<url_id:[A-Za-z0-9_\'\s\|\-]+>/<action:\w+>' => 'destination/<action>',
                 'sight/<url_id:[A-Za-z0-9_\'\s\-\:\,\+]+>' => 'sight/view',
                 'activity/<url_id:[A-Za-z0-9_\'\s\-\:\,\+]+>' => 'activity/view',
+                'blog/rss' => 'article/rss',
                 'blog' => 'article/index',
                 'blog/<url_id:[A-Za-z0-9_\'\s\-\?\:\,\+]+>' => 'article/view',
                 'misc/<url_id:[A-Za-z0-9_\'\s\-\?\:\,\+]+>' => 'misc/view',

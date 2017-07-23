@@ -229,7 +229,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="clearfix"></div> 
-    <div class="form-info-create">
+    <div class="form-info-create group-view">
       <span class="placeholder" id="inquiry-form"></span>
 
       <div class="form-title"><?=Yii::t('app','Application Form')?></div>

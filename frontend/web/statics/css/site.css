@@ -322,6 +322,19 @@ ul.navbar-nav li:not(:last-child) b.caret{
   font-size: 16px;
 
 }
+.social-share-links{
+  height: 60px;
+  line-height: 60px;
+  text-align: right;
+}
+.social-share-links .share-title{
+  position: absolute;
+  right: 185px;
+  color: #E9C46C;
+  font-size: 20px;
+  font-family: "Times New Roman";
+  height: 30px;
+}
 .social-share-links a{
   display: inline-block;
   width: 35px;
@@ -1072,8 +1085,11 @@ div#social-media-icons-container a {
       min-height: 650px;
   }
   .tour-view > .col-lg-4 {
-      padding-right:75px !important;
+      padding-right:65px !important;
       margin-top: 20px;
+  }
+  .form-info-create.group-view{
+    margin-right: 10px;
   }
   .tour-view > .carousel {
       margin: 0 75px;
