@@ -42,7 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 
-    <?= $this->render('/layouts/_share_icon_links') ?>
+    <?= $this->render('/layouts/_share_icon_links', [
+      'title_image_url' => Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 'l'),
+    ]) ?>
   </div>
 
     <?= $this->render('/layouts/_exp-right', []) ?>

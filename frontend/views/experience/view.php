@@ -208,7 +208,9 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
         </div>
    </div>
 
-  <?= $this->render('/layouts/_share_icon_links') ?>
+  <?= $this->render('/layouts/_share_icon_links', [
+      'title_image_url' => Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_title'], 'l'),
+    ]) ?>
 
 
     <div class="form-info col-lg-12 col-md-12 col-sm-12 col-xs-12">

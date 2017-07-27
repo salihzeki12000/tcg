@@ -329,11 +329,14 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 .social-share-links .share-title{
   position: absolute;
-  right: 185px;
+  right: 225px;
   color: #E9C46C;
   font-size: 20px;
   font-family: "Times New Roman";
   height: 30px;
+}
+.social-share-links .share-title.width-sort{
+  right: 185px;
 }
 .social-share-links a{
   display: inline-block;
@@ -355,6 +358,11 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 .social-share-links a.share-mail{
   background-position: -106px 0px;
+}
+.social-share-links a.share-pinterest{
+  background-image: url(../images/social_share_btn_pinterest.png);
+  background-position: 0px 0px;
+  background-size: 34px;
 }
 
 .home-whyus{
