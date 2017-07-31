@@ -77,8 +77,8 @@ class FormInfo extends \yii\db\ActiveRecord
             [$arr_required, 'required' , 'message' => Yii::t('app', 'Required')],
             [['arrival_city', 'departure_city', 'adults', 'children', 'infants', 'group_type', 'cities_plan', 'travel_interests', 'prefered_budget', 'name_prefix', 'prefered_travel_agent', 'book_hotels', 'hotel_preferences'], 'string'],
             [['arrival_date', 'departure_date', 'nationality', 'tour_code', 'number_participants', 'tour_length'], 'string', 'max' => 20],
-            [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip', 'transport_info', 'other_info'], 'string', 'max' => 255],
-            [['name', 'tour_name', 'subject_program', 'participants_number', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'company_name', 'email', 'promotion_code'], 'string', 'max' => 50],
+            [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip', 'transport_info', 'other_info', 'tour_name'], 'string', 'max' => 255],
+            [['name', 'subject_program', 'participants_number', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'company_name', 'email', 'promotion_code'], 'string', 'max' => 50],
             ['email', 'email'],
             [['type', 'tour_type','status'], 'integer'],
         ];

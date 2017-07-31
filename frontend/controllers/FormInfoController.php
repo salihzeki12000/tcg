@@ -106,10 +106,12 @@ class FormInfoController extends Controller
 
                 $receiver[] = 'book@thechinaguide.com';
 
-                Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
-                    ->setTo($receiver)
-                    ->setSubject($mail_subject)
-                    ->send();
+                if(!YII_DEBUG) {
+                    Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
+                        ->setTo($receiver)
+                        ->setSubject($mail_subject)
+                        ->send();
+                }
 
                 return $this->redirect(['success']);
 
