@@ -302,6 +302,7 @@ AppAsset::register($this);
                 <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
                 <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
                 <a href="<?= Url::toRoute(['/faq']) ?>"><?=Yii::t('app','FAQ')?></a>
+                <a href="/statics/pages/company_profile.doc"><?=Yii::t('app','Company Profile')?></a>
             </div>
             <a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>"><h3><?=Yii::t('app','Email us your plan')?></h3></a>
             <a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>

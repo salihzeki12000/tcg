@@ -267,12 +267,6 @@ $js = <<<JS
       $(".itineraries").children(".itinerary-item").hide();
       $("#itinerary-item-"+(parseInt(current_id)+parseInt(action))).show();
     }
-    $('.itinerary-swipe').hammer().on('swiperight', function(){  
-        itinerarysPaging(-1);  
-    }); 
-    $('.itinerary-swipe').hammer().on('swipeleft', function(){  
-        itinerarysPaging(1);  
-    }); 
 
     var overview_height = 200;
     $(function(){
@@ -294,4 +288,16 @@ $js = <<<JS
 
 JS;
 $this->registerJs($js);
+
+if (Yii::$app->params['is_mobile']) {
+$js = <<<JS
+    $('.itinerary-swipe').hammer().on('swiperight', function(){  
+        itinerarysPaging(-1);  
+    }); 
+    $('.itinerary-swipe').hammer().on('swipeleft', function(){  
+        itinerarysPaging(1);  
+    }); 
+JS;
+$this->registerJs($js);
+}
 ?>
