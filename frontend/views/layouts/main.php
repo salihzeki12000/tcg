@@ -68,6 +68,11 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => Yii::t('app','Find a Tour'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','Private Tours'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
+        ['label' => Yii::t('app','Group Travel'), 'active' => (\Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'mice'), 'items' => [
+            ['label' => Yii::t('app','Small Group Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
+            ['label' => Yii::t('app','Education Tours'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+            ['label' => Yii::t('app','MICE Travel'), 'url' => ['/mice'], 'active' => \Yii::$app->controller->id == 'mice'],
+        ]],
         ['label' => Yii::t('app','Destinations'), 'active' => \Yii::$app->controller->id == 'destination',
             'items' => [
             [
@@ -88,9 +93,6 @@ AppAsset::register($this);
                 'active' => false,
             ],
         ]],
-        ['label' => Yii::t('app','Small Group'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
-        ['label' => Yii::t('app','Education'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
-        ['label' => Yii::t('app','MICE'), 'url' => ['/mice'], 'active' => \Yii::$app->controller->id == 'mice'],
         ['label' => Yii::t('app','Blog'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
         ['label' => Yii::t('app','About Us'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
             ['label' => Yii::t('app','Who We Are'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
@@ -102,6 +104,7 @@ AppAsset::register($this);
             '<li class="dropdown-header">Call Us</li>',
             '<li class="dropdown-header">CN: +8610  8532 1860</li>',
             '<li class="dropdown-header">US: +1 646 863 7038</li>',
+            '<li class="dropdown-header">AU: +61 871001399</li>',
             '<li class="dropdown-header">UK: +44 203 807 0401</li>',
         ]],
         ['label' => Yii::t('app','More'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'faq'), 'items' =>[
@@ -165,16 +168,16 @@ AppAsset::register($this);
         <ul class="">
             <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find a Tour') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Private Tours') ?></a></li>
-            <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
+            <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group Tours') ?></a></li>
             <li class="">
                 <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group') ?></a></li>
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Education') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Tours') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE Travel') ?></a></li>
                 </ul>
             </li>
             <li class="">
                 <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
                 </ul>
             </li>
@@ -195,6 +198,7 @@ AppAsset::register($this);
                 <ul class="dropdown-menu sub-menu" role="menu">
                     <li><a href="tel:+861085321860">CN: +86 10 85321860</a></li>
                     <li><a href="tel:+16468637038">US: +1 646 863 7038</a></li>
+                    <li><a href="tel:+61871001399">AU: +61 871001399</a></li>
                     <li><a href="tel:+442038070401">UK: +44 203 807 0401</a></li>
                 </ul>
             </li>
@@ -302,14 +306,14 @@ AppAsset::register($this);
                 <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
                 <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
                 <a href="<?= Url::toRoute(['/faq']) ?>"><?=Yii::t('app','FAQ')?></a>
-                <a href="/statics/pages/company_profile.doc"><?=Yii::t('app','Company Profile')?></a>
+                <a href="/statics/pages/company_profile.pdf"><?=Yii::t('app','Company Profile')?></a>
             </div>
             <a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>"><h3><?=Yii::t('app','Email us your plan')?></h3></a>
             <a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
 
         </div>
         <div class="fitem col-lg-5 col-md-5 col-sm-12 col-xs-12">
-            <h3><?=Yii::t('app','Experiences')?></h3>
+            <h3><?=Yii::t('app','Private Tours')?></h3>
             <div class="flink">
                 <?php if( ($themes = \common\models\Tools::getAllTheme() )!== null) {
                  foreach ($themes as $theme) {

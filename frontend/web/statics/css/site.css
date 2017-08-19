@@ -392,7 +392,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 
 .home-btn{
-  margin: 20px auto 30px auto;
+  margin: 30px auto 20px auto;
 }
 .home-btn .btn-danger {
   border-color: #eee;

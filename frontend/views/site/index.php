@@ -84,6 +84,13 @@ Modal::end();
         <?=Yii::t('app','We are a Beijing-based travel agency that creates private, guided tours and travel customization services all over China. With our Western-style travel sense and passion for Chinese culture and history, let us send you on a journey you will never forget.')?>
     </h1>
 
+    <div class="container home-btn">
+        <div class="row btn-row">
+            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"LET'S PLAN YOUR TRIP")?></a>
+            
+        </div>
+    </div>
+
     <div class="container home-whyus">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-12">
@@ -110,13 +117,6 @@ Modal::end();
                     <span><?=Yii::t('app','A stress-free travel experience so you can concentrate on the most important part of your tour: you')?></span>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container home-btn">
-        <div class="row btn-row">
-            <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="<?= Url::toRoute(['experience/index']) .  '#inquiry-form' ?>"><?=Yii::t('app',"LET'S PLAN YOUR TRIP")?></a>
-            
         </div>
     </div>
 
