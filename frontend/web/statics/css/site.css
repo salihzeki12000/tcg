@@ -306,6 +306,12 @@ ul.navbar-nav li:not(:last-child) b.caret{
   display: block;
   text-align: center;
 }
+.m-menu .m-menu-col-left{
+  padding-left: 15px !important;
+}
+.m-menu .m-menu-col-right{
+  padding-right: 15px !important;
+}
 
 .container.home-desc{
   color: #17BEBB;
