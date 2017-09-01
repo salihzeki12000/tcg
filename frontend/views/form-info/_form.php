@@ -142,11 +142,20 @@ use yii\helpers\Url;
         <label class="control-label"><?= Yii::t('app','Destinations that you plan to visit') ?></label>
         <input type="hidden" name="FormInfo[cities_plan]" value="">
         <div id="forminfo-cities_plan">
-            <?php foreach (\common\models\Tools::getFormPopularCities() as $key => $city_name) { ?>
+            <?php
+              $popular_cities_name = [];
+              foreach (\common\models\Tools::getFormPopularCities() as $key => $city_name) { ?>
                 <label><input type="checkbox" name="FormInfo[cities_plan][]" value="<?=$city_name?>" <?=(isset($current_city_name)&&($current_city_name==$city_name))?'checked':'' ?> > <?=$city_name?></label>
-            <?php } ?>
-            <label><input type="checkbox" id="ck_other_city" value="Other"> Other</label>
-            <label id="lab_other_city" style="display: none;"><input type="input" name="FormInfo[cities_plan][]" value="" disabled="disabled" style="width:100px"></label>
+                
+            <?php $popular_cities_name[] = $city_name;} 
+                $current_city_in_list = 1;
+                if (isset($current_city_name) && !in_array($current_city_name, $popular_cities_name)) 
+                {
+                    $current_city_in_list = 0;
+                }
+            ?>
+            <label><input type="checkbox" id="ck_other_city" value="Other" <?=(!$current_city_in_list&&isset($current_city_name))?'checked':'' ?>> Other</label>
+            <label id="lab_other_city" <?=(!$current_city_in_list&&isset($current_city_name))?'':'style="display: none;"' ?>><input type="input" name="FormInfo[cities_plan][]" value="<?=(!$current_city_in_list&&isset($current_city_name))?$current_city_name:'' ?>" <?=(!$current_city_in_list&&isset($current_city_name))?'disabled="disabled"':'' ?> style="width:100px"></label>
         </div>
 
         <div class="help-block"></div>
