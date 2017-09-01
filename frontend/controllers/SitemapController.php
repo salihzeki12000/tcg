@@ -27,7 +27,7 @@ class SitemapController extends Controller
             '/destinations',
             '/experiences',
             '/experiences/search',
-            '/themed-tours',
+            '/small-group-tours',
             '/the-china-guide-blog',
             '/preparation',
             '/about-us',

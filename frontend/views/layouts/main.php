@@ -70,7 +70,7 @@ AppAsset::register($this);
         ['label' => Yii::t('app','Private Tours'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','Group Travel'), 'active' => (\Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'mice'), 'items' => [
             ['label' => Yii::t('app','Small Group Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
-            ['label' => Yii::t('app','Educational Tours'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+            ['label' => Yii::t('app','Student Tour'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
             ['label' => Yii::t('app','MICE Travel'), 'url' => ['/mice'], 'active' => \Yii::$app->controller->id == 'mice'],
         ]],
         ['label' => Yii::t('app','Destinations'), 'active' => \Yii::$app->controller->id == 'destination',
@@ -171,7 +171,7 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group Tours') ?></a></li>
             <li class="">
                 <ul class="menu-group row">
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6 m-menu-col-left"><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Educational Tours') ?></a></li>
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6 m-menu-col-left"><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Student Tour') ?></a></li>
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6 m-menu-col-right"><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE Travel') ?></a></li>
                 </ul>
             </li>

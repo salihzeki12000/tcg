@@ -30,7 +30,7 @@ use yii\helpers\Url;
 
     <?php if(in_array('arrival_date', $form_fields)) { ?>
         <div class="required">
-            <label class="control-label" for=""><?=Yii::t('app','Arrival (In China)')?> </label>
+            <label class="control-label" for=""><?=Yii::t('app','Tour Start (in China)')?> </label>
             <table width="100%">
                 <tr>
                     <td width="50%" valign="top">
@@ -79,7 +79,7 @@ use yii\helpers\Url;
 
     <?php if(in_array('adults', $form_fields)) { ?>
     <div class="required">
-        <label class="control-label" for=""><?=Yii::t('app','Guest Information')?></label>
+        <label class="control-label" for=""><?=Yii::t('app','Travellers')?></label>
         <table width="100%">
             <tr>
                 <td width="50%" valign="middle">
@@ -143,7 +143,7 @@ use yii\helpers\Url;
         <input type="hidden" name="FormInfo[cities_plan]" value="">
         <div id="forminfo-cities_plan">
             <?php foreach (\common\models\Tools::getFormPopularCities() as $key => $city_name) { ?>
-                <label><input type="checkbox" name="FormInfo[cities_plan][]" value="<?=$city_name?>"> <?=$city_name?></label>
+                <label><input type="checkbox" name="FormInfo[cities_plan][]" value="<?=$city_name?>" <?=(isset($current_city_name)&&($current_city_name==$city_name))?'checked':'' ?> > <?=$city_name?></label>
             <?php } ?>
             <label><input type="checkbox" id="ck_other_city" value="Other"> Other</label>
             <label id="lab_other_city" style="display: none;"><input type="input" name="FormInfo[cities_plan][]" value="" disabled="disabled" style="width:100px"></label>

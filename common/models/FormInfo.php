@@ -98,7 +98,7 @@ class FormInfo extends \yii\db\ActiveRecord
             'adults' => Yii::t('app', 'Adults (> 12 yrs)'),
             'children' => Yii::t('app', 'Children (2 - 12 yrs)'),
             'infants' => Yii::t('app', 'Infants (< 2 yrs)'),
-            'guest_information' => Yii::t('app', 'Guest information'),
+            'guest_information' => Yii::t('app', 'Travellers'),
             'group_type' => Yii::t('app', 'Group type'),
             'cities_plan' => Yii::t('app', 'Destinations that you plan to visit'),
             'travel_interests' => Yii::t('app', 'Travel interests'),

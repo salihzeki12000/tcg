@@ -84,11 +84,8 @@ $this->params['breadcrumbs'][] = $this->title;
               }
               $this->description .= ', ' . Yii::$app->params['tour_themes'][$theme_id];
               $i++;
-              ?>
-              ,
-            <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span>
-                
-            <?php } ?>
+              ?>,
+            <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span><?php } ?>
         </div>
     </div>
 

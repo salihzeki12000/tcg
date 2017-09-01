@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Experiences');
 </div>
 
 <div class="form-info container">
-  <h2><?=Yii::t('app',"Can't find what you're looking for? Contact us today to customize your tour.")?></h2>
+  <h2><?=Yii::t('app',"Customize a tour that includes a visit to this destination.")?></h2>
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
     <div class="form-title"><?=Yii::t('app','Customization Form')?></div>
@@ -70,13 +70,12 @@ $this->params['breadcrumbs'][] = Yii::t('app','Experiences');
         'form_type' => FORM_TYPE_CUSTOM,
         'tour_code' => '',
         'tour_name' => '',
+        'current_city_name' => $city_info['name'],
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within one working day.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
   </div>
 </div>
-
-
 
 
 <?php
