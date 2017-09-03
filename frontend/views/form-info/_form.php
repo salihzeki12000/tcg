@@ -155,7 +155,7 @@ use yii\helpers\Url;
                 }
             ?>
             <label><input type="checkbox" id="ck_other_city" value="Other" <?=(!$current_city_in_list&&isset($current_city_name))?'checked':'' ?>> Other</label>
-            <label id="lab_other_city" <?=(!$current_city_in_list&&isset($current_city_name))?'':'style="display: none;"' ?>><input type="input" name="FormInfo[cities_plan][]" value="<?=(!$current_city_in_list&&isset($current_city_name))?$current_city_name:'' ?>" <?=(!$current_city_in_list&&isset($current_city_name))?'':'disabled="disabled"' ?> style="width:100px"></label>
+            <label id="lab_other_city" <?=(!$current_city_in_list&&isset($current_city_name))?'':'style="display: none;"' ?>><input type="input" name="FormInfo[cities_plan][]" value="<?=(!$current_city_in_list&&isset($current_city_name))?$current_city_name:'' ?>" <?=(!$current_city_in_list&&isset($current_city_name))?'':'disabled="disabled"' ?> style="width:200px"></label>
         </div>
 
         <div class="help-block"></div>
