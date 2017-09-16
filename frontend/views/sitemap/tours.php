@@ -10,21 +10,27 @@ use yii\helpers\Url;
     <title>Tours - The China Guide</title>
     <script src="/statics/js/jquery.min.js"></script>
     <style type="text/css">
+        body{
+            font-size: 14px;
+        }
         .title-bar{
             background-color: #eee;
             cursor:pointer;
-            padding: 10px 5px;
+            padding: 10px 0;
             margin: 10px 0;
             font-weight: bold;
-            font-size: 16px;
         }
         .sub-title{
             font-weight: bold;
         }
+        ul,li{
+            list-style-type:none;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
-    <ul>
+    <div>
     <?php foreach ($data['tours'] as $value) { 
         $url_prefix = 'experience';
         if ($value['type'] == TOUR_TYPE_GROUP) {
@@ -32,25 +38,25 @@ use yii\helpers\Url;
         }
 
     ?>
-        <li>
+        <div class="tour-item">
             <div class="title-bar"><?= $value['code'] ?> <a href="<?= $site_root ?><?= Url::toRoute([$url_prefix.'/view', 'url_id'=>$value['url_id']]) ?>"><?= $value['name'] ?></a> (<?= ($value['tour_length']==intval($value['tour_length']))?intval($value['tour_length']):$value['tour_length'] ?> <?=($value['tour_length']>1)?'days':'day'?>, <?= $value['display_cities'] ?>)</div>
-            <ul style="display: none;">
+            <div class="days" style="display: none;">
                 <?php foreach ($value['itineraries'] as $day_item) { ?>
-                <li>
+                <div>
                     <div class="sub-title">Day <?=$day_item['day']?>: <?=$day_item['cities_name']?></div>
                     <div><?=$day_item['description']?></div>
-                </li>
+                </div>
                 <?php } ?>
-            </ul>
-        </li>
+            </div>
+        </div>
     <?php } ?>
-    </ul>
+    </div>
 
 </body>
 <script type="text/javascript">
     $(function(){
         $('.title-bar').click(function() {
-            $(this).parent('li').children('ul').toggle();
+            $(this).parent('.tour-item').children('.days').toggle();
         });
     });
 </script>
