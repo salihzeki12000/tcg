@@ -71,6 +71,7 @@ return [
                 'secure-credit-card-form' => 'form-card/create',
                 'form-submission/success' => 'form-info/success',
                 'form-submission' => 'form-info/create',
+                'experiences/all-tour-list' => 'sitemap/tours',
                 'experiences/search' => 'experience/search',
                 'experiences/city/<city_name:[A-Za-z0-9_\'\s\|\-]+>/page/<page:\d+>' => 'experience/index',
                 'experiences/city/<city_name:[A-Za-z0-9_\'\s\|\-]+>' => 'experience/index',
