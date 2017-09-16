@@ -7,6 +7,7 @@ use yii\helpers\Url;
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="robots" content="noindex">
     <title>Tours - The China Guide</title>
     <script src="/statics/js/jquery.min.js"></script>
     <style type="text/css">
