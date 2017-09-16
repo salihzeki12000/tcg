@@ -23,9 +23,10 @@ use yii\helpers\Url;
         .sub-title{
             font-weight: bold;
         }
-        ul,li{
+        ul,li,p{
             list-style-type:none;
             padding: 0;
+            margin: 0;
         }
     </style>
 </head>
