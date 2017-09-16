@@ -8,11 +8,18 @@ use yii\helpers\Url;
 <html>
 <head>
     <title>Tours - The China Guide</title>
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/statics/js/jquery.min.js"></script>
     <style type="text/css">
         .title-bar{
             background-color: #eee;
             cursor:pointer;
+            padding: 10px 5px;
+            margin: 10px 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .sub-title{
+            font-weight: bold;
         }
     </style>
 </head>
@@ -26,11 +33,11 @@ use yii\helpers\Url;
 
     ?>
         <li>
-            <h2 class="title-bar"><?= $value['code'] ?> <a href="<?= $site_root ?><?= Url::toRoute([$url_prefix.'/view', 'url_id'=>$value['url_id']]) ?>"><?= $value['name'] ?></a> (<?= ($value['tour_length']==intval($value['tour_length']))?intval($value['tour_length']):$value['tour_length'] ?> <?=($value['tour_length']>1)?'days':'day'?>, <?= $value['display_cities'] ?>)</h2>
+            <div class="title-bar"><?= $value['code'] ?> <a href="<?= $site_root ?><?= Url::toRoute([$url_prefix.'/view', 'url_id'=>$value['url_id']]) ?>"><?= $value['name'] ?></a> (<?= ($value['tour_length']==intval($value['tour_length']))?intval($value['tour_length']):$value['tour_length'] ?> <?=($value['tour_length']>1)?'days':'day'?>, <?= $value['display_cities'] ?>)</div>
             <ul style="display: none;">
                 <?php foreach ($value['itineraries'] as $day_item) { ?>
                 <li>
-                    <h3>Day <?=$day_item['day']?>: <?=$day_item['cities_name']?></h3>
+                    <div class="sub-title">Day <?=$day_item['day']?>: <?=$day_item['cities_name']?></div>
                     <div><?=$day_item['description']?></div>
                 </li>
                 <?php } ?>
