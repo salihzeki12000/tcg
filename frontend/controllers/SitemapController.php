@@ -101,4 +101,21 @@ class SitemapController extends Controller
         echo $this->renderPartial('index',['site_root'=>$site_root, 'data'=>$data, 'pages'=>$pages]);
     }
 
+    public function actionTours()
+    {
+        $site_root = SITE_BASE_URL;
+        $query = \common\models\Tour::find()->where(['status'=>DIS_STATUS_SHOW]);
+        $data['tours'] = $query
+            ->orderBy('priority DESC, create_time DESC')
+            ->all();
+        foreach ($data['tours'] as &$tour) {
+            $itineraries = \common\models\Itinerary::find()
+            ->where(['tour_id'=>$tour['id']])
+            ->orderBy('day ASC')
+            ->all();
+            $tour['itineraries'] = $itineraries;
+        }
+        echo $this->renderPartial('tours',['site_root'=>$site_root, 'data'=>$data]);
+
+    }
 }

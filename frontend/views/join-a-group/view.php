@@ -239,6 +239,7 @@ $this->params['breadcrumbs'][] = $this->title;
           'form_type' => FORM_TYPE_GROUP,
           'tour_code' => $tour_info['code'],
           'tour_name' => $tour_info['name'],
+          'tour_id' => $tour_info['id'],
           'bt_submit_txt' => Yii::t('app', 'Submit') ,
       ]) ?>
 

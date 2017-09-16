@@ -43,6 +43,7 @@ class Tour extends \yii\db\ActiveRecord
     public $image;
     public $map_image;
     public $images;
+    public $itineraries;
     /**
      * @inheritdoc
      */

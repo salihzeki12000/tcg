@@ -13,8 +13,12 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(['action' => Url::toRoute(['form-info/create', 'form_type' => $form_type]), 'id'=>'form-info-form']);
         $form_fields = Yii::$app->params['form_fields'][$form_type]; 
+        if (!isset($tour_id)) {
+            $tour_id = 0;
+        }
     ?>
     <?= Html::activeHiddenInput($model, 'type', ['value'=>$form_type]) ?>
+    <?= Html::activeHiddenInput($model, 'tour_id', ['value'=>$tour_id]) ?>
 
     <?= !in_array('tour_code', $form_fields) ? '' : Html::activeHiddenInput($model, 'tour_code', ['value'=>$tour_code]) ?>
 

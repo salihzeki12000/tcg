@@ -48,6 +48,7 @@ use Yii;
  * @property string other_info
  * @property integer tour_type
  * @property integer status
+ * @property integer tour_id
 
 */
 class FormInfo extends \yii\db\ActiveRecord
@@ -80,7 +81,7 @@ class FormInfo extends \yii\db\ActiveRecord
             [['guest_information', 'additional_information', 'room_requirements', 'ideas', 'ideas_trip', 'transport_info', 'other_info', 'tour_name'], 'string', 'max' => 255],
             [['name', 'subject_program', 'participants_number', 'school_name', 'position', 'phone_number', 'hear_about_us', 'purpose_trip', 'company_name', 'email', 'promotion_code'], 'string', 'max' => 50],
             ['email', 'email'],
-            [['type', 'tour_type','status'], 'integer'],
+            [['type', 'tour_type','status', 'tour_id'], 'integer'],
         ];
     }
 
@@ -133,6 +134,7 @@ class FormInfo extends \yii\db\ActiveRecord
             'tour_length' => Yii::t('app', 'Tour length'),
             'promotion_code' => Yii::t('app', 'Promotion Code'),
             'status' => Yii::t('app', 'Status'),
+            'tour_id' => Yii::t('app', 'Tour Id'),
         ];
     }
 }

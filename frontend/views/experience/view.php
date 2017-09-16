@@ -225,6 +225,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
             'form_type' => FORM_TYPE_QUOTATION,
             'tour_code' => $tour_info['code'],
             'tour_name' => $tour_info['name'],
+            'tour_id'   => $tour_info['id'],
         ]) ?>
 
         <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
