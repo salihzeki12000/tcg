@@ -18,8 +18,6 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
-
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -29,7 +27,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       </ol>
      
       <!-- Wrapper for slides -->
-      <div class="carousel-inner">
+      <div class="carousel-inner full-w">
         <?php for($i=0; $i<count($tour_info['images']); $i++) {
             $slide=$tour_info['images'][$i];
             $pic_type = 'l';
@@ -39,6 +37,9 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
         ?>
             <div class="item <?= ($i==0)? 'active' : '' ?> ">
               <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['path'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
+              <div class="carousel-caption">
+                <span><?= $slide['title']; ?></span>
+              </div>
             </div>
         <?php } ?>
       </div>
@@ -52,6 +53,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       </a>
     </div> <!-- Carousel -->
 
+	<h1 class="title"><?= Html::encode($tour_info['name']) ?> <br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
 
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
     

@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>">
               <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city['pic_s'], 's')?>" alt="<?=  $city['name'] ?>">
               <div class="carousel-caption">
-                  <h3><?= $city['name'] ?></h3>
+                  <span><?= $city['name'] ?></span>
               </div>
           </a>
       </div>
@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <a class="thumbnail" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>">
               <img class="img-responsive" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city['pic_s'], 's')?>" alt="<?=  $city['name'] ?>">
               <div class="carousel-caption">
-                  <h3><?= $city['name'] ?></h3>
+                  <span><?= $city['name'] ?></span>
               </div>
           </a>
       </div>
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
       ?>
         <div class="col-lg-2 col-md-2 col-xs-6 dest-other">
           <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>">
-            <h3><?= $city['name'] ?></h3>
+            <span><?= $city['name'] ?></span>
           </a>
         </div>
       <?php } }?>
