@@ -253,7 +253,7 @@ AppAsset::register($this);
 		    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		            <a href="tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">
-			            <img src="statics/images/trip-advisor-certificate-of-excellence-small.png">
+			            <img src="/statics/images/trip-advisor-certificate-of-excellence-small.png">
 			        </a>
 			    </div>
 			    <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -319,7 +319,7 @@ AppAsset::register($this);
 		        <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		            <h3><?=Yii::t('app','Security')?></h3>
 		            <div>
-		                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="statics/images/comodo_secure_seal_113x59_transp.png"></a>
+		                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="/statics/images/comodo_secure_seal_113x59_transp.png"></a>
 		            </div>
 		        </div>
 		        <div class="partnership-membership col-lg-12 col-md-12 col-sm-12 col-xs-12">
