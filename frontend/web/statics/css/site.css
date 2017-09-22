@@ -1081,7 +1081,7 @@ div#social-media-icons-container a {
 }
 @media (min-width: 1255px) {
   .navbar-inverse .navbar-nav{
-      margin-right: 180px;
+      margin-right: 160px;
   }
   .tour-view > .col-lg-8 {
       padding-left:75px;
