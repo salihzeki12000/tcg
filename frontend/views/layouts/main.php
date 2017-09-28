@@ -166,33 +166,33 @@ AppAsset::register($this);
         <div class="modal-content m-menu">
 
         <ul>
-	        <li>
-		        <ul class="menu-group row">
-		            <li class="dropdown col-lg-6 col-md-6 col-sm-6 col-xs-6">
-		                <a data-toggle="dropdown" class="dropdown">
-		                <?= Yii::$app->params['language_name'][Yii::$app->language]  ?>
-		                <i class="glyphicon glyphicon-chevron-down"></i>
-		                </a>
-		                <ul class="dropdown-menu sub-menu" role="menu">
-		                <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
-		                    <li <?= Yii::$app->language==$language?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
-		                <?php } ?>
-		                </ul>
-		            </li>
-		            <li class="dropdown col-lg-6 col-md-6 col-sm-6 col-xs-6">
-		                <a data-toggle="dropdown" class="dropdown">
-		                <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?>
-		                <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
-		                <i class="glyphicon glyphicon-chevron-down"></i>
-		                </a>
-		                <ul class="dropdown-menu sub-menu" role="menu">
-		                <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
-		                    <li <?= Yii::$app->params['currency']==$ckey?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=>$ckey]) ?>" rel="nofollow"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
-		                <?php } ?>
-		                </ul>
-		            </li>
-	        	</ul>
-	        </li>
+                <li>
+                        <ul class="menu-group row">
+                            <li class="dropdown col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a data-toggle="dropdown" class="dropdown">
+                                <?= Yii::$app->params['language_name'][Yii::$app->language]  ?>
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu sub-menu" role="menu">
+                                <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
+                                    <li <?= Yii::$app->language==$language?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'language'=>$language]) ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
+                                <?php } ?>
+                                </ul>
+                            </li>
+                            <li class="dropdown col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a data-toggle="dropdown" class="dropdown">
+                                <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?>
+                                <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu sub-menu" role="menu">
+                                <?php foreach (Yii::$app->params['currency_name'] as $ckey => $currency) { ?>
+                                    <li <?= Yii::$app->params['currency']==$ckey?'class="active"':'' ?>><a href="<?= Url::toRoute([\common\models\Tools::getCurrentUrl(), 'currency'=>$ckey]) ?>" rel="nofollow"><?= $currency['sign'] . ' ' . $currency['name'] ?></a></li>
+                                <?php } ?>
+                                </ul>
+                            </li>
+                        </ul>
+                </li>
             <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find a Tour') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Private Tours') ?></a></li>
             <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group Tours') ?></a></li>
@@ -200,8 +200,8 @@ AppAsset::register($this);
             <li><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE Travel') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>
             <li><a href="<?= Url::toRoute(['article/index']) ?>"><?= Yii::t('app','Blog') ?></a></li>
-			<li><a href="<?= Url::toRoute(['preparation/index']) ?>"><?= Yii::t('app','Preparation') ?></a></li>
-			<li><a href="<?= Url::toRoute(['/faq']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
+                        <li><a href="<?= Url::toRoute(['preparation/index']) ?>"><?= Yii::t('app','Preparation') ?></a></li>
+                        <li><a href="<?= Url::toRoute(['/faq']) ?>"><?= Yii::t('app','FAQ') ?></a></li>
             <li><a href="<?= Url::toRoute(['/about-us']) ?>"><?= Yii::t('app','About Us') ?></a></li>
             <li class="dropdown">
                 <a data-toggle="dropdown">
@@ -249,89 +249,89 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-	    <div class="row">
-		    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		            <a href="tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">
-			            <img src="/statics/images/trip-advisor-certificate-of-excellence-small.png">
-			        </a>
-			    </div>
-			    <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		            <h3><?=Yii::t('app','Follow Us on Social Media')?></h3>
-		            <div id="social-media-icons-container">
-		                <a href="https://www.youtube.com/channel/UCp9ksc2bXXWcbE-CZG5iEMQ" id="youtube" target="_blank"></a>
-		                <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
-		                <a href="https://www.facebook.com/thechinaguide" id="facebook" target="_blank"></a>
-		                <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
-		                <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
-		                <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
-		            </div>
-		        </div>
-		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		            <div>
-			            <i class="glyphicon glyphicon-envelope footer-email"></i><a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>" style="display: inline-block"><h3 style="display: inline-block"><?=Yii::t('app','Email Us Your Plan')?></h3></a>
-			        </div>
-			        <div>
-		            	<i class="glyphicon glyphicon-credit-card footer-credit-card"></i><a href="<?= Url::toRoute(['form-card/create']) ?>" style="display: inline-block"><h3 style="display: inline-block"><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
-		            </div>
-			    </div>
-			</div>
-		    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	            <h3><?=Yii::t('app','The Company')?></h3>
-	            <div>
-	                <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Who We Are')?></a>
-	                <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a>
-	                <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a>
-	                <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>
-	                <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
-	                <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
-	                <a href="<?= Url::toRoute(['/faq']) ?>"><?=Yii::t('app','FAQ')?></a>
-	                <a href="/statics/pages/company_profile.pdf"><?=Yii::t('app','Company Profile')?></a>
-	            </div>
-		    </div>
-		    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-		        <h3><?=Yii::t('app','Experiences')?></h3>
-		        <div>
-		            <?php if( ($themes = \common\models\Tools::getAllTheme() )!== null) {
-		             foreach ($themes as $theme) {
-		            ?>
-		            <a href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>"><?= $theme['name'] ?></a> 
-		            <?php } } ?>
-		        </div>
-		    </div>
-		    <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-		        <h3><?=Yii::t('app','Destinations')?></h3>
-		        <div>
-		            <?php if( ($cities = \common\models\Tools::getMostPopularCities(9) )!== null) {
-		                foreach ($cities as $city) {
-		            ?>
-		            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>"><?= $city['name'] ?></a> 
-		            <?php } } ?>
-		        </div>
-		    </div> -->
-		    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-		        <div class="fitem payment-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		            <h3><?=Yii::t('app','Payment Options')?></h3>
-		            <div>
-		                <i class="footer-icons payment"></i>
-		            </div>
-		        </div>
-		        <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		            <h3><?=Yii::t('app','Security')?></h3>
-		            <div>
-		                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="/statics/images/comodo_secure_seal_113x59_transp.png"></a>
-		            </div>
-		        </div>
-		        <div class="partnership-membership col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		            <h3><?=Yii::t('app','Partnerships & Memberships')?></h3>
-		            <div>
-		                <i class="footer-icons partnership"></i>
-		                <a href="/misc/animals-asia" class="icon-link"><i class="footer-icons membership"></i></a>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-	</div>
+            <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">
+                                    <img src="/statics/images/trip-advisor-certificate-of-excellence-small.png">
+                                </a>
+                            </div>
+                            <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3><?=Yii::t('app','Follow Us on Social Media')?></h3>
+                            <div id="social-media-icons-container">
+                                <a href="https://www.youtube.com/channel/UCp9ksc2bXXWcbE-CZG5iEMQ" id="youtube" target="_blank"></a>
+                                <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
+                                <a href="https://www.facebook.com/thechinaguide" id="facebook" target="_blank"></a>
+                                <a href="http://twitter.com/thechinaguide" id="twitter" target="_blank"></a>
+                                <a href="http://www.linkedin.com/company/the-china-guide" id="linkedin" target="_blank"></a>
+                                <a href="http://www.pinterest.com/thechinaguide" id="pinterest" target="_blank"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div>
+                                    <i class="glyphicon glyphicon-envelope footer-email"></i><a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>" style="display: inline-block"><h3 style="display: inline-block"><?=Yii::t('app','Email Us Your Plan')?></h3></a>
+                                </div>
+                                <div>
+                                <i class="glyphicon glyphicon-credit-card footer-credit-card"></i><a href="<?= Url::toRoute(['form-card/create']) ?>" style="display: inline-block"><h3 style="display: inline-block"><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <h3><?=Yii::t('app','The Company')?></h3>
+                    <div>
+                        <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Who We Are')?></a>
+                        <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a>
+                        <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a>
+                        <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>
+                        <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
+                        <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
+                        <a href="<?= Url::toRoute(['/faq']) ?>"><?=Yii::t('app','FAQ')?></a>
+                        <a href="/statics/pages/company_profile.pdf"><?=Yii::t('app','Company Profile')?></a>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h3><?=Yii::t('app','Experiences')?></h3>
+                        <div>
+                            <?php if( ($themes = \common\models\Tools::getAllTheme() )!== null) {
+                             foreach ($themes as $theme) {
+                            ?>
+                            <a href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>"><?= $theme['name'] ?></a> 
+                            <?php } } ?>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                        <h3><?=Yii::t('app','Destinations')?></h3>
+                        <div>
+                            <?php if( ($cities = \common\models\Tools::getMostPopularCities(9) )!== null) {
+                                foreach ($cities as $city) {
+                            ?>
+                            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>"><?= $city['name'] ?></a> 
+                            <?php } } ?>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="fitem payment-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3><?=Yii::t('app','Payment Options')?></h3>
+                            <div>
+                                <i class="footer-icons payment"></i>
+                            </div>
+                        </div>
+                        <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3><?=Yii::t('app','Security')?></h3>
+                            <div>
+                                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="/statics/images/comodo_secure_seal_113x59_transp.png"></a>
+                            </div>
+                        </div>
+                        <div class="partnership-membership col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3><?=Yii::t('app','Partnerships & Memberships')?></h3>
+                            <div>
+                                <i class="footer-icons partnership"></i>
+                                <a href="/misc/animals-asia" class="icon-link"><i class="footer-icons membership"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
     <div class="copyright">
         <p>Copyright &copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
     </div>

@@ -404,7 +404,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 
 .home-categories .list-group .list-group-item{
-  margin: 5px auto;
+  margin: 11px auto;
   padding: 0px 0px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -452,8 +452,9 @@ ul.navbar-nav li:not(:last-child) b.caret{
 .home-categories .icon-romantic{
   background-position: -19px -235px;
 }
-.home-categories span{
+.home-categories h3 {
   line-height: 50px;
+  font-size: 20px;
 }
 
 .thumbnail {
@@ -507,6 +508,56 @@ div#social-media-icons-container {
   text-decoration:none;
   color:#666666;
   font-weight: normal;
+}
+
+.social-share-links a {
+  background-image: url(../images/share-social-media-icons.png);
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  /* margin: 0 5px; */
+  /* background-size: 370px; */
+  background-repeat: no-repeat;
+}
+
+.social-share-links a.share-facebook {
+    background-position: -256px 0px;
+}
+
+.social-share-links a.share-facebook:hover {
+    background-position: -109px 0px;
+}
+
+.social-share-links a.share-twitter {
+    background-position: -183px 0px;
+}
+
+.social-share-links a.share-twitter:hover {
+    background-position: -36px 0px;
+}
+
+.social-share-links a.share-pinterest {
+    background-position: -219px 0px;
+}
+
+.social-share-links a.share-pinterest:hover {
+    background-position: -72px 0px;
+}
+
+.social-share-links a.share-googleplus {
+    background-position: -292px 0px;
+}
+
+.social-share-links a.share-googleplus:hover {
+    background-position: -145px -0px;
+}
+
+.social-share-links a.share-mail {
+    background-position: -330px 0px;
+}
+
+.social-share-links a.share-mail:hover {
+    background-position: -0px -0px;
 }
 
 div#social-media-icons-container a {
@@ -1022,9 +1073,7 @@ div#social-media-icons-container a {
   color: #E9C46C !important;
 }
 .tour-index h3,.tour-index h3>a{
-  color: #17BEBB;
   overflow: hidden;
-  height: 40px;
   text-overflow: ellipsis;
   vertical-align: middle;
   display: table-cell;
@@ -1081,7 +1130,7 @@ div#social-media-icons-container a {
 }
 @media (min-width: 1255px) {
   .navbar-inverse .navbar-nav{
-      margin-right: 160px;
+      margin-right: 180px;
   }
   .tour-view > .col-lg-8 {
       padding-left:75px;
@@ -2011,7 +2060,7 @@ div.itinerary div.image img {
   height: 100%;
 }
 
-span.tour-name {
+h3.tour-name, span.tour-name {
   position: absolute;
   left: 0;
   top: 83px;
@@ -2115,7 +2164,7 @@ div.itinerary-view .button:hover {
   margin-bottom: 20px;
 }
 
-.strike > span {
+.strike > h2 {
     position: relative;
     display: inline-block;
     min-width: 180px;
@@ -2123,8 +2172,8 @@ div.itinerary-view .button:hover {
     font-size: 20px
 }
 
-.strike > span:before,
-.strike > span:after {
+.strike > h2:before,
+.strike > h2:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -2133,12 +2182,12 @@ div.itinerary-view .button:hover {
     background: #E6D2A1;
 }
 
-.strike > span:before {
+.strike > h2:before {
     right: 100%;
     margin-right: 15px;
 }
 
-.strike > span:after {
+.strike > h2:after {
     left: 100%;
     margin-left: 15px;
 }
