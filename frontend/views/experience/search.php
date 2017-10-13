@@ -127,32 +127,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
        <div class="file-preview-frame file-preview-initial col-lg-4 col-md-4 col-sm-6 col-xs-12" >
         <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"> 
-                                   <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" />
-                                   <h3 class="tour-name"><?php echo $tour['name']; ?></h3>
-                    </a>
-                    
-                    <div class="file-thumbnail-footer"> 
-                     <div class="file-footer-caption">
-                        <div class="content-press">
-                                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','days'):Yii::t('app','day')?><?php if(!empty($tour['price_cny'])): ?>
-                                        &#9679; From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?><?php endif; ?><br /><span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
-                                
-                                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
-                            </div>
-                        
-                        <div class="tourlist-desc">
-                                <?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?>
-                        </div>
-                        
-                        <div class="itinerary-view">
-                                                <a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>">
-                                                        <span class="button">
-                                                                <?=Yii::t('app','View trip')?>
-                                                        </span>
-                                                </a>
-                                        </div>
-                     </div> 
-                    </div> 
+				   <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" />
+				   <h3 class="tour-name"><?php echo $tour['name']; ?></h3>
+	            </a>
+	            
+	            <div class="file-thumbnail-footer"> 
+	             <div class="file-footer-caption">
+	                <div class="content-press">
+		                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','days'):Yii::t('app','day')?><?php if(!empty($tour['price_cny'])): ?>
+		                	&#9679; From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?><?php endif; ?><br /><span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
+		                
+		                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
+		            </div>
+	                
+	                <div class="tourlist-desc">
+		                <?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?>
+	                </div>
+	                
+	                <div class="itinerary-view">
+						<a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>">
+							<span class="button">
+								<?=Yii::t('app','View trip')?>
+							</span>
+						</a>
+					</div>
+	             </div> 
+	            </div> 
        </div>
 
       <?php } ?> 

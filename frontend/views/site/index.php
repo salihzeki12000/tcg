@@ -142,49 +142,49 @@ Modal::end();
     <div class="tour-index container">
         
         <div class="col-lg-12">
-                <div class="strike">
-                                <h2>
-                                        <?=Yii::t('app','Suggested Itineraries')?>
-                                </h2>
-                        </div>
-                </div>
+	        <div class="strike">
+				<h2>
+					<?=Yii::t('app','Suggested Itineraries')?>
+			   	</h2>
+			</div>
+		</div>
         
         <div class="file-drop-zone"> 
          <div class="file-preview-thumbnails">
           <div class="file-initial-thumbs row">
-                  
+		  	
             <?php foreach ($tours as $tour): ?>
 
-                          <div class="file-preview-frame file-preview-initial col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                        <a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"> 
-                                   <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" />
-                                   <h3 class="tour-name"><?php echo $tour['name']; ?></h3>
-                    </a>
-                    
-                    <div class="file-thumbnail-footer"> 
-                     <div class="file-footer-caption">
-                        <div class="content-press">
-                                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','days'):Yii::t('app','day')?><?php if(!empty($tour['price_cny'])): ?>
-                                        &#9679; From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?><?php endif; ?><br /><span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
-                                
-                                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
-                            </div>
-                        
-                        <div class="tourlist-desc">
-                                <?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?>
-                        </div>
-                        
-                        <div class="itinerary-view">
-                                                <a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>">
-                                                        <span class="button">
-                                                                <?=Yii::t('app','View trip')?>
-                                                        </span>
-                                                </a>
-                                        </div>
-                     </div> 
-                    </div> 
-                   </div>
-                   
+			  <div class="file-preview-frame file-preview-initial col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+	          	<a class="kv-file-content" href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>"> 
+				   <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" />
+				   <h3 class="tour-name"><?php echo $tour['name']; ?></h3>
+	            </a>
+	            
+	            <div class="file-thumbnail-footer"> 
+	             <div class="file-footer-caption">
+	                <div class="content-press">
+		                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','days'):Yii::t('app','day')?><?php if(!empty($tour['price_cny'])): ?>
+		                	&#9679; From <span><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?><?php endif; ?><br /><span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
+		                
+		                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
+		            </div>
+	                
+	                <div class="tourlist-desc">
+		                <?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?>
+	                </div>
+	                
+	                <div class="itinerary-view">
+						<a href="<?= Url::toRoute(['experience/view', 'url_id'=>$tour['url_id']]) ?>">
+							<span class="button">
+								<?=Yii::t('app','View trip')?>
+							</span>
+						</a>
+					</div>
+	             </div> 
+	            </div> 
+	           </div>
+	           
             <?php endforeach; ?>
            
          </div> 
@@ -195,22 +195,22 @@ Modal::end();
 
     <div class="container home-categories">
         <div class="col-lg-12">
-                <div class="strike">
-                                <h2>
-                                        <?=Yii::t('app','Select a Tour Category')?>
-                                </h2>
-                        </div>
-                </div>
+	        <div class="strike">
+				<h2>
+					<?=Yii::t('app','Select a Tour Category')?>
+			   	</h2>
+			</div>
+		</div>
         
         <!-- <div class="list-group"> -->
         <div class="row">
-                <ul class="list-group">
+	        <ul class="list-group">
             <?php foreach ($themes as $theme) {  
                 if (empty($theme['class_name'])) {
                     continue;
                 }
             ?>
-                <li class="col-lg-4 col-md-6 col-xs-12 list-group-item">
+            	<li class="col-lg-4 col-md-6 col-xs-12 list-group-item">
                 <a class="homepage-category" style="margin: 5px; display: block; background: #E0E3D6; border-radius: 12px; text-align: center; color: #4D423C" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>">
                     <i class="icon <?= $theme['class_name'] ?>"></i>
                     <h3><?= $theme['name'] ?></h3>
@@ -218,19 +218,19 @@ Modal::end();
                 </a>
                 </li>
             <?php } ?>
-                        </ul>
-                </div>
+			</ul>
+		</div>
         <!-- </div> -->
     </div>
 
     <div class="container">
         <div class="col-lg-12">
-                <div class="strike">
-                                <h2>
-                                        <?=Yii::t('app','Popular Travel Destinations')?>
-                                </h2>
-                        </div>
-                </div>
+	        <div class="strike">
+				<h2>
+					<?=Yii::t('app','Popular Travel Destinations')?>
+			   	</h2>
+			</div>
+		</div>
     </div>
 
     <div class="map-container row">
@@ -305,39 +305,39 @@ Modal::end();
         <div class="row">
             
             <div class="col-lg-12">
-                        <div class="strike">
-                                        <h2>
-                                                <?=Yii::t('app','What Our Clients Are Saying')?>
-                                        </h2>
-                                </div>
-                        </div>
+		        <div class="strike">
+					<h2>
+						<?=Yii::t('app','What Our Clients Are Saying')?>
+				   	</h2>
+				</div>
+			</div>
             
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <img class="img-responsive" src="<?= 'statics/images/review-1.png'; ?>" />
+	        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+	            <img class="img-responsive" src="<?= 'statics/images/review-1.png'; ?>" />
                 <blockquote class="blockquote">
-                        <p><?=Yii::t('app','They were very professional and extremely helpful, always trying to provide the best solutions for us and as confortable as possible. Lina was very nice and always available, it was very easy to communicate with. Air China cancelled one of our flights and, even though we booked the flights directly and not through the agency, Lina kept on talking with us all night to find an alternative and was very efficient. It is a great agency, with good travel plans, very flexible and pleasent to work with, the guides speak proper english and everyone is very approachable. Totally recommend!!')?></p>
-                                        <footer>M3170ZLmariac <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
-                    </blockquote>
+	                <p><?=Yii::t('app','They were very professional and extremely helpful, always trying to provide the best solutions for us and as confortable as possible. Lina was very nice and always available, it was very easy to communicate with. Air China cancelled one of our flights and, even though we booked the flights directly and not through the agency, Lina kept on talking with us all night to find an alternative and was very efficient. It is a great agency, with good travel plans, very flexible and pleasent to work with, the guides speak proper english and everyone is very approachable. Totally recommend!!')?></p>
+					<footer>M3170ZLmariac <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
+	            </blockquote>
             </div>
             
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <img class="img-responsive" src="<?= 'statics/images/review-2.png'; ?>" />
+	            <img class="img-responsive" src="<?= 'statics/images/review-2.png'; ?>" />
                 <blockquote class="blockquote">
-                        <p><?=Yii::t('app','First time bring my kids to China, a home which I left over 28 years ago. My American friend recommended this company to me and they did an fantastic job for our 13 days trip in China. Erick from BeiJing are so knowledgeable and arranged the trip perfectly according to the weather and activities. Betty from XiAn covered all of our activities with very relaxing feeling even though we only have 24 hours in XiAn. This is a totally worry free luxury trip, and gave my kids a great impression on their mommy\'s homeland. We will definitely use this company again to arrange our next trip to China.')?></p>
-                        <footer>J W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
-                    </blockquote>
+                	<p><?=Yii::t('app','First time bring my kids to China, a home which I left over 28 years ago. My American friend recommended this company to me and they did an fantastic job for our 13 days trip in China. Erick from BeiJing are so knowledgeable and arranged the trip perfectly according to the weather and activities. Betty from XiAn covered all of our activities with very relaxing feeling even though we only have 24 hours in XiAn. This is a totally worry free luxury trip, and gave my kids a great impression on their mommy\'s homeland. We will definitely use this company again to arrange our next trip to China.')?></p>
+                	<footer>J W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
+	            </blockquote>
             </div>
             
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <img class="img-responsive" src="<?= 'statics/images/review-3.png'; ?>" />
+	            <img class="img-responsive" src="<?= 'statics/images/review-3.png'; ?>" />
                 <blockquote class="blockquote">
-                        <p><?=Yii::t('app','Right from our initial inquiry, to the outstanding communication with Sarah, to local guides who met us at the train stations and airports we were in good hands with the staff at The China Guide. Our family of 7 Canadians spent 3 weeks traveling through China and I can\'t emphasize enough how we appreciated their support from start to finish. Don\'t hesitate and let The China Guide work with you to plan an itinerary that is perfect for you.')?></p>
-                        <footer>Don W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
-                    </blockquote>
+                	<p><?=Yii::t('app','Right from our initial inquiry, to the outstanding communication with Sarah, to local guides who met us at the train stations and airports we were in good hands with the staff at The China Guide. Our family of 7 Canadians spent 3 weeks traveling through China and I can\'t emphasize enough how we appreciated their support from start to finish. Don\'t hesitate and let The China Guide work with you to plan an itinerary that is perfect for you.')?></p>
+                	<footer>Don W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
+	            </blockquote>
             </div>
         </div>
     </div>
-
+	
     <div class="container index-faq col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="list-group faq">
             <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','Prepare For Your Trip')?></h2></center></a>
@@ -353,7 +353,7 @@ Modal::end();
 
 
     <div class="container index-article blog col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            
+	    
         <?php foreach ($articles as $article) { ?>
           <article class="entry teaser first">
             <header class="entry-header">
@@ -379,12 +379,12 @@ Modal::end();
         <div class="row">
             
             <div class="col-lg-12">
-                        <div class="strike">
-                                        <h2>
-                                                <?=Yii::t('app','Featured In')?>
-                                        </h2>
-                                </div>
-                        </div>
+		        <div class="strike">
+					<h2>
+						<?=Yii::t('app','Featured In')?>
+				   	</h2>
+				</div>
+			</div>
             
             <div id="featured-in-container">
                 <a class="the-guardian" href="https://www.theguardian.com/travel/2012/aug/24/best-accessible-disabled-holidays" target="_blank"></a>

@@ -1097,12 +1097,10 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #E9C46A;
   text-decoration: none;
 }
-a:hover,
-a:focus {
-  color: #23527c;
+a:hover {
   text-decoration: underline;
 }
 a:focus {
@@ -3040,8 +3038,6 @@ select[multiple].input-lg {
 .btn.active {
   background-image: none;
   outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 .btn.disabled,
 .btn[disabled],
@@ -3235,8 +3231,6 @@ fieldset[disabled] .btn-success.focus {
 .btn-info:focus,
 .btn-info.focus {
   color: #fff;
-  background-color: #31b0d5;
-  border-color: #1b6d85;
 }
 .btn-info:hover {
   color: #fff;
@@ -3260,8 +3254,6 @@ fieldset[disabled] .btn-success.focus {
 .btn-info.active.focus,
 .open > .dropdown-toggle.btn-info.focus {
   color: #fff;
-  background-color: #269abc;
-  border-color: #1b6d85;
 }
 .btn-info:active,
 .btn-info.active,
@@ -3374,8 +3366,6 @@ fieldset[disabled] .btn-warning.focus {
 .btn-danger.active.focus,
 .open > .dropdown-toggle.btn-danger.focus {
   color: #fff;
-  background-color: #ac2925;
-  border-color: #761c19;
 }
 .btn-danger:active,
 .btn-danger.active,
@@ -4831,6 +4821,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pager .next > a,
 .pager .next > span {
   float: right;
+  color: #4D423C;
 }
 .pager .previous > a,
 .pager .previous > span {
@@ -5242,13 +5233,13 @@ a.thumbnail.active {
 .list-group {
   padding-left: 0;
   margin-bottom: 20px;
+  text-align: center;
 }
 .list-group-item {
   position: relative;
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #fff;
   border: 1px solid #ddd;
 }
 .list-group-item:first-child {
@@ -6319,7 +6310,7 @@ button.close {
   left: 0;
   width: 15%;
   font-size: 20px;
-  color: #fff;
+  color: #E0E3D6;
   text-align: center;
   background-color: rgba(0, 0, 0, 0);
   filter: alpha(opacity=50);
@@ -6345,7 +6336,7 @@ button.close {
 }
 .carousel-control:hover,
 .carousel-control:focus {
-  color: #fff;
+  color: #E0E3D6;
   text-decoration: none;
   filter: alpha(opacity=90);
   outline: 0;
@@ -6402,16 +6393,16 @@ button.close {
   margin: 1px;
   text-indent: -999px;
   cursor: pointer;
-  background-color: #000 \9;
+  background-color: #000;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid #fff;
+  border: 1px solid #E0E3D6;
   border-radius: 10px;
 }
 .carousel-indicators .active {
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #fff;
+  background-color: #E0E3D6;
 }
 .carousel-caption {
   position: absolute;
@@ -6703,6 +6694,10 @@ button.close {
     display: none !important;
   }
 }
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container, .home-whyus, .tour-index { padding: 0 50px; }
+}
+
 .visible-print {
   display: none !important;
 }
