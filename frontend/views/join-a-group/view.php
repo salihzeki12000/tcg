@@ -17,8 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-view">
 
-    <h1 class="title"><?=$tour_info['name']?><br /><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Small Group Tour')?></small></h1>
-
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -26,9 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <li data-target="#carousel-slides-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
         <?php } ?>
       </ol>
+      
+      <!-- <div style="position: absolute; top: 50%; left: 50%; z-index: 4; transform: translate(-50%,-50%)">
+      <h1 class="title" style="text-shadow: 0 0 3px rgba(0,0,0,0.7)"><?= Html::encode($tour_info['name']) ?><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
+      </div> -->
      
       <!-- Wrapper for slides -->
-      <div class="carousel-inner">
+      <div class="carousel-inner full-w">
         <?php for($i=0; $i<count($tour_info['images']); $i++) {
             $slide=$tour_info['images'][$i];
             $pic_type = 'l';
@@ -53,27 +55,55 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
-    
     <div class="tour-info">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+          <h1 class="title" style="text-shadow: 0 0 3px rgba(0,0,0,0.7)"><?= Html::encode($tour_info['name']) ?><small><?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
+      </div>
         <div class="tour-info-row row">
-          <div class="item-s col-lg-4 col-md-3 col-xs-4">
-              <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
+          <div class="col-lg-4 col-md-4 col-xs-4">
               <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?>
+              <span><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?></span>
           </div>
-          <div class="item-s col-lg-4 col-md-4 col-xs-4">
-               <span><?= $tour_info['cities_count'] ?></span>
+          <div class="col-lg-4 col-md-4 col-xs-4">
                <?=($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')?>
+               <span><?= $tour_info['cities_count'] ?></span>
           </div>
-          <div class="col-lg-4 col-md-5 col-xs-4">
-               <span><?= $tour_info['exp_num'] ?></span>
+          <div class="col-lg-4 col-md-4 col-xs-4">
                <?=($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')?>
+               <span><?= $tour_info['exp_num'] ?></span>
           </div>
         </div>
     </div>
+    
+    <div class="group-date col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-12">
+        <div class="strike">
+        <h2>
+          <?=Yii::t('app','Dates & Prices')?>
+        </h2>
+      </div>
+    </div>
+        <div class="overview">
+          <span class="content-color-1">Dates:</span>
+          <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - 
+          <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
+          <?php if(!empty($tour_info['other_dates'])) {?>
+             / <?=$tour_info['other_dates']?>
+          <?php } ?>
+        </div>
+        <div class="overview">
+        </div>
+    </div>
 
-    <div class="themes-info col-lg-12 col-md-12 col-sm-12 col-xs-12" id="nav-overview">
-        <center><h2 id="nav-overview"><?=Yii::t('app','Themes')?></h2></center>
-        <div class="overview list-group">
+    <div class="group-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-12">
+        <div class="strike">
+        <h2>
+          <?=Yii::t('app','Trip Summary')?>
+        </h2>
+      </div>
+    </div>
+    <div class="list-group">
             <?php 
             $this->description .= Yii::t('app','Small Group Tour');
             echo '<span>' . Yii::t('app','Small Group Tour') . '<span>';
@@ -87,25 +117,6 @@ $this->params['breadcrumbs'][] = $this->title;
               ?>,
             <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span><?php } ?>
         </div>
-    </div>
-
-    <div class="group-date col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2 id="nav-overview"><?=Yii::t('app','Dates & Prices')?></h2></center>
-        <div class="overview">
-          <span class="content-color-1">Dates:</span>
-          <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - 
-          <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
-          <?php if(!empty($tour_info['other_dates'])) {?>
-             / <?=$tour_info['other_dates']?>
-          <?php } ?>
-        </div>
-        <div class="overview">
-          <?= $tour_info['prices_detail'] ?>
-        </div>
-    </div>
-
-    <div class="group-overview col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2 id="nav-overview"><?=Yii::t('app','Overview')?></h2></center>
         <div class="overview">
           <?= $tour_info['overview'] ?>
         </div>
@@ -118,7 +129,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="map itinerary-swipe col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2><?=Yii::t('app','Itinerary')?></h2></center>
+      <div class="col-lg-12">
+          <div class="strike">
+        <h2>
+          <?=Yii::t('app','Itinerary')?>
+          </h2>
+      </div>
+    </div>
         <div class="col-lg-12 col-md-12 col-xs-12 list-group-item">
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
@@ -131,11 +148,19 @@ $this->params['breadcrumbs'][] = $this->title;
       <div id="itinerary-item-<?= $j ?>" class="itinerary-item" data-current="<?= $j ?>" style="<?= $j>0?'display: none;':'' ?>">
 
         <nav class="itinerary-swipe">
-          <ul class="pager">
-            <li class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1"><a href="javascript:void(0);">&lt; <?=Yii::t('app','Prev')?></a></li>
-            <li class="text col-xs-7"><?=Yii::t('app','Day')?> <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?>: <?= $itinerary['cities_name'] ?></li>
-            <li class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1"><a href="javascript:void(0);"><?=Yii::t('app','Next')?> &gt;</a></li>
-          </ul>
+            <span class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1">
+              <a href="javascript:void(0);">
+                <span class="glyphicon glyphicon-menu-left"></span> <?=Yii::t('app','Prev')?>
+              </a>
+          </span>
+          
+            <span class="text"><?=Yii::t('app','Day')?> <?= $itinerary['day'] ?>/<?= count($itinerary_info) ?></span><span class="bt-pager next <?= $j==(count($itinerary_info)-1)?'disabled':'' ?>" data-current="<?= $j ?>" data-action="1">
+              <a href="javascript:void(0);">
+                <?=Yii::t('app','Next')?> <span class="glyphicon glyphicon-menu-right"></span>
+              </a>
+          </span>
+          
+            <div style="margin-top: 3px"><?= $itinerary['cities_name'] ?></div>
         </nav>
         <div class="itinerary-swipe overview">
           <?= $itinerary['description'] ?>
@@ -190,48 +215,59 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="inclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2><?=Yii::t('app','Inclusions')?></h2></center>
+      <div class="col-lg-12">
+          <div class="strike">
+        <h2>
+          <?=Yii::t('app',"What's Included")?>
+          </h2>
+      </div>
+    </div>
+    <div style="clear: both"></div>
         <div class="overview">
           <?= $tour_info['inclusion'] ?>
         </div>
     </div>
 
     <div class="exclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2><?=Yii::t('app','Exclusions')?></h2></center>
+      <div class="col-lg-12">
+          <div class="strike">
+        <h2>
+          <?=Yii::t('app',"What's Not Included")?>
+          </h2>
+      </div>
+    </div>
+    <div style="clear: both"></div>
         <div class="overview">
           <?= $tour_info['exclusion'] ?>
         </div>
     </div>
 
     <div class="tips col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <center><h2><?=Yii::t('app','Notes')?></h2></center>
+      <div class="col-lg-12">
+          <div class="strike">
+        <h2>
+          <?=Yii::t('app',"Notes")?>
+          </h2>
+      </div>
+    </div>
+    <div style="clear: both"></div>
         <div class="overview">
           <?= $tour_info['tips'] ?>
         </div>
     </div>
-
+    
+    <?= $this->render('/layouts/_share_icon_links', [
+  'title_image_url' => Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_title'], 'l'),
+]) ?>
   </div>
 
-  <div class="form-info col-lg-4 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px;">
+  <div class="form-info small-group-tour-form col-lg-4 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
     <div class="clearfix"></div> 
-    <center class="tour-index"><h3 class="tour-right-title" style="margin-top: 0;"><?=Yii::t('app','Share')?></h3></center>
-    <div class="social-share-links">
-     <center>
-      <?php $encode_this_url = urlencode(SITE_BASE_URL.$_SERVER['REQUEST_URI']); ?>
-      <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?=$encode_this_url?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
-      <a class="share-twitter" href="http://twitter.com/share?url=<?=$encode_this_url?>&amp;text=<?=urlencode($this->title)?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
-      <a class="share-pinterest" href="https://www.pinterest.com/pin/create/button/?url=<?=$encode_this_url?>&media=<?=urlencode(Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_title'], 'l')) ?>&description=<?=urlencode($this->title.', '.$this->description)?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
-      <a class="share-googleplus" href="https://plus.google.com/share?url=<?=$encode_this_url?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"></a>
-      <a class="share-mail" href="mailto:?subject=<?=$this->title?>&amp;body=<?=$encode_this_url?>"></a>
-      </center>
-    </div>
-
-    <div class="clearfix"></div> 
-    <div class="form-info-create group-view">
+    <div class="form-info-create group-view>
       <span class="placeholder" id="inquiry-form"></span>
 
-      <div class="form-title"><?=Yii::t('app','Application Form')?></div>
-      <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
+      <!-- <div class="form-title"><?=Yii::t('app','Application Form')?></div> -->
+      <h2 class="small-group-tour">Inquiry Form</h2>
       <div class="tips"><?=Yii::t('app','Tour Code:')?> <?= $tour_info['code'] ?></div>
       <hr />
       <?= $this->render('/form-info/_form', [
@@ -239,7 +275,7 @@ $this->params['breadcrumbs'][] = $this->title;
           'form_type' => FORM_TYPE_GROUP,
           'tour_code' => $tour_info['code'],
           'tour_name' => $tour_info['name'],
-          'tour_id' => $tour_info['id'],
+          'tour_id'   => $tour_info['id'],
           'bt_submit_txt' => Yii::t('app', 'Submit') ,
       ]) ?>
 
