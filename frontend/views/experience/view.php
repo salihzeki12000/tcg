@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       </div>
     </div>
         <div class="col-lg-12 col-md-12 col-xs-12 list-group-item">
-            <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], 'm')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
+            <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour_info['pic_map'], Yii::$app->params['is_mobile']?'m':'l')?>" alt="<?=  $tour_info['name'].' Map' ?>" class="img-responsive" />
         </div>
     </div>
 
