@@ -69,7 +69,6 @@ AppAsset::register($this);
         ['label' => Yii::t('app','FIND A TOUR'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','PRIVATE TOURS'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','GROUP TRAVEL'), 'active' => (\Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'mice'), 'items' => [
-            ['label' => Yii::t('app','Small Group Tours'), 'url' => ['join-a-group/index'], 'active' => \Yii::$app->controller->id == 'join-a-group'],
             ['label' => Yii::t('app','Student Tour'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
             ['label' => Yii::t('app','MICE Travel'), 'url' => ['/mice'], 'active' => \Yii::$app->controller->id == 'mice'],
         ]],
@@ -195,7 +194,6 @@ AppAsset::register($this);
                 </li>
             <li><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Find a Tour') ?></a></li>
             <li><a href="<?= Url::toRoute(['experience/index']) ?>"><?= Yii::t('app','Private Tours') ?></a></li>
-            <li><a href="<?= Url::toRoute(['join-a-group/index']) ?>"><?= Yii::t('app','Small Group Tours') ?></a></li>
             <li><a href="<?= Url::toRoute(['/educational-programs']) ?>"><?= Yii::t('app','Student Tours') ?></a></li>
             <li><a href="<?= Url::toRoute(['/mice']) ?>"><?= Yii::t('app','MICE Travel') ?></a></li>
             <li><a href="<?= Url::toRoute(['destination/index']) ?>"><?= Yii::t('app','Destinations') ?></a></li>

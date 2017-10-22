@@ -99,7 +99,7 @@ class FormInfoController extends Controller
                 }
                 $mail_subject = "Inquiry"
                     . ($model->name?" - {$model->name}":'')
-                    . ' - ' . Yii::$app->params['form_types'][$model->type]
+                    . ($model->type!=FORM_TYPE_QUOTATION?" - ".Yii::$app->params['form_types'][$model->type] : '')
                     . ($model->tour_code?" - {$model->tour_code}":"")
                     . ($model->tour_length?" - {$model->tour_length} Days":"")
                     . ($guests?" - {$guests} Guests":'')

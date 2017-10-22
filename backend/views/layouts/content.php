@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
+use yii\helpers\Url;
 
 ?>
 <div class="content-wrapper">
@@ -27,6 +28,22 @@ use dmstr\widgets\Alert;
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]
         ) ?>
+        <div class="content-languages">
+            <ul>
+                <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
+                    <?php if(Yii::$app->language == $language){?>
+                        <li class='active'><span><?= Yii::$app->params['language_name'][$language] ?></span></li>
+                    <?php }else{
+                        $requestUri = $_SERVER['REQUEST_URI'];
+                        if (Yii::$app->language != Yii::$app->sourceLanguage) {
+                            $requestUri = strstr(substr($requestUri, 1), '/');
+                        }
+                        ?>
+                        <li><a href="<?= Url::toRoute(['/', 'language'=>$language]).$requestUri ?>"><?= Yii::$app->params['language_name'][$language] ?></a></li>
+                    <?php }?>
+                <?php } ?>
+            </ul>
+        </div>
     </section>
 
     <section class="content">
@@ -241,6 +258,21 @@ $css = <<<CSS
 }
 .table [aria-label]{
     margin: 6px;
+}
+.content-languages ul{
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.content-languages li{
+    list-style:none; 
+    margin: 10px 10px;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+.content-languages li.active{
+    font-size: 24px;
+    color: red;
 }
 CSS;
 $this->registerCss($css);

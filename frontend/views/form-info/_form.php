@@ -198,13 +198,15 @@ use yii\helpers\Url;
     
     <?= !in_array('nationality', $form_fields) ? '' : $form->field($model, 'nationality')->textInput(['maxlength' => true]) ?>
 
-    <?= !in_array('prefered_travel_agent', $form_fields) ? '' : $form->field($model, 'prefered_travel_agent')->dropDownList([ 'English' => 'English', 'Français' => 'Français', 'Español' => 'Español', 'Deutsch' => 'Deutsch', ], ['prompt' => '']) ?>
+    <?= !in_array('skype_name', $form_fields) ? '' : $form->field($model, 'skype_name')->textInput(['maxlength' => true]) ?>
 
     <?= !in_array('phone_number', $form_fields) ? '' : $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
 
     <?= !in_array('hear_about_us', $form_fields) ? '' : $form->field($model, 'hear_about_us')->textInput(['maxlength' => true]) ?>
 
     <?= !in_array('promotion_code', $form_fields) ? '' : $form->field($model, 'promotion_code')->textInput(['maxlength' => true]) ?>
+
+    <?= !in_array('prefered_travel_agent', $form_fields) ? '' : $form->field($model, 'prefered_travel_agent')->dropDownList([ 'English' => 'English', 'Français' => 'Français', 'Español' => 'Español', 'Deutsch' => 'Deutsch', ], ['prompt' => '']) ?>
 
     <div class="form-group bt-submit">
         <?php if(isset($bt_submit_txt)) {?>
