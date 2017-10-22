@@ -137,7 +137,7 @@ class FormInfo extends \yii\db\ActiveRecord
             'promotion_code' => Yii::t('app', 'Promotion Code'),
             'status' => Yii::t('app', 'Status'),
             'tour_id' => Yii::t('app', 'Tour Id'),
-            'skype_name' => Yii::t('app', 'Skype name'),
+            'skype_name' => Yii::t('app', 'Your Skype name'),
         ];
     }
 }
