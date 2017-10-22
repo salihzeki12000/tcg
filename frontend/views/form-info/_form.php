@@ -83,7 +83,7 @@ use yii\helpers\Url;
 
     <?php if(in_array('adults', $form_fields)) { ?>
     <div class="required">
-        <label class="control-label" for=""><?=Yii::t('app','Travellers')?></label>
+        <label class="control-label" for=""><?=Yii::t('app','Travelers')?></label>
         <table width="100%">
             <tr>
                 <td width="50%" valign="middle">
