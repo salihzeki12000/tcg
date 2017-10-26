@@ -47,9 +47,9 @@ class Article extends \yii\db\ActiveRecord
         return [
             [['title', 'type'], 'required'],
             [['type', 'sub_type', 'status', 'priority','rec_type'], 'integer'],
-            [['content','url_id'], 'string'],
+            [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['title','pic_s', 'keywords'], 'string', 'max' => 255],
+            [['title','url_id','pic_s', 'keywords'], 'string', 'max' => 255],
             ['image', 'image', 'skipOnEmpty' => true, 'extensions' => 'jpg, gif, png'],
             $name_rule,
         ];
@@ -73,7 +73,7 @@ class Article extends \yii\db\ActiveRecord
             'priority' => Yii::t('app', 'Priority'),
             'rec_type' => Yii::t('app', 'Recommendation'),
             'image' => Yii::t('app', 'Image（720 x 380 pixels）'),
-            'url_id' => Yii::t('app', 'Url Title'),
+            'url_id' => Yii::t('app', 'Link'),
         ];
     }
 }

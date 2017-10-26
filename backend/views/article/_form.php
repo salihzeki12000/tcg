@@ -13,6 +13,8 @@ use common\models\UploadedFiles;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'url_id')->textInput(['readonly' => (Yii::$app->language != Yii::$app->sourceLanguage),'maxlength' => true]) ?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= Html::activeHiddenInput($model, 'type', array('value'=>$type)) ?>

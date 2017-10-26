@@ -127,6 +127,38 @@ class FormInfoController extends Controller
         ]);
     }
 
+    public function actionContentForm()
+    {
+        if (Yii::$app->request->post()){
+            $title = $_POST['form_title'];
+            if (isset($_POST['content'])) {
+                $content = $_POST['content'];
+                $noEmpty = 0;
+                foreach ($content as $key => $value) {
+                    if (trim($value) !== '') {
+                        $noEmpty = 1;
+                        break;
+                    }
+                }
+
+                if ($noEmpty) {
+                    $mail_subject = $title;
+
+                    $receiver[] = 'book@thechinaguide.com';
+
+                    if(!YII_DEBUG) {
+                        Yii::$app->mailer->compose('form-content', ['content' => $content])
+                            ->setTo($receiver)
+                            ->setSubject($mail_subject)
+                            ->send();
+                    }
+                }
+
+            }
+        }
+        return $this->redirect(['success']);
+    }
+
     /**
      * Updates an existing FormInfo model.
      * If update is successful, the browser will be redirected to the 'view' page.
