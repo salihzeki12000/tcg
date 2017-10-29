@@ -73,6 +73,19 @@ class AlbumController extends Controller
             if (empty($model->description) && !empty($model->overview)) {
                 $model->description = \common\models\Tools::wordcut(strip_tags($model->overview), 160);
             }
+            if (Yii::$app->language == Yii::$app->sourceLanguage) {
+                if (empty($model->url_id)) {
+                    $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                }
+                else{
+                    $url_id = strtolower($model->url_id);
+                    if (($row = Album::find()->where(['url_id'=>$url_id])->one()) !== null) {
+                        throw new ServerErrorHttpException(Yii::t('app', 'The link has exist.'));
+                    } else {
+                        $model->url_id = $url_id;
+                    }
+                }
+            }
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);   
             }
@@ -99,7 +112,17 @@ class AlbumController extends Controller
                 $model->description = \common\models\Tools::wordcut(strip_tags($model->overview), 160);
             }
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                if (empty($model->url_id)) {
+                    $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                }
+                else{
+                    $url_id = strtolower($model->url_id);
+                    if (($row = Album::find()->where(['url_id'=>$url_id])->andWhere(['<>','id',$model->id])->one()) !== null) {
+                        throw new ServerErrorHttpException(Yii::t('app', 'The link has exist.'));
+                    } else {
+                        $model->url_id = $url_id;
+                    }
+                }
             }
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);   

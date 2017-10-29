@@ -17,6 +17,8 @@ use common\models\Cities;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'url_id')->textInput(['readonly' => (Yii::$app->language != Yii::$app->sourceLanguage),'maxlength' => true]) ?>
+
     <?= Html::activeHiddenInput($model, 'type', array('value'=>$type)) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
