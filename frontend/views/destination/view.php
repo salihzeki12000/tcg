@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $city_info['name'];
 </div>
 
 <div class="form-info container">
-  <div class="text-before-iquiry-form col-lg-8 col-md-8 col-xs-12">
+  <div class="text-before-inquiry-form col-lg-8 col-md-8 col-xs-12">
   	<h2><?=Yii::t('app',"Customize a tour that includes a visit to this destination")?></h2>
   </div>
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
