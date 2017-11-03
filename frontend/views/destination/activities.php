@@ -58,10 +58,13 @@ $this->params['breadcrumbs'][] = Yii::t('app','Activities');
 </div>
 
 <div class="form-info container">
-  <h2><?=Yii::t('app',"Customize a tour that includes a visit to this destination.")?></h2>
+  <div class="text-before-iquiry-form col-lg-8 col-md-8 col-xs-12">
+  	<h2><?=Yii::t('app',"Customize a tour that includes a visit to this destination")?></h2>
+  </div>
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
-    <div class="form-title"><?=Yii::t('app','Customization Form')?></div>
+	<h2><?=Yii::t('app',"Inquiry Form")?></h2>
+	<div class="tips">Let's get started! Fill out this form so we can start helping you plan your adventure in China.</div>
 
     <?= $this->render('/form-info/_form', [
         'model' => new common\models\FormInfo(FORM_TYPE_CUSTOM),

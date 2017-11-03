@@ -799,7 +799,7 @@ div#social-media-icons-container a {
 }
 
 .form-info h2 {
-    color: #c78d00;
+    color: #4D423C;
     font-size: 30px;
     text-align: center;
     font-family: "Times New Roman";
@@ -811,6 +811,16 @@ div#social-media-icons-container a {
     text-align: center;
     font-family: "Times New Roman";
     margin-top: 3px;
+}
+
+.text-before-iquiry-form {
+    clear: both;
+    float: none;
+    margin: 0 auto;
+}
+
+.text-before-iquiry-form h2 {
+	color: #E9C46C;
 }
 
 .form-info-create
@@ -826,6 +836,15 @@ div#social-media-icons-container a {
 .form-info-create .has-success .control-label, .form-info-create .has-error .control-label{
   color: #524632;
 }
+
+.form-info-create h2 {
+	margin-top: 0px;
+}
+
+.form-info-create hr {
+	margin: 20px 0;
+}
+
 .subscribe-mail-form{
   padding: 20px;
   text-align: left;

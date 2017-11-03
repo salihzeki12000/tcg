@@ -10,7 +10,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="form-card-form">
-
+	<hr />
     <?php $form = ActiveForm::begin(['id'=>'form-card-form']) ?>
 
     <div class="required">

@@ -12,10 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="form-info container">
-  <h2><?=Yii::t('app',"Please inform your bank or credit card issuer that you will be receiving a charge from China. ")?></h2>
+  <!-- <h2><?=Yii::t('app',"Please inform your bank or credit card issuer that you will be receiving a charge from China.")?></h2> -->
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
   	<span class="placeholder" id="inquiry-form"></span>
-    <div class="form-title"><?=Yii::t('app','Secure Credit Card Form')?></div>
+    <!-- <div class="form-title"><?=Yii::t('app','Secure Credit Card Form')?></div> -->
+    <h2><?=Yii::t('app',"Secure Credit Card Form")?></h2>
+	<div class="tips">Please inform your bank or credit card issuer that you will be receiving a charge from China.</div>
 
     <?= $this->render('/form-card/_form', [
         'model' => new common\models\FormCard(),
