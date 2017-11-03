@@ -260,12 +260,11 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       <div class="form-info-create">
         <span class="placeholder" id="inquiry-form"></span>
         <!-- <div class="form-title"><?=Yii::t('app','Quotation Form')?></div> -->
-        <h2 style="margin-top: 0;text-align: center;"><?= $tour_info['name'] ?></h2>
+        <h2><?=Yii::t('app',"Inquiry Form")?></h2>
         <!-- <div class="tips"><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?>
               <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></div>
         <div class="tips"><?=Yii::t('app','Tour Code:')?> <?= $tour_info['code'] ?></div> -->
-        <div class="tips">Let's get started! Fill out this form so we can start helping you plan your adventure in China.</div>
-        <hr />
+        <div class="tips"><?= $tour_info['name'] ?> - <?= $tour_info['code'] ?></div>
         <?= $this->render('/form-info/_form', [
             'model' => new common\models\FormInfo(FORM_TYPE_QUOTATION),
             'form_type' => FORM_TYPE_QUOTATION,

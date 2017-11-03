@@ -10,7 +10,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="form-info-form">
-
+    <hr />
     <?php $form = ActiveForm::begin(['action' => Url::toRoute(['form-info/create', 'form_type' => $form_type]), 'id'=>'form-info-form']);
         $form_fields = Yii::$app->params['form_fields'][$form_type]; 
         if (!isset($tour_id)) {
