@@ -26,12 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 </div>
 
-<div class="container home-btn">
-  <div class="row btn-row">
-    <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Plan a MICE Trip')?></a>
-  </div>
-</div>
-
 <div class="page-view container">
 
     <div class="full-text col-lg-9 col-md-10">
