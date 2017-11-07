@@ -1283,7 +1283,7 @@ div#social-media-icons-container a {
 
 @media (min-width: 1200px)
 {
-  .blog, .preparation {
+  .tour-view.blog, .tour-view.preparation {
      margin: 0 50px;
   }
 }
