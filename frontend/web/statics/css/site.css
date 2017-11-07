@@ -1236,11 +1236,11 @@ div#social-media-icons-container a {
     top: 40% !important;
   }
   .index-faq{
-    padding-left: 100px;
+    /* padding-left: 100px; */
     margin-bottom: 30px;
   }
   .index-article{
-    padding-right: 100px;
+    /* padding-right: 100px; */
     margin-bottom: 30px;
   }
   .carousel-caption h3{

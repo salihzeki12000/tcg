@@ -338,41 +338,41 @@ Modal::end();
         </div>
     </div>
 	
-    <div class="container index-faq col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="list-group faq">
-            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','Prepare For Your Trip')?></h2></center></a>
-            <?php foreach ($faq as $item) { ?>
-            <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item">
-                <!-- <i class="glyphicon glyphicon-chevron-right pull-right" /></i> -->
-                <span><?= $item['title'] ?></span>
-            </a>
-            <?php } ?>
-            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><?=Yii::t('app','More...')?></a>
-        </div>
-    </div>
-
-
-    <div class="container index-article blog col-lg-6 col-md-6 col-sm-6 col-xs-12">
-	    
-        <?php foreach ($articles as $article) { ?>
-          <article class="entry teaser first">
-            <header class="entry-header">
-              <h2 class="entry-title" itemprop="headline">
-                <a href="<?= Url::toRoute(['article/view', 'url_id'=>$article['url_id']]) ?>" rel="bookmark"><?= $article['title']; ?></a>
-              </h2>
-            </header>
-            <div class="entry-content" itemprop="text">
-              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'url_id'=>$article['url_id']]) ?>" aria-hidden="true">
-                <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
-              </a>
-              <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 240)) ?></p>
-            </div>
-            <a href="<?= Url::toRoute(['article/index']) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','More Blogs')?>"><?=Yii::t('app','More Blogs')?></a>
-            <p class="entry-meta">
-              <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
-            </p>
-          </article>
-        <?php } ?>
+	<div class="container">
+	    <div class="index-faq col-lg-6 col-md-6 col-sm-6 col-xs-12">
+	        <div class="list-group faq">
+	            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><center><h2><?=Yii::t('app','Prepare For Your Trip')?></h2></center></a>
+	            <?php foreach ($faq as $item) { ?>
+	            <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item">
+	                <!-- <i class="glyphicon glyphicon-chevron-right pull-right" /></i> -->
+	                <span><?= $item['title'] ?></span>
+	            </a>
+	            <?php } ?>
+	            <a href="<?= Url::toRoute(['preparation/index']) ?>" class="list-group-item"><?=Yii::t('app','More...')?></a>
+	        </div>
+	    </div>
+	
+	    <div class="index-article blog col-lg-6 col-md-6 col-sm-6 col-xs-12">
+	        <?php foreach ($articles as $article) { ?>
+	          <article class="entry teaser first">
+	            <header class="entry-header">
+	              <h2 class="entry-title" itemprop="headline">
+	                <a href="<?= Url::toRoute(['article/view', 'url_id'=>$article['url_id']]) ?>" rel="bookmark"><?= $article['title']; ?></a>
+	              </h2>
+	            </header>
+	            <div class="entry-content" itemprop="text">
+	              <a class="entry-image-link" href="<?= Url::toRoute(['article/view', 'url_id'=>$article['url_id']]) ?>" aria-hidden="true">
+	                <img width="335" height="200" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 's')?>" class="alignright post-image entry-image" alt="<?= $article['title'] ?>" itemprop="image">
+	              </a>
+	              <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($article['content']), 240)) ?></p>
+	            </div>
+	            <a href="<?= Url::toRoute(['article/index']) ?>" class="btn btn-info pull-right btn-sm more-link" title="<?=Yii::t('app','More Blogs')?>"><?=Yii::t('app','More Blogs')?></a>
+	            <p class="entry-meta">
+	              <time class="entry-time" itemprop="datePublished" datetime="<?= date(DATE_ATOM, strtotime($article['create_time'])) ?>"><?= date('F d, Y', strtotime($article['create_time'])) ?></time>
+	            </p>
+	          </article>
+	        <?php } ?>
+	    </div>
     </div>
 
     <div class="container clearfix">
