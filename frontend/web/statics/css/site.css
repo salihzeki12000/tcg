@@ -467,19 +467,19 @@ ul.navbar-nav li:not(:last-child) b.caret{
 	display: block;
 	margin: 0 auto;
 }
-.site-index .faq .list-group-item, .site-index .article .list-group-item{
+.site-index .faq .list-group-item, .site-index .article .list-group-item, .list-group.faq {
   background-color: #E0E3D6;
   border-color: #b7b7b7;
 }
-.site-index .faq .list-group-item:not(:first-child):hover {
+.site-index .faq .list-group-item:not(:first-child):hover, .list-group.faq .list-group-item:not(:first-child):hover  {
 	background-color: #F1F4E3;
 	cursor: pointer;
 }
-.site-index .faq .list-group-item:first-child {
+.site-index .faq .list-group-item:first-child, .list-group.faq .list-group-item:first-child  {
    pointer-events: none;
    cursor: default;
 }
-.site-index .list-group h2{
+.site-index .list-group h2, .list-group.faq h2 {
     padding-bottom: 9px;
     margin: 4px 0px;
     border-bottom: none;
