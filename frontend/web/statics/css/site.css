@@ -1283,7 +1283,7 @@ div#social-media-icons-container a {
 
 @media (min-width: 1200px)
 {
-  .blog {
+  .blog, .preparation {
      margin: 0 50px;
   }
 }

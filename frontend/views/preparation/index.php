@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
   </div>
 </div>
 
-<div class="tour-view">
+<div class="tour-view preparation">
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
     <div class="article-index">
 
