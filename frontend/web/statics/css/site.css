@@ -1280,6 +1280,14 @@ div#social-media-icons-container a {
     margin-right: 160px;
   }
 }
+
+@media (min-width: 1200px)
+{
+  .blog {
+     margin: 0 50px;
+  }
+}
+  
 @media (max-width: 767px){
   .tour-view .tour-index {
     padding-right: 0;
