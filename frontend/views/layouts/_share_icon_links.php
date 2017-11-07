@@ -1,6 +1,6 @@
 <?php $encode_this_url = urlencode(SITE_BASE_URL.$_SERVER['REQUEST_URI']); ?>
 <div style="clear: both"></div>
-<div style="text-align: center; padding: 30px 0 60px;">
+<div style="text-align: center; padding: 20px 0 100px;">
 	 <div style="margin-bottom: 5px; color: #6d6d6b">
 		 <?=Yii::t('app','Share')?>
 	 </div>
