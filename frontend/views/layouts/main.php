@@ -288,7 +288,7 @@ AppAsset::register($this);
                     </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <h3><?=Yii::t('app','Experiences')?></h3>
+                        <h3><?=Yii::t('app','Private Tours')?></h3>
                         <div>
                             <?php if( ($themes = \common\models\Tools::getAllTheme() )!== null) {
                              foreach ($themes as $theme) {
