@@ -164,9 +164,9 @@ Modal::end();
 	            <div class="file-thumbnail-footer"> 
 	             <div class="file-footer-caption">
 	                <div class="content-press">
-		                <div>
-			                <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','days'):Yii::t('app','day')?>
-			            </div>
+			            <span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','days'):Yii::t('app','day')?>
+			            
+			            <br>
 			            
 			            <span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
 
