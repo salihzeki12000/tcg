@@ -5,7 +5,7 @@ body {
     color: #E0E3D6;
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-    font-family: "Cabin",sans-serif;
+    font-family: "Cabin", Arial, sans-serif;
 }
 .clearfix{overflow: auto;zoom: 1;}
 .datepicker {
