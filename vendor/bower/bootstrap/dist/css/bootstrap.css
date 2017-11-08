@@ -6695,7 +6695,7 @@ button.close {
   }
 }
 @media (min-width: 768px) and (max-width: 1200px) {
-  .container, .home-whyus, .tour-index { padding: 0 50px; }
+  .container, .home-whyus, .tour-index { /* padding: 0 50px; */ }
 }
 
 .visible-print {
