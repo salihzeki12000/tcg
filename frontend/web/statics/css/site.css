@@ -407,7 +407,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 
 .home-categories .list-group .list-group-item{
-  margin: 11px auto;
+  margin: 0px auto;
   padding: 0px 0px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -417,7 +417,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
   font-size: 20px;
   background-color: #4D423C;
   border: none;
-  height: 48px;
+  /* height: 48px; */
 }
 .home-categories i.glyphicon{
   color: #47AAED;
