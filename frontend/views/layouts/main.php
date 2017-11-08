@@ -321,9 +321,9 @@ AppAsset::register($this);
                             </div>
                         </div>
                         <div class="partnership-membership col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h3><?=Yii::t('app','Partnerships & Memberships')?></h3>
+                            <h3><?=Yii::t('app','Partnerships')?></h3>
                             <div>
-                                <i class="footer-icons partnership"></i>
+                                <!-- <i class="footer-icons partnership"></i> -->
                                 <a href="/misc/animals-asia" class="icon-link"><i class="footer-icons membership"></i></a>
                             </div>
                         </div>
