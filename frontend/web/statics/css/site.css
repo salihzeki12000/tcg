@@ -1349,13 +1349,14 @@ h3.tour-right-title{
 .cities-banner .banner-text{
     position: absolute;
     color: white;
-    text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0px 10px rgba(0, 0, 0, 0.9);
     font-size: 24px;
     margin: auto;
     left: 0;
     right: 0;
     top: 40%;
     bottom: 50%;
+    font-family: serif;
 }
 .cities-banner .banner-text small{
   font-size: 50%;
