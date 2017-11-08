@@ -29,7 +29,7 @@ body {
 	left: 25%;
 }
 .carousel-caption{
-  color: #E0E3D6;
+  /* color: #E0E3D6; */
   bottom: 5px;
   line-height: 1.1;
   text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
@@ -56,10 +56,12 @@ body {
 .carousel-indicators li{
   width: 6px;
   height: 6px;
+  border: 1px solid #fff;
 }
 .carousel-indicators .active{
   width: 8px;
   height: 8px;
+  background-color: #fff;
 }
 
 .slide-video{
