@@ -1379,8 +1379,11 @@ h3.tour-right-title{
 }
 
 .cities-index .page-header{
-  color: #E9C46C;
+  text-align: center;
+  color: #E6D2A1;
   font-family: "Times New Roman";
+  line-height: 1.2;
+  text-shadow: 0 0 3px rgba(0,0,0,0.7);
 }
 
 .article-view .overview{
@@ -2097,10 +2100,17 @@ a.list-group-item{
 	border: 2px solid #E9C46A;
 }
 
-.dest-other a{
-  color: #E0E3D6
+.row.dest-other {
+	margin-bottom: 50px;
 }
-.dest-other h3{
+
+.dest-other a {
+  display: block;
+  text-align: center;
+  color: #E0E3D6;
+  padding-bottom: 20px;
+}
+.dest-other h3 {
   font-size: 18px;
   margin: 0 0 20px 0;
 }

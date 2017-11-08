@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php } ?>
   </div>
 
-  <div class="row">
+  <div class="row dest-other">
       <div class="col-lg-12">
           <h1 class="page-header"><center><?=Yii::t('app','Other Travel Destinations')?></center></h1>
       </div>
