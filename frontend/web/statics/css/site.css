@@ -2381,6 +2381,14 @@ blockquote cite:before {
 	padding: 5px 10px;
 	vertical-align: 3px;
 }
+
+.bt-pager.previous:hover, .bt-pager.next:hover {
+	background-color: #4D423C;
+}
+
+.bt-pager.previous:hover a, .bt-pager.next:hover a {
+	color: #fff;
+}
   
 .bt-pager.previous > a:hover, .bt-pager.next > a:hover, .bt-pager.previous > a:focus, .bt-pager.next > a:focus  {
 	text-decoration: none;
