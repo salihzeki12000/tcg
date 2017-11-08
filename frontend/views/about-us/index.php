@@ -16,7 +16,7 @@ $this->description = Yii::t('app', 'The China Guide provides Western-style trave
 $this->keywords = Yii::t('app', 'China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?=Yii::t('app','About Us')?></h1>

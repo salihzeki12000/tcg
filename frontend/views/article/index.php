@@ -16,7 +16,7 @@ $this->description = Yii::t('app', 'China travel guide, China travel tips, and n
 $this->keywords = Yii::t('app', 'China travel blog, China travel guide, China travel tips, travel blog');
 $this->params['breadcrumbs'][] = Yii::t('app','Blog');
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'BLOG', 'width'=>"100%"]) ?>

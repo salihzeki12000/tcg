@@ -16,7 +16,7 @@ $this->description = Yii::t('app', 'After almost 10 years of organizing student 
 $this->keywords = Yii::t('app', 'Educational travel, faculty-led program, academic program, China student tour, student travel to China, student tours to China');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?=Yii::t('app','Educational Programs')?><br><small><?=Yii::t('app','CUSTOMIZED STUDENT PROGRAM PLANNING SERVICES')?></small></h1>

@@ -16,7 +16,7 @@ $this->description = $description;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?= $sub_title ?></h1>

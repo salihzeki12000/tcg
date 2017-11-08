@@ -21,7 +21,7 @@ if (Yii::$app->params['is_mobile']) {
 }
 ?>
 
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <?php for($i=0; $i<count($city_info['images']); $i++) {

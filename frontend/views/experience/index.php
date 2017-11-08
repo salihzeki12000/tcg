@@ -16,7 +16,7 @@ $this->description = Yii::t('app', 'Travel to China on a private, customized tou
 $this->keywords = Yii::t('app','China tours, China private tours, China family tours, China package tours, customize China tours, China travel packages, China vacations, China travel');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner" style="margin-bottom: 0;">
       <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','Private China Tours'), 'width'=>"100%"]) ?>

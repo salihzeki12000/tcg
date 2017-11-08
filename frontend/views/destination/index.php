@@ -16,7 +16,7 @@ $this->description = 'China\'s popular & off-the-beaten-track travel destination
 $this->keywords = Yii::t('app','China destinations, China\'s tourist destinations, China\'s top tourist cities, China\'s top tourist sights, cities in China, China city guide, China travel guide, China guide');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'China Travel Destinations', 'width'=>"100%"]) ?>

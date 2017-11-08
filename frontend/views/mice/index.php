@@ -16,7 +16,7 @@ $this->description = Yii::t('app', 'Professional Business Travel Planning Servic
 $this->keywords = Yii::t('app', '');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?=Yii::t('app','MICE Travel')?><br><small><?=Yii::t('app','PROFESSIONAL BUSINESS TRAVEL PLANNING SERVICES')?></small></h1>
