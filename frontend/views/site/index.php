@@ -322,7 +322,7 @@ Modal::end();
 			</div>
             
 	        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-	            <img class="img-responsive" src="<?= 'statics/images/review-1.png'; ?>" />
+	            <img class="img-responsive" src="<?= '/statics/images/review-1.png'; ?>" />
                 <blockquote class="blockquote">
 	                <p><?=Yii::t('app','They were very professional and extremely helpful, always trying to provide the best solutions for us and as confortable as possible. Lina was very nice and always available, it was very easy to communicate with. Air China cancelled one of our flights and, even though we booked the flights directly and not through the agency, Lina kept on talking with us all night to find an alternative and was very efficient. It is a great agency, with good travel plans, very flexible and pleasent to work with, the guides speak proper english and everyone is very approachable. Totally recommend!!')?></p>
 					<footer>M3170ZLmariac <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
@@ -330,7 +330,7 @@ Modal::end();
             </div>
             
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-	            <img class="img-responsive" src="<?= 'statics/images/review-2.png'; ?>" />
+	            <img class="img-responsive" src="<?= '/statics/images/review-2.png'; ?>" />
                 <blockquote class="blockquote">
                 	<p><?=Yii::t('app','First time bring my kids to China, a home which I left over 28 years ago. My American friend recommended this company to me and they did an fantastic job for our 13 days trip in China. Erick from BeiJing are so knowledgeable and arranged the trip perfectly according to the weather and activities. Betty from XiAn covered all of our activities with very relaxing feeling even though we only have 24 hours in XiAn. This is a totally worry free luxury trip, and gave my kids a great impression on their mommy\'s homeland. We will definitely use this company again to arrange our next trip to China.')?></p>
                 	<footer>J W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
@@ -338,7 +338,7 @@ Modal::end();
             </div>
             
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-	            <img class="img-responsive" src="<?= 'statics/images/review-3.png'; ?>" />
+	            <img class="img-responsive" src="<?= '/statics/images/review-3.png'; ?>" />
                 <blockquote class="blockquote">
                 	<p><?=Yii::t('app','Right from our initial inquiry, to the outstanding communication with Sarah, to local guides who met us at the train stations and airports we were in good hands with the staff at The China Guide. Our family of 7 Canadians spent 3 weeks traveling through China and I can\'t emphasize enough how we appreciated their support from start to finish. Don\'t hesitate and let The China Guide work with you to plan an itinerary that is perfect for you.')?></p>
                 	<footer>Don W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
