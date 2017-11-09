@@ -31,7 +31,7 @@ body {
 .carousel-caption{
   /* color: #E0E3D6; */
   bottom: 5px;
-  line-height: 1.1;
+  line-height: 1.1;2
   text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
 }
 .carousel-indicators{
@@ -2234,8 +2234,21 @@ div.itinerary div.days-price .price a:hover {
 }
 
 div.itinerary-view  {
-	padding: 0 12px 12px 0;
-	text-align: right;
+	padding: 0 12px 12px;
+	/* text-align: right; */
+}
+
+.itinerary-view span.price {
+	color: #4D423C;
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 12px;
+	padding: 3px 0px;
+}
+
+.itinerary-view span.price span#price-number {
+	font-size: 18px;
+	color: #4D423C;
 }
 
 div.itinerary div.description {
@@ -2258,8 +2271,9 @@ div.itinerary-view .button {
 	border-radius: 25px;
 	
 	margin-top: 20px;
+	margin-bottom: 12px;
 	
-	text-align: center;
+	float: right;
 }
 
 .itinerary-view.view-more-tours {
