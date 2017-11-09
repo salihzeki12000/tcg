@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                <div class="itinerary-view">
 		                <?php if(!empty($tour['price_cny'])): ?>
 		                <span class="price">
-		                	from <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?> <span id="price-number"><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span>/person
+		                	from <span id="price-number"><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
 		                </span>
 		                <?php endif; ?>
 						
