@@ -469,6 +469,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
 .site-index .faq .list-group-item:first-child, .list-group.faq .list-group-item:first-child  {
    pointer-events: none;
    cursor: default;
+   font-family: "Times New Roman";
 }
 .site-index .list-group h2, .list-group.faq h2 {
     padding-bottom: 9px;
@@ -1683,7 +1684,7 @@ a.desc:after {
 }
 .blog .entry {
     background: #E0E3D6;
-    padding: 20px 20px;
+    padding: 15px 15px;
     position: relative;
     box-sizing: border-box;
     clear: both;
@@ -1711,6 +1712,7 @@ a.desc:after {
 .entry-title a, .sidebar .widget-title a {
     color: #4D423C;
     font-weight: 500;
+    font-family: "Times New Roman";
 }
 .entry-content {
     clear: both;
