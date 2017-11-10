@@ -1923,7 +1923,7 @@ a.list-group-item{
 }
 
 .map-container{
-  margin: 30px auto 10px auto;
+  margin: 5px auto 10px auto;
 }
 .map-poi{
   display: block;
@@ -2282,7 +2282,7 @@ div.itinerary-view .button:hover {
     content: "";
     position: absolute;
     top: 50%;
-    width: 500px;
+    width: 50px;
     height: 1px;
     background: #E6D2A1;
 }

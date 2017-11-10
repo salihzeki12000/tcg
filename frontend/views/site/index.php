@@ -222,7 +222,7 @@ Modal::end();
             	<li class="col-lg-4 col-md-6 col-xs-12 list-group-item">
                 <a class="homepage-category" style="margin: 5px 13px; display: block; background: #E0E3D6; border-radius: 12px; text-align: center; color: #4D423C" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>">
                     <i class="icon <?= $theme['class_name'] ?>"></i>
-                    <h3 style="margin: 5px"><?= $theme['name'] ?></h3>
+                    <h3 style="margin: 7px"><?= $theme['name'] ?></h3>
                     <!-- <i class="glyphicon glyphicon-chevron-right pull-right" /></i> -->
                 </a>
                 </li>
