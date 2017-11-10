@@ -168,7 +168,7 @@ Modal::end();
 			            
 			            <br>
 			            
-			            <span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
+			            <span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 35)); ?></span>
 
 		                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
 		            </div>
@@ -220,9 +220,9 @@ Modal::end();
                 }
             ?>
             	<li class="col-lg-4 col-md-6 col-xs-12 list-group-item">
-                <a class="homepage-category" style="margin: 5px; display: block; background: #E0E3D6; border-radius: 12px; text-align: center; color: #4D423C" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>">
+                <a class="homepage-category" style="margin: 5px 13px; display: block; background: #E0E3D6; border-radius: 12px; text-align: center; color: #4D423C" href="<?= Url::toRoute(['experience/index', 'theme'=>$theme['url_id']]) ?>">
                     <i class="icon <?= $theme['class_name'] ?>"></i>
-                    <h3><?= $theme['name'] ?></h3>
+                    <h3 style="margin: 5px"><?= $theme['name'] ?></h3>
                     <!-- <i class="glyphicon glyphicon-chevron-right pull-right" /></i> -->
                 </a>
                 </li>
