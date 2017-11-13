@@ -879,7 +879,10 @@ div#social-media-icons-container a {
   background-color: #E9C46A;
   border: 2px solid #E9C46A;
   border-radius: 15px;
-  padding: 8px 80px;
+  padding: 8px 0px;
+  display: block;
+  width: 160px;
+  margin: 0 auto;
 }
 .form-info .btn-success:hover {
   color: #E9C46A;
@@ -994,10 +997,11 @@ div#social-media-icons-container a {
 }
 .type-menu .glyphicon{
   float: right;
-  padding: 13px 12px;
+  padding: 13px 10px;
   background-color: #E53A30;
-  font-size: 10px;
+  font-size: 11px;
   top: 0;
+  margin-left: -31px;
 }
 
 .tour-index .thumbnail{
@@ -1145,18 +1149,6 @@ div#social-media-icons-container a {
   margin-top: 30px;
 }
 
-@media (min-width: 1480px) {
-  .tour-view > .col-lg-8 {
-      padding-left: 150px;
-      margin-top: 0px;
-      min-height: 650px;
-  }
-  .tour-view > .col-lg-4 {
-      padding-right: 135px;
-      margin-top: 30px;
-  }
-}
-
 @media (max-width: 1255px) {
     .navbar-header {
         float: none;
@@ -1200,6 +1192,15 @@ div#social-media-icons-container a {
 @media (min-width: 1255px) {
   .navbar-inverse .navbar-nav{
       margin-right: 180px;
+  }
+  .tour-view > .col-lg-8 {
+      padding-left: 150px;
+      margin-top: 0px;
+      min-height: 650px;
+  }
+  .tour-view > .col-lg-4 {
+      padding-right: 135px;
+      margin-top: 30px;
   }
   .form-info.col-lg-4.small-group-tour-form {
   	padding-right: 75px;
@@ -1275,6 +1276,10 @@ div#social-media-icons-container a {
     padding-right: 0;
     padding-left: 0;
   }
+  
+  .cities-banner .banner-text {
+	  font-size: 
+  }
 }
 .overview .overview-vr{
   width: 100%;
@@ -1330,13 +1335,13 @@ h3.tour-right-title{
     position: absolute;
     color: white;
     text-shadow: 0 0px 10px rgba(0, 0, 0, 0.9);
-    font-size: 24px;
+    font-size: 26px;
     margin: auto;
     left: 0;
     right: 0;
     top: 40%;
     bottom: 50%;
-    font-family: serif;
+    font-family: "Times New Roman", serif;
 }
 .cities-banner .banner-text small{
   font-size: 50%;
@@ -2097,7 +2102,7 @@ h2.in-input-group{1004
 .btn h1{
   margin: 0;
   display: inline;
-  font-size: 24px;
+  font-size: 22px;
   color: #E9C46C;
   font-family: "Times New Roman";
 }
