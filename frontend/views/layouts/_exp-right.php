@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 ?>
+  
   <div class="clearfix col-lg-3"></div>
 
 <?php if (\Yii::$app->controller->id == 'article') { ?>

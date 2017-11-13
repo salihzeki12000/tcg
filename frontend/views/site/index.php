@@ -290,15 +290,15 @@ Modal::end();
             <?php foreach ($cities_map as $city_info) { ?>
               <article class="entry teaser entry-map-homepage" id="city-map-detail-<?= $city_info['id'] ?>" <?= ($city_info['id']==1) ? '': 'style="display: none;"' ?>>
                 <header class="entry-header">
-                  <h3 class="entry-title" itemprop="headline">
+                  <h3 class="name-popular-destination" itemprop="headline">
                     <?= $city_info['name'] ?>
                   </h3>
                 </header>
                 <div class="entry-content" itemprop="text">
                   <!-- <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" aria-hidden="true"> -->
                     <img style="float:right; width: 200px" src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($city_info['pic_s'], 's')?>" class="post-image entry-image" alt="<?= $city_info['name'] ?>" itemprop="image" style="padding-left: 10px">
-                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 330)) ?></p>
-                    <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" aria-hidden="true"><?=Yii::t('app','Read more about '.$city_info['name'])?></a>
+                    <p><?= Html::encode(\common\models\Tools::wordcut(strip_tags($city_info['introduction']), 330)) ?>
+                    <a class="entry-image-link" href="<?= Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']]) ?>" aria-hidden="true"><?=Yii::t('app','Read more')?></a></p>
                   <!-- </a> -->
                 </div>
                 <p class="entry-meta">

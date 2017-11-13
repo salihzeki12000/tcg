@@ -336,6 +336,7 @@ ul.navbar-nav li:not(:last-child) b.caret{
 }
 .home-whyus{
   text-align: center;
+  padding: 10 0px;
 }
 .home-whyus i{
   border: 1px solid #d86367;
@@ -1076,7 +1077,7 @@ div#social-media-icons-container a {
 }
 .overview {
 	font-size: 16px;
-	line-height: 1.5;
+	line-height: 1.3;
 }
 .tour-view .itineraries{
     padding-bottom: 15px;
@@ -1194,13 +1195,16 @@ div#social-media-icons-container a {
       margin-right: 180px;
   }
   .tour-view > .col-lg-8 {
-      padding-left: 150px;
+      padding-left: 180px;
+      padding-right: 60px;
       margin-top: 0px;
       min-height: 650px;
   }
   .tour-view > .col-lg-4 {
-      padding-right: 135px;
+      padding-right: 120px;
+      padding-left: 0px;
       margin-top: 30px;
+      margin-left: -50px;
   }
   .form-info.col-lg-4.small-group-tour-form {
   	padding-right: 75px;
@@ -1638,7 +1642,7 @@ a.desc:after {
   padding-left: 20px;
 }
 .overview > ul > li {
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 .overview a{
     color: #E0E3D6;
@@ -1711,6 +1715,11 @@ a.desc:after {
 .first {
     clear: both;
     margin-left: 0;
+}
+.name-popular-destination {
+    font-size: 20px;
+    line-height: 1;
+    margin-top: 0;
 }
 .entry-title {
     font-size: 24px;
@@ -2043,8 +2052,10 @@ a.list-group-item{
   padding: 10px 15px 14px;
 }
 .subscribe-bar h3{
-  text-align: center;
-  color: #524632;
+	text-align: center;
+	color: #4D423C;
+	font-weight: 500;
+	font-family: "Times New Roman";
 }
 .subscribe-bar .subscribe-bar-desc{
   text-align: center;
