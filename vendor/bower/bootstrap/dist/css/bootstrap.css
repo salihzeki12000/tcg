@@ -287,7 +287,7 @@ th {
     page-break-after: avoid;
   }
 
-  .navbar {
+  .navbar {31
     display: none;
   }
 
@@ -3169,6 +3169,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 input[type="search"] {
