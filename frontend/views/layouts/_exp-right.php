@@ -26,7 +26,7 @@ if(!empty($mostPopularBlogs)): ?>
 	</div>
 	
     <div class="col-lg-12">
-	    <ul>
+	    <ul style="padding-left: 15px">
 		<?php foreach($mostPopularBlogs as $blog): ?>
 			<li><a href="<?= $blog->url_id; ?>" class="most-read-blogs"><?= $blog->title; ?></a></li>
 		<?php endforeach; ?>
