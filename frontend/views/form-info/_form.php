@@ -34,14 +34,14 @@ use yii\helpers\Url;
 
     <?php if(in_array('arrival_date', $form_fields)) { ?>
         <div class="required">
-            <label class="control-label" for=""><?=Yii::t('app','Tour Start (in China)')?> </label>
+            <label class="control-label" for=""><?=Yii::t('app','Tour start date and city')?> </label>
             <table width="100%">
                 <tr>
                     <td width="50%" valign="top">
-                        <?= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('app','Select Date') ])->label(false) ?>
+                        <?= $form->field($model, 'arrival_date')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('app','Date') ])->label(false) ?>
                     </td>
                     <td width="50%" valign="top">
-                        <?= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => Yii::t('app','Select City')])->label(false) ?>
+                        <?= $form->field($model, 'arrival_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => Yii::t('app','City')])->label(false) ?>
                     </td>
                 </tr>
             </table>
@@ -51,10 +51,10 @@ use yii\helpers\Url;
             <table width="100%">
                 <tr>
                     <td width="50%" valign="top">
-                        <?= $form->field($model, 'departure_date')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('app','Select Date') ])->label(false) ?>
+                        <?= $form->field($model, 'departure_date')->textInput(['maxlength' => true, 'placeholder' =>Yii::t('app','Date') ])->label(false) ?>
                     </td>
                     <td width="50%" valign="top">
-                        <?= $form->field($model, 'departure_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => Yii::t('app','Select City')])->label(false) ?>
+                        <?= $form->field($model, 'departure_city')->dropDownList([ 'Beijing' => 'Beijing', 'Shanghai' => 'Shanghai', 'Guangzhou' => 'Guangzhou', 'Hongkong' => 'Hongkong', 'Other' => 'Other', ], ['prompt' => Yii::t('app','City')])->label(false) ?>
                     </td>
                 </tr>
             </table>
@@ -77,13 +77,13 @@ use yii\helpers\Url;
     </div>
     <?php } ?>
 
-    <?= !in_array('ideas', $form_fields) ? '' : $form->field($model, 'ideas')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please provide us with as much detail as possible, for example, the cities you want to visit and any classes or activities you want to participate in.')]) ?>
+    <?= !in_array('ideas', $form_fields) ? '' : $form->field($model, 'ideas')->textarea(['maxlength' => true, 'rows'=>3, 'placeholder' => Yii::t('app','Please provide us with as much detail as possible, for example, the cities you want to visit and any classes or activities you want to participate in')]) ?>
 
     <?= !in_array('ideas_trip', $form_fields) ? '' : $form->field($model, 'ideas_trip')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => '']) ?>
 
     <?php if(in_array('adults', $form_fields)) { ?>
     <div class="required">
-        <label class="control-label" for=""><?=Yii::t('app','Travelers')?></label>
+        <label class="control-label" for=""><?=Yii::t('app','Number of travelers')?></label>
         <table width="100%">
             <tr>
                 <td width="50%" valign="middle">
@@ -128,18 +128,18 @@ use yii\helpers\Url;
 
     <?= !in_array('other_info', $form_fields) ? '' : $form->field($model, 'other_info')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => '']) ?>
 
-    <?= !in_array('book_hotels', $form_fields) ? '' : $form->field($model, 'book_hotels')->dropDownList([ 'Yes' => Yii::t('app','Yes'), 'No' => Yii::t('app','No'), ], ['prompt' => Yii::t('app','Please select')]) ?>
+    <?= !in_array('book_hotels', $form_fields) ? '' : $form->field($model, 'book_hotels')->dropDownList([ 'Yes' => Yii::t('app','Yes'), 'No' => Yii::t('app','No'), ], ['prompt' => Yii::t('app','')]) ?>
 
     <?php if(in_array('hotel_preferences', $form_fields)) {?>
     <div class="form-group field-forminfo-hotel_preferences required">
-    <label class="control-label" for="forminfo-hotel_preferences">Hotel preferences</label>
+    <label class="control-label" for="forminfo-hotel_preferences"><?= Yii::t('app','Hotel preferences') ?></label>
     <?= $form->field($model, 'hotel_preferences')->dropDownList([ '3 star or equal' => Yii::t('app','3 star or equal'), '4 star or equal' => Yii::t('app','4 star or equal'), '5 star or equal' => Yii::t('app','5 star or equal'), ], ['prompt' => ''])->label(false) ?>
     </div>
     <?php } ?>
 
     <?= !in_array('room_requirements', $form_fields) ? '' : $form->field($model, 'room_requirements')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => Yii::t('app','Please let us know how many and what types of rooms you want, as well as other requirements.')]) ?>
 
-    <?= !in_array('group_type', $form_fields) ? '' : $form->field($model, 'group_type')->dropDownList([ 'Family' => Yii::t('app','Family'), 'Couple' => Yii::t('app','Couple'), 'Friends' => Yii::t('app','Friends'), 'Business' => Yii::t('app','Business'), 'Solo' => Yii::t('app','Solo'), 'Other' => Yii::t('app','Other'), ], ['prompt' => Yii::t('app','Select Type')]) ?>
+    <?= !in_array('group_type', $form_fields) ? '' : $form->field($model, 'group_type')->dropDownList([ 'Family' => Yii::t('app','Family'), 'Couple' => Yii::t('app','Couple'), 'Friends' => Yii::t('app','Friends'), 'Business' => Yii::t('app','Business'), 'Solo' => Yii::t('app','Solo'), 'Other' => Yii::t('app','Other'), ], ['prompt' => Yii::t('app','')]) ?>
 
     <?php if(in_array('cities_plan', $form_fields)) { ?>
     <div class="form-group field-forminfo-cities_plan">
@@ -158,8 +158,8 @@ use yii\helpers\Url;
                     $current_city_in_list = 0;
                 }
             ?>
-            <label><input type="checkbox" id="ck_other_city" value="Other" <?=(!$current_city_in_list&&isset($current_city_name))?'checked':'' ?>> Other</label>
-            <label id="lab_other_city" <?=(!$current_city_in_list&&isset($current_city_name))?'':'style="display: none;"' ?>><input type="input" name="FormInfo[cities_plan][]" value="<?=(!$current_city_in_list&&isset($current_city_name))?$current_city_name:'' ?>" <?=(!$current_city_in_list&&isset($current_city_name))?'':'disabled="disabled"' ?> style="width:200px"></label>
+            <label><input type="checkbox" id="ck_other_city" value="Other" <?=(!$current_city_in_list&&isset($current_city_name))?'checked':'' ?>> <?= Yii::t('app','Other') ?></label>
+            <label id="lab_other_city" <?=(!$current_city_in_list&&isset($current_city_name))?'':'style="display: none;"' ?>><input type="input" name="FormInfo[cities_plan][]" value="<?=(!$current_city_in_list&&isset($current_city_name))?$current_city_name:'' ?>" <?=(!$current_city_in_list&&isset($current_city_name))?'':'disabled="disabled"' ?> style="width: 200px"></label>
         </div>
 
         <div class="help-block"></div>
@@ -168,7 +168,7 @@ use yii\helpers\Url;
 
     <?= !in_array('travel_interests', $form_fields) ? '' : $form->field($model, 'travel_interests')->checkboxList(['Chinese Culture' => Yii::t('app','Chinese Culture'),'Adventure' => Yii::t('app','Adventure'),'Nature' => Yii::t('app','Nature'),'Chinese food' => Yii::t('app','Chinese food'),'Romance' => Yii::t('app','Romance'),]) ?>
 
-    <?= !in_array('prefered_budget', $form_fields) ? '' : $form->field($model, 'prefered_budget')->dropDownList([ 'Below 1499 USD' => Yii::t('app','Below 1499 USD'), '1500 to 2999 USD' => Yii::t('app','1500 to 2999 USD'), '3000 to 4999 USD' => Yii::t('app','3000 to 4999 USD'), 'Above 5000 USD' => Yii::t('app','Above 5000 USD'), ], ['prompt' => Yii::t('app','Select a budget')]) ?>
+    <?= !in_array('prefered_budget', $form_fields) ? '' : $form->field($model, 'prefered_budget')->dropDownList([ 'Below 1499 USD' => Yii::t('app','Below 1499 USD'), '1500 to 2999 USD' => Yii::t('app','1500 to 2999 USD'), '3000 to 4999 USD' => Yii::t('app','3000 to 4999 USD'), 'Above 5000 USD' => Yii::t('app','Above 5000 USD'), ], ['prompt' => Yii::t('app','')]) ?>
 
     <?= !in_array('additional_information', $form_fields) ? '' : $form->field($model, 'additional_information')->textarea(['maxlength' => true, 'rows'=>2, 'placeholder' => '']) ?>
 

@@ -7,7 +7,7 @@ use common\models\Tour;
 /* @var $this yii\web\View */
 /* @var $model common\models\FormInfo */
 
-$this->title = 'Information Form';
+$this->title = Yii::t('app','Information Form');
 
 $fields = Yii::$app->params['form_fields'][$model->type];
 

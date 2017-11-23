@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 </div>
 
-<div class="tour-view preparation">
+<div class="tour-view">
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
 
     <div class="article-view col-lg-12 col-md-12 col-xs-12">

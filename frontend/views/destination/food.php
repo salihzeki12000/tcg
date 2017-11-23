@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Food');
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
 	<h2><?=Yii::t('app',"Inquiry Form")?></h2>
-	<div class="tips">Let's get started! Fill out this form so we can start helping you plan your adventure in China.</div>
+	<div class="tips"><?= Yii::t('app',"Let's get started! Fill out this form so we can start helping you plan your adventure in China") ?></div>
 
     <?= $this->render('/form-info/_form', [
         'model' => new common\models\FormInfo(FORM_TYPE_CUSTOM),
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Food');
         'current_city_name' => $city_info['name'],
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We will respond to your inquiry by email within one working day')?></div>
   </div>
 </div>
 

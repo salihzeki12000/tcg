@@ -7,10 +7,11 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
-$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ' ' . Yii::t('app','China Guided') . ' ' . Yii::t('app','Small Group Tour') . ': ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Itinerary');
+$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . '-' . Yii::t('app','Day') . ' ' . Yii::t('app','China Guided') . ' ' . Yii::t('app','Small Group Tour') . ': ' . $tour_info['display_cities'] . ' ' . Yii::t('app','Itinerary');
+
 $this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
-  . $tour_info['display_cities'] . ' ' . Yii::t('app','guided tour package') . '; '
-  . Yii::t('app','Tour Themes') . ': ';
+  . $tour_info['display_cities'] . ' ' . Yii::t('app','Itinerary; ');
+  
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -24,10 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <li data-target="#carousel-slides-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
         <?php } ?>
       </ol>
-      
-      <!-- <div style="position: absolute; top: 50%; left: 50%; z-index: 4; transform: translate(-50%,-50%)">
-      <h1 class="title" style="text-shadow: 0 0 3px rgba(0,0,0,0.7)"><?= Html::encode($tour_info['name']) ?><small><?= ($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length'] ?> <?=($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
-      </div> -->
      
       <!-- Wrapper for slides -->
       <div class="carousel-inner full-w">
@@ -51,13 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
       <a class="right carousel-control" href="#carousel-slides-generic" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
-    </div> <!-- Carousel -->
+    </div>
 
 
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
     <div class="tour-info">
       <div class="col-lg-12 col-md-12 col-xs-12">
-          <h1 class="title" style="text-shadow: 0 0 3px rgba(0,0,0,0.7)"><?= Html::encode($tour_info['name']) ?><small><?= $tour_info['display_cities'] ?> <?=Yii::t('app','Private Tour')?></small></h1>
+          <h1 class="title"><?= Html::encode($tour_info['name']) ?><small><?= $tour_info['display_cities'] ?> <?=Yii::t('app','Tour')?></small></h1>
       </div>
         <div class="tour-info-row row">
           <div class="col-lg-4 col-md-4 col-xs-4">
@@ -75,7 +72,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
-    <div class="group-date col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="home-btn hidden-lg col-md-12 col-sm-12 col-xs-12">
+      <div class="btn-row">
+        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Join This Group Tour')?></a>
+      </div>
+    </div>
+    
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="col-lg-12">
         <div class="strike">
         <h2>
@@ -84,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
         <div class="overview">
-          <span class="content-color-1">Dates:</span>
+          <div class="content-color-1"><?= Yii::t('app','Dates:') ?></div>
           <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - 
           <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
           <?php if(!empty($tour_info['other_dates'])) {?>
@@ -105,27 +108,23 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="list-group">
             <?php 
-            $this->description .= Yii::t('app','Small Group Tour');
-            echo '<span>' . Yii::t('app','Small Group Tour') . '<span>';
+            $this->description .= Yii::t('app','Small Group Tour, ');
+            echo '<span class="theme">' . Yii::t('app','Small Group Tour') . '</span>';
             $i = 0;
             foreach (explode(',', $tour_info['themes']) as $theme_id) { 
               if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
                 continue;
               }
-              $this->description .= ', ' . Yii::$app->params['tour_themes'][$theme_id];
+              if ($i !== 0) {
+                $this->description .= ', ';
+              }
+              $this->description .= Yii::$app->params['tour_themes'][$theme_id];
               $i++;
-              ?>,
-            <span><?= Yii::$app->params['tour_themes'][$theme_id] ?></span><?php } ?>
+              ?><span class="theme"><?= Yii::$app->params['tour_themes'][$theme_id] ?></span><?php } ?>
         </div>
         <div class="overview">
           <?= $tour_info['overview'] ?>
         </div>
-    </div>
-
-    <div class="home-btn hidden-lg col-md-12 col-sm-12 col-xs-12">
-      <div class="btn-row">
-        <a type="button" class="btn btn-danger col-lg-6 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Join This Group Tour')?></a>
-      </div>
     </div>
 
     <div class="map itinerary-swipe col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -203,7 +202,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
             <?php } ?>
-          </div> <!-- Carousel -->
+          </div>
 
         <?php } ?>
 
@@ -215,44 +214,50 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="inclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="col-lg-12">
-          <div class="strike">
-        <h2>
-          <?=Yii::t('app',"What's Included")?>
-          </h2>
-      </div>
-    </div>
-    <div style="clear: both"></div>
+	    <div class="col-lg-12">
+        	<div class="strike">
+				<h2>
+					<?=Yii::t('app',"What's Included")?>
+        		</h2>
+    		</div>
+    	</div>
+		
+		<div class="clear"></div>
+        
         <div class="overview">
-          <?= $tour_info['inclusion'] ?>
+        	<?= $tour_info['inclusion'] ?>
         </div>
     </div>
 
     <div class="exclusion col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="col-lg-12">
-          <div class="strike">
-        <h2>
-          <?=Yii::t('app',"What's Not Included")?>
-          </h2>
-      </div>
-    </div>
-    <div style="clear: both"></div>
+    	<div class="col-lg-12">
+        	<div class="strike">
+				<h2>
+					<?=Yii::t('app',"What's Not Included")?>
+        		</h2>
+      		</div>
+    	</div>
+		
+		<div class="clear"></div>
+        
         <div class="overview">
-          <?= $tour_info['exclusion'] ?>
+        	<?= $tour_info['exclusion'] ?>
         </div>
     </div>
 
     <div class="tips col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="col-lg-12">
-          <div class="strike">
-        <h2>
-          <?=Yii::t('app',"Notes")?>
-          </h2>
-      </div>
-    </div>
-    <div style="clear: both"></div>
+    	<div class="col-lg-12">
+        	<div class="strike">
+				<h2>
+					<?=Yii::t('app',"Notes")?>
+        		</h2>
+			</div>
+    	</div>
+		
+		<div class="clear"></div>
+        
         <div class="overview">
-          <?= $tour_info['tips'] ?>
+        	<?= $tour_info['tips'] ?>
         </div>
     </div>
     
@@ -263,13 +268,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="form-info small-group-tour-form col-lg-4 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
     <div class="clearfix"></div> 
-    <div class="form-info-create group-view>
+    <div class="form-info-create group-view">
       <span class="placeholder" id="inquiry-form"></span>
 
-      <!-- <div class="form-title"><?=Yii::t('app','Application Form')?></div> -->
       <h2 class="small-group-tour">Inquiry Form</h2>
-      <div class="tips"><?=Yii::t('app','Tour Code:')?> <?= $tour_info['code'] ?></div>
-      <hr />
+      <div class="tips"><?= $tour_info['code'] ?></div>
       <?= $this->render('/form-info/_form', [
           'model' => new common\models\FormInfo(FORM_TYPE_GROUP),
           'form_type' => FORM_TYPE_GROUP,
@@ -279,7 +282,7 @@ $this->params['breadcrumbs'][] = $this->title;
           'bt_submit_txt' => Yii::t('app', 'Submit') ,
       ]) ?>
 
-      <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
+      <div class="form-info-bottom"><?=Yii::t('app','We will respond to your inquiry by email within one working day')?></div>
     </div>
   </div>
 

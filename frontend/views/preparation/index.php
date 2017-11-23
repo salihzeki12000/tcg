@@ -11,8 +11,7 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Travel Preparation');
-$this->description = Yii::t('app', 'China travel tips, China travel FAQs');
-$this->keywords = Yii::t('app', 'China travel tips, China travel preparation');
+$this->description = Yii::t('app', 'Tips and tricks to help you plan the perfect trip to China');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
 ?>
 
@@ -25,7 +24,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
   </div>
 </div>
 
-<div class="tour-view preparation">
+<div class="tour-view">
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
     <div class="article-index">
       <div class="list-group faq">
@@ -36,7 +35,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
             }
           ?>
           <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
-              <!-- <i class="glyphicon glyphicon-chevron-right pull-right" ></i> -->
               <span><?= $item['title'] ?></span>
           </a>
           <?php } ?>
@@ -52,7 +50,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
             }
           ?>
           <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
-              <!-- <i class="glyphicon glyphicon-chevron-right pull-right" ></i> -->
               <span><?= $item['title'] ?></span>
           </a>
           <?php } ?>
@@ -68,7 +65,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Preparation');
             }
           ?>
           <a href="<?= Url::toRoute(['preparation/view', 'url_id'=>$item['url_id']]) ?>" class="list-group-item col-lg-12 col-md-12 col-xs-12">
-              <!-- <i class="glyphicon glyphicon-chevron-right pull-right" ></i> -->
               <span><?= $item['title'] ?></span>
           </a>
           <?php } ?>

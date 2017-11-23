@@ -17,21 +17,23 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'THE CHINA GUIDE BLOG', 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?= (\Yii::$app->controller->id=='article') ? Yii::t('app','The China Guide Blog') : Yii::t('app','We create private, customized China tours.') ?></h1>
+      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','the china guide blog'), 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><?= (\Yii::$app->controller->id=='article') ? Yii::t('app','Travel Blog') : Yii::t('app','We create private, customized China tours.') ?></h1>
     </div>
   </div>
 </div>
 
-<div class="tour-view blog">
+<div class="tour-view">
   <div class="container tour-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
 
     <div class="article-view col-lg-12 col-md-12 col-xs-12">
 
         <div class="content-body">
-            <center>
-              <h2><?= $article['title'] ?><small><?= date('F d, Y', strtotime($article['create_time'])) ?></small></h2>
-            </center>
+              <h1>
+	          	<?= $article['title'] ?>
+              	<small><?= date('F d, Y', strtotime($article['create_time'])) ?></small>
+              </h1>
+              
             <?php if($article['pic_s']) {?>
             <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($article['pic_s'], 'm')?>" alt="<?= $article['title'] ?>"/>
             <?php } ?>

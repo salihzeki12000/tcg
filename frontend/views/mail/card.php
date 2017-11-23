@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\FormInfo */
 
-$this->title = 'Secure Credit Card Form';
+$this->title = Yii::t('app','Secure Credit Card Form');
 
 ?>
 <div class="form-info-view">

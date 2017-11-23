@@ -11,9 +11,10 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', '{0} & {1} China Guided Small Group Tour Packages', [date('Y'), date('Y', strtotime('+1 years'))]);
-$this->description = Yii::t('app', 'China guided tour packages, best {0} & {1} small group tour itineraries to Beijing, Xi\'an, Shanghai, Zhangjiajie, Guilin, Yangshuo, Chengdu, Tibet, etc.', [date('Y'), date('Y', strtotime('+1 years'))]);
-$this->keywords = Yii::t('app', 'China guided tours, China small group tour itineraries');
+// $this->title = Yii::t('app', '{0} & {1} China Guided Small Group Tour Packages', [date('Y'), date('Y', strtotime('+1 years'))]);
+$this->title = Yii::t('app', 'Guided Small Group Tours to China');
+$this->description = Yii::t('app', 'Join together with other like-minded travelers on one of our regular small group tours');
+$this->keywords = Yii::t('app', '');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="title-bar">
@@ -27,10 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tour-index container">
 
-  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','Join together with other like-minded travelers and discover China on one of regular small group tours. Whether you want to explore futuristic cityscapes, uncover the delicious secrets of Chinese cuisine or journey through stunning natural landscapes, our small group tours offer an insight into everything that this fascinating country has to offer.')?></p>
-
-  <p class="full-text col-lg-9 col-md-10"><?=Yii::t('app','Although you\'ll be traveling in a group (with a minimum of 6 and a maximum of 12 people), you will still enjoy the same high standard of service as our private tours.')?></p>
-
+  <p class="full-text col-lg-9 col-md-10" style="text-align: center"><?=Yii::t('app','Join together with other like-minded travelers and discover China on one of regular small group tours.')?></p>
 
     <div class=" file-drop-zone"> 
      <div class="file-preview-thumbnails">
@@ -52,13 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <br>
                                 
                                 <span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
-                                
-                                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
                             </div>
                         
                         <div class="tourlist-desc">
-                                <!-- <?= Html::encode(\common\models\Tools::wordcut(strip_tags($tour['overview']), 120)) ?>
-                                <br /><br /> -->
                                 <i class="glyphicon glyphicon-calendar"></i>
                                                 <?= date('F d, Y', strtotime($tour['begin_date'])) ?> - 
                                                 <?= date('F d, Y', strtotime($tour['end_date'])) ?><br>
@@ -82,27 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                      </div> 
                 </div> 
-<!--
-        <a class="kv-file-content" href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>"> 
-         <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($tour['pic_title'], 's')?>" alt="<?=  $tour['name'] ?>" class="kv-preview-data file-preview-image" /> 
-        </a>
-        <div class="file-thumbnail-footer"> 
-         <div class="file-footer-caption">
-            <div class="content-press"><span><?= ($tour['tour_length']==intval($tour['tour_length']))?intval($tour['tour_length']):$tour['tour_length'] ?></span> <?=($tour['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')?> | <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')?> | <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')?></div>
-            <h2><a href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>"><?= $tour['name'] ?></a></h2>
-            <div class="tourlist-desc" style="min-height: 40px"><a href="<?= Url::toRoute(['join-a-group/view', 'url_id'=>$tour['url_id']]) ?>">
-              <i class="glyphicon glyphicon-calendar"></i>
-              <?= date('F d, Y', strtotime($tour['begin_date'])) ?> - 
-              <?= date('F d, Y', strtotime($tour['end_date'])) ?><br>
-              <?php if(!empty($tour['other_dates'])) {?>
-                <i class="glyphicon glyphicon-calendar"></i> <?=$tour['other_dates']?>
-              <?php } ?></a>
-            </div>
-            <div class="tourlist-price">
-            </div>
-         </div> 
-        </div>
---> 
        </div>
 
       <?php } ?> 

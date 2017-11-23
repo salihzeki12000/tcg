@@ -11,14 +11,14 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $theme_name . ' - ' . Yii::t('app', 'Private China Tours');
-$this->description = Yii::t('app', 'Travel to China on a private, customized tour.');
-$this->keywords = Yii::t('app','China tours, China private tours, China family tours, China package tours, customize China tours, China travel packages, China vacations, China travel');
+$this->title = $theme_name . ' - ' . Yii::t('app', 'China Tours');
+$this->description = Yii::t('app', 'Find or customize a private tour to China');
+$this->keywords = Yii::t('app','China tours, China private tours, China package tours, customized China tours');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="title-bar">
   <div class="row">
-    <div class="cities-banner" style="margin-bottom: 0;">
+    <div class="cities-banner index-experiences">
       <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','Private China Tours'), 'width'=>"100%"]) ?>
       <h1 class="banner-text"><?=Yii::t('app','Private China Tours')?></h1>
     </div>
@@ -26,8 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="container exp-tab">
   <div class="tabs">
-    <div class="tab active">Filter</div>
-    <div class="tab"><a href="<?= Url::toRoute(['experience/search']) ?>">Search</a></div>
+    <div class="tab active"><?= Yii::t('app','Filter') ?></div>
+    <div class="tab"><a href="<?= Url::toRoute(['experience/search']) ?>"><?= Yii::t('app','Search') ?></a></div>
   </div>
 </div>
 
@@ -65,8 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <br>
                                 
                                 <span id="tour-list-cities"><?php echo Html::encode(\common\models\Tools::wordcut(strip_tags($tour['display_cities']), 40)); ?></span>
-                                
-                                <!-- <span><?= $tour['cities_count'] ?></span> <?=($tour['cities_count']>1)?Yii::t('app','destinations'):Yii::t('app','destination')?> &#9679; <span><?= $tour['exp_num'] ?></span> <?=($tour['exp_num']>1)?Yii::t('app','experiences'):Yii::t('app','experience')?> -->
                             </div>
                         
                         <div class="tourlist-desc">
@@ -76,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="itinerary-view">
 			                <?php if(!empty($tour['price_cny'])): ?>
 			                <span class="price">
-			                	from <span id="price-number"><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
+			                	<?= Yii::t('app','from') ?> <span id="price-number"><?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['sign'] ?><?= number_format(common\models\ExchangeUsd::convertCurrency(Yii::$app->params['currency'], $tour['price_cny']),0) ?></span> <?= Yii::$app->params['currency_name'][Yii::$app->params['currency']]['name'] ?>
 			                </span>
 			                <?php endif; ?>
 					
@@ -114,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
 	<h2><?=Yii::t('app',"Inquiry Form")?></h2>
-	<div class="tips">Let's get started! Fill out this form so we can start helping you plan your adventure in China.</div>
+	<div class="tips"><?= Yii::t('app',"Let's get started! Fill out this form so we can start helping you plan your adventure in China") ?></div>
     <?= $this->render('/form-info/_form', [
         'model' => new common\models\FormInfo(FORM_TYPE_CUSTOM),
         'form_type' => FORM_TYPE_CUSTOM,
@@ -122,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tour_name' => '',
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We will respond to your inquiry by email within one working day')?></div>
   </div>
 </div>
 

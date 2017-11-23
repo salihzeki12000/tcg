@@ -45,7 +45,7 @@ use yii\helpers\Url;
             <div class="days" style="display: none;">
                 <?php foreach ($value['itineraries'] as $day_item) { ?>
                 <div>
-                    <div class="sub-title">Day <?=$day_item['day']?>: <?=$day_item['cities_name']?></div>
+                    <div class="sub-title"><?= Yii::t('app','Day') ?> <?=$day_item['day']?>: <?=$day_item['cities_name']?></div>
                     <div><?=$day_item['description']?></div>
                 </div>
                 <?php } ?>

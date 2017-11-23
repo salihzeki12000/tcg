@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\FormInfo */
 
-$this->title = 'Content Form';
+$this->title = Yii::t('app','Content Form');
 
 
 ?>

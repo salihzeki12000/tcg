@@ -154,6 +154,25 @@ class Tools
         return $data;
     }
 
+    static public function getMostPopularBlogs($count=10)
+    {
+        $cache = Yii::$app->cache;
+        $cache_key = 'MOST_POPULAR_BLOGS'.$count;
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            $blogs_query = \common\models\Article::find()->where(['type' => 1]);
+            $data = $blogs_query
+            	->andWhere(['rec_type' => 2])
+                ->orderBy('priority DESC, id ASC')
+                ->limit($count)
+                ->all();
+            $cache->set($cache_key, $data, 60*10); 
+        }
+
+        return $data;
+    }
+
     static public function getMostPopularCities($count=6)
     {
         $cache = Yii::$app->cache;
@@ -185,6 +204,13 @@ class Tools
                 ->all();
             $cache->set($cache_key, $data, 60*10); 
         }
+        
+        foreach($data as $theme):
+        	if($theme['name'] == 'Visa Free Transit Tours'):
+        		$theme['name'] = 'Visa-Free Transit Tours';
+        	endif;
+        endforeach;
+        
         return $data;
     }
 

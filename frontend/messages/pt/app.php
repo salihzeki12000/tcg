@@ -129,7 +129,7 @@ return [
     'Delete' => '',
     'Departure (In China)' => '',
     'Destinations' => '',
-    'Drivers & Vehicles' => '',
+    'Drivers and Vehicles' => '',
     'Drivers and Vehicles' => '',
     'EDUCATIONAL PROGRAMS' => '',
     'EXPERIENCES' => '',

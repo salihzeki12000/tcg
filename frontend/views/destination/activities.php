@@ -9,9 +9,9 @@ use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $model common\models\city */
 
-$this->title = Yii::t('app','Tourist Activities') . ' - ' . $city_info['name'] . ' ' . Yii::t('app','Travel Guide');
-// $this->description = $city_info['name'] . ' ' . Yii::t('app', ' tourist activities') . ':';
-$this->keywords = $city_info['name'] . ' ' . Yii::t('app','travel guide, tourist activities');
+$this->title = Yii::t('app','Activities') . ' - ' . $city_info['name'] . ' ' . Yii::t('app','Travel Guide');
+$this->description = Html::encode(\common\models\Tools::limit_words(strip_tags($city_info['introduction']), 30)) . '...';
+$this->keywords = Html::encode($city_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Destinations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url'=>Url::toRoute(['destination/view', 'url_id'=>$city_info['url_id']])];
 $this->params['breadcrumbs'][] = Yii::t('app','Activities');
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Activities');
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
 	<h2><?=Yii::t('app',"Inquiry Form")?></h2>
-	<div class="tips">Let's get started! Fill out this form so we can start helping you plan your adventure in China.</div>
+	<div class="tips"><?= Yii::t('app',"Let's get started! Fill out this form so we can start helping you plan your adventure in China") ?></div>
 
     <?= $this->render('/form-info/_form', [
         'model' => new common\models\FormInfo(FORM_TYPE_CUSTOM),
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = Yii::t('app','Activities');
         'current_city_name' => $city_info['name'],
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We will respond to your inquiry by email within one working day')?></div>
   </div>
 </div>
 
