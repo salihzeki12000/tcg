@@ -59,10 +59,6 @@ class ExperienceController extends Controller
             $theme_name = $theme_info['name'];
         }
         
-        if($theme_name == 'Visa Free Transit Tours'):
-        	$theme_name = 'Visa-Free Transit Tours';
-        endif;
-        
         $condition = array();
         $condition['status'] = DIS_STATUS_SHOW;
         $condition['type'] = $this->tour_type;

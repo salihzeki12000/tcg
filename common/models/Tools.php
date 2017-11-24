@@ -205,12 +205,6 @@ class Tools
             $cache->set($cache_key, $data, 60*10); 
         }
         
-        foreach($data as $theme):
-        	if($theme['name'] == 'Visa Free Transit Tours'):
-        		$theme['name'] = 'Visa-Free Transit Tours';
-        	endif;
-        endforeach;
-        
         return $data;
     }
 
