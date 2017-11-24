@@ -69,7 +69,7 @@ AppAsset::register($this);
         ['label' => Yii::t('app','FIND A TOUR'), 'url' => ['experience/search'], 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'search')],
         ['label' => Yii::t('app','PRIVATE TOURS'), 'items'=>$themes_menu, 'active' => (\Yii::$app->controller->id == 'experience' && \Yii::$app->controller->action->id == 'index')],
         ['label' => Yii::t('app','GROUP TRAVEL'), 'active' => (\Yii::$app->controller->id == 'join-a-group' || \Yii::$app->controller->id == 'educational-programs' || \Yii::$app->controller->id == 'mice'), 'items' => [
-            ['label' => Yii::t('app','Student Tour'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
+            ['label' => Yii::t('app','Student Tours'), 'url' => ['/educational-programs'], 'active' => \Yii::$app->controller->id == 'educational-programs'],
             ['label' => Yii::t('app','MICE Travel'), 'url' => ['/mice'], 'active' => \Yii::$app->controller->id == 'mice'],
         ]],
         ['label' => Yii::t('app','DESTINATIONS'), 'active' => \Yii::$app->controller->id == 'destination',
@@ -94,13 +94,13 @@ AppAsset::register($this);
         ]],
         ['label' => Yii::t('app','BLOG'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
         ['label' => Yii::t('app','ABOUT US'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
-            ['label' => Yii::t('app','Who We Are'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
+            ['label' => Yii::t('app','Who we are'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
             ['label' => Yii::t('app','Meet our team'), 'url' => ['about-us/meet-our-team'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'about-us/meet-our-team')],
             ['label' => Yii::t('app','Our guides'), 'url' => ['about-us/our-guides'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'our-guides')],
-            ['label' => Yii::t('app','Drivers & Vehicles'), 'url' => ['about-us/drivers-and-vehicles'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'drivers-and-vehicles')],
+            ['label' => Yii::t('app','Drivers and vehicles'), 'url' => ['about-us/drivers-and-vehicles'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'drivers-and-vehicles')],
             ['label' => Yii::t('app','Contact us'), 'url' => ['about-us/contact-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'contact-us')],
             '<li class="divider"></li>',
-            '<li class="dropdown-header">Call Us</li>',
+            '<li class="dropdown-header">Call us</li>',
             '<li class="dropdown-header">CN: +8610  8532 1860</li>',
             '<li class="dropdown-header">US: +1 646 863 7038</li>',
             '<li class="dropdown-header">AU: +61 871001399</li>',
@@ -222,16 +222,6 @@ AppAsset::register($this);
             </div>
         </div>
 
-        <!-- <div class="search-box">
-            <form id="search-form" method="get" action="https://www.google.com/search" target="_blank">
-                <input type="text" name="q" placeholder="<?=Yii::t('app','Search')?>">
-                <input type="hidden" value="thechinaguide.com" name="sitesearch">
-                <button id="search-button" type="submit">                     
-                    <span><?=Yii::t('app','Search')?></span>
-                </button>
-            </form>
-        </div> -->
-
         <span class="desc" style="display: none"><?=Yii::t('app','The China Guide')?><br /><?= Yii::t('app','A Beijing-based, foreign-owned travel agency.') ?></span>
     </div>
     </div>
@@ -251,11 +241,11 @@ AppAsset::register($this);
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">
-                                    <img src="/statics/images/trip-advisor-certificate-of-excellence-small.png">
+                                    <img src="/statics/images/trip-advisor-certificate-of-excellence-small.png" alt="<?= Yii::t('app','tripadvisor certificate of excellence') ?>">
                                 </a>
                             </div>
                             <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h3><?=Yii::t('app','Follow Us on Social Media')?></h3>
+                            <h3><?=Yii::t('app','Follow us on Social Media')?></h3>
                             <div id="social-media-icons-container">
                                 <a href="https://www.youtube.com/channel/UCp9ksc2bXXWcbE-CZG5iEMQ" id="youtube" target="_blank"></a>
                                 <a href="http://www.instagram.com/the_chinaguide" id="instagram" target="_blank"></a>
@@ -267,28 +257,28 @@ AppAsset::register($this);
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div>
-                                    <i class="glyphicon glyphicon-envelope footer-email"></i><a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>" style="display: inline-block"><h3 style="display: inline-block"><?=Yii::t('app','Email Us Your Plan')?></h3></a>
-                                </div>
-                                <div>
-                                <i class="glyphicon glyphicon-credit-card footer-credit-card"></i><a href="<?= Url::toRoute(['form-card/create']) ?>" style="display: inline-block"><h3 style="display: inline-block"><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
+                                <a href="mailto:book@thechinaguide.com?subject=<?=Yii::t('app','Booking or Consultation')?>"><h3><?=Yii::t('app','Email us Your Plan')?></h3></a>
                             </div>
+                            <div>
+                               	<a href="<?= Url::toRoute(['form-card/create']) ?>"><h3><?=Yii::t('app','Secure Credit Card Form')?></h3></a>
                             </div>
                         </div>
+                    </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <h3><?=Yii::t('app','The Company')?></h3>
                     <div>
-                        <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Who We Are')?></a>
+                        <a href="<?= Url::toRoute(['/about-us']) ?>"><?=Yii::t('app','Who we are')?></a>
                         <a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a>
                         <a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a>
-                        <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers & Vehicles')?></a>
+                        <a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers and vehicles')?></a>
                         <a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a>
-                        <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of Service')?></a>
+                        <a href="<?= Url::toRoute(['about-us/company-policies']) ?>"><?=Yii::t('app','Terms of service')?></a>
                         <a href="<?= Url::toRoute(['/faq']) ?>"><?=Yii::t('app','FAQ')?></a>
-                        <a href="/statics/pages/company_profile.pdf"><?=Yii::t('app','Company Profile')?></a>
+                        <a href="/statics/pages/company_profile.pdf"><?=Yii::t('app','Company profile')?></a>
                     </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <h3><?=Yii::t('app','Experiences')?></h3>
+                        <h3><?=Yii::t('app','Private Tours')?></h3>
                         <div>
                             <?php if( ($themes = \common\models\Tools::getAllTheme() )!== null) {
                              foreach ($themes as $theme) {
@@ -297,33 +287,25 @@ AppAsset::register($this);
                             <?php } } ?>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                        <h3><?=Yii::t('app','Destinations')?></h3>
-                        <div>
-                            <?php if( ($cities = \common\models\Tools::getMostPopularCities(9) )!== null) {
-                                foreach ($cities as $city) {
-                            ?>
-                            <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>"><?= $city['name'] ?></a> 
-                            <?php } } ?>
-                        </div>
-                    </div> -->
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="fitem payment-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3><?=Yii::t('app','Payment Options')?></h3>
                             <div>
-                                <i class="footer-icons payment"></i>
+                                <i class="footer-icons payment visa"></i>
+                                <i class="footer-icons payment mastercard"></i>
+                                <i class="footer-icons payment amex"></i>
+                                <i class="footer-icons payment paypal"></i>
                             </div>
                         </div>
                         <div class="social-media-icons col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3><?=Yii::t('app','Security')?></h3>
                             <div>
-                                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="/statics/images/comodo_secure_seal_113x59_transp.png"></a>
+                                <a href="https://secure.comodo.com/ttb_searcher/trustlogo?v_querytype=W&v_shortname=CL1&v_search=https://www.thechinaguide.com/&x=6&y=5" target="_blank"><img src="/statics/images/comodo_secure_seal_113x59_transp.png" alt="<?= Yii::t('app','logo comodo') ?>"></a>
                             </div>
                         </div>
                         <div class="partnership-membership col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h3><?=Yii::t('app','Partnerships & Memberships')?></h3>
+                            <h3><?=Yii::t('app','Partnerships')?></h3>
                             <div>
-                                <i class="footer-icons partnership"></i>
                                 <a href="/misc/animals-asia" class="icon-link"><i class="footer-icons membership"></i></a>
                             </div>
                         </div>
@@ -331,7 +313,7 @@ AppAsset::register($this);
                 </div>
         </div>
     <div class="copyright">
-        <p>Copyright &copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
+        <p><?= Yii::t('app','Copyright') ?> &copy; 2008 - <?= date('Y') ?> <?=Yii::t('app','The China Guide')?></p>
     </div>
         
 
@@ -395,7 +377,7 @@ JS;
 $this->registerJs($js);
 ?>
 
-<?php if(\Yii::$app->controller->id == 'site' && \Yii::$app->controller->action->id == 'index') { ?>
+<?php /* if(\Yii::$app->controller->id == 'site' && \Yii::$app->controller->action->id == 'index') { */ if(0) { ?>
 <script src="//my.hellobar.com/74e24eabbac970c8d9108d35dcaee0d202bf388b.js" type="text/javascript" charset="utf-8" async="async"></script>
 <?php } ?>
 

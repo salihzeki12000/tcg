@@ -11,16 +11,15 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $sub_title . ' - ' . Yii::t('app', 'About Us');
-$this->description = Yii::t('app', 'The China Guide provides Western-style travel customization services to China\'s top destinations, including Beijing, the Great Wall, Xi\'an, Shanghai, Tibet, and more.');
-$this->keywords = Yii::t('app', 'China tours, China private tours, China family tours, customize China tours, China travel, China travel guide, China guide, China travel tips, China travel blog, China travel agency');
+$this->title = $sub_title . ' - ' . Yii::t('app', 'About us');
+$this->description = Yii::t('app', 'Private and guided package tours to China from a Beijing-based travel agency run by a multilingual team of native speakers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?=Yii::t('app','About Us')?></h1>
-      <?= Html::img('@web/statics/images/aboutus-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/aboutus-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','About us'), 'width'=>"100%"]) ?>
     </div>
   </div>
 </div>
@@ -32,11 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <i class="glyphicon glyphicon-chevron-down"></i>
       </button>
       <ul class="dropdown-menu sub-menu" role="menu">
-        <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/index']) ?>"><?=Yii::t('app','Who We Are')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet Our Team')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our Guides')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='drivers-and-vehicles')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers &amp; Vehicles')?></a></li>
-        <li <?= (Yii::$app->controller->action->id=='contact-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact Us')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='index')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/index']) ?>"><?=Yii::t('app','Who we are')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='meet-our-team')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/meet-our-team']) ?>"><?=Yii::t('app','Meet our team')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='our-guides')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/our-guides']) ?>"><?=Yii::t('app','Our guides')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='drivers-and-vehicles')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/drivers-and-vehicles']) ?>"><?=Yii::t('app','Drivers and vehicles')?></a></li>
+        <li <?= (Yii::$app->controller->action->id=='contact-us')? 'class="active"':'' ?>><a href="<?= Url::toRoute(['about-us/contact-us']) ?>"><?=Yii::t('app','Contact us')?></a></li>
       </ul>
     </div>
 
@@ -77,13 +76,13 @@ $('.us-face').hammer().on('tap', function(){
 JS;
 $this->registerJs($js);
 
-$css = <<<CSS
+/* $css = <<<CSS
 
-  /*Meet Our Team*/
+  // Meet Our Team
   .us-face-row>div{
     height: 530px;
   }
 CSS;
-$this->registerCss($css); 
+$this->registerCss($css); */
 
 ?>

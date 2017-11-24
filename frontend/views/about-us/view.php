@@ -16,11 +16,11 @@ $this->description = $description;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?= $sub_title ?></h1>
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','About us'), 'width'=>"100%"]) ?>
     </div>
   </div>
 </div>

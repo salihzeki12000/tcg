@@ -11,24 +11,18 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Student Trip to China');
-$this->description = Yii::t('app', 'After almost 10 years of organizing student travel, The China Guide knows how to make every educational program exceptional, engaging, and exciting.');
-$this->keywords = Yii::t('app', 'Educational travel, faculty-led program, academic program, China student tour, student travel to China, student tours to China');
+$this->title = Yii::t('app', 'Student and Educational Tours to China');
+$this->description = Yii::t('app', 'With more than 10 years of experience organizing student tours, The China Guide produces educational programs that are fruitful, engaging, and exciting');
+$this->keywords = Yii::t('app', 'Student tours to China, faculty-led program, academic program');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
       <h1 class="banner-text"><?=Yii::t('app','Educational Programs')?><br><small><?=Yii::t('app','CUSTOMIZED STUDENT PROGRAM PLANNING SERVICES')?></small></h1>
       
-      <?= Html::img('@web/statics/images/educationalprograms-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/educationalprograms-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','About us'), 'width'=>"100%"]) ?>
     </div>
-  </div>
-</div>
-
-<div class="container home-btn">
-  <div class="row btn-row">
-    <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Plan An Educational Trip')?></a>
   </div>
 </div>
 
@@ -45,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="form-info container">
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
-    <!-- <div class="form-title"><?=Yii::t('app','Information Form')?></div> -->
     <h2><?=Yii::t('app',"Inquiry Form")?></h2>
     <?= $this->render('/form-info/_form', [
         'model' => new common\models\FormInfo(FORM_TYPE_EDU),
@@ -54,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tour_name' => '',
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We will get back to you by email within 24 hours.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We will respond to your inquiry by email within one working day')?></div>
   </div>
 </div>
 

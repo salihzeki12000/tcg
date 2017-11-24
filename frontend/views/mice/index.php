@@ -11,24 +11,18 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Meetings, Incentives, Conferences and Exhibitions');
-$this->description = Yii::t('app', 'Professional Business Travel Planning Services');
-$this->keywords = Yii::t('app', '');
+$this->title = Yii::t('app', 'Meetings, Incentives, Conferences, and Exhibitions');
+$this->description = Yii::t('app', 'The China Guide offers comprehensive solutions for all your business travel requirements, including meetings, incentive tours, conferences, and exhibitions');
+$this->keywords = Yii::t('app', 'MICE travel, incentive tours to China, China business travel');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
-      <h1 class="banner-text"><?=Yii::t('app','MICE Travel')?><br><small><?=Yii::t('app','PROFESSIONAL BUSINESS TRAVEL PLANNING SERVICES')?></small></h1>
+      <h1 class="banner-text"><?=Yii::t('app','MICE Travel')?><br><small><?=Yii::t('app','BUSINESS TRAVEL PLANNING SERVICES')?></small></h1>
       
       <?= Html::img('@web/statics/images/mice-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'About us', 'width'=>"100%"]) ?>
     </div>
-  </div>
-</div>
-
-<div class="container home-btn">
-  <div class="row btn-row">
-    <a type="button" class="btn btn-danger col-lg-3 col-md-4 col-xs-10" href="#inquiry-form"><?=Yii::t('app','Plan a MICE Trip')?></a>
   </div>
 </div>
 
@@ -45,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="form-info container">
   <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
     <span class="placeholder" id="inquiry-form"></span>
-    <!-- <div class="form-title"><?=Yii::t('app','Information Form')?></div> -->
     <h2><?=Yii::t('app',"Inquiry Form")?></h2>
     <?= $this->render('/form-info/_form', [
         'model' => new common\models\FormInfo(FORM_TYPE_MICE),
@@ -54,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tour_name' => '',
     ]) ?>
 
-    <div class="form-info-bottom"><?=Yii::t('app','We respond your inquiry by email within one working day.')?></div>
+    <div class="form-info-bottom"><?=Yii::t('app','We will respond to your inquiry by email within one working day')?></div>
   </div>
 </div>
 

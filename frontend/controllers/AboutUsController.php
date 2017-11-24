@@ -21,7 +21,7 @@ class AboutUsController extends Controller
      */
     public function actionIndex()
     {
-        $article_name = Yii::t('app','Who We Are');
+        $article_name = Yii::t('app','Who we are');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'our-mission';
@@ -35,7 +35,7 @@ class AboutUsController extends Controller
 
     public function actionOurGuides()
     {
-        $article_name = Yii::t('app','Our Guides');
+        $article_name = Yii::t('app','Our guides');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'our-guides';
@@ -49,7 +49,7 @@ class AboutUsController extends Controller
 
     public function actionDriversAndVehicles()
     {
-        $article_name = Yii::t('app','Drivers and Vehicles');
+        $article_name = Yii::t('app','Drivers and vehicles');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'drivers-and-vehicles';
@@ -58,12 +58,12 @@ class AboutUsController extends Controller
         $article = $query
             ->One();
 
-        return $this->render('index',['article'=>$article, 'sub_title'=>Yii::t('app','Drivers & Vehicles')]);
+        return $this->render('index',['article'=>$article, 'sub_title'=>Yii::t('app','Drivers and vehicles')]);
     }
 
     public function actionMeetOurTeam()
     {
-        $article_name = Yii::t('app','Meet Our Team');
+        $article_name = Yii::t('app','Meet our team');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'meet-our-team';
@@ -77,7 +77,7 @@ class AboutUsController extends Controller
 
     public function actionContactUs()
     {
-        $article_name = Yii::t('app','Contact Us');
+        $article_name = Yii::t('app','Contact us');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'contact-us';
@@ -92,7 +92,7 @@ class AboutUsController extends Controller
     public function actionCompanyPolicies()
     {
         $article_name = Yii::t('app','Terms of Service');
-        $description = Yii::t('app','Booking terms and conditions');
+        $description = Yii::t('app','');
         $condition = array();
         $condition['type'] = ARTICLE_TYPE_PAGE;
         $condition['url_id'] = 'terms-of-service';

@@ -12,14 +12,14 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'China Travel Destinations');
-$this->description = 'China\'s popular & off-the-beaten-track travel destinations, including Great Wall of China, Beijing, Xi\'an, Shanghai, Yangshuo, Zhangjiajie, Tibet and more.';
-$this->keywords = Yii::t('app','China destinations, China\'s tourist destinations, China\'s top tourist cities, China\'s top tourist sights, cities in China, China city guide, China travel guide, China guide');
+$this->description = 'Popular and off the beaten track travel destinations in China, including the Great Wall of China, Beijing, Xi\'an, Shanghai, Yangshuo, Zhangjiajie, Tibet, and more';
+$this->keywords = Yii::t('app','China travel destinations, China top tourist cities, China city guide');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'China Travel Destinations', 'width'=>"100%"]) ?>
+      <?= Html::img('@web/statics/images/destinations-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','China Travel Destinations'), 'width'=>"100%"]) ?>
       <h1 class="banner-text"><?=Yii::t('app','China Travel Destinations')?></h1>
     </div>
   </div>
@@ -70,14 +70,14 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php } ?>
   </div>
 
-  <div class="row">
+  <div class="row dest-other">
       <div class="col-lg-12">
           <h1 class="page-header"><center><?=Yii::t('app','Other Travel Destinations')?></center></h1>
       </div>
       <?php foreach ($cities as $city) { 
         if (strpos($city['rec_type'], REC_TYPE_POPULAR.'') === false && strpos($city['rec_type'], REC_TYPE_OFF_THE_BEATEN_TRACK.'') === false) {
       ?>
-        <div class="col-lg-2 col-md-2 col-xs-6 dest-other">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 dest-other">
           <a href="<?= Url::toRoute(['destination/view', 'url_id'=>$city['url_id']]) ?>">
             <span><?= $city['name'] ?></span>
           </a>

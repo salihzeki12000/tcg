@@ -11,16 +11,15 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\TourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Blog');
-$this->description = Yii::t('app', 'China travel guide, China travel tips, and news from The China Guide team');
-$this->keywords = Yii::t('app', 'China travel blog, China travel guide, China travel tips, travel blog');
+$this->title = Yii::t('app', 'Travel Blog');
+$this->description = Yii::t('app', 'China travel blog with travel tips, news, and destination guides');
 $this->params['breadcrumbs'][] = Yii::t('app','Blog');
 ?>
-<div class="container title-bar">
+<div class="title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>'BLOG', 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?=Yii::t('app','The China Guide Blog')?></h1>
+      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','blog'), 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><?=Yii::t('app','Travel Blog')?></h1>
     </div>
   </div>
 </div>
