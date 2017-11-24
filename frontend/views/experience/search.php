@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="exp-search-form col-lg-6 col-md-6 col-sm-10 col-xs-12">
-      <span class="input-group-title"><?=Yii::t('app','Tour length')?>:</span>
+      <span class="input-group-title"><?=Yii::t('app','Duration')?>:</span>
       <div class="input-group type-menu">
         <select id="formsearch-tour_length" class="short-input" name="tour_length">
           <?php 
