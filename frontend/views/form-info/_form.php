@@ -34,7 +34,7 @@ use yii\helpers\Url;
 
     <?php if(in_array('arrival_date', $form_fields)) { ?>
         <div class="required">
-            <label class="control-label" for=""><?=Yii::t('app','Tour start date and city')?> </label>
+            <label class="control-label" for=""><?=Yii::t('app','Start date and city')?> </label>
             <table width="100%">
                 <tr>
                     <td width="50%" valign="top">
@@ -63,7 +63,7 @@ use yii\helpers\Url;
 
     <?php if(in_array('tour_length', $form_fields)) { ?>
     <div class="required">
-        <label class="control-label" for=""><?= $form_type==FORM_TYPE_EDU? Yii::t('app','Program length') : Yii::t('app','Tour length')?></label>
+        <label class="control-label" for=""><?= $form_type==FORM_TYPE_EDU? Yii::t('app','Duration') : Yii::t('app','Duration')?></label>
         <table width="100%">
             <tr>
                 <td width="50%" valign="middle">

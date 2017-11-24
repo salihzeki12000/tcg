@@ -28,7 +28,7 @@ if(!empty($mostPopularBlogs)): ?>
     <div class="col-lg-12">
 	    <ul style="padding-left: 15px">
 		<?php foreach($mostPopularBlogs as $blog): ?>
-			<li><a href="<?= $blog->url_id; ?>" class="most-read-blogs"><?= $blog->title; ?></a></li>
+			<li><a href="<?= Url::toRoute(['article/view', 'url_id'=>$blog->url_id]) ?>" class="most-read-blogs"><?= $blog->title; ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 	</div>

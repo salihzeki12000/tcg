@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tour-index container">
 
-  <p class="full-text col-lg-9 col-md-10" style="text-align: center"><?=Yii::t('app','Join together with other like-minded travelers and discover China on one of regular small group tours.')?></p>
+  <p class="full-text col-lg-9 col-md-10" style="text-align: center"><?=Yii::t('app','Join together with other like-minded travelers and discover China on one of our regular small group tours.')?></p>
 
     <div class=" file-drop-zone"> 
      <div class="file-preview-thumbnails">

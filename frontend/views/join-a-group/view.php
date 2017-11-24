@@ -87,7 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
         <div class="overview">
-          <div class="content-color-1"><?= Yii::t('app','Dates:') ?></div>
           <?= date('F d, Y', strtotime($tour_info['begin_date'])) ?> - 
           <?= date('F d, Y', strtotime($tour_info['end_date'])) ?>
           <?php if(!empty($tour_info['other_dates'])) {?>
