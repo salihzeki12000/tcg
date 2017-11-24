@@ -95,7 +95,7 @@ class Tour extends \yii\db\ActiveRecord
             'cities_count' => Yii::t('app', 'Cities Count'),
             'display_cities' => Yii::t('app', 'Display Cities'),
             'priority' => Yii::t('app', 'Priority'),
-            'tour_length' => Yii::t('app', 'Tour Length'),
+            'tour_length' => Yii::t('app', 'Duration'),
             'exp_num' => Yii::t('app', 'Exp Num'),
             'price_cny' => Yii::t('app', 'Price CNY'),
             'price_usd' => Yii::t('app', 'Price USD'),

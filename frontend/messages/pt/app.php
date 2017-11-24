@@ -92,7 +92,7 @@ return [
     'Title' => '',
     'Title Image' => '',
     'Tour Code' => '',
-    'Tour Length' => '',
+    'Duration' => '',
     'Travel Interests' => '',
     'Travel agent' => '',
     'Trip Planning' => '',
