@@ -19,7 +19,7 @@ class TourSearch extends Tour
     {
         return [
             [['id', 'status', 'cities_count', 'priority', 'exp_num', 'type'], 'integer'],
-            [['name', 'code', 'themes', 'cities', 'overview', 'best_season', 'pic_map', 'pic_title', 'inclusion', 'exclusion', 'tips', 'keywords', 'link_tour', 'rec_type', 'create_time', 'update_time', 'begin_date', 'end_date'], 'safe'],
+            [['name', 'code', 'themes', 'cities', 'overview', 'best_season', 'pic_map', 'pic_title', 'inclusion', 'exclusion', 'tips', 'title', 'description', 'keywords', 'link_tour', 'rec_type', 'create_time', 'update_time', 'begin_date', 'end_date'], 'safe'],
             [['tour_length', 'price_cny', 'price_usd'], 'number'],
         ];
     }
@@ -87,6 +87,8 @@ class TourSearch extends Tour
             ->andFilterWhere(['like', 'inclusion', $this->inclusion])
             ->andFilterWhere(['like', 'exclusion', $this->exclusion])
             ->andFilterWhere(['like', 'tips', $this->tips])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'keywords', $this->keywords])
             ->andFilterWhere(['like', 'link_tour', $this->link_tour]);
 

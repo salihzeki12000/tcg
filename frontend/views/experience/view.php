@@ -8,10 +8,10 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\Tour */
 
-$this->title = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . '-' . Yii::t('app','Day') . ' ' . $tour_info['display_cities']. ' Tour - ' . $tour_info['name'];
+$this->title = ($tour_info['title'] == '') ? ((($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . '-' . Yii::t('app','Day') . ' ' . $tour_info['display_cities']. ' Tour - ' . $tour_info['name']) : $tour_info['title'];
 
-$this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
-  . $tour_info['display_cities'] . ' ' . Yii::t('app','tour') . '; ' . Yii::t('app','private guide') . ', ' . Yii::t('app','driver & vehicle'). '; ';
+$this->description = ($tour_info['description'] == '') ? ((($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
+  . $tour_info['display_cities'] . ' ' . Yii::t('app','tour') . '; ' . Yii::t('app','private guide') . ', ' . Yii::t('app','driver & vehicle'). '; ') : $tour_info['description'];
   
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
