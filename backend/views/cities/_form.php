@@ -15,6 +15,8 @@ use common\models\UploadedFiles;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
+    <?= $form->field($model, 'url_id')->textInput(['readonly' => (Yii::$app->language != Yii::$app->sourceLanguage),'maxlength' => true]) ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <!-- <?//= $form->field($model, 'status')->textInput() ?> -->

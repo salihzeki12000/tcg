@@ -40,10 +40,10 @@ class Theme extends \yii\db\ActiveRecord
     {
         $name_rule = [['name'], 'string', 'max' => 255];
         if (Yii::$app->language == Yii::$app->sourceLanguage) {
-            $name_rule = [['name'],'match','pattern'=>'/^[A-Za-z0-9_\s]+$/','message'=>'Name does not conform to the requirements'];
+            $name_rule = [['url_id'],'match','pattern'=>'/^[A-Za-z0-9\-\+]+$/','message'=>'Name does not conform to the requirements'];
         }
         return [
-            [['name', 'use_ids'], 'required'],
+            [['name', 'use_ids', 'url_id'], 'required'],
             [['priority', 'status'], 'integer'],
             [['create_time', 'update_time', 'sync_time', 'url_id'], 'safe'],
             [['name', 'class_name'], 'string', 'max' => 50],

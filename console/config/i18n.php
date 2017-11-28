@@ -13,7 +13,7 @@ return [
     'color' => null,
     'interactive' => true,
     'help' => null,
-    'sourcePath' => '@frontend',
+    'sourcePath' => '@common',
     'messagePath' => '@frontend/messages',
     'languages' => ['en','fr','de','es','pt'],
     'translator' => 'Yii::t',

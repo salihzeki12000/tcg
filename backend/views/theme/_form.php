@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'url_id')->textInput(['readonly' => (Yii::$app->language != Yii::$app->sourceLanguage),'maxlength' => true]) ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'use_ids')->textInput(['maxlength' => true]) ?>
