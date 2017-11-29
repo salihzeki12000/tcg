@@ -74,7 +74,17 @@ class CitiesController extends Controller
         if ($model->load(Yii::$app->request->post()) ) {
             $model->create_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                if (empty($model->url_id)) {
+                    $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                }
+                else{
+                    $url_id = strtolower($model->url_id);
+                    if (($row = Cities::find()->where(['url_id'=>$url_id])->one()) !== null) {
+                        throw new ServerErrorHttpException(Yii::t('app', 'The link has exist.'));
+                    } else {
+                        $model->url_id = $url_id;
+                    }
+                }
             }
             if($model->save()){
                 return $this->redirect(['update', 'id' => $model->id]);   
@@ -116,7 +126,17 @@ class CitiesController extends Controller
             }
             $model->update_time = date('Y-m-d H:i:s',time());
             if (Yii::$app->language == Yii::$app->sourceLanguage) {
-                $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                if (empty($model->url_id)) {
+                    $model->url_id = strtolower(str_replace(' ', '-', $model->name));
+                }
+                else{
+                    $url_id = strtolower($model->url_id);
+                    if (($row = Cities::find()->where(['url_id'=>$url_id])->andWhere(['<>','id',$model->id])->one()) !== null) {
+                        throw new ServerErrorHttpException(Yii::t('app', 'The link has exist.'));
+                    } else {
+                        $model->url_id = $url_id;
+                    }
+                }
             }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
