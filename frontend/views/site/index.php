@@ -45,7 +45,7 @@ $this->keywords = Yii::t('app','China tours, China travel guide, China travel ag
         ?>
             <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $slide['url'] ?>">
               <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['pic_s'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
-              <div class="carousel-caption">
+              <div class="carousel-caption" style="background-color: rgba(0,0,0,0.3); padding-top: 10px">
                 <h3><?= $slide['title'] ?></h3>
                 <span><?= $slide['description']?></span>
               </div>
