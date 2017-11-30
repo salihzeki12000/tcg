@@ -71,6 +71,10 @@ return [
         DIS_STATUS_SHOW => 'Show',
         DIS_STATUS_HIDE => 'Hide',
         ),
+    'yes_or_no' => array(
+        0 => 'No',
+        1 => 'Yes',
+        ),
     'card_status' => array(
         CARD_STATUS_CHARGED     => 'To be Charged',
         CARD_STATUS_SUCCESSFULY => 'Successfuly Charged',
