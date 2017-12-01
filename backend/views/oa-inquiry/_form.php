@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\grid\GridView;
+use kartik\file\FileInput;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaInquiry */
@@ -39,7 +42,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'tour_end_date')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'name', 'name')) ?>
+    <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
 
@@ -47,7 +50,13 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'other_contact_info')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'original_inquiry')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'follow_up_record')->textarea(['rows' => 6]) ?>
 
@@ -72,3 +81,14 @@ use yii\helpers\ArrayHelper;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['backend\assets\AppAsset']]);
+$this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
+$js = <<<JS
+    $(function(){
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+    });
+JS;
+$this->registerJs($js);
+?>

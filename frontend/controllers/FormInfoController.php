@@ -109,6 +109,12 @@ class FormInfoController extends Controller
 
                 $receiver[] = 'book@thechinaguide.com';
 
+                $OaInquiry = new \common\models\OaInquiry();
+                $OaInquiry->tour_type = $model->type;
+                $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$model]);
+                $OaInquiry->create_time = $model->create_time;
+                $OaInquiry->save();
+
                 if(!YII_DEBUG) {
                     Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
                         ->setTo($receiver)

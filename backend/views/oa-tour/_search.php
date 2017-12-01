@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'agent') ?>
 
-    <?php // echo $form->field($model, 'co-agent') ?>
+    <?php // echo $form->field($model, 'co_agent') ?>
 
     <?php // echo $form->field($model, 'operator') ?>
 

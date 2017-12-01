@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaTour */
@@ -12,29 +13,27 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_id')->textInput() ?>
+    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => !$model->isNewRecord]) ?>
 
-    <?= $form->field($model, 'create_time')->textInput() ?>
+    <?php if (!$model->isNewRecord) { ?>
 
-    <?= $form->field($model, 'update_time')->textInput() ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source')) ?>
 
-    <?= $form->field($model, 'inquiry_source')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
 
-    <?= $form->field($model, 'language')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'vip')->textInput() ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList()) ?>
 
-    <?= $form->field($model, 'agent')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList()) ?>
 
-    <?= $form->field($model, 'co-agent')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getUserList()) ?>
 
-    <?= $form->field($model, 'operator')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tour_type')->dropdownList(Yii::$app->params['form_types']) ?>
 
-    <?= $form->field($model, 'tour_type')->textInput() ?>
+    <?= $form->field($model, 'group_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_group_type')) ?>
 
-    <?= $form->field($model, 'group_type')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country')) ?>
 
     <?= $form->field($model, 'organization')->textarea(['rows' => 6]) ?>
 
@@ -46,7 +45,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tour_end_date')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cities')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
 
@@ -66,14 +65,27 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tour_price')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'payment')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'payment')->dropdownList(['Unpaid'=>'Unpaid','Deposit Paid'=>'Deposit Paid','Fully Paid'=>'Fully Paid']) ?>
 
-    <?= $form->field($model, 'stage')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'stage')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_tour_stage')) ?>
+
+    <?php } ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['backend\assets\AppAsset']]);
+$this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
+$js = <<<JS
+    $(function(){
+        $("#oatour-tour_start_date, #oatour-tour_end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+    });
+JS;
+$this->registerJs($js);
+?>

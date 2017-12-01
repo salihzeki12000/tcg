@@ -65,8 +65,36 @@ class OaTourController extends Controller
     {
         $model = new OaTour();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (isset($_POST['OaTour']['cities']) && is_array($_POST['OaTour']['cities'])) {
+                $model->cities = join(',', $_POST['OaTour']['cities']);
+            }
+            $inquiry_id = $model->inquiry_id;
+            if (($inquiryModel = \common\models\OaInquiry::findOne($inquiry_id)) !== null) {
+                $model->inquiry_source = $inquiryModel->inquiry_source;
+                $model->language = $inquiryModel->language;
+                $model->agent = $inquiryModel->agent;
+                $model->co_agent = $inquiryModel->co_agent;
+                $model->tour_type = $inquiryModel->tour_type;
+                $model->group_type = $inquiryModel->group_type;
+                $model->country = $inquiryModel->country;
+                $model->organization = $inquiryModel->organization;
+                $model->number_of_travelers = $inquiryModel->number_of_travelers;
+                $model->traveler_info = $inquiryModel->traveler_info;
+                $model->tour_start_date = $inquiryModel->tour_start_date;
+                $model->tour_end_date = $inquiryModel->tour_end_date;
+                $model->cities = $inquiryModel->cities;
+                $model->contact = $inquiryModel->contact;
+                $model->email = $inquiryModel->email;
+                $model->other_contact_info = $inquiryModel->other_contact_info;
+                $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
+                $model->create_time = date('Y-m-d H:i:s',time());
+
+                if ($model->save()) {
+                    # code...
+                }
+            }
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,9 +112,16 @@ class OaTourController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (isset($_POST['OaTour']['cities']) && is_array($_POST['OaTour']['cities'])) {
+                $model->cities = join(',', $_POST['OaTour']['cities']);
+            }
+            if ($model->save()) {
+                # code...
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->cities = explode(',', $model->cities);
             return $this->render('update', [
                 'model' => $model,
             ]);

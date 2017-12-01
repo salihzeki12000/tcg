@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'language',
             // 'vip',
             // 'agent',
-            // 'co-agent',
+            // 'co_agent',
             // 'operator',
             // 'tour_type',
             // 'group_type',

@@ -18,7 +18,7 @@ class OaInquirySearch extends OaInquiry
     public function rules()
     {
         return [
-            [['id', 'tour_type', 'number_of_travelers', 'status'], 'integer'],
+            [['id', 'tour_type', 'number_of_travelers', 'close'], 'integer'],
             [['create_time', 'update_time', 'inquiry_source', 'language', 'priority', 'agent', 'co_agent', 'group_type', 'organization', 'country', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'probability', 'inquiry_status', 'close_report'], 'safe'],
             [['estimated_cny_amount'], 'number'],
         ];
@@ -66,7 +66,7 @@ class OaInquirySearch extends OaInquiry
             'tour_type' => $this->tour_type,
             'number_of_travelers' => $this->number_of_travelers,
             'estimated_cny_amount' => $this->estimated_cny_amount,
-            'status' => $this->status,
+            'close' => $this->close,
         ]);
 
         $query->andFilterWhere(['like', 'inquiry_source', $this->inquiry_source])

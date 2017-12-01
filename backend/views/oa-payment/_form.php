@@ -12,23 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'tour_id')->textInput() ?>
-
-    <?= $form->field($model, 'create_time')->textInput() ?>
-
-    <?= $form->field($model, 'update_time')->textInput() ?>
+    <?= $form->field($model, 'tour_id')->textInput(['readonly' => !$model->isNewRecord]) ?>
 
     <?= $form->field($model, 'payer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->dropdownList(['Deposit'=>'Deposit','Balance'=>'Balance','Full Payment'=>'Full Payment']) ?>
 
     <?= $form->field($model, 'cny_amount')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'due_date')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pay_method')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method')) ?>
 
-    <?= $form->field($model, 'receit_account')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'receit_account')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_receit_account')) ?>
 
     <?= $form->field($model, 'receit_cny_amount')->textInput(['maxlength' => true]) ?>
 
@@ -36,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'receit_date')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cc_note_signing')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cc_note_signing')->dropdownList(['To be Signed'=>'To be Signed','Signed'=>'Signed','No Sign'=>'No Sign']) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
@@ -47,3 +43,14 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['backend\assets\AppAsset']]);
+$this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
+$js = <<<JS
+    $(function(){
+        $("#oapayment-due_date, #oapayment-receit_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+    });
+JS;
+$this->registerJs($js);
+?>

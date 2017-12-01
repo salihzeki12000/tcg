@@ -14,8 +14,8 @@ use Yii;
  * @property string $inquiry_source
  * @property string $language
  * @property integer $vip
- * @property string $agent
- * @property string $co-agent
+ * @property integer $agent
+ * @property integer $co_agent
  * @property string $operator
  * @property integer $tour_type
  * @property string $group_type
@@ -55,11 +55,11 @@ class OaTour extends \yii\db\ActiveRecord
     {
         return [
             [['inquiry_id', 'tour_type'], 'required'],
-            [['inquiry_id', 'vip', 'tour_type', 'number_of_travelers'], 'integer'],
+            [['inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['organization', 'traveler_info', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note'], 'string'],
             [['tour_price'], 'number'],
-            [['inquiry_source', 'language', 'agent', 'co-agent', 'operator', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage'], 'string', 'max' => 255],
+            [['inquiry_source', 'language', 'operator', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage'], 'string', 'max' => 255],
             [['cities', 'email'], 'string', 'max' => 1024],
         ];
     }
@@ -78,7 +78,7 @@ class OaTour extends \yii\db\ActiveRecord
             'language' => Yii::t('app', 'Language'),
             'vip' => Yii::t('app', 'VIP'),
             'agent' => Yii::t('app', 'Agent'),
-            'co-agent' => Yii::t('app', 'Co-Agent'),
+            'co_agent' => Yii::t('app', 'Co-Agent'),
             'operator' => Yii::t('app', 'Operator'),
             'tour_type' => Yii::t('app', 'Tour Type'),
             'group_type' => Yii::t('app', 'Group Type'),

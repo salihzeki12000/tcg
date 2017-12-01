@@ -65,9 +65,18 @@ class OaInquiryController extends Controller
     {
         $model = new OaInquiry();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (isset($_POST['OaInquiry']['cities']) && is_array($_POST['OaInquiry']['cities'])) {
+                $model->cities = join(',', $_POST['OaInquiry']['cities']);
+            }
+            $model->create_time = date('Y-m-d H:i:s',time());
+
+            if ($model->save()) {
+                # code...
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->cities = explode(',', $model->cities);
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -84,9 +93,16 @@ class OaInquiryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (isset($_POST['OaInquiry']['cities']) && is_array($_POST['OaInquiry']['cities'])) {
+                $model->cities = join(',', $_POST['OaInquiry']['cities']);
+            }
+            if ($model->save()) {
+                # code...
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->cities = explode(',', $model->cities);
             return $this->render('update', [
                 'model' => $model,
             ]);
