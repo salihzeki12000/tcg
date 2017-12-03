@@ -60,6 +60,7 @@ class OaInquiry extends \yii\db\ActiveRecord
             [['estimated_cny_amount'], 'number'],
             [['inquiry_source', 'language', 'priority', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'email', 'probability', 'inquiry_status'], 'string', 'max' => 255],
             [['cities'], 'string', 'max' => 1024],
+            ['email', 'email'],
         ];
     }
 

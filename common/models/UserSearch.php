@@ -71,6 +71,10 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email]);
 
+        if (Yii::$app->controller->id == 'user' && Yii::$app->controller->action->id == 'index')
+        {
+            $query->andFilterWhere(['>', 'id', 1]);
+        }
         return $dataProvider;
     }
 }

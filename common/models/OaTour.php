@@ -61,6 +61,7 @@ class OaTour extends \yii\db\ActiveRecord
             [['tour_price'], 'number'],
             [['inquiry_source', 'language', 'operator', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage'], 'string', 'max' => 255],
             [['cities', 'email'], 'string', 'max' => 1024],
+            ['email', 'email'],
         ];
     }
 
