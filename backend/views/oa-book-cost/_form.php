@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaBookCost */
@@ -20,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'creator')->textInput() ?>
 
-    <?= $form->field($model, 'type')->textInput() ?>
+    <?= $form->field($model, 'type')->dropdownList(['oa_guide'=>'Guide','oa_hotel'=>'Hotel','oa_agency'=>'Agency','oa_other_cost'=>'Other Cost']) ?>
 
     <?= $form->field($model, 'fid')->textInput() ?>
 
@@ -30,13 +31,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cl_info')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'need_to_pay')->textInput() ?>
+    <?= $form->field($model, 'need_to_pay')->dropdownList([1=>'Yes', 0=>'No']) ?>
 
     <?= $form->field($model, 'cny_amount')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'due_date_for_pay')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pay_status')->textInput() ?>
+    <?= $form->field($model, 'pay_status')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
     <?= $form->field($model, 'pay_date')->textInput(['maxlength' => true]) ?>
 
@@ -44,7 +45,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'book_status')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'book_status')->dropdownList(['Need to Book'=>'Need to Book','Booked and Await Pre-Tour Confirm'=>'Booked and Await Pre-Tour Confirm','Pre-Tour Confirmed'=>'Pre-Tour Confirmed']) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 

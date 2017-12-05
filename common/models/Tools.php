@@ -322,7 +322,7 @@ class Tools
         $data = $cache->get($cache_key);
         if (empty($data)) {
             $data = [];
-            $user_list = \common\models\User::find()->where(['status'=>10])->orderBy('id ASC')
+            $user_list = \common\models\User::find()->where(['status'=>10])->andFilterWhere(['>', 'id', 1])->orderBy('id ASC')
                 ->all();
             if (!empty($user_list)) {
                 foreach ($user_list as $user) {
