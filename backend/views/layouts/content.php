@@ -28,6 +28,7 @@ use yii\helpers\Url;
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]
         ) ?>
+        <?php if (in_array(Yii::$app->controller->id, ['activity', 'album', 'article', 'cities', 'faq', 'group-tour', 'homepage', 'home-ad', 'home-slide', 'itinerary', 'page', 'preparation', 'sight', 'theme', 'tour'])) { ?>
         <div class="content-languages">
             <ul>
                 <?php foreach (Yii::$app->urlManager->languages as $language) { ?>
@@ -44,6 +45,7 @@ use yii\helpers\Url;
                 <?php } ?>
             </ul>
         </div>
+        <?php } ?>
     </section>
 
     <section class="content">

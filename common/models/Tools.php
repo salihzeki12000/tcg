@@ -297,6 +297,41 @@ class Tools
             return $data[$type];
         }
     }
-    
+
+    static public function getEnvironmentVariable($var_name)
+    {
+        $cache = Yii::$app->cache;
+        $cache_key = 'ENVIRONMENT_VARIABLE_'.strtoupper($var_name);
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            if (($row = \common\models\EnvironmentVariables::findOne($var_name)) !== null) {
+                $json_val = $row['value'];
+                $data = json_decode($json_val, true);
+                $data = empty($data)?[]:$data;
+                $cache->set($cache_key, $data, 60*5);
+            }
+        }
+        return $data;
+    }
+
+    static public function getUserList()
+    {
+        $cache = Yii::$app->cache;
+        $cache_key = 'ADMIN_USER_LIST';
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            $user_list = \common\models\User::find()->where(['status'=>10])->andFilterWhere(['>', 'id', 1])->orderBy('id ASC')
+                ->all();
+            if (!empty($user_list)) {
+                foreach ($user_list as $user) {
+                    $data[$user['id']] = $user['username'];
+                }
+                $cache->set($cache_key, $data, 60*5);
+            }
+        }
+        return $data;
+    }
 
 }

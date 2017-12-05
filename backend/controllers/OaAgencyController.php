@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\User;
-use common\models\UserSearch;
+use common\models\OaAgency;
+use common\models\OaAgencySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * OaAgencyController implements the CRUD actions for OaAgency model.
  */
-class UserController extends Controller
+class OaAgencyController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +30,14 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * Lists all OaAgency models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
+        $searchModel = new OaAgencySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -44,7 +45,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single OaAgency model.
      * @param integer $id
      * @return mixed
      */
@@ -56,20 +57,15 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new OaAgency model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new OaAgency();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->auth_key = $model->generateAuthKey();
-            $model->setPassword($model->password_hash);
-            if ($model->save()) {
-                # code...
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -79,7 +75,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing OaAgency model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -88,12 +84,7 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->generateAuthKey();
-            $model->setPassword($model->password_hash);
-            if ($model->save()) {
-                # code...
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -103,7 +94,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing OaAgency model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,15 +107,15 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the OaAgency model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return User the loaded model
+     * @return OaAgency the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = OaAgency::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

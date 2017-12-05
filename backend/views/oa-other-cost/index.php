@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\UserSearch */
+/* @var $searchModel common\models\OaOtherCostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Users');
+$this->title = Yii::t('app', 'Oa Other Costs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="oa-other-cost-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Oa Other Cost'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,15 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id',
-            'username',
-            // 'auth_key',
-            // 'password_hash',
-            // 'password_reset_token',
-            'email:email',
-            // 'status',
-            // 'created_at',
-            // 'updated_at',
+            'id',
+            'name',
+            'city_id',
+            'contact_person_info:ntext',
+            'bank_info:ntext',
+            // 'note:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

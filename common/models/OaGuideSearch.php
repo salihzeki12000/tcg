@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\User;
+use common\models\OaGuide;
 
 /**
- * UserSearch represents the model behind the search form about `common\models\User`.
+ * OaGuideSearch represents the model behind the search form about `common\models\OaGuide`.
  */
-class UserSearch extends User
+class OaGuideSearch extends OaGuide
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email'], 'safe'],
+            [['id', 'user_id', 'rating', 'city_id', 'agency'], 'integer'],
+            [['name', 'language', 'contact_info', 'identity_bank_info', 'cl_english', 'note'], 'safe'],
+            [['daily_price'], 'number'],
         ];
     }
 
@@ -41,7 +42,7 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = OaGuide::find();
 
         // add conditions that should always apply here
 
@@ -60,21 +61,20 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'user_id' => $this->user_id,
+            'rating' => $this->rating,
+            'daily_price' => $this->daily_price,
+            'city_id' => $this->city_id,
+            'agency' => $this->agency,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'language', $this->language])
+            ->andFilterWhere(['like', 'contact_info', $this->contact_info])
+            ->andFilterWhere(['like', 'identity_bank_info', $this->identity_bank_info])
+            ->andFilterWhere(['like', 'cl_english', $this->cl_english])
+            ->andFilterWhere(['like', 'note', $this->note]);
 
-        if (Yii::$app->controller->id == 'user' && Yii::$app->controller->action->id == 'index')
-        {
-            $query->andFilterWhere(['>', 'id', 1]);
-        }
         return $dataProvider;
     }
 }
