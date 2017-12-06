@@ -54,7 +54,7 @@ class OaGuide extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Guide ID'),
             'name' => Yii::t('app', 'Name'),
-            'user_id' => Yii::t('app', 'User Id'),
+            'user_id' => Yii::t('app', 'User Name'),
             'rating' => Yii::t('app', 'Rating'),
             'language' => Yii::t('app', 'Language'),
             'daily_price' => Yii::t('app', 'Daily Price'),

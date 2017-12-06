@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaHotel */
@@ -14,13 +15,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'city_id')->textInput() ?>
+    <?= $form->field($model, 'city_id')->dropdownList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
-    <?= $form->field($model, 'level')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'level')->radioList(['3'=>'3*','4'=>'4*','5'=>'5*']) ?>
 
     <?= $form->field($model, 'tripadvisor_link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'rating')->textInput() ?>
+    <?= $form->field($model, 'rating')->radioList(['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']) ?>
 
     <?= $form->field($model, 'rooms_prices')->textarea(['rows' => 6]) ?>
 

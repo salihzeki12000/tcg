@@ -62,10 +62,10 @@ class OaHotelSearch extends OaHotel
             'id' => $this->id,
             'city_id' => $this->city_id,
             'rating' => $this->rating,
+            'level' => $this->level,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'level', $this->level])
             ->andFilterWhere(['like', 'tripadvisor_link', $this->tripadvisor_link])
             ->andFilterWhere(['like', 'rooms_prices', $this->rooms_prices])
             ->andFilterWhere(['like', 'contact_person_info', $this->contact_person_info])

@@ -80,6 +80,12 @@ return [
         CARD_STATUS_SUCCESSFULY => 'Successfuly Charged',
         CARD_STATUS_FAILED      => 'Charge Failed',
         ),
+    'oa_book_cost_type' => array(
+        OA_BOOK_COST_TYPE_GUIDE     => 'Guide',
+        OA_BOOK_COST_TYPE_HOTEL     => 'Hotel',
+        OA_BOOK_COST_TYPE_AGENCY    => 'Agency',
+        OA_BOOK_COST_TYPE_OTHER     => 'Other Cost',
+        ),
     'form_types' => array(
         FORM_TYPE_CUSTOM => 'Custom',
         FORM_TYPE_QUOTATION => 'Standard',

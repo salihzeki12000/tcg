@@ -61,13 +61,31 @@ class OaBookCostController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($type=0)
     {
         $model = new OaBookCost();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->create_time = date('Y-m-d H:i:s',time());
+            $tour_id = $model->tour_id;
+            if (($tourModel = \common\models\OaTour::findOne($tour_id)) !== null) {
+                if ($model->type == OA_BOOK_COST_TYPE_GUIDE) {
+                    if (($fModel = \common\models\OaGuide::findOne($model->fid)) !== null) {
+                        $model->cl_info = $fModel->cl_english;
+                    }
+                }
+                elseif ($model->type == OA_BOOK_COST_TYPE_HOTEL) {
+                    if (($fModel = \common\models\OaHotel::findOne($model->fid)) !== null) {
+                        $model->cl_info = $fModel->cl_english;
+                    }
+                }
+                if ($model->save()) {
+                    # code...
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->type = $type;
             return $this->render('create', [
                 'model' => $model,
             ]);

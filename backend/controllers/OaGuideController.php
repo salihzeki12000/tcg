@@ -65,7 +65,11 @@ class OaGuideController extends Controller
     {
         $model = new OaGuide();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->create_time = date('Y-m-d H:i:s',time());
+            if ($model->save()) {
+                # code...
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

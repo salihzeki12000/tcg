@@ -64,7 +64,7 @@ class OaBookCost extends \yii\db\ActiveRecord
             'updat_time' => Yii::t('app', 'Update Time'),
             'creator' => Yii::t('app', 'Creator'),
             'type' => Yii::t('app', 'Type'),
-            'fid' => Yii::t('app', 'fid Name'),
+            'fid' => Yii::t('app', 'Name'),
             'start_date' => Yii::t('app', 'Start Date'),
             'end_date' => Yii::t('app', 'End Date'),
             'cl_info' => Yii::t('app', 'CL Info'),
