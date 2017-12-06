@@ -65,7 +65,7 @@ class UserController extends Controller
         $model = new User();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->auth_key = $model->generateAuthKey();
+            $model->generateAuthKey();
             $model->setPassword($model->password_hash);
             if ($model->save()) {
                 # code...
