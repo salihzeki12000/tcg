@@ -100,7 +100,7 @@ AppAsset::register($this);
             ['label' => Yii::t('app','Drivers and vehicles'), 'url' => ['about-us/drivers-and-vehicles'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'drivers-and-vehicles')],
             ['label' => Yii::t('app','Contact us'), 'url' => ['about-us/contact-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'contact-us')],
             '<li class="divider"></li>',
-            '<li class="dropdown-header">Call us</li>',
+            '<li class="dropdown-header">'.Yii::t('app','Call us').'</li>',
             '<li class="dropdown-header">CN: +8610  8532 1860</li>',
             '<li class="dropdown-header">US: +1 646 863 7038</li>',
             '<li class="dropdown-header">AU: +61 871001399</li>',
