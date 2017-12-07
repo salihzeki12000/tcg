@@ -109,9 +109,17 @@ class FormInfoController extends Controller
 
                 $receiver[] = 'book@thechinaguide.com';
 
+                $oaInquiryModel = [];
+                foreach ($model as $key => $value) {
+                    if ($value!==null && $value!=='') {
+                        $oaInquiryModel[$key] = $value;
+                    }
+                }
                 $OaInquiry = new \common\models\OaInquiry();
                 $OaInquiry->tour_type = $model->type;
-                $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$model]);
+                $OaInquiry->email = $model->email;
+                $OaInquiry->contact = $model->name;
+                $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$oaInquiryModel]);
                 $OaInquiry->create_time = $model->create_time;
                 $OaInquiry->save();
 

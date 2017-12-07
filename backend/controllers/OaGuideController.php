@@ -8,6 +8,7 @@ use common\models\OaGuideSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * OaGuideController implements the CRUD actions for OaGuide model.
@@ -51,8 +52,24 @@ class OaGuideController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $city_id = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => $model->city_id])->all(), 'id', 'name');
+        if (array_key_exists($model->city_id, $city_id)) {
+            $model->city_id = $city_id[$model->city_id];
+        }
+
+        $agency = ArrayHelper::map(\common\models\OaAgency::find()->where(['id' => $model->agency])->all(), 'id', 'name');
+        if (array_key_exists($model->agency, $agency)) {
+            $model->agency = $agency[$model->agency];
+        }
+
+        $user_id = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->user_id])->all(), 'id', 'username');
+        if (array_key_exists($model->user_id, $user_id)) {
+            $model->user_id = $user_id[$model->user_id];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

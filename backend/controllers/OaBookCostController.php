@@ -51,8 +51,14 @@ class OaBookCostController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $model->type = Yii::$app->params['oa_book_cost_type'][$model->type];
+
+        $model->need_to_pay = Yii::$app->params['yes_or_no'][$model->need_to_pay];
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

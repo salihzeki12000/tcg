@@ -8,6 +8,7 @@ use common\models\OaAgencySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * OaAgencyController implements the CRUD actions for OaAgency model.
@@ -51,8 +52,14 @@ class OaAgencyController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $city_id = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => $model->city_id])->all(), 'id', 'name');
+        if (array_key_exists($model->city_id, $city_id)) {
+            $model->city_id = $city_id[$model->city_id];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

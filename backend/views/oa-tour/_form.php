@@ -23,11 +23,11 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'tour_type')->dropdownList(Yii::$app->params['form_types']) ?>
 
@@ -35,11 +35,23 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country')) ?>
 
-    <?= $form->field($model, 'organization')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'organization')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'number_of_travelers')->textInput() ?>
 
-    <?= $form->field($model, 'traveler_info')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'traveler_info')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'tour_start_date')->textInput(['maxlength' => true]) ?>
 
@@ -51,17 +63,53 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'other_contact_info')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'other_contact_info')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'itinerary_quotation_english')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'itinerary_quotation_english')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'itinerary_quotation_other_language')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'itinerary_quotation_other_language')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'tour_schedule_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'tour_schedule_note')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'note_for_guide')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'note_for_guide')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'other_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'other_note')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'tour_price')->textInput(['maxlength' => true]) ?>
 

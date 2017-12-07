@@ -8,6 +8,7 @@ use common\models\OaTourSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * OaTourController implements the CRUD actions for OaTour model.
@@ -51,8 +52,31 @@ class OaTourController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
+        $model->cities = join(',', array_values($cities));
+
+        $agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->agent])->all(), 'id', 'username');
+        if (array_key_exists($model->agent, $agent)) {
+            $model->agent = $agent[$model->agent];
+        }
+
+        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->co_agent])->all(), 'id', 'username');
+        if (array_key_exists($model->co_agent, $co_agent)) {
+            $model->co_agent = $co_agent[$model->co_agent];
+        }
+
+        $operator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->operator])->all(), 'id', 'username');
+        if (array_key_exists($model->operator, $operator)) {
+            $model->operator = $operator[$model->operator];
+        }
+
+        $model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
+
+        $model->vip = Yii::$app->params['yes_or_no'][$model->vip];
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
