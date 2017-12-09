@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaInquirySearch */
@@ -28,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'create_time',
             'update_time',
             'inquiry_source',
-            'language',
+            // 'language',
             // 'priority',
             // 'agent',
             // 'co_agent',
@@ -40,7 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'traveler_info:ntext',
             // 'tour_start_date',
             // 'tour_end_date',
-            // 'cities',
+            [
+                'attribute'=>'cities',
+                'filter'=>ArrayHelper::map(\common\models\OaCity::find()->asArray()->all(), 'id', 'name'),
+                'value' => function ($data) {
+                    $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $data['cities'])])->all(), 'id', 'name');
+                    $show_cities = join(',', array_values($cities));
+                    if (strlen($show_cities)>30) {
+                        $show_cities = substr($show_cities,0, 30) . '...';
+                    }
+                    return $show_cities;
+                }
+            ],
             // 'contact',
             // 'email:email',
             // 'other_contact_info:ntext',
