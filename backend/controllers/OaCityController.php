@@ -66,7 +66,6 @@ class OaCityController extends Controller
         $model = new OaCity();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->create_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
                 # code...
             }

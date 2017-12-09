@@ -63,11 +63,6 @@ class OaGuideController extends Controller
             $model->agency = $agency[$model->agency];
         }
 
-        $user_id = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->user_id])->all(), 'id', 'username');
-        if (array_key_exists($model->user_id, $user_id)) {
-            $model->user_id = $user_id[$model->user_id];
-        }
-
         return $this->render('view', [
             'model' => $model,
         ]);

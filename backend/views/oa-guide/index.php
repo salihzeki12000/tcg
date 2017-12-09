@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'user_id',
+            'email',
             'rating',
             'language',
             // 'daily_price',

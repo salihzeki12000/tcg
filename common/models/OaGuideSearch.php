@@ -18,8 +18,8 @@ class OaGuideSearch extends OaGuide
     public function rules()
     {
         return [
-            [['id', 'user_id', 'rating', 'city_id', 'agency'], 'integer'],
-            [['name', 'language', 'contact_info', 'identity_bank_info', 'cl_english', 'note'], 'safe'],
+            [['id', 'rating', 'city_id', 'agency'], 'integer'],
+            [['name', 'language', 'contact_info', 'identity_bank_info', 'cl_english', 'note', 'email'], 'safe'],
             [['daily_price'], 'number'],
         ];
     }
@@ -61,7 +61,6 @@ class OaGuideSearch extends OaGuide
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
             'rating' => $this->rating,
             'daily_price' => $this->daily_price,
             'city_id' => $this->city_id,
@@ -73,7 +72,8 @@ class OaGuideSearch extends OaGuide
             ->andFilterWhere(['like', 'contact_info', $this->contact_info])
             ->andFilterWhere(['like', 'identity_bank_info', $this->identity_bank_info])
             ->andFilterWhere(['like', 'cl_english', $this->cl_english])
-            ->andFilterWhere(['like', 'note', $this->note]);
+            ->andFilterWhere(['like', 'note', $this->note])
+            ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }
