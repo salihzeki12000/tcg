@@ -73,6 +73,7 @@ class OaBookCostController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->create_time = date('Y-m-d H:i:s',time());
+            $model->creator = Yii::$app->user->identity->id;
             $tour_id = $model->tour_id;
             if (($tourModel = \common\models\OaTour::findOne($tour_id)) !== null) {
                 if ($model->type == OA_BOOK_COST_TYPE_GUIDE) {

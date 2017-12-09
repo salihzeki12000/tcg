@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tour_id',
             'create_time',
             'updat_time',
-            'creator',
+            // 'creator',
             // 'type',
             // 'fid',
             // 'start_date',

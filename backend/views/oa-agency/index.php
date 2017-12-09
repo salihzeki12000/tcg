@@ -26,9 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'city_id',
+            // 'city_id',
             'rating',
-            'contact_person_info:ntext',
+            'create_time',
+            // 'contact_person_info:ntext',
             // 'bank_info:ntext',
             // 'note:ntext',
 

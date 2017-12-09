@@ -26,10 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'city_id',
+            // 'city_id',
             'level',
             'tripadvisor_link',
-            // 'rating',
+            'rating',
             // 'rooms_prices:ntext',
             // 'contact_person_info:ntext',
             // 'bank_info:ntext',
