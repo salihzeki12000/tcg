@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaOtherCostSearch */
@@ -26,9 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            // 'city_id',
+            [
+                'attribute'=>'city_id',
+                'filter'=>ArrayHelper::map(\common\models\OaCity::find()->asArray()->all(), 'id', 'name'),
+                'value' => function ($data) {
+                    return \common\models\OaCity::findOne($data['city_id'])->name;
+                }
+            ],
             'create_time',
-            'contact_person_info:ntext',
+            // 'contact_person_info:ntext',
             // 'bank_info:ntext',
             // 'note:ntext',
 
