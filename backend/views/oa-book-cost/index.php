@@ -26,10 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'tour_id',
+            [
+                'attribute'=>'type',
+                'filter'=> Yii::$app->params['oa_book_cost_type'],
+                'value' => function ($data) {
+                    return Yii::$app->params['oa_book_cost_type'][$data['type']];
+                }
+            ],
             'create_time',
             'updat_time',
             // 'creator',
-            // 'type',
             // 'fid',
             // 'start_date',
             // 'end_date',

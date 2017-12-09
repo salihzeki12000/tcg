@@ -43,7 +43,7 @@ class OaBookCost extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tour_id', 'type'], 'required'],
+            // [['tour_id', 'type'], 'required'],
             [['tour_id', 'creator', 'type', 'fid', 'need_to_pay', 'pay_status'], 'integer'],
             [['create_time', 'updat_time'], 'safe'],
             [['cl_info', 'transaction_note', 'note'], 'string'],
