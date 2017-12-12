@@ -85,7 +85,7 @@ class OaTourController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($inquiry_id=null)
     {
         $model = new OaTour();
 
@@ -120,6 +120,9 @@ class OaTourController extends Controller
             }
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
+            if (!empty($inquiry_id)) {
+                $model->inquiry_id = $inquiry_id;
+            }
             return $this->render('create', [
                 'model' => $model,
             ]);

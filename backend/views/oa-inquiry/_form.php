@@ -16,13 +16,13 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source')) ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
 
@@ -68,7 +68,7 @@ use yii\helpers\Url;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+    <?= !$permission['canAdd']?'':$form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
         'replaceDivs' => false,

@@ -110,9 +110,13 @@ class FormInfoController extends Controller
                 $receiver[] = 'book@thechinaguide.com';
 
                 $oaInquiryModel = [];
+                $labels = $model->attributeLabels();
                 foreach ($model as $key => $value) {
                     if ($value!==null && $value!=='') {
-                        $oaInquiryModel[$key] = $value;
+                        if ($key == 'type') {
+                            $value = Yii::$app->params['form_types'][$value];
+                        }
+                        $oaInquiryModel[$labels[$key]] = $value;
                     }
                 }
                 $OaInquiry = new \common\models\OaInquiry();
