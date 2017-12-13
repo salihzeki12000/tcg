@@ -45,13 +45,13 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'due_date_for_pay')->textInput(['maxlength' => true]) ?>
     
-    <?= $form->field($model, 'pay_status')->dropdownList(Yii::$app->params['yes_or_no'], ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'pay_status')->dropdownList(Yii::$app->params['yes_or_no'], ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'pay_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pay_date')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'pay_amount')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pay_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'book_status')->dropdownList(['Need to Book'=>'Need to Book','Booked and Await Pre-Tour Confirm'=>'Booked and Await Pre-Tour Confirm','Pre-Tour Confirmed'=>'Pre-Tour Confirmed'], ['prompt' => '--Select--']) ?>
 

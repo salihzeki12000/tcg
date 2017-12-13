@@ -15,7 +15,29 @@ use yii\helpers\ArrayHelper;
  */
 class OaTourController extends Controller
 {
-    /**
+    public $canAdd = 0;
+    public $canDel = 0;
+    public $canMod = 1;
+
+    public function beforeAction($action)
+    {
+        $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
+        if (isset($roles['OA-Admin'])) {
+            $this->canAdd = 1;
+            $this->canDel = 1;
+        }
+        return parent::beforeAction($action);
+    }
+
+    public function render($templateName, $data=[])
+    {
+        $tmp['canAdd'] = $this->canAdd;
+        $tmp['canDel'] = $this->canDel;
+        $tmp['canMod'] = $this->canMod;
+        $data['permission'] = $tmp;
+        return parent::render($templateName, $data);
+    }    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -75,8 +97,24 @@ class OaTourController extends Controller
 
         $model->vip = Yii::$app->params['yes_or_no'][$model->vip];
 
+        $_GET['sort'] = 'id';
+        $_GET['tour_id'] = $id;
+        $searchModel = new \common\models\OaPaymentSearch();
+        $queryParams = Yii::$app->request->queryParams;
+        unset($queryParams['id']);
+        $dataProvider = $searchModel->search($queryParams);
+
+        $searchModelBC = new \common\models\OaBookCostSearch();
+        $queryParamsBC = Yii::$app->request->queryParams;
+        unset($queryParamsBC['id']);
+        $dataProviderBC = $searchModelBC->search($queryParamsBC);
+
         return $this->render('view', [
             'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModelBC' => $searchModelBC,
+            'dataProviderBC' => $dataProviderBC,
         ]);
     }
 
@@ -87,6 +125,9 @@ class OaTourController extends Controller
      */
     public function actionCreate($inquiry_id=null)
     {
+        if ($this->canAdd != 1) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
         $model = new OaTour();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -163,6 +204,9 @@ class OaTourController extends Controller
      */
     public function actionDelete($id)
     {
+        if ($this->canDel != 1) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

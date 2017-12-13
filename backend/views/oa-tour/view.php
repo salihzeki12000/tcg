@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\grid\GridView;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\OaTour */
 
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php if($permission['canDel']) { ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -23,6 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php } ?>
+        <?php if($permission['canAdd']) { ?>
+        <?= Html::a(Yii::t('app', 'Add Payment'), ['oa-payment/create', 'tour_id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php } ?>
     </p>
 
     <?= DetailView::widget([
@@ -60,5 +66,66 @@ $this->params['breadcrumbs'][] = $this->title;
             'stage',
         ],
     ]) ?>
+
+    <div class="form-group">
+    <label class="control-label">Payment</label>
+    <div id="itinerary_list">
+        <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+                    'create_time',
+                    'update_time',
+                    'payer',
+
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view}',
+                        'urlCreator' => function ($action, $model, $key, $index) {
+                            if ($action === 'view') {
+                                return Url::to(['oa-payment/view', 'id'=>$model->id]);
+                            }
+                            if ($action === 'delete') {
+                                return Url::to(['oa-payment/delete', 'id'=>$model->id]);
+                            }
+                        },
+                    ],
+                ],
+            ]); ?>
+    </div>
+    <?= (!$permission['canAdd']) ? '' : Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['oa-payment/create', 'tour_id'=>$model->id]).'\';']) ?>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label">Book Cost</label>
+    <div id="book-cost_list">
+        <?= GridView::widget([
+                'dataProvider' => $dataProviderBC,
+                'columns' => [
+                    'create_time',
+                    'updat_time',
+                    [
+                        'attribute'=>'type',
+                        'filter'=> Yii::$app->params['oa_book_cost_type'],
+                        'value' => function ($data) {
+                            return Yii::$app->params['oa_book_cost_type'][$data['type']];
+                        }
+                    ],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view}',
+                        'urlCreator' => function ($action, $model, $key, $index) {
+                            if ($action === 'view') {
+                                return Url::to(['oa-book-cost/view', 'id'=>$model->id]);
+                            }
+                            if ($action === 'delete') {
+                                return Url::to(['oa-book-cost/delete', 'id'=>$model->id]);
+                            }
+                        },
+                    ],
+                ],
+            ]); ?>
+    </div>
+    <?= (!$permission['canAdd']) ? '' : Html::button(Yii::t('app', 'Add Book Cost Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['oa-book-cost/create', 'tour_id'=>$model->id]).'\';']) ?>
+    </div>
 
 </div>

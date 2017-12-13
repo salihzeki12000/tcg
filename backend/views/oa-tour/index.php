@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaTourSearch */
@@ -16,9 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <?php if($permission['canAdd']) { ?>
     <p>
         <?= Html::a(Yii::t('app', 'Create Oa Tour'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php } ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -67,7 +71,22 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'payment',
             // 'stage',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return Url::to(['oa-tour/view', 'id'=>$model->id]);
+                    }
+                    if ($action === 'update') {
+                        return Url::to(['oa-tour/update', 'id'=>$model->id]);
+                    }
+                    if ($action === 'delete') {
+                        return Url::to(['oa-tour/delete', 'id'=>$model->id]);
+                    }
+                    
+                },
+            ],
         ],
     ]); ?>
 </div>

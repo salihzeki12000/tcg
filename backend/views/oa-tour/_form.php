@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaTour */
@@ -17,13 +18,13 @@ use yii\helpers\ArrayHelper;
 
     <?php if (!$model->isNewRecord) { ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source')) ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
 

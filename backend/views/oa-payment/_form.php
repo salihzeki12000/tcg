@@ -24,15 +24,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method')) ?>
 
-    <?= $form->field($model, 'receit_account')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_receit_account')) ?>
+    <?= $form->field($model, 'receit_account')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_receit_account'), ['disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'receit_cny_amount')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'receit_cny_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'transaction_fee')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'transaction_fee')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'receit_date')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cc_note_signing')->dropdownList(['To be Signed'=>'To be Signed','Signed'=>'Signed','No Sign'=>'No Sign']) ?>
+    <?= $form->field($model, 'cc_note_signing')->dropdownList(['To be Signed'=>'To be Signed','Signed'=>'Signed','No Sign'=>'No Sign'], ['disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 

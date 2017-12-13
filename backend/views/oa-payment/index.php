@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaPaymentSearch */
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Oa Payment'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= true ? '' : Html::a(Yii::t('app', 'Create Oa Payment'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -40,7 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'cc_note_signing',
             // 'note:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return Url::to(['oa-payment/view', 'id'=>$model->id]);
+                    }
+                    if ($action === 'delete') {
+                        return Url::to(['oa-payment/delete', 'id'=>$model->id]);
+                    }
+                },
+            ],
         ],
     ]); ?>
 </div>

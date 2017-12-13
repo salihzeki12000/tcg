@@ -106,6 +106,10 @@ class OaInquiryController extends Controller
      */
     public function actionCreate()
     {
+        if ($this->canAdd != 1) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         $model = new OaInquiry();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -160,6 +164,9 @@ class OaInquiryController extends Controller
      */
     public function actionDelete($id)
     {
+        if ($this->canDel != 1) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

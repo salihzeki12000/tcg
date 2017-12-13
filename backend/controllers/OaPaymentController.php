@@ -14,6 +14,30 @@ use yii\filters\VerbFilter;
  */
 class OaPaymentController extends Controller
 {
+    public $canAdd = 0;
+    public $canDel = 0;
+    public $canMod = 1;
+
+    public function beforeAction($action)
+    {
+        $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
+        if (isset($roles['OA-Accountant'])) {
+            $this->canAdd = 1;
+            $this->canDel = 1;
+        }
+        return parent::beforeAction($action);
+    }
+
+    public function render($templateName, $data=[])
+    {
+        $tmp['canAdd'] = $this->canAdd;
+        $tmp['canDel'] = $this->canDel;
+        $tmp['canMod'] = $this->canMod;
+        $data['permission'] = $tmp;
+        return parent::render($templateName, $data);
+    }
+
     /**
      * @inheritdoc
      */
@@ -61,7 +85,7 @@ class OaPaymentController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($tour_id)
     {
         $model = new OaPayment();
 
@@ -75,6 +99,9 @@ class OaPaymentController extends Controller
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            if (!empty($tour_id)) {
+                $model->tour_id = $tour_id;
+            }
             return $this->render('create', [
                 'model' => $model,
             ]);

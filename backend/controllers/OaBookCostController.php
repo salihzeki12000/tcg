@@ -8,12 +8,37 @@ use common\models\OaBookCostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * OaBookCostController implements the CRUD actions for OaBookCost model.
  */
 class OaBookCostController extends Controller
 {
+    public $canAdd = 0;
+    public $canDel = 0;
+    public $canMod = 1;
+
+    public function beforeAction($action)
+    {
+        $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
+        if (isset($roles['OA-Accountant'])) {
+            $this->canAdd = 1;
+            $this->canDel = 1;
+        }
+        return parent::beforeAction($action);
+    }
+
+    public function render($templateName, $data=[])
+    {
+        $tmp['canAdd'] = $this->canAdd;
+        $tmp['canDel'] = $this->canDel;
+        $tmp['canMod'] = $this->canMod;
+        $data['permission'] = $tmp;
+        return parent::render($templateName, $data);
+    }
+
     /**
      * @inheritdoc
      */
@@ -53,9 +78,43 @@ class OaBookCostController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->need_to_pay = Yii::$app->params['yes_or_no'][$model->need_to_pay];
+
+        $creator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->creator])->all(), 'id', 'username');
+        if (array_key_exists($model->creator, $creator)) {
+            $model->creator = $creator[$model->creator];
+        }
+
+        if ($model->type == OA_BOOK_COST_TYPE_GUIDE){
+            $fid = ArrayHelper::map(\common\models\OaGuide::find()->where(['id' => $model->fid])->all(), 'id', 'name');
+            if (array_key_exists($model->fid, $fid)) {
+                $model->fid = $fid[$model->fid];
+            }
+        }
+        elseif ($model->type == OA_BOOK_COST_TYPE_HOTEL) {
+            $fid = ArrayHelper::map(\common\models\OaHotel::find()->where(['id' => $model->fid])->all(), 'id', 'name');
+            if (array_key_exists($model->fid, $fid)) {
+                $model->fid = $fid[$model->fid];
+            }
+        }
+        elseif ($model->type == OA_BOOK_COST_TYPE_AGENCY) {
+            $fid = ArrayHelper::map(\common\models\OaAgency::find()->where(['id' => $model->fid])->all(), 'id', 'name');
+            if (array_key_exists($model->fid, $fid)) {
+                $model->fid = $fid[$model->fid];
+            }
+        }
+        elseif ($model->type == OA_BOOK_COST_TYPE_OTHER) {
+            $fid = ArrayHelper::map(\common\models\OaOtherCost::find()->where(['id' => $model->fid])->all(), 'id', 'name');
+            if (array_key_exists($model->fid, $fid)) {
+                $model->fid = $fid[$model->fid];
+            }
+        }
+
         $model->type = Yii::$app->params['oa_book_cost_type'][$model->type];
 
-        $model->need_to_pay = Yii::$app->params['yes_or_no'][$model->need_to_pay];
+        if (isset($model->pay_status)) {
+            $model->pay_status = Yii::$app->params['yes_or_no'][$model->pay_status];
+        }
 
         return $this->render('view', [
             'model' => $model,
