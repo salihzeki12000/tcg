@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * OaInquiryController implements the CRUD actions for OaInquiry model.
@@ -58,14 +59,186 @@ class OaInquiryController extends Controller
      * Lists all OaInquiry models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($user_id='', $co=0, $from_date='', $end_date='', $inquiry_source='', $language='')
     {
+        if (!$this->canAdd && $user_id && $user_id!=Yii::$app->user->identity->id) {
+            $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
+            if (!isset($subAgent[$user_id])) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+
         $searchModel = new OaInquirySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $sql = "SELECT * FROM oa_inquiry WHERE agent IS NULL OR inquiry_source IS NULL OR inquiry_source='' OR `language` IS NULL OR `language`='' OR original_inquiry IS NULL OR original_inquiry='' ORDER BY id ";
+        $inquiriesToAssign = Yii::$app->db->createCommand($sql)
+        ->queryAll();
+        foreach ($inquiriesToAssign as &$item) {
+            unset($item['original_inquiry']);
+            $item['same_email_ids'] = [];
+            if (!empty($item['email'])) {
+                $sql = "SELECT id FROM oa_inquiry WHERE email='{$item['email']}' AND id<{$item['id']} ";
+                $sameEmailIds = Yii::$app->db->createCommand($sql)->queryAll();
+                if (!empty($sameEmailIds)) {
+                    foreach ($sameEmailIds as $emailItem) {
+                        $item['same_email_ids'][] = $emailItem['id'];
+                    }
+                }
+            }
+            $agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $item['agent']])->all(), 'id', 'username');
+            if (array_key_exists($item['agent'], $agent)) {
+                $item['agent'] = $agent[$item['agent']];
+            }
+            $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
+            if (!empty($item['inquiry_source'])) {
+                $item['inquiry_source'] = $oa_inquiry_source[$item['inquiry_source']];
+            }
+        }
+
+        $userId = Yii::$app->user->identity->id;
+        $userName = Yii::$app->user->identity->username;
+        if ($this->canAdd) {
+            $subAgent = \common\models\Tools::getAgentUserList();
+            if (isset($subAgent[$userId])) {
+                unset($subAgent[$userId]);
+            }
+        }
+        else{
+            $subAgent = \common\models\Tools::getSubUserByUserId($userId);
+        }
+        $userList = [$userId=>$userName];
+        $userList = $userList + $subAgent;
+        if ($this->canAdd) {
+            $userList = [''=>'--All--'] + $userList;
+        }
+        //$user_id='', $co=0, $from_date='', $end_date='', $inquiry_source='', $language=''
+        if (empty($user_id) && $this->canAdd) {
+            $user_id = '';
+        }
+        elseif (!empty($user_id) && isset($userList[$user_id])) {
+            $user_id = $user_id;
+        }
+        else {
+            $user_id = $userId;
+        }
+
+        if (empty($from_date)) {
+            $from_date = date("Y").'-01-01';
+        }
+        if (empty($end_date)) {
+            $end_date = date("Y-m-d");
+        }
+        //Total Inquiries | Bad | New + Following Up + Waiting for Payment | Inactive | Lost| Booked | Booking Rate (算式：Booked/(Booked+Lost+Inactive))                                      
+        /*
+            {
+              "1": "New",
+              "2": "Following up",
+              "3": "Waiting for Payment",
+              "4": "Inactive",
+              "5": "Booked - Deposit Received",
+              "6": "Booked - Full Payment Received",
+              "7": "Booked - Other",
+              "8": "Lost - Inactive until Tour Start Date",
+              "9": "Lost - Booked with Someone Else",
+              "10": "Lost - Low Budget",
+              "11": "Lost - Trip Canceled",
+              "12": "Lost - Other Reason",
+              "13": "Bad - Wrong Contact Info",
+              "14": "Bad - Duplicate"
+            }
+        */
+        $statusArr = [
+            'Bad' => ['13','14'], //Bad
+            'New + Following Up + Waiting for Payment' => ['1','2','3'], //New + Following Up + Waiting for Payment
+            'Inactive' => ['4'], //Inactive
+            'Lost' => ['8','9','10','11','12'], //Lost
+            'Booked' => ['5','6','7'], //Booked
+        ];
+        $summarySql = "SELECT * FROM oa_inquiry WHERE 1=1 ";
+        if (!empty($user_id)) {
+            if ($co==1) {
+                $summarySql .= " AND  co_agent={$user_id} ";
+            }
+            else{
+                $summarySql .= " AND  agent={$user_id} ";
+            }
+        }
+        if (!empty($inquiry_source)) {
+            $summarySql .= " AND  inquiry_source='{$inquiry_source}' ";
+        }
+        if (!empty($language)) {
+            $summarySql .= " AND  language='{$language}' ";
+        }
+        $summarySql .= " AND  create_time>='{$from_date}' ";
+        $summarySql .= " AND  create_time<='{$end_date}' ";
+
+        $summaryAll = Yii::$app->db->createCommand($summarySql)
+        ->queryAll();
+        $totalCount = 0;
+        $summaryInfo = [
+            'Total Inquiries' => 0,
+        ];
+        foreach ($statusArr as $key => $value) {
+            $summaryInfo[$key] = 0;
+        }
+
+        $followingUpList = [];
+        $followingUpStatus = ['1', '2', '3'];
+        $inactiveList = [];
+        $inactiveStatus = ['4'];
+        if ($summaryAll) {
+            $totalCount = count($summaryAll);
+            $summaryInfo['Total Inquiries'] = $totalCount;
+            $oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
+            foreach ($summaryAll as $sumitem) {
+                foreach ($statusArr as $statkey => $statGroup) {
+                    if (in_array($sumitem['inquiry_status'], $statGroup)) {
+                        $summaryInfo[$statkey] ++;
+                    }
+                }
+
+                $agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $sumitem['agent']])->all(), 'id', 'username');
+                if (array_key_exists($sumitem['agent'], $agent)) {
+                    $sumitem['agent'] = $agent[$sumitem['agent']];
+                }
+                $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $sumitem['co_agent']])->all(), 'id', 'username');
+                if (array_key_exists($sumitem['co_agent'], $co_agent)) {
+                    $sumitem['co_agent'] = $co_agent[$sumitem['co_agent']];
+                }
+
+                $sumitem['inquiry_status_txt'] = $oa_inquiry_status[$sumitem['inquiry_status']];
+                if (in_array($sumitem['inquiry_status'], $followingUpStatus)) {
+                    $followingUpList[] = $sumitem;
+                }
+                if (in_array($sumitem['inquiry_status'], $inactiveStatus)) {
+                    $inactiveList[] = $sumitem;
+                }
+
+
+            }
+        }
+        $summaryInfo['Booking Rate'] = 0;
+        if (($sum = ($summaryInfo['Booked'] + $summaryInfo['Lost'] + $summaryInfo['Inactive'])) > 0 ) {
+            $summaryInfo['Booking Rate'] = intval(($summaryInfo['Booked']/$sum)*100) . '%';
+        }
+
+        // var_dump($summaryInfo);exit;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'inquiriesToAssign' => $inquiriesToAssign,
+            'summaryInfo' => $summaryInfo,
+            'userList' => $userList,
+            'followingUpList' => $followingUpList,
+            'inactiveList' => $inactiveList,
+            'user_id' => $user_id,
+            'co' => $co,
+            'from_date' => $from_date,
+            'end_date' => $end_date,
+            'inquiry_source' => $inquiry_source,
+            'language' => $language,
+
         ]);
     }
 
@@ -77,6 +250,14 @@ class OaInquiryController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $userId = Yii::$app->user->identity->id;
+        if (!$this->canAdd && $model->agent!=$userId && $model->co_agent!=$userId) {
+            $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
+            if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+
         $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
         $model->cities = join(',', array_values($cities));
 
@@ -93,6 +274,21 @@ class OaInquiryController extends Controller
         $model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
 
         $model->close = Yii::$app->params['yes_or_no'][$model->close];
+
+        $oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
+        if (!empty($model->inquiry_status)) {
+            $model->inquiry_status = $oa_inquiry_status[$model->inquiry_status];
+        }
+
+        $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
+        if (!empty($model->inquiry_source)) {
+            $model->inquiry_source = $oa_inquiry_source[$model->inquiry_source];
+        }
+
+        $oa_group_type = \common\models\Tools::getEnvironmentVariable('oa_group_type');
+        if (!empty($model->group_type)) {
+            $model->group_type = $oa_group_type[$model->group_type];
+        }
 
         return $this->render('view', [
             'model' => $model,
@@ -139,6 +335,13 @@ class OaInquiryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $userId = Yii::$app->user->identity->id;
+        if (!$this->canAdd && $model->agent!=$userId && $model->co_agent!=$userId) {
+            $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
+            if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             if (isset($_POST['OaInquiry']['cities']) && is_array($_POST['OaInquiry']['cities'])) {

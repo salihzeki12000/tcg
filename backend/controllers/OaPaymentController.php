@@ -75,8 +75,20 @@ class OaPaymentController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $oa_pay_method = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
+        if (!empty($model->pay_method)) {
+            $model->pay_method = $oa_pay_method[$model->pay_method];
+        }
+
+        $oa_receit_account = \common\models\Tools::getEnvironmentVariable('oa_receit_account');
+        if (!empty($model->receit_account)) {
+            $model->receit_account = $oa_receit_account[$model->receit_account];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

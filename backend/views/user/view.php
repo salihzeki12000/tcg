@@ -2,11 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
-$this->title = $model->id;
+$this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -40,4 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <?php $form = ActiveForm::begin(['action' => Url::toRoute(['user/user-sub']), 'id'=>'user-form']); ?>
+        <input name="User[id]" type="hidden" value="<?=$model->id?>">
+        <div class="form-group">
+            <label class="control-label">Subordinate</label>
+            <div>
+                <?php foreach ($allAgent as $user_id => $username) { ?>
+                    <label><input type="checkbox" name="OaUserSub[sub_id][]" value="<?=$user_id?>" <?= isset($subAgent[$user_id])? 'checked' : ''?>> <?=$username?></label>
+                <?php } ?>
+            </div>
+            <input class="btn btn-success" type="submit" name="" value="Submit">
+        </div>
+
+    <?php ActiveForm::end(); ?>
 </div>

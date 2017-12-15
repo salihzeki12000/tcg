@@ -33,7 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'inquiry_id',
             'create_time',
             'update_time',
-            'inquiry_source',
+            [
+                'attribute'=>'inquiry_source',
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_inquiry_source'),
+                'value' => function ($data) {
+                    $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
+                    return $oa_inquiry_source[$data['inquiry_source']];
+                }
+            ],
             // 'language',
             // 'vip',
             // 'agent',

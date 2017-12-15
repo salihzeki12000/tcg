@@ -93,6 +93,21 @@ class OaTourController extends Controller
             $model->operator = $operator[$model->operator];
         }
 
+        $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
+        if (!empty($model->inquiry_source)) {
+            $model->inquiry_source = $oa_inquiry_source[$model->inquiry_source];
+        }
+
+        $oa_group_type = \common\models\Tools::getEnvironmentVariable('oa_group_type');
+        if (!empty($model->group_type)) {
+            $model->group_type = $oa_group_type[$model->group_type];
+        }
+
+        $oa_tour_stage = \common\models\Tools::getEnvironmentVariable('oa_tour_stage');
+        if (!empty($model->stage)) {
+            $model->stage = $oa_tour_stage[$model->stage];
+        }
+
         $model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
 
         $model->vip = Yii::$app->params['yes_or_no'][$model->vip];
