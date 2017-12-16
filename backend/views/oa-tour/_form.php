@@ -14,9 +14,7 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => !$model->isNewRecord]) ?>
-
-    <?php if (!$model->isNewRecord) { ?>
+    <?= $form->field($model, 'inquiry_id')->textInput() ?>
 
     <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
 
@@ -118,7 +116,6 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'stage')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_tour_stage')) ?>
 
-    <?php } ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

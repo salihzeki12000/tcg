@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <div class="oa-book-cost-form">
-
+    <input type="hidden" id="hid_oabookcost_tour_id" value="<?=$model->tour_id?>" />
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'type')->radioList(Yii::$app->params['oa_book_cost_type'], ['itemOptions' => ['disabled' => !$model->isNewRecord]]) ?>
@@ -78,7 +78,11 @@ $js = <<<JS
     $(function(){
         $("#oabookcost-start_date, #oabookcost-end_date, #oabookcost-due_date_for_pay, #oabookcost-pay_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
         $('input[type=radio][name=\"OaBookCost[type]\"]').change(function() {
-            window.location.href='?type='+this.value;
+            var tourId = $('#oabookcost-tour_id').val();
+            if(tourId=='' || tourId==undefined){
+                tourId = $('#hid_oabookcost_tour_id').val();
+            }
+            window.location.href='?type='+this.value+'&tour_id='+tourId;
         });
         $('#oabookcost-need_to_pay').change(function() {
             if (this.value==1){

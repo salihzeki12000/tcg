@@ -69,7 +69,7 @@ class OaBookCost extends \yii\db\ActiveRecord
             'end_date' => Yii::t('app', 'End Date'),
             'cl_info' => Yii::t('app', 'CL Info'),
             'need_to_pay' => Yii::t('app', 'Need to Pay'),
-            'cny_amount' => Yii::t('app', 'CNY Amount'),
+            'cny_amount' => Yii::t('app', 'Estimated CNY Amount'),
             'due_date_for_pay' => Yii::t('app', 'Due Date for Pay'),
             'pay_status' => Yii::t('app', 'Pay Status'),
             'pay_date' => Yii::t('app', 'Pay Date'),

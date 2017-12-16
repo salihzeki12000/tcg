@@ -87,11 +87,11 @@ return [
         OA_BOOK_COST_TYPE_OTHER     => 'Other Cost',
         ),
     'form_types' => array(
-        FORM_TYPE_CUSTOM => 'Custom',
-        FORM_TYPE_QUOTATION => 'Standard',
-        FORM_TYPE_EDU => 'Education',
-        FORM_TYPE_MICE => 'MICE',
-        FORM_TYPE_GROUP => 'GroupTour',
+        FORM_TYPE_CUSTOM => 'Custom Tour',
+        FORM_TYPE_QUOTATION => 'Private Tour',
+        FORM_TYPE_EDU => 'Student Tour',
+        FORM_TYPE_MICE => 'MICE Tour',
+        FORM_TYPE_GROUP => 'Group Tour',
         ),
     'form_required' => array(
         FORM_TYPE_CUSTOM => array(

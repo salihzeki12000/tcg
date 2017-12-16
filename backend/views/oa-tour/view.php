@@ -26,9 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?php } ?>
-        <?php if($permission['canAdd']) { ?>
-        <?= Html::a(Yii::t('app', 'Add Payment'), ['oa-payment/create', 'tour_id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php } ?>
     </p>
 
     <?= DetailView::widget([
@@ -47,20 +44,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'tour_type',
             'group_type',
             'country',
-            'organization:ntext',
+            'organization:html',
             'number_of_travelers',
-            'traveler_info:ntext',
+            'traveler_info:html',
             'tour_start_date',
             'tour_end_date',
             'cities',
             'contact',
             'email:email',
-            'other_contact_info:ntext',
-            'itinerary_quotation_english:ntext',
-            'itinerary_quotation_other_language:ntext',
-            'tour_schedule_note:ntext',
-            'note_for_guide:ntext',
-            'other_note:ntext',
+            'other_contact_info:html',
+            'itinerary_quotation_english:html',
+            'itinerary_quotation_other_language:html',
+            'tour_schedule_note:html',
+            'note_for_guide:html',
+            'other_note:html',
             'tour_price',
             'payment',
             'stage',

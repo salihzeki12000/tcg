@@ -22,15 +22,21 @@ class OaInquiryController extends Controller
     public $canAdd = 0;
     public $canDel = 0;
     public $canMod = 1;
+    public $isAdmin = 0;
 
     public function beforeAction($action)
     {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
         if (isset($roles['OA-Admin'])) {
+            $this->isAdmin = 1;
             $this->canAdd = 1;
             $this->canDel = 1;
         }
+        if (isset($roles['OA-Agent'])) {
+            $this->canAdd = 1;
+        }
+
         return parent::beforeAction($action);
     }
 
@@ -39,6 +45,7 @@ class OaInquiryController extends Controller
         $tmp['canAdd'] = $this->canAdd;
         $tmp['canDel'] = $this->canDel;
         $tmp['canMod'] = $this->canMod;
+        $tmp['isAdmin'] = $this->isAdmin;
         $data['permission'] = $tmp;
         return parent::render($templateName, $data);
     }
@@ -61,7 +68,7 @@ class OaInquiryController extends Controller
      */
     public function actionIndex($user_id='', $co=0, $from_date='', $end_date='', $inquiry_source='', $language='')
     {
-        if (!$this->canAdd && $user_id && $user_id!=Yii::$app->user->identity->id) {
+        if (!$this->isAdmin && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$user_id])) {
                 throw new NotFoundHttpException('The requested page does not exist.');
@@ -98,7 +105,7 @@ class OaInquiryController extends Controller
 
         $userId = Yii::$app->user->identity->id;
         $userName = Yii::$app->user->identity->username;
-        if ($this->canAdd) {
+        if ($this->isAdmin) {
             $subAgent = \common\models\Tools::getAgentUserList();
             if (isset($subAgent[$userId])) {
                 unset($subAgent[$userId]);
@@ -109,11 +116,11 @@ class OaInquiryController extends Controller
         }
         $userList = [$userId=>$userName];
         $userList = $userList + $subAgent;
-        if ($this->canAdd) {
+        if ($this->isAdmin) {
             $userList = [''=>'--All--'] + $userList;
         }
         //$user_id='', $co=0, $from_date='', $end_date='', $inquiry_source='', $language=''
-        if (empty($user_id) && $this->canAdd) {
+        if (empty($user_id) && $this->isAdmin) {
             $user_id = '';
         }
         elseif (!empty($user_id) && isset($userList[$user_id])) {
@@ -251,7 +258,7 @@ class OaInquiryController extends Controller
     {
         $model = $this->findModel($id);
         $userId = Yii::$app->user->identity->id;
-        if (!$this->canAdd && $model->agent!=$userId && $model->co_agent!=$userId) {
+        if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
                 throw new NotFoundHttpException('The requested page does not exist.');
@@ -336,7 +343,7 @@ class OaInquiryController extends Controller
     {
         $model = $this->findModel($id);
         $userId = Yii::$app->user->identity->id;
-        if (!$this->canAdd && $model->agent!=$userId && $model->co_agent!=$userId) {
+        if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
                 throw new NotFoundHttpException('The requested page does not exist.');

@@ -85,6 +85,7 @@ class FormInfoController extends Controller
             if (array_key_exists('travel_interests', $_POST['FormInfo']) && !empty($_POST['FormInfo']['travel_interests'])) {
                 $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
             }
+            $model->status = -1;
             // if (isset($_POST['FormInfo']['arrival_date']) && empty(strtotime($_POST['FormInfo']['arrival_date']))) {
             //     throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
             // }
@@ -112,7 +113,7 @@ class FormInfoController extends Controller
                 $oaInquiryModel = [];
                 $labels = $model->attributeLabels();
                 foreach ($model as $key => $value) {
-                    if ($value!==null && $value!=='') {
+                    if ($value!==null && $value!=='' && $key!='status') {
                         if ($key == 'type') {
                             $value = Yii::$app->params['form_types'][$value];
                         }

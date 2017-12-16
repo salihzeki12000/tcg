@@ -126,7 +126,7 @@ class OaBookCostController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($type=0)
+    public function actionCreate($type=0, $tour_id='')
     {
         $model = new OaBookCost();
 
@@ -152,6 +152,9 @@ class OaBookCostController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->type = $type;
+            if (!empty($tour_id)) {
+                $model->tour_id = intval($tour_id);
+            }
             return $this->render('create', [
                 'model' => $model,
             ]);

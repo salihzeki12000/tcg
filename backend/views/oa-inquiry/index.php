@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 
-    <?php if($permission['canAdd']) { ?>
+    <?php if($permission['isAdmin']) { ?>
     <table id="w0" class="table table-striped table-bordered detail-view">
         <thead>
             <tr>

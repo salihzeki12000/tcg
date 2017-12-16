@@ -18,6 +18,8 @@ class OaTourController extends Controller
     public $canAdd = 0;
     public $canDel = 0;
     public $canMod = 1;
+    public $canAddPayment = 0;
+    public $canAddBookCost = 0;
 
     public function beforeAction($action)
     {
@@ -26,7 +28,17 @@ class OaTourController extends Controller
         if (isset($roles['OA-Admin'])) {
             $this->canAdd = 1;
             $this->canDel = 1;
+            $this->canAddPayment = 1;
+            $this->canAddBookCost = 1;
         }
+        if (isset($roles['OA-Agent'])) {
+            $this->canAddPayment = 1;
+            $this->canAddBookCost = 1;
+        }
+        if (isset($roles['OA-Operator'])) {
+            $this->canAddBookCost = 1;
+        }
+
         return parent::beforeAction($action);
     }
 
@@ -149,32 +161,37 @@ class OaTourController extends Controller
             if (isset($_POST['OaTour']['cities']) && is_array($_POST['OaTour']['cities'])) {
                 $model->cities = join(',', $_POST['OaTour']['cities']);
             }
-            $inquiry_id = $model->inquiry_id;
-            if (($inquiryModel = \common\models\OaInquiry::findOne($inquiry_id)) !== null) {
-                $model->inquiry_source = $inquiryModel->inquiry_source;
-                $model->language = $inquiryModel->language;
-                $model->agent = $inquiryModel->agent;
-                $model->co_agent = $inquiryModel->co_agent;
-                $model->tour_type = $inquiryModel->tour_type;
-                $model->group_type = $inquiryModel->group_type;
-                $model->country = $inquiryModel->country;
-                $model->organization = $inquiryModel->organization;
-                $model->number_of_travelers = $inquiryModel->number_of_travelers;
-                $model->traveler_info = $inquiryModel->traveler_info;
-                $model->tour_start_date = $inquiryModel->tour_start_date;
-                $model->tour_end_date = $inquiryModel->tour_end_date;
-                $model->cities = $inquiryModel->cities;
-                $model->contact = $inquiryModel->contact;
-                $model->email = $inquiryModel->email;
-                $model->other_contact_info = $inquiryModel->other_contact_info;
-                $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
-                $model->create_time = date('Y-m-d H:i:s',time());
-
-                if ($model->save()) {
-                    # code...
+            if ($model->inquiry_id) {
+                if (($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
+                    $model->inquiry_source = $inquiryModel->inquiry_source;
+                    $model->language = $inquiryModel->language;
+                    $model->agent = $inquiryModel->agent;
+                    $model->co_agent = $inquiryModel->co_agent;
+                    $model->tour_type = $inquiryModel->tour_type;
+                    $model->group_type = $inquiryModel->group_type;
+                    $model->country = $inquiryModel->country;
+                    $model->organization = $inquiryModel->organization;
+                    $model->number_of_travelers = $inquiryModel->number_of_travelers;
+                    $model->traveler_info = $inquiryModel->traveler_info;
+                    $model->tour_start_date = $inquiryModel->tour_start_date;
+                    $model->tour_end_date = $inquiryModel->tour_end_date;
+                    $model->cities = $inquiryModel->cities;
+                    $model->contact = $inquiryModel->contact;
+                    $model->email = $inquiryModel->email;
+                    $model->other_contact_info = $inquiryModel->other_contact_info;
+                    $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
+                }
+                else{
+                    throw new NotFoundHttpException('The inquiry does not found.');
                 }
             }
-            return $this->redirect(['update', 'id' => $model->id]);
+
+            $model->create_time = date('Y-m-d H:i:s',time());
+
+            if ($model->save()) {
+                # code...
+            }
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             if (!empty($inquiry_id)) {
                 $model->inquiry_id = $inquiry_id;
@@ -199,6 +216,31 @@ class OaTourController extends Controller
             if (isset($_POST['OaTour']['cities']) && is_array($_POST['OaTour']['cities'])) {
                 $model->cities = join(',', $_POST['OaTour']['cities']);
             }
+            if ($model->inquiry_id) {
+                if (($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
+                    $model->inquiry_source = $inquiryModel->inquiry_source;
+                    $model->language = $inquiryModel->language;
+                    $model->agent = $inquiryModel->agent;
+                    $model->co_agent = $inquiryModel->co_agent;
+                    $model->tour_type = $inquiryModel->tour_type;
+                    $model->group_type = $inquiryModel->group_type;
+                    $model->country = $inquiryModel->country;
+                    $model->organization = $inquiryModel->organization;
+                    $model->number_of_travelers = $inquiryModel->number_of_travelers;
+                    $model->traveler_info = $inquiryModel->traveler_info;
+                    $model->tour_start_date = $inquiryModel->tour_start_date;
+                    $model->tour_end_date = $inquiryModel->tour_end_date;
+                    $model->cities = $inquiryModel->cities;
+                    $model->contact = $inquiryModel->contact;
+                    $model->email = $inquiryModel->email;
+                    $model->other_contact_info = $inquiryModel->other_contact_info;
+                    $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
+                }
+                else{
+                    throw new NotFoundHttpException('The inquiry does not found.');
+                }
+            }
+
             if ($model->save()) {
                 # code...
             }

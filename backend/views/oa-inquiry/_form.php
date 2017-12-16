@@ -68,13 +68,20 @@ use yii\helpers\Url;
         ],
     ]) ?>
 
-    <?= !$permission['canAdd']?'':$form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
-    'clientOptions' => [
-        'minHeight' => '250px',
-        'replaceDivs' => false,
-        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
-        ],
-    ]) ?>
+    <?php if ($permission['canAdd']) { ?>
+        <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+        'clientOptions' => [
+            'minHeight' => '250px',
+            'replaceDivs' => false,
+            'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+            ],
+        ]) ?>
+    <?php } else { ?>
+        <div class="form-group field-oainquiry-original_inquiry">
+            <label class="control-label" for="oainquiry-original_inquiry">Original Inquiry</label>
+            <?= $model->original_inquiry?>
+        </div>
+    <?php } ?>
 
     <?= $form->field($model, 'follow_up_record')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
@@ -129,7 +136,7 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date").datepicker({ format: 'yyyy-mm-dd' });
     });
 JS;
 $this->registerJs($js);
