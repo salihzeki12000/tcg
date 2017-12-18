@@ -70,6 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
+                    'tour_id',
                     'create_time',
                     'update_time',
                     'payer',
@@ -98,6 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= GridView::widget([
                 'dataProvider' => $dataProviderBC,
                 'columns' => [
+                    'tour_id',
                     'create_time',
                     'updat_time',
                     [

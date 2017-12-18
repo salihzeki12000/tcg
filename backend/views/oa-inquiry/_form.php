@@ -22,11 +22,15 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'agent')->dropdownList(\common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList(), ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'co_agent')->dropdownList(\common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'tour_type')->dropdownList(Yii::$app->params['form_types']) ?>
+    <?php
+        $form_types = Yii::$app->params['form_types'];
+        unset($form_types[1]);
+    ?>
+    <?= $form->field($model, 'tour_type')->dropdownList($form_types) ?>
 
     <?= $form->field($model, 'group_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_group_type')) ?>
 

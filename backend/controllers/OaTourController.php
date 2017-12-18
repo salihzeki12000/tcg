@@ -7,6 +7,7 @@ use common\models\OaTour;
 use common\models\OaTourSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 
@@ -153,7 +154,7 @@ class OaTourController extends Controller
     public function actionCreate($inquiry_id=null)
     {
         if ($this->canAdd != 1) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new ForbiddenHttpException('You are not allowed to perform this action. ');
         }
         $model = new OaTour();
 
@@ -262,7 +263,7 @@ class OaTourController extends Controller
     public function actionDelete($id)
     {
         if ($this->canDel != 1) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new ForbiddenHttpException('You are not allowed to perform this action. ');
         }
         $this->findModel($id)->delete();
 

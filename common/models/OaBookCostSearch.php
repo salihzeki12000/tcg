@@ -61,7 +61,7 @@ class OaBookCostSearch extends OaBookCost
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'tour_id' => $this->tour_id,
+            'tour_id' => $params['tour_id'],
             'create_time' => $this->create_time,
             'updat_time' => $this->updat_time,
             'creator' => $this->creator,

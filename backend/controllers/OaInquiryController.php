@@ -7,6 +7,7 @@ use common\models\OaInquiry;
 use common\models\OaInquirySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -71,7 +72,7 @@ class OaInquiryController extends Controller
         if (!$this->isAdmin && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$user_id])) {
-                throw new NotFoundHttpException('The requested page does not exist.');
+                throw new ForbiddenHttpException('You are not allowed to perform this action. ');
             }
         }
 
@@ -103,18 +104,19 @@ class OaInquiryController extends Controller
             }
         }
 
+        $userList = [];
         $userId = Yii::$app->user->identity->id;
         $userName = Yii::$app->user->identity->username;
         if ($this->isAdmin) {
             $subAgent = \common\models\Tools::getAgentUserList();
             if (isset($subAgent[$userId])) {
                 unset($subAgent[$userId]);
+                $userList = [$userId=>$userName];
             }
         }
         else{
             $subAgent = \common\models\Tools::getSubUserByUserId($userId);
         }
-        $userList = [$userId=>$userName];
         $userList = $userList + $subAgent;
         if ($this->isAdmin) {
             $userList = [''=>'--All--'] + $userList;
@@ -261,7 +263,7 @@ class OaInquiryController extends Controller
         if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
-                throw new NotFoundHttpException('The requested page does not exist.');
+                throw new ForbiddenHttpException('You are not allowed to perform this action. ');
             }
         }
 
@@ -310,7 +312,7 @@ class OaInquiryController extends Controller
     public function actionCreate()
     {
         if ($this->canAdd != 1) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new ForbiddenHttpException('You are not allowed to perform this action. ');
         }
 
         $model = new OaInquiry();
@@ -346,7 +348,7 @@ class OaInquiryController extends Controller
         if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
-                throw new NotFoundHttpException('The requested page does not exist.');
+                throw new ForbiddenHttpException('You are not allowed to perform this action. ');
             }
         }
 
@@ -375,7 +377,7 @@ class OaInquiryController extends Controller
     public function actionDelete($id)
     {
         if ($this->canDel != 1) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new ForbiddenHttpException('You are not allowed to perform this action. ');
         }
         $this->findModel($id)->delete();
 

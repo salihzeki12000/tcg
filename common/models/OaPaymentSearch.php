@@ -43,7 +43,6 @@ class OaPaymentSearch extends OaPayment
     public function search($params)
     {
         $query = OaPayment::find();
-
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -61,7 +60,7 @@ class OaPaymentSearch extends OaPayment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'tour_id' => $this->tour_id,
+            'tour_id' => $params['tour_id'],
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
             'cny_amount' => $this->cny_amount,
