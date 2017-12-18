@@ -22,11 +22,11 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(\common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'co_agent')->dropdownList(\common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'operator')->dropdownList(\common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
     <?php
         $form_types = Yii::$app->params['form_types'];
