@@ -52,7 +52,7 @@
                     //这里我们对一开始写的菜单menu进行了优化
                     echo dmstr\widgets\Menu::widget( [
                         'options' => ['class' => 'sidebar-menu'],
-                        'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id,null, $callback),
+                        'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id,null, $callback, true),
                     ] ); 
                 ?>
 
