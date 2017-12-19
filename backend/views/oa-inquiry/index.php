@@ -184,78 +184,70 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div>
-        <h2>Following Up</h2>
-        <table id="w0" class="table table-striped table-bordered detail-view">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Contact</th>
-                    <th>Number of Travelers</th>
-                    <th>Tour Start Date</th>
-                    <th>Priority</th>
-                    <th>Probability</th>
-                    <th>Inquiry Status</th>
-                    <th>Agent</th>
-                    <th>Co-Agent</th>
-                    <th>Task, Notice & Warning</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($followingUpList as $value) { ?>
-                    <tr>
-                        <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
-                        <td><?=$value['contact']?></td>
-                        <td><?=$value['number_of_travelers']?></td>
-                        <td><?=$value['tour_start_date']?></td>
-                        <td><?=$value['priority']?></td>
-                        <td><?=$value['probability']?></td>
-                        <td><?=$value['inquiry_status_txt']?></td>
-                        <td><?=$value['agent']?></td>
-                        <td><?=$value['co_agent']?></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+        <ul class="ul_list_view">
+        <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
+            <li class="li_list_view <?=($i==0)?'active':''?>"><a href="javascript:none();" data-id="list_view_<?=$listTitle?>"><?=$listTitle?></a></li>
+        <?php $i++; } ?>
+        </ul>
     </div>
+    <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
+        <div id="list_view_<?=$listTitle?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
+            <table id="w0" class="table table-striped table-bordered detail-view">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Contact</th>
+                        <th>Number of Travelers</th>
+                        <th>Tour Start Date</th>
+                        <th>Priority</th>
+                        <th>Probability</th>
+                        <th>Inquiry Status</th>
+                        <th>Agent</th>
+                        <th>Co-Agent</th>
+                        <th>Task, Notice & Warning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($listItem as $value) { ?>
+                        <tr>
+                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
+                            <td><?=$value['contact']?></td>
+                            <td><?=$value['number_of_travelers']?></td>
+                            <td><?=$value['tour_start_date']?></td>
+                            <td><?=$value['priority']?></td>
+                            <td><?=$value['probability']?></td>
+                            <td><?=$value['inquiry_status_txt']?></td>
+                            <td><?=$value['agent']?></td>
+                            <td><?=$value['co_agent']?></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    <?php $i++; } ?>
 
-    <div>
-        <h2>Inactive</h2>
-        <table id="w0" class="table table-striped table-bordered detail-view">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Contact</th>
-                    <th>Number of Travelers</th>
-                    <th>Tour Start Date</th>
-                    <th>Priority</th>
-                    <th>Probability</th>
-                    <th>Inquiry Status</th>
-                    <th>Agent</th>
-                    <th>Co-Agent</th>
-                    <th>Task, Notice & Warning</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($inactiveList as $value) { ?>
-                    <tr>
-                        <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
-                        <td><?=$value['contact']?></td>
-                        <td><?=$value['number_of_travelers']?></td>
-                        <td><?=$value['tour_start_date']?></td>
-                        <td><?=$value['priority']?></td>
-                        <td><?=$value['probability']?></td>
-                        <td><?=$value['inquiry_status_txt']?></td>
-                        <td><?=$value['agent']?></td>
-                        <td><?=$value['co_agent']?></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+
 
 </div>
+
+<?php
+$css = <<<CSS
+.ul_list_view{
+    padding-left: 0;
+}
+.ul_list_view li{
+    display: inline-block;
+    margin: 10px 10px;
+    font-size: 20px;
+}
+.ul_list_view li.active a{
+    font-size: 24px;
+    color: #ff7800;
+}
+CSS;
+$this->registerCss($css);
+?>
 
 <?php
 $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depends'=>['backend\assets\AppAsset']]);
@@ -263,6 +255,13 @@ $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>
 $js = <<<JS
     $(function(){
         $("#from_date, #end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $(".ul_list_view a").click(function(){
+            var showId = $(this).attr('data-id');
+            $(".list_views").hide();
+            $("#"+showId).show();
+            $(".ul_list_view li").removeClass('active');
+            $(this).parent("li").addClass('active');
+        });
     });
 JS;
 $this->registerJs($js);

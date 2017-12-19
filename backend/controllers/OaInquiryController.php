@@ -170,11 +170,12 @@ class OaInquiryController extends Controller
             }
         */
         $statusArr = [
-            'Bad' => ['13','14'], //Bad
-            'New + Following Up + Waiting for Payment' => ['1','2','3'], //New + Following Up + Waiting for Payment
+            // 'New + Following Up + Waiting for Payment' => ['1','2','3'], //New + Following Up + Waiting for Payment
+            'Following' => ['1','2','3'], //New + Following Up + Waiting for Payment
             'Inactive' => ['4'], //Inactive
-            'Lost' => ['8','9','10','11','12'], //Lost
             'Booked' => ['5','6','7'], //Booked
+            'Lost' => ['8','9','10','11','12'], //Lost
+            'Bad' => ['13','14'], //Bad
         ];
         $summarySql = "SELECT * FROM oa_inquiry WHERE 1=1 ";
         if (!empty($user_id)) {
@@ -200,25 +201,18 @@ class OaInquiryController extends Controller
         $summaryInfo = [
             'Total Inquiries' => 0,
         ];
+        $listInfo = [];
         foreach ($statusArr as $key => $value) {
+            $listInfo[$key] = [];
             $summaryInfo[$key] = 0;
         }
 
-        $followingUpList = [];
-        $followingUpStatus = ['1', '2', '3'];
-        $inactiveList = [];
-        $inactiveStatus = ['4'];
         if ($summaryAll) {
             $totalCount = count($summaryAll);
             $summaryInfo['Total Inquiries'] = $totalCount;
             $oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
             foreach ($summaryAll as $sumitem) {
-                foreach ($statusArr as $statkey => $statGroup) {
-                    if (in_array($sumitem['inquiry_status'], $statGroup)) {
-                        $summaryInfo[$statkey] ++;
-                    }
-                }
-
+                unset($sumitem['original_inquiry']);
                 $agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $sumitem['agent']])->all(), 'id', 'username');
                 if (array_key_exists($sumitem['agent'], $agent)) {
                     $sumitem['agent'] = $agent[$sumitem['agent']];
@@ -227,15 +221,14 @@ class OaInquiryController extends Controller
                 if (array_key_exists($sumitem['co_agent'], $co_agent)) {
                     $sumitem['co_agent'] = $co_agent[$sumitem['co_agent']];
                 }
-
                 $sumitem['inquiry_status_txt'] = $oa_inquiry_status[$sumitem['inquiry_status']];
-                if (in_array($sumitem['inquiry_status'], $followingUpStatus)) {
-                    $followingUpList[] = $sumitem;
-                }
-                if (in_array($sumitem['inquiry_status'], $inactiveStatus)) {
-                    $inactiveList[] = $sumitem;
-                }
 
+                foreach ($statusArr as $statkey => $statGroup) {
+                    if (in_array($sumitem['inquiry_status'], $statGroup)) {
+                        $summaryInfo[$statkey] ++;
+                        $listInfo[$statkey][] = $sumitem;
+                    }
+                }
 
             }
         }
@@ -251,8 +244,7 @@ class OaInquiryController extends Controller
             'inquiriesToAssign' => $inquiriesToAssign,
             'summaryInfo' => $summaryInfo,
             'userList' => $userList,
-            'followingUpList' => $followingUpList,
-            'inactiveList' => $inactiveList,
+            'listInfo' => $listInfo,
             'user_id' => $user_id,
             'co' => $co,
             'from_date' => $from_date,

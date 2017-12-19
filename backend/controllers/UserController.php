@@ -115,7 +115,9 @@ class UserController extends Controller
     {
         $data = Yii::$app->request->post();
         $userId = $data['User']['id'];
-        $subUserIds = $data['OaUserSub']['sub_id'];
+        if (isset($data['OaUserSub'])) {
+            $subUserIds = $data['OaUserSub']['sub_id'];
+        }
         $sql = "DELETE FROM oa_user_sub WHERE user_id={$userId}";
         $del = Yii::$app->db->createCommand($sql)->execute();
 
