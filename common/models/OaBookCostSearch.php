@@ -58,6 +58,10 @@ class OaBookCostSearch extends OaBookCost
             return $dataProvider;
         }
 
+        if (isset($params['tour_id'])) {
+            $this->tour_id = $params['tour_id'];
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

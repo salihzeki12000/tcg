@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?php } ?>
-        <?php if($permission['isAdmin']) { ?>
+        <?php if($permission['canAddTour']) { ?>
         <?= Html::a(Yii::t('app', 'Add Tour'), ['oa-tour/create', 'inquiry_id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php } ?>
     </p>

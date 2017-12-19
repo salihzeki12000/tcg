@@ -24,6 +24,9 @@ class OaInquiryController extends Controller
     public $canDel = 0;
     public $canMod = 1;
     public $isAdmin = 0;
+    public $isAgent = 0;
+    public $isOperator = 0;
+    public $canAddTour = 0;
 
     public function beforeAction($action)
     {
@@ -36,6 +39,11 @@ class OaInquiryController extends Controller
         }
         if (isset($roles['OA-Agent'])) {
             $this->canAdd = 1;
+            $this->canAddTour = 1;
+            $this->isAgent = 1;
+        }
+        if (isset($roles['OA-isOperator'])) {
+            $this->isOperator = 1;
         }
 
         return parent::beforeAction($action);
@@ -47,6 +55,7 @@ class OaInquiryController extends Controller
         $tmp['canDel'] = $this->canDel;
         $tmp['canMod'] = $this->canMod;
         $tmp['isAdmin'] = $this->isAdmin;
+        $tmp['canAddTour'] = $this->canAddTour;
         $data['permission'] = $tmp;
         return parent::render($templateName, $data);
     }
@@ -104,7 +113,7 @@ class OaInquiryController extends Controller
             }
         }
 
-        $userList = [];
+        $userList = $subAgent = [];
         $userId = Yii::$app->user->identity->id;
         $userName = Yii::$app->user->identity->username;
         if ($this->isAdmin) {
@@ -114,7 +123,8 @@ class OaInquiryController extends Controller
                 $userList = [$userId=>$userName];
             }
         }
-        else{
+        elseif($this->isAgent || $this->isOperator){
+            $userList = [$userId=>$userName];
             $subAgent = \common\models\Tools::getSubUserByUserId($userId);
         }
         $userList = $userList + $subAgent;
@@ -138,6 +148,7 @@ class OaInquiryController extends Controller
         if (empty($end_date)) {
             $end_date = date("Y-m-d");
         }
+        $query_end_date = $end_date . ' 23:59:59';
         //Total Inquiries | Bad | New + Following Up + Waiting for Payment | Inactive | Lost| Booked | Booking Rate (算式：Booked/(Booked+Lost+Inactive))                                      
         /*
             {
@@ -180,7 +191,7 @@ class OaInquiryController extends Controller
             $summarySql .= " AND  language='{$language}' ";
         }
         $summarySql .= " AND  create_time>='{$from_date}' ";
-        $summarySql .= " AND  create_time<='{$end_date}' ";
+        $summarySql .= " AND  create_time<='{$query_end_date}' ";
 
         $summaryAll = Yii::$app->db->createCommand($summarySql)
         ->queryAll();

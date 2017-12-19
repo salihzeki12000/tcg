@@ -57,10 +57,14 @@ class OaPaymentSearch extends OaPayment
             return $dataProvider;
         }
 
+        if (isset($params['tour_id'])) {
+            $this->tour_id = $params['tour_id'];
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'tour_id' => $params['tour_id'],
+            'tour_id' => $this->tour_id,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
             'cny_amount' => $this->cny_amount,
