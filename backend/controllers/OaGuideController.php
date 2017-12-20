@@ -8,6 +8,7 @@ use common\models\OaGuideSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * OaGuideController implements the CRUD actions for OaGuide model.
@@ -51,8 +52,19 @@ class OaGuideController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $city_id = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => $model->city_id])->all(), 'id', 'name');
+        if (array_key_exists($model->city_id, $city_id)) {
+            $model->city_id = $city_id[$model->city_id];
+        }
+
+        $agency = ArrayHelper::map(\common\models\OaAgency::find()->where(['id' => $model->agency])->all(), 'id', 'name');
+        if (array_key_exists($model->agency, $agency)) {
+            $model->agency = $agency[$model->agency];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -65,7 +77,11 @@ class OaGuideController extends Controller
     {
         $model = new OaGuide();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->create_time = date('Y-m-d H:i:s',time());
+            if ($model->save()) {
+                # code...
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

@@ -17,7 +17,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'city_id')->dropdownList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
-    <?= $form->field($model, 'rating')->dropdownList(['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']) ?>
+    <?= $form->field($model, 'rating')->radioList(['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']) ?>
 
     <?= $form->field($model, 'contact_person_info')->textarea(['rows' => 6]) ?>
 

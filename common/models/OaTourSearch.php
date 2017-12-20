@@ -18,8 +18,8 @@ class OaTourSearch extends OaTour
     public function rules()
     {
         return [
-            [['id', 'inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent'], 'integer'],
-            [['create_time', 'update_time', 'inquiry_source', 'language', 'operator', 'group_type', 'country', 'organization', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'payment', 'stage'], 'safe'],
+            [['id', 'inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent', 'operator'], 'integer'],
+            [['create_time', 'update_time', 'inquiry_source', 'language', 'group_type', 'country', 'organization', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'payment', 'stage'], 'safe'],
             [['tour_price'], 'number'],
         ];
     }

@@ -58,7 +58,7 @@ class OaPayment extends \yii\db\ActiveRecord
             'tour_id' => Yii::t('app', 'Tour ID'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
-            'payer' => Yii::t('app', 'PayerString'),
+            'payer' => Yii::t('app', 'Payer'),
             'type' => Yii::t('app', 'Type'),
             'cny_amount' => Yii::t('app', 'CNY Amount'),
             'due_date' => Yii::t('app', 'Due Date'),

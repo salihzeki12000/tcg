@@ -61,3 +61,8 @@ define('FORM_TYPE_GROUP',       5);
 define('CARD_STATUS_CHARGED',     0);
 define('CARD_STATUS_SUCCESSFULY', 1);
 define('CARD_STATUS_FAILED',      2);
+
+define('OA_BOOK_COST_TYPE_GUIDE',     1);
+define('OA_BOOK_COST_TYPE_HOTEL',     2);
+define('OA_BOOK_COST_TYPE_AGENCY',    3);
+define('OA_BOOK_COST_TYPE_OTHER',     4);

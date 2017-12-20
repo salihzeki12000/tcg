@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php if($permission['canDel']) { ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -23,6 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php } ?>
+        <?php if($permission['canAddTour']) { ?>
+        <?= Html::a(Yii::t('app', 'Add Tour'), ['oa-tour/create', 'inquiry_id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php } ?>
     </p>
 
     <?= DetailView::widget([
@@ -38,25 +43,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'co_agent',
             'tour_type',
             'group_type',
-            'organization:ntext',
+            'organization:html',
             'country',
             'number_of_travelers',
-            'traveler_info:ntext',
+            'traveler_info:html',
             'tour_start_date',
             'tour_end_date',
             'cities',
             'contact',
             'email:email',
-            'other_contact_info:ntext',
-            'original_inquiry:ntext',
-            'follow_up_record:ntext',
-            'tour_schedule_note:ntext',
-            'other_note:ntext',
+            'other_contact_info:html',
+            'original_inquiry:html',
+            'follow_up_record:html',
+            'tour_schedule_note:html',
+            'other_note:html',
             'estimated_cny_amount',
             'probability',
             'inquiry_status',
             'close',
-            'close_report:ntext',
+            'close_report:html',
         ],
     ]) ?>
 

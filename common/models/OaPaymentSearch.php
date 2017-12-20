@@ -43,7 +43,6 @@ class OaPaymentSearch extends OaPayment
     public function search($params)
     {
         $query = OaPayment::find();
-
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -56,6 +55,10 @@ class OaPaymentSearch extends OaPayment
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
+        }
+
+        if (isset($params['tour_id'])) {
+            $this->tour_id = $params['tour_id'];
         }
 
         // grid filtering conditions

@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'cny_amount',
             'due_date',
             'pay_method',
-            'receit_account',
+            // 'receit_account',
             'receit_cny_amount',
             'transaction_fee',
             'receit_date',

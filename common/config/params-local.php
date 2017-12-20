@@ -80,12 +80,18 @@ return [
         CARD_STATUS_SUCCESSFULY => 'Successfuly Charged',
         CARD_STATUS_FAILED      => 'Charge Failed',
         ),
+    'oa_book_cost_type' => array(
+        OA_BOOK_COST_TYPE_GUIDE     => 'Guide',
+        OA_BOOK_COST_TYPE_HOTEL     => 'Hotel',
+        OA_BOOK_COST_TYPE_AGENCY    => 'Agency',
+        OA_BOOK_COST_TYPE_OTHER     => 'Other Cost',
+        ),
     'form_types' => array(
-        FORM_TYPE_CUSTOM => 'Custom',
-        FORM_TYPE_QUOTATION => 'Standard',
-        FORM_TYPE_EDU => 'Education',
-        FORM_TYPE_MICE => 'MICE',
-        FORM_TYPE_GROUP => 'GroupTour',
+        FORM_TYPE_CUSTOM => 'Custom Tour',
+        FORM_TYPE_QUOTATION => 'Private Tour',
+        FORM_TYPE_EDU => 'Student Tour',
+        FORM_TYPE_MICE => 'MICE Tour',
+        FORM_TYPE_GROUP => 'Group Tour',
         ),
     'form_required' => array(
         FORM_TYPE_CUSTOM => array(

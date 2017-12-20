@@ -334,4 +334,39 @@ class Tools
         return $data;
     }
 
+    static public function getAgentUserList()
+    {
+        $cache = Yii::$app->cache;
+        $cache_key = 'AGENT_USER_LIST';
+        $data = $cache->get($cache_key);
+        if (empty($data)) {
+            $data = [];
+            $user_list = \common\models\User::find()->where(['status'=>10])->andFilterWhere(['>', 'id', 1])->orderBy('id ASC')
+                ->all();
+            if (!empty($user_list)) {
+                $auth = Yii::$app->authManager;
+                foreach ($user_list as $user) {
+                    $roles = $auth->getRolesByUser($user['id']);
+                    if (isset($roles['OA-Agent']) || isset($roles['OA-Operator'])) {
+                        $data[$user['id']] = $user['username'];
+                    }
+                }
+                $cache->set($cache_key, $data, 60*5);
+            }
+        }
+        return $data;
+    }
+
+    static public function getSubUserByUserId($userId)
+    {
+        $sql = "SELECT a.sub_id,b.username FROM oa_user_sub a JOIN user b ON a.sub_id=b.id WHERE a.user_id=$userId ";
+        $subAgent = [];
+        $subAgentList = Yii::$app->db->createCommand($sql)->queryAll();
+        if (!empty($subAgentList)) {
+            foreach ($subAgentList as $item) {
+                $subAgent[$item['sub_id']] = $item['username'];
+            }
+        }
+        return $subAgent;
+    }
 }

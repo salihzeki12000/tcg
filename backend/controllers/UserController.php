@@ -50,8 +50,17 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $allAgent =  \common\models\Tools::getAgentUserList();
+        if (isset($allAgent[$id])) {
+            unset($allAgent[$id]);
+        }
+
+        $subAgent = \common\models\Tools::getSubUserByUserId($id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'allAgent' => $allAgent,
+            'subAgent' => $subAgent,
         ]);
     }
 
@@ -100,6 +109,28 @@ class UserController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionUserSub()
+    {
+        $data = Yii::$app->request->post();
+        $userId = $data['User']['id'];
+        if (isset($data['OaUserSub'])) {
+            $subUserIds = $data['OaUserSub']['sub_id'];
+        }
+        $sql = "DELETE FROM oa_user_sub WHERE user_id={$userId}";
+        $del = Yii::$app->db->createCommand($sql)->execute();
+
+        if (!empty($subUserIds)) {
+            foreach ($subUserIds as $subId) {
+                $model = new \common\models\OaUserSub();
+                $model->user_id = $userId;
+                $model->sub_id = $subId;
+                $model->save();
+            }
+        }
+
+        return $this->redirect(['view', 'id' => $userId]);
     }
 
     /**

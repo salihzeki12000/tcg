@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaTour */
@@ -13,33 +14,47 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => !$model->isNewRecord]) ?>
+    <?= $form->field($model, 'inquiry_id')->textInput() ?>
 
-    <?php if (!$model->isNewRecord) { ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source')) ?>
-
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'tour_type')->dropdownList(Yii::$app->params['form_types']) ?>
+    <?php
+        $form_types = Yii::$app->params['form_types'];
+        unset($form_types[1]);
+    ?>
+    <?= $form->field($model, 'tour_type')->dropdownList($form_types) ?>
 
     <?= $form->field($model, 'group_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_group_type')) ?>
 
     <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country')) ?>
 
-    <?= $form->field($model, 'organization')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'organization')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'number_of_travelers')->textInput() ?>
 
-    <?= $form->field($model, 'traveler_info')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'traveler_info')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'tour_start_date')->textInput(['maxlength' => true]) ?>
 
@@ -51,17 +66,53 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'other_contact_info')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'other_contact_info')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'itinerary_quotation_english')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'itinerary_quotation_english')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'itinerary_quotation_other_language')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'itinerary_quotation_other_language')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'tour_schedule_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'tour_schedule_note')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'note_for_guide')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'note_for_guide')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'other_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'other_note')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'tour_price')->textInput(['maxlength' => true]) ?>
 
@@ -69,7 +120,6 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'stage')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_tour_stage')) ?>
 
-    <?php } ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

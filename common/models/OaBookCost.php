@@ -43,7 +43,7 @@ class OaBookCost extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tour_id', 'type'], 'required'],
+            // [['tour_id', 'type'], 'required'],
             [['tour_id', 'creator', 'type', 'fid', 'need_to_pay', 'pay_status'], 'integer'],
             [['create_time', 'updat_time'], 'safe'],
             [['cl_info', 'transaction_note', 'note'], 'string'],
@@ -64,12 +64,12 @@ class OaBookCost extends \yii\db\ActiveRecord
             'updat_time' => Yii::t('app', 'Update Time'),
             'creator' => Yii::t('app', 'Creator'),
             'type' => Yii::t('app', 'Type'),
-            'fid' => Yii::t('app', 'fid Name'),
+            'fid' => Yii::t('app', 'Name'),
             'start_date' => Yii::t('app', 'Start Date'),
             'end_date' => Yii::t('app', 'End Date'),
             'cl_info' => Yii::t('app', 'CL Info'),
             'need_to_pay' => Yii::t('app', 'Need to Pay'),
-            'cny_amount' => Yii::t('app', 'CNY Amount'),
+            'cny_amount' => Yii::t('app', 'Estimated CNY Amount'),
             'due_date_for_pay' => Yii::t('app', 'Due Date for Pay'),
             'pay_status' => Yii::t('app', 'Pay Status'),
             'pay_date' => Yii::t('app', 'Pay Date'),

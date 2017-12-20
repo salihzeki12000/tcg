@@ -16,27 +16,43 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source')) ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getUserList()) ?>
+    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'tour_type')->dropdownList(Yii::$app->params['form_types']) ?>
+    <?php
+        $form_types = Yii::$app->params['form_types'];
+        unset($form_types[1]);
+    ?>
+    <?= $form->field($model, 'tour_type')->dropdownList($form_types) ?>
 
     <?= $form->field($model, 'group_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_group_type')) ?>
 
-    <?= $form->field($model, 'organization')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'organization')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country')) ?>
+    <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country'), ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'number_of_travelers')->textInput() ?>
 
-    <?= $form->field($model, 'traveler_info')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'traveler_info')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'tour_start_date')->textInput(['maxlength' => true]) ?>
 
@@ -48,9 +64,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'other_contact_info')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+    <?= $form->field($model, 'other_contact_info')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
         'replaceDivs' => false,
@@ -58,11 +72,44 @@ use yii\helpers\Url;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'follow_up_record')->textarea(['rows' => 6]) ?>
+    <?php if ($permission['canAdd']) { ?>
+        <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+        'clientOptions' => [
+            'minHeight' => '250px',
+            'replaceDivs' => false,
+            'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+            ],
+        ]) ?>
+    <?php } else { ?>
+        <div class="form-group field-oainquiry-original_inquiry">
+            <label class="control-label" for="oainquiry-original_inquiry">Original Inquiry</label>
+            <?= $model->original_inquiry?>
+        </div>
+    <?php } ?>
 
-    <?= $form->field($model, 'tour_schedule_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'follow_up_record')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'other_note')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'tour_schedule_note')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'other_note')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'estimated_cny_amount')->textInput(['maxlength' => true]) ?>
 
@@ -72,7 +119,13 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'close_report')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'close_report')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        ],
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -87,7 +140,7 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date").datepicker({ format: 'yyyy-mm-dd' });
     });
 JS;
 $this->registerJs($js);

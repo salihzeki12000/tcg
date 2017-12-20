@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property integer $city_id
- * @property string $level
+ * @property integer $level
  * @property string $tripadvisor_link
  * @property integer $rating
  * @property string $rooms_prices
@@ -35,11 +35,10 @@ class OaHotel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'city_id', 'level'], 'required'],
-            [['city_id', 'rating'], 'integer'],
+            [['name', 'city_id'], 'required'],
+            [['city_id', 'rating', 'level'], 'integer'],
             [['rooms_prices', 'contact_person_info', 'bank_info', 'cl_english', 'note'], 'string'],
             [['name'], 'string', 'max' => 255],
-            [['level'], 'string', 'max' => 10],
             [['tripadvisor_link'], 'string', 'max' => 512],
         ];
     }

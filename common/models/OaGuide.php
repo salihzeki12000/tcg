@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- * @property integer $user_id
+ * @property string $email
  * @property integer $rating
  * @property string $language
  * @property string $daily_price
@@ -36,13 +36,14 @@ class OaGuide extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'user_id', 'language', 'city_id', 'agency'], 'required'],
-            [['user_id', 'rating', 'city_id', 'agency'], 'integer'],
+            [['name', 'language', 'city_id'], 'required'],
+            [['rating', 'city_id', 'agency'], 'integer'],
             [['daily_price'], 'number'],
-            [['contact_info', 'identity_bank_info', 'cl_english', 'note'], 'string'],
-            [['name', 'language'], 'string', 'max' => 255],
-            [['user_id'], 'unique'],
+            [['contact_info', 'identity_bank_info', 'cl_english', 'note', 'email'], 'string'],
+            [['name', 'language', 'email'], 'string', 'max' => 255],
+            [['email'], 'unique'],
             [['name'], 'unique'],
+            ['email', 'email'],
         ];
     }
 
@@ -54,7 +55,7 @@ class OaGuide extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Guide ID'),
             'name' => Yii::t('app', 'Name'),
-            'user_id' => Yii::t('app', 'User Id'),
+            'email' => Yii::t('app', 'Email'),
             'rating' => Yii::t('app', 'Rating'),
             'language' => Yii::t('app', 'Language'),
             'daily_price' => Yii::t('app', 'Daily Price'),

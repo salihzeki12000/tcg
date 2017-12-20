@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaTourSearch */
@@ -15,9 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <?php if($permission['canAdd']) { ?>
     <p>
         <?= Html::a(Yii::t('app', 'Create Oa Tour'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php } ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -28,7 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'inquiry_id',
             'create_time',
             'update_time',
-            'inquiry_source',
+            [
+                'attribute'=>'inquiry_source',
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_inquiry_source'),
+                'value' => function ($data) {
+                    $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
+                    return $oa_inquiry_source[$data['inquiry_source']];
+                }
+            ],
             // 'language',
             // 'vip',
             // 'agent',
@@ -42,7 +54,18 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'traveler_info:ntext',
             // 'tour_start_date',
             // 'tour_end_date',
-            // 'cities',
+            [
+                'attribute'=>'cities',
+                'filter'=>ArrayHelper::map(\common\models\OaCity::find()->asArray()->all(), 'id', 'name'),
+                'value' => function ($data) {
+                    $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $data['cities'])])->all(), 'id', 'name');
+                    $show_cities = join(',', array_values($cities));
+                    if (strlen($show_cities)>30) {
+                        $show_cities = substr($show_cities,0, 30) . '...';
+                    }
+                    return $show_cities;
+                }
+            ],
             // 'contact',
             // 'email:email',
             // 'other_contact_info:ntext',
@@ -55,7 +78,22 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'payment',
             // 'stage',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return Url::to(['oa-tour/view', 'id'=>$model->id]);
+                    }
+                    if ($action === 'update') {
+                        return Url::to(['oa-tour/update', 'id'=>$model->id]);
+                    }
+                    if ($action === 'delete') {
+                        return Url::to(['oa-tour/delete', 'id'=>$model->id]);
+                    }
+                    
+                },
+            ],
         ],
     ]); ?>
 </div>

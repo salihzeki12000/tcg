@@ -85,6 +85,7 @@ class FormInfoController extends Controller
             if (array_key_exists('travel_interests', $_POST['FormInfo']) && !empty($_POST['FormInfo']['travel_interests'])) {
                 $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
             }
+            $model->status = -1;
             // if (isset($_POST['FormInfo']['arrival_date']) && empty(strtotime($_POST['FormInfo']['arrival_date']))) {
             //     throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
             // }
@@ -109,9 +110,26 @@ class FormInfoController extends Controller
 
                 $receiver[] = 'book@thechinaguide.com';
 
+                $oaInquiryModel = [];
+                $labels = $model->attributeLabels();
+                foreach ($model as $key => $value) {
+                    if ($value!==null && $value!=='' && $key!='status') {
+                        if ($key == 'type') {
+                            $value = Yii::$app->params['form_types'][$value];
+                        }
+                        $oaInquiryModel[$labels[$key]] = $value;
+                    }
+                }
                 $OaInquiry = new \common\models\OaInquiry();
-                $OaInquiry->tour_type = $model->type;
-                $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$model]);
+                if ($model->type == FORM_TYPE_CUSTOM) {
+                    $OaInquiry->tour_type = FORM_TYPE_QUOTATION;
+                }
+                else{
+                    $OaInquiry->tour_type = $model->type;
+                }
+                $OaInquiry->email = $model->email;
+                $OaInquiry->contact = $model->name;
+                $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$oaInquiryModel]);
                 $OaInquiry->create_time = $model->create_time;
                 $OaInquiry->save();
 
