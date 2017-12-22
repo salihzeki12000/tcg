@@ -193,6 +193,12 @@ class OaTourController extends Controller
                     $sumitem['operator'] = $operator[$sumitem['operator']];
                 }
                 $sumitem['close_txt'] = Yii::$app->params['yes_or_no'][$sumitem['close']];
+                $sumitem['vip'] = Yii::$app->params['yes_or_no'][$sumitem['vip']];
+
+                $oa_tour_stage = \common\models\Tools::getEnvironmentVariable('oa_tour_stage');
+                if ($sumitem['stage']) {
+                    $sumitem['stage'] = $oa_tour_stage[$sumitem['stage']];
+                }
 
                 $intTourStartDate = strtotime($sumitem['tour_start_date']);
                 $intTourEndDate = strtotime($sumitem['tour_end_date']);
