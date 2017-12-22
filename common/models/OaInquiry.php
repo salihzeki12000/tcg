@@ -36,6 +36,9 @@ use Yii;
  * @property string $inquiry_status
  * @property integer $close
  * @property string $close_report
+ * @property string $task_remind
+ * @property string $task_remind_date
+ * @property integer  $creator
  */
 class OaInquiry extends \yii\db\ActiveRecord
 {
@@ -55,10 +58,10 @@ class OaInquiry extends \yii\db\ActiveRecord
         return [
             [['create_time', 'update_time'], 'safe'],
             [['tour_type'], 'required'],
-            [['tour_type', 'number_of_travelers', 'close', 'agent', 'co_agent'], 'integer'],
-            [['organization', 'traveler_info', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'close_report'], 'string'],
+            [['tour_type', 'number_of_travelers', 'close', 'agent', 'co_agent', 'creator'], 'integer'],
+            [['organization', 'traveler_info', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'close_report', 'task_remind_date', 'task_remind'], 'string'],
             [['estimated_cny_amount'], 'number'],
-            [['inquiry_source', 'language', 'priority', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'email', 'probability', 'inquiry_status'], 'string', 'max' => 255],
+            [['inquiry_source', 'language', 'priority', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'email', 'probability', 'inquiry_status', 'task_remind_date', 'task_remind'], 'string', 'max' => 255],
             [['cities'], 'string', 'max' => 1024],
             ['email', 'email'],
         ];
@@ -99,6 +102,9 @@ class OaInquiry extends \yii\db\ActiveRecord
             'inquiry_status' => Yii::t('app', 'Inquiry Status'),
             'close' => Yii::t('app', 'Close'),
             'close_report' => Yii::t('app', 'Close Report'),
+            'task_remind' => Yii::t('app', 'Task Remind'),
+            'task_remind_date' => Yii::t('app', 'Task Remind Date'),
+            'creator' => Yii::t('app', 'Creator'),
         ];
     }
 }

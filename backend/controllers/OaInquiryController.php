@@ -86,9 +86,6 @@ class OaInquiryController extends Controller
             }
         }
 
-        $searchModel = new OaInquirySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         $sql = "SELECT * FROM oa_inquiry WHERE agent IS NULL OR inquiry_source IS NULL OR inquiry_source='' OR `language` IS NULL OR `language`='' OR original_inquiry IS NULL OR original_inquiry='' ORDER BY id ";
         $inquiriesToAssign = Yii::$app->db->createCommand($sql)
         ->queryAll();
@@ -239,8 +236,6 @@ class OaInquiryController extends Controller
 
         // var_dump($summaryInfo);exit;
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
             'inquiriesToAssign' => $inquiriesToAssign,
             'summaryInfo' => $summaryInfo,
             'userList' => $userList,
@@ -269,6 +264,14 @@ class OaInquiryController extends Controller
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
             }
+        }
+
+        $creator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->creator])->all(), 'id', 'username');
+        if (array_key_exists($model->creator, $creator)) {
+            $model->creator = $creator[$model->creator];
+        }
+        else{
+            $model->creator = 'Webform';
         }
 
         $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
@@ -326,6 +329,7 @@ class OaInquiryController extends Controller
                 $model->cities = join(',', $_POST['OaInquiry']['cities']);
             }
             $model->create_time = date('Y-m-d H:i:s',time());
+            $model->creator = Yii::$app->user->identity->id;
 
             if ($model->save()) {
                 # code...

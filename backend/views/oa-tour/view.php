@@ -61,6 +61,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'tour_price',
             'payment',
             'stage',
+            'task_remind',
+            'task_remind_date',
+            'estimated_cost',
+            'accounting_sales_amount',
+            'accounting_total_cost',
+            'accounting_hotel_flight_train_cost',
+            'attachment:html',
+            'close',
+            'creator',
         ],
     ]) ?>
 

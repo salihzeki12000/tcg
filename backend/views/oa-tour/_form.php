@@ -14,11 +14,11 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_id')->textInput() ?>
+    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => !empty($model->inquiry_id)]) ?>
 
     <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
@@ -120,9 +120,30 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'stage')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_tour_stage')) ?>
 
+    <?= $form->field($model, 'task_remind')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'task_remind_date')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'estimated_cost')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'accounting_total_cost')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'accounting_hotel_flight_train_cost')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'attachment')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'replaceDivs' => false,
+        'plugins' => [/*'fontcolor','fontfamily', 'fontsize', 'imagemanager'*/],
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
@@ -134,7 +155,7 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oatour-tour_start_date, #oatour-tour_end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oatour-tour_start_date, #oatour-tour_end_date, #oatour-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
     });
 JS;
 $this->registerJs($js);

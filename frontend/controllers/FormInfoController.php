@@ -85,10 +85,13 @@ class FormInfoController extends Controller
             if (array_key_exists('travel_interests', $_POST['FormInfo']) && !empty($_POST['FormInfo']['travel_interests'])) {
                 $model->travel_interests = join(',', $_POST['FormInfo']['travel_interests']);
             }
+
             $model->status = -1;
-            // if (isset($_POST['FormInfo']['arrival_date']) && empty(strtotime($_POST['FormInfo']['arrival_date']))) {
-            //     throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-            // }
+
+            if (!empty($model->arrival_date) && empty(strtotime($model->arrival_date))) {
+                throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+            }
+
             $model->create_time = date('Y-m-d H:i:s',time());
             if ($model->save()) {
                 $guests = $model->adults;

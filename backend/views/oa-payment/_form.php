@@ -12,17 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'tour_id')->textInput(['readonly' => !$model->isNewRecord]) ?>
+    <?= $form->field($model, 'tour_id')->textInput(['readonly' => true]) ?>
 
     <?= $form->field($model, 'payer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->dropdownList(['Deposit'=>'Deposit','Balance'=>'Balance','Full Payment'=>'Full Payment']) ?>
+    <?= $form->field($model, 'type')->dropdownList(['Deposit'=>'Deposit','Balance'=>'Balance','Full Payment'=>'Full Payment', 'Refund'=>'Refund', 'Other'=>'Other'], ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'cny_amount')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'due_date')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method')) ?>
+    <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method'), ['prompt' => '--Select--']) ?>
 
     <?php /*$form->field($model, 'receit_account')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_receit_account'), ['disabled' => !$permission['canAdd']])*/ ?>
 
@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'receit_date')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'cc_note_signing')->dropdownList(['To be Signed'=>'To be Signed','Signed'=>'Signed','No Sign'=>'No Sign'], ['disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'cc_note_signing')->dropdownList(['To be Signed'=>'To be Signed','Signed'=>'Signed','No Sign'=>'No Sign'], ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 

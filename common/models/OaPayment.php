@@ -39,7 +39,7 @@ class OaPayment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tour_id'], 'required'],
+            [['tour_id', 'payer', 'cny_amount', 'due_date', 'pay_method', 'type'], 'required'],
             [['tour_id'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['cny_amount', 'receit_cny_amount', 'transaction_fee'], 'number'],

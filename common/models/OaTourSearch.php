@@ -18,9 +18,9 @@ class OaTourSearch extends OaTour
     public function rules()
     {
         return [
-            [['id', 'inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent', 'operator'], 'integer'],
-            [['create_time', 'update_time', 'inquiry_source', 'language', 'group_type', 'country', 'organization', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'payment', 'stage'], 'safe'],
-            [['tour_price'], 'number'],
+            [['id', 'inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent', 'operator', 'close', 'creator'], 'integer'],
+            [['create_time', 'update_time', 'inquiry_source', 'language', 'group_type', 'country', 'organization', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'payment', 'stage', 'task_remind', 'task_remind_date', 'attachment'], 'safe'],
+            [['tour_price', 'estimated_cost', 'accounting_sales_amount', 'accounting_total_cost', 'accounting_hotel_flight_train_cost'], 'number'],
         ];
     }
 
@@ -71,6 +71,12 @@ class OaTourSearch extends OaTour
             'agent' => $this->agent,
             'co_agent' => $this->co_agent,
             'operator' => $this->operator,
+            'close' => $this->close,
+            'estimated_cost' => $this->estimated_cost,
+            'accounting_sales_amount' => $this->accounting_sales_amount,
+            'accounting_total_cost' => $this->accounting_total_cost,
+            'accounting_hotel_flight_train_cost' => $this->accounting_hotel_flight_train_cost,
+            'creator' => $this->creator,
         ]);
 
         $query->andFilterWhere(['like', 'inquiry_source', $this->inquiry_source])
@@ -91,7 +97,10 @@ class OaTourSearch extends OaTour
             ->andFilterWhere(['like', 'note_for_guide', $this->note_for_guide])
             ->andFilterWhere(['like', 'other_note', $this->other_note])
             ->andFilterWhere(['like', 'payment', $this->payment])
-            ->andFilterWhere(['like', 'stage', $this->stage]);
+            ->andFilterWhere(['like', 'stage', $this->stage])
+            ->andFilterWhere(['like', 'task_remind', $this->task_remind])
+            ->andFilterWhere(['like', 'task_remind_date', $this->task_remind_date])
+            ->andFilterWhere(['like', 'attachment', $this->attachment]);
 
         return $dataProvider;
     }

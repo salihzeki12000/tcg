@@ -127,6 +127,10 @@ use yii\helpers\Url;
         ],
     ]) ?>
 
+    <?= $form->field($model, 'task_remind')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'task_remind_date')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
@@ -140,7 +144,7 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").datepicker({ format: 'yyyy-mm-dd' });
     });
 JS;
 $this->registerJs($js);
