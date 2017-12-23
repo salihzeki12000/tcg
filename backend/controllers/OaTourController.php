@@ -59,6 +59,9 @@ class OaTourController extends Controller
         $tmp['canMod'] = $this->canMod;
         $tmp['canAddPayment'] = $this->canAddPayment;
         $tmp['canAddBookCost'] = $this->canAddBookCost;
+        $tmp['isAgent'] = $this->isAgent;
+        $tmp['isOperator'] = $this->isOperator;
+        $tmp['isAdmin'] = $this->isAdmin;
         $data['permission'] = $tmp;
         $data['arrUserType'] = $this->arrUserType;
         $data['arrDateType'] = $this->arrDateType;
