@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
     </div>
-    <?= (!$permission['canAdd']) ? '' : Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['oa-payment/create', 'tour_id'=>$model->id]).'\';']) ?>
+    <?= (!$permission['canAddPayment']) ? '' : Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['oa-payment/create', 'tour_id'=>$model->id]).'\';']) ?>
     </div>
 
     <div class="form-group">
@@ -133,7 +133,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
     </div>
-    <?= (!$permission['canAdd']) ? '' : Html::button(Yii::t('app', 'Add Book Cost Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['oa-book-cost/create', 'tour_id'=>$model->id]).'\';']) ?>
+    <?= (!$permission['canAddBookCost']) ? '' : Html::button(Yii::t('app', 'Add Book Cost Item'), ['class' => 'btn btn-primary', 'onclick'=>'window.location=\''.Url::to(['oa-book-cost/create', 'tour_id'=>$model->id]).'\';']) ?>
     </div>
 
 </div>
