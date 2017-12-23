@@ -20,6 +20,8 @@ class OaTourController extends Controller
     public $canAdd = 0;
     public $canDel = 0;
     public $canMod = 1;
+    public $isAgent = 0;
+    public $isOperator = 0;
     public $canAddPayment = 0;
     public $canAddBookCost = 0;
     public $arrUserType = [1=>'As Agent', 2=>'As Co Agent', 3=>'As Operator'];
@@ -38,11 +40,13 @@ class OaTourController extends Controller
         }
         if (isset($roles['OA-Agent'])) {
             $this->canAdd = 1;
+            $this->isAgent = 1;
             $this->canAddPayment = 1;
             $this->canAddBookCost = 1;
         }
         if (isset($roles['OA-Operator'])) {
             $this->canAddBookCost = 1;
+            $this->isOperator = 1;
         }
 
         return parent::beforeAction($action);
@@ -133,7 +137,7 @@ class OaTourController extends Controller
             'Estimated Gross Profit (Not Closed)' => ['close'=>0, 'sum_field'=>'tour_price-estimated_cost'], //
             'Closed' => ['close'=>1], //
             'Sales Amount (Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount'], //
-            'Gross Profit(Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount+accounting_total_cost'], //
+            'Gross Profit(Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount-accounting_total_cost'], //
         ];
         $summarySql = "SELECT * FROM oa_tour WHERE 1=1 ";
         if (!empty($user_id)) {
@@ -257,8 +261,8 @@ class OaTourController extends Controller
                             elseif ($statGroup['sum_field'] == 'accounting_sales_amount') {
                                 $summaryInfo[$statkey] += $sumitem['accounting_sales_amount'];
                             }
-                            elseif ($statGroup['sum_field'] == 'accounting_sales_amount+accounting_total_cost') {
-                                $summaryInfo[$statkey] += ($sumitem['accounting_sales_amount']+$sumitem['accounting_total_cost']);
+                            elseif ($statGroup['sum_field'] == 'accounting_sales_amount-accounting_total_cost') {
+                                $summaryInfo[$statkey] += ($sumitem['accounting_sales_amount']-$sumitem['accounting_total_cost']);
                             }
                         }
                     }
@@ -397,23 +401,6 @@ class OaTourController extends Controller
             }
             if ($model->inquiry_id) {
                 if (($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
-                    // $model->inquiry_source = $inquiryModel->inquiry_source;
-                    // $model->language = $inquiryModel->language;
-                    // $model->agent = $inquiryModel->agent;
-                    // $model->co_agent = $inquiryModel->co_agent;
-                    // $model->tour_type = $inquiryModel->tour_type;
-                    // $model->group_type = $inquiryModel->group_type;
-                    // $model->country = $inquiryModel->country;
-                    // $model->organization = $inquiryModel->organization;
-                    // $model->number_of_travelers = $inquiryModel->number_of_travelers;
-                    // $model->traveler_info = $inquiryModel->traveler_info;
-                    // $model->tour_start_date = $inquiryModel->tour_start_date;
-                    // $model->tour_end_date = $inquiryModel->tour_end_date;
-                    // $model->cities = $inquiryModel->cities;
-                    // $model->contact = $inquiryModel->contact;
-                    // $model->email = $inquiryModel->email;
-                    // $model->other_contact_info = $inquiryModel->other_contact_info;
-                    // $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
                 }
                 else{
                     throw new NotFoundHttpException('The inquiry does not found.');
@@ -483,23 +470,6 @@ class OaTourController extends Controller
             }
             if ($model->inquiry_id) {
                 if (($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
-                    $model->inquiry_source = $inquiryModel->inquiry_source;
-                    $model->language = $inquiryModel->language;
-                    $model->agent = $inquiryModel->agent;
-                    $model->co_agent = $inquiryModel->co_agent;
-                    $model->tour_type = $inquiryModel->tour_type;
-                    $model->group_type = $inquiryModel->group_type;
-                    $model->country = $inquiryModel->country;
-                    $model->organization = $inquiryModel->organization;
-                    $model->number_of_travelers = $inquiryModel->number_of_travelers;
-                    $model->traveler_info = $inquiryModel->traveler_info;
-                    $model->tour_start_date = $inquiryModel->tour_start_date;
-                    $model->tour_end_date = $inquiryModel->tour_end_date;
-                    $model->cities = $inquiryModel->cities;
-                    $model->contact = $inquiryModel->contact;
-                    $model->email = $inquiryModel->email;
-                    $model->other_contact_info = $inquiryModel->other_contact_info;
-                    $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
                 }
                 else{
                     throw new NotFoundHttpException('The inquiry does not found.');
@@ -512,6 +482,7 @@ class OaTourController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->cities = explode(',', $model->cities);
+
             return $this->render('update', [
                 'model' => $model,
             ]);
