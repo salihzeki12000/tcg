@@ -46,6 +46,12 @@ class OaInquiryController extends Controller
         if (isset($roles['OA-isOperator'])) {
             $this->isOperator = 1;
         }
+        if (isset($roles['OA-Accountant'])) {
+            $this->isAdmin = 1;
+            $this->canAdd = 1;
+            $this->canDel = 1;
+            $this->canAddTour = 1;
+        }
 
         return parent::beforeAction($action);
     }

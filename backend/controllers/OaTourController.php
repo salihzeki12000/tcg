@@ -48,6 +48,13 @@ class OaTourController extends Controller
             $this->canAddBookCost = 1;
             $this->isOperator = 1;
         }
+        if (isset($roles['OA-Accountant'])) {
+            $this->isAdmin = 1;
+            $this->canAdd = 1;
+            $this->canDel = 1;
+            $this->canAddPayment = 1;
+            $this->canAddBookCost = 1;
+        }
 
         return parent::beforeAction($action);
     }
@@ -433,11 +440,13 @@ class OaTourController extends Controller
                     $model->traveler_info = $inquiryModel->traveler_info;
                     $model->tour_start_date = $inquiryModel->tour_start_date;
                     $model->tour_end_date = $inquiryModel->tour_end_date;
-                    $model->cities = $inquiryModel->cities;
                     $model->contact = $inquiryModel->contact;
                     $model->email = $inquiryModel->email;
                     $model->other_contact_info = $inquiryModel->other_contact_info;
                     $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
+                    if (!empty($inquiryModel->cities)) {
+                        $model->cities = explode(',', $inquiryModel->cities);
+                    }
                 }
                 else{
                     throw new NotFoundHttpException('The inquiry does not found.');
