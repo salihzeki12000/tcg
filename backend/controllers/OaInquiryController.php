@@ -203,8 +203,8 @@ class OaInquiryController extends Controller
             $summarySql .= " AND  create_time<'{$end_date}' ";
         }
         else{
-            $summarySql .= " AND  tour_end_date>='{$from_date}' ";
-            $summarySql .= " AND  tour_end_date<'{$end_date}' ";
+            $summarySql .= " AND  tour_start_date>='{$from_date}' ";
+            $summarySql .= " AND  tour_start_date<'{$end_date}' ";
         }
 
         $summaryAll = Yii::$app->db->createCommand($summarySql)

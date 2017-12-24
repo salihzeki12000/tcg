@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <option value="<?=$nextYear?>" <?=($date==$nextYear)?'selected':''?>><?=$nextYear?></option>
             </select>
             <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Inquiry Create Date</label>
-            <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour End Date</label>
+            <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour Start Date</label>
         </div>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Inquiry Source </label>
