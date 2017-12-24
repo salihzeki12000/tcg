@@ -72,10 +72,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <label><input type="radio" name="co" value="1" <?= $co ? 'checked' : ''?>> As Co-Agent</label>
         </div>
         <div style="margin: 10px 0;">
-            <label style="width: 100px;">From </label>
-            <input type="input" id="from_date" name="from_date" value="<?=$from_date?>">
-            <label>To </label>
-            <input type="input" id="end_date" name="end_date" value="<?=$end_date?>">
+            <label style="width: 100px;">Year </label>
+            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
+            <select name="date">
+                <option value="<?=$lastYear?>" <?=($date==$lastYear)?'selected':''?>><?=$lastYear?></option>
+                <option value="<?=$thisYear?>" <?=($date==$thisYear)?'selected':''?>><?=$thisYear?></option>
+                <option value="<?=$nextYear?>" <?=($date==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            </select>
+            <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Inquiry Create Date</label>
+            <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour End Date</label>
         </div>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Inquiry Source </label>
@@ -119,12 +124,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <div>
         <ul class="ul_list_view">
         <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
-            <li class="li_list_view <?=($i==0)?'active':''?>"><a href="javascript:none();" data-id="list_view_<?=$listTitle?>"><?=$listTitle?></a></li>
+            <li class="li_list_view <?=($i==0)?'active':''?>"><a href="javascript:none();" data-id="list_view_<?=$i?>"><?=$listTitle?></a></li>
         <?php $i++; } ?>
         </ul>
     </div>
     <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
-        <div id="list_view_<?=$listTitle?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
+        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
             <table id="w0" class="table table-striped table-bordered detail-view">
                 <thead>
                     <tr>
@@ -187,7 +192,6 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#from_date, #end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
         $(".ul_list_view a").click(function(){
             var showId = $(this).attr('data-id');
             $(".list_views").hide();

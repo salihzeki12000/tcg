@@ -16,13 +16,13 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['isAdmin']]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => !$permission['isAdmin']]) ?>
 
     <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['isAdmin']]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -54,9 +54,13 @@ use yii\helpers\Url;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'tour_start_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tour_start_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+    ]) ?>
 
-    <?= $form->field($model, 'tour_end_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tour_end_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+    ]) ?>
 
     <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
@@ -129,7 +133,9 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'task_remind')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'task_remind_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'task_remind_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -144,7 +150,10 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $(".bt_clear_item").click(function(){
+            $(this).next().val("");
+        });
     });
 JS;
 $this->registerJs($js);

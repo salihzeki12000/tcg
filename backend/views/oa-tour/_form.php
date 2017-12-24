@@ -14,15 +14,15 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => !empty($model->inquiry_id)]) ?>
+    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => true]) ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['readonly' => !$permission['isAdmin']]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'readonly' => !$permission['isAdmin']]) ?>
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'readonly' => !$permission['isAdmin']]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -122,7 +122,9 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'task_remind')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'task_remind_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'task_remind_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+    ]) ?>
 
     <?= $form->field($model, 'estimated_cost')->textInput(['maxlength' => true]) ?>
 
@@ -156,6 +158,9 @@ $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>
 $js = <<<JS
     $(function(){
         $("#oatour-tour_start_date, #oatour-tour_end_date, #oatour-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $(".bt_clear_item").click(function(){
+            $(this).next().val("");
+        });
     });
 JS;
 $this->registerJs($js);
