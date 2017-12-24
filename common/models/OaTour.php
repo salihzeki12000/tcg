@@ -63,7 +63,7 @@ class OaTour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tour_type', 'language', 'inquiry_source', 'agent', 'tour_start_date', 'tour_end_date'], 'required'],
+            [['tour_type', 'tour_start_date', 'tour_end_date'], 'required'],
             [['inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent', 'operator', 'close', 'creator'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['organization', 'traveler_info', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'task_remind', 'task_remind_date', 'attachment'], 'string'],
