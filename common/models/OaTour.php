@@ -43,7 +43,6 @@ use Yii;
  * @property string $accounting_sales_amount
  * @property string $accounting_total_cost
  * @property string $accounting_hotel_flight_train_cost
- * @property string $attachment
  * @property string $close
  * @property integer $creator
 */
@@ -66,7 +65,7 @@ class OaTour extends \yii\db\ActiveRecord
             [['tour_type', 'tour_start_date', 'tour_end_date'], 'required'],
             [['inquiry_id', 'vip', 'tour_type', 'number_of_travelers', 'agent', 'co_agent', 'operator', 'close', 'creator'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
-            [['organization', 'traveler_info', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'task_remind', 'task_remind_date', 'attachment'], 'string'],
+            [['organization', 'traveler_info', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'task_remind', 'task_remind_date'], 'string'],
             [['tour_price', 'estimated_cost', 'accounting_sales_amount', 'accounting_total_cost', 'accounting_hotel_flight_train_cost'], 'number'],
             [['inquiry_source', 'language', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage', 'task_remind', 'task_remind_date'], 'string', 'max' => 255],
             [['cities', 'email'], 'string', 'max' => 1024],
@@ -116,7 +115,6 @@ class OaTour extends \yii\db\ActiveRecord
             'accounting_sales_amount' => Yii::t('app', 'Accounting Sales Amount'),
             'accounting_total_cost' => Yii::t('app', 'Accounting Total Cost'),
             'accounting_hotel_flight_train_cost' => Yii::t('app', 'Accounting Hotel&Flight&Train Cost'),
-            'attachment' => Yii::t('app', 'Attachment'),
             'close' => Yii::t('app', 'Close'),
             'creator' => Yii::t('app', 'Creator'),
 
