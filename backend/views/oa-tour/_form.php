@@ -134,14 +134,6 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'accounting_hotel_flight_train_cost')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'attachment')->widget(\yii\redactor\widgets\Redactor::className(), [
-    'clientOptions' => [
-        'minHeight' => '250px',
-        'replaceDivs' => false,
-        'plugins' => [/*'fontcolor','fontfamily', 'fontsize', 'imagemanager'*/],
-        ],
-    ]) ?>
-
     <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
     <div class="form-group">
