@@ -39,7 +39,7 @@ class OaTourController extends Controller
             $this->canAddBookCost = 1;
         }
         if (isset($roles['OA-Agent'])) {
-            $this->canAdd = 1;
+            // $this->canAdd = 1;
             $this->isAgent = 1;
             $this->canAddPayment = 1;
             $this->canAddBookCost = 1;

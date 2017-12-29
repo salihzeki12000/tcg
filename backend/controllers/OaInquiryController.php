@@ -40,7 +40,7 @@ class OaInquiryController extends Controller
         }
         if (isset($roles['OA-Agent'])) {
             $this->canAdd = 1;
-            $this->canAddTour = 1;
+            // $this->canAddTour = 1;
             $this->isAgent = 1;
         }
         if (isset($roles['OA-isOperator'])) {

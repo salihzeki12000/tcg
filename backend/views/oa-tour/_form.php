@@ -128,13 +128,13 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'estimated_cost')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true, 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'accounting_total_cost')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'accounting_total_cost')->textInput(['maxlength' => true, 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'accounting_hotel_flight_train_cost')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'accounting_hotel_flight_train_cost')->textInput(['maxlength' => true,'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no']) ?>
+    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no'], ['disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

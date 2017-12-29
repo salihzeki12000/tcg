@@ -48,14 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Inquiry Source </label>
-            <select name="inquiry_source">
+            <select name="inquiry_source" <?=$permission['isAdmin']?'':'disabled' ?>>
                 <option value="">--All--</option>
               <?php foreach (common\models\Tools::getEnvironmentVariable('oa_inquiry_source') as $skey => $svalue): ?>
                 <option value="<?=$skey?>" <?= ($inquiry_source==$skey) ? 'selected' : ''?>><?=$svalue?></option>
               <?php endforeach ?>
             </select>
             <label>Language </label>
-            <select name="language">
+            <select name="language" <?=$permission['isAdmin']?'':'disabled' ?>>
                 <option value="">--All--</option>
               <?php foreach (common\models\Tools::getEnvironmentVariable('oa_language') as $lkey => $lvalue): ?>
                 <option value="<?=$lkey?>" <?= ($language==$lkey) ? 'selected' : ''?>><?=$lvalue?></option>
