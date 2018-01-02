@@ -12,13 +12,14 @@ $this->title = Yii::t('app', 'Form Cards');
 $this->params['breadcrumbs'][] = $this->title;
 
 $action_template = [];
-if (!in_array(Yii::$app->user->identity->id, [6])) {
+if ($permission['canView']) {
     $action_template[] = '{view}';
     $action_template[] = '{update}';
 }
-if (in_array(Yii::$app->user->identity->id, [1,2,6])) {
+if ($permission['canDel']) {
     $action_template[] = '{delete}';
 }
+
 ?>
 <div class="form-card-index">
 

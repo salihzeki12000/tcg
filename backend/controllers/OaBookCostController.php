@@ -149,7 +149,7 @@ class OaBookCostController extends Controller
                     # code...
                 }
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             $model->type = $type;
             if (!empty($tour_id)) {

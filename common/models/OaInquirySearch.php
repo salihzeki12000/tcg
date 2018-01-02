@@ -18,8 +18,8 @@ class OaInquirySearch extends OaInquiry
     public function rules()
     {
         return [
-            [['id', 'tour_type', 'number_of_travelers', 'close'], 'integer'],
-            [['create_time', 'update_time', 'inquiry_source', 'language', 'priority', 'agent', 'co_agent', 'group_type', 'organization', 'country', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'probability', 'inquiry_status', 'close_report'], 'safe'],
+            [['id', 'tour_type', 'number_of_travelers', 'close', 'creator'], 'integer'],
+            [['create_time', 'update_time', 'inquiry_source', 'language', 'priority', 'agent', 'co_agent', 'group_type', 'organization', 'country', 'traveler_info', 'tour_start_date', 'tour_end_date', 'cities', 'contact', 'email', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'probability', 'inquiry_status', 'close_report', 'task_remind', 'task_remind_date'], 'safe'],
             [['estimated_cny_amount'], 'number'],
         ];
     }
@@ -67,6 +67,7 @@ class OaInquirySearch extends OaInquiry
             'number_of_travelers' => $this->number_of_travelers,
             'estimated_cny_amount' => $this->estimated_cny_amount,
             'close' => $this->close,
+            'creator' => $this->creator,
         ]);
 
         $query->andFilterWhere(['like', 'inquiry_source', $this->inquiry_source])
@@ -90,7 +91,9 @@ class OaInquirySearch extends OaInquiry
             ->andFilterWhere(['like', 'other_note', $this->other_note])
             ->andFilterWhere(['like', 'probability', $this->probability])
             ->andFilterWhere(['like', 'inquiry_status', $this->inquiry_status])
-            ->andFilterWhere(['like', 'close_report', $this->close_report]);
+            ->andFilterWhere(['like', 'close_report', $this->close_report])
+            ->andFilterWhere(['like', 'task_remind', $this->task_remind])
+            ->andFilterWhere(['like', 'task_remind_date', $this->task_remind_date]);
 
         return $dataProvider;
     }

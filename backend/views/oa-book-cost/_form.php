@@ -17,7 +17,7 @@ use yii\helpers\ArrayHelper;
 
     <?php if (!empty($model->type)) { ?>
 
-    <?= $form->field($model, 'tour_id')->textInput(['disabled' => !$model->isNewRecord]) ?>
+    <?= $form->field($model, 'tour_id')->textInput(['readonly' => true]) ?>
 
     <?php if ($model->type == OA_BOOK_COST_TYPE_GUIDE) { ?>
         <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaGuide::find()->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
@@ -55,14 +55,14 @@ use yii\helpers\ArrayHelper;
 
     </div>
 
-    <?php } ?>
-
     <?= $form->field($model, 'book_status')->dropdownList(['Need to Book'=>'Need to Book','Booked and Await Pre-Tour Confirm'=>'Booked and Await Pre-Tour Confirm','Pre-Tour Confirmed'=>'Pre-Tour Confirmed'], ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
+    <?php } ?>
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Next') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php } ?>

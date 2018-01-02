@@ -22,73 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Oa Inquiry'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php } ?>
-    <?= true ? '' : GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'create_time',
-            'update_time',
-            'inquiry_source',
-            // 'language',
-            // 'priority',
-            // 'agent',
-            // 'co_agent',
-            // 'tour_type',
-            // 'group_type',
-            // 'organization:ntext',
-            // 'country',
-            // 'number_of_travelers',
-            // 'traveler_info:ntext',
-            // 'tour_start_date',
-            // 'tour_end_date',
-            [
-                'attribute'=>'cities',
-                'filter'=>ArrayHelper::map(\common\models\OaCity::find()->asArray()->all(), 'id', 'name'),
-                'value' => function ($data) {
-                    $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $data['cities'])])->all(), 'id', 'name');
-                    $show_cities = join(',', array_values($cities));
-                    if (strlen($show_cities)>30) {
-                        $show_cities = substr($show_cities,0, 30) . '...';
-                    }
-                    return $show_cities;
-                }
-            ],
-            // 'contact',
-            // 'email:email',
-            // 'other_contact_info:ntext',
-            // 'original_inquiry:ntext',
-            // 'follow_up_record:ntext',
-            // 'tour_schedule_note:ntext',
-            // 'other_note:ntext',
-            // 'estimated_cny_amount',
-            // 'probability',
-            // 'inquiry_status',
-            // 'close',
-            // 'close_report:ntext',
-
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}',
-                'urlCreator' => function ($action, $model, $key, $index) {
-                    if ($action === 'view') {
-                        return Url::to(['oa-inquiry/view', 'id'=>$model->id]);
-                    }
-                    if ($action === 'update') {
-                        return Url::to(['oa-inquiry/update', 'id'=>$model->id]);
-                    }
-                    if ($action === 'delete') {
-                        return Url::to(['oa-inquiry/delete', 'id'=>$model->id]);
-                    }
-                    
-                },
-            ],
-
-        ],
-    ]); ?>
-
 
     <?php if($permission['isAdmin']) { ?>
     <table id="w0" class="table table-striped table-bordered detail-view">
@@ -139,21 +72,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <label><input type="radio" name="co" value="1" <?= $co ? 'checked' : ''?>> As Co-Agent</label>
         </div>
         <div style="margin: 10px 0;">
-            <label style="width: 100px;">From </label>
-            <input type="input" id="from_date" name="from_date" value="<?=$from_date?>">
-            <label>To </label>
-            <input type="input" id="end_date" name="end_date" value="<?=$end_date?>">
+            <label style="width: 100px;">Year </label>
+            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
+            <select name="date">
+                <option value="<?=$lastYear?>" <?=($date==$lastYear)?'selected':''?>><?=$lastYear?></option>
+                <option value="<?=$thisYear?>" <?=($date==$thisYear)?'selected':''?>><?=$thisYear?></option>
+                <option value="<?=$nextYear?>" <?=($date==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            </select>
+            <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Inquiry Create Date</label>
+            <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour Start Date</label>
         </div>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Inquiry Source </label>
-            <select name="inquiry_source">
+            <select name="inquiry_source" <?=$permission['isAdmin']?'':'disabled' ?>>
                 <option value="">--All--</option>
               <?php foreach (common\models\Tools::getEnvironmentVariable('oa_inquiry_source') as $skey => $svalue): ?>
                 <option value="<?=$skey?>" <?= ($inquiry_source==$skey) ? 'selected' : ''?>><?=$svalue?></option>
               <?php endforeach ?>
             </select>
             <label>Language </label>
-            <select name="language">
+            <select name="language" <?=$permission['isAdmin']?'':'disabled' ?>>
                 <option value="">--All--</option>
               <?php foreach (common\models\Tools::getEnvironmentVariable('oa_language') as $lkey => $lvalue): ?>
                 <option value="<?=$lkey?>" <?= ($language==$lkey) ? 'selected' : ''?>><?=$lvalue?></option>
@@ -186,12 +124,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <div>
         <ul class="ul_list_view">
         <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
-            <li class="li_list_view <?=($i==0)?'active':''?>"><a href="javascript:none();" data-id="list_view_<?=$listTitle?>"><?=$listTitle?></a></li>
+            <li class="li_list_view <?=($i==0)?'active':''?>"><a href="javascript:none();" data-id="list_view_<?=$i?>"><?=$listTitle?></a></li>
         <?php $i++; } ?>
         </ul>
     </div>
     <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
-        <div id="list_view_<?=$listTitle?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
+        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
             <table id="w0" class="table table-striped table-bordered detail-view">
                 <thead>
                     <tr>
@@ -254,7 +192,6 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#from_date, #end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
         $(".ul_list_view a").click(function(){
             var showId = $(this).attr('data-id');
             $(".list_views").hide();

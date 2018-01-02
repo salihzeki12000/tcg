@@ -40,11 +40,17 @@ class OaInquiryController extends Controller
         }
         if (isset($roles['OA-Agent'])) {
             $this->canAdd = 1;
-            $this->canAddTour = 1;
+            // $this->canAddTour = 1;
             $this->isAgent = 1;
         }
         if (isset($roles['OA-isOperator'])) {
             $this->isOperator = 1;
+        }
+        if (isset($roles['OA-Accountant'])) {
+            $this->isAdmin = 1;
+            $this->canAdd = 1;
+            $this->canDel = 1;
+            $this->canAddTour = 1;
         }
 
         return parent::beforeAction($action);
@@ -77,7 +83,7 @@ class OaInquiryController extends Controller
      * Lists all OaInquiry models.
      * @return mixed
      */
-    public function actionIndex($user_id='', $co=0, $from_date='', $end_date='', $inquiry_source='', $language='')
+    public function actionIndex($user_id='', $co=0, $date='', $date_type=2, $inquiry_source='', $language='')
     {
         if (!$this->isAdmin && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
@@ -85,9 +91,6 @@ class OaInquiryController extends Controller
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
             }
         }
-
-        $searchModel = new OaInquirySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $sql = "SELECT * FROM oa_inquiry WHERE agent IS NULL OR inquiry_source IS NULL OR inquiry_source='' OR `language` IS NULL OR `language`='' OR original_inquiry IS NULL OR original_inquiry='' ORDER BY id ";
         $inquiriesToAssign = Yii::$app->db->createCommand($sql)
@@ -132,7 +135,7 @@ class OaInquiryController extends Controller
         if ($this->isAdmin) {
             $userList = [''=>'--All--'] + $userList;
         }
-        //$user_id='', $co=0, $from_date='', $end_date='', $inquiry_source='', $language=''
+        //$user_id='', $co=0, $date='', $inquiry_source='', $language=''
         if (empty($user_id) && $this->isAdmin) {
             $user_id = '';
         }
@@ -143,13 +146,15 @@ class OaInquiryController extends Controller
             $user_id = $userId;
         }
 
-        if (empty($from_date)) {
-            $from_date = date("Y").'-01-01';
+        $from_date = date("Y").'-01-01';
+        $end_date = date("Y",strtotime(" +1 year")).'-01-01';
+        if (!empty($date)) {
+            $from_date = $date . '-01-01';
+            $end_date = ($date+1) . '-01-01';
         }
-        if (empty($end_date)) {
-            $end_date = date("Y-m-d");
+        else{
+            $date = date("Y");
         }
-        $query_end_date = $end_date . ' 23:59:59';
         //Total Inquiries | Bad | New + Following Up + Waiting for Payment | Inactive | Lost| Booked | Booking Rate (算式：Booked/(Booked+Lost+Inactive))                                      
         /*
             {
@@ -171,7 +176,8 @@ class OaInquiryController extends Controller
         */
         $statusArr = [
             // 'New + Following Up + Waiting for Payment' => ['1','2','3'], //New + Following Up + Waiting for Payment
-            'Following' => ['1','2','3'], //New + Following Up + Waiting for Payment
+            'Following' => ['1','2'], //New + Following Up + Waiting for Payment
+            'Waiting for Payment' => ['3'],
             'Inactive' => ['4'], //Inactive
             'Booked' => ['5','6','7'], //Booked
             'Lost' => ['8','9','10','11','12'], //Lost
@@ -192,8 +198,14 @@ class OaInquiryController extends Controller
         if (!empty($language)) {
             $summarySql .= " AND  language='{$language}' ";
         }
-        $summarySql .= " AND  create_time>='{$from_date}' ";
-        $summarySql .= " AND  create_time<='{$query_end_date}' ";
+        if ($date_type == 2) {
+            $summarySql .= " AND  create_time>='{$from_date}' ";
+            $summarySql .= " AND  create_time<'{$end_date}' ";
+        }
+        else{
+            $summarySql .= " AND  tour_start_date>='{$from_date}' ";
+            $summarySql .= " AND  tour_start_date<'{$end_date}' ";
+        }
 
         $summaryAll = Yii::$app->db->createCommand($summarySql)
         ->queryAll();
@@ -239,16 +251,14 @@ class OaInquiryController extends Controller
 
         // var_dump($summaryInfo);exit;
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
             'inquiriesToAssign' => $inquiriesToAssign,
             'summaryInfo' => $summaryInfo,
             'userList' => $userList,
             'listInfo' => $listInfo,
             'user_id' => $user_id,
             'co' => $co,
-            'from_date' => $from_date,
-            'end_date' => $end_date,
+            'date' => $date,
+            'date_type' => $date_type,
             'inquiry_source' => $inquiry_source,
             'language' => $language,
 
@@ -269,6 +279,14 @@ class OaInquiryController extends Controller
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
             }
+        }
+
+        $creator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->creator])->all(), 'id', 'username');
+        if (array_key_exists($model->creator, $creator)) {
+            $model->creator = $creator[$model->creator];
+        }
+        else{
+            $model->creator = 'Webform';
         }
 
         $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
@@ -326,6 +344,7 @@ class OaInquiryController extends Controller
                 $model->cities = join(',', $_POST['OaInquiry']['cities']);
             }
             $model->create_time = date('Y-m-d H:i:s',time());
+            $model->creator = Yii::$app->user->identity->id;
 
             if ($model->save()) {
                 # code...

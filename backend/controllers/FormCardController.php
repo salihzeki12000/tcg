@@ -15,6 +15,41 @@ use yii\filters\VerbFilter;
  */
 class FormCardController extends Controller
 {
+
+    public $canView = 0;
+    public $canDel = 0;
+    public $canMod = 1;
+
+    public function beforeAction($action)
+    {
+        $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
+
+        if (isset($roles['admin']) || isset($roles['site master'])) {
+            $this->canView = 1;
+            $this->canDel = 1;
+            $this->canMod = 1;
+        }
+        if (isset($roles['Accountant'])) {
+            $this->canMod = 1;
+            $this->canView = 1;
+        }
+        if (isset($roles['role-admin-r'])) {
+            $this->canDel = 1;
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    public function render($templateName, $data=[])
+    {
+        $tmp['canDel'] = $this->canDel;
+        $tmp['canMod'] = $this->canMod;
+        $tmp['canView'] = $this->canView;
+        $data['permission'] = $tmp;
+        return parent::render($templateName, $data);
+    }
+
     /**
      * @inheritdoc
      */
@@ -55,7 +90,7 @@ class FormCardController extends Controller
      */
     public function actionView($id)
     {
-        if (!in_array(Yii::$app->user->identity->id, [1,2,5])) {
+        if (!$this->canView) {
             throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
         return $this->render('view', [
@@ -89,7 +124,7 @@ class FormCardController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (!in_array(Yii::$app->user->identity->id, [1,2,5])) {
+        if (!$this->canMod) {
             throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
         $model = $this->findModel($id);
@@ -137,7 +172,7 @@ class FormCardController extends Controller
      */
     public function actionDelete($id)
     {
-        if (!in_array(Yii::$app->user->identity->id, [1,2,6])) {
+        if (!$this->canDel) {
             throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
         if (($model = FormCard::findOne($id)) !== null) {

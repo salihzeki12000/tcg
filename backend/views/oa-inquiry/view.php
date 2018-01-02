@@ -62,6 +62,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'inquiry_status',
             'close',
             'close_report:html',
+            'task_remind',
+            'task_remind_date',
+            'creator',
         ],
     ]) ?>
 
