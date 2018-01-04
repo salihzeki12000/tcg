@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\OaInquiry */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Oa Inquiry',
+    'modelClass' => 'Inquiry',
 ]) . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Inquiries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];

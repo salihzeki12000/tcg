@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = Yii::t('app','Blog');
 <div class="title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','blog'), 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?=Yii::t('app','Travel Blog')?></h1>
+      <?= Html::img('@web/statics/images/blog-header' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','blog'), 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><span><?=Yii::t('app','Travel Blog')?></span></h1>
     </div>
   </div>
 </div>

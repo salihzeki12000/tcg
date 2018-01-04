@@ -63,10 +63,10 @@ class OaPayment extends \yii\db\ActiveRecord
             'cny_amount' => Yii::t('app', 'CNY Amount'),
             'due_date' => Yii::t('app', 'Due Date'),
             'pay_method' => Yii::t('app', 'Pay Method'),
-            'receit_account' => Yii::t('app', 'Receit Account'),
-            'receit_cny_amount' => Yii::t('app', 'Receit CNY Amount'),
+            'receit_account' => Yii::t('app', 'Receipt Account'),
+            'receit_cny_amount' => Yii::t('app', 'Receipt CNY Amount'),
             'transaction_fee' => Yii::t('app', 'Transaction Fee'),
-            'receit_date' => Yii::t('app', 'Receit Date'),
+            'receit_date' => Yii::t('app', 'Receipt Date'),
             'cc_note_signing' => Yii::t('app', 'CC Note Signing'),
             'note' => Yii::t('app', 'Note'),
         ];

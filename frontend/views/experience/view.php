@@ -10,8 +10,24 @@ use yii\helpers\Url;
 
 $this->title = ($tour_info['title'] == '') ? ((($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . '-' . Yii::t('app','Day') . ' ' . $tour_info['display_cities']. ' Tour - ' . $tour_info['name']) : $tour_info['title'];
 
-$this->description = ($tour_info['description'] == '') ? ((($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '
-  . $tour_info['display_cities'] . ' ' . Yii::t('app','tour') . '; ' . Yii::t('app','private guide') . ', ' . Yii::t('app','driver & vehicle'). '; ') : $tour_info['description'];
+// $this->description = ($tour_info['description'] == '') ? ((($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; ' . $tour_info['display_cities'] . ' ' . Yii::t('app','tour') . '; ' . Yii::t('app','private guide') . ', ' . Yii::t('app','driver & vehicle'). '; ') : $tour_info['description'];
+
+
+/* build string with list of themes */
+$themes = '';
+foreach(explode(',', $tour_info['themes']) as $theme_id):
+	if(!array_key_exists($theme_id, Yii::$app->params['tour_themes'])):
+		continue;
+	endif;
+	$themes .= Yii::$app->params['tour_themes'][$theme_id] . ', ';
+endforeach;
+$themes = substr($themes, 0, -2); // remove final ', ' from the string
+
+if($tour_info['description'] == ''):
+	$this->description = (($tour_info['tour_length']==intval($tour_info['tour_length']))?intval($tour_info['tour_length']):$tour_info['tour_length']) . ' ' . (($tour_info['tour_length']>1)?Yii::t('app','Days'):Yii::t('app','Day')) . ', ' . $tour_info['cities_count'] . ' ' . (($tour_info['cities_count']>1)?Yii::t('app','Destinations'):Yii::t('app','Destination')) . ', ' . $tour_info['exp_num'] . ' ' . (($tour_info['exp_num']>1)?Yii::t('app','Experiences'):Yii::t('app','Experience')) . '; '  . $tour_info['display_cities'] . ' ' . Yii::t('app','tour') . '; ' . Yii::t('app','private guide') . ', ' . Yii::t('app','driver & vehicle'). '; ' . $themes;
+else:
+	$this->description = $tour_info['description'];
+endif;
   
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
@@ -94,18 +110,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       </div>
     </div>
         <div class="list-group">
-            <?php
-            $i = 0;
-            foreach (explode(',', $tour_info['themes']) as $theme_id) { 
-              if (!array_key_exists($theme_id, Yii::$app->params['tour_themes'])) {
-                continue;
-              }
-              if ($i !== 0) {
-                $this->description .= ', ';
-              }
-              $this->description .= Yii::$app->params['tour_themes'][$theme_id];
-              $i++;
-              ?><span class="theme"><?= Yii::$app->params['tour_themes'][$theme_id] ?></span><?php } ?>
+        	<span class="theme"><?php echo $themes; ?></span>
         </div>
         <div class="overview" id="overview-body">
           <?= $tour_info['overview'] ?>

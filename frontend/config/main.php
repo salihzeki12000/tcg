@@ -69,6 +69,10 @@ return [
             'rules' => [
                 'secure-credit-card-form/success' => 'form-card/success',
                 'secure-credit-card-form' => 'form-card/create',
+                'feedback-form/success' => 'form-feedback/success',
+                'feedback-form' => 'form-feedback/create',
+                'expense-form/success' => 'form-guide-expense/success',
+                'expense-form' => 'form-guide-expense/create',
                 'form-submission/success' => 'form-info/success',
                 'form-submission' => 'form-info/create',
                 'experiences/all-tour-list' => 'sitemap/tours',

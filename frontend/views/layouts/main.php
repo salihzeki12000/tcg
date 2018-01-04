@@ -103,8 +103,7 @@ AppAsset::register($this);
             '<li class="dropdown-header">'.Yii::t('app','Call us').'</li>',
             '<li class="dropdown-header">CN: +8610  8532 1860</li>',
             '<li class="dropdown-header">US: +1 646 863 7038</li>',
-            '<li class="dropdown-header">AU: +61 871001399</li>',
-            '<li class="dropdown-header">UK: +44 203 807 0401</li>',
+            '<li class="dropdown-header">AU: +61 871001399</li>'
         ]],
         ['label' => Yii::t('app','MORE'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'faq'), 'items' =>[
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
@@ -210,7 +209,6 @@ AppAsset::register($this);
                     <li><a href="tel:+861085321860">CN: +86 10 85321860</a></li>
                     <li><a href="tel:+16468637038">US: +1 646 863 7038</a></li>
                     <li><a href="tel:+61871001399">AU: +61 871001399</a></li>
-                    <li><a href="tel:+442038070401">UK: +44 203 807 0401</a></li>
                 </ul>
             </li>
         </ul>

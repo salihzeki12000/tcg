@@ -181,7 +181,6 @@ use yii\helpers\Url;
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'link_tour')->textInput(['maxlength' => true]) ?>
-
     
     <!-- <?//= $form->field($model, 'create_time')->textInput() ?> -->
 

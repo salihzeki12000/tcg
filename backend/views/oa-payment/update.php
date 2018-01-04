@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $model common\models\OaPayment */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Oa Payment',
-]) . $model->id;
+    'modelClass' => 'Payment',
+]) . 'P' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Payments'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');

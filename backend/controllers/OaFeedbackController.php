@@ -14,6 +14,33 @@ use yii\filters\VerbFilter;
  */
 class OaFeedbackController extends Controller
 {
+	public $canAdd = 0;
+    public $canDel = 0;
+    public $canMod = 0;
+
+    public function beforeAction($action)
+    {
+        $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
+
+        if (isset($roles['admin'])) {
+            $this->canAdd = 1;
+            $this->canDel = 1;
+            $this->canMod = 1;
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    public function render($templateName, $data=[])
+    {
+        $tmp['canAdd'] = $this->canAdd;
+        $tmp['canDel'] = $this->canDel;
+        $tmp['canMod'] = $this->canMod;
+        $data['permission'] = $tmp;
+        return parent::render($templateName, $data);
+    }
+	
     /**
      * @inheritdoc
      */

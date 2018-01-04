@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaFeedbackSearch */
@@ -13,11 +14,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="oa-feedback-index">
 
 	<h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+	<?php if($permission['canAdd']) { ?>
     <p>
         <?= Html::a(Yii::t('app', 'Create Oa Feedback'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php } ?>
+    
 	<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -48,7 +51,22 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'attribute' => 'client_email'
 	        ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return Url::to(['oa-feedback/view', 'id'=>$model->id]);
+                    }
+                    if ($action === 'update') {
+                        return Url::to(['oa-feedback/update', 'id'=>$model->id]);
+                    }
+                    if ($action === 'delete') {
+                        return Url::to(['oa-feedback/delete', 'id'=>$model->id]);
+                    }
+                    
+                },
+            ],
         ],
     ]); ?>
 </div>
