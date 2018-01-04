@@ -9,12 +9,11 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\OaTourSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Oa Tours');
+$this->title = Yii::t('app', 'Tours');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-tour-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php if($permission['canAdd']) { ?>
@@ -99,14 +98,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <thead>
                         <tr>
                             <th>Tour ID</th>
-                            <th>Tour End Date</th>
+                            <th>Tour End</th>
                             <th>Stage</th>
                             <th>Agent</th>
                             <th>Co-Agent</th>
                             <th>Operator</th>
-                            <th>Accounting Sales Amount</th>
-                            <th>Accounting Total Cost</th>
-                            <th>Accounting Hotel, Flight & Train Cost</th>
+                            <th>Sales Amount</th>
+                            <th>Total Cost</th>
+                            <th>Hotel, Flight & Train Cost</th>
                             <th>Gross Profit</th>
                             <th>Gross Rate</th>
                             <th>General Gross Rate</th>
@@ -115,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tbody>
                         <?php foreach ($listItem as $value) { ?>
                             <tr>
-                                <td><a href="<?=Url::to(['oa-tour/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
+                                <td><a href="<?=Url::to(['oa-tour/view', 'id'=>$value['id']])?>" target="_blank">T<?=$value['id']?></a></td>
                                 <td><?=$value['tour_end_date']?></td>
                                 <td><?=$value['stage']?></td>
                                 <td><?=$value['agent']?></td>
@@ -137,8 +136,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <tr>
                             <th>Tour ID</th>
                             <th>Contact</th>
-                            <th>Tour Start Date</th>
-                            <th>Tour End Date</th>
+                            <th>Tour Start</th>
+                            <th>Tour End</th>
                             <th>VIP</th>
                             <th>Tour Price</th>
                             <th>Payment</th>
@@ -152,7 +151,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tbody>
                         <?php foreach ($listItem as $value) { ?>
                             <tr>
-                                <td><a href="<?=Url::to(['oa-tour/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
+                                <td><a href="<?=Url::to(['oa-tour/view', 'id'=>$value['id']])?>" target="_blank">T<?=$value['id']?></a></td>
                                 <td><?=$value['contact']?></td>
                                 <td><?=$value['tour_start_date']?></td>
                                 <td><?=$value['tour_end_date']?></td>
@@ -163,7 +162,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?=$value['agent']?></td>
                                 <td><?=$value['co_agent']?></td>
                                 <td><?=$value['operator']?></td>
-                                <td>&nbsp;</td>
+                                <td>
+	                                <?php
+		                            if($value['task_remind'] && $value['task_remind_date']):
+		                            	$today = date("Y-m-d");;
+		                            	if($today >= $value['task_remind_date']):
+		                            		echo '<span style="color: red">Due task: ' . $value['task_remind'].'</span>';
+		                            	endif;
+		                            endif;
+		                           	?>
+	                            </td>
                             </tr>
                         <?php } ?>
                     </tbody>

@@ -57,6 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'exclusion:ntext',
             'tips:ntext',
+            'title',
+            'description',
             'keywords',
             'link_tour',
             'create_time',

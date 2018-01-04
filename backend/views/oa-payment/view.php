@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\OaPayment */
 
-$this->title = $model->id;
+$this->title = 'P' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Payments'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

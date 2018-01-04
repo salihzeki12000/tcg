@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="title-bar">
   <div class="row">
     <div class="cities-banner">
-      <?= Html::img('@web/statics/images/title-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','the china guide blog'), 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?= (\Yii::$app->controller->id=='article') ? Yii::t('app','Travel Blog') : Yii::t('app','We create private, customized China tours.') ?></h1>
+      <?= Html::img('@web/statics/images/blog-header' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','the china guide blog'), 'width'=>"100%"]) ?>
+      <h1 class="banner-text"><span><?= (\Yii::$app->controller->id=='article') ? Yii::t('app','Travel Blog') : Yii::t('app','We create private, customized China tours.') ?></span></h1>
     </div>
   </div>
 </div>

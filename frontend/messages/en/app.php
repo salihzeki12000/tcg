@@ -140,6 +140,7 @@ return [
     'Business' => '',
     'CUSTOMIZED STUDENT PROGRAM PLANNING SERVICES' => '',
     'Call Us' => '',
+    'Call us' => '',
     'Can\'t find what you\'re looking for? Contact us today to customize your tour' => '',
     'Chengdu' => '',
     'Children (3 - 12 yrs)' => '',

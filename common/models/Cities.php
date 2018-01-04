@@ -50,7 +50,7 @@ class Cities extends \yii\db\ActiveRecord
     {
         $name_rule = [['name'], 'string', 'max' => 255];
         if (Yii::$app->language == Yii::$app->sourceLanguage) {
-            $name_rule = [['url_id'],'match','pattern'=>'/^[A-Za-z0-9\-\+]+$/','message'=>'Name does not conform to the requirements'];
+            $name_rule = [['url_id'],'match','pattern'=>'/^[A-Za-z0-9\-\+\']+$/','message'=>'Name does not conform to the requirements'];
         }
         return [
             [['name', 'status', 'url_id'], 'required'],

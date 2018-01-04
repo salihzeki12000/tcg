@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <?php if (\Yii::$app->controller->id == 'article') { ?>
 
-<?php $mostPopularBlogs = \common\models\Tools::getMostPopularBlogs(6);
+<?php $mostPopularBlogs = \common\models\Tools::getMostPopularBlogs(8);
 	
 if(!empty($mostPopularBlogs)): ?>
 

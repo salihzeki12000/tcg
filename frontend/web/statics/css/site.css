@@ -34,7 +34,7 @@ body {
 .carousel-caption {
     bottom: 5px;
     line-height: 1.1;
-    2 text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
+    text-shadow: 0 0px 3px rgba(0, 0, 0, 0.7);
 }
 .carousel-indicators {
     color: #E0E3D6;
@@ -48,6 +48,11 @@ body {
     margin-top: 4px;
     padding-bottom: 5px;
     letter-spacing: 1px;
+}
+.carousel-caption span {
+	background: rgba(0,0,0,0.2);
+	box-shadow: 5px 0 0 rgba(0,0,0,0.2), -5px 0 0 rgba(0,0,0,0.2);
+	line-height: 1.2em;
 }
 .carousel-caption.s-text h3 {
     font-size: 14px;
@@ -782,7 +787,7 @@ div#social-media-icons-container a {
     bottom: 0px;
     padding: 10px;
     width: 100%;
-    background-color: rgba(51, 51, 51, 0.43);
+    /* background-color: rgba(51, 51, 51, 0.43); */
     position: absolute;
     left: 0;
 }
@@ -1348,6 +1353,11 @@ h3.tour-right-title {
     top: 40%;
     bottom: 50%;
     font-family: "Times New Roman", serif;
+}
+.cities-banner .banner-text span {
+	background: rgba(0,0,0,0.2);
+	box-shadow: 5px 0 0 rgba(0,0,0,0.2), -5px 0 0 rgba(0,0,0,0.2);
+	line-height: 1.2em;
 }
 .cities-banner .banner-text small {
     font-size: 50%;

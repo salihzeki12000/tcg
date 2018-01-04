@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="cities-banner index-experiences">
       <?= Html::img('@web/statics/images/experiences-bg' . ((Yii::$app->params['is_mobile'])?'':'-pc') . '.jpg', ['alt'=>Yii::t('app','Private China Tours'), 'width'=>"100%"]) ?>
-      <h1 class="banner-text"><?=Yii::t('app','Private China Tours')?></h1>
+      <h1 class="banner-text"><span><?=Yii::t('app','Private China Tours')?></span></h1>
     </div>
   </div>
 </div>

@@ -27,6 +27,8 @@ use Yii;
  * @property string $inclusion
  * @property string $exclusion
  * @property string $tips
+ * @property string $title
+ * @property string $description
  * @property string $keywords
  * @property string $link_tour
  * @property string $create_time
@@ -74,6 +76,8 @@ class Tour extends \yii\db\ActiveRecord
             [['create_time', 'update_time', 'begin_date', 'end_date'], 'safe'],
             [['name', 'best_season', 'pic_map', 'pic_title', 'link_tour', 'rec_type', 'display_cities'], 'string', 'max' => 255],
             [['code'], 'string', 'max' => 20],
+            [['title'], 'string', 'max' => 60],
+            [['description'], 'string', 'max' => 512],
             [['keywords', 'other_dates'], 'string', 'max' => 512],
             $name_rule,
             [['link_tour'],'match','pattern'=>'/^(\d+[,])*(\d+)$/','message'=>'Link Tour does not conform to the requirements'],
@@ -95,7 +99,7 @@ class Tour extends \yii\db\ActiveRecord
             'cities_count' => Yii::t('app', 'Cities Count'),
             'display_cities' => Yii::t('app', 'Display Cities'),
             'priority' => Yii::t('app', 'Priority'),
-            'tour_length' => Yii::t('app', 'Tour Length'),
+            'tour_length' => Yii::t('app', 'Duration'),
             'exp_num' => Yii::t('app', 'Exp Num'),
             'price_cny' => Yii::t('app', 'Price CNY'),
             'price_usd' => Yii::t('app', 'Price USD'),
@@ -106,6 +110,8 @@ class Tour extends \yii\db\ActiveRecord
             'inclusion' => Yii::t('app', 'Inclusion'),
             'exclusion' => Yii::t('app', 'Exclusion'),
             'tips' => Yii::t('app', 'Tips'),
+            'title' => Yii::t('app', 'Title (meta tag)'),
+            'description' => Yii::t('app', 'Description (meta tag)'),
             'keywords' => Yii::t('app', 'Keywords'),
             'link_tour' => Yii::t('app', 'Link Tour'),
             'rec_type' => Yii::t('app', 'Recommendation'),

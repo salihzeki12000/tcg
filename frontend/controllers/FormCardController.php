@@ -109,10 +109,10 @@ class FormCardController extends Controller
                 $model->expiry_month = '**';
                 $model->expiry_year = '**';
                 $model->billing_address = '****';
-                Yii::$app->mailer->compose('card', ['model' => $model]) 
+                /* Yii::$app->mailer->compose('card', ['model' => $model]) 
                     ->setTo($receiver) 
                     ->setSubject($mail_subject) 
-                    ->send();
+                    ->send(); */
 
                 return $this->redirect(['success']);
             }

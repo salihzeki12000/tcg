@@ -131,7 +131,7 @@ class Tools
     static public function getMostPopularTours($count=6)
     {
         $cache = Yii::$app->cache;
-        $cache_key = 'MOST_POPULAR_TOURS_'.$count;
+        $cache_key = 'MOST_POPULAR_TOURS'.$count;
         $data = $cache->get($cache_key);
         if (empty($data)) {
             $data = [];
