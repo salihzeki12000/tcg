@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if($permission['canAdd']) { ?>
     <p>
-        <?= Html::a(Yii::t('app', 'Create Oa Tour'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Tour'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php } ?>
 
@@ -167,7 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            if($value['task_remind'] && $value['task_remind_date']):
 		                            	$today = date("Y-m-d");;
 		                            	if($today >= $value['task_remind_date']):
-		                            		echo '<span style="color: red">Due task: ' . $value['task_remind'].'</span>';
+		                            		echo '<span style="color: #c55">Due task: ' . $value['task_remind'].'</span>';
 		                            	endif;
 		                            endif;
 		                           	?>
