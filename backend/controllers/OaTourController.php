@@ -378,11 +378,13 @@ class OaTourController extends Controller
         $queryParams = Yii::$app->request->queryParams;
         unset($queryParams['id']);
         $dataProvider = $searchModel->search($queryParams);
+        $dataProvider->sort = false;
 
         $searchModelBC = new \common\models\OaBookCostSearch();
         $queryParamsBC = Yii::$app->request->queryParams;
         unset($queryParamsBC['id']);
         $dataProviderBC = $searchModelBC->search($queryParamsBC);
+        $dataProviderBC->sort = false;
 
         return $this->render('view', [
             'model' => $model,
