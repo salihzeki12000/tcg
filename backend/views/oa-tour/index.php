@@ -165,7 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>
 	                                <?php
 		                            if($value['task_remind'] && $value['task_remind_date']):
-		                            	$today = date("Y-m-d");;
+		                            	$today = date("Y-m-d");
 		                            	if($today >= $value['task_remind_date']):
 		                            		echo '<span style="color: #c55">Due task: ' . $value['task_remind'].'</span>';
 		                            	endif;

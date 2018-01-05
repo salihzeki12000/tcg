@@ -6,13 +6,11 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\OaInquiry */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Inquiries'), 'url' => ['index']];
+$this->title = 'Q' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inquiries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-inquiry-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -33,38 +31,74 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            [
+			    'attribute' => 'id',
+	            'value' => 'Q'. $model->id
+			],
+            'creator',
             'create_time',
             'update_time',
             'inquiry_source',
             'language',
-            'priority',
             'agent',
             'co_agent',
+            'inquiry_status',
+            'estimated_cny_amount',
+            'probability',
+            'close',
+            [
+			    'attribute' => 'close_report',
+			    'contentOptions' => ['class' => 'view'],
+			    'format' => 'html'
+			],
             'tour_type',
-            'group_type',
-            'organization:html',
-            'country',
-            'number_of_travelers',
-            'traveler_info:html',
+            [
+			    'attribute' => 'organization',
+			    'contentOptions' => ['class' => 'view'],
+			    'format' => 'html'
+			],
+            'priority',
             'tour_start_date',
             'tour_end_date',
             'cities',
+            'number_of_travelers',
+            [
+			    'attribute' => 'traveler_info',
+			    'contentOptions' => ['class' => 'view'],
+			    'format' => 'html'
+			],
+            'group_type',
+            'country',
             'contact',
             'email:email',
-            'other_contact_info:html',
-            'original_inquiry:html',
-            'follow_up_record:html',
-            'tour_schedule_note:html',
-            'other_note:html',
-            'estimated_cny_amount',
-            'probability',
-            'inquiry_status',
-            'close',
-            'close_report:html',
+            [
+			    'attribute' => 'other_contact_info',
+			    'contentOptions' => ['class' => 'view'],
+			    'format' => 'html'
+			],
+			
             'task_remind',
             'task_remind_date',
-            'creator',
+            [
+			    'attribute' => 'follow_up_record',
+			    'contentOptions' => ['class' => 'view-long'],
+			    'format' => 'html'
+			],
+            [
+			    'attribute' => 'tour_schedule_note',
+			    'contentOptions' => ['class' => 'view-long'],
+			    'format' => 'html'
+			],
+            [
+			    'attribute' => 'other_note',
+			    'contentOptions' => ['class' => 'view-long'],
+			    'format' => 'html'
+			],
+            [
+			    'attribute' => 'original_inquiry',
+			    'contentOptions' => ['class' => 'view-long'],
+			    'format' => 'html'
+			],
         ],
     ]) ?>
 

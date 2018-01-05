@@ -9,17 +9,14 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\OaInquirySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Oa Inquiries');
+$this->title = Yii::t('app', 'Inquiries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-inquiry-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?php if($permission['canAdd']) { ?>
     <p>
-        <?= Html::a(Yii::t('app', 'Create Oa Inquiry'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Inquiry'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php } ?>
 
@@ -40,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <tbody>
             <?php foreach ($inquiriesToAssign as $value) { ?>
                 <tr>
-                    <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
+                    <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
                     <td><?=$value['create_time']?></td>
                     <td><?=$value['contact']?></td>
                     <td><?=$value['email']?></td>
@@ -59,7 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
     <?php } ?>
 
-    <h2>Inquiries</h2>
     <form method="get" action="<?=Url::to(['oa-inquiry/index'])?>">
         <div style="margin: 10px 0;">
             <label style="width: 100px;">User </label>
@@ -134,6 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Create Date</th>
                         <th>Contact</th>
                         <th>Number of Travelers</th>
                         <th>Tour Start Date</th>
@@ -148,7 +145,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody>
                     <?php foreach ($listItem as $value) { ?>
                         <tr>
-                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>"><?=$value['id']?></a></td>
+                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
+                            <td><?= date('Y-m-d', strtotime($value['create_time'])) ?></td>
                             <td><?=$value['contact']?></td>
                             <td><?=$value['number_of_travelers']?></td>
                             <td><?=$value['tour_start_date']?></td>
@@ -157,7 +155,27 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?=$value['inquiry_status_txt']?></td>
                             <td><?=$value['agent']?></td>
                             <td><?=$value['co_agent']?></td>
-                            <td>&nbsp;</td>
+                            <td>
+	                            <?php
+	                            $today = date("Y-m-d");
+		                            
+	                            if($value['task_remind'] && $value['task_remind_date']):
+	                            	if($today >= $value['task_remind_date']):
+	                            		echo '<div style="color: #c55">Due task: ' . $value['task_remind'].'</div>';
+	                            	endif;
+	                            endif;
+	                           	?>
+	                           	
+	                            <?php
+		                        $object_update_time = new DateTime(date('Y-m-d', strtotime($value['update_time'])));
+		                        $object_today = new DateTime($today);
+		                        $date_difference = $object_today->diff($object_update_time)->days;
+	                            
+	                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && $date_difference >= 10)):
+	                            	echo '<div style="color: #c55">Need to update!</div>';
+	                            endif;
+	                           	?>
+		                    </td>
                         </tr>
                     <?php } ?>
                 </tbody>
