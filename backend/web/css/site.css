@@ -132,10 +132,3 @@ a.desc:after {
 .table .view-long {
 	max-height: 400px; overflow-y: scroll; display: block;
 }
-
-.separator {
-	border-top: 1px solid #b2b6b9;
-	width: 90%;
-	margin-right: auto;
-	margin-left: auto;
-}

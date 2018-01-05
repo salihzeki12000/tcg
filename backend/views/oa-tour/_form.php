@@ -13,7 +13,7 @@ use yii\helpers\Url;
 <div class="oa-tour-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    
     <?php /* $form->field($model, 'inquiry_id')->textInput(['readonly' => true]) */ ?>
 
     <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>

@@ -9,12 +9,10 @@ use yii\helpers\ArrayHelper;
 /* @var $model common\models\OaTour */
 
 $this->title = 'T' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Tours'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tours'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-tour-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -52,17 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'accounting_sales_amount',
             'accounting_total_cost',
             'accounting_hotel_flight_train_cost',
-            'close'
-        ],
-    ]) ?>
-    
-    <div>
-	    <hr class="separator">
-    </div>
-    
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
+            'close',
             'tour_type',
             [
 			    'attribute' => 'organization',
@@ -87,18 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'attribute' => 'other_contact_info',
 			    'contentOptions' => ['class' => 'view'],
 			    'format' => 'html'
-			]
-        ],
-    ]) ?>
-    
-    <div>
-	    <hr class="separator">
-    </div>
-    
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [
+			],
+			[
 			    'attribute' => 'itinerary_quotation_english',
 			    'contentOptions' => ['class' => 'view-long'],
 			    'format' => 'html'
@@ -107,18 +85,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'attribute' => 'itinerary_quotation_other_language',
 			    'contentOptions' => ['class' => 'view-long'],
 			    'format' => 'html'
-			]
-        ],
-    ]) ?>
-    
-    <div>
-	    <hr class="separator">
-    </div>
-    
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'task_remind',
+			],
+			'task_remind',
             'task_remind_date',
             [
 			    'attribute' => 'tour_schedule_note',
@@ -134,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'attribute' => 'other_note',
 			    'contentOptions' => ['class' => 'view-long'],
 			    'format' => 'html'
-			],
+			]
         ],
     ]) ?>
 
