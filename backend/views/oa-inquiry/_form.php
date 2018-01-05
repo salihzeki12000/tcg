@@ -18,44 +18,52 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
-
-    <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
+    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
+    <?= $form->field($model, 'inquiry_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_status')) ?>
+
+    <?= $form->field($model, 'estimated_cny_amount')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'probability')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
+
+    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no']) ?>
+
+    <?= $form->field($model, 'close_report')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '100px',
+        'replaceDivs' => false,
+        'buttons' => []
+        ],
+    ]) ?>
+    
+    
+    
+    
+
+
     <?php
         $form_types = Yii::$app->params['form_types'];
         unset($form_types[1]);
     ?>
-    <?= $form->field($model, 'tour_type')->dropdownList($form_types) ?>
-
-    <?= $form->field($model, 'group_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_group_type')) ?>
+    
+    <?= $form->field($model, 'tour_type')->dropdownList($form_types, ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'organization')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
-        'minHeight' => '250px',
+        'minHeight' => '100px',
         'replaceDivs' => false,
-        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttons' => []
         ],
     ]) ?>
-
-    <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country'), ['prompt' => '--Select--']) ?>
-
-    <?= $form->field($model, 'number_of_travelers')->textInput() ?>
-
-    <?= $form->field($model, 'traveler_info')->widget(\yii\redactor\widgets\Redactor::className(), [
-    'clientOptions' => [
-        'minHeight' => '250px',
-        'replaceDivs' => false,
-        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
-        ],
-    ]) ?>
+    
+    <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
 
     <?= $form->field($model, 'tour_start_date', [
-        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+        // 'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
     ]) ?>
 
     <?= $form->field($model, 'tour_end_date', [
@@ -64,32 +72,37 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
+    <?= $form->field($model, 'number_of_travelers')->textInput() ?>
+
+    <?= $form->field($model, 'traveler_info')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '100px',
+        'replaceDivs' => false,
+        'buttons' => []
+        ],
+    ]) ?>
+    
+    <?= $form->field($model, 'group_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_group_type'), ['prompt' => '--Select--']) ?>
+
+    <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country'), ['prompt' => '--Select--']) ?>
+
     <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'other_contact_info')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
-        'minHeight' => '250px',
+        'minHeight' => '100px',
         'replaceDivs' => false,
-        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttons' => []
         ],
     ]) ?>
 
-    <?php if ($permission['canAdd']) { ?>
-        <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
-        'clientOptions' => [
-            'minHeight' => '250px',
-            'replaceDivs' => false,
-            'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
-            ],
-        ]) ?>
-    <?php } else { ?>
-        <div class="form-group field-oainquiry-original_inquiry">
-            <label class="control-label" for="oainquiry-original_inquiry">Original Inquiry</label>
-            <?= $model->original_inquiry?>
-        </div>
-    <?php } ?>
+    <?= $form->field($model, 'task_remind')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'task_remind_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+    ]) ?>
 
     <?= $form->field($model, 'follow_up_record')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
@@ -115,27 +128,20 @@ use yii\helpers\Url;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'estimated_cny_amount')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'probability')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
-
-    <?= $form->field($model, 'inquiry_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_status')) ?>
-
-    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no']) ?>
-
-    <?= $form->field($model, 'close_report')->widget(\yii\redactor\widgets\Redactor::className(), [
-    'clientOptions' => [
-        'minHeight' => '250px',
-        'replaceDivs' => false,
-        'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
-        ],
-    ]) ?>
-
-    <?= $form->field($model, 'task_remind')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'task_remind_date', [
-        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
-    ]) ?>
+    <?php if ($permission['canAdd']) { ?>
+        <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+        'clientOptions' => [
+            'minHeight' => '250px',
+            'replaceDivs' => false,
+            'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+            ],
+        ]) ?>
+    <?php } else { ?>
+        <div class="form-group field-oainquiry-original_inquiry">
+            <label class="control-label" for="oainquiry-original_inquiry">Original Inquiry</label>
+            <?= $model->original_inquiry?>
+        </div>
+    <?php } ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -152,7 +158,7 @@ $js = <<<JS
     $(function(){
         $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
         $(".bt_clear_item").click(function(){
-            $(this).next().val("");
+        	$(this).next().val("");
         });
     });
 JS;
