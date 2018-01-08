@@ -34,7 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'attribute' => 'id',
 	            'value' => 'T'. $model->id
 			],
-            'inquiry_id',
+            [
+			    'attribute' => 'inquiry_id',
+	            'value' => 'Q'. $model->inquiry_id
+			],
             'creator',
             'create_time',
             'update_time',
