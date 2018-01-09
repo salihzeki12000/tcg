@@ -19,7 +19,7 @@ class OaPaymentSearch extends OaPayment
     {
         return [
             [['id', 'tour_id'], 'integer'],
-            [['create_time', 'update_time', 'payer', 'type', 'due_date', 'pay_method', 'receit_account', 'receit_date', 'cc_note_signing', 'note'], 'safe'],
+            [['create_time', 'update_time', 'payer', 'type', 'due_date', 'pay_method', 'status', 'receit_account', 'receit_date', 'cc_note_signing', 'note'], 'safe'],
             [['cny_amount', 'receit_cny_amount', 'transaction_fee'], 'number'],
         ];
     }
@@ -76,10 +76,13 @@ class OaPaymentSearch extends OaPayment
             ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'due_date', $this->due_date])
             ->andFilterWhere(['like', 'pay_method', $this->pay_method])
+            ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'receit_account', $this->receit_account])
             ->andFilterWhere(['like', 'receit_date', $this->receit_date])
             ->andFilterWhere(['like', 'cc_note_signing', $this->cc_note_signing])
             ->andFilterWhere(['like', 'note', $this->note]);
+            
+        $query->orderBy(['due_date' => SORT_ASC]);
 
         return $dataProvider;
     }

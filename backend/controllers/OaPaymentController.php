@@ -22,9 +22,10 @@ class OaPaymentController extends Controller
     {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
-        if (isset($roles['OA-Accountant'])) {
+        if (isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
             $this->canAdd = 1;
             $this->canDel = 1;
+            $this->canMod = 1;
         }
         return parent::beforeAction($action);
     }
