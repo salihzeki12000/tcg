@@ -40,7 +40,7 @@ class OaGuide extends \yii\db\ActiveRecord
             [['rating', 'city_id', 'agency'], 'integer'],
             [['daily_price'], 'number'],
             [['contact_info', 'identity_bank_info', 'cl_english', 'note', 'email'], 'string'],
-            [['name', 'language', 'email'], 'string', 'max' => 255],
+            [['name', 'email', 'language'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['name'], 'unique'],
             ['email', 'email'],

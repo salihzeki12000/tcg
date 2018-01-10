@@ -16,13 +16,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'payer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->dropdownList(['Deposit'=>'Deposit','Balance'=>'Balance','Full Payment'=>'Full Payment', 'Refund'=>'Refund', 'Other'=>'Other'], ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_type'), ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'cny_amount')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'due_date')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method'), ['prompt' => '--Select--']) ?>
+
+    <?= $form->field($model, 'status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_status'), ['disabled' => !$permission['canAdd']]) ?>
 
     <?php /*$form->field($model, 'receit_account')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_receit_account'), ['disabled' => !$permission['canAdd']])*/ ?>
 

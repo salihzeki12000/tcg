@@ -53,6 +53,7 @@ class OaGuideController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        
         $city_id = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => $model->city_id])->all(), 'id', 'name');
         if (array_key_exists($model->city_id, $city_id)) {
             $model->city_id = $city_id[$model->city_id];
@@ -78,9 +79,14 @@ class OaGuideController extends Controller
         $model = new OaGuide();
 
         if ($model->load(Yii::$app->request->post())) {
+	        
+            if (isset($_POST['OaGuide']['language']) && is_array($_POST['OaGuide']['language'])) {
+                $model->language = join(', ', $_POST['OaGuide']['language']);
+            }
+	        
             $model->create_time = date('Y-m-d H:i:s',time());
+            
             if ($model->save()) {
-                # code...
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -100,9 +106,19 @@ class OaGuideController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+	        
+	        if (isset($_POST['OaGuide']['language']) && is_array($_POST['OaGuide']['language'])) {
+                $model->language = join(', ', $_POST['OaGuide']['language']);
+            }
+            
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
+	        
+            $model->language = explode(', ', $model->language);
+            
             return $this->render('update', [
                 'model' => $model,
             ]);

@@ -25,6 +25,7 @@ use Yii;
  * @property string $pay_amount
  * @property string $transaction_note
  * @property string $book_status
+ * @property string $book_date
  * @property string $note
  */
 class OaBookCost extends \yii\db\ActiveRecord
@@ -48,6 +49,7 @@ class OaBookCost extends \yii\db\ActiveRecord
             [['create_time', 'updat_time'], 'safe'],
             [['cl_info', 'transaction_note', 'note'], 'string'],
             [['cny_amount', 'pay_amount'], 'number'],
+            [['book_date'], 'string', 'max' => 10],
             [['start_date', 'end_date', 'due_date_for_pay', 'pay_date', 'book_status'], 'string', 'max' => 255],
         ];
     }
@@ -69,13 +71,14 @@ class OaBookCost extends \yii\db\ActiveRecord
             'end_date' => Yii::t('app', 'End Date'),
             'cl_info' => Yii::t('app', 'CL Info'),
             'need_to_pay' => Yii::t('app', 'Need to Pay'),
-            'cny_amount' => Yii::t('app', 'Estimated CNY Amount'),
-            'due_date_for_pay' => Yii::t('app', 'Due Date for Pay'),
+            'cny_amount' => Yii::t('app', 'Estimated Amount (CNY)'),
+            'due_date_for_pay' => Yii::t('app', 'Due Date'),
             'pay_status' => Yii::t('app', 'Pay Status'),
             'pay_date' => Yii::t('app', 'Pay Date'),
-            'pay_amount' => Yii::t('app', 'Pay Amount'),
+            'pay_amount' => Yii::t('app', 'Pay Amount (CNY)'),
             'transaction_note' => Yii::t('app', 'Transaction Note'),
             'book_status' => Yii::t('app', 'Book Status'),
+            'book_date' => Yii::t('app', 'Book Date'),
             'note' => Yii::t('app', 'Note'),
         ];
     }

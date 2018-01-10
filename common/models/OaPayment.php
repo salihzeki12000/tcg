@@ -16,6 +16,7 @@ use Yii;
  * @property string $cny_amount
  * @property string $due_date
  * @property string $pay_method
+ * @property string $status
  * @property string $receit_account
  * @property string $receit_cny_amount
  * @property string $transaction_fee
@@ -42,7 +43,7 @@ class OaPayment extends \yii\db\ActiveRecord
             [['tour_id', 'payer', 'cny_amount', 'due_date', 'pay_method', 'type'], 'required'],
             [['tour_id'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
-            [['cny_amount', 'receit_cny_amount', 'transaction_fee'], 'number'],
+            [['cny_amount', 'receit_cny_amount', 'transaction_fee', 'status'], 'number'],
             [['note'], 'string'],
             [['payer', 'type', 'due_date', 'pay_method', 'receit_account', 'receit_date', 'cc_note_signing'], 'string', 'max' => 255],
         ];
@@ -60,12 +61,13 @@ class OaPayment extends \yii\db\ActiveRecord
             'update_time' => Yii::t('app', 'Update Time'),
             'payer' => Yii::t('app', 'Payer'),
             'type' => Yii::t('app', 'Type'),
-            'cny_amount' => Yii::t('app', 'CNY Amount'),
+            'cny_amount' => Yii::t('app', 'Amount (CNY)'),
             'due_date' => Yii::t('app', 'Due Date'),
-            'pay_method' => Yii::t('app', 'Pay Method'),
+            'pay_method' => Yii::t('app', 'Payment Method'),
+            'status' => Yii::t('app', 'Payment Status'),
             'receit_account' => Yii::t('app', 'Receipt Account'),
-            'receit_cny_amount' => Yii::t('app', 'Receipt CNY Amount'),
-            'transaction_fee' => Yii::t('app', 'Transaction Fee'),
+            'receit_cny_amount' => Yii::t('app', 'Receipt Amount (CNY)'),
+            'transaction_fee' => Yii::t('app', 'Transaction Fee (CNY)'),
             'receit_date' => Yii::t('app', 'Receipt Date'),
             'cc_note_signing' => Yii::t('app', 'CC Note Signing'),
             'note' => Yii::t('app', 'Note'),

@@ -22,9 +22,10 @@ class OaPaymentController extends Controller
     {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
-        if (isset($roles['OA-Accountant'])) {
+        if (isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
             $this->canAdd = 1;
             $this->canDel = 1;
+            $this->canMod = 1;
         }
         return parent::beforeAction($action);
     }
@@ -61,6 +62,7 @@ class OaPaymentController extends Controller
     {
         $searchModel = new OaPaymentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['due_date' => SORT_ASC], 'attributes' => ['due_date', 'receit_date']];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

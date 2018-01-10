@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'rating')->radioList(['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
+    <?= $form->field($model, 'language')->checkboxList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
 
     <?= $form->field($model, 'daily_price')->textInput(['maxlength' => true]) ?>
 

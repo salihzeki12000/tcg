@@ -31,31 +31,45 @@ use yii\helpers\ArrayHelper;
 
     <?php if (!$model->isNewRecord) { ?>
 
-    <?= $form->field($model, 'start_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'start_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+        ])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'end_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'end_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+        ])->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'book_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_book_status'), ['prompt' => '--Select--']) ?>
+
+    <?= $form->field($model, 'book_date', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+        ])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'cl_info')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'need_to_pay')->dropdownList([1=>'Yes', 0=>'No']) ?>
+    <?= $form->field($model, 'need_to_pay')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
     <div class="need_to_pay_yes_show" style="<?php if($model->need_to_pay!=1) { ?>display:none;<?php } ?>">
 
     <?= $form->field($model, 'cny_amount')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'due_date_for_pay')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'due_date_for_pay', [
+        'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
+        ])->textInput(['maxlength' => true]) ?>
     
     <?= $form->field($model, 'pay_status')->dropdownList(Yii::$app->params['yes_or_no'], ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'pay_date')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
+	<?php if($permission['canAdd']): $template = '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'; else: $template = '{label} {input}{error}{hint}'; endif;?>
+
+    <?= $form->field($model, 'pay_date', [
+        'template' => $template
+		])->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'pay_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6, 'disabled' => !$permission['canAdd']]) ?>
 
     </div>
-
-    <?= $form->field($model, 'book_status')->dropdownList(['Need to Book'=>'Need to Book','Booked and Await Pre-Tour Confirm'=>'Booked and Await Pre-Tour Confirm','Pre-Tour Confirmed'=>'Pre-Tour Confirmed'], ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
@@ -76,7 +90,7 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oabookcost-start_date, #oabookcost-end_date, #oabookcost-due_date_for_pay, #oabookcost-pay_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oabookcost-start_date, #oabookcost-end_date, #oabookcost-due_date_for_pay, #oabookcost-pay_date, #oabookcost-book_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
         $('input[type=radio][name=\"OaBookCost[type]\"]').change(function() {
             var tourId = $('#oabookcost-tour_id').val();
             if(tourId=='' || tourId==undefined){
@@ -91,6 +105,9 @@ $js = <<<JS
             else{
                 $(".need_to_pay_yes_show").hide();
             }
+        });
+        $(".bt_clear_item").click(function(){
+        	$(this).next().val("");
         });
     });
 JS;

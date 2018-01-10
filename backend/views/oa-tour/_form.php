@@ -32,7 +32,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'estimated_cost')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'payment')->dropdownList(['Unpaid'=>'Unpaid','Deposit Paid'=>'Deposit Paid','Fully Paid'=>'Fully Paid'], ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'payment')->dropdownList(['Unpaid'=>'Unpaid','Deposit Paid'=>'Deposit Paid','Fully Paid'=>'Fully Paid'], ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true, 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 

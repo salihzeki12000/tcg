@@ -8,16 +8,13 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel common\models\OaGuideSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Oa Guides');
+$this->title = Yii::t('app', 'Guides');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-guide-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a(Yii::t('app', 'Create Oa Guide'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Guide'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
