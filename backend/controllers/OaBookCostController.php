@@ -23,7 +23,7 @@ class OaBookCostController extends Controller
     {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
-        if (isset($roles['OA-Accountant'])) {
+        if (isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
             $this->canAdd = 1;
             $this->canDel = 1;
         }
@@ -62,6 +62,7 @@ class OaBookCostController extends Controller
     {
         $searchModel = new OaBookCostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['due_date_for_pay' => SORT_ASC], 'attributes' => ['due_date_for_pay', 'pay_date']];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

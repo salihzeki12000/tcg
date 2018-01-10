@@ -81,8 +81,6 @@ class OaPaymentSearch extends OaPayment
             ->andFilterWhere(['like', 'receit_date', $this->receit_date])
             ->andFilterWhere(['like', 'cc_note_signing', $this->cc_note_signing])
             ->andFilterWhere(['like', 'note', $this->note]);
-            
-        $query->orderBy(['due_date' => SORT_ASC]);
 
         return $dataProvider;
     }

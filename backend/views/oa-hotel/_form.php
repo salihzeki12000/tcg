@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'tripadvisor_link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'rating')->radioList(['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']) ?>
+    <?php // $form->field($model, 'rating')->radioList(['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']) ?>
 
     <?= $form->field($model, 'rooms_prices')->textarea(['rows' => 6]) ?>
 

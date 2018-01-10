@@ -62,6 +62,7 @@ class OaPaymentController extends Controller
     {
         $searchModel = new OaPaymentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['due_date' => SORT_ASC], 'attributes' => ['due_date', 'receit_date']];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

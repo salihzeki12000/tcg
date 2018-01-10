@@ -8,16 +8,13 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel common\models\OaAgencySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Oa Agencies');
+$this->title = Yii::t('app', 'Agencies');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-agency-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a(Yii::t('app', 'Create Oa Agency'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Agency'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return \common\models\OaCity::findOne($data['city_id'])->name;
                 }
             ],
-            'rating',
+            // 'rating',
             'create_time',
             // 'contact_person_info:ntext',
             // 'bank_info:ntext',

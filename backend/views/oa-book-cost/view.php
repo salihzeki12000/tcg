@@ -6,13 +6,11 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\OaBookCost */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Book Costs'), 'url' => ['index']];
+$this->title = 'C' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Book Costs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-book-cost-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -28,24 +26,38 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'tour_id',
+            [
+	            'attribute' => 'id',
+	            'value' => 'C' . $model->id
+            ],
+            [
+	            'attribute' => 'tour_id',
+	            'format' => 'raw',
+				'value'=>Html::a('T' . $model->tour_id, ['oa-tour/view', 'id' => $model->tour_id], ['target' => '_blank'])
+            ],
+            'creator',
             'create_time',
             'updat_time',
-            'creator',
             'type',
             'fid',
             'start_date',
             'end_date',
+            'book_status',
+            'book_date',
             'cl_info:ntext',
             'need_to_pay',
-            'cny_amount',
+            [
+	            'attribute' => 'cny_amount',
+	            'label' => 'Estimated Amount'
+            ],
             'due_date_for_pay',
             'pay_status',
             'pay_date',
-            'pay_amount',
+            [
+	            'attribute' => 'pay_amount',
+	            'label' => 'Pay Amount'
+            ],
             'transaction_note:ntext',
-            'book_status',
             'note:ntext',
         ],
     ]) ?>
