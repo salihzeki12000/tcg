@@ -208,7 +208,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            	
 	                            	// if tour has ended and stage hasn't been changed
 	                            	if((($now - $tourEndDate)/$secondsInOneDay) >= 3 &&
-	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm', 'Pre-Tour Confirmed and Ready to Go'))):
+	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm', 'Pre-Tour Confirmed & Ready to Go'))):
 	                            		echo '<div style="color: #c55">Change tour stage!</div>';
 	                            	endif;
 	                            	
