@@ -164,12 +164,68 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?=$value['operator']?></td>
                                 <td>
 	                                <?php
+		                            $now = time();
+		                            $secondsInOneDay = 86400;
+		                            
+		                            // if task is overdue
 		                            if($value['task_remind'] && $value['task_remind_date']):
-		                            	$today = date("Y-m-d");
-		                            	if($today >= $value['task_remind_date']):
-		                            		echo '<span style="color: #c55">Due task: ' . $value['task_remind'].'</span>';
+		                            	$taskRemindDate = strtotime($value['task_remind_date']);
+		                            	if($now >= $taskRemindDate):
+		                            		echo '<div style="color: #c55">Due task: ' . $value['task_remind'].'</div>';
 		                            	endif;
 		                            endif;
+		                            
+		                            // if information is missing
+									if(empty($value['inquiry_source']) ||
+									   empty($value['language']) ||
+									   empty($value['agent']) ||
+									   empty($value['tour_price']) ||
+									   $value['tour_price'] == '0.00' ||
+									   empty($value['estimated_cost']) ||
+									   $value['estimated_cost'] == '0.00' ||
+									   empty($value['tour_type']) ||
+									   empty($value['tour_start_date']) ||
+									   empty($value['tour_end_date']) ||
+									   empty($value['cities']) ||
+									   empty($value['number_of_travelers']) ||
+									   empty($value['contact']) ||
+									   empty($value['email'])):
+										echo '<div style="color: #c55">Missing important info!</div>';
+	                            	endif;
+	                            	
+	                            	// if tour hasn't been closed after 45 days
+	                            	$tourEndDate = strtotime($value['tour_end_date']);
+	                            	if((($now - $tourEndDate) / $secondsInOneDay) >= 45):
+	                            		echo '<div style="color: #c55">Needs to be closed!</div>';
+	                            	endif;
+	                            	
+	                            	// needs pre-tour confirmation
+	                            	$tourStartDate = strtotime($value['tour_start_date']);
+	                            	if((($tourStartDate - $now) / $secondsInOneDay) <= 15 &&
+	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm'))):
+	                            		echo '<div style="color: #c55">Needs pre-tour confirmation!</div>';
+	                            	endif;
+	                            	
+	                            	// if tour has ended and stage hasn't been changed
+	                            	if((($now - $tourEndDate)/$secondsInOneDay) >= 3 &&
+	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm', 'Pre-Tour Confirmed and Ready to Go'))):
+	                            		echo '<div style="color: #c55">Change tour stage!</div>';
+	                            	endif;
+	                            	
+	                            	// if payments missing
+									if($value['tour_price'] != $value['total_payments']):
+										echo '<div style="color: #c55">Tour price must equal total payments!</div>';
+	                            	endif;
+	                            	
+	                            	// if payment(s) overdue
+									if($value['payment_overdue'] == 1):
+										echo '<div style="color: #c55">Payment(s) overdue!</div>';
+	                            	endif;
+	                            	
+	                            	// if no confirmed payments
+									if($value['no_confirmed_payments'] == 1):
+										echo '<div style="color: #c55">No confirmed payment!</div>';
+	                            	endif;
 		                           	?>
 	                            </td>
                             </tr>

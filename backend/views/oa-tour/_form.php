@@ -16,11 +16,11 @@ use yii\helpers\Url;
     
     <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => true]) ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -28,11 +28,11 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'stage')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_tour_stage')) ?>
 
-    <?= $form->field($model, 'tour_price')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tour_price', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'estimated_cost')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'estimated_cost', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'payment')->dropdownList(['Unpaid'=>'Unpaid','Deposit Paid'=>'Deposit Paid','Fully Paid'=>'Fully Paid'], ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'payment')->dropdownList(['Unpaid'=>'Unpaid','Deposit Paid'=>'Deposit Paid','Fully Paid'=>'Fully Paid'], ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true, 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
@@ -47,11 +47,12 @@ use yii\helpers\Url;
         unset($form_types[1]);
     ?>
     
-    <?= $form->field($model, 'tour_type')->dropdownList($form_types, ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'tour_type', ['labelOptions' => ['class' => 'important-info']])->dropdownList($form_types, ['prompt' => '--Select--']) ?>
     
     <?= $form->field($model, 'organization')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '100px',
+        'maxHeight' => '150px',
         'replaceDivs' => false,
         'buttons' => []
         ],
@@ -59,17 +60,18 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'vip')->dropdownList(Yii::$app->params['yes_or_no']) ?>
 
-    <?= $form->field($model, 'tour_start_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tour_start_date', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tour_end_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tour_end_date', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'cities')->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'cities', ['labelOptions' => ['class' => 'important-info']])->checkboxList(ArrayHelper::map(common\models\OaCity::find()->all(), 'id', 'name')) ?>
 
-    <?= $form->field($model, 'number_of_travelers')->textInput() ?>
+    <?= $form->field($model, 'number_of_travelers', ['labelOptions' => ['class' => 'important-info']])->textInput() ?>
 
     <?= $form->field($model, 'traveler_info')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '100px',
+        'maxHeight' => '150px',
         'replaceDivs' => false,
         'buttons' => []
         ],
@@ -79,13 +81,14 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country'), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'contact', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'other_contact_info')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '100px',
+        'maxHeight' => '150px',
         'replaceDivs' => false,
         'buttons' => []
         ],
@@ -94,6 +97,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'itinerary_quotation_english')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
+        'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
@@ -102,6 +106,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'itinerary_quotation_other_language')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
+        'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
@@ -116,6 +121,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'tour_schedule_note')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
+        'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
@@ -124,6 +130,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'note_for_guide')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
+        'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],
@@ -132,6 +139,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'other_note')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
         'minHeight' => '250px',
+        'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
         ],

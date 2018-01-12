@@ -38,9 +38,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'creator',
             'create_time',
             'update_time',
-            'inquiry_source',
-            'language',
-            'agent',
+            [
+			    'attribute' => 'inquiry_source',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'language',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'agent',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             'co_agent',
             'inquiry_status',
             'estimated_cny_amount',
@@ -58,10 +67,13 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'format' => 'html'
 			],
             'priority',
-            'tour_start_date',
+            [
+			    'attribute' => 'tour_start_date',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             'tour_end_date',
             'cities',
-            'number_of_travelers',
+			'number_of_travelers',
             [
 			    'attribute' => 'traveler_info',
 			    'contentOptions' => ['class' => 'view'],
@@ -69,8 +81,15 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
             'group_type',
             'country',
-            'contact',
-            'email:email',
+            [
+			    'attribute' => 'contact',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'email',
+			    'format' => 'email',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             [
 			    'attribute' => 'other_contact_info',
 			    'contentOptions' => ['class' => 'view'],
@@ -97,6 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 			    'attribute' => 'original_inquiry',
 			    'contentOptions' => ['class' => 'view-long'],
+			    'captionOptions' => ['class' => 'important-info'],
 			    'format' => 'html'
 			],
         ],

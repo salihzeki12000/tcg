@@ -16,11 +16,11 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -39,11 +39,6 @@ use yii\helpers\Url;
         'buttons' => []
         ],
     ]) ?>
-    
-    
-    
-    
-
 
     <?php
         $form_types = Yii::$app->params['form_types'];
@@ -62,9 +57,7 @@ use yii\helpers\Url;
     
     <?= $form->field($model, 'priority')->dropdownList(['Normal'=>'Normal', 'High'=>'High']) ?>
 
-    <?= $form->field($model, 'tour_start_date', [
-        // 'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
-    ]) ?>
+    <?= $form->field($model, 'tour_start_date', ['labelOptions' => ['class' => 'important-info']]) ?>
 
     <?= $form->field($model, 'tour_end_date', [
         'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
@@ -86,9 +79,9 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'country')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_country'), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'contact', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email', ['labelOptions' => ['class' => 'important-info']])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'other_contact_info')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
@@ -129,7 +122,7 @@ use yii\helpers\Url;
     ]) ?>
 
     <?php if ($permission['canAdd']) { ?>
-        <?= $form->field($model, 'original_inquiry')->widget(\yii\redactor\widgets\Redactor::className(), [
+        <?= $form->field($model, 'original_inquiry', ['labelOptions' => ['class' => 'important-info']])->widget(\yii\redactor\widgets\Redactor::className(), [
         'clientOptions' => [
             'minHeight' => '250px',
             'replaceDivs' => false,

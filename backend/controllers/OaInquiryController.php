@@ -206,6 +206,8 @@ class OaInquiryController extends Controller
             $summarySql .= " AND  tour_start_date>='{$from_date}' ";
             $summarySql .= " AND  tour_start_date<'{$end_date}' ";
         }
+        
+        $summarySql .= ' ORDER BY tour_start_date ASC ';
 
         $summaryAll = Yii::$app->db->createCommand($summarySql)
         ->queryAll();
@@ -224,7 +226,10 @@ class OaInquiryController extends Controller
             $summaryInfo['Total Inquiries'] = $totalCount;
             $oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
             foreach ($summaryAll as $sumitem) {
-                unset($sumitem['original_inquiry']);
+	            
+                // unset($sumitem['original_inquiry']);
+                if(!empty($sumitem['original_inquiry'])): $sumitem['original_inquiry'] == 1; endif;
+                
                 $agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $sumitem['agent']])->all(), 'id', 'username');
                 if (array_key_exists($sumitem['agent'], $agent)) {
                     $sumitem['agent'] = $agent[$sumitem['agent']];
