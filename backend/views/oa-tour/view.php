@@ -41,30 +41,60 @@ $this->params['breadcrumbs'][] = $this->title;
             'creator',
             'create_time',
             'update_time',
-            'inquiry_source',
-            'language',
-            'agent',
+            [
+			    'attribute' => 'inquiry_source',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'language',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'agent',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             'co_agent',
             'operator',
             'stage',
-            'tour_price',
-            'estimated_cost',
+            [
+			    'attribute' => 'tour_price',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'estimated_cost',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             'payment',
             'accounting_sales_amount',
             'accounting_total_cost',
             'accounting_hotel_flight_train_cost',
             'close',
-            'tour_type',
+            [
+			    'attribute' => 'tour_type',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             [
 			    'attribute' => 'organization',
 			    'contentOptions' => ['class' => 'view'],
 			    'format' => 'html'
 			],
             'vip',
-            'tour_start_date',
-            'tour_end_date',
-            'cities',
-            'number_of_travelers',
+            [
+			    'attribute' => 'tour_start_date',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'tour_end_date',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'cities',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'number_of_travelers',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             [
 			    'attribute' => 'traveler_info',
 			    'contentOptions' => ['class' => 'view'],
@@ -72,8 +102,15 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			'group_type',
 			'country',
-			'contact',
-			'email:email',
+            [
+			    'attribute' => 'contact',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
+            [
+			    'attribute' => 'email',
+			    'format' => 'email',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             [
 			    'attribute' => 'other_contact_info',
 			    'contentOptions' => ['class' => 'view'],
@@ -130,13 +167,13 @@ $this->params['breadcrumbs'][] = $this->title;
 			            'value' => function ($data) use ($model)  {
 			                return Html::a('T'. $model->id, ['oa-tour/view', 'id' => $model->id], ['data-pjax' => 0, 'target' => "_blank"]);
 			            },
-			        ], */
+			        ],
                     [
 	                    'attribute' => 'create_time',
 	                    'label' => 'Create Date',
 	                    'format' => ['date', 'php:Y-m-d']
                     ],
-                    /* [
+                    [
 	                    'attribute' => 'update_time',
 	                    'label' => 'Update Date',
 	                    'format' => ['date', 'php:Y-m-d']
@@ -156,7 +193,16 @@ $this->params['breadcrumbs'][] = $this->title;
 					        endif;
 	                    }
                     ],
-                    'receit_cny_amount',
+                    [
+                    	'attribute' => 'status',
+                    	'value' => function($data) {
+					        return $data->status == 0 ? 'Not Paid' : 'Paid';
+	                    }
+                    ],
+                    [
+                    	'attribute' => 'receit_cny_amount',
+                    	'label' => 'Receipt Amount'
+                    ],
                     'receit_date',
 
                     /* [
@@ -198,13 +244,13 @@ $this->params['breadcrumbs'][] = $this->title;
 			            'value' => function ($data) use ($model) {
 			                return Html::a('T'. $model->id, ['oa-tour/view', 'id' => $model->id], ['data-pjax' => 0, 'target' => "_blank"]);
 			            },
-			        ], */
+			        ],
                     [
 	                    'attribute' => 'create_time',
 	                    'label' => 'Create Date',
 	                    'format' => ['date', 'php:Y-m-d']
                     ],
-                    /* [
+                    [
 	                    'attribute' => 'updat_time',
 	                    'label' => 'Update Date',
 	                    'format' => ['date', 'php:Y-m-d']
@@ -269,13 +315,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'start_date',
                     'end_date',
                     'book_status',
+                    'book_date',
                     [
                         'attribute'=>'need_to_pay',
                         'value' => function ($data) {
                             return Yii::$app->params['yes_or_no'][$data->need_to_pay];
                         }
                     ],
-                    'cny_amount',
+                    [
+                    	'attribute' => 'cny_amount',
+                    	'label' => 'Estimated Amount'
+                    ],
                     'due_date_for_pay',
                     [
                         'attribute'=>'pay_status',
@@ -283,7 +333,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Yii::$app->params['yes_or_no'][$data->pay_status];
                         }
                     ],
-                    'pay_amount',
+                    [
+                    	'attribute' => 'pay_amount',
+                    	'label' => 'Pay Amount'
+                    ],
                     /* [
                         'class' => 'yii\grid\ActionColumn',
                         'template' => '{view}',

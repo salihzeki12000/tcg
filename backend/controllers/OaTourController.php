@@ -149,36 +149,48 @@ class OaTourController extends Controller
             'Sales Amount (Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount'], //
             'Gross Profit(Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount-accounting_total_cost'], //
         ];
-        $summarySql = "SELECT * FROM oa_tour WHERE 1=1 ";
+        $summarySql = "SELECT * FROM oa_tour AS OA_TOUR ";
+        
+        $summarySql .= "LEFT JOIN (SELECT tour_id, sum(cny_amount) AS total_payments FROM oa_payment GROUP BY tour_id) AS OA_PAYMENT ON OA_TOUR.id = OA_PAYMENT.tour_id ";
+        
+        $summarySql .= "LEFT JOIN (SELECT tour_id, 1 AS payment_overdue FROM oa_payment WHERE status = 0 AND DATEDIFF(due_date, CURRENT_DATE) <= 3 GROUP BY tour_id) AS OA_PAYMENT_OVERDUE ON OA_TOUR.id = OA_PAYMENT_OVERDUE.tour_id ";
+        
+        $summarySql .= "LEFT JOIN (SELECT tour_id, 1 AS no_confirmed_payments FROM (select TOTAL_PAYMENTS.tour_id, total_payments, not_paid FROM (SELECT tour_id, count(*) AS total_payments FROM oa_payment GROUP BY tour_id) AS TOTAL_PAYMENTS LEFT JOIN (SELECT tour_id, count(*) AS not_paid FROM oa_payment WHERE status = 0 GROUP BY tour_id) AS PAYMENT_DUE ON TOTAL_PAYMENTS.tour_id = PAYMENT_DUE.tour_id GROUP BY TOTAL_PAYMENTS.tour_id) AS TEMP WHERE total_payments = not_paid) AS NO_PAYMENTS_CONFIRMED ON OA_TOUR.id = NO_PAYMENTS_CONFIRMED.tour_id ";
+        
+        $summarySql .= "WHERE 1=1 ";
+        
         if (!empty($user_id)) {
             if ($user_type==2) {
-                $summarySql .= " AND  co_agent={$user_id} ";
+                $summarySql .= " AND OA_TOUR.co_agent={$user_id} ";
             }
             elseif ($user_type==3){
-                $summarySql .= " AND  operator={$user_id} ";
+                $summarySql .= " AND OA_TOUR.operator={$user_id} ";
             }
             else{
-                $summarySql .= " AND  agent={$user_id} ";
+                $summarySql .= " AND OA_TOUR.agent={$user_id} ";
             }
         }
         if (!empty($inquiry_source)) {
-            $summarySql .= " AND  inquiry_source='{$inquiry_source}' ";
+            $summarySql .= " AND OA_TOUR.inquiry_source='{$inquiry_source}' ";
         }
         if (!empty($language)) {
-            $summarySql .= " AND  language='{$language}' ";
+            $summarySql .= " AND OA_TOUR.language='{$language}' ";
         }
         if ($date_type == 2) {
-            $summarySql .= " AND  create_time>='{$from_date}' ";
-            $summarySql .= " AND  create_time<'{$end_date}' ";
+            $summarySql .= " AND OA_TOUR.create_time>='{$from_date}' ";
+            $summarySql .= " AND OA_TOUR.create_time<'{$end_date}' ";
         }
         else{
-            $summarySql .= " AND  tour_end_date>='{$from_date}' ";
-            $summarySql .= " AND  tour_end_date<'{$end_date}' ";
-        }
+            $summarySql .= " AND OA_TOUR.tour_end_date>='{$from_date}' ";
+            $summarySql .= " AND OA_TOUR.tour_end_date<'{$end_date}' ";
+        } 
 
         $summaryAll = Yii::$app->db->createCommand($summarySql)
         ->queryAll();
-
+        
+        //$sql = 'SELECT tour_id FROM oa_payment AS OA_PAYMENT WHERE status = 0 AND DATEDIFF(due_date, CURRENT_DATE) <= 3 GROUP BY tour_id';
+        //$result = Yii::$app->db->createCommand($sql)->queryAll();
+        //var_dump($result); exit;
 
         $currentDateTime = strtotime(date('Y-m-d'));
         $totalCount = 0;
@@ -282,16 +294,16 @@ class OaTourController extends Controller
         }
 
         $sort = array_column($listInfo['On Tour'], 'td_tour_start_date');      
-        array_multisort($sort, SORT_ASC, $listInfo['On Tour']);  
+        array_multisort($sort, SORT_DESC, $listInfo['On Tour']);  
 
         $sort = array_column($listInfo['Pre-Tour'], 'td_tour_start_date');      
-        array_multisort($sort, SORT_ASC, $listInfo['Pre-Tour']);  
+        array_multisort($sort, SORT_DESC, $listInfo['Pre-Tour']);  
 
         $sort = array_column($listInfo['After Tour'], 'td_tour_end_date');      
-        array_multisort($sort, SORT_ASC, $listInfo['After Tour']);  
+        array_multisort($sort, SORT_DESC, $listInfo['After Tour']);  
 
         $sort = array_column($listInfo['Closed Tours'], 'td_tour_end_date');      
-        array_multisort($sort, SORT_ASC, $listInfo['Closed Tours']);  
+        array_multisort($sort, SORT_DESC, $listInfo['Closed Tours']);  
 
     // echo json_encode($listInfo);exit;
 

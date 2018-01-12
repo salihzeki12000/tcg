@@ -157,23 +157,46 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?=$value['co_agent']?></td>
                             <td>
 	                            <?php
-	                            $today = date("Y-m-d");
+	                            $now = time();
+	                            $secondsInOneDay = 86400;
 		                            
+		                        // if there's a due task
 	                            if($value['task_remind'] && $value['task_remind_date']):
-	                            	if($today >= $value['task_remind_date']):
-	                            		echo '<div style="color: #c55">Due task: ' . $value['task_remind'].'</div>';
+	                            	$taskRemindDate = strtotime($value['task_remind_date']);
+	                            	if($now >= $taskRemindDate):
+	                            		echo '<div style="color: #c55">Due task: ' . $value['task_remind'].'</div>';	
 	                            	endif;
 	                            endif;
-	                           	?>
-	                           	
-	                            <?php
-		                        $object_update_time = new DateTime(date('Y-m-d', strtotime($value['update_time'])));
-		                        $object_today = new DateTime($today);
-		                        $date_difference = $object_today->diff($object_update_time)->days;
 	                            
-	                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && $date_difference >= 10)):
-	                            	echo '<div style="color: #c55">Need to update!</div>';
+	                            // if inquiry needs to be updated
+	                            $updateTime = strtotime($value['update_time']);
+	                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && (($now - $updateTime) / $secondsInOneDay) >= 10)):
+	                            	echo '<div style="color: #c55">Needs to be updated!</div>';
 	                            endif;
+
+	                            // if information is missing
+	                            if(empty($value['inquiry_source']) ||
+								   empty($value['language']) ||
+								   empty($value['agent']) ||
+								   empty($value['tour_start_date']) ||
+								   empty($value['contact']) ||
+								   empty($value['email']) ||
+								   empty($value['original_inquiry'])):
+									echo '<div style="color: #c55">Missing important info!</div>';
+                            	endif;
+                            	
+                            	// if expiring
+                            	$tourStartDate = strtotime($value['tour_start_date']);
+								$oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
+								
+                            	if($oa_inquiry_status[$value['inquiry_status']] == 'Inactive' && (($tourStartDate - $now) / $secondsInOneDay) <= 60):
+									echo '<div style="color: #c55">Expiring, contact for final try.</div>';
+                            	endif;
+                            	
+                            	// if expired
+                            	if(in_array($oa_inquiry_status[$value['inquiry_status']], array('New', 'Following up', 'Waiting for Payment', 'Inactive')) && (($tourStartDate - $now) / $secondsInOneDay) <= 0):
+									echo '<div style="color: #c55">Expired, close or change date.</div>';
+                            	endif;
 	                           	?>
 		                    </td>
                         </tr>

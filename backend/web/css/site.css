@@ -132,3 +132,5 @@ a.desc:after {
 .table .view-long {
 	max-height: 400px; overflow-y: scroll; display: block;
 }
+
+.important-info:after {content: " *"; color: red;}

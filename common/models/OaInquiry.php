@@ -57,7 +57,7 @@ class OaInquiry extends \yii\db\ActiveRecord
     {
         return [
             [['create_time', 'update_time'], 'safe'],
-            [['tour_type'], 'required'],
+            [['original_inquiry', 'agent'], 'required'],
             [['tour_type', 'number_of_travelers', 'close', 'agent', 'co_agent', 'creator'], 'integer'],
             [['organization', 'traveler_info', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'close_report', 'task_remind_date', 'task_remind'], 'string'],
             [['estimated_cny_amount'], 'number'],
