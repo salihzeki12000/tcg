@@ -16,11 +16,11 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'])]) ?>
 
-    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info ']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord), 'required' => true]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -45,7 +45,7 @@ use yii\helpers\Url;
         unset($form_types[1]);
     ?>
     
-    <?= $form->field($model, 'tour_type')->dropdownList($form_types, ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'tour_type', ['labelOptions' => ['class' => 'important-info']])->dropdownList($form_types, ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'organization')->widget(\yii\redactor\widgets\Redactor::className(), [
     'clientOptions' => [
@@ -150,8 +150,48 @@ $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>
 $js = <<<JS
     $(function(){
         $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        
         $(".bt_clear_item").click(function(){
         	$(this).next().val("");
+        });
+        
+        $("#oainquiry-close").change(function()
+        {
+	       if($("#oainquiry-close").val() == 1)
+	       {
+		   		var inquiryStatus = $("#oainquiry-inquiry_status option:selected").text(),
+		       		booked = "Booked",
+		       		lost = "Lost",
+		       		bad = "Bad";
+		       		
+		       	if(inquiryStatus.indexOf(booked) == -1 && inquiryStatus.indexOf(lost) == -1 && inquiryStatus.indexOf(bad) == -1)
+		       	{
+			       	alert('Only Booked or Lost or Bad inquiries can be closed');
+			       	$("#oainquiry-close").val("0");
+		       	}
+	       } 
+        });
+        
+        var previousStatus;
+        
+        $("#oainquiry-inquiry_status").on('focus', function()
+        {
+	        previousStatus = this.value;
+        }).change(function()
+        {
+	       if($("#oainquiry-close").val() == 1)
+	       {
+		   		var inquiryStatus = $("#oainquiry-inquiry_status option:selected").text(),
+		       		booked = "Booked",
+		       		lost = "Lost",
+		       		bad = "Bad";
+
+		       	if(inquiryStatus.indexOf(booked) == -1 && inquiryStatus.indexOf(lost) == -1 && inquiryStatus.indexOf(bad) == -1)
+		       	{
+			       	alert('Only Booked or Lost or Bad inquiries can be closed');
+			       	$("#oainquiry-inquiry_status").val(previousStatus);
+		       	}
+	       } 
         });
     });
 JS;

@@ -162,6 +162,43 @@ $js = <<<JS
         $(".bt_clear_item").click(function(){
             $(this).next().val("");
         });
+        
+        $("#oatour-close").change(function()
+        {
+	       if($("#oatour-close").val() == 1)
+	       {
+		   		var tourStage = $("#oatour-stage option:selected").text(),
+		       		fulfilled = "Tour Fulfilled",
+		       		cancelled = "Canceled";
+		       		
+		       	if(tourStage.indexOf(fulfilled) == -1 && tourStage.indexOf(cancelled) == -1)
+		       	{
+			       	alert('Only Fulfilled or Cancelled tours can be closed');
+			       	$("#oatour-close").val("0");
+		       	}
+	       } 
+        });
+        
+        var previousStage;
+        
+        $("#oatour-stage").on('focus', function()
+        {
+	        previousStage = this.value;
+        }).change(function()
+        {
+	       if($("#oatour-close").val() == 1)
+	       {
+		   		var tourStage = $("#oatour-stage option:selected").text(),
+		       		fulfilled = "Tour Fulfilled",
+		       		cancelled = "Canceled";
+		       		
+		       	if(tourStage.indexOf(fulfilled) == -1 && tourStage.indexOf(cancelled) == -1)
+		       	{
+			       	alert('Only Fulfilled or Cancelled tours can be closed');
+			       	$("#oatour-stage").val(previousStage);
+		       	}
+	       } 
+        });
     });
 JS;
 $this->registerJs($js);

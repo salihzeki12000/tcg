@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Creator</th>
                 <th>Create Time</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -38,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($inquiriesToAssign as $value) { ?>
                 <tr>
                     <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
+                    <td><?=$value['creator']?></td>
                     <td><?=$value['create_time']?></td>
                     <td><?=$value['contact']?></td>
                     <td><?=$value['email']?></td>
@@ -164,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            if($value['task_remind'] && $value['task_remind_date']):
 	                            	$taskRemindDate = strtotime($value['task_remind_date']);
 	                            	if($now >= $taskRemindDate):
-	                            		echo '<div style="color: #c55">Due task: ' . $value['task_remind'].'</div>';	
+	                            		echo '<div style="color: #28b500">Due task: ' . $value['task_remind'].'</div>';	
 	                            	endif;
 	                            endif;
 	                            
@@ -187,6 +189,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             	
                             	// if expiring
                             	$tourStartDate = strtotime($value['tour_start_date']);
+                            	
 								$oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
 								
                             	if($oa_inquiry_status[$value['inquiry_status']] == 'Inactive' && (($tourStartDate - $now) / $secondsInOneDay) <= 60):
@@ -194,7 +197,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             	endif;
                             	
                             	// if expired
-                            	if(in_array($oa_inquiry_status[$value['inquiry_status']], array('New', 'Following up', 'Waiting for Payment', 'Inactive')) && (($tourStartDate - $now) / $secondsInOneDay) <= 0):
+                            	if(!empty($tourStartDate) && in_array($oa_inquiry_status[$value['inquiry_status']], array('New', 'Following up', 'Waiting for Payment', 'Inactive')) && (($tourStartDate - $now) / $secondsInOneDay) <= 0):
 									echo '<div style="color: #c55">Expired, close or change date.</div>';
                             	endif;
 	                           	?>
