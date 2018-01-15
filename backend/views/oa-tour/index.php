@@ -171,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            if($value['task_remind'] && $value['task_remind_date']):
 		                            	$taskRemindDate = strtotime($value['task_remind_date']);
 		                            	if($now >= $taskRemindDate):
-		                            		echo '<div style="color: #c55">Due task: ' . $value['task_remind'].'</div>';
+		                            		echo '<div style="color: #28b500">Due task: ' . $value['task_remind'].'</div>';
 		                            	endif;
 		                            endif;
 		                            

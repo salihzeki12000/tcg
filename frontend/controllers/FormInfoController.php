@@ -123,13 +123,9 @@ class FormInfoController extends Controller
                         $oaInquiryModel[$labels[$key]] = $value;
                     }
                 }
+                
                 $OaInquiry = new \common\models\OaInquiry();
-                if ($model->type == FORM_TYPE_CUSTOM) {
-                    $OaInquiry->tour_type = FORM_TYPE_QUOTATION;
-                }
-                else{
-                    $OaInquiry->tour_type = $model->type;
-                }
+                
                 $OaInquiry->email = $model->email;
                 $OaInquiry->contact = $model->name;
                 $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$oaInquiryModel]);

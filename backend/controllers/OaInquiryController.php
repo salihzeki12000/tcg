@@ -25,6 +25,7 @@ class OaInquiryController extends Controller
     public $canMod = 1;
     public $isAdmin = 0;
     public $isAgent = 0;
+    public $isAccountant= 0;
     public $isOperator = 0;
     public $canAddTour = 0;
 
@@ -39,17 +40,16 @@ class OaInquiryController extends Controller
             $this->canAddTour = 1;
         }
         if (isset($roles['OA-Agent'])) {
-            $this->canAdd = 1;
-            // $this->canAddTour = 1;
             $this->isAgent = 1;
+            $this->canAdd = 1;
         }
         if (isset($roles['OA-isOperator'])) {
             $this->isOperator = 1;
         }
         if (isset($roles['OA-Accountant'])) {
-            $this->isAdmin = 1;
-            $this->canAdd = 1;
-            $this->canDel = 1;
+            $this->isAccountant = 1;
+            $this->canAdd = 0;
+            $this->canDel = 0;
             $this->canAddTour = 1;
         }
 
@@ -85,7 +85,7 @@ class OaInquiryController extends Controller
      */
     public function actionIndex($user_id='', $co=0, $date='', $date_type=2, $inquiry_source='', $language='')
     {
-        if (!$this->isAdmin && $user_id && $user_id!=Yii::$app->user->identity->id) {
+        if (!($this->isAdmin || $this->isAccountant) && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$user_id])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
@@ -111,6 +111,15 @@ class OaInquiryController extends Controller
             if (array_key_exists($item['agent'], $agent)) {
                 $item['agent'] = $agent[$item['agent']];
             }
+            
+            $creator = ArrayHelper::map(\common\models\User::find()->where(['id' => $item['creator']])->all(), 'id', 'username');
+	        if (array_key_exists($item['creator'], $creator)) {
+	            $item['creator'] = $creator[$item['creator']];
+	        }
+	        else{
+	            $item['creator'] = 'Webform';
+	        }
+	                    
             $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
             if (!empty($item['inquiry_source'])) {
                 $item['inquiry_source'] = $oa_inquiry_source[$item['inquiry_source']];
@@ -120,7 +129,7 @@ class OaInquiryController extends Controller
         $userList = $subAgent = [];
         $userId = Yii::$app->user->identity->id;
         $userName = Yii::$app->user->identity->username;
-        if ($this->isAdmin) {
+        if ($this->isAdmin || $this->isAccountant) {
             $subAgent = \common\models\Tools::getAgentUserList();
             if (isset($subAgent[$userId])) {
                 unset($subAgent[$userId]);
@@ -132,11 +141,11 @@ class OaInquiryController extends Controller
             $subAgent = \common\models\Tools::getSubUserByUserId($userId);
         }
         $userList = $userList + $subAgent;
-        if ($this->isAdmin) {
+        if ($this->isAdmin || $this->isAccountant) {
             $userList = [''=>'--All--'] + $userList;
         }
         //$user_id='', $co=0, $date='', $inquiry_source='', $language=''
-        if (empty($user_id) && $this->isAdmin) {
+        if (empty($user_id) && ($this->isAdmin || $this->isAccountant)) {
             $user_id = '';
         }
         elseif (!empty($user_id) && isset($userList[$user_id])) {
@@ -279,7 +288,7 @@ class OaInquiryController extends Controller
     {
         $model = $this->findModel($id);
         $userId = Yii::$app->user->identity->id;
-        if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
+        if (!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
@@ -307,7 +316,11 @@ class OaInquiryController extends Controller
             $model->co_agent = $co_agent[$model->co_agent];
         }
 
-        $model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
+		if(!empty($model->tour_type)):
+        	$model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
+        else:
+        	$model->tour_type = "(not set)";
+        endif;
 
         $model->close = Yii::$app->params['yes_or_no'][$model->close];
 

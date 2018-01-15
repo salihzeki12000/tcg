@@ -377,8 +377,12 @@ class OaTourController extends Controller
         if (!empty($model->stage)) {
             $model->stage = $oa_tour_stage[$model->stage];
         }
-
-        $model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
+		
+		if(!empty($model->tour_type)):
+        	$model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
+        else:
+        	$model->tour_type = "(not set)";
+        endif;
 
         $model->vip = Yii::$app->params['yes_or_no'][$model->vip];
 
