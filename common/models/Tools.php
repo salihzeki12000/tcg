@@ -369,4 +369,48 @@ class Tools
         }
         return $subAgent;
     }
+
+    static public function tourClosed($id)
+    {
+        if(!empty($id))
+        {
+            $query = \common\models\OaTour::find()->where(['id'=>$id]);
+            $tour = $query->one();
+            
+            if(!empty($tour))
+            { 
+                return $tour['close'];
+            }
+            else
+            {
+	            return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    static public function inquiryAssignedToTour($inquiry_id)
+    {
+        if(!empty($inquiry_id))
+        {
+            $query = \common\models\OaTour::find()->where(['inquiry_id'=>$inquiry_id]);
+            $tour = $query->one();
+            
+            if(!empty($tour))
+            { 
+                return 1;
+            }
+            else
+            {
+	            return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

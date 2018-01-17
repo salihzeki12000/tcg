@@ -8,23 +8,36 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model common\models\OaTour */
 
+
 $this->title = 'T' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tours'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="oa-tour-view">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php if($permission['canDel']) { ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-        <?php } ?>
+	    <?php
+		if($model->close == 'Yes'):
+			if($permission['isAdmin']):
+	        	echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+	        endif;
+	    else:
+	        echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+	    endif;
+	    ?>
+	    
+	    <?php
+	    if($permission['canDel'] && $model->close == 'No' && $dataProvider->totalCount == 0 && $dataProviderBC->totalCount == 0):
+	        echo Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+	            'class' => 'btn btn-danger',
+	            'data' => [
+	                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+	                'method' => 'post',
+	            ],
+	        ]);
+		endif;
+       ?>
     </p>
 
     <?= DetailView::widget([
@@ -220,7 +233,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
     </div>
-    <?= (!$permission['canAddPayment']) ? '' : "<a href='".Url::to(['oa-payment/create', 'tour_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary']).'</a>' ?>
+    <?= (!$permission['canAddPayment'] || $model->close == 'Yes') ? '' : "<a href='".Url::to(['oa-payment/create', 'tour_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary']).'</a>' ?>
     </div>
 
     <div class="form-group">
@@ -330,6 +343,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute'=>'pay_status',
                         'value' => function ($data) {
+	                        
+	                        if(is_null($data->pay_status)):
+	                        	$data->pay_status = 0;
+	                        endif;
+	                        
                             return Yii::$app->params['yes_or_no'][$data->pay_status];
                         }
                     ],
@@ -352,7 +370,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
     </div>
-    <?= (!$permission['canAddBookCost']) ? '' : "<a href='".Url::to(['oa-book-cost/create', 'tour_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Book Cost Item'), ['class' => 'btn btn-primary']).'</a>' ?>
+    <?= (!$permission['canAddBookCost'] || $model->close == 'Yes') ? '' : "<a href='".Url::to(['oa-book-cost/create', 'tour_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Book Cost Item'), ['class' => 'btn btn-primary']).'</a>' ?>
     </div>
 
 </div>

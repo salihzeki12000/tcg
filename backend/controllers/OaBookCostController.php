@@ -7,6 +7,7 @@ use common\models\OaBookCost;
 use common\models\OaBookCostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 
@@ -119,6 +120,7 @@ class OaBookCostController extends Controller
 
         return $this->render('view', [
             'model' => $model,
+            'tourClosed' =>  \common\models\Tools::tourClosed($model->tour_id)
         ]);
     }
 
@@ -129,6 +131,10 @@ class OaBookCostController extends Controller
      */
     public function actionCreate($type=0, $tour_id='')
     {
+        if(\common\models\Tools::tourClosed($tour_id)) {
+            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        }
+        
         $model = new OaBookCost();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -172,6 +178,10 @@ class OaBookCostController extends Controller
     {
         $model = $this->findModel($id);
 
+        if(\common\models\Tools::tourClosed($model->tour_id)) {
+            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             if (empty($model['type'])) {
                 unset($model['type']);
@@ -195,7 +205,16 @@ class OaBookCostController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+	    
+        if(\common\models\Tools::tourClosed($model->tour_id))
+        {
+            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        }
+        else
+        {
+        	$model->delete();
+        }
 
         return $this->redirect(['index']);
     }

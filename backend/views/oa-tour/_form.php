@@ -16,11 +16,11 @@ use yii\helpers\Url;
     
     <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => true]) ?>
 
-    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -34,13 +34,13 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'payment')->dropdownList(['Unpaid'=>'Unpaid','Deposit Paid'=>'Deposit Paid','Fully Paid'=>'Fully Paid'], ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true, 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'accounting_sales_amount')->textInput(['maxlength' => true, 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'accounting_total_cost')->textInput(['maxlength' => true, 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'accounting_total_cost')->textInput(['maxlength' => true, 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'accounting_hotel_flight_train_cost')->textInput(['maxlength' => true,'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'accounting_hotel_flight_train_cost')->textInput(['maxlength' => true,'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no'], ['disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'close')->dropdownList(Yii::$app->params['yes_or_no'], ['disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
 
     <?php
         $form_types = Yii::$app->params['form_types'];

@@ -22,6 +22,7 @@ class OaTourController extends Controller
     public $canMod = 1;
     public $isAgent = 0;
     public $isOperator = 0;
+    public $isAccountant = 0;
     public $canAddPayment = 0;
     public $canAddBookCost = 0;
     public $arrUserType = [1=>'As Agent', 2=>'As Co Agent', 3=>'As Operator'];
@@ -49,7 +50,7 @@ class OaTourController extends Controller
             $this->isOperator = 1;
         }
         if (isset($roles['OA-Accountant'])) {
-            $this->isAdmin = 1;
+            $this->isAccountant = 1;
             $this->canAdd = 1;
             $this->canDel = 1;
             $this->canAddPayment = 1;
@@ -69,6 +70,7 @@ class OaTourController extends Controller
         $tmp['isAgent'] = $this->isAgent;
         $tmp['isOperator'] = $this->isOperator;
         $tmp['isAdmin'] = $this->isAdmin;
+        $tmp['isAccountant'] = $this->isAccountant;
         $data['permission'] = $tmp;
         $data['arrUserType'] = $this->arrUserType;
         $data['arrDateType'] = $this->arrDateType;
@@ -94,17 +96,17 @@ class OaTourController extends Controller
      */
     public function actionIndex($user_id='', $user_type=1, $date='', $date_type=1, $inquiry_source='', $language='')
     {
-        if (!$this->isAdmin && $user_id && $user_id!=Yii::$app->user->identity->id) {
+        if (!($this->isAdmin || $this->isAccountant) && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$user_id])) {
-                throw new ForbiddenHttpException('You are not allowed to perform this action. ');
+                throw new ForbiddenHttpException('You are not allowed to perform this action.');
             }
         }
 
         $userList = $subAgent = [];
         $userId = Yii::$app->user->identity->id;
         $userName = Yii::$app->user->identity->username;
-        if ($this->isAdmin) {
+        if ($this->isAdmin || $this->isAccountant) {
             $subAgent = \common\models\Tools::getAgentUserList();
             if (isset($subAgent[$userId])) {
                 unset($subAgent[$userId]);
@@ -116,11 +118,11 @@ class OaTourController extends Controller
             $subAgent = \common\models\Tools::getSubUserByUserId($userId);
         }
         $userList = $userList + $subAgent;
-        if ($this->isAdmin) {
+        if ($this->isAdmin || $this->isAccountant) {
             $userList = [''=>'--All--'] + $userList;
         }
 
-        if (empty($user_id) && $this->isAdmin) {
+        if (empty($user_id) && ($this->isAdmin || $this->isAccountant)) {
             $user_id = '';
         }
         elseif (!empty($user_id) && isset($userList[$user_id])) {
@@ -158,7 +160,7 @@ class OaTourController extends Controller
         $summarySql .= "LEFT JOIN (SELECT tour_id, 1 AS no_confirmed_payments FROM (select TOTAL_PAYMENTS.tour_id, total_payments, not_paid FROM (SELECT tour_id, count(*) AS total_payments FROM oa_payment GROUP BY tour_id) AS TOTAL_PAYMENTS LEFT JOIN (SELECT tour_id, count(*) AS not_paid FROM oa_payment WHERE status = 0 GROUP BY tour_id) AS PAYMENT_DUE ON TOTAL_PAYMENTS.tour_id = PAYMENT_DUE.tour_id GROUP BY TOTAL_PAYMENTS.tour_id) AS TEMP WHERE total_payments = not_paid) AS NO_PAYMENTS_CONFIRMED ON OA_TOUR.id = NO_PAYMENTS_CONFIRMED.tour_id ";
         
         $summarySql .= "WHERE 1=1 ";
-        
+
         if (!empty($user_id)) {
             if ($user_type==2) {
                 $summarySql .= " AND OA_TOUR.co_agent={$user_id} ";
@@ -330,7 +332,8 @@ class OaTourController extends Controller
         $model = $this->findModel($id);
 
         $userId = Yii::$app->user->identity->id;
-        if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
+        
+        if (!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent]) && !isset($subAgent[$model->operator])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
@@ -421,6 +424,7 @@ class OaTourController extends Controller
         if ($this->canAdd != 1) {
             throw new ForbiddenHttpException('You are not allowed to perform this action. ');
         }
+        
         $model = new OaTour();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -444,31 +448,38 @@ class OaTourController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             if (!empty($inquiry_id)) {
-                $model->inquiry_id = $inquiry_id;
-                if (($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
-                    $model->inquiry_source = $inquiryModel->inquiry_source;
-                    $model->language = $inquiryModel->language;
-                    $model->agent = $inquiryModel->agent;
-                    $model->co_agent = $inquiryModel->co_agent;
-                    $model->tour_type = $inquiryModel->tour_type;
-                    $model->group_type = $inquiryModel->group_type;
-                    $model->country = $inquiryModel->country;
-                    $model->organization = $inquiryModel->organization;
-                    $model->number_of_travelers = $inquiryModel->number_of_travelers;
-                    $model->traveler_info = $inquiryModel->traveler_info;
-                    $model->tour_start_date = $inquiryModel->tour_start_date;
-                    $model->tour_end_date = $inquiryModel->tour_end_date;
-                    $model->contact = $inquiryModel->contact;
-                    $model->email = $inquiryModel->email;
-                    $model->other_contact_info = $inquiryModel->other_contact_info;
-                    $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
-                    if (!empty($inquiryModel->cities)) {
-                        $model->cities = explode(',', $inquiryModel->cities);
-                    }
-                }
-                else{
-                    throw new NotFoundHttpException('The inquiry does not found.');
-                }
+	            if(!\common\models\Tools::inquiryAssignedToTour($inquiry_id))
+	            {
+	                $model->inquiry_id = $inquiry_id;
+	                if (($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
+	                    $model->inquiry_source = $inquiryModel->inquiry_source;
+	                    $model->language = $inquiryModel->language;
+	                    $model->agent = $inquiryModel->agent;
+	                    $model->co_agent = $inquiryModel->co_agent;
+	                    $model->tour_type = $inquiryModel->tour_type;
+	                    $model->group_type = $inquiryModel->group_type;
+	                    $model->country = $inquiryModel->country;
+	                    $model->organization = $inquiryModel->organization;
+	                    $model->number_of_travelers = $inquiryModel->number_of_travelers;
+	                    $model->traveler_info = $inquiryModel->traveler_info;
+	                    $model->tour_start_date = $inquiryModel->tour_start_date;
+	                    $model->tour_end_date = $inquiryModel->tour_end_date;
+	                    $model->contact = $inquiryModel->contact;
+	                    $model->email = $inquiryModel->email;
+	                    $model->other_contact_info = $inquiryModel->other_contact_info;
+	                    $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
+	                    if (!empty($inquiryModel->cities)) {
+	                        $model->cities = explode(',', $inquiryModel->cities);
+	                    }
+	                }
+	                else{
+	                    throw new NotFoundHttpException('Inquiry not found.');
+	                }
+	            }
+	            else
+	            {
+		            throw new ForbiddenHttpException('Inquiry already assigned to tour. You are not allowed to perform this action.');
+	            }
             }
             return $this->render('create', [
                 'model' => $model,
@@ -485,12 +496,16 @@ class OaTourController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+        if($model->close && !$this->isAdmin):
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        endif;
 
         $userId = Yii::$app->user->identity->id;
-        if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
+        if (!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent]) && !isset($subAgent[$model->operator])) {
-                throw new ForbiddenHttpException('You are not allowed to perform this action. ');
+                throw new ForbiddenHttpException('You are not allowed to perform this action.');
             }
         }
 
@@ -527,10 +542,17 @@ class OaTourController extends Controller
      */
     public function actionDelete($id)
     {
-        if ($this->canDel != 1) {
-            throw new ForbiddenHttpException('You are not allowed to perform this action. ');
+        $model = $this->findModel($id);
+
+        if($model->close):
+            throw new ForbiddenHttpException('This tour is closed. You are not allowed to perform this action.');
+        endif;
+	    
+        if($this->canDel != 1) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
-        $this->findModel($id)->delete();
+        
+        $model->delete();
 
         return $this->redirect(['index']);
     }
