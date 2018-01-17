@@ -8,16 +8,14 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\OaFeedbackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Oa Feedbacks');
+$this->title = Yii::t('app', 'Feedbacks');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-feedback-index">
 
-	<h1><?= Html::encode($this->title) ?></h1>
-
 	<?php if($permission['canAdd']) { ?>
     <p>
-        <?= Html::a(Yii::t('app', 'Create Oa Feedback'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Feedback'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php } ?>
     

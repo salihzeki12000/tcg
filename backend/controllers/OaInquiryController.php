@@ -62,6 +62,9 @@ class OaInquiryController extends Controller
         $tmp['canDel'] = $this->canDel;
         $tmp['canMod'] = $this->canMod;
         $tmp['isAdmin'] = $this->isAdmin;
+        $tmp['isAccountant'] = $this->isAccountant;
+        $tmp['isOperator'] = $this->isOperator;
+        $tmp['isAgent'] = $this->isAgent;
         $tmp['canAddTour'] = $this->canAddTour;
         $data['permission'] = $tmp;
         return parent::render($templateName, $data);

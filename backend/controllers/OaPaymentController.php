@@ -170,7 +170,7 @@ class OaPaymentController extends Controller
         	$model->delete();
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['oa-tour/view', 'id' => $model->tour_id]);
     }
 
     /**
