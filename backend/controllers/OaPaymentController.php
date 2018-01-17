@@ -7,6 +7,7 @@ use common\models\OaPayment;
 use common\models\OaPaymentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 
 /**
@@ -91,6 +92,7 @@ class OaPaymentController extends Controller
 
         return $this->render('view', [
             'model' => $model,
+            'tourClosed' =>  \common\models\Tools::tourClosed($model->tour_id)
         ]);
     }
 
@@ -101,6 +103,10 @@ class OaPaymentController extends Controller
      */
     public function actionCreate($tour_id)
     {
+        if(\common\models\Tools::tourClosed($tour_id)) {
+            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        }
+        
         $model = new OaPayment();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -132,6 +138,10 @@ class OaPaymentController extends Controller
     {
         $model = $this->findModel($id);
 
+        if(\common\models\Tools::tourClosed($model->tour_id)) {
+            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -149,7 +159,16 @@ class OaPaymentController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+	    
+        if(\common\models\Tools::tourClosed($model->tour_id))
+        {
+            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        }
+        else
+        {
+        	$model->delete();
+        }
 
         return $this->redirect(['index']);
     }

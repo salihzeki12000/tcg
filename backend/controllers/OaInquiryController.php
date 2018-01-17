@@ -385,6 +385,11 @@ class OaInquiryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+        if($model->close && !$this->isAdmin):
+            throw new ForbiddenHttpException('This inquiry is closed. You are not allowed to perform this action.');
+        endif;
+        
         $userId = Yii::$app->user->identity->id;
         if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
@@ -417,10 +422,17 @@ class OaInquiryController extends Controller
      */
     public function actionDelete($id)
     {
-        if ($this->canDel != 1) {
-            throw new ForbiddenHttpException('You are not allowed to perform this action. ');
+        $model = $this->findModel($id);
+
+        if($model->close):
+            throw new ForbiddenHttpException('This inquiry is closed. You are not allowed to perform this action.');
+        endif;
+	    
+        if($this->canDel != 1) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
-        $this->findModel($id)->delete();
+        
+        $model->delete();
 
         return $this->redirect(['index']);
     }

@@ -9,23 +9,41 @@ use yii\widgets\DetailView;
 $this->title = 'Q' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inquiries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id);
+
 ?>
+
 <div class="oa-inquiry-view">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php if($permission['canDel']) { ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-        <?php } ?>
-        <?php if($permission['canAddTour']) { ?>
-        <?= Html::a(Yii::t('app', 'Add Tour'), ['oa-tour/create', 'inquiry_id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php } ?>
+	    <?php
+	    if($model->close == 'Yes'):
+			if($permission['isAdmin']):
+				echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+			endif;
+		else:
+			echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+		endif;
+		?>
+		
+		<?php
+		if($permission['canDel'] && $model->close == 'No' && !$inquiryAssignedToTour):
+	        echo Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+	            'class' => 'btn btn-danger',
+	            'data' => [
+	                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+	                'method' => 'post',
+	            ],
+			]);
+        endif;
+        ?>
+        
+        <?php
+	    if($permission['canAddTour'] && !$inquiryAssignedToTour):
+        	echo Html::a(Yii::t('app', 'Add Tour'), ['oa-tour/create', 'inquiry_id' => $model->id], ['class' => 'btn btn-primary']);
+        endif;
+        ?>
     </p>
 
     <?= DetailView::widget([

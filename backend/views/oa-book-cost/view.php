@@ -13,14 +13,20 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="oa-book-cost-view">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php if($model->pay_status == 'No'): echo Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]); endif; ?>
+	    <?php
+		if(!$tourClosed):
+        	echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+        
+	        if($model->pay_status == 'No'): echo ' ' . Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+	            'class' => 'btn btn-danger',
+	            'data' => [
+	                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+	                'method' => 'post',
+	            ],
+	        ]);
+	        endif;
+	    endif;
+	    ?>
     </p>
 
     <?= DetailView::widget([
