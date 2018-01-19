@@ -129,7 +129,7 @@ a.desc:after {
 	max-height: 150px; overflow-y: scroll; display: block;
 }
 
-.table .view-long {
+.table .view-long, .view-long {
 	max-height: 400px; overflow-y: scroll; display: block;
 }
 

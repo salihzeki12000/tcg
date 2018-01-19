@@ -42,7 +42,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
         ?>
         
         <?php
-	    if($permission['canAddTour'] && !$inquiryAssignedToTour):
+	    if($permission['canAddTour'] && !$inquiryAssignedToTour && $model->inquiry_status == 'Waiting for Payment'):
         	echo Html::a(Yii::t('app', 'Add Tour'), ['oa-tour/create', 'inquiry_id' => $model->id], ['class' => 'btn btn-primary']);
         endif;
         ?>
@@ -132,6 +132,10 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 			    'attribute' => 'other_note',
 			    'contentOptions' => ['class' => 'view-long'],
 			    'format' => 'html'
+			],
+			[
+				'attribute' => 'attachment',
+				'format' => 'html'
 			],
             [
 			    'attribute' => 'original_inquiry',

@@ -121,92 +121,119 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div>
         <ul class="ul_list_view">
-        <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
+        <?php
+	    $i=0;
+	    
+	    // get rid of inquiries OA_Accountant shouldn't see
+	    if($permission['isAccountant']):
+	    	$listInfo = array_diff_key($listInfo, ['Following' => 1, 'Inactive' => 1, 'Lost' => 1, 'Bad' => 1]);
+	    endif;
+	    
+	    foreach ($listInfo as $listTitle => $listItem) {
+        ?>
+        
             <li class="li_list_view <?=($i==0)?'active':''?>"><a href="javascript:none();" data-id="list_view_<?=$i?>"><?=$listTitle?></a></li>
-        <?php $i++; } ?>
+            
+        <?php
+	    $i++;
+	    }
+	    ?>
         </ul>
     </div>
     <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
-        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
-            <table id="w0" class="table table-striped table-bordered detail-view">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Create Date</th>
-                        <th>Contact</th>
-                        <th>Number of Travelers</th>
-                        <th>Tour Start Date</th>
-                        <th>Priority</th>
-                        <th>Probability</th>
-                        <th>Inquiry Status</th>
-                        <th>Agent</th>
-                        <th>Co-Agent</th>
-                        <th>Task, Notice & Warning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($listItem as $value) { ?>
-                        <tr>
-                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
-                            <td><?= date('Y-m-d', strtotime($value['create_time'])) ?></td>
-                            <td><?=$value['contact']?></td>
-                            <td><?=$value['number_of_travelers']?></td>
-                            <td><?=$value['tour_start_date']?></td>
-                            <td><?=$value['priority']?></td>
-                            <td><?=$value['probability']?></td>
-                            <td><?=$value['inquiry_status_txt']?></td>
-                            <td><?=$value['agent']?></td>
-                            <td><?=$value['co_agent']?></td>
-                            <td>
-	                            <?php
-	                            $now = time();
-	                            $secondsInOneDay = 86400;
+    
+    	<?php
+	    $lostOrBad = in_array($listTitle, array('Lost', 'Bad'));
+	    ?>
+    	
+	        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
+	            <table id="w0" class="table table-striped table-bordered detail-view">
+	                <thead>
+	                    <tr>
+	                        <th>ID</th>
+	                        <th>Create Date</th>
+	                        <th>Contact</th>
+	                        <th>Number of Travelers</th>
+	                        <th>Tour Start Date</th>
+	                        <th>Priority</th>
+	                        <th>Probability</th>
+	                        <th>Inquiry Status</th>
+	                        <th>Agent</th>
+	                        <th>Co-Agent</th>
+	                        <?php if(!$lostOrBad): ?><th>Task, Notice & Warning</th><?php endif; ?>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <?php foreach ($listItem as $value) { ?>
+	                        <tr>
+	                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
+	                            <td><?= date('Y-m-d', strtotime($value['create_time'])) ?></td>
+	                            <td><?=$value['contact']?></td>
+	                            <td><?=$value['number_of_travelers']?></td>
+	                            <td><?=$value['tour_start_date']?></td>
+	                            <td><?=$value['priority']?></td>
+	                            <td><?=$value['probability']?></td>
+	                            <td>
+		                            <?php if(!empty($value['follow_up_record'])): ?>
+			                        	<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Follow-up Record" data-content="<?= htmlspecialchars($value['follow_up_record']) ?>" style="text-decoration: underline; cursor:pointer;"><?= $value['inquiry_status_txt'] ?></a>
+			                        <?php
+				                    else:
+				                       	echo $value['inquiry_status_txt'];
+				                    endif;
+				                    ?>
+		                        </td>
+	                            <td><?=$value['agent']?></td>
+	                            <td><?=$value['co_agent']?></td>
+	                            <?php if(!$lostOrBad): ?><td>
+		                            <?php
+		                            $now = time();
+		                            $secondsInOneDay = 86400;
+			                            
+			                        // if there's a due task
+		                            if($value['task_remind'] && $value['task_remind_date']):
+		                            	$taskRemindDate = strtotime($value['task_remind_date']);
+		                            	if($now >= $taskRemindDate):
+		                            		echo '<div style="color: #28b500">Due task: ' . $value['task_remind'].'</div>';	
+		                            	endif;
+		                            endif;
 		                            
-		                        // if there's a due task
-	                            if($value['task_remind'] && $value['task_remind_date']):
-	                            	$taskRemindDate = strtotime($value['task_remind_date']);
-	                            	if($now >= $taskRemindDate):
-	                            		echo '<div style="color: #28b500">Due task: ' . $value['task_remind'].'</div>';	
+		                            // if inquiry needs to be updated
+		                            $updateTime = strtotime($value['update_time']);
+		                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && (($now - $updateTime) / $secondsInOneDay) >= 10)):
+		                            	echo '<div style="color: #c55">Needs to be updated!</div>';
+		                            endif;
+	
+		                            // if information is missing
+		                            if(empty($value['inquiry_source']) ||
+									   empty($value['language']) ||
+									   empty($value['agent']) ||
+									   empty($value['tour_start_date']) ||
+									   empty($value['contact']) ||
+									   empty($value['email']) ||
+									   empty($value['original_inquiry'])):
+										echo '<div style="color: #c55">Missing important info!</div>';
 	                            	endif;
-	                            endif;
-	                            
-	                            // if inquiry needs to be updated
-	                            $updateTime = strtotime($value['update_time']);
-	                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && (($now - $updateTime) / $secondsInOneDay) >= 10)):
-	                            	echo '<div style="color: #c55">Needs to be updated!</div>';
-	                            endif;
-
-	                            // if information is missing
-	                            if(empty($value['inquiry_source']) ||
-								   empty($value['language']) ||
-								   empty($value['agent']) ||
-								   empty($value['tour_start_date']) ||
-								   empty($value['contact']) ||
-								   empty($value['email']) ||
-								   empty($value['original_inquiry'])):
-									echo '<div style="color: #c55">Missing important info!</div>';
-                            	endif;
-                            	
-                            	// if expiring
-                            	$tourStartDate = strtotime($value['tour_start_date']);
-                            	
-								$oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
-								
-                            	if($oa_inquiry_status[$value['inquiry_status']] == 'Inactive' && (($tourStartDate - $now) / $secondsInOneDay) <= 60):
-									echo '<div style="color: #c55">Expiring, contact for final try.</div>';
-                            	endif;
-                            	
-                            	// if expired
-                            	if(!empty($tourStartDate) && in_array($oa_inquiry_status[$value['inquiry_status']], array('New', 'Following up', 'Waiting for Payment', 'Inactive')) && (($tourStartDate - $now) / $secondsInOneDay) <= 0):
-									echo '<div style="color: #c55">Expired, close or change date.</div>';
-                            	endif;
-	                           	?>
-		                    </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
+	                            	
+	                            	// if expiring
+	                            	$tourStartDate = strtotime($value['tour_start_date']);
+	                            	
+									$oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
+									
+	                            	if($oa_inquiry_status[$value['inquiry_status']] == 'Inactive' && (($tourStartDate - $now) / $secondsInOneDay) <= 60):
+										echo '<div style="color: #c55">Expiring, contact for final try.</div>';
+	                            	endif;
+	                            	
+	                            	// if expired
+	                            	if(!empty($tourStartDate) && in_array($oa_inquiry_status[$value['inquiry_status']], array('New', 'Following up', 'Waiting for Payment', 'Inactive')) && (($tourStartDate - $now) / $secondsInOneDay) <= 0):
+										echo '<div style="color: #c55">Expired, close or change date.</div>';
+	                            	endif;
+		                           	?>
+			                    </td><?php endif; ?>
+	                        </tr>
+	                    <?php } ?>
+	                </tbody>
+	            </table>
+	        </div>
     <?php $i++; } ?>
 
 
@@ -244,6 +271,14 @@ $js = <<<JS
             $(this).parent("li").addClass('active');
         });
     });
+    /* To initialize BS3 tooltips set this below */
+	$(function () { 
+	    $("[data-toggle='tooltip']").tooltip(); 
+	});;
+	/* To initialize BS3 popovers set this below */
+	$(function () { 
+	    $("[data-toggle='popover']").popover(); 
+	});
 JS;
 $this->registerJs($js);
 ?>

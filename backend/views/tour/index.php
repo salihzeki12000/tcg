@@ -13,8 +13,6 @@ $this->title = Yii::t('app', ucfirst(Yii::$app->controller->id));
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>

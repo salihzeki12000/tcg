@@ -102,6 +102,7 @@ use yii\helpers\Url;
         'minHeight' => '250px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
@@ -110,6 +111,7 @@ use yii\helpers\Url;
         'minHeight' => '250px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
@@ -118,21 +120,36 @@ use yii\helpers\Url;
         'minHeight' => '250px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
-    <?php if ($permission['canAdd']) { ?>
+    <?= $form->field($model, 'attachment')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'maxHeight' => '400px',
+        'replaceDivs' => false,
+        'buttons' => ['file']
+        ],
+    ]) ?>
+
+    <?php if($permission['isAdmin'] || ($model->isNewRecord && $permission['isAgent'])) { ?>
         <?= $form->field($model, 'original_inquiry', ['labelOptions' => ['class' => 'important-info']])->widget(\yii\redactor\widgets\Redactor::className(), [
         'clientOptions' => [
             'minHeight' => '250px',
+			'maxHeight' => '400px',
             'replaceDivs' => false,
             'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+			'buttonsHide' => ['file', 'image'],
+			'editable' => 'false'
             ],
         ]) ?>
     <?php } else { ?>
         <div class="form-group field-oainquiry-original_inquiry">
             <label class="control-label" for="oainquiry-original_inquiry">Original Inquiry</label>
-            <?= $model->original_inquiry?>
+            	<div class="view-long">
+	            	<?= $model->original_inquiry?>
+	            </div>
         </div>
     <?php } ?>
 

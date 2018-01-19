@@ -37,6 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
 					return '<a href="' . Url::to(['oa-tour/view', 'id'=>$model['tour_id']]) . '" target="_blank">T' . $model['tour_id'] . '</a>';
 				}
             ],
+            [
+				'label'=>'Start Date',
+				'value' => function($model) {
+					return common\models\Tools::getTourStartDate($model['tour_id']);
+				}
+            ],
             'payer',
             [
                 'attribute'=>'type',

@@ -22,8 +22,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language')) ?>
 
-    <?//= $form->field($model, 'create_time')->textInput() ?>
-
     <?= $form->field($model, 'comment_itinerary')->textarea(['rows' => 6])->label("Comment itinerary") ?>
 
     <?= $form->field($model, 'comment_meals')->textarea(['rows' => 6])->label("Comment meals") ?>
