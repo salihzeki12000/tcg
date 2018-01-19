@@ -151,6 +151,7 @@ class OaTourController extends Controller
             'Sales Amount (Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount'], //
             'Gross Profit(Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount-accounting_total_cost'], //
         ];
+        
         $summarySql = "SELECT * FROM oa_tour AS OA_TOUR ";
         
         $summarySql .= "LEFT JOIN (SELECT tour_id, sum(cny_amount) AS total_payments FROM oa_payment GROUP BY tour_id) AS OA_PAYMENT ON OA_TOUR.id = OA_PAYMENT.tour_id ";
@@ -296,10 +297,10 @@ class OaTourController extends Controller
         }
 
         $sort = array_column($listInfo['On Tour'], 'td_tour_start_date');      
-        array_multisort($sort, SORT_DESC, $listInfo['On Tour']);  
+        array_multisort($sort, SORT_ASC, $listInfo['On Tour']);  
 
         $sort = array_column($listInfo['Pre-Tour'], 'td_tour_start_date');      
-        array_multisort($sort, SORT_DESC, $listInfo['Pre-Tour']);  
+        array_multisort($sort, SORT_ASC, $listInfo['Pre-Tour']);  
 
         $sort = array_column($listInfo['After Tour'], 'td_tour_end_date');      
         array_multisort($sort, SORT_DESC, $listInfo['After Tour']);  

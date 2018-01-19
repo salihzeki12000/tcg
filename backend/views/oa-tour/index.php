@@ -45,6 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour End Date</label>
             <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Tour Create Date</label>
         </div>
+        
+        <?php if(!$permission['isAccountant']): ?>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Inquiry Source </label>
             <select name="inquiry_source" <?= ($permission['isAdmin'] || $permission['isAccountant']) ? '' : 'disabled' ?>>
@@ -61,6 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
               <?php endforeach ?>
             </select>
         </div>
+		<?php endif; ?>
+		
         <input class="btn btn-primary" type="submit" name="" value="Refresh">
     </form>
 
@@ -195,7 +199,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            	
 	                            	// if tour hasn't been closed after 45 days
 	                            	$tourEndDate = strtotime($value['tour_end_date']);
-	                            	if((($now - $tourEndDate) / $secondsInOneDay) >= 45):
+	                            	if((($now - $tourEndDate) / $secondsInOneDay) >= 45 && !$value['close']):
 	                            		echo '<div style="color: #c55">Needs to be closed!</div>';
 	                            	endif;
 	                            	
@@ -225,6 +229,13 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            	// if no confirmed payments
 									if($value['no_confirmed_payments'] == 1):
 										echo '<div style="color: #c55">No confirmed payment!</div>';
+	                            	endif;
+	                            	
+	                            	// if low profit risk
+	                            	if(!empty($value['tour_price'])):
+										if(!$value['close'] && (($value['tour_price'] - $value['estimated_cost'])/$value['tour_price']) < 0.2):
+											echo '<div style="color: #c55">Low profit risk!</div>';
+		                            	endif;
 	                            	endif;
 		                           	?>
 	                            </td>

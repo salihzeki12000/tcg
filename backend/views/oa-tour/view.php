@@ -72,6 +72,17 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 			    'attribute' => 'tour_price',
 			    'captionOptions' => ['class' => 'important-info'],
+                'value' => call_user_func(function($data) {
+	                $warning = '';
+                    if(!empty($data['tour_price'])): 
+                    	if($data['close'] == 'No' && (($data['tour_price'] - $data['estimated_cost'])/$data['tour_price']) < 0.2):
+							$data['tour_price'] .= ' - <span style="color: #c55">Low profit risk!</span>';
+                    	endif;
+                	endif;
+                	
+                	return $data['tour_price'];
+                }, $model),
+                'format' => 'raw'
 			],
             [
 			    'attribute' => 'estimated_cost',
@@ -155,6 +166,10 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'attribute' => 'other_note',
 			    'contentOptions' => ['class' => 'view-long'],
 			    'format' => 'html'
+			],
+			[
+				'attribute' => 'attachment',
+				'format' => 'html'
 			]
         ],
     ]) ?>

@@ -100,6 +100,7 @@ use yii\helpers\Url;
         'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
@@ -109,6 +110,7 @@ use yii\helpers\Url;
         'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
@@ -124,6 +126,7 @@ use yii\helpers\Url;
         'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
@@ -133,6 +136,7 @@ use yii\helpers\Url;
         'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
         ],
     ]) ?>
 
@@ -142,6 +146,16 @@ use yii\helpers\Url;
         'maxHeight' => '400px',
         'replaceDivs' => false,
         'plugins' => ['fontcolor','fontfamily', 'fontsize', /*'imagemanager'*/],
+        'buttonsHide' => ['file', 'image'],
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'attachment')->widget(\yii\redactor\widgets\Redactor::className(), [
+    'clientOptions' => [
+        'minHeight' => '250px',
+        'maxHeight' => '400px',
+        'replaceDivs' => false,
+        'buttons' => ['file']
         ],
     ]) ?>
 

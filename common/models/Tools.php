@@ -413,4 +413,26 @@ class Tools
             return 0;
         }
     }
+
+    static public function getTourStartDate($tour_id)
+    {
+        if(!empty($tour_id))
+        {
+            $query = \common\models\OaTour::find()->where(['id'=>$tour_id]);
+            $tour = $query->one();
+            
+            if(!empty($tour))
+            { 
+                return $tour['tour_start_date'];
+            }
+            else
+            {
+	            return '';
+            }
+        }
+        else
+        {
+            return '';
+        }
+    }
 }
