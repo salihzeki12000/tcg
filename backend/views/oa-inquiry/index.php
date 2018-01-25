@@ -152,7 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                <thead>
 	                    <tr>
 	                        <th>ID</th>
-	                        <?php if(!$lostOrBad): ?><th>Tour ID</th><?php endif; ?>
+	                        <?php if($waitingOrBooked): ?><th>Tour ID</th><?php endif; ?>
 	                        <th>Create Date</th>
 	                        <th>Contact</th>
 	                        <th>Number of Travelers</th>
