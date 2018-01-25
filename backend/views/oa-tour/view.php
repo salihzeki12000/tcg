@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => call_user_func(function($data) {
 	                $warning = '';
                     if(!empty($data['tour_price'])): 
-                    	if($data['close'] == 'No' && (($data['tour_price'] - $data['estimated_cost'])/$data['tour_price']) < 0.2):
+                    	if($data['close'] == 'No' && (($data['tour_price'] - $data['estimated_cost'])/$data['tour_price']) < 0.15):
 							$data['tour_price'] .= ' - <span style="color: #c55">Low profit risk!</span>';
                     	endif;
                 	endif;

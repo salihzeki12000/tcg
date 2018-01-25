@@ -233,7 +233,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            	
 	                            	// if low profit risk
 	                            	if(!empty($value['tour_price'])):
-										if(!$value['close'] && (($value['tour_price'] - $value['estimated_cost'])/$value['tour_price']) < 0.2):
+										if(!$value['close'] && (($value['tour_price'] - $value['estimated_cost'])/$value['tour_price']) < 0.15):
 											echo '<div style="color: #c55">Low profit risk!</div>';
 		                            	endif;
 	                            	endif;
