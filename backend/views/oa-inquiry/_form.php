@@ -24,7 +24,14 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
-    <?= $form->field($model, 'inquiry_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_status')) ?>
+	<?php
+	$disable = !$model->isNewRecord && !$permission['isAdmin'] && !$permission['isAccountant'];
+    ?>
+    <?= $form->field($model, 'inquiry_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_status'), ['options' => [
+	    	5 => ['disabled' => $disable ],
+	    	6 => ['disabled' => $disable ],
+	    	7 => ['disabled' => $disable ],
+	    ]]) ?>
 
     <?= $form->field($model, 'estimated_cny_amount')->textInput(['maxlength' => true]) ?>
 
@@ -167,6 +174,18 @@ $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>
 $js = <<<JS
     $(function(){
         $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        
+        $(".btn.btn-primary").click(function(e){
+	        var inquiryStatus = $("#oainquiry-inquiry_status option:selected").text(),
+	        	closed = $("#oainquiry-close").val(),
+		       	booked = "Booked";
+
+		    if(inquiryStatus.indexOf(booked) != -1 && closed == 0)
+		    {
+			    e.preventDefault();
+			   	alert('"Inquiry Status" is "Booked". Please close this inquiry before saving.');
+		    }
+        });
         
         $(".bt_clear_item").click(function(){
         	$(this).next().val("");

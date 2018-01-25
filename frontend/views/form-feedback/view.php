@@ -13,8 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="form-card-view container">
 
-    <center><h3><?=Yii::t('app','Thank you.')?></h3></center>
-    <p><?=Yii::t('app','We have received your feedback information.')?></p>
-    <a href="javascript:history.go(-1);"><?=Yii::t('app','BACK TO PREVIOUS PAGE')?></a>
+    <center>
+    	<h3><?=Yii::t('app','Thank you')?></h3>
+		<p><?=Yii::t('app','We have received your feedback.')?></p>
+    </center>
 
 </div>

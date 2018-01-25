@@ -118,7 +118,7 @@ class OaTour extends \yii\db\ActiveRecord
             'estimated_cost' => Yii::t('app', 'Estimated Tour Cost'),
             'accounting_sales_amount' => Yii::t('app', 'Accounting Sales Amount'),
             'accounting_total_cost' => Yii::t('app', 'Accounting Total Cost'),
-            'accounting_hotel_flight_train_cost' => Yii::t('app', 'Accounting Hotel&Flight&Train Cost'),
+            'accounting_hotel_flight_train_cost' => Yii::t('app', 'Accounting Hotel & Flight & Train Cost'),
             'attachment' => Yii::t('app', 'Attachments'),
             'close' => Yii::t('app', 'Close'),
             'creator' => Yii::t('app', 'Creator'),

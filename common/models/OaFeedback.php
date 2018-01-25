@@ -13,8 +13,8 @@ use Yii;
  * @property string $create_time
  * @property string $comment_itinerary
  * @property string $comment_meals
- * @property string $comment_service
- * @property string $how_found_us
+ * @property string $comment_service_agent
+ * @property string $comment_service_guide_driver
  * @property string $why_chose_us
  * @property string $rate
  * @property string $suggestions
@@ -38,12 +38,12 @@ class OaFeedback extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['comment_itinerary', 'comment_meals', 'comment_service', 'how_found_us', 'why_chose_us', 'rate', 'suggestions', 'client_name', 'client_email', 'agent'], 'required'],
+            [['comment_itinerary', 'comment_meals', 'comment_service_agent', 'why_chose_us', 'rate', 'client_name', 'client_email', 'agent', 'comment_service_guide_driver'], 'required', 'message' => 'Please fill in this field'],
             [['tour_id'], 'integer'],
             [['create_time'], 'safe'],
-            [['comment_itinerary', 'comment_meals', 'comment_service', 'suggestions'], 'string'],
+            [['comment_itinerary', 'comment_meals', 'comment_service_agent', 'comment_service_guide_driver', 'suggestions'], 'string'],
             [['language'], 'string', 'max' => 15],
-            [['how_found_us', 'why_chose_us', 'client_name', 'client_email'], 'string', 'max' => 255],
+            [['why_chose_us', 'client_name', 'client_email'], 'string', 'max' => 255],
             [['rate'], 'string', 'max' => 15],
             [['agent'], 'string', 'max' => 28],
         ];
@@ -61,8 +61,8 @@ class OaFeedback extends \yii\db\ActiveRecord
             'create_time' => Yii::t('app', 'Create Time'),
             'comment_itinerary' => Yii::t('app', 'How do you comment your itinerary? Was there any sight or activity you would have skipped?'),
             'comment_meals' => Yii::t('app', 'How do you comment the meals included in your tour package?'),
-            'comment_service' => Yii::t('app', 'How do you comment the service of your travel agent?'),
-            'how_found_us' => Yii::t('app', 'How did you find out about The China Guide?'),
+            'comment_service_agent' => Yii::t('app', 'How do you comment the service of your travel agent?'),
+            'comment_service_guide_driver' => Yii::t('app', 'How do you comment the service of your guide(s) and driver(s)?'),
             'why_chose_us' => Yii::t('app', 'Why did you choose us?'),
             'rate' => Yii::t('app', 'Overall how would you rate your trip?'),
             'suggestions' => Yii::t('app', 'Do you have any suggestions for us?'),

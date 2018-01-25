@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="form-info container">
-  <div class="form-info-create col-lg-8 col-md-8 col-xs-12">
+  <div class="form-info-create col-lg-6 col-md-6 col-sm-8 col-xs-12">
   	<span class="placeholder" id="inquiry-form"></span>
-    <h2><?=Yii::t('app',"Feedback Form")?></h2>
-	<div class="tips"><?=Yii::t('app','Your feedback is very important to us') ?></div>
+    <h2><?=Yii::t('app',"Feedback")?></h2>
+	<div class="tips"><?=Yii::t('app','Thank you for sharing your feelings about our services. They are valuable to us in developing our services further.') ?></div>
 
     <?= $this->render('/form-feedback/_form', [
         'model' => new common\models\OaFeedback(),

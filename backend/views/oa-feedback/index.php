@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'comment_itinerary:ntext',
             // 'comment_meals:ntext',
             // 'comment_service:ntext',
-            // 'how_found_us',
             // 'why_chose_us',
             // 'rate',
             // 'suggestions:ntext',

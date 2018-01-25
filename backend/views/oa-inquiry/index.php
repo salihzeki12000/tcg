@@ -144,6 +144,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     	<?php
 	    $lostOrBad = in_array($listTitle, array('Lost', 'Bad'));
+	    $waitingOrBooked = in_array($listTitle, array('Waiting for Payment', 'Booked'));
 	    ?>
     	
 	        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
@@ -151,6 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                <thead>
 	                    <tr>
 	                        <th>ID</th>
+	                        <?php if($waitingOrBooked): ?><th>Tour ID</th><?php endif; ?>
 	                        <th>Create Date</th>
 	                        <th>Contact</th>
 	                        <th>Number of Travelers</th>
@@ -166,7 +168,19 @@ $this->params['breadcrumbs'][] = $this->title;
 	                <tbody>
 	                    <?php foreach ($listItem as $value) { ?>
 	                        <tr>
-	                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
+	                            <td><a href="<?=Url::to(['oa-inquiry/view', 'id' => $value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
+								<?php
+								if($waitingOrBooked):
+									$tourId = \common\models\Tools::inquiryAssignedToTour($value['id']);
+								?>
+		                            <td>
+			                            <?php if($tourId): ?>
+			                            	<a href="<?=Url::to(['oa-tour/view', 'id' => $tourId])?>" target="_blank">T<?= $tourId ?></a>
+			                            <?php else: ?>
+			                            -
+			                            <?php endif; ?>
+			                            </td>
+								<?php endif; ?>
 	                            <td><?= date('Y-m-d', strtotime($value['create_time'])) ?></td>
 	                            <td><?=$value['contact']?></td>
 	                            <td><?=$value['number_of_travelers']?></td>
