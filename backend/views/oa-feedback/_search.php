@@ -29,8 +29,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'comment_service') ?>
 
-    <?php // echo $form->field($model, 'how_found_us') ?>
-
     <?php // echo $form->field($model, 'why_chose_us') ?>
 
     <?php // echo $form->field($model, 'rate') ?>

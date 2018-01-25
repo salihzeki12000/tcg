@@ -13,26 +13,26 @@ use yii\helpers\Url;
 	<hr />
     <?php $form = ActiveForm::begin(['id'=>'form-feedback-form']) ?>
    
-    <?= $form->field($model, 'comment_itinerary')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment_itinerary')->textarea(['maxlength' => true, 'rows' => '3']) ?>
 
-    <?= $form->field($model, 'comment_meals')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment_meals')->textarea(['maxlength' => true, 'rows' => '3']) ?>
 
-    <?= $form->field($model, 'agent')->dropDownList(\common\models\Tools::getFormTravelAgents(), ['prompt' => '']) ?>
+    <?= $form->field($model, 'comment_service_agent')->textarea(['maxlength' => true, 'placeholder' => Yii::t('app', 'Your travel agent is your contact at The China Guide who organized your tour'), 'rows' => '3']) ?>
 
-    <?= $form->field($model, 'comment_service')->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Your travel agent is your contact at The China Guide who organized your tour')]) ?>
+    <?= $form->field($model, 'comment_service_guide_driver')->textarea(['maxlength' => true, 'rows' => '3']) ?>
 
-    <?= $form->field($model, 'how_found_us')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'why_chose_us')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'why_chose_us')->textarea(['maxlength' => true, 'rows' => '3']) ?>
 
     <?= $form->field($model, 'rate')->dropDownList(['Excellent' => Yii::t('app','Excellent'), 'Very Good' => Yii::t('app','Very Good'), 'Average' => Yii::t('app','Average'), 'Poor' => Yii::t('app','Poor')], ['prompt' => Yii::t('app','')]) ?>
 
-    <?= $form->field($model, 'suggestions')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'suggestions')->textarea(['maxlength' => true, 'rows' => '3']) ?>
 
-    <?= $form->field($model, 'client_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'client_name')->textinput(['maxlength' => true, 'rows' => '3']) ?>
 
-    <?= $form->field($model, 'client_email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'client_email')->textinput(['maxlength' => true, 'rows' => '3']) ?>
 
+    <?= $form->field($model, 'agent')->dropDownList(\common\models\Tools::getFormTravelAgents(), ['prompt' => '']) ?>
+    
     <div class="form-group bt-submit">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Submit') : Yii::t('app', 'Submit'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

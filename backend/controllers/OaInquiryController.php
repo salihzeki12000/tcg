@@ -278,7 +278,6 @@ class OaInquiryController extends Controller
             'date_type' => $date_type,
             'inquiry_source' => $inquiry_source,
             'language' => $language,
-
         ]);
     }
 
@@ -394,7 +393,7 @@ class OaInquiryController extends Controller
         endif;
         
         $userId = Yii::$app->user->identity->id;
-        if (!$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
+        if (!$this->isAccountant && !$this->isAdmin && $model->agent!=$userId && $model->co_agent!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');

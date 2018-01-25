@@ -23,6 +23,7 @@ use Yii;
  * @property integer $pay_status
  * @property string $pay_date
  * @property string $pay_amount
+ * @property integer $pay_method
  * @property string $transaction_note
  * @property string $book_status
  * @property string $book_date
@@ -45,7 +46,7 @@ class OaBookCost extends \yii\db\ActiveRecord
     {
         return [
             // [['tour_id', 'type'], 'required'],
-            [['tour_id', 'creator', 'type', 'fid', 'need_to_pay', 'pay_status'], 'integer'],
+            [['tour_id', 'creator', 'type', 'fid', 'need_to_pay', 'pay_status', 'pay_method'], 'integer'],
             [['create_time', 'updat_time'], 'safe'],
             [['cl_info', 'transaction_note', 'note'], 'string'],
             [['cny_amount', 'pay_amount'], 'number'],
@@ -76,6 +77,7 @@ class OaBookCost extends \yii\db\ActiveRecord
             'pay_status' => Yii::t('app', 'Pay Status'),
             'pay_date' => Yii::t('app', 'Pay Date'),
             'pay_amount' => Yii::t('app', 'Pay Amount (CNY)'),
+            'pay_method' => Yii::t('app', 'Pay Method'),
             'transaction_note' => Yii::t('app', 'Transaction Note'),
             'book_status' => Yii::t('app', 'Book Status'),
             'book_date' => Yii::t('app', 'Book Date'),

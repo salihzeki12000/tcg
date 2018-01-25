@@ -67,6 +67,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'pay_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
+    <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method'), ['prompt' => '--Select--']) ?>
+
     <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6, 'disabled' => !$permission['canAdd']]) ?>
 
     </div>

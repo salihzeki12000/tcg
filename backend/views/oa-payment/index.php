@@ -68,6 +68,17 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute'=>'receit_cny_amount',
             ],
             'receit_date',
+            [
+                'attribute' => 'pay_method',
+                'value' => function ($data) {
+                    $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
+					if(!empty($data['pay_method'])) {
+						return $oa_pay_methods[$data['pay_method']];
+        			}
+        			
+        			return '-';
+                }
+            ],
             // 'create_time',
             // 'update_time',
             // 'receit_account',

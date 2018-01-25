@@ -9,42 +9,14 @@ use yii\helpers\ArrayHelper;
 /* @var $model common\models\OaTour */
 
 
-$this->title = 'T' . $model->id;
+$this->title = 'CL T' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tours'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="oa-tour-view">
 
-    <p>
-	    <?php
-		if($model->close == 'Yes'):
-			if($permission['isAdmin']):
-	        	echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-	        endif;
-	    else:
-	        echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-	    endif;
-	    ?>
-	    
-	    <?php
-	    if($permission['canDel'] && $model->close == 'No' && $dataProvider->totalCount == 0 && $dataProviderBC->totalCount == 0):
-	        echo Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-	            'class' => 'btn btn-danger',
-	            'data' => [
-	                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-	                'method' => 'post',
-	            ],
-	        ]);
-		endif;
-       ?>
-	    
-	    <?php
-	    echo Html::a(Yii::t('app', 'View CL'), ['view-confirmation-letter', 'id' => $model->id], ['class' => 'btn btn-primary', 'target' => '_blank']);
-       ?>
-    </p>
-
-    <?= DetailView::widget([
+    <!-- <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             [
@@ -176,117 +148,55 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'html'
 			]
         ],
-    ]) ?>
+    ]) ?> -->
 
-    <div class="form-group">
-    <h2 class="control-label">Payment</h2>
-    <div id="itinerary_list">
-        <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'columns' => [
-			        [
-			            'label' => 'ID',
-			            'format' => 'raw',
-			            'attribute' => 'id',
-			            'value' => function ($data) {
-			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data->id], ['data-pjax' => 0, 'target' => "_blank"]);
-			            },
-			        ],
-			        /* [
-			            'label' => 'Tour ID',
-			            'format' => 'raw',
-			            'attribute' => 'tour_id',
-			            'value' => function ($data) use ($model)  {
-			                return Html::a('T'. $model->id, ['oa-tour/view', 'id' => $model->id], ['data-pjax' => 0, 'target' => "_blank"]);
-			            },
-			        ],
-                    [
-	                    'attribute' => 'create_time',
-	                    'label' => 'Create Date',
-	                    'format' => ['date', 'php:Y-m-d']
-                    ],
-                    [
-	                    'attribute' => 'update_time',
-	                    'label' => 'Update Date',
-	                    'format' => ['date', 'php:Y-m-d']
-                    ], */
-                    'payer',
-                    'type',
-                    'cny_amount',
-                    'due_date',
-                    [
-	                    'attribute' => 'pay_method',
-	                    'value' => function($data) {
-		                    $payment_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
-					        if(!empty($data->pay_method)):
-					            return $payment_methods[$data->pay_method];
-					        else:
-					        	return '';
-					        endif;
-	                    }
-                    ],
-                    [
-                    	'attribute' => 'status',
-                    	'value' => function($data) {
-					        return $data->status == 0 ? 'Not Paid' : 'Paid';
-	                    }
-                    ],
-                    [
-                    	'attribute' => 'receit_cny_amount',
-                    	'label' => 'Receipt Amount'
-                    ],
-                    'receit_date',
+	<div id="bar" style="margin-top: 30px">
+		<?php
+		$types = Yii::$app->params['oa_book_cost_type'];
+		$first = 1;
+		$marginTop = 0;
 
-                    /* [
-                        'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view}',
-                        'buttons' => [
-                                'view' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-eye-open" title="View Details"></span>', ['oa-payment/view', 'id' => $model->id], ['data-pjax' => 0, 'target' => "_blank"]);
-                                },
-                                'delete' => function ($url, $model) {
-                                    return Html::a('<span class="glyphicon glyphicon-trash" title="Delete"></span>', ['oa-payment/delete', 'id' => $model->id], ['data-pjax' => 0]);
-                                }
-                        ],
-                    ], */
-                ],
-            ]); ?>
-    </div>
-    <?= (!$permission['canAddPayment'] || $model->close == 'Yes') ? '' : "<a href='".Url::to(['oa-payment/create', 'tour_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary']).'</a>' ?>
-    </div>
+		// initialize each type with a 0, meaning that it has not been printed
+		foreach($types as $type):
+			$types[$type] = 0;
+		endforeach;
 
-    <div class="form-group">
-	    <h2 class="control-label">Book Cost</h2>
+		foreach($dataProviderBC->models as $mod):
+			$type = Yii::$app->params['oa_book_cost_type'][$mod->type];
+			
+			if(!$types[$type]):
+				if(!$first):
+					$marginTop = 20;
+				endif;
+				
+	    		echo '<div style="margin-top: ' . $marginTop . 'px; margin-bottom: 5px; font-weight: bold">Your ' . $type . '</div>';
+	    		
+	    		$types[$type] = 1;	// flag type as printed (value 1)
+				$first = 0;
+	    	endif;
+	    		    	
+	    	echo '<div>' . $mod->start_date . ' to ' . $mod->end_date . ': ' . $mod->cl_info . '</div>';
+	  	endforeach;
+		?>
+	</div>
+	
+    <div style="margin-top: 50px">
+	    <button class="btn" data-clipboard-action="copy" data-clipboard-target="#bar">Copy to clipboard</button>
+	</div>
+
+    <!-- <div class="form-group">
 	    <div id="book-cost_list">
 	        <?= GridView::widget([
 	                'dataProvider' => $dataProviderBC,
 	                'columns' => [
-				        [
+				        /* [
 				            'label' => 'ID',
 				            'format' => 'raw',
 				            'attribute' => 'id',
 				            'value' => function ($data) {
 				                return Html::a('C'. $data['id'], ['oa-book-cost/view', 'id' => $data->id], ['data-pjax' => 0, 'target' => "_blank"]);
 				            },
-				        ],
-				        /* [
-				            'label' => 'Tour ID',
-				            'format' => 'raw',
-				            'attribute' => 'tour_id',
-				            'value' => function ($data) use ($model) {
-				                return Html::a('T'. $model->id, ['oa-tour/view', 'id' => $model->id], ['data-pjax' => 0, 'target' => "_blank"]);
-				            },
-				        ],
-	                    [
-		                    'attribute' => 'create_time',
-		                    'label' => 'Create Date',
-		                    'format' => ['date', 'php:Y-m-d']
-	                    ],
-	                    [
-		                    'attribute' => 'updat_time',
-		                    'label' => 'Update Date',
-		                    'format' => ['date', 'php:Y-m-d']
-	                    ], */
+				        ], */
 	                    [
 	                        'attribute'=>'type',
 	                        'filter'=> Yii::$app->params['oa_book_cost_type'],
@@ -294,7 +204,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            return Yii::$app->params['oa_book_cost_type'][$data['type']];
 	                        }
 	                    ],
-	                    [
+	                    /* [
 	                        'attribute'=>'fid',
 	                        'value' => function ($data) {
 	                            if($data['type'] == OA_BOOK_COST_TYPE_GUIDE)
@@ -332,23 +242,13 @@ $this->params['breadcrumbs'][] = $this->title;
 						        
 						        return $data['fid'];
 	                        }
-	                    ],
-	                    /* [
-		                    'attribute' => 'creator',
-		                    'value' => function($data) {
-			                     $creators = ArrayHelper::map(\common\models\User::find()->where(['id' => $data->creator])->all(), 'id', 'username');
-						        if(array_key_exists($data->creator, $creators)):
-						            return $creators[$data->creator];
-						        else:
-						            return 'Webform';
-						        endif;
-		                    }
 	                    ], */
 	                    'start_date',
 	                    'end_date',
-	                    'book_status',
-	                    'book_date',
-	                    [
+	                    'cl_info',
+	                    // 'book_status',
+	                    // 'book_date',
+	                    /* [
 	                        'attribute'=>'need_to_pay',
 	                        'value' => function ($data) {
 	                            return Yii::$app->params['yes_or_no'][$data->need_to_pay];
@@ -373,23 +273,29 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    [
 	                    	'attribute' => 'pay_amount',
 	                    	'label' => 'Pay Amount'
-	                    ],
-	                    /* [
-	                        'class' => 'yii\grid\ActionColumn',
-	                        'template' => '{view}',
-	                        'urlCreator' => function ($action, $model, $key, $index) {
-	                            if($action === 'view') {
-	                                return Url::to(['oa-book-cost/view', 'id'=>$model->id]);
-	                            }
-	                            if($action === 'delete') {
-	                                return Url::to(['oa-book-cost/delete', 'id'=>$model->id]);
-	                            }
-	                        },
 	                    ], */
 	                ],
 	            ]); ?>
 	    </div>
 	    <?= (!$permission['canAddBookCost'] || $model->close == 'Yes') ? '' : "<a href='".Url::to(['oa-book-cost/create', 'tour_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Book Cost Item'), ['class' => 'btn btn-primary']).'</a>' ?>
-    </div>
+    </div> -->
 
 </div>
+
+<?php
+$this->registerJsFile('@web/statics/js/clipboard.min.js',['depends'=>['backend\assets\AppAsset']]);
+$js = <<<JS
+    $(function(){
+        var clipboard = new Clipboard('.btn');
+
+	    clipboard.on('success', function(e) {
+	        console.log(e);
+	    });
+	
+	    clipboard.on('error', function(e) {
+	        console.log(e);
+	    });
+    });
+JS;
+$this->registerJs($js);
+?>

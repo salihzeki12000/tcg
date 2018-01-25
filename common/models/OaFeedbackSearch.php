@@ -19,7 +19,7 @@ class OaFeedbackSearch extends OaFeedback
     {
         return [
             [['id', 'tour_id'], 'integer'],
-            [['language', 'create_time', 'comment_itinerary', 'comment_meals', 'comment_service', 'how_found_us', 'why_chose_us', 'rate', 'suggestions', 'client_name', 'client_email', 'agent'], 'safe'],
+            [['language', 'create_time', 'comment_itinerary', 'comment_meals', 'comment_service_agent', 'comment_service_guide_driver', 'why_chose_us', 'rate', 'suggestions', 'client_name', 'client_email', 'agent'], 'safe'],
         ];
     }
 
@@ -68,8 +68,8 @@ class OaFeedbackSearch extends OaFeedback
         $query->andFilterWhere(['like', 'language', $this->language])
             ->andFilterWhere(['like', 'comment_itinerary', $this->comment_itinerary])
             ->andFilterWhere(['like', 'comment_meals', $this->comment_meals])
-            ->andFilterWhere(['like', 'comment_service', $this->comment_service])
-            ->andFilterWhere(['like', 'how_found_us', $this->how_found_us])
+            ->andFilterWhere(['like', 'comment_service_agent', $this->comment_service_agent])
+            ->andFilterWhere(['like', 'comment_service_guide_driver', $this->comment_service_guide_driver])
             ->andFilterWhere(['like', 'why_chose_us', $this->why_chose_us])
             ->andFilterWhere(['like', 'rate', $this->rate])
             ->andFilterWhere(['like', 'suggestions', $this->suggestions])

@@ -81,9 +81,11 @@ class OaPaymentController extends Controller
         $model = $this->findModel($id);
 
         $oa_pay_method = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
-        if (!empty($model->pay_method)) {
+        if(!empty($model->pay_method)):
             $model->pay_method = $oa_pay_method[$model->pay_method];
-        }
+        else:
+        	$model->pay_method = '-';
+        endif;
 
         $oa_receit_account = \common\models\Tools::getEnvironmentVariable('oa_receit_account');
         if (!empty($model->receit_account)) {

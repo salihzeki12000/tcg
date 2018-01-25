@@ -23,9 +23,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 				echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
 			endif;
 		else:
-			if(!$permission['isAccountant']):
-				echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-			endif;
+			echo Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
 		endif;
 		?>
 		

@@ -557,6 +557,89 @@ class OaTourController extends Controller
 
         return $this->redirect(['index']);
     }
+    
+    /**
+     * Displays a tour confirmation letter
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewConfirmationLetter($id)
+    {
+        $model = $this->findModel($id);
+
+        $userId = Yii::$app->user->identity->id;
+        
+        if (!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
+            $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
+            if (!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent]) && !isset($subAgent[$model->operator])) {
+                throw new ForbiddenHttpException('You are not allowed to perform this action. ');
+            }
+        }
+
+        $cities = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => explode(',', $model->cities)])->all(), 'id', 'name');
+        $model->cities = join(',', array_values($cities));
+
+        $creator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->creator])->all(), 'id', 'username');
+        if (array_key_exists($model->creator, $creator)) {
+            $model->creator = $creator[$model->creator];
+        }
+        else{
+            $model->creator = 'Webform';
+        }
+
+        $agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->agent])->all(), 'id', 'username');
+        if (array_key_exists($model->agent, $agent)) {
+            $model->agent = $agent[$model->agent];
+        }
+
+        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->co_agent])->all(), 'id', 'username');
+        if (array_key_exists($model->co_agent, $co_agent)) {
+            $model->co_agent = $co_agent[$model->co_agent];
+        }
+
+        $operator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->operator])->all(), 'id', 'username');
+        if (array_key_exists($model->operator, $operator)) {
+            $model->operator = $operator[$model->operator];
+        }
+
+        $oa_inquiry_source = \common\models\Tools::getEnvironmentVariable('oa_inquiry_source');
+        if (!empty($model->inquiry_source)) {
+            $model->inquiry_source = $oa_inquiry_source[$model->inquiry_source];
+        }
+
+        $oa_group_type = \common\models\Tools::getEnvironmentVariable('oa_group_type');
+        if (!empty($model->group_type)) {
+            $model->group_type = $oa_group_type[$model->group_type];
+        }
+
+        $oa_tour_stage = \common\models\Tools::getEnvironmentVariable('oa_tour_stage');
+        if (!empty($model->stage)) {
+            $model->stage = $oa_tour_stage[$model->stage];
+        }
+		
+		if(!empty($model->tour_type)):
+        	$model->tour_type = Yii::$app->params['form_types'][$model->tour_type];
+        else:
+        	$model->tour_type = "(not set)";
+        endif;
+
+        $model->vip = Yii::$app->params['yes_or_no'][$model->vip];
+
+        $model->close = Yii::$app->params['yes_or_no'][$model->close];
+
+        $_GET['tour_id'] = $id;
+        $searchModelBC = new \common\models\OaBookCostSearch();
+        $queryParamsBC = Yii::$app->request->queryParams;
+        unset($queryParamsBC['id']);
+        $dataProviderBC = $searchModelBC->search($queryParamsBC);
+        $dataProviderBC->sort = array('defaultOrder' => ['type' => SORT_ASC, 'start_date' => SORT_ASC]);
+
+        return $this->render('view-confirmation-letter', [
+            'model' => $model,
+            'searchModelBC' => $searchModelBC,
+            'dataProviderBC' => $dataProviderBC,
+        ]);
+    }
 
     /**
      * Finds the OaTour model based on its primary key value.

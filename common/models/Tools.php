@@ -401,7 +401,7 @@ class Tools
             
             if(!empty($tour))
             { 
-                return 1;
+                return $tour['id'];
             }
             else
             {

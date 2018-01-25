@@ -95,6 +95,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'cny_amount',
                 'label' => 'Estimated Amount'
             ],
+            [
+                'attribute' => 'pay_method',
+                'value' => function ($data) {
+                    $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
+					if(!empty($data['pay_method'])) {
+						return $oa_pay_methods[$data['pay_method']];
+        			}
+        			
+        			return '-';
+                }
+            ],
             'due_date_for_pay',
             [
                 'attribute'=>'pay_status',
