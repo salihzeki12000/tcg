@@ -21,13 +21,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+		'showFooter' => true,
         'columns' => [
             [
 				'attribute'=>'id',
 				'format' => 'raw',
 				'value' => function($model) {
 					return '<a href="' . Url::to(['oa-book-cost/view', 'id'=>$model['id']]) . '" target="_blank">C' . $model['id'] . '</a>';
-				}
+				},
+				'footer' => 'Total'
             ],
             [
 				'attribute'=>'tour_id',
@@ -78,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'end_date',
             /* [
                 'attribute'=>'book_status',
-                'filter'=> common\models\Tools::getEnvironmentVariable('oa_book_status'),
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_book_status'),
                 'value' => function ($data) {
                     return $data['book_status'];
                 }
@@ -93,12 +95,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'cny_amount',
-                'label' => 'Estimated Amount'
+                'label' => 'Estimated Amount',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'cny_amount'),
             ],
             'due_date_for_pay',
             [
                 'attribute'=>'pay_status',
-                'filter'=> common\models\Tools::getEnvironmentVariable('oa_pay_status'),
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_status'),
                 'value' => function ($data) {
                     return $data['pay_status'] == 0 ? 'Not Paid' : 'Paid';
                 }
@@ -106,10 +109,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'pay_date',
             [
                 'attribute'=>'pay_amount',
-                'label' => 'Pay Amount'
+                'label' => 'Pay Amount',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'pay_amount'),
             ],
             [
                 'attribute' => 'pay_method',
+                'filter' => \common\models\Tools::getEnvironmentVariable('oa_pay_method'),
                 'value' => function ($data) {
                     $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
 					if(!empty($data['pay_method'])) {

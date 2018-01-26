@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+		'showFooter' => true,
         'columns' => [
             [
 				'label'=>'ID',
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'raw',
 				'value' => function($model) {
 					return '<a href="' . Url::to(['oa-payment/view', 'id'=>$model['id']]) . '" target="_blank">P' . $model['id'] . '</a>';
-				}
+				},
+				'footer' => 'Total'
             ],
             [
 				'label'=>'Tour ID',
@@ -40,13 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 				'label'=>'Start Date',
 				'value' => function($model) {
-					return common\models\Tools::getTourStartDate($model['tour_id']);
+					return \common\models\Tools::getTourStartDate($model['tour_id']);
 				}
             ],
             'payer',
             [
                 'attribute'=>'type',
-                'filter'=> common\models\Tools::getEnvironmentVariable('oa_pay_type'),
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_type'),
                 'value' => function ($data) {
                     return $data['type'];
                 }
@@ -54,11 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 				'label'=>'Amount',
 				'attribute'=>'cny_amount',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'cny_amount'),
             ],
             'due_date',
             [
                 'attribute'=>'status',
-                'filter'=> common\models\Tools::getEnvironmentVariable('oa_pay_status'),
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_status'),
                 'value' => function ($data) {
                     return $data['status'] == 0 ? 'Not Paid' : 'Paid';
                 }
@@ -66,10 +69,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 				'label'=>'Receipt Amount',
 				'attribute'=>'receit_cny_amount',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
             ],
             'receit_date',
             [
                 'attribute' => 'pay_method',
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_method'),
                 'value' => function ($data) {
                     $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
 					if(!empty($data['pay_method'])) {

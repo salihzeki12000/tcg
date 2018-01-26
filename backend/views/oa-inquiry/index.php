@@ -155,8 +155,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	                        <?php if($waitingOrBooked): ?><th>Tour ID</th><?php endif; ?>
 	                        <th>Create Date</th>
 	                        <th>Contact</th>
-	                        <th>Number of Travelers</th>
-	                        <th>Tour Start Date</th>
+	                        <th>Travelers</th>
+	                        <th>Start Date</th>
 	                        <th>Priority</th>
 	                        <th>Probability</th>
 	                        <th>Inquiry Status</th>

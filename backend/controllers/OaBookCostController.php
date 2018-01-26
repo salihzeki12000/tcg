@@ -63,6 +63,7 @@ class OaBookCostController extends Controller
     {
         $searchModel = new OaBookCostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 100];
 		$dataProvider->sort = ['defaultOrder' => ['due_date_for_pay' => SORT_ASC], 'attributes' => ['due_date_for_pay', 'pay_date']];
 
         return $this->render('index', [
@@ -122,7 +123,7 @@ class OaBookCostController extends Controller
         $model->type = Yii::$app->params['oa_book_cost_type'][$model->type];
 
         if (isset($model->pay_status)) {
-            $model->pay_status = Yii::$app->params['yes_or_no'][$model->pay_status];
+            $model->pay_status = $model->pay_status == 0 ? 'Not Paid' : 'Paid';
         }
 
         return $this->render('view', [

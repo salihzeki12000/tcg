@@ -15,7 +15,7 @@ use Yii;
  * @property string $type
  * @property string $cny_amount
  * @property string $due_date
- * @property string $pay_method
+ * @property integer $pay_method
  * @property string $status
  * @property string $receit_account
  * @property string $receit_cny_amount
@@ -41,11 +41,11 @@ class OaPayment extends \yii\db\ActiveRecord
     {
         return [
             [['tour_id', 'payer', 'cny_amount', 'due_date', 'pay_method', 'type'], 'required'],
-            [['tour_id'], 'integer'],
+            [['tour_id', 'pay_method'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['cny_amount', 'receit_cny_amount', 'transaction_fee', 'status'], 'number'],
             [['note'], 'string'],
-            [['payer', 'type', 'due_date', 'pay_method', 'receit_account', 'receit_date', 'cc_note_signing'], 'string', 'max' => 255],
+            [['payer', 'type', 'due_date', 'receit_account', 'receit_date', 'cc_note_signing'], 'string', 'max' => 255],
         ];
     }
 
