@@ -57,7 +57,7 @@ use yii\helpers\ArrayHelper;
         'template' => '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'
         ])->textInput(['maxlength' => true]) ?>
     
-    <?= $form->field($model, 'pay_status')->dropdownList(Yii::$app->params['yes_or_no'], ['disabled' => !$permission['canAdd']]) ?>
+    <?= $form->field($model, 'pay_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_status'), ['disabled' => !$permission['canAdd']]) ?>
 
 	<?php if($permission['canAdd']): $template = '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'; else: $template = '{label} {input}{error}{hint}'; endif;?>
 
