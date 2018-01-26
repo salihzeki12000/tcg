@@ -8,6 +8,7 @@ use common\models\OaFeedbackSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 
 /**
  * OaFeedbackController implements the CRUD actions for OaFeedback model.
@@ -78,8 +79,12 @@ class OaFeedbackController extends Controller
      */
     public function actionView($id)
     {
+	    $model = $this->findModel($id);
+	    
+	    $model->tour_id = empty($model->tour_id) ? '-' : Html::a('T' . $model->tour_id, ['oa-tour/view', 'id' => $model->tour_id], ['target' => '_blank']);
+	    
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

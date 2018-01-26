@@ -27,47 +27,50 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'tour_id',
+            [
+            	'attribute' => 'tour_id',
+            	'format' => 'raw'
+            ],
             'language',
             'create_time',
             [
-            	'attribute'=>'comment_itinerary',
+            	'attribute' => 'comment_itinerary',
             	'label' => 'Comment itinerary'
             ],
             [
-            	'attribute'=>'comment_meals',
+            	'attribute' => 'comment_meals',
             	'label' => 'Comment meals'
             ],
             [
-            	'attribute'=>'comment_service_agent',
+            	'attribute' => 'comment_service_agent',
             	'label' => 'Comment agent'
             ],
             [
-            	'attribute'=>'comment_service_guide_driver',
+            	'attribute' => 'comment_service_guide_driver',
             	'label' => 'Comment guide & driver'
             ],
             [
-            	'attribute'=>'why_chose_us',
+            	'attribute' => 'why_chose_us',
             	'label' => 'Why chose us'
             ],
             [
-            	'attribute'=>'rate',
+            	'attribute' => 'rate',
             	'label' => 'Overall rate'
             ],
             [
-            	'attribute'=>'suggestions',
+            	'attribute' => 'suggestions',
             	'label' => 'Suggestions'
             ],
             [
-            	'attribute'=>'client_name',
+            	'attribute' => 'client_name',
             	'label' => 'Client\'s name'
             ],
             [
-            	'attribute'=>'client_email',
+            	'attribute' => 'client_email',
             	'label' => 'Client\'s email'
             ],
             [
-            	'attribute'=>'agent',
+            	'attribute' => 'agent',
             	'label' => 'Agent'
             ],
         ],
