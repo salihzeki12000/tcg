@@ -150,11 +150,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?> -->
 
-	<div id="bar" style="margin-top: 30px">
+	<div id="bar" style="margin-top: 30px; ">
 		<?php
 		$types = Yii::$app->params['oa_book_cost_type'];
-		$first = 1;
-		$marginTop = 0;
 
 		// initialize each type with a 0, meaning that it has not been printed
 		foreach($types as $type):
@@ -165,23 +163,41 @@ $this->params['breadcrumbs'][] = $this->title;
 			$type = Yii::$app->params['oa_book_cost_type'][$mod->type];
 			
 			if(!$types[$type]):
-				if(!$first):
-					$marginTop = 20;
-				endif;
+				$sectionTitle = ($type == 'Guide' || $type == 'Hotel') ? 'Your ' . $type . '(s)' : (($type == 'Other Cost') ? 'Other' : $type);
 				
-	    		echo '<div style="margin-top: ' . $marginTop . 'px; margin-bottom: 5px; font-weight: bold">Your ' . $type . '</div>';
+	    		echo '<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 20px"><h3>' . $sectionTitle . '</h3></div>';
 	    		
 	    		$types[$type] = 1;	// flag type as printed (value 1)
-				$first = 0;
 	    	endif;
-	    		    	
-	    	echo '<div>' . $mod->start_date . ' to ' . $mod->end_date . ': ' . $mod->cl_info . '</div>';
+	    	
+	    	if(!empty($mod->cl_info)):
+		    	
+		    	echo '<div class="col-lg-12 col-md-12 col-xs-12">';
+		    	
+		    	if(empty($mod->start_date) && empty($mod->end_date)):
+		    		$date = '-';
+		    	elseif(!empty($mod->start_date) && empty($mod->end_date)):
+		    		$date = "<b>$mod->start_date</b>";
+		    	elseif(empty($mod->start_date) && !empty($mod->end_date)):
+		    		$date = "<b>$mod->end_date</b>";
+		    	elseif($mod->start_date == $mod->end_date):
+		    		$date = "<b>$mod->start_date</b>";
+		    	else:
+		    		$date = "<b>$mod->start_date</b> to <b>$mod->end_date</b>";
+		    	endif;
+		    		
+		    	echo '<div class="col-lg-2 col-md-3 col-sm-6 col-xs-7" style="text-align: right">' . $date .  '</div><div class="col-lg-10 col-md-9 col-sm-6 col-xs-5" style="text-align: left">' . nl2br($mod->cl_info) . '</div>';
+		    	
+		    	echo '</div>';
+		    endif;
 	  	endforeach;
 		?>
 	</div>
 	
-    <div style="margin-top: 50px">
-	    <button class="btn" data-clipboard-action="copy" data-clipboard-target="#bar">Copy to clipboard</button>
+	<div style="clear: both"></div>
+	
+    <div style="margin-top: 70px">
+	    <button class="btn btn-primary" data-clipboard-action="copy" data-clipboard-target="#bar">Copy to clipboard</button>
 	</div>
 
     <!-- <div class="form-group">

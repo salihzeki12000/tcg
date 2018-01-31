@@ -4,20 +4,18 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\OaOtherCost */
+/* @var $model common\models\OaDailyCostSubtype */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Other Costs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Oa Daily Cost Subtypes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="oa-other-cost-view">
+<div class="oa-daily-cost-subtype-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-	    <?php if($permission['canMod']) { ?>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php } ?>
-        
-        <?php if($permission['canDel']) { ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -25,19 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-        <?php } ?>
-        
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
+            'type',
             'name',
-            'city_id',
-            'contact_person_info:ntext',
-            'bank_info:ntext',
-            'note:ntext',
         ],
     ]) ?>
 
