@@ -3,47 +3,19 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\OaOtherCost;
-use common\models\OaOtherCostSearch;
+use common\models\OaDailyCost;
+use common\models\OaDailyCostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 
 /**
- * OaOtherCostController implements the CRUD actions for OaOtherCost model.
+ * OaDailyCostController implements the CRUD actions for OaDailyCost model.
  */
-class OaOtherCostController extends Controller
+class OaDailyCostController extends Controller
 {
-    public $canAdd = 0;
-    public $canDel = 0;
-    public $canMod = 0;
-
-    public function beforeAction($action)
-    {
-        $auth = Yii::$app->authManager;
-        $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
-        if (isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
-            $this->canAdd = 1;
-            $this->canMod = 1;
-        }
-        
-        if (isset($roles['OA-Admin'])) {
-            $this->canDel = 1;
-        }
-        
-        return parent::beforeAction($action);
-    }
-
-    public function render($templateName, $data=[])
-    {
-        $tmp['canAdd'] = $this->canAdd;
-        $tmp['canDel'] = $this->canDel;
-        $tmp['canMod'] = $this->canMod;
-        $data['permission'] = $tmp;
-        return parent::render($templateName, $data);
-    }
-    
     /**
      * @inheritdoc
      */
@@ -60,12 +32,12 @@ class OaOtherCostController extends Controller
     }
 
     /**
-     * Lists all OaOtherCost models.
+     * Lists all OaDailyCost models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OaOtherCostSearch();
+        $searchModel = new OaDailyCostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -75,37 +47,39 @@ class OaOtherCostController extends Controller
     }
 
     /**
-     * Displays a single OaOtherCost model.
+     * Displays a single OaDailyCost model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $city_id = ArrayHelper::map(\common\models\OaCity::find()->where(['id' => $model->city_id])->all(), 'id', 'name');
-        if (array_key_exists($model->city_id, $city_id)) {
-            $model->city_id = $city_id[$model->city_id];
+	    
+        $creator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->creator])->all(), 'id', 'username');
+        if (array_key_exists($model->creator, $creator)) {
+            $model->creator = $creator[$model->creator];
         }
-
+        else{
+            $model->creator = 'Webform';
+        }
+	    
         return $this->render('view', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Creates a new OaOtherCost model.
+     * Creates a new OaDailyCost model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new OaOtherCost();
+        $model = new OaDailyCost();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->create_time = date('Y-m-d H:i:s',time());
-            if ($model->save()) {
-                # code...
-            }
+            $model->creator = Yii::$app->user->identity->id;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -115,7 +89,7 @@ class OaOtherCostController extends Controller
     }
 
     /**
-     * Updates an existing OaOtherCost model.
+     * Updates an existing OaDailyCost model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -134,7 +108,7 @@ class OaOtherCostController extends Controller
     }
 
     /**
-     * Deletes an existing OaOtherCost model.
+     * Deletes an existing OaDailyCost model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -147,18 +121,32 @@ class OaOtherCostController extends Controller
     }
 
     /**
-     * Finds the OaOtherCost model based on its primary key value.
+     * Finds the OaDailyCost model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return OaOtherCost the loaded model
+     * @return OaDailyCost the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = OaOtherCost::findOne($id)) !== null) {
+        if (($model = OaDailyCost::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionSubcat() {
+    	$out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $type = $parents[0];
+                $out = \common\models\Tools::getDailyCostSubtypes($type);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 }

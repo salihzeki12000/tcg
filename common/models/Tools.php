@@ -446,4 +446,16 @@ class Tools
 	
 	    return number_format($total, 2, '.', ',');
 	}
+	
+	public static function getDailyCostTypes(){
+    	$data = \common\models\OaDailyCostType::find()->all();
+		$value = (count($data)==0) ? [''=>'']: \yii\helpers\ArrayHelper::map($data, 'id','name');
+        return $value;
+    }
+    
+    public static function getDailyCostSubtypes($type, $index = 0) {
+        $data = \common\models\OaDailyCostSubtype::find()->where(['type'=>$type])->select(['id','name'])->asArray()->all();
+        $value = (count($data) == 0) ? ['' => ''] : ((!$index) ? $data : \yii\helpers\ArrayHelper::map($data, 'id','name'));
+        return $value;
+    }
 }

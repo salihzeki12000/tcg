@@ -177,13 +177,32 @@ $js = <<<JS
         
         $(".btn.btn-primary").click(function(e){
 	        var inquiryStatus = $("#oainquiry-inquiry_status option:selected").text(),
+	        	closeReport = $("#oainquiry-close_report").val(),
 	        	closed = $("#oainquiry-close").val(),
-		       	booked = "Booked";
-
-		    if(inquiryStatus.indexOf(booked) != -1 && closed == 0)
+		       	booked = "Booked",
+	       		lost = "Lost",
+	       		bad = "Bad",
+	       		duplicate = "Bad - Duplicate";
+	       		
+	       	if(inquiryStatus == duplicate && closeReport == '')
+	       	{
+			    e.preventDefault();
+		       	alert('This inquiry is a duplicate. Please note the ID of the duplicate inquiry in the "Close Report" field.');
+	       	}
+	       	else if((inquiryStatus.indexOf(lost) != -1 || inquiryStatus.indexOf(bad) != -1) && closed == 0)
+	       	{
+			    e.preventDefault();
+		       	alert('Inquiry Status is "Lost" or "Bad". Please close this inquiry before saving.');
+	       	}
+		   	else if(inquiryStatus.indexOf(booked) != -1 && closed == 0)
 		    {
 			    e.preventDefault();
-			   	alert('"Inquiry Status" is "Booked". Please close this inquiry before saving.');
+			   	alert('Inquiry Status is "Booked". Please close this inquiry before saving.');
+		    }
+		    else if(inquiryStatus.indexOf(booked) != -1 && closed == 0)
+		    {
+			    e.preventDefault();
+			   	alert('Inquiry Status is "Booked". Please close this inquiry before saving.');
 		    }
         });
         
@@ -202,7 +221,7 @@ $js = <<<JS
 		       		
 		       	if(inquiryStatus.indexOf(booked) == -1 && inquiryStatus.indexOf(lost) == -1 && inquiryStatus.indexOf(bad) == -1)
 		       	{
-			       	alert('Only Booked or Lost or Bad inquiries can be closed');
+			       	alert('Only Booked or Lost or Bad inquiries can be closed.');
 			       	$("#oainquiry-close").val("0");
 		       	}
 	       } 
@@ -224,7 +243,7 @@ $js = <<<JS
 
 		       	if(inquiryStatus.indexOf(booked) == -1 && inquiryStatus.indexOf(lost) == -1 && inquiryStatus.indexOf(bad) == -1)
 		       	{
-			       	alert('Only Booked or Lost or Bad inquiries can be closed');
+			       	alert('Only Booked or Lost or Bad inquiries can be closed.');
 			       	$("#oainquiry-inquiry_status").val(previousStatus);
 		       	}
 	       } 
