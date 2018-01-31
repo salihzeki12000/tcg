@@ -105,6 +105,8 @@ $js = <<<JS
                 $(".need_to_pay_yes_show").show();
             }
             else{
+	            $("#oabookcost-cny_amount, #oabookcost-due_date_for_pay, #oabookcost-pay_date, #oabookcost-pay_amount, #oabookcost-transaction_note, #oabookcost-pay_method").val('');
+	            $("#oabookcost-pay_status").val('0');
                 $(".need_to_pay_yes_show").hide();
             }
         });

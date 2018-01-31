@@ -64,7 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'label' => 'Pay Amount'
             ],
             'pay_method',
-            'pay_date',
             'transaction_note:ntext',
             'note:ntext',
         ],
