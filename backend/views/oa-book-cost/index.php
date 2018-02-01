@@ -124,6 +124,10 @@ $this->params['breadcrumbs'][] = $this->title;
         			return '-';
                 }
             ],
+            [
+                'attribute'=>'transaction_fee',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'transaction_fee'),
+            ],
             
             // 'create_time',
             // 'updat_time',

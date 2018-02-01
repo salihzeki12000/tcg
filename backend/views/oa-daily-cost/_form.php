@@ -33,6 +33,8 @@ use yii\helpers\Url;
     <?= $form->field($model, 'pay_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_status')) ?>
 
     <?= $form->field($model, 'pay_date')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method'), ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
 

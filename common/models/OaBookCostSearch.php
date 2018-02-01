@@ -19,6 +19,7 @@ class OaBookCostSearch extends OaBookCost
     {
         return [
             [['id', 'tour_id', 'creator', 'type', 'fid', 'need_to_pay', 'pay_status'], 'integer'],
+            [['transaction_fee'], 'number'],
             [['create_time', 'updat_time', 'start_date', 'end_date', 'cl_info', 'due_date_for_pay', 'pay_date', 'transaction_note', 'book_status', 'book_date', 'note', 'pay_method'], 'safe'],
             [['cny_amount', 'pay_amount'], 'number'],
         ];
@@ -83,6 +84,7 @@ class OaBookCostSearch extends OaBookCost
             ->andFilterWhere(['like', 'due_date_for_pay', $this->due_date_for_pay])
             ->andFilterWhere(['like', 'pay_date', $this->pay_date])
             ->andFilterWhere(['like', 'pay_method', $this->pay_method])
+            ->andFilterWhere(['like', 'transaction_fee', $this->transaction_fee])
             ->andFilterWhere(['like', 'transaction_note', $this->transaction_note])
             ->andFilterWhere(['like', 'book_status', $this->book_status])
             ->andFilterWhere(['like', 'book_date', $this->book_date])

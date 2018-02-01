@@ -62,6 +62,13 @@ class OaDailyCostController extends Controller
         else{
             $model->creator = 'Webform';
         }
+
+        $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
+        if(!empty($model->pay_method)):
+            $model->pay_method = $oa_pay_methods[$model->pay_method];
+        else:
+        	$model->pay_method = '-';
+        endif;
 	    
         return $this->render('view', [
             'model' => $model,

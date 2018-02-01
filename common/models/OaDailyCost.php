@@ -15,6 +15,7 @@ use Yii;
  * @property integer $amount
  * @property integer $pay_status
  * @property string $pay_date
+ * @property integer $pay_method
  * @property string $notes
  */
  
@@ -36,7 +37,7 @@ class OaDailyCost extends \yii\db\ActiveRecord
         return [
             [['create_time'], 'safe'],
             [['creator', 'type', 'sub_type', 'amount', 'pay_status', 'pay_date'], 'required'],
-            [['creator', 'type', 'sub_type', 'pay_status'], 'integer'],
+            [['creator', 'type', 'sub_type', 'pay_status', 'pay_method'], 'integer'],
             [['amount'], 'number'],
             [['notes'], 'string'],
             [['pay_date'], 'string', 'max' => 10],
@@ -57,6 +58,7 @@ class OaDailyCost extends \yii\db\ActiveRecord
             'amount' => Yii::t('app', 'Amount'),
             'pay_status' => Yii::t('app', 'Pay Status'),
             'pay_date' => Yii::t('app', 'Pay Date'),
+            'pay_method' => Yii::t('app', 'Pay Method'),
             'notes' => Yii::t('app', 'Notes'),
         ];
     }

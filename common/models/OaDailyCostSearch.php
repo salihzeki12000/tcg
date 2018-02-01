@@ -18,7 +18,7 @@ class OaDailyCostSearch extends OaDailyCost
     public function rules()
     {
         return [
-            [['id', 'creator', 'type', 'sub_type', 'amount', 'pay_status'], 'integer'],
+            [['id', 'creator', 'type', 'sub_type', 'amount', 'pay_status', 'pay_method'], 'integer'],
             [['create_time', 'pay_date', 'notes'], 'safe'],
         ];
     }
@@ -68,6 +68,7 @@ class OaDailyCostSearch extends OaDailyCost
         ]);
 
         $query->andFilterWhere(['like', 'pay_date', $this->pay_date])
+            ->andFilterWhere(['like', 'pay_method', $this->pay_method])
             ->andFilterWhere(['like', 'create_time', $this->create_time])
             ->andFilterWhere(['like', 'notes', $this->notes]);
 

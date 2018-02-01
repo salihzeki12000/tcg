@@ -69,6 +69,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method'), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 
+    <?= $form->field($model, 'transaction_fee')->textInput(['disabled' => !$permission['canAdd']]) ?>
+
     <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6, 'disabled' => !$permission['canAdd']]) ?>
 
     </div>
@@ -105,7 +107,7 @@ $js = <<<JS
                 $(".need_to_pay_yes_show").show();
             }
             else{
-	            $("#oabookcost-cny_amount, #oabookcost-due_date_for_pay, #oabookcost-pay_date, #oabookcost-pay_amount, #oabookcost-transaction_note, #oabookcost-pay_method").val('');
+	            $("#oabookcost-cny_amount, #oabookcost-due_date_for_pay, #oabookcost-pay_date, #oabookcost-pay_amount, #oabookcost-transaction_note, #oabookcost-transaction_fee, #oabookcost-pay_method").val('');
 	            $("#oabookcost-pay_status").val('0');
                 $(".need_to_pay_yes_show").hide();
             }

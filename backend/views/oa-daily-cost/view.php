@@ -53,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				}, $model),
             ],
             'pay_date',
+            'pay_method',
             'notes:ntext',
         ],
     ]) ?>
