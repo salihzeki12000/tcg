@@ -67,6 +67,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data['pay_status'] == 0 ? 'Not Paid' : 'Paid';
                 },
             ],
+            [
+                'attribute' => 'pay_method',
+                'filter' => \common\models\Tools::getEnvironmentVariable('oa_pay_method'),
+                'value' => function ($data) {
+                    $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
+					if(!empty($data['pay_method'])) {
+						return $oa_pay_methods[$data['pay_method']];
+        			}
+        			
+        			return '-';
+                }
+            ],
             'pay_date',
         ],
     ]); ?>
