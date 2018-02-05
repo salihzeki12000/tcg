@@ -92,7 +92,10 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'attribute' => 'estimated_cost',
 			    'captionOptions' => ['class' => 'important-info'],
 			],
-            'payment',
+            [
+			    'attribute' => 'payment',
+			    'captionOptions' => ['class' => 'important-info'],
+			],
             'accounting_sales_amount',
             'accounting_total_cost',
             'accounting_hotel_flight_train_cost',
