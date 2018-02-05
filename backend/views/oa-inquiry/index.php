@@ -57,6 +57,16 @@ $this->params['breadcrumbs'][] = $this->title;
         </tbody>
     </table>
     <?php } ?>
+    
+    <form method="get" action="<?=Url::to(['oa-inquiry/view'])?>" target="_blank">
+        <div style="margin: 30px 0 10px;">
+            <label style="width: 100px;">View inquiry Q</label>
+	    	<input name="id" type="text" size="10" style="margin-right: 10px" placeholder="Inquiry ID" />
+			<input class="btn btn-primary" type="submit" name="" value="Go">
+	    </div>
+	</form>
+	
+	<div><hr style="border-top-color: #dee3e6"></div>
 
     <form method="get" action="<?=Url::to(['oa-inquiry/index'])?>">
         <div style="margin: 10px 0;">
@@ -96,9 +106,13 @@ $this->params['breadcrumbs'][] = $this->title;
               <?php endforeach ?>
             </select>
         </div>
-        <input class="btn btn-primary" type="submit" name="" value="Refresh">
+        <div style="margin: 10px 0;">
+            <label style="width: 100px;">Name/Email</label>
+	    	<input name="name_or_email" type="text" size="50" />
+	    </div>
+        <input class="btn btn-primary" type="submit" name="" value="Refresh" style="margin-bottom: 20px">
     </form>
-
+	
     <div>
         <table id="w0" class="table table-striped table-bordered detail-view">
             <thead>

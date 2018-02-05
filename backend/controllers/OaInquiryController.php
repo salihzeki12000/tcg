@@ -86,7 +86,7 @@ class OaInquiryController extends Controller
      * Lists all OaInquiry models.
      * @return mixed
      */
-    public function actionIndex($user_id='', $co=0, $date='', $date_type=2, $inquiry_source='', $language='')
+    public function actionIndex($user_id='', $co=0, $date='', $date_type=2, $inquiry_source='', $language='', $name_or_email='')
     {
         if (!($this->isAdmin || $this->isAccountant) && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
@@ -196,6 +196,7 @@ class OaInquiryController extends Controller
             'Bad' => ['13','14'], //Bad
         ];
         $summarySql = "SELECT * FROM oa_inquiry WHERE 1=1 ";
+        
         if (!empty($user_id)) {
             if ($co==1) {
                 $summarySql .= " AND  co_agent={$user_id} ";
@@ -204,12 +205,19 @@ class OaInquiryController extends Controller
                 $summarySql .= " AND  agent={$user_id} ";
             }
         }
+        
         if (!empty($inquiry_source)) {
             $summarySql .= " AND  inquiry_source='{$inquiry_source}' ";
         }
+        
         if (!empty($language)) {
             $summarySql .= " AND  language='{$language}' ";
         }
+        
+        if(!empty($name_or_email)):
+            $summarySql .= " AND (contact LIKE '%{$name_or_email}%' OR email LIKE '%{$name_or_email}%') ";
+        endif;
+        
         if ($date_type == 2) {
             $summarySql .= " AND  create_time>='{$from_date}' ";
             $summarySql .= " AND  create_time<'{$end_date}' ";
