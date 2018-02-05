@@ -215,7 +215,7 @@ class OaInquiryController extends Controller
         }
         
         if(!empty($name_or_email)):
-            $summarySql .= " AND (contact LIKE '%{$name_or_email}%' OR email LIKE '%{$name_or_email}%') ";
+            $summarySql .= " AND (contact LIKE '%{$name_or_email}%' OR email LIKE '%{$name_or_email}%') OR original_inquiry lIKE '%{$name_or_email}%' ";
         endif;
         
         if ($date_type == 2) {

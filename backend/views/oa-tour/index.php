@@ -162,6 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <th>Tour End</th>
                             <th>VIP</th>
                             <th>Tour Price</th>
+                            <th>Estimated Cost</th>
                             <th>Payment</th>
                             <th>Stage</th>
                             <th>Agent</th>
@@ -179,6 +180,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?=$value['tour_end_date']?></td>
                                 <td><?=$value['vip']?></td>
                                 <td><?=$value['tour_price']?></td>
+                                <td><?=$value['estimated_cost']?></td>
                                 <td><?=$value['payment']?></td>
                                 <td><?=$value['stage']?></td>
                                 <td><?=$value['agent']?></td>
