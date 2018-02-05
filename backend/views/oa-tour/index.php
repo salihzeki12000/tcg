@@ -21,6 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Tour'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php } ?>
+    
+    <form method="get" action="<?=Url::to(['oa-tour/view'])?>" target="_blank">
+        <div style="margin: 30px 0 10px;">
+            <label style="width: 100px;">View tour T</label>
+	    	<input name="id" type="text" size="10" style="margin-right: 10px" placeholder="Tour ID" />
+			<input class="btn btn-primary" type="submit" name="" value="Go">
+	    </div>
+	</form>
+	
+	<div><hr style="border-top-color: #dee3e6"></div>
 
     <form method="get" action="<?=Url::to(['oa-tour/index'])?>">
         <div style="margin: 10px 0;">
@@ -67,8 +77,13 @@ $this->params['breadcrumbs'][] = $this->title;
 	            </select>
 			<?php endif; ?>
         </div>
+        
+        <div style="margin: 10px 0;">
+            <label style="width: 100px;">Name/Email</label>
+	    	<input name="name_or_email" type="text" size="50" />
+	    </div>
 		
-        <input class="btn btn-primary" type="submit" name="" value="Refresh">
+        <input class="btn btn-primary" type="submit" name="" value="Refresh" style="margin-bottom: 20px">
     </form>
 
     <div>

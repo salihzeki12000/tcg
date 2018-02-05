@@ -39,6 +39,7 @@ class OaDailyCostController extends Controller
     {
         $searchModel = new OaDailyCostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 100];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

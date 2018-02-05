@@ -94,7 +94,7 @@ class OaTourController extends Controller
      * Lists all OaTour models.
      * @return mixed
      */
-    public function actionIndex($user_id='', $user_type=1, $date='', $date_type=1, $inquiry_source='', $language='')
+    public function actionIndex($user_id='', $user_type=1, $date='', $date_type=1, $inquiry_source='', $language='', $name_or_email='')
     {
         if (!($this->isAdmin || $this->isAccountant) && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
@@ -179,6 +179,11 @@ class OaTourController extends Controller
         if (!empty($language)) {
             $summarySql .= " AND OA_TOUR.language='{$language}' ";
         }
+        
+        if(!empty($name_or_email)):
+            $summarySql .= " AND (contact LIKE '%{$name_or_email}%' OR email LIKE '%{$name_or_email}%') ";
+        endif;
+        
         if ($date_type == 2) {
             $summarySql .= " AND OA_TOUR.create_time>='{$from_date}' ";
             $summarySql .= " AND OA_TOUR.create_time<'{$end_date}' ";
