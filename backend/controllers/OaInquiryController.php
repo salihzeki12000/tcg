@@ -86,7 +86,7 @@ class OaInquiryController extends Controller
      * Lists all OaInquiry models.
      * @return mixed
      */
-    public function actionIndex($user_id='', $co=0, $date='', $date_type=2, $inquiry_source='', $language='', $name_or_email='')
+    public function actionIndex($user_id='', $co=0, $year='', $month='', $date_type=2, $inquiry_source='', $language='', $name_or_email='')
     {
         if (!($this->isAdmin || $this->isAccountant) && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
@@ -147,7 +147,7 @@ class OaInquiryController extends Controller
         if ($this->isAdmin || $this->isAccountant) {
             $userList = [''=>'--All--'] + $userList;
         }
-        //$user_id='', $co=0, $date='', $inquiry_source='', $language=''
+        //$user_id='', $co=0, $year='', $inquiry_source='', $language=''
         if (empty($user_id) && ($this->isAdmin || $this->isAccountant)) {
             $user_id = '';
         }
@@ -158,15 +158,27 @@ class OaInquiryController extends Controller
             $user_id = $userId;
         }
 
-        $from_date = date("Y").'-01-01';
-        $end_date = date("Y",strtotime(" +1 year")).'-01-01';
-        if (!empty($date)) {
-            $from_date = $date . '-01-01';
-            $end_date = ($date+1) . '-01-01';
-        }
-        else{
-            $date = date("Y");
-        }
+
+		// define date range...
+		
+		$year = empty($year) ? date("Y") : $year;
+
+    	if(!empty($month)):
+        	$from_date = $year . '-' . $month . '-01';
+			$end_date = $year . '-' . $month . '-31';
+		else:
+        	$from_date = $year . '-01-01';
+			$end_date = ($year+1) . '-01-01';
+		endif;
+
+        
+        /* if(!empty($year)):
+            $from_date = $year . '-01-01';
+            $end_date = ($year+1) . '-01-01';
+        else:
+            $year = date("Y");
+        endif; */
+        
         //Total Inquiries | Bad | New + Following Up + Waiting for Payment | Inactive | Lost| Booked | Booking Rate (算式：Booked/(Booked+Lost+Inactive))                                      
         /*
             {
@@ -220,11 +232,21 @@ class OaInquiryController extends Controller
         
         if ($date_type == 2) {
             $summarySql .= " AND  create_time>='{$from_date}' ";
-            $summarySql .= " AND  create_time<'{$end_date}' ";
+
+            if(!empty($month)):
+            	$summarySql .= " AND  create_time<='{$end_date}' ";
+            else:
+            	$summarySql .= " AND  create_time<'{$end_date}' ";
+            endif;
         }
         else{
             $summarySql .= " AND  tour_start_date>='{$from_date}' ";
-            $summarySql .= " AND  tour_start_date<'{$end_date}' ";
+            
+            if(!empty($month)):
+            	$summarySql .= " AND  tour_start_date<='{$end_date}' ";
+            else:
+            	$summarySql .= " AND  tour_start_date<'{$end_date}' ";
+            endif;
         }
         
         $summarySql .= ' ORDER BY tour_start_date ASC ';
@@ -282,7 +304,8 @@ class OaInquiryController extends Controller
             'listInfo' => $listInfo,
             'user_id' => $user_id,
             'co' => $co,
-            'date' => $date,
+            'year' => $year,
+            'month' => $month,
             'date_type' => $date_type,
             'inquiry_source' => $inquiry_source,
             'language' => $language,

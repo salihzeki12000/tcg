@@ -80,13 +80,21 @@ $this->params['breadcrumbs'][] = $this->title;
             <label><input type="radio" name="co" value="1" <?= $co ? 'checked' : ''?>> As Co-Agent</label>
         </div>
         <div style="margin: 10px 0;">
-            <label style="width: 100px;">Year </label>
-            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
-            <select name="date">
-                <option value="<?=$lastYear?>" <?=($date==$lastYear)?'selected':''?>><?=$lastYear?></option>
-                <option value="<?=$thisYear?>" <?=($date==$thisYear)?'selected':''?>><?=$thisYear?></option>
-                <option value="<?=$nextYear?>" <?=($date==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            <label style="width: 100px;">Date </label>
+            <select name="month">
+	            <option value='' <?= empty($month) ? 'selected' : '' ?>>--All--</option>
+	            <?php for($i=1; $i<13; $i++): ?>
+                <option value="<?= $i ?>" <?= ($month == $i) ? 'selected' : '' ?>><?= DateTime::createFromFormat('!m', $i)->format('F'); ?></option>
+                <?php endfor; ?>
             </select>
+            
+            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
+            <select name="year" style="margin-right: 20px">
+                <option value="<?=$lastYear?>" <?=($year==$lastYear)?'selected':''?>><?=$lastYear?></option>
+                <option value="<?=$thisYear?>" <?=($year==$thisYear)?'selected':''?>><?=$thisYear?></option>
+                <option value="<?=$nextYear?>" <?=($year==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            </select>
+            
             <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Inquiry Create Date</label>
             <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour Start Date</label>
         </div>
