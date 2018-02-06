@@ -83,7 +83,7 @@ class OaBookCostSearch extends OaBookCost
             ->andFilterWhere(['like', 'cl_info', $this->cl_info])
             ->andFilterWhere(['like', 'due_date_for_pay', $this->due_date_for_pay])
             ->andFilterWhere(['like', 'pay_date', $this->pay_date])
-            ->andFilterWhere(['like', 'pay_method', $this->pay_method])
+            ->andFilterWhere(['pay_method' => $this->pay_method])
             ->andFilterWhere(['like', 'transaction_fee', $this->transaction_fee])
             ->andFilterWhere(['like', 'transaction_note', $this->transaction_note])
             ->andFilterWhere(['like', 'book_status', $this->book_status])

@@ -100,7 +100,7 @@ class OaPaymentSearch extends OaPayment
 		endif;
 
 		if(!empty($this->pay_method)):
-			$sql .= "AND OA_PAYMENT.pay_method LIKE '%$this->pay_method%' ";
+			$sql .= "AND OA_PAYMENT.pay_method = '$this->pay_method' ";
 		endif;
 
 		if(!empty($this->status)):
