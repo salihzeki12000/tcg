@@ -192,7 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			            'format' => 'raw',
 			            'attribute' => 'id',
 			            'value' => function ($data) {
-			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data->id], ['data-pjax' => 0, 'target' => "_blank"]);
+			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data['id']], ['data-pjax' => 0, 'target' => "_blank"]);
 			            },
 			        ],
 			        /* [
@@ -221,8 +221,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    'attribute' => 'pay_method',
 	                    'value' => function($data) {
 		                    $payment_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
-					        if(!empty($data->pay_method)):
-					            return $payment_methods[$data->pay_method];
+					        if(!empty($data['pay_method'])):
+					            return $payment_methods[$data['pay_method']];
 					        else:
 					        	return '';
 					        endif;
@@ -231,7 +231,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                     	'attribute' => 'status',
                     	'value' => function($data) {
-					        return $data->status == 0 ? 'Not Paid' : 'Paid';
+					        return $data['status'] == 0 ? 'Not Paid' : 'Paid';
 	                    }
                     ],
                     [

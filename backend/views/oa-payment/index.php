@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use kartik\daterange\DateRangePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaPaymentSearch */
@@ -11,12 +12,21 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Payments');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php
+$addon = <<< HTML
+<span class="input-group-addon">
+    <i class="glyphicon glyphicon-calendar"></i>
+</span>
+HTML;
+?>
+
 <div class="oa-payment-index">
 
     <p>
         <?= true ? '' : Html::a(Yii::t('app', 'Create Payment'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -40,10 +50,22 @@ $this->params['breadcrumbs'][] = $this->title;
 				}
             ],
             [
-				'label'=>'Start Date',
-				'value' => function($model) {
-					return \common\models\Tools::getTourStartDate($model['tour_id']);
-				}
+				'label' => 'Start Date',
+				'attribute' => 'tour_start_date',
+				'filter' => '<div class="input-group drp-container">'.DateRangePicker::widget([
+						    'name' => 'date_range',
+						    'value' => isset($_GET['date_range']) ? $_GET['date_range'] : '',
+						    'convertFormat' => true,
+						    'useWithAddon' => true,
+						    'pluginOptions' => [
+						        'locale' => [
+						            'format' => 'Y-m-d',
+						            'separator' => ' to ',
+						        ],
+						        'opens' => 'left'
+						    ]
+						]) . $addon . '</div>',
+				'headerOptions' => ['width' => '235'],
             ],
             'payer',
             [

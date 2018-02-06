@@ -59,7 +59,7 @@ class OaPaymentController extends Controller
      * Lists all OaPayment models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($from_date = '', $to_date = '')
     {
         $searchModel = new OaPaymentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
