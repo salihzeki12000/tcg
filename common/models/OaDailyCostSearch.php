@@ -68,7 +68,7 @@ class OaDailyCostSearch extends OaDailyCost
         ]);
 
         $query->andFilterWhere(['like', 'pay_date', $this->pay_date])
-            ->andFilterWhere(['like', 'pay_method', $this->pay_method])
+            ->andFilterWhere(['pay_method' => $this->pay_method])
             ->andFilterWhere(['like', 'create_time', $this->create_time])
             ->andFilterWhere(['like', 'notes', $this->notes]);
 

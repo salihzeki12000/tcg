@@ -53,7 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
             [
 			    'attribute' => 'inquiry_id',
-	            'value' => 'Q'. $model->inquiry_id
+                'value' => call_user_func(function($data) {
+                    if(!empty($data->inquiry_id)): 
+                    	return Html::a('Q'. $data->inquiry_id, ['oa-inquiry/view', 'id' => $data->inquiry_id], ['data-pjax' => 0, 'target' => "_blank"]);
+                	endif;
+                	
+                	return '-';
+                }, $model),
+                'format' => 'raw'
 			],
             'creator',
             'create_time',
@@ -186,14 +193,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <div id="itinerary_list">
         <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+				'showFooter' => true,
                 'columns' => [
 			        [
 			            'label' => 'ID',
 			            'format' => 'raw',
 			            'attribute' => 'id',
 			            'value' => function ($data) {
-			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data->id], ['data-pjax' => 0, 'target' => "_blank"]);
+			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data['id']], ['data-pjax' => 0, 'target' => "_blank"]);
 			            },
+						'footer' => 'Total'
 			        ],
 			        /* [
 			            'label' => 'Tour ID',
@@ -213,16 +222,30 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    'label' => 'Update Date',
 	                    'format' => ['date', 'php:Y-m-d']
                     ], */
+                    [
+	                    'attribute' => 'payer_type',
+	                    'value' => function($data) {
+		                    $payer_types = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
+					        if(!empty($data['payer_type'])):
+					            return $payer_types[$data['payer_type']];
+					        else:
+					        	return '-';
+					        endif;
+	                    }
+                    ],
                     'payer',
                     'type',
-                    'cny_amount',
+		            [
+						'attribute'=>'cny_amount',
+						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'cny_amount'),
+		            ],
                     'due_date',
                     [
 	                    'attribute' => 'pay_method',
 	                    'value' => function($data) {
 		                    $payment_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
-					        if(!empty($data->pay_method)):
-					            return $payment_methods[$data->pay_method];
+					        if(!empty($data['pay_method'])):
+					            return $payment_methods[$data['pay_method']];
 					        else:
 					        	return '';
 					        endif;
@@ -231,13 +254,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                     	'attribute' => 'status',
                     	'value' => function($data) {
-					        return $data->status == 0 ? 'Not Paid' : 'Paid';
+					        return $data['status'] == 0 ? 'Not Paid' : 'Paid';
 	                    }
                     ],
-                    [
-                    	'attribute' => 'receit_cny_amount',
-                    	'label' => 'Receipt Amount'
-                    ],
+		            [
+						'attribute'=>'receit_cny_amount',
+                    	'label' => 'Receipt Amount',
+						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
+		            ],
                     'receit_date',
 
                     /* [
@@ -263,6 +287,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    <div id="book-cost_list">
 	        <?= GridView::widget([
 	                'dataProvider' => $dataProviderBC,
+					'showFooter' => true,
 	                'columns' => [
 				        [
 				            'label' => 'ID',
@@ -271,6 +296,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'value' => function ($data) {
 				                return Html::a('C'. $data['id'], ['oa-book-cost/view', 'id' => $data->id], ['data-pjax' => 0, 'target' => "_blank"]);
 				            },
+							'footer' => 'Total'
 				        ],
 				        /* [
 				            'label' => 'Tour ID',
@@ -357,10 +383,11 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            return Yii::$app->params['yes_or_no'][$data->need_to_pay];
 	                        }
 	                    ],
-	                    [
+			            [
 	                    	'attribute' => 'cny_amount',
-	                    	'label' => 'Estimated Amount'
-	                    ],
+	                    	'label' => 'Estimated Amount',
+							'footer' => \common\models\Tools::getTotal($dataProviderBC->models, 'cny_amount'),
+			            ],
 	                    'due_date_for_pay',
 	                    [
 	                        'attribute'=>'pay_status',
@@ -373,10 +400,11 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            return Yii::$app->params['yes_or_no'][$data->pay_status];
 	                        }
 	                    ],
-	                    [
-	                    	'attribute' => 'pay_amount',
-	                    	'label' => 'Pay Amount'
-	                    ],
+			            [
+							'attribute'=>'pay_amount',
+	                    	'label' => 'Pay Amount',
+							'footer' => \common\models\Tools::getTotal($dataProviderBC->models, 'pay_amount'),
+			            ],
 	                    /* [
 	                        'class' => 'yii\grid\ActionColumn',
 	                        'template' => '{view}',

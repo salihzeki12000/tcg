@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use kartik\daterange\DateRangePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OaPaymentSearch */
@@ -11,12 +12,21 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Payments');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php
+$addon = <<< HTML
+<span class="input-group-addon">
+    <i class="glyphicon glyphicon-calendar"></i>
+</span>
+HTML;
+?>
+
 <div class="oa-payment-index">
 
     <p>
         <?= true ? '' : Html::a(Yii::t('app', 'Create Payment'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -40,10 +50,18 @@ $this->params['breadcrumbs'][] = $this->title;
 				}
             ],
             [
-				'label'=>'Start Date',
-				'value' => function($model) {
-					return \common\models\Tools::getTourStartDate($model['tour_id']);
-				}
+				'label' => 'Tour Start Date',
+				'attribute' => 'tour_start_date',
+				'headerOptions' => ['width' => '200'],
+            ],
+            [
+                'attribute'=>'payer_type',
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_payer_type'),
+                'value' => function ($data) {
+	                $types = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
+                    return (!empty($data['payer_type'])) ? $types[$data['payer_type']] : '';
+                },
+				'headerOptions' => ['width' => '100'],
             ],
             'payer',
             [
@@ -61,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'due_date',
             [
                 'attribute'=>'status',
+                'label'=>'Status',
                 'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_status'),
                 'value' => function ($data) {
                     return $data['status'] == 0 ? 'Not Paid' : 'Paid';
@@ -74,6 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'receit_date',
             [
                 'attribute' => 'pay_method',
+                'label'=>'Method',
                 'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_method'),
                 'value' => function ($data) {
                     $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');

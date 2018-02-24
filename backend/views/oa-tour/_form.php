@@ -10,6 +10,10 @@ use yii\helpers\Url;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<?php 
+$username = \Yii::$app->user->username;
+?>
+
 <div class="oa-tour-form">
 
     <?php $form = ActiveForm::begin(); ?>

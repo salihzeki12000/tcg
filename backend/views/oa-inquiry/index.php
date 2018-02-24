@@ -12,6 +12,12 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Inquiries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php
+$now = time();
+$secondsInOneDay = 86400;
+?>
+
 <div class="oa-inquiry-index">
 
     <?php if($permission['canAdd']) { ?>
@@ -46,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>
                         <?php if (!empty($value['same_email_ids'] )) { 
                             foreach ($value['same_email_ids'] as $eid) { ?>
-                            <a href="<?=Url::to(['oa-inquiry/view', 'id'=>$eid])?>"><?=$eid?></a>
+                            <a href="<?=Url::to(['oa-inquiry/view', 'id'=>$eid])?>">Q<?=$eid?></a>
                         <?php }} ?>
                     </td>
                     <td><?=$value['agent']?></td>
@@ -80,16 +86,25 @@ $this->params['breadcrumbs'][] = $this->title;
             <label><input type="radio" name="co" value="1" <?= $co ? 'checked' : ''?>> As Co-Agent</label>
         </div>
         <div style="margin: 10px 0;">
-            <label style="width: 100px;">Year </label>
-            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
-            <select name="date">
-                <option value="<?=$lastYear?>" <?=($date==$lastYear)?'selected':''?>><?=$lastYear?></option>
-                <option value="<?=$thisYear?>" <?=($date==$thisYear)?'selected':''?>><?=$thisYear?></option>
-                <option value="<?=$nextYear?>" <?=($date==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            <label style="width: 100px;">Date </label>
+            <select name="month">
+	            <option value='' <?= empty($month) ? 'selected' : '' ?>>--All--</option>
+	            <?php for($i=1; $i<13; $i++): ?>
+                <option value="<?= ($i<=9) ? '0'.$i : $i; ?>" <?= ($month == $i) ? 'selected' : '' ?>><?= DateTime::createFromFormat('!m', $i)->format('F'); ?></option>
+                <?php endfor; ?>
             </select>
+            
+            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
+            <select name="year" style="margin-right: 20px">
+                <option value="<?=$lastYear?>" <?=($year==$lastYear)?'selected':''?>><?=$lastYear?></option>
+                <option value="<?=$thisYear?>" <?=($year==$thisYear)?'selected':''?>><?=$thisYear?></option>
+                <option value="<?=$nextYear?>" <?=($year==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            </select>
+            
             <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Inquiry Create Date</label>
             <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour Start Date</label>
         </div>
+        <?php if($permission['isAdmin']): ?>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Inquiry Source </label>
             <select name="inquiry_source" <?=$permission['isAdmin']?'':'disabled' ?>>
@@ -106,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <?php endforeach ?>
             </select>
         </div>
+        <?php endif; ?>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Name/Email</label>
 	    	<input name="name_or_email" type="text" size="50" />
@@ -202,8 +218,18 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            <td><?=$value['priority']?></td>
 	                            <td><?=$value['probability']?></td>
 	                            <td>
-		                            <?php if(!empty($value['follow_up_record'])): ?>
-			                        	<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Follow-up Record" data-content="<?= htmlspecialchars($value['follow_up_record']) ?>" style="text-decoration: underline; cursor:pointer;"><?= $value['inquiry_status_txt'] ?></a>
+		                            <?php
+			                        $taskRemindDate = '';
+			                        $taskMessage = '';
+			                        $taskReminder = '';
+			                        if($value['task_remind'] && $value['task_remind_date']):
+		                            	$taskRemindDate = strtotime($value['task_remind_date']);
+		                            	$taskMessage = $value['task_remind'];
+		                            	$taskReminder = 'Task Reminder: <div style="color: #28b500">' . $value['task_remind_date'] . ' - ' . $taskMessage . '</div><br>';	
+		                            endif;
+		                            if(!empty($value['follow_up_record']) || !empty($taskReminder)):
+		                            ?>
+			                        	<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Follow-up Record" data-content="<?= htmlspecialchars($taskReminder . $value['follow_up_record']) ?>" style="text-decoration: underline; cursor:pointer;"><?= $value['inquiry_status_txt'] ?></a>
 			                        <?php
 				                    else:
 				                       	echo $value['inquiry_status_txt'];
@@ -214,21 +240,18 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            <td><?=$value['co_agent']?></td>
 	                            <?php if(!$lostOrBad): ?><td>
 		                            <?php
-		                            $now = time();
-		                            $secondsInOneDay = 86400;
-			                            
 			                        // if there's a due task
-		                            if($value['task_remind'] && $value['task_remind_date']):
+			                        if(!empty($taskReminder)):
 		                            	$taskRemindDate = strtotime($value['task_remind_date']);
 		                            	if($now >= $taskRemindDate):
-		                            		echo '<div style="color: #28b500">Due task: ' . $value['task_remind'].'</div>';	
+		                            		echo '<div style="color: #28b500">Due task: ' . $taskMessage.'</div>';	
 		                            	endif;
-		                            endif;
+	                            	endif;
 		                            
 		                            // if inquiry needs to be updated
 		                            $updateTime = strtotime($value['update_time']);
-		                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && (($now - $updateTime) / $secondsInOneDay) >= 10)):
-		                            	echo '<div style="color: #c55">Needs to be updated!</div>';
+		                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && (($now - $updateTime) / $secondsInOneDay) >= 5)):
+		                            	echo '<div style="color: #c55">Update follow-up status!</div>';
 		                            endif;
 	
 		                            // if information is missing

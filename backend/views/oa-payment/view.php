@@ -37,11 +37,30 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'value' => 'P'. $model->id
 			],
             [
+			    'attribute' => 'inquiry_id',
+                'value' => call_user_func(function($data) {
+                    if(!empty($data->inquiry_id)): 
+                    	return Html::a('Q'. $data->inquiry_id, ['oa-inquiry/view', 'id' => $data->inquiry_id], ['data-pjax' => 0, 'target' => "_blank"]);
+                	endif;
+                	
+                	return '-';
+                }, $model),
+                'format' => 'raw'
+			],
+            [
 			    'attribute' => 'tour_id',
-	            'value' => 'T'. $model->tour_id
+                'value' => call_user_func(function($data) {
+                    if(!empty($data->tour_id)): 
+                    	return Html::a('T'. $data->tour_id, ['oa-tour/view', 'id' => $data->tour_id], ['data-pjax' => 0, 'target' => "_blank"]);
+                	endif;
+                	
+                	return '-';
+                }, $model),
+                'format' => 'raw'
 			],
             'create_time',
             'update_time',
+            'payer_type',
             'payer',
             'type',
             [

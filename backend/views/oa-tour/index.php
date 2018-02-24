@@ -45,13 +45,21 @@ $this->params['breadcrumbs'][] = $this->title;
             <label><input type="radio" name="user_type" value="3" <?= ($user_type==3) ? 'checked' : ''?>> As Operator</label>
         </div>
         <div style="margin: 10px 0;">
-            <label style="width: 100px;">Year </label>
-            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
-            <select name="date">
-                <option value="<?=$lastYear?>" <?=($date==$lastYear)?'selected':''?>><?=$lastYear?></option>
-                <option value="<?=$thisYear?>" <?=($date==$thisYear)?'selected':''?>><?=$thisYear?></option>
-                <option value="<?=$nextYear?>" <?=($date==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            <label style="width: 100px;">Date </label>
+            <select name="month">
+	            <option value='' <?= empty($month) ? 'selected' : '' ?>>--All--</option>
+	            <?php for($i=1; $i<13; $i++): ?>
+                <option value="<?= ($i<=9) ? '0'.$i : $i; ?>" <?= ($month == $i) ? 'selected' : '' ?>><?= DateTime::createFromFormat('!m', $i)->format('F'); ?></option>
+                <?php endfor; ?>
             </select>
+            
+            <?php $thisYear=date("Y"); $lastYear=date("Y",strtotime(" -1 year")); $nextYear=date("Y",strtotime(" +1 year")); ?>
+            <select name="year" style="margin-right: 20px">
+                <option value="<?=$lastYear?>" <?=($year==$lastYear)?'selected':''?>><?=$lastYear?></option>
+                <option value="<?=$thisYear?>" <?=($year==$thisYear)?'selected':''?>><?=$thisYear?></option>
+                <option value="<?=$nextYear?>" <?=($year==$nextYear)?'selected':''?>><?=$nextYear?></option>
+            </select>
+            
             <label><input type="radio" name="date_type" value="1" <?= ($date_type==1) ? 'checked' : ''?>> Tour End Date</label>
             <label><input type="radio" name="date_type" value="2" <?= ($date_type==2) ? 'checked' : ''?>> Tour Create Date</label>
         </div>
@@ -223,17 +231,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            		echo '<div style="color: #c55">Needs to be closed!</div>';
 	                            	endif;
 	                            	
-	                            	// needs pre-tour confirmation
+	                            	// needs pre-tour confirmation OR tour has ended and stage hasn't been changed
 	                            	$tourStartDate = strtotime($value['tour_start_date']);
-	                            	if((($tourStartDate - $now) / $secondsInOneDay) <= 15 &&
-	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm'))):
-	                            		echo '<div style="color: #c55">Needs pre-tour confirmation!</div>';
-	                            	endif;
-	                            	
-	                            	// if tour has ended and stage hasn't been changed
-	                            	if((($now - $tourEndDate)/$secondsInOneDay) >= 3 &&
-	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm', 'Pre-Tour Confirmed & Ready to Go'))):
-	                            		echo '<div style="color: #c55">Change tour stage!</div>';
+	                            	if(((($tourStartDate - $now) / $secondsInOneDay) <= 15 &&
+	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm'))) || ((($now - $tourEndDate)/$secondsInOneDay) >= 3 &&
+	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm', 'Pre-Tour Confirmed & Ready to Go')))):
+	                            		echo '<div style="color: #c55">Abnormal tour stage!</div>';
 	                            	endif;
 	                            	
 	                            	// if payments missing

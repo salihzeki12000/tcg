@@ -23,7 +23,7 @@ class OaPaymentController extends Controller
     {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
-        if (isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
+        if(isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
             $this->canAdd = 1;
             $this->canDel = 1;
             $this->canMod = 1;
@@ -88,8 +88,15 @@ class OaPaymentController extends Controller
         	$model->pay_method = '-';
         endif;
 
+        $oa_payer_type = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
+        if(!empty($model->payer_type)):
+            $model->payer_type = $oa_payer_type[$model->payer_type];
+        else:
+        	$model->payer_type = '-';
+        endif;
+        
         $oa_receit_account = \common\models\Tools::getEnvironmentVariable('oa_receit_account');
-        if (!empty($model->receit_account)) {
+        if(!empty($model->receit_account)) {
             $model->receit_account = $oa_receit_account[$model->receit_account];
         }
 
@@ -104,31 +111,57 @@ class OaPaymentController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($tour_id)
+    public function actionCreate($tour_id='', $inquiry_id='')
     {
-        if(\common\models\Tools::tourClosed($tour_id)) {
-            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
-        }
+	    if($tour_id):
+            $tourModel = \common\models\OaTour::findOne($tour_id);
+	    	
+	    	if($tourModel === null):
+				throw new NotFoundHttpException("Tour does not exist.");
+	    	endif;
+	    
+	    	if(\common\models\Tools::tourClosed($tour_id)) {
+            	throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+        	}
+        endif;
+        
+	    if($inquiry_id):
+	    	$inquiryModel = \common\models\OaInquiry::findOne($inquiry_id);
+	    	
+	    	if($inquiryModel === null):
+				throw new NotFoundHttpException("Inquiry does not exist.");
+	    	endif;
+	    	
+	    	if(\common\models\Tools::getEnvironmentVariable('oa_inquiry_status')[$inquiryModel->inquiry_status] != 'Waiting for Payment'):
+				throw new ForbiddenHttpException("Inquiry status should be 'Waiting for Payment'.");
+	    	endif;
+        endif;
         
         $model = new OaPayment();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if($model->load(Yii::$app->request->post())):
             $model->create_time = date('Y-m-d H:i:s',time());
-            $tour_id = $model->tour_id;
-            if (($tourModel = \common\models\OaTour::findOne($tour_id)) !== null) {
-                if ($model->save()) {
-                    # code...
-                }
-            }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            if (!empty($tour_id)) {
+            
+            if($tour_id):
+				$model->save();
+				return $this->redirect(['view', 'id' => $model->id]);
+			else:
+        		$model->save();
+				return $this->redirect(['view', 'id' => $model->id]);
+			endif;
+        else:
+            if(!empty($tour_id)):
                 $model->tour_id = $tour_id;
-            }
+            elseif(!empty($inquiry_id)):
+                $model->inquiry_id = $inquiry_id;
+            else:
+				throw new ForbiddenHttpException("Tour or Inquiry ID required.");
+            endif;
+            
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
+        endif;
     }
 
     /**
@@ -145,7 +178,7 @@ class OaPaymentController extends Controller
             throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -163,17 +196,27 @@ class OaPaymentController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-	    
-        if(\common\models\Tools::tourClosed($model->tour_id))
-        {
-            throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
-        }
-        else
-        {
-        	$model->delete();
-        }
+        
+        if($model !== null):
+	        
+        	$redirectId = $model->inquiry_id;
+        	$redirectLink = 'inquiry';
+        	
+	        if(!empty($model->tour_id)):
+	        	$redirectId = $model->tour_id;
+	        	$redirectLink = 'tour';
+	        
+				if(\common\models\Tools::tourClosed($model->tour_id)):
+					throw new ForbiddenHttpException('Tour closed. You are not allowed to perform this action.');
+				endif;
+	        endif;
+	        
+	        $model->delete();
+        else:
+			throw new NotFoundHttpException("Payment does not exist.");
+        endif;
 
-        return $this->redirect(['oa-tour/view', 'id' => $model->tour_id]);
+        return $this->redirect(['oa-' . $redirectLink . '/view', 'id' => $redirectId]);
     }
 
     /**
@@ -185,7 +228,7 @@ class OaPaymentController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = OaPayment::findOne($id)) !== null) {
+        if(($model = OaPayment::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

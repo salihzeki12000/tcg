@@ -58,7 +58,12 @@ class OaInquiry extends \yii\db\ActiveRecord
     {
         return [
             [['create_time', 'update_time'], 'safe'],
-            [['original_inquiry'], 'required'],
+            [['original_inquiry', 'language', 'agent'], 'required'],
+            [['tour_type', 'tour_start_date', 'contact', 'email'], 'required', 'when' => function ($model) {
+		        return $model->agent == User::findByUsername(\Yii::$app->user->username)['id'];
+		    }, 'whenClient' => "function (attribute, value) {
+					return $('#oainquiry-agent option:selected').text() == '".\Yii::$app->user->username."'; }"
+			],
             [['number_of_travelers', 'close', 'agent', 'co_agent', 'creator', 'tour_type'], 'integer'],
             [['organization', 'traveler_info', 'other_contact_info', 'original_inquiry', 'follow_up_record', 'tour_schedule_note', 'other_note', 'close_report', 'task_remind_date', 'task_remind', 'attachment'], 'string'],
             [['estimated_cny_amount'], 'number'],

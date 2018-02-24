@@ -28,6 +28,7 @@ class OaInquiryController extends Controller
     public $isAccountant= 0;
     public $isOperator = 0;
     public $canAddTour = 0;
+    public $canAddPayment = 0;
 
     public function beforeAction($action)
     {
@@ -38,10 +39,12 @@ class OaInquiryController extends Controller
             $this->canAdd = 1;
             $this->canDel = 1;
             $this->canAddTour = 1;
+            $this->canAddPayment = 1;
         }
         if (isset($roles['OA-Agent'])) {
             $this->isAgent = 1;
             $this->canAdd = 1;
+            $this->canAddPayment = 1;
         }
         if (isset($roles['OA-isOperator'])) {
             $this->isOperator = 1;
@@ -51,6 +54,7 @@ class OaInquiryController extends Controller
             $this->canAdd = 0;
             $this->canDel = 0;
             $this->canAddTour = 1;
+            $this->canAddPayment = 1;
         }
 
         return parent::beforeAction($action);
@@ -66,6 +70,7 @@ class OaInquiryController extends Controller
         $tmp['isOperator'] = $this->isOperator;
         $tmp['isAgent'] = $this->isAgent;
         $tmp['canAddTour'] = $this->canAddTour;
+        $tmp['canAddPayment'] = $this->canAddPayment;
         $data['permission'] = $tmp;
         return parent::render($templateName, $data);
     }
@@ -86,7 +91,7 @@ class OaInquiryController extends Controller
      * Lists all OaInquiry models.
      * @return mixed
      */
-    public function actionIndex($user_id='', $co=0, $date='', $date_type=2, $inquiry_source='', $language='', $name_or_email='')
+    public function actionIndex($user_id='', $co=0, $year='', $month='', $date_type=2, $inquiry_source='', $language='', $name_or_email='')
     {
         if (!($this->isAdmin || $this->isAccountant) && $user_id && $user_id!=Yii::$app->user->identity->id) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
@@ -147,7 +152,7 @@ class OaInquiryController extends Controller
         if ($this->isAdmin || $this->isAccountant) {
             $userList = [''=>'--All--'] + $userList;
         }
-        //$user_id='', $co=0, $date='', $inquiry_source='', $language=''
+        //$user_id='', $co=0, $year='', $inquiry_source='', $language=''
         if (empty($user_id) && ($this->isAdmin || $this->isAccountant)) {
             $user_id = '';
         }
@@ -158,15 +163,16 @@ class OaInquiryController extends Controller
             $user_id = $userId;
         }
 
-        $from_date = date("Y").'-01-01';
-        $end_date = date("Y",strtotime(" +1 year")).'-01-01';
-        if (!empty($date)) {
-            $from_date = $date . '-01-01';
-            $end_date = ($date+1) . '-01-01';
-        }
-        else{
-            $date = date("Y");
-        }
+		// define date range...
+		$year = empty($year) ? date("Y") : $year;
+    	if(!empty($month)):
+        	$from_date = $year . '-' . $month . '-01';
+			$end_date = $year . '-' . $month . '-31';
+		else:
+        	$from_date = $year . '-01-01';
+			$end_date = ($year+1) . '-01-01';
+		endif;
+        
         //Total Inquiries | Bad | New + Following Up + Waiting for Payment | Inactive | Lost| Booked | Booking Rate (算式：Booked/(Booked+Lost+Inactive))                                      
         /*
             {
@@ -192,7 +198,7 @@ class OaInquiryController extends Controller
             'Waiting for Payment' => ['3'],
             'Inactive' => ['4'], //Inactive
             'Booked' => ['5','6','7'], //Booked
-            'Lost' => ['8','9','10','11','12'], //Lost
+            'Lost' => ['8','9','10','11','12','15'], //Lost
             'Bad' => ['13','14'], //Bad
         ];
         $summarySql = "SELECT * FROM oa_inquiry WHERE 1=1 ";
@@ -220,11 +226,21 @@ class OaInquiryController extends Controller
         
         if ($date_type == 2) {
             $summarySql .= " AND  create_time>='{$from_date}' ";
-            $summarySql .= " AND  create_time<'{$end_date}' ";
+
+            if(!empty($month)):
+            	$summarySql .= " AND  create_time<='{$end_date}' ";
+            else:
+            	$summarySql .= " AND  create_time<'{$end_date}' ";
+            endif;
         }
         else{
             $summarySql .= " AND  tour_start_date>='{$from_date}' ";
-            $summarySql .= " AND  tour_start_date<'{$end_date}' ";
+            
+            if(!empty($month)):
+            	$summarySql .= " AND  tour_start_date<='{$end_date}' ";
+            else:
+            	$summarySql .= " AND  tour_start_date<'{$end_date}' ";
+            endif;
         }
         
         $summarySql .= ' ORDER BY tour_start_date ASC ';
@@ -282,7 +298,8 @@ class OaInquiryController extends Controller
             'listInfo' => $listInfo,
             'user_id' => $user_id,
             'co' => $co,
-            'date' => $date,
+            'year' => $year,
+            'month' => $month,
             'date_type' => $date_type,
             'inquiry_source' => $inquiry_source,
             'language' => $language,
@@ -348,9 +365,19 @@ class OaInquiryController extends Controller
         if (!empty($model->group_type)) {
             $model->group_type = $oa_group_type[$model->group_type];
         }
+        
+        $_GET['sort'] = 'id';
+        $_GET['inquiry_id'] = $id;
+        $searchModel = new \common\models\OaPaymentSearch();
+        $queryParams = Yii::$app->request->queryParams;
+        unset($queryParams['id']);
+        $dataProvider = $searchModel->search($queryParams);
+        $dataProvider->sort = false;
 
         return $this->render('view', [
             'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -371,12 +398,12 @@ class OaInquiryController extends Controller
             if (isset($_POST['OaInquiry']['cities']) && is_array($_POST['OaInquiry']['cities'])) {
                 $model->cities = join(',', $_POST['OaInquiry']['cities']);
             }
+            
             $model->create_time = date('Y-m-d H:i:s',time());
             $model->creator = Yii::$app->user->identity->id;
-
-            if ($model->save()) {
-                # code...
-            }
+            
+            $model->save();
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->cities = explode(',', $model->cities);
@@ -412,9 +439,9 @@ class OaInquiryController extends Controller
             if (isset($_POST['OaInquiry']['cities']) && is_array($_POST['OaInquiry']['cities'])) {
                 $model->cities = join(',', $_POST['OaInquiry']['cities']);
             }
-            if ($model->save()) {
-                # code...
-            }
+            
+            $model->save();
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->cities = explode(',', $model->cities);
