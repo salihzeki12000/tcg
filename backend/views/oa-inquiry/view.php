@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\OaInquiry */
@@ -15,7 +18,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 ?>
 
 <div class="oa-inquiry-view">
-
+ 
     <p>
 	    <?php
 	    if($model->close == 'Yes'):
@@ -143,5 +146,62 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 			],
         ],
     ]) ?>
+    
+    <div class="form-group">
+    <h2 class="control-label">Payment</h2>
+    <div id="itinerary_list">
+        <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+			        [
+			            'label' => 'ID',
+			            'format' => 'raw',
+			            'attribute' => 'id',
+			            'value' => function ($data) {
+			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data['id']], ['data-pjax' => 0, 'target' => "_blank"]);
+			            },
+			        ],
+                    [
+	                    'attribute' => 'payer_type',
+	                    'value' => function($data) {
+		                    $payer_types = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
+					        if(!empty($data['payer_type'])):
+					            return $payer_types[$data['payer_type']];
+					        else:
+					        	return '-';
+					        endif;
+	                    }
+                    ],
+                    'payer',
+                    'type',
+                    'cny_amount',
+                    'due_date',
+                    [
+	                    'attribute' => 'pay_method',
+	                    'value' => function($data) {
+		                    $payment_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');
+					        if(!empty($data['pay_method'])):
+					            return $payment_methods[$data['pay_method']];
+					        else:
+					        	return '-';
+					        endif;
+	                    }
+                    ],
+                    [
+                    	'attribute' => 'status',
+                    	'value' => function($data) {
+					        return $data['status'] == 0 ? 'Not Paid' : 'Paid';
+	                    }
+                    ],
+                    [
+                    	'attribute' => 'receit_cny_amount',
+                    	'label' => 'Receipt Amount'
+                    ],
+                    'receit_date',
+                ],
+            ]); ?>
+    </div>
+    <?= (!$permission['canAddPayment'] || $model->close == 'Yes' || $model->inquiry_status != 'Waiting for Payment') ? '' : "<a href='".Url::to(['oa-payment/create', 'inquiry_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary']).'</a>' ?>
+    </div>
 
 </div>

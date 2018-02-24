@@ -391,6 +391,13 @@ class Tools
             return 0;
         }
     }
+    
+    // returns true if $date has format YYY-mm-dd
+    static public function validateDate($date)
+    {
+	    $dt = \DateTime::createFromFormat("Y-m-d", $date);
+		return $dt !== false && !array_sum($dt->getLastErrors());
+    }
 
     static public function inquiryAssignedToTour($inquiry_id)
     {

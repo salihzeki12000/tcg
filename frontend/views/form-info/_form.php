@@ -229,8 +229,8 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['frontend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#forminfo-arrival_date").attr("readonly","readonly").datepicker({});
-        $("#forminfo-departure_date").attr("readonly","readonly").datepicker({});
+        $("#forminfo-arrival_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#forminfo-departure_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
 
         $('.field-forminfo-hotel_preferences').hide();
         $('.field-forminfo-room_requirements').hide();

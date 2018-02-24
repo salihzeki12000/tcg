@@ -12,15 +12,19 @@ use yii\helpers\Url;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<?php 
+$username = \Yii::$app->user->username;
+?>
+
 <div class="oa-inquiry-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'])]) ?>
 
-    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info ']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord), 'required' => true]) ?>
+    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info ']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
-    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord), 'required' => true]) ?>
+    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!$permission['isAdmin'] && !$model->isNewRecord)]) ?>
 
     <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 
@@ -173,7 +177,9 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").datepicker({ format: 'yyyy-mm-dd' });
+        
+        $("#oainquiry-tour_start_date, #oainquiry-tour_end_date, #oainquiry-task_remind_date").attr("readonly","readonly");
         
         $(".btn.btn-primary").click(function(e){
 	        var inquiryStatus = $("#oainquiry-inquiry_status option:selected").text(),

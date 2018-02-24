@@ -12,7 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => true]) ?>
+
     <?= $form->field($model, 'tour_id')->textInput(['readonly' => true]) ?>
+
+    <?= $form->field($model, 'payer_type')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_payer_type'), ['prompt' => '--Select--']) ?>
 
     <?= $form->field($model, 'payer')->textInput(['maxlength' => true]) ?>
 

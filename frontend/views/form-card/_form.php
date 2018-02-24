@@ -118,7 +118,7 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['frontend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#formcard-tour_date").attr("readonly","readonly").datepicker({});
+        $("#formcard-tour_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
 
         $('#form-card-form').yiiActiveForm('add', {
             id: 'ck_policies',

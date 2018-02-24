@@ -50,22 +50,18 @@ HTML;
 				}
             ],
             [
-				'label' => 'Start Date',
+				'label' => 'Tour Start Date',
 				'attribute' => 'tour_start_date',
-				'filter' => '<div class="input-group drp-container">'.DateRangePicker::widget([
-						    'name' => 'date_range',
-						    'value' => isset($_GET['date_range']) ? $_GET['date_range'] : '',
-						    'convertFormat' => true,
-						    'useWithAddon' => true,
-						    'pluginOptions' => [
-						        'locale' => [
-						            'format' => 'Y-m-d',
-						            'separator' => ' to ',
-						        ],
-						        'opens' => 'left'
-						    ]
-						]) . $addon . '</div>',
-				'headerOptions' => ['width' => '235'],
+				'headerOptions' => ['width' => '200'],
+            ],
+            [
+                'attribute'=>'payer_type',
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_payer_type'),
+                'value' => function ($data) {
+	                $types = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
+                    return (!empty($data['payer_type'])) ? $types[$data['payer_type']] : '';
+                },
+				'headerOptions' => ['width' => '100'],
             ],
             'payer',
             [
@@ -83,6 +79,7 @@ HTML;
             'due_date',
             [
                 'attribute'=>'status',
+                'label'=>'Status',
                 'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_status'),
                 'value' => function ($data) {
                     return $data['status'] == 0 ? 'Not Paid' : 'Paid';
@@ -96,6 +93,7 @@ HTML;
             'receit_date',
             [
                 'attribute' => 'pay_method',
+                'label'=>'Method',
                 'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_method'),
                 'value' => function ($data) {
                     $oa_pay_methods = \common\models\Tools::getEnvironmentVariable('oa_pay_method');

@@ -13,14 +13,17 @@ use common\models\OaPayment;
  */
 class OaPaymentSearch extends OaPayment
 {
+	public $tour_start_date;
+	
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'tour_id'], 'integer'],
+            [['id', 'tour_id', 'inquiry_id', 'payer_type'], 'integer'],
             [['create_time', 'update_time', 'payer', 'type', 'due_date', 'pay_method', 'status', 'receit_account', 'receit_date', 'cc_note_signing', 'note'], 'safe'],
+            ['tour_start_date', 'string'],
             [['cny_amount', 'receit_cny_amount', 'transaction_fee'], 'number'],
         ];
     }
@@ -48,9 +51,13 @@ class OaPaymentSearch extends OaPayment
 	    if(isset($params['tour_id'])):
             $this->tour_id = $params['tour_id'];
         endif;
+	    
+	    if(isset($params['inquiry_id'])):
+            $this->inquiry_id = $params['inquiry_id'];
+        endif;
 
-	    if(isset($params['date_range']) && !empty($params['date_range'])):
-            $dates = explode(' to ', $params['date_range']);
+	    if(!empty($this->tour_start_date)):
+            $dates = explode(' to ', $this->tour_start_date);
         endif;
 	    		
 	    $sql = "SELECT * FROM oa_payment AS OA_PAYMENT ";
@@ -65,6 +72,10 @@ class OaPaymentSearch extends OaPayment
 		
 		if(!empty($this->tour_id)):
         	$sql .= "AND OA_PAYMENT.tour_id = '$this->tour_id' ";
+		endif;
+		
+		if(!empty($this->inquiry_id)):
+        	$sql .= "AND OA_PAYMENT.inquiry_id = '$this->inquiry_id' ";
 		endif;
 
 		if(!empty($this->create_time)):
@@ -90,6 +101,10 @@ class OaPaymentSearch extends OaPayment
 		if(!empty($this->payer)):
         	$sql .= "AND OA_PAYMENT.payer LIKE '%$this->payer%' ";
 		endif;
+		
+		if(!empty($this->payer_type)):
+        	$sql .= "AND OA_PAYMENT.payer_type = '$this->payer_type' ";
+		endif;
 
 		if(!empty($this->type)):
 			$sql .= "AND OA_PAYMENT.type LIKE '%$this->type%' ";
@@ -103,8 +118,8 @@ class OaPaymentSearch extends OaPayment
 			$sql .= "AND OA_PAYMENT.pay_method = '$this->pay_method' ";
 		endif;
 
-		if(!empty($this->status)):
-			$sql .= "AND OA_PAYMENT.status LIKE '%$this->status%' ";
+		if($this->status != ''):
+			$sql .= "AND OA_PAYMENT.status = $this->status ";
 		endif;
 
 		if(!empty($this->receit_account)):
@@ -124,13 +139,19 @@ class OaPaymentSearch extends OaPayment
 		endif;
 
 		if(!empty($dates)):
-			if($dates[0] == $dates[1]):
-				$sql .= "AND tour_start_date >= $dates[0] ";
-			else:
-				$sql .= "AND tour_start_date >= '$dates[0]' AND tour_start_date <= '$dates[1]' ";
+			if(\common\models\Tools::validateDate($dates[0])):
+				if(!empty($dates[1]) && \common\models\Tools::validateDate($dates[1])):
+					if($dates[0] == $dates[1]):
+						$sql .= "AND tour_start_date = '$dates[0]' ";
+					else:
+						$sql .= "AND tour_start_date >= '$dates[0]' AND tour_start_date <= '$dates[1]' ";
+					endif;
+				else:
+					$sql .= "AND tour_start_date >= '$dates[0]' ";
+				endif;
 			endif;
 		endif;
-		
+
 		$count = Yii::$app->db->createCommand("SELECT COUNT(*) FROM ($sql) as PAYMENTS")->queryScalar();
 		
 		$dataProvider = new SqlDataProvider([

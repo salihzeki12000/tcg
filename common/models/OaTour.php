@@ -63,10 +63,15 @@ class OaTour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['language', 'agent', 'tour_start_date', 'inquiry_source', 'payment'], 'required'],
+            [['language', 'agent', 'tour_start_date', 'tour_end_date', 'inquiry_source', 'payment'], 'required'],
             [['inquiry_id', 'vip', 'number_of_travelers', 'agent', 'co_agent', 'operator', 'close', 'creator', 'tour_type'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['organization', 'traveler_info', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'task_remind', 'task_remind_date', 'attachment'], 'string'],
+            [['tour_price', 'estimated_cost', 'tour_type', 'cities', 'number_of_travelers', 'group_type', 'country', 'contact', 'email'], 'required', 'when' => function ($model) {
+		        return $model->agent == User::findByUsername(\Yii::$app->user->username)['id'];
+		    }, 'whenClient' => "function (attribute, value) {
+					return $('#oatour-agent option:selected').text() == '".\Yii::$app->user->username."'; }"
+			],
             [['tour_price', 'estimated_cost', 'accounting_sales_amount', 'accounting_total_cost', 'accounting_hotel_flight_train_cost'], 'number'],
             ['tour_price', 'compare', 'compareValue' => 0, 'operator' => '>'],
             ['number_of_travelers', 'compare', 'compareValue' => 0, 'operator' => '>'],

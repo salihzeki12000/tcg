@@ -130,7 +130,7 @@ class FormInfoController extends Controller
                 $OaInquiry->contact = $model->name;
                 $OaInquiry->original_inquiry = $this->renderPartial('@frontend/views/mail/form-content',['content'=>$oaInquiryModel]);
                 $OaInquiry->create_time = $model->create_time;
-                $OaInquiry->save();
+                $OaInquiry->save(false);
 
                 if(!YII_DEBUG) {
                     Yii::$app->mailer->compose('form', ['model' => $model,'form_type' => $form_type,])
