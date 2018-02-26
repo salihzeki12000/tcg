@@ -163,6 +163,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 			        ],
                     [
 	                    'attribute' => 'payer_type',
+	                    'label' => 'Payer',
 	                    'value' => function($data) {
 		                    $payer_types = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
 					        if(!empty($data['payer_type'])):
@@ -172,7 +173,10 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 					        endif;
 	                    }
                     ],
-                    'payer',
+                    [
+	                    'attribute' => 'payer',
+	                    'label' => 'Guest Name',
+                    ],
                     'type',
                     'cny_amount',
                     'due_date',

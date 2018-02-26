@@ -224,6 +224,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ], */
                     [
 	                    'attribute' => 'payer_type',
+	                    'label' => 'Payer',
 	                    'value' => function($data) {
 		                    $payer_types = \common\models\Tools::getEnvironmentVariable('oa_payer_type');
 					        if(!empty($data['payer_type'])):
@@ -233,7 +234,10 @@ $this->params['breadcrumbs'][] = $this->title;
 					        endif;
 	                    }
                     ],
-                    'payer',
+                    [
+	                    'attribute' => 'payer',
+	                    'label' => 'Guest Name',
+                    ],
                     'type',
 		            [
 						'attribute'=>'cny_amount',
