@@ -315,7 +315,7 @@ Modal::end();
 	            <img class="img-responsive" src="<?= '/statics/images/review-1.png'; ?>" alt="<?= Yii::t('app','client review tripadvisor') ?>" />
                 <blockquote class="blockquote">
 	                <p><?=Yii::t('app','They were very professional and extremely helpful, always trying to provide the best solutions for us and as confortable as possible. Lina was very nice and always available, it was very easy to communicate with. Air China cancelled one of our flights and, even though we booked the flights directly and not through the agency, Lina kept on talking with us all night to find an alternative and was very efficient. It is a great agency, with good travel plans, very flexible and pleasent to work with, the guides speak proper english and everyone is very approachable. Totally recommend!!')?></p>
-					<footer>M3170ZLmariac <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
+					<footer><?=Yii::t('app', 'M3170ZLmariac')?> <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.<?=(Yii::$app->language != 'en') ? Yii::$app->language : 'com'?>/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">Tripadvisor</a></footer>
 	            </blockquote>
             </div>
             
@@ -323,7 +323,7 @@ Modal::end();
 	            <img class="img-responsive" src="<?= '/statics/images/review-2.png'; ?>" alt="<?= Yii::t('app','client review tripadvisor') ?>" />
                 <blockquote class="blockquote">
                 	<p><?=Yii::t('app','First time bring my kids to China, a home which I left over 28 years ago. My American friend recommended this company to me and they did an fantastic job for our 13 days trip in China. Erick from BeiJing are so knowledgeable and arranged the trip perfectly according to the weather and activities. Betty from XiAn covered all of our activities with very relaxing feeling even though we only have 24 hours in XiAn. This is a totally worry free luxury trip, and gave my kids a great impression on their mommy\'s homeland. We will definitely use this company again to arrange our next trip to China.')?></p>
-                	<footer>J W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
+                	<footer><?=Yii::t('app', 'J W')?> <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.<?=(Yii::$app->language != 'en') ? Yii::$app->language : 'com'?>/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">Tripadvisor</a></footer>
 	            </blockquote>
             </div>
             
@@ -331,7 +331,7 @@ Modal::end();
 	            <img class="img-responsive" src="<?= '/statics/images/review-3.png'; ?>" alt="<?= Yii::t('app','client review tripadvisor') ?>" />
                 <blockquote class="blockquote">
                 	<p><?=Yii::t('app','Right from our initial inquiry, to the outstanding communication with Sarah, to local guides who met us at the train stations and airports we were in good hands with the staff at The China Guide. Our family of 7 Canadians spent 3 weeks traveling through China and I can\'t emphasize enough how we appreciated their support from start to finish. Don\'t hesitate and let The China Guide work with you to plan an itinerary that is perfect for you.')?></p>
-                	<footer>Don W <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.com/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html">Tripadvisor</a></footer>
+                	<footer><?=Yii::t('app', 'Don W')?> <?=Yii::t('app','on'); ?> <a href="https://www.tripadvisor.<?=(Yii::$app->language != 'en') ? Yii::$app->language : 'com'?>/Attraction_Review-g294212-d2658278-Reviews-The_China_Guide-Beijing.html" target="_blank">Tripadvisor</a></footer>
 	            </blockquote>
             </div>
         </div>
@@ -403,7 +403,7 @@ Modal::end();
         <form action="//thechinaguide.us11.list-manage.com/subscribe/post?u=d995462fd30382f7e33e816d0&amp;id=a0d17736bf" id="mc-embedded-subscribe-form" method="post">
           <div class="subscribe-bar-input">
             <input type="text" id="mce-EMAIL" class="form-control" name="EMAIL" placeholder="<?=Yii::t('app','Enter your email address')?>">
-            <input type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" class="btn btn-info btn-sm">     
+            <input type="submit" name="subscribe" id="mc-embedded-subscribe" value="<?=Yii::t('app','Subscribe')?>" class="btn btn-info btn-sm">     
           </div>
           <input type="hidden" name="b_d995462fd30382f7e33e816d0_a0d17736bf" tabindex="-1" value="">
         </form>

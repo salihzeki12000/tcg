@@ -158,7 +158,8 @@ ul.navbar-nav li:not(:last-child) b.caret {
     background-color: #E0E3D6;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus {} .p-menu {
+.navbar-inverse .navbar-nav > li > a:focus {}
+.p-menu {
     z-index: 100;
     width: 273px;
     height: 50px;
