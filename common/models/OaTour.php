@@ -63,8 +63,8 @@ class OaTour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['language', 'agent', 'tour_start_date', 'tour_end_date', 'inquiry_source', 'payment'], 'required'],
-            [['inquiry_id', 'vip', 'number_of_travelers', 'agent', 'co_agent', 'operator', 'close', 'creator', 'tour_type'], 'integer'],
+            [['language', 'agent', 'tour_start_date', 'tour_end_date', 'payment'], 'required'],
+            [['inquiry_id', 'vip', 'number_of_travelers', 'agent', 'operator', 'close', 'creator', 'tour_type'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
             [['organization', 'traveler_info', 'other_contact_info', 'itinerary_quotation_english', 'itinerary_quotation_other_language', 'tour_schedule_note', 'note_for_guide', 'other_note', 'task_remind', 'task_remind_date', 'attachment'], 'string'],
             [['tour_price', 'estimated_cost', 'tour_type', 'cities', 'number_of_travelers', 'group_type', 'country', 'contact', 'email'], 'required', 'when' => function ($model) {
@@ -77,7 +77,7 @@ class OaTour extends \yii\db\ActiveRecord
             ['number_of_travelers', 'compare', 'compareValue' => 0, 'operator' => '>'],
             ['estimated_cost', 'compare', 'compareValue' => 0, 'operator' => '>='],
             [['inquiry_source', 'language', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage', 'task_remind', 'task_remind_date'], 'string', 'max' => 255],
-            [['cities', 'email'], 'string', 'max' => 1024],
+            [['co_agent', 'cities', 'email'], 'string', 'max' => 1024],
             ['email', 'email'],
         ];
     }
@@ -96,7 +96,7 @@ class OaTour extends \yii\db\ActiveRecord
             'language' => Yii::t('app', 'Inquiry Language'),
             'vip' => Yii::t('app', 'VIP'),
             'agent' => Yii::t('app', 'Agent'),
-            'co_agent' => Yii::t('app', 'Co-Agent'),
+            'co_agent' => Yii::t('app', 'Co-Agent(s)'),
             'operator' => Yii::t('app', 'Operator'),
             'tour_type' => Yii::t('app', 'Tour Type'),
             'group_type' => Yii::t('app', 'Group Type'),

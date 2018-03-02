@@ -20,13 +20,19 @@ $username = \Yii::$app->user->username;
     
     <?= $form->field($model, 'inquiry_id')->textInput(['readonly' => true]) ?>
 
-    <?= $form->field($model, 'inquiry_source', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'inquiry_source')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_inquiry_source'), ['prompt' => '--Select--', 'disabled' => !$permission['isAdmin']]) ?>
 
-    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'language', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['prompt' => '--Select--', 'disabled' => !$permission['isAdmin']]) ?>
 
-    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => (!($permission['isAdmin'] || $permission['isAccountant']) && !$model->isNewRecord)]) ?>
+    <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['isAdmin']]) ?>
+	<?php if(!$permission['isAdmin']): ?>
+		<div class="hide">
+			<?= $form->field($model, 'language')->hiddenInput()->label(''); ?>
+			<?= $form->field($model, 'agent')->hiddenInput()->label(''); ?>
+		</div>
+	<?php endif; ?>
 
-    <?= $form->field($model, 'co_agent')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
+    <?= $form->field($model, 'co_agent')->checkboxList(common\models\Tools::getAgentUserList(), ['unselect' => null, 'itemOptions' => ['disabled' => (!common\models\Tools::isLeader(Yii::$app->user->identity->id, $model->agent) && !$permission['isAdmin'])]]) ?>
 
     <?= $form->field($model, 'operator')->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--']) ?>
 

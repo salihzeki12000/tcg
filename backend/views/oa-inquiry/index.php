@@ -31,6 +31,7 @@ $secondsInOneDay = 86400;
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Tour ID</th>
                 <th>Creator</th>
                 <th>Create Time</th>
                 <th>Name</th>
@@ -45,6 +46,13 @@ $secondsInOneDay = 86400;
             <?php foreach ($inquiriesToAssign as $value) { ?>
                 <tr>
                     <td><a href="<?=Url::to(['oa-inquiry/view', 'id'=>$value['id']])?>" target="_blank">Q<?=$value['id']?></a></td>
+                    <td>
+		                <?php if(!empty($value['tour_id'])): ?>
+		                <a href="<?=Url::to(['oa-tour/view', 'id'=>$value['tour_id']])?>" target="_blank">T<?=$value['tour_id']?></a>
+		                <?php else: ?>
+		                -
+		                <?php endif; ?>
+	                </td>
                     <td><?=$value['creator']?></td>
                     <td><?=$value['create_time']?></td>
                     <td><?=$value['contact']?></td>
@@ -186,7 +194,7 @@ $secondsInOneDay = 86400;
 	                        <th>Create Date</th>
 	                        <th>Contact</th>
 	                        <th>Travelers</th>
-	                        <th>Start Date</th>
+	                        <th>Tour Start</th>
 	                        <th>Priority</th>
 	                        <th>Probability</th>
 	                        <th>Inquiry Status</th>
@@ -255,8 +263,7 @@ $secondsInOneDay = 86400;
 		                            endif;
 	
 		                            // if information is missing
-		                            if(empty($value['inquiry_source']) ||
-									   empty($value['language']) ||
+		                            if(empty($value['language']) ||
 									   empty($value['agent']) ||
 									   empty($value['tour_start_date']) ||
 									   empty($value['contact']) ||
@@ -325,7 +332,7 @@ $js = <<<JS
     /* To initialize BS3 tooltips set this below */
 	$(function () { 
 	    $("[data-toggle='tooltip']").tooltip(); 
-	});;
+	});
 	/* To initialize BS3 popovers set this below */
 	$(function () { 
 	    $("[data-toggle='popover']").popover(); 

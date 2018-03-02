@@ -12,8 +12,8 @@ use yii\helpers\ArrayHelper;
 $this->title = 'T' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tours'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
+
 <div class="oa-tour-view">
 
     <p>
@@ -67,7 +67,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'update_time',
             [
 			    'attribute' => 'inquiry_source',
-			    'captionOptions' => ['class' => 'important-info'],
 			],
             [
 			    'attribute' => 'language',
