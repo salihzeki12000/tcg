@@ -27,8 +27,10 @@ $username = \Yii::$app->user->username;
     <?= $form->field($model, 'agent', ['labelOptions' => ['class' => 'important-info']])->dropdownList(common\models\Tools::getAgentUserList(), ['prompt' => '--Select--', 'disabled' => !$permission['isAdmin']]) ?>
 	<?php if(!$permission['isAdmin']): ?>
 		<div class="hide">
+			<?= $form->field($model, 'inquiry_source')->hiddenInput()->label(''); ?>
 			<?= $form->field($model, 'language')->hiddenInput()->label(''); ?>
 			<?= $form->field($model, 'agent')->hiddenInput()->label(''); ?>
+			<?= $form->field($model, 'co_agent')->hiddenInput(['value' => join(',', $model->co_agent)])->label(''); ?>
 		</div>
 	<?php endif; ?>
 
