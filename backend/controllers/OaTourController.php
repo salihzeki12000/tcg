@@ -166,7 +166,7 @@ class OaTourController extends Controller
 
         if(!empty($user_id)) {
             if($user_type==2) {
-                $summarySql .= " AND OA_TOUR.co_agent={$user_id} ";
+                $summarySql .= " AND find_in_set({$user_id},co_agent) <> 0 ";
             }
             elseif($user_type==3){
                 $summarySql .= " AND OA_TOUR.operator={$user_id} ";
@@ -220,10 +220,10 @@ class OaTourController extends Controller
                 if(array_key_exists($sumitem['agent'], $agent)) {
                     $sumitem['agent'] = $agent[$sumitem['agent']];
                 }
-                $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $sumitem['co_agent']])->all(), 'id', 'username');
-                if(array_key_exists($sumitem['co_agent'], $co_agent)) {
-                    $sumitem['co_agent'] = $co_agent[$sumitem['co_agent']];
-                }
+                
+		        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => explode(',', $sumitem['co_agent'])])->all(), 'id', 'username');
+		        $sumitem['co_agent'] = join(', ', array_values($co_agent));
+                
                 $operator = ArrayHelper::map(\common\models\User::find()->where(['id' => $sumitem['operator']])->all(), 'id', 'username');
                 if(array_key_exists($sumitem['operator'], $operator)) {
                     $sumitem['operator'] = $operator[$sumitem['operator']];
@@ -342,7 +342,7 @@ class OaTourController extends Controller
 
         $userId = Yii::$app->user->identity->id;
         
-        if(!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
+        if(!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && !$this->isCoAgent($userId, $model->co_agent) && $model->operator!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if(!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent]) && !isset($subAgent[$model->operator])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
@@ -365,10 +365,8 @@ class OaTourController extends Controller
             $model->agent = $agent[$model->agent];
         }
 
-        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->co_agent])->all(), 'id', 'username');
-        if(array_key_exists($model->co_agent, $co_agent)) {
-            $model->co_agent = $co_agent[$model->co_agent];
-        }
+        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => explode(',', $model->co_agent)])->all(), 'id', 'username');
+        $model->co_agent = join(', ', array_values($co_agent));
 
         $operator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->operator])->all(), 'id', 'username');
         if(array_key_exists($model->operator, $operator)) {
@@ -440,6 +438,11 @@ class OaTourController extends Controller
             if(isset($_POST['OaTour']['cities']) && is_array($_POST['OaTour']['cities'])) {
                 $model->cities = join(',', $_POST['OaTour']['cities']);
             }
+            
+            if(isset($_POST['OaTour']['co_agent']) && is_array($_POST['OaTour']['co_agent'])) {
+                $model->co_agent = join(',', $_POST['OaTour']['co_agent']);
+            }
+            
             if($model->inquiry_id) {
                 if(($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) === null) {
                     throw new NotFoundHttpException('Inquiry not found.');
@@ -469,7 +472,11 @@ class OaTourController extends Controller
 	                    $model->inquiry_source = $inquiryModel->inquiry_source;
 	                    $model->language = $inquiryModel->language;
 	                    $model->agent = $inquiryModel->agent;
-	                    $model->co_agent = $inquiryModel->co_agent;
+	                    
+	                    if(!empty($inquiryModel->co_agent)) {
+	                        $model->co_agent = explode(',', $inquiryModel->co_agent);
+	                    }
+	                    
 	                    $model->tour_type = $inquiryModel->tour_type;
 	                    $model->group_type = $inquiryModel->group_type;
 	                    $model->country = $inquiryModel->country;
@@ -516,7 +523,7 @@ class OaTourController extends Controller
         endif;
 
         $userId = Yii::$app->user->identity->id;
-        if(!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
+        if(!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && !$this->isCoAgent($userId, $model->co_agent) && $model->operator!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if(!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent]) && !isset($subAgent[$model->operator])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action.');
@@ -527,6 +534,11 @@ class OaTourController extends Controller
             if(isset($_POST['OaTour']['cities']) && is_array($_POST['OaTour']['cities'])) {
                 $model->cities = join(',', $_POST['OaTour']['cities']);
             }
+            
+            if(isset($_POST['OaTour']['co_agent']) && is_array($_POST['OaTour']['co_agent'])) {
+                $model->co_agent = join(',', $_POST['OaTour']['co_agent']);
+            }
+            
             if($model->inquiry_id) {
                 if(($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
                 }
@@ -541,6 +553,8 @@ class OaTourController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->cities = explode(',', $model->cities);
+            
+            $model->co_agent = explode(',', $model->co_agent);
 
             return $this->render('update', [
                 'model' => $model,
@@ -582,7 +596,7 @@ class OaTourController extends Controller
 
         $userId = Yii::$app->user->identity->id;
         
-        if(!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && $model->co_agent!=$userId && $model->operator!=$userId) {
+        if(!($this->isAdmin || $this->isAccountant) && $model->agent!=$userId && !$this->isCoAgent($userId, $model->co_agent) && $model->operator!=$userId) {
             $subAgent = \common\models\Tools::getSubUserByUserId(Yii::$app->user->identity->id);
             if(!isset($subAgent[$model->agent]) && !isset($subAgent[$model->co_agent]) && !isset($subAgent[$model->operator])) {
                 throw new ForbiddenHttpException('You are not allowed to perform this action. ');
@@ -605,10 +619,8 @@ class OaTourController extends Controller
             $model->agent = $agent[$model->agent];
         }
 
-        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->co_agent])->all(), 'id', 'username');
-        if(array_key_exists($model->co_agent, $co_agent)) {
-            $model->co_agent = $co_agent[$model->co_agent];
-        }
+        $co_agent = ArrayHelper::map(\common\models\User::find()->where(['id' => explode(',', $model->co_agent)])->all(), 'id', 'username');
+        $model->co_agent = join(', ', array_values($co_agent));
 
         $operator = ArrayHelper::map(\common\models\User::find()->where(['id' => $model->operator])->all(), 'id', 'username');
         if(array_key_exists($model->operator, $operator)) {
@@ -668,5 +680,11 @@ class OaTourController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    // returns true if $user is in comma separated list of ids $coagents
+    private function isCoAgent($user, $coagents)
+    {
+	    return in_array($user, explode(',',$coagents));
     }
 }

@@ -56,12 +56,17 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 			    'attribute' => 'id',
 	            'value' => 'Q'. $model->id
 			],
+	        [
+	            'label' => 'Tour ID',
+	            'format' => 'raw',
+	            'attribute' => 'tour_id',
+	            'value' => (!empty($tour_id)) ? Html::a('T'. $tour_id, ['oa-tour/view', 'id' => $tour_id], ['data-pjax' => 0, 'target' => "_blank"]) : '-'
+	        ],
             'creator',
             'create_time',
             'update_time',
             [
-			    'attribute' => 'inquiry_source',
-			    'captionOptions' => ['class' => 'important-info'],
+			    'attribute' => 'inquiry_source'
 			],
             [
 			    'attribute' => 'language',

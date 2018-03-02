@@ -92,7 +92,12 @@ AppAsset::register($this);
                 'active' => false,
             ],
         ]],
-        ['label' => Yii::t('app','BLOG'), 'url' => ['/article/index'], 'active' => (\Yii::$app->controller->id == 'article')],
+        [
+        	'label' => Yii::t('app','BLOG'),
+        	'url' => ['/article/index'],
+        	'active' => (\Yii::$app->controller->id == 'article'),
+        	'visible' => (Yii::$app->language == 'en' || Yii::$app->language == 'de')
+        ],
         ['label' => Yii::t('app','ABOUT US'), 'active' => \Yii::$app->controller->id == 'about-us', 'items' => [
             ['label' => Yii::t('app','Who we are'), 'url' => ['/about-us'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'index')],
             ['label' => Yii::t('app','Meet our team'), 'url' => ['about-us/meet-our-team'], 'active' => (\Yii::$app->controller->id == 'about-us' && \Yii::$app->controller->action->id == 'about-us/meet-our-team')],
@@ -106,6 +111,12 @@ AppAsset::register($this);
             '<li class="dropdown-header">AU: +61 871001399</li>'
         ]],
         ['label' => Yii::t('app','MORE'), 'active' => (\Yii::$app->controller->id == 'preparation' || \Yii::$app->controller->id == 'faq'), 'items' =>[
+        [
+        	'label' => Yii::t('app','BLOG'),
+        	'url' => ['/article/index'],
+        	'active' => (\Yii::$app->controller->id == 'article'),
+        	'visible' => (Yii::$app->language == 'es' || Yii::$app->language == 'fr')
+        ],
         ['label' => Yii::t('app','Preparation'), 'url' => ['/preparation'], 'active' => \Yii::$app->controller->id == 'preparation'],
         ['label' => Yii::t('app','FAQ'), 'url' => ['/faq'], 'active' => \Yii::$app->controller->id == 'faq'],]]
     ];

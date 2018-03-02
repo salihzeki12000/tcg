@@ -357,9 +357,32 @@ class Tools
         return $data;
     }
 
+    static public function getLeaders($subId)
+    {
+        $sql = "SELECT a.id FROM user a JOIN oa_user_sub b ON a.id = b.user_id WHERE b.sub_id=$subId";
+        $leaders = [];
+        $leaderList = Yii::$app->db->createCommand($sql)->queryAll();
+        if(!empty($leaderList)) {
+            foreach($leaderList as $item => $value) {
+            	array_push($leaders, $value['id']);
+            }
+        }
+        return $leaders;
+    }
+    
+    static public function isLeader($leaderId, $agentId)
+    {
+	    if(!empty($agentId)):
+	    	$leaders = \common\models\Tools::getLeaders($agentId);
+			return in_array($leaderId, $leaders);
+		else:
+			return 0;
+		endif;
+    }
+
     static public function getSubUserByUserId($userId)
     {
-        $sql = "SELECT a.sub_id,b.username FROM oa_user_sub a JOIN user b ON a.sub_id=b.id WHERE a.user_id=$userId ";
+        $sql = "SELECT a.sub_id,b.username FROM oa_user_sub a JOIN user b ON a.sub_id=b.id WHERE a.user_id=$userId";
         $subAgent = [];
         $subAgentList = Yii::$app->db->createCommand($sql)->queryAll();
         if (!empty($subAgentList)) {

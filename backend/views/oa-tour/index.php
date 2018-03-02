@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?php if($permission['canAdd']) { ?>
+    <?php if($permission['isAdmin']) { ?>
     <p>
         <?= Html::a(Yii::t('app', 'Create Tour'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -131,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <th>Tour End</th>
                             <th>Stage</th>
                             <th>Agent</th>
-                            <th>Co-Agent</th>
+                            <th>Co-Agent(s)</th>
                             <th>Operator</th>
                             <th>Sales Amount</th>
                             <th>Total Cost</th>
@@ -174,7 +174,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <th>Payment</th>
                             <th>Stage</th>
                             <th>Agent</th>
-                            <th>Co-Agent</th>
+                            <th>Co-Agent(s)</th>
                             <th>Operator</th>
                             <th>Task, Notice & Warning</th>
                         </tr>
@@ -208,8 +208,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            endif;
 		                            
 		                            // if information is missing
-									if(empty($value['inquiry_source']) ||
-									   empty($value['language']) ||
+									if(empty($value['language']) ||
 									   empty($value['agent']) ||
 									   empty($value['tour_price']) ||
 									   $value['tour_price'] == '0.00' ||

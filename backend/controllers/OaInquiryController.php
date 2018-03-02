@@ -132,6 +132,13 @@ class OaInquiryController extends Controller
             if (!empty($item['inquiry_source'])) {
                 $item['inquiry_source'] = $oa_inquiry_source[$item['inquiry_source']];
             }
+            
+            $query = \common\models\OaTour::find()->where(['inquiry_id'=>$item['id']]);
+            $tour = $query->one();
+            if(!empty($tour))
+            {
+                $item['tour_id'] = $tour['id'];
+            } 
         }
 
         $userList = $subAgent = [];
@@ -365,6 +372,14 @@ class OaInquiryController extends Controller
         if (!empty($model->group_type)) {
             $model->group_type = $oa_group_type[$model->group_type];
         }
+            
+        $query = \common\models\OaTour::find()->where(['inquiry_id'=>$model->id]);
+        $tour = $query->one();
+        if(!empty($tour)):
+            $tour_id = $tour['id'];
+        else:
+            $tour_id = '';
+        endif;
         
         $_GET['sort'] = 'id';
         $_GET['inquiry_id'] = $id;
@@ -378,6 +393,7 @@ class OaInquiryController extends Controller
             'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'tour_id' => $tour_id,
         ]);
     }
 

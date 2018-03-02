@@ -50,7 +50,7 @@ HTML;
 				}
             ],
             [
-				'label' => 'Tour Start Date',
+				'label' => 'Tour Start',
 				'attribute' => 'tour_start_date',
 				'headerOptions' => ['width' => '200'],
             ],
@@ -81,8 +81,16 @@ HTML;
                 'attribute'=>'status',
                 'label'=>'Status',
                 'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_status'),
+                'format' => 'raw',
                 'value' => function ($data) {
-                    return $data['status'] == 0 ? 'Not Paid' : 'Paid';
+	                $notPaid = 'Not Paid';
+	                $paid = 'Paid';
+	                
+	                if(!empty($data['note'])):
+	                	return $data['status'] == 0 ? '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Note" data-content="'.htmlspecialchars($data["note"]).'" style="text-decoration: underline; cursor:pointer;">'.$notPaid.'</a>' : '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Note" data-content="'.htmlspecialchars($data["note"]).'" style="text-decoration: underline; cursor:pointer;">'.$paid.'</a>';
+	  	            endif;
+	  	            
+                    return $data['status'] == 0 ? $notPaid : $paid;
                 }
             ],
             [
@@ -126,3 +134,13 @@ HTML;
         ],
     ]); ?>
 </div>
+
+<?php
+$js = <<<JS
+	/* To initialize BS3 popovers set this below */
+	$(function () { 
+	    $("[data-toggle='popover']").popover(); 
+	});
+JS;
+$this->registerJs($js);
+?>
