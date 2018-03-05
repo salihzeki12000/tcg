@@ -30,7 +30,13 @@ $username = \Yii::$app->user->username;
 			<?= $form->field($model, 'inquiry_source')->hiddenInput()->label(''); ?>
 			<?= $form->field($model, 'language')->hiddenInput()->label(''); ?>
 			<?= $form->field($model, 'agent')->hiddenInput()->label(''); ?>
-			<?= $form->field($model, 'co_agent')->hiddenInput(['value' => join(',', $model->co_agent)])->label(''); ?>
+		</div>
+	<?php endif; ?>
+	
+	<?php if(!common\models\Tools::isLeader(Yii::$app->user->identity->id, $model->agent) && !$permission['isAdmin']): ?>
+		<div class="hide">
+			<?php $co_agent = ($model->co_agent == null) ? '' : join(',', $model->co_agent); ?>
+			<?= $form->field($model, 'co_agent')->hiddenInput(['value' => $co_agent])->label(''); ?>
 		</div>
 	<?php endif; ?>
 
