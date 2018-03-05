@@ -489,6 +489,8 @@ class OaTourController extends Controller
 	                    $model->email = $inquiryModel->email;
 	                    $model->other_contact_info = $inquiryModel->other_contact_info;
 	                    $model->tour_schedule_note = $inquiryModel->tour_schedule_note;
+	                    $model->other_note = $inquiryModel->other_note;
+	                    $model->attachment = $inquiryModel->attachment;
 	                    if(!empty($inquiryModel->cities)) {
 	                        $model->cities = explode(',', $inquiryModel->cities);
 	                    }
