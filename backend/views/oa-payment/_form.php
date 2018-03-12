@@ -30,15 +30,25 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_status'), ['disabled' => !$permission['canAdd']]) ?>
 
+    <?= $form->field($model, 'confirmed_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
+
     <?php /*$form->field($model, 'receit_account')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_receit_account'), ['disabled' => !$permission['canAdd']])*/ ?>
 
     <?= $form->field($model, 'receit_cny_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'transaction_fee')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
-    <?= $form->field($model, 'receit_date')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
+	<?php if($permission['canAdd']): $template = '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'; else: $template = '{label} {input}{error}{hint}'; endif;?>
+
+    <?= $form->field($model, 'receit_date', [
+        'template' => $template
+		])->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
+		
+		
 
     <?= $form->field($model, 'cc_note_signing')->dropdownList(['To be Signed'=>'To be Signed','Signed'=>'Signed','No Sign'=>'No Sign'], ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
+
+    <?= $form->field($model, 'transaction_note')->textarea(['rows' => 6, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
 
@@ -55,7 +65,11 @@ $this->registerCssFile('@web/statics/css/bootstrap-datepicker3.min.css',['depend
 $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>['backend\assets\AppAsset']]);
 $js = <<<JS
     $(function(){
-        $("#oapayment-due_date, #oapayment-receit_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        $("#oapayment-due_date, #oapayment-receit_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' }); 
+        
+        $(".bt_clear_item").click(function(){
+            $(this).next().val("");
+        });
     });
 JS;
 $this->registerJs($js);

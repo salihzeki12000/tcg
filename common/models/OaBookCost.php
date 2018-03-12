@@ -21,6 +21,7 @@ use Yii;
  * @property string $cny_amount
  * @property string $due_date_for_pay
  * @property integer $pay_status
+ * @property string $confirmed_amount
  * @property string $pay_date
  * @property string $pay_amount
  * @property integer $pay_method
@@ -51,7 +52,7 @@ class OaBookCost extends \yii\db\ActiveRecord
             ['transaction_fee', 'number'],
             [['create_time', 'updat_time'], 'safe'],
             [['cl_info', 'transaction_note', 'note'], 'string'],
-            [['cny_amount', 'pay_amount'], 'number'],
+            [['cny_amount', 'pay_amount', 'confirmed_amount'], 'number'],
             [['book_date'], 'string', 'max' => 10],
             [['start_date', 'end_date', 'due_date_for_pay', 'pay_date', 'book_status'], 'string', 'max' => 255],
         ];
@@ -77,8 +78,9 @@ class OaBookCost extends \yii\db\ActiveRecord
             'cny_amount' => Yii::t('app', 'Estimated Amount (CNY)'),
             'due_date_for_pay' => Yii::t('app', 'Due Date'),
             'pay_status' => Yii::t('app', 'Pay Status'),
-            'pay_date' => Yii::t('app', 'Pay Date'),
-            'pay_amount' => Yii::t('app', 'Pay Amount (CNY)'),
+            'confirmed_amount' => Yii::t('app', 'Confirmed Amount (CNY)'),
+            'pay_date' => Yii::t('app', 'Accounting Date'),
+            'pay_amount' => Yii::t('app', 'Accounting Amount (CNY)'),
             'pay_method' => Yii::t('app', 'Pay Method'),
             'transaction_fee' => Yii::t('app', 'Transaction Fee'),
             'transaction_note' => Yii::t('app', 'Transaction Note'),

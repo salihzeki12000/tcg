@@ -58,11 +58,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'due_date_for_pay',
             'pay_status',
-            'pay_date',
+            [
+	            'attribute' => 'confirmed_amount',
+	            'label' => 'Confirmed Amount'
+            ],
             [
 	            'attribute' => 'pay_amount',
-	            'label' => 'Pay Amount'
+	            'label' => 'Accounting Amount'
             ],
+            'pay_date',
             'pay_method',
             'transaction_fee',
             'transaction_note:ntext',

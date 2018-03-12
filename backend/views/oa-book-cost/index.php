@@ -106,11 +106,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data['pay_status'] == 0 ? 'Not Paid' : 'Paid';
                 }
             ],
-            'pay_date',
+            [
+                'attribute'=>'confirmed_amount',
+                'label' => 'Confirmed Amount',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'confirmed_amount'),
+            ],
             [
                 'attribute'=>'pay_amount',
-                'label' => 'Pay Amount',
+                'label' => 'Accounting Amount',
 				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'pay_amount'),
+            ],
+            [
+                'attribute'=>'pay_date',
+                'label' => 'Accounting Date',
             ],
             [
                 'attribute' => 'pay_method',

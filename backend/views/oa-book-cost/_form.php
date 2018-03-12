@@ -59,13 +59,15 @@ use yii\helpers\ArrayHelper;
     
     <?= $form->field($model, 'pay_status')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_status'), ['disabled' => !$permission['canAdd']]) ?>
 
+    <?= $form->field($model, 'confirmed_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
+
+    <?= $form->field($model, 'pay_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
+
 	<?php if($permission['canAdd']): $template = '{label} &nbsp;&nbsp;&nbsp;(<a class="bt_clear_item" href="javascript:void(0);">Clear</a>) {input}{error}{hint}'; else: $template = '{label} {input}{error}{hint}'; endif;?>
 
     <?= $form->field($model, 'pay_date', [
         'template' => $template
 		])->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
-
-    <?= $form->field($model, 'pay_amount')->textInput(['maxlength' => true, 'disabled' => !$permission['canAdd']]) ?>
 
     <?= $form->field($model, 'pay_method')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_pay_method'), ['prompt' => '--Select--', 'disabled' => !$permission['canAdd']]) ?>
 

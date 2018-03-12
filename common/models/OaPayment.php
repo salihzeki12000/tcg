@@ -19,11 +19,13 @@ use Yii;
  * @property string $due_date
  * @property integer $pay_method
  * @property string $status
+ * @property string $confirmed_amount
  * @property string $receit_account
  * @property string $receit_cny_amount
  * @property string $transaction_fee
  * @property string $receit_date
  * @property string $cc_note_signing
+ * @property string $transaction_note
  * @property string $note
  */
 class OaPayment extends \yii\db\ActiveRecord
@@ -55,8 +57,8 @@ class OaPayment extends \yii\db\ActiveRecord
 			],
             [['inquiry_id', 'tour_id', 'pay_method'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
-            [['cny_amount', 'receit_cny_amount', 'transaction_fee', 'status'], 'number'],
-            [['note'], 'string'],
+            [['cny_amount', 'confirmed_amount', 'receit_cny_amount', 'transaction_fee', 'status'], 'number'],
+            [['note', 'transaction_note'], 'string'],
             [['payer', 'type', 'due_date', 'receit_account', 'receit_date', 'cc_note_signing'], 'string', 'max' => 255],
         ];
     }
@@ -77,13 +79,15 @@ class OaPayment extends \yii\db\ActiveRecord
             'type' => Yii::t('app', 'Type'),
             'cny_amount' => Yii::t('app', 'Amount (CNY)'),
             'due_date' => Yii::t('app', 'Due Date'),
-            'pay_method' => Yii::t('app', 'Payment Method'),
-            'status' => Yii::t('app', 'Payment Status'),
+            'pay_method' => Yii::t('app', 'Pay Method'),
+            'status' => Yii::t('app', 'Pay Status'),
+            'confirmed_amount' => Yii::t('app', 'Confirmed Amount (CNY)'),
             'receit_account' => Yii::t('app', 'Receipt Account'),
-            'receit_cny_amount' => Yii::t('app', 'Receipt Amount (CNY)'),
+            'receit_cny_amount' => Yii::t('app', 'Accounting Amount (CNY)'),
             'transaction_fee' => Yii::t('app', 'Transaction Fee (CNY)'),
-            'receit_date' => Yii::t('app', 'Receipt Date'),
+            'receit_date' => Yii::t('app', 'Accounting Date'),
             'cc_note_signing' => Yii::t('app', 'CC Note Signing'),
+            'transaction_note' => Yii::t('app', 'Transaction Note'),
             'note' => Yii::t('app', 'Note'),
         ];
     }

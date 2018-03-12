@@ -157,6 +157,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
     <div id="itinerary_list">
         <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+				'showFooter' => true,
                 'columns' => [
 			        [
 			            'label' => 'ID',
@@ -165,6 +166,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 			            'value' => function ($data) {
 			                return Html::a('P'. $data['id'], ['oa-payment/view', 'id' => $data['id']], ['data-pjax' => 0, 'target' => "_blank"]);
 			            },
+						'footer' => 'Total'
 			        ],
                     [
 	                    'attribute' => 'payer_type',
@@ -183,7 +185,10 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 	                    'label' => 'Guest Name',
                     ],
                     'type',
-                    'cny_amount',
+                    [
+	                    'attribute' => 'cny_amount',
+	                    'label' => 'Amount',
+                    ],
                     'due_date',
                     [
 	                    'attribute' => 'pay_method',
@@ -203,10 +208,19 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
 	                    }
                     ],
                     [
-                    	'attribute' => 'receit_cny_amount',
-                    	'label' => 'Receipt Amount'
+                    	'attribute' => 'confirmed_amount',
+                    	'label' => 'Confirmed Amount',
+						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'confirmed_amount'),
                     ],
-                    'receit_date',
+                    [
+                    	'attribute' => 'receit_cny_amount',
+                    	'label' => 'Accounting Amount',
+						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
+                    ],
+                    [
+	                    'attribute' => 'receit_date',
+	                    'label' => 'Accounting Date',
+                    ],
                 ],
             ]); ?>
     </div>
