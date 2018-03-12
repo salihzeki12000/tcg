@@ -239,6 +239,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'type',
 		            [
+			            'label' => 'Amount',
 						'attribute'=>'cny_amount',
 						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'cny_amount'),
 		            ],
@@ -261,11 +262,19 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    }
                     ],
 		            [
+						'attribute'=>'confirmed_amount',
+                    	'label' => 'Confirmed Amount',
+						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'confirmed_amount'),
+		            ],
+		            [
 						'attribute'=>'receit_cny_amount',
-                    	'label' => 'Receipt Amount',
+                    	'label' => 'Accounting Amount',
 						'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
 		            ],
-                    'receit_date',
+		            [
+						'attribute'=>'receit_date',
+                    	'label' => 'Accounting Date',
+		            ],
 
                     /* [
                         'class' => 'yii\grid\ActionColumn',
@@ -404,8 +413,13 @@ $this->params['breadcrumbs'][] = $this->title;
 	                        }
 	                    ],
 			            [
+							'attribute'=>'confirmed_amount',
+	                    	'label' => 'Confirmed Amount',
+							'footer' => \common\models\Tools::getTotal($dataProviderBC->models, 'confirmed_amount'),
+			            ],
+			            [
 							'attribute'=>'pay_amount',
-	                    	'label' => 'Pay Amount',
+	                    	'label' => 'Accounting Amount',
 							'footer' => \common\models\Tools::getTotal($dataProviderBC->models, 'pay_amount'),
 			            ],
 	                    /* [
