@@ -21,7 +21,7 @@ class OaBookCostSearch extends OaBookCost
             [['id', 'tour_id', 'creator', 'type', 'fid', 'need_to_pay', 'pay_status'], 'integer'],
             [['transaction_fee'], 'number'],
             [['create_time', 'updat_time', 'start_date', 'end_date', 'cl_info', 'due_date_for_pay', 'pay_date', 'transaction_note', 'book_status', 'book_date', 'note', 'pay_method'], 'safe'],
-            [['cny_amount', 'pay_amount'], 'number'],
+            [['cny_amount', 'pay_amount', 'confirmed_amount'], 'number'],
         ];
     }
 
@@ -75,6 +75,7 @@ class OaBookCostSearch extends OaBookCost
             'need_to_pay' => $this->need_to_pay,
             'cny_amount' => $this->cny_amount,
             'pay_status' => $this->pay_status,
+            'confirmed_amount' => $this->confirmed_amount,
             'pay_amount' => $this->pay_amount,
         ]);
 

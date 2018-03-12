@@ -85,20 +85,38 @@ HTML;
                 'value' => function ($data) {
 	                $notPaid = 'Not Paid';
 	                $paid = 'Paid';
+	                $note = '';
+	                $transactionNote = '';
+                	
+                	if(!empty(htmlspecialchars($data["transaction_note"]))):
+						$transactionNote = 'Transaction Note: '.htmlspecialchars($data["transaction_note"]).'<br><br>';
+                	endif;
 	                
-	                if(!empty($data['note'])):
-	                	return $data['status'] == 0 ? '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Note" data-content="'.htmlspecialchars($data["note"]).'" style="text-decoration: underline; cursor:pointer;">'.$notPaid.'</a>' : '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Note" data-content="'.htmlspecialchars($data["note"]).'" style="text-decoration: underline; cursor:pointer;">'.$paid.'</a>';
+                	if(!empty(htmlspecialchars($data["note"]))):
+                		$note = 'Note: '.htmlspecialchars($data["note"]);
+                	endif;
+	                	
+	                if(!empty($note) || !empty($transationNote)):
+	                	return $data['status'] == 0 ? '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Notes" data-content="'.$transactionNote.$note.'" style="text-decoration: underline; cursor:pointer;">'.$notPaid.'</a>' : '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Notes" data-content="'.$transactionNote.$note.'" style="text-decoration: underline; cursor:pointer;">'.$paid.'</a>';
 	  	            endif;
 	  	            
                     return $data['status'] == 0 ? $notPaid : $paid;
                 }
             ],
             [
-				'label'=>'Receipt Amount',
+				'label'=>'Confirmed Amount',
+				'attribute'=>'confirmed_amount',
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
+            ],
+            [
+				'label'=>'Accounting Amount',
 				'attribute'=>'receit_cny_amount',
 				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
             ],
-            'receit_date',
+            [
+				'label'=>'Accounting Date',
+				'attribute'=>'receit_date',
+            ],
             [
                 'attribute' => 'pay_method',
                 'label'=>'Method',

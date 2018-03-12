@@ -73,17 +73,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'status',
                 'value' => $model->status == 0 ? 'Not Paid' : 'Paid',
             ],
-            // 'receit_account',
+            [
+			    'attribute' => 'confirmed_amount',
+	            'label' => 'Confirmed Amount'
+			],
             [
 			    'attribute' => 'receit_cny_amount',
-	            'label' => 'Receipt Amount'
+	            'label' => 'Accounting Amount'
 			],
             [
 			    'attribute' => 'transaction_fee',
 	            'label' => 'Transaction Fee'
 			],
-            'receit_date',
+            [
+			    'attribute' => 'receit_date',
+	            'label' => 'Accounting Date'
+			],
             'cc_note_signing',
+            'transaction_note:ntext',
             'note:ntext',
         ],
     ]) ?>

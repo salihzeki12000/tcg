@@ -22,9 +22,9 @@ class OaPaymentSearch extends OaPayment
     {
         return [
             [['id', 'tour_id', 'inquiry_id', 'payer_type'], 'integer'],
-            [['create_time', 'update_time', 'payer', 'type', 'due_date', 'pay_method', 'status', 'receit_account', 'receit_date', 'cc_note_signing', 'note'], 'safe'],
+            [['create_time', 'update_time', 'payer', 'type', 'due_date', 'pay_method', 'status', 'receit_account', 'receit_date', 'cc_note_signing', 'note', 'transaction_note'], 'safe'],
             ['tour_start_date', 'string'],
-            [['cny_amount', 'receit_cny_amount', 'transaction_fee'], 'number'],
+            [['cny_amount', 'confirmed_amount', 'receit_cny_amount', 'transaction_fee'], 'number'],
         ];
     }
 
@@ -94,6 +94,10 @@ class OaPaymentSearch extends OaPayment
         	$sql .= "AND OA_PAYMENT.receit_cny_amount = '$this->receit_cny_amount' ";
 		endif;
 
+		if(!empty($this->confirmed_amount)):
+        	$sql .= "AND OA_PAYMENT.confirmed_amount = '$this->confirmed_amount' ";
+		endif;
+
 		if(!empty($this->transaction_fee)):
         	$sql .= "AND OA_PAYMENT.transaction_fee = '$this->transaction_fee' ";
 		endif;
@@ -132,6 +136,10 @@ class OaPaymentSearch extends OaPayment
 
 		if(!empty($this->cc_note_signing)):
 			$sql .= "AND OA_PAYMENT.cc_note_signing LIKE '%$this->cc_note_signing%' ";
+		endif;
+
+		if(!empty($this->transaction_note)):
+			$sql .= "AND OA_PAYMENT.transaction_note LIKE '%$this->transaction_note%' ";
 		endif;
 
 		if(!empty($this->note)):
