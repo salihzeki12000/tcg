@@ -404,12 +404,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    [
 	                        'attribute'=>'pay_status',
 	                        'value' => function ($data) {
-		                        
-		                        if(is_null($data->pay_status)):
-		                        	$data->pay_status = 0;
-		                        endif;
-		                        
-	                            return Yii::$app->params['yes_or_no'][$data->pay_status];
+					        	return $data->pay_status == 0 ? 'Not Paid' : 'Paid';
 	                        }
 	                    ],
 			            [
