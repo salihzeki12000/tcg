@@ -106,7 +106,7 @@ HTML;
             [
 				'label'=>'Confirmed Amount',
 				'attribute'=>'confirmed_amount',
-				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'receit_cny_amount'),
+				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'confirmed_amount'),
             ],
             [
 				'label'=>'Accounting Amount',
