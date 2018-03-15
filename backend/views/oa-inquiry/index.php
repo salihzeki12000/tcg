@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php
-$now = time();
+$now = strtotime(date('Y-m-d'));
 $secondsInOneDay = 86400;
 ?>
 
@@ -257,8 +257,30 @@ $secondsInOneDay = 86400;
 	                            	endif;
 		                            
 		                            // if inquiry needs to be updated
-		                            $updateTime = strtotime($value['update_time']);
-		                            if($value['inquiry_status_txt'] == 'New' || ($value['inquiry_status_txt'] == 'Following up' && (($now - $updateTime) / $secondsInOneDay) >= 5)):
+		                            $updateTime = strtotime(date('Y-m-d', strtotime($value['update_time'])));
+		                            $createTime = strtotime(date('Y-m-d', strtotime($value['create_time'])));
+		                            
+		                            if($value['inquiry_status_txt'] == 'New'
+		                            	||
+			                            (
+			                            	$value['inquiry_status_txt'] == 'Following up'
+			                            	&&
+											(                            	
+				                            	((($now - $updateTime) / $secondsInOneDay) >= 2 && (($now - $createTime) / $secondsInOneDay) <= 7)
+				                            	||
+				                            	(
+													(
+														((($now - $createTime) / $secondsInOneDay) > 7 && (($now - $createTime) / $secondsInOneDay) <= 30 && (($now - $updateTime) / $secondsInOneDay) >= 7) || ((($now - $createTime) / $secondsInOneDay) > 30 && (($now - $updateTime) / $secondsInOneDay) >= 30)
+													)
+													&&
+													(
+														empty($value['task_remind']) || empty($value['task_remind_date']) || (!empty($value['task_remind_date']) && strtotime($value['task_remind_date']) < $now)
+													)
+												)
+				                            )
+				                        )
+			                        )
+		                            :
 		                            	echo '<div style="color: #c55">Update follow-up status!</div>';
 		                            endif;
 	

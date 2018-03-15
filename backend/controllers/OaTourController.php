@@ -75,7 +75,10 @@ class OaTourController extends Controller
         $data['arrUserType'] = $this->arrUserType;
         $data['arrDateType'] = $this->arrDateType;
         return parent::render($templateName, $data);
-    }    /**
+    }
+    
+    
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -151,14 +154,16 @@ class OaTourController extends Controller
             'Estimated Gross Profit (Not Closed)' => ['close'=>0, 'sum_field'=>'tour_price-estimated_cost'], //
             'Closed' => ['close'=>1], //
             'Sales Amount (Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount'], //
-            'Gross Profit(Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount-accounting_total_cost'], //
+            'Gross Profit (Closed)' => ['close'=>1, 'sum_field'=>'accounting_sales_amount-accounting_total_cost'], //
         ];
         
         $summarySql = "SELECT * FROM oa_tour AS OA_TOUR ";
         
-        $summarySql .= "LEFT JOIN (SELECT tour_id, sum(cny_amount) AS total_payments FROM oa_payment GROUP BY tour_id) AS OA_PAYMENT ON OA_TOUR.id = OA_PAYMENT.tour_id ";
+        $summarySql .= "LEFT JOIN (SELECT tour_id, sum(cny_amount) AS total_payments, sum(confirmed_amount) as pay_confirmed_amount, sum(receit_cny_amount) as pay_accounting_amount FROM oa_payment GROUP BY tour_id) AS OA_PAYMENT ON OA_TOUR.id = OA_PAYMENT.tour_id ";
         
-        $summarySql .= "LEFT JOIN (SELECT tour_id, 1 AS payment_overdue FROM oa_payment WHERE status = 0 AND DATEDIFF(due_date, CURRENT_DATE) <= 3 GROUP BY tour_id) AS OA_PAYMENT_OVERDUE ON OA_TOUR.id = OA_PAYMENT_OVERDUE.tour_id ";
+        $summarySql .= "LEFT JOIN (SELECT tour_id, sum(confirmed_amount) as cost_confirmed_amount, sum(pay_amount) as cost_accounting_amount FROM oa_book_cost GROUP BY tour_id) AS OA_BOOK_COST ON OA_TOUR.id = OA_BOOK_COST.tour_id ";
+        
+        $summarySql .= "LEFT JOIN (SELECT tour_id, 1 AS payment_overdue FROM oa_payment WHERE status = 0 AND CURRENT_DATE >= due_date GROUP BY tour_id) AS OA_PAYMENT_OVERDUE ON OA_TOUR.id = OA_PAYMENT_OVERDUE.tour_id ";
         
         $summarySql .= "LEFT JOIN (SELECT tour_id, 1 AS no_confirmed_payments FROM (select TOTAL_PAYMENTS.tour_id, total_payments, not_paid FROM (SELECT tour_id, count(*) AS total_payments FROM oa_payment GROUP BY tour_id) AS TOTAL_PAYMENTS LEFT JOIN (SELECT tour_id, count(*) AS not_paid FROM oa_payment WHERE status = 0 GROUP BY tour_id) AS PAYMENT_DUE ON TOTAL_PAYMENTS.tour_id = PAYMENT_DUE.tour_id GROUP BY TOTAL_PAYMENTS.tour_id) AS TEMP WHERE total_payments = not_paid) AS NO_PAYMENTS_CONFIRMED ON OA_TOUR.id = NO_PAYMENTS_CONFIRMED.tour_id ";
         

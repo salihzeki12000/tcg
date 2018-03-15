@@ -96,7 +96,7 @@ HTML;
                 		$note = 'Note: '.htmlspecialchars($data["note"]);
                 	endif;
 	                	
-	                if(!empty($note) || !empty($transationNote)):
+	                if(!empty($note) || !empty($transactionNote)):
 	                	return $data['status'] == 0 ? '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Notes" data-content="'.$transactionNote.$note.'" style="text-decoration: underline; cursor:pointer;">'.$notPaid.'</a>' : '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Notes" data-content="'.$transactionNote.$note.'" style="text-decoration: underline; cursor:pointer;">'.$paid.'</a>';
 	  	            endif;
 	  	            
