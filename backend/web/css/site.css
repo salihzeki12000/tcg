@@ -134,3 +134,13 @@ a.desc:after {
 }
 
 .important-info:after {content: " *"; color: red;}
+
+.other-notice {
+	color: #c55;
+	padding: 2px 0px
+}
+
+.due-task-notice {
+	color: #28b500;
+	padding: 2px 0px
+}

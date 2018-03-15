@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'pay_date',
             'pay_method',
-            'transaction_fee',
+            // 'transaction_fee',
             'transaction_note:ntext',
             'note:ntext',
         ],

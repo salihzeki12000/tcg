@@ -203,7 +203,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            if($value['task_remind'] && $value['task_remind_date']):
 		                            	$taskRemindDate = strtotime($value['task_remind_date']);
 		                            	if($now >= $taskRemindDate):
-		                            		echo '<div style="color: #28b500">Due task: ' . $value['task_remind'].'</div>';
+		                            		echo '<div class="due-task-notice">Due task: ' . $value['task_remind'].'</div>';
 		                            	endif;
 		                            endif;
 		                            
@@ -221,43 +221,52 @@ $this->params['breadcrumbs'][] = $this->title;
 									   empty($value['number_of_travelers']) ||
 									   empty($value['contact']) ||
 									   empty($value['email'])):
-										echo '<div style="color: #c55">Missing important info!</div>';
+										echo '<div class="other-notice">Missing important info!</div>';
 	                            	endif;
 	                            	
 	                            	// if tour hasn't been closed after 45 days
 	                            	$tourEndDate = strtotime($value['tour_end_date']);
 	                            	if((($now - $tourEndDate) / $secondsInOneDay) >= 45 && !$value['close']):
-	                            		echo '<div style="color: #c55">Needs to be closed!</div>';
+	                            		echo '<div class="other-notice">Needs to be closed!</div>';
 	                            	endif;
 	                            	
 	                            	// needs pre-tour confirmation OR tour has ended and stage hasn't been changed
 	                            	$tourStartDate = strtotime($value['tour_start_date']);
-	                            	if(((($tourStartDate - $now) / $secondsInOneDay) <= 15 &&
-	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm'))) || ((($now - $tourEndDate)/$secondsInOneDay) >= 3 &&
-	                            		 in_array($value['stage'], array('Need to Schedule', 'All Scheduled & Need Pre-Tour Confirm', 'Pre-Tour Confirmed & Ready to Go')))):
-	                            		echo '<div style="color: #c55">Abnormal tour stage!</div>';
+	                            	if(
+	                            		((($tourStartDate - $now) / $secondsInOneDay) <= 15 && $value['stage'] == 'Need to Schedule')
+										||
+										((($tourStartDate - $now)/$secondsInOneDay) <= 7 && $value['stage'] == 'All Scheduled & Need Pre-Tour Confirm')
+										||
+										((($now - $tourEndDate)/$secondsInOneDay) >= 3 && $value['stage'] == 'Pre-Tour Confirmed & Ready to Go')
+									):
+	                            		echo '<div class="other-notice">Abnormal tour stage!</div>';
 	                            	endif;
 	                            	
 	                            	// if payments missing
 									if($value['tour_price'] != $value['total_payments']):
-										echo '<div style="color: #c55">Tour price must equal total payments!</div>';
+										echo '<div class="other-notice">Tour price must equal total payments!</div>';
 	                            	endif;
 	                            	
 	                            	// if payment(s) overdue
 									if($value['payment_overdue'] == 1):
-										echo '<div style="color: #c55">Payment(s) overdue!</div>';
+										echo '<div class="other-notice">Payment(s) overdue!</div>';
 	                            	endif;
 	                            	
 	                            	// if no confirmed payments
 									if($value['no_confirmed_payments'] == 1):
-										echo '<div style="color: #c55">No confirmed payment!</div>';
+										echo '<div class="other-notice">No confirmed payment!</div>';
 	                            	endif;
 	                            	
 	                            	// if low profit risk
 	                            	if(!empty($value['tour_price'])):
 										if(!$value['close'] && (($value['tour_price'] - $value['estimated_cost'])/$value['tour_price']) < 0.15):
-											echo '<div style="color: #c55">Low profit risk!</div>';
+											echo '<div class="other-notice">Low profit risk!</div>';
 		                            	endif;
+	                            	endif;
+	                            	
+	                            	// if Accounting Profit != Confirmed Profit!
+									if(($value['pay_confirmed_amount'] - $value['cost_confirmed_amount']) != ($value['pay_accounting_amount'] - $value['cost_accounting_amount'])):
+										echo '<div  class="other-notice">Accounting Profit != Confirmed Profit</div>';
 	                            	endif;
 		                           	?>
 	                            </td>

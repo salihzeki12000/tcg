@@ -102,8 +102,21 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'pay_status',
                 'filter'=> \common\models\Tools::getEnvironmentVariable('oa_pay_status'),
+                'format' => 'raw',
                 'value' => function ($data) {
-                    return $data['pay_status'] == 0 ? 'Not Paid' : 'Paid';
+	                $notPaid = 'Not Paid';
+	                $paid = 'Paid';
+	                $transactionNote = '';
+                	
+                	if(!empty(htmlspecialchars($data["transaction_note"]))):
+						$transactionNote = 'Transaction Note: '.htmlspecialchars($data["transaction_note"]);
+                	endif;
+	                	
+	                if(!empty($transactionNote)):
+	                	return $data['pay_status'] == 0 ? '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Notes" data-content="'.$transactionNote.'" style="text-decoration: underline; cursor:pointer;">'.$notPaid.'</a>' : '<a tabindex="0" data-html="true" data-placement="left" data-toggle="popover" data-trigger="focus" title="Notes" data-content="'.$transactionNote.'" style="text-decoration: underline; cursor:pointer;">'.$paid.'</a>';
+	  	            endif;
+	  	            
+                    return $data['pay_status'] == 0 ? $notPaid : $paid;
                 }
             ],
             [
@@ -132,10 +145,6 @@ $this->params['breadcrumbs'][] = $this->title;
         			return '-';
                 }
             ],
-            [
-                'attribute'=>'transaction_fee',
-				'footer' => \common\models\Tools::getTotal($dataProvider->models, 'transaction_fee'),
-            ],
             
             // 'create_time',
             // 'updat_time',
@@ -160,3 +169,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+
+<?php
+$js = <<<JS
+	/* To initialize BS3 popovers set this below */
+	$(function () { 
+	    $("[data-toggle='popover']").popover(); 
+	});
+JS;
+$this->registerJs($js);
+?>
