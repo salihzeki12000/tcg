@@ -664,7 +664,7 @@ class OaTourController extends Controller
         $queryParamsBC = Yii::$app->request->queryParams;
         unset($queryParamsBC['id']);
         $dataProviderBC = $searchModelBC->search($queryParamsBC);
-        $dataProviderBC->sort = array('defaultOrder' => ['type' => SORT_ASC, 'start_date' => SORT_ASC]);
+		$dataProviderBC->sort = ['defaultOrder' => ['type' => SORT_ASC, 'start_date' => SORT_ASC], 'attributes' => ['type', 'start_date']];
 
         return $this->render('view-confirmation-letter', [
             'model' => $model,
