@@ -5,9 +5,9 @@ use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\OaTour */
-
 
 $this->title = 'T' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tours'), 'url' => ['index']];
@@ -306,7 +306,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'format' => 'raw',
 				            'attribute' => 'id',
 				            'value' => function ($data) {
-				                return Html::a('C'. $data['id'], ['oa-book-cost/view', 'id' => $data->id], ['data-pjax' => 0, 'target' => "_blank"]);
+				                return Html::a('C'. $data['id'], ['oa-book-cost/view', 'id' => $data['id']], ['data-pjax' => 0, 'target' => "_blank"]);
 				            },
 							'footer' => 'Total'
 				        ],
@@ -392,7 +392,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    [
 	                        'attribute'=>'need_to_pay',
 	                        'value' => function ($data) {
-	                            return Yii::$app->params['yes_or_no'][$data->need_to_pay];
+	                            return Yii::$app->params['yes_or_no'][$data['need_to_pay']];
 	                        }
 	                    ],
 			            [
@@ -404,7 +404,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    [
 	                        'attribute'=>'pay_status',
 	                        'value' => function ($data) {
-					        	return $data->pay_status == 0 ? 'Not Paid' : 'Paid';
+					        	return $data['pay_status'] == 0 ? 'Not Paid' : 'Paid';
 	                        }
 	                    ],
 			            [
