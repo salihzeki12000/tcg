@@ -20,13 +20,13 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'tour_id')->textInput(['readonly' => true]) ?>
 
     <?php if ($model->type == OA_BOOK_COST_TYPE_GUIDE) { ?>
-        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaGuide::find()->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
+        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaGuide::find()->orderBy(['name'=>SORT_ASC])->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
     <?php } else if ($model->type == OA_BOOK_COST_TYPE_HOTEL) { ?>
-        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaHotel::find()->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
+        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaHotel::find()->orderBy(['name'=>SORT_ASC])->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
     <?php } else if ($model->type == OA_BOOK_COST_TYPE_AGENCY) { ?>
-        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaAgency::find()->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
+        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaAgency::find()->orderBy(['name'=>SORT_ASC])->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
     <?php } else if ($model->type == OA_BOOK_COST_TYPE_OTHER) { ?>
-        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaOtherCost::find()->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
+        <?= $form->field($model, 'fid')->dropdownList(ArrayHelper::map(common\models\OaOtherCost::find()->orderBy(['name'=>SORT_ASC])->all(), 'id', 'name'), ['disabled' => !$model->isNewRecord]) ?>
     <?php } ?>
 
     <?php if (!$model->isNewRecord) { ?>

@@ -3,18 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\OaFeedback;
-use common\models\OaFeedbackSearch;
+use common\models\OaVoucher;
+use common\models\OaVoucherSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Html;
 
 /**
- * OaFeedbackController implements the CRUD actions for OaFeedback model.
+ * OaVoucherController implements the CRUD actions for OaVoucher model.
  */
-class OaFeedbackController extends Controller
+class OaVoucherController extends Controller
 {
     public $isAdmin = 0;
 
@@ -22,9 +21,8 @@ class OaFeedbackController extends Controller
     {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser(Yii::$app->user->identity->id);
-
-        if(isset($roles['OA-Admin']))
-        {
+        
+        if(isset($roles['OA-Admin'])) {
             $this->isAdmin = 1;
         }
 
@@ -37,7 +35,7 @@ class OaFeedbackController extends Controller
         $data['permission'] = $tmp;
         return parent::render($templateName, $data);
     }
-	
+    
     /**
      * @inheritdoc
      */
@@ -54,12 +52,12 @@ class OaFeedbackController extends Controller
     }
 
     /**
-     * Lists all OaFeedback models.
+     * Lists all OaVoucher models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OaFeedbackSearch();
+        $searchModel = new OaVoucherSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -69,29 +67,29 @@ class OaFeedbackController extends Controller
     }
 
     /**
-     * Displays a single OaFeedback model.
+     * Displays a single OaVoucher model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-	    $model = $this->findModel($id);
-	    
-	    $model->tour_id = empty($model->tour_id) ? '-' : Html::a('T' . $model->tour_id, ['oa-tour/view', 'id' => $model->tour_id], ['target' => '_blank']);
-	    
         return $this->render('view', [
-            'model' => $model,
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new OaFeedback model.
+     * Creates a new OaVoucher model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new OaFeedback();
+        if(!$this->isAdmin) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        }
+        
+        $model = new OaVoucher();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -103,7 +101,7 @@ class OaFeedbackController extends Controller
     }
 
     /**
-     * Updates an existing OaFeedback model.
+     * Updates an existing OaVoucher model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -111,10 +109,6 @@ class OaFeedbackController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
-        if(!$this->isAdmin):
-            throw new ForbiddenHttpException('You are not allowed to perform this action.');
-        endif;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -126,35 +120,35 @@ class OaFeedbackController extends Controller
     }
 
     /**
-     * Deletes an existing OaFeedback model.
+     * Deletes an existing OaVoucher model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
+        if(!$this->isAdmin) {
+            throw new ForbiddenHttpException('You are not allowed to perform this action.');
+        }
+        
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the OaFeedback model based on its primary key value.
+     * Finds the OaVoucher model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return OaFeedback the loaded model
+     * @return OaVoucher the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = OaFeedback::findOne($id)) !== null) {
+        if (($model = OaVoucher::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-    public function actionSend() {
-       //code here to send the mail
-    } 
 }

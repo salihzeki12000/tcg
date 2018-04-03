@@ -16,18 +16,13 @@ $this->title = Yii::t('app','Feedback Form');
         'model' => $model,
         'attributes' => [
 			'tour_id',
-			'language',
-			'create_time',
 			'comment_itinerary',
 			'comment_meals',
-			'comment_service',
-			'how_found_us',
-			'why_chose_us',
+			'comment_service_guide_driver',
+			'comment_service_agent',
 			'rate',
+			'why_chose_us',
 			'suggestions',
-			'client_name',
-			'client_email',
-			'agent',
         ],
     ]) ?>
 

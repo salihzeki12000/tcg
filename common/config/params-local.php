@@ -6,7 +6,7 @@ return [
         'fr' => 'Français',
         'es' => 'Español',
         'de' => 'Deutsch',
-        'pt' => 'Português',
+        // 'pt' => 'Português',
         ),
     'currency_name' => array(
         'CNY' => ['sign'=>'¥' ,'name'=>'CNY'],
@@ -79,6 +79,7 @@ return [
         CARD_STATUS_CHARGED     => 'To be Charged',
         CARD_STATUS_SUCCESSFULY => 'Successfuly Charged',
         CARD_STATUS_FAILED      => 'Charge Failed',
+        CARD_STATUS_DISMISSED      => 'Dismissed',
         ),
     'oa_book_cost_type' => array(
         OA_BOOK_COST_TYPE_GUIDE     => 'Guide',
@@ -237,4 +238,3 @@ return [
     ),
 
 ];
-

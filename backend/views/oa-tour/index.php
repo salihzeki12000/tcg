@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Name/Email</label>
-	    	<input name="name_or_email" type="text" size="50" />
+	    	<input name="name_or_email" value="<?= $name_or_email?>" type="text" size="50" />
 	    </div>
 		
         <input class="btn btn-primary" type="submit" name="" value="Refresh" style="margin-bottom: 20px">
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </ul>
     </div>
     <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
-        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
+        <div id="list_view_<?=$i?>" class="grid-view" style="<?=($i>0)?'display: none;':''?>">
             <?php if ($listTitle == 'Closed Tours') { ?>
                 <table id="w0" class="table table-striped table-bordered detail-view">
                     <thead>
@@ -198,6 +198,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                                <?php
 		                            $now = time();
 		                            $secondsInOneDay = 86400;
+		                            $tourEndDate = strtotime($value['tour_end_date']);
 		                            
 		                            // if task is overdue
 		                            if($value['task_remind'] && $value['task_remind_date']):
@@ -223,28 +224,33 @@ $this->params['breadcrumbs'][] = $this->title;
 									   empty($value['email'])):
 										echo '<div class="other-notice">Missing important info!</div>';
 	                            	endif;
+		                            
+		                            // if tour hasn't been closed after 3 months
+	                            	if($permission['isAdmin'] || $permission['isAccountant']):
+		                            	$thirdMonth = date('m', $tourEndDate) + 3;
+		                            	$dateThirdMonth = strtotime(date("Y-$thirdMonth-01"));
+		                            	if($now >= $dateThirdMonth && !$value['close']):
+		                            		echo '<div class="other-notice">Needs to be closed!</div>';
+		                            	endif;
+									endif;
 	                            	
-	                            	// if tour hasn't been closed after 45 days
-	                            	$tourEndDate = strtotime($value['tour_end_date']);
-	                            	if((($now - $tourEndDate) / $secondsInOneDay) >= 45 && !$value['close']):
-	                            		echo '<div class="other-notice">Needs to be closed!</div>';
-	                            	endif;
-	                            	
-	                            	// needs pre-tour confirmation OR tour has ended and stage hasn't been changed
-	                            	$tourStartDate = strtotime($value['tour_start_date']);
-	                            	if(
-	                            		((($tourStartDate - $now) / $secondsInOneDay) <= 15 && $value['stage'] == 'Need to Schedule')
-										||
-										((($tourStartDate - $now)/$secondsInOneDay) <= 7 && $value['stage'] == 'All Scheduled & Need Pre-Tour Confirm')
-										||
-										((($now - $tourEndDate)/$secondsInOneDay) >= 3 && $value['stage'] == 'Pre-Tour Confirmed & Ready to Go')
-									):
-	                            		echo '<div class="other-notice">Abnormal tour stage!</div>';
+		                            // needs pre-tour confirmation OR tour has ended and stage hasn't been changed
+	                            	if($permission['isAdmin'] || $permission['isAgent'] || $permission['isOperator']):
+		                            	$tourStartDate = strtotime($value['tour_start_date']);
+		                            	if(
+		                            		((($tourStartDate - $now) / $secondsInOneDay) <= 15 && $value['stage'] == 'Need to Schedule')
+											||
+											((($tourStartDate - $now)/$secondsInOneDay) <= 7 && $value['stage'] == 'All Scheduled & Need Pre-Tour Confirm')
+											||
+											((($now - $tourEndDate)/$secondsInOneDay) >= 3 && $value['stage'] == 'Pre-Tour Confirmed & Ready to Go')
+										):
+		                            		echo '<div class="other-notice">Abnormal tour stage!</div>';
+		                            	endif;
 	                            	endif;
 	                            	
 	                            	// if payments missing
 									if($value['tour_price'] != $value['total_payments']):
-										echo '<div class="other-notice">Tour price must equal total payments!</div>';
+										echo '<div class="other-notice">Tour price != total payments!</div>';
 	                            	endif;
 	                            	
 	                            	// if payment(s) overdue
@@ -264,9 +270,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            	endif;
 	                            	endif;
 	                            	
-	                            	// if Accounting Profit != Confirmed Profit!
-									if(($value['pay_confirmed_amount'] - $value['cost_confirmed_amount']) != ($value['pay_accounting_amount'] - $value['cost_accounting_amount'])):
-										echo '<div  class="other-notice">Accounting Profit != Confirmed Profit</div>';
+		                            // if Accounting Profit != Confirmed Profit!
+	                            	if($permission['isAdmin'] || $permission['isAccountant']):
+										if(($value['pay_confirmed_amount'] - $value['cost_confirmed_amount']) != ($value['pay_accounting_amount'] - $value['cost_accounting_amount'])):
+											echo '<div  class="other-notice">Accounting Profit != Confirmed Profit</div>';
+		                            	endif;
 	                            	endif;
 		                           	?>
 	                            </td>
@@ -308,7 +316,7 @@ $js = <<<JS
         $("#from_date, #end_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
         $(".ul_list_view a").click(function(){
             var showId = $(this).attr('data-id');
-            $(".list_views").hide();
+            $(".grid-view").hide();
             $("#"+showId).show();
             $(".ul_list_view li").removeClass('active');
             $(this).parent("li").addClass('active');

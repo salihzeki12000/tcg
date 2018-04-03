@@ -135,7 +135,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       <?php for($j=0; $j<count($itinerary_info); $j++) { 
         $itinerary = $itinerary_info[$j];
       ?>
-      <div id="itinerary-item-<?= $j ?>" class="itinerary-item" data-current="<?= $j ?>" style="<?= $j>0?'display: none;':'' ?>">
+      <div id="itinerary-item-<?= $j ?>" class="itinerary-item" data-current="<?= $j ?>" style="overflow: auto; <?= $j>0?'display: none;':'' ?>">
 
         <nav class="itinerary-swipe">
             <span class="bt-pager previous <?= $j==0?'disabled':'' ?>" data-current="<?= $j ?>" data-action="-1">
@@ -152,10 +152,14 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
           
             <div><?= $itinerary['cities_name'] ?></div>
         </nav>
-        <div class="itinerary-swipe overview">
-          <?= $itinerary['description'] ?>
+        
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" style="padding-left: 0">
+	        <div class="itinerary-swipe overview">
+	          <?= $itinerary['description'] ?>
+	        </div>
         </div>
-
+        
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 slideshow-experience" style="padding-right: 0">
         <?php if (count($itinerary['images']) > 0) { ?>
           <div id="carousel-slides-itinerary-<?= $j ?>" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -196,7 +200,7 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
           </div>
 
         <?php } ?>
-
+		</div>
 
       </div>
 

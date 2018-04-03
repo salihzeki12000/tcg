@@ -109,9 +109,9 @@ class UploadedFiles extends \yii\db\ActiveRecord
             $main_file = $file_path.'.jpg';
             $web_path  = $file_dir . '/' . $file_name .'.jpg';
             if ($tmp_name) {
-                $newWidth = 1280; $newHeight = 2560;
+                $newWidth = 2000; $newHeight = 2560;
                 $ret = Image::getImagine()->open($tmp_name)->thumbnail(new Box($newWidth, $newHeight))
-                ->save($main_file , ['quality' => $quality]);
+                ->save($main_file, ['quality' => $quality]);
                 if ($ret){
                     $md5file = md5_file($main_file);
                     if (($ext_row = self::findOne(['md5'=>$md5file])) !== null) {

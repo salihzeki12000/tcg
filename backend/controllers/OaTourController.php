@@ -333,6 +333,7 @@ class OaTourController extends Controller
             'date_type' => $date_type,
             'inquiry_source' => $inquiry_source,
             'language' => $language,
+            'name_or_email' => $name_or_email,
         ]);
     }
 

@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-feedback-index">
 
-	<?php if($permission['canAdd']) { ?>
+	<?php if(0) { ?>
     <p>
         <?= Html::a(Yii::t('app', 'Create Feedback'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -23,32 +23,53 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'create_time',
-            'tour_id',
-            // 'language',
+			[
+				'attribute' => 'id',
+				'format' => 'raw',
+				'value' => function($model) {
+					return '<a href="' . Url::to(['oa-feedback/view', 'id'=>$model['id']]) . '" target="_blank">' . $model['id'] . '</a>';
+				},
+				'headerOptions' => ['width' => '100'],
+			],
+            [
+				'attribute'=>'tour_id',
+				'format' => 'raw',
+				'value' => function($model) {
+					if($model['tour_id']):
+						return '<a href="' . Url::to(['oa-tour/view', 'id'=>$model['tour_id']]) . '" target="_blank">T' . $model['tour_id'] . '</a>';
+					endif;
+					
+					return '-';
+				},
+				'headerOptions' => ['width' => '100'],
+			],
+			[
+				'label' => 'Agent',
+				'attribute'=>'username',
+				'headerOptions' => ['width' => '100'],
+			],
+			[
+				'label' => 'Tour End Date',
+				'attribute'=>'tour_end_date',
+				'headerOptions' => ['width' => '100'],
+			],
+			[
+				'attribute' => 'create_time',
+				'headerOptions' => ['width' => '150'],
+			],
+            [
+	         	'attribute' => 'rate',
+	         	'label' => 'Overall Rate',
+                'filter'=> \common\models\Tools::getEnvironmentVariable('oa_feedback_rate'),
+				'headerOptions' => ['width' => '150'],
+            ],
             // 'comment_itinerary:ntext',
             // 'comment_meals:ntext',
             // 'comment_service:ntext',
             // 'why_chose_us',
-            // 'rate',
             // 'suggestions:ntext',
-	        [
-		        'label' => 'Agent',
-	            'attribute' => 'agent'
-	        ],
-	        [
-		        'label' => 'Client name',
-	            'attribute' => 'client_name'
-	        ],
-	        [
-		        'label' => 'Client email',
-	            'attribute' => 'client_email'
-	        ],
 
-            [
+            /*[
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',
                 'urlCreator' => function ($action, $model, $key, $index) {
@@ -63,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     
                 },
-            ],
+            ],*/
         ],
     ]); ?>
 </div>

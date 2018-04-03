@@ -13,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="homepage-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if (Yii::$app->language == Yii::$app->sourceLanguage) { ?>
         <p>
             <?= (Yii::$app->language != Yii::$app->sourceLanguage) ? '' : Html::a(Yii::t('app', 'Create ' . ucfirst(Yii::$app->controller->id)), ['create'], ['class' => 'btn btn-success']) ?>

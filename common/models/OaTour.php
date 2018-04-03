@@ -76,7 +76,9 @@ class OaTour extends \yii\db\ActiveRecord
             ['tour_price', 'compare', 'compareValue' => 0, 'operator' => '>'],
             ['number_of_travelers', 'compare', 'compareValue' => 0, 'operator' => '>'],
             ['estimated_cost', 'compare', 'compareValue' => 0, 'operator' => '>='],
-            [['inquiry_source', 'language', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage', 'task_remind', 'task_remind_date'], 'string', 'max' => 255],
+            [['inquiry_source', 'language', 'group_type', 'country', 'tour_start_date', 'tour_end_date', 'contact', 'payment', 'stage', 'task_remind', 'task_remind_date'], 'string', 'max' => 255],  
+	        ['tour_start_date', 'compare', 'compareAttribute' => 'tour_end_date', 'operator' => '<=', 'enableClientValidation' => false],
+			['tour_end_date', 'compare', 'compareAttribute' => 'tour_start_date', 'operator' => '>='],
             [['co_agent', 'cities', 'email'], 'string', 'max' => 1024],
             ['email', 'email'],
         ];

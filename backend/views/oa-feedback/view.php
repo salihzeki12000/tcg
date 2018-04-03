@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oa-feedback-view">
 
+	<?php if($permission['isAdmin']): ?>
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -22,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -31,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             	'attribute' => 'tour_id',
             	'format' => 'raw'
             ],
-            'language',
             'create_time',
             [
             	'attribute' => 'comment_itinerary',
@@ -60,19 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             	'attribute' => 'suggestions',
             	'label' => 'Suggestions'
-            ],
-            [
-            	'attribute' => 'client_name',
-            	'label' => 'Client\'s name'
-            ],
-            [
-            	'attribute' => 'client_email',
-            	'label' => 'Client\'s email'
-            ],
-            [
-            	'attribute' => 'agent',
-            	'label' => 'Agent'
-            ],
+            ]
         ],
     ]) ?>
 
