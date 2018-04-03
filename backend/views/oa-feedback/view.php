@@ -43,20 +43,20 @@ $this->params['breadcrumbs'][] = $this->title;
             	'label' => 'Comment meals'
             ],
             [
-            	'attribute' => 'comment_service_agent',
-            	'label' => 'Comment agent'
-            ],
-            [
             	'attribute' => 'comment_service_guide_driver',
             	'label' => 'Comment guide & driver'
             ],
             [
-            	'attribute' => 'why_chose_us',
-            	'label' => 'Why chose us'
+            	'attribute' => 'comment_service_agent',
+            	'label' => 'Comment agent'
             ],
             [
             	'attribute' => 'rate',
             	'label' => 'Overall rate'
+            ],
+            [
+            	'attribute' => 'why_chose_us',
+            	'label' => 'Why chose us'
             ],
             [
             	'attribute' => 'suggestions',

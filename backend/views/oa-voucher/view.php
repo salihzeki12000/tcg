@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'tour_id',
             'code',
             'value',
-            'used',
             [
 				'attribute'=>'used',
 				'value' => ($model->used) ? 'Yes' : 'No',

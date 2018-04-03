@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="form-info container">
-  <div class="form-info-create col-lg-6 col-md-6 col-sm-8 col-xs-12">
+  <div class="form-info-create col-lg-7 col-md-7 col-sm-8 col-xs-12">
   	<span class="placeholder" id="inquiry-form"></span>
     <h2><?=Yii::t('app',"Feedback Form")?></h2>
 	<div class="tips"><?=Yii::t('app','Thank you for traveling with The China Guide! We would appreciate it if you could spend a few minutes giving us your feedback.') ?></div>
