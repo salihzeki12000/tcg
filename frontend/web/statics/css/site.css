@@ -1297,6 +1297,9 @@ div#social-media-icons-container a {
         margin-left: -15px;
         margin-right: -15px;
     }
+    .slideshow-experience {
+	    padding-left: 0px;
+    }
 }
 .overview .overview-vr {
     width: 100%;
@@ -1670,6 +1673,8 @@ a.desc:after {
 .overview .content-title {
     color: #aaa96f;
     font-family: 'Times New Roman';
+    margin-top: 20px;
+    margin-bottom: 8px;
 }
 .overview img.overview-img-fullwidth {
     width: 100%;

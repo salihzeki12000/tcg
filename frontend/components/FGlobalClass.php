@@ -89,6 +89,8 @@ class FGlobalClass extends \yii\base\Component
                 if ((strpos($url, $lang_path) === 0 || "/{$language}" == $url) && $language != Yii::$app->sourceLanguage 
                     && stripos($url, 'secure-credit-card-form') === false
                     && stripos($url, 'terms-of-service') === false
+                    && stripos($url, '/blog') === false
+                    && stripos($url, 'feedback-form') === false
                     && !YII_DEBUG
                     ) {
                     header('Location: http://'.$language.'.thechinaguide.com');

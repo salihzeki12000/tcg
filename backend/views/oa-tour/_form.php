@@ -191,6 +191,21 @@ $this->registerJsFile('@web/statics/js/bootstrap-datepicker.min.js',['depends'=>
 $js = <<<JS
     $(function(){
         $("#oatour-tour_start_date, #oatour-tour_end_date, #oatour-task_remind_date").attr("readonly","readonly").datepicker({ format: 'yyyy-mm-dd' });
+        
+        $("#oatour-tour_start_date, #oatour-tour_end_date").change(function()
+        {
+	        var startDate = $("#oatour-tour_start_date").val();
+	        var endDate = $("#oatour-tour_end_date").val();
+	        
+	        if(startDate !== '' && endDate !== '')
+	        {
+        		var d1 = new Date(startDate);
+				var d2 = new Date(endDate);
+			
+				(d1 > d2) ? alert("Tour end date can not be earlier than start date!") : '';
+			}
+		});
+        
         $(".bt_clear_item").click(function(){
             $(this).next().val("");
         });

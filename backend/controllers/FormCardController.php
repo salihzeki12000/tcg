@@ -30,7 +30,7 @@ class FormCardController extends Controller
             $this->canDel = 1;
             $this->canMod = 1;
         }
-        if (isset($roles['Accountant'])) {
+        if (isset($roles['OA-Accountant']) || isset($roles['OA-Admin'])) {
             $this->canMod = 1;
             $this->canView = 1;
         }
@@ -138,8 +138,7 @@ class FormCardController extends Controller
                 }
             }
             $model->update_time = date('Y-m-d H:i:s',time());
-            if ($model->save()) {
-
+            if ($model->save(false)) {
                 $mail_subject = "CreditCard-{$model->client_name}-{$model->amount_to_bill}-{$model->tour_date}-Agent:{$model->travel_agent}-" . Yii::$app->params['card_status'][$model->status];
                 $receiver[] = 'creditcard@thechinaguide.com';
                 if (!empty($model->agent_mail)) {

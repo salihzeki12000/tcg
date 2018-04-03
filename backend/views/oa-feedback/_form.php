@@ -14,14 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tour_id')->textInput()?>
 
-    <?= $form->field($model, 'agent')->dropDownList(\common\models\Tools::getFormTravelAgents(), ['prompt' => '', 'disabled' => true])->label("Agent") ?>
-
-    <?= $form->field($model, 'client_name')->textInput(['maxlength' => true, 'disabled' => true])->label("Client's name") ?>
-
-    <?= $form->field($model, 'client_email')->textInput(['maxlength' => true, 'disabled' => true])->label("Client's email") ?>
-
-    <?= $form->field($model, 'language')->dropdownList(common\models\Tools::getEnvironmentVariable('oa_language'), ['disabled' => true]) ?>
-
     <?= $form->field($model, 'comment_itinerary')->textarea(['rows' => 6, 'disabled' => true])->label("Comment itinerary") ?>
 
     <?= $form->field($model, 'comment_meals')->textarea(['rows' => 6, 'disabled' => true])->label("Comment meals") ?>
@@ -32,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'why_chose_us')->textInput(['maxlength' => true, 'disabled' => true])->label("Why client chose us") ?>
 
-    <?= $form->field($model, 'rate')->dropDownList(['Excellent' => Yii::t('app','Excellent'), 'Very Good' => Yii::t('app','Very Good'), 'Average' => Yii::t('app','Average'), 'Poor' => Yii::t('app','Poor')], ['prompt' => Yii::t('app',''), 'disabled' => true])->label("Rate") ?>
+    <?= $form->field($model, 'rate')->dropDownList(common\models\Tools::getEnvironmentVariable('oa_feedback_rate'), ['prompt' => Yii::t('app',''), 'disabled' => true])->label("Rate") ?>
 
     <?= $form->field($model, 'suggestions')->textarea(['rows' => 6, 'disabled' => true])->label("Suggestions") ?>
 

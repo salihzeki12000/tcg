@@ -203,7 +203,7 @@ class OaInquiryController extends Controller
             // 'New + Following Up + Waiting for Payment' => ['1','2','3'], //New + Following Up + Waiting for Payment
             'Following' => ['1','2'], //New + Following Up + Waiting for Payment
             'Waiting for Payment' => ['3'],
-            'Inactive' => ['4'], //Inactive
+            // 'Inactive' => ['4'], //Inactive
             'Booked' => ['5','6','7'], //Booked
             'Lost' => ['8','9','10','11','12','15'], //Lost
             'Bad' => ['13','14'], //Bad
@@ -228,7 +228,7 @@ class OaInquiryController extends Controller
         }
         
         if(!empty($name_or_email)):
-            $summarySql .= " AND (contact LIKE '%{$name_or_email}%' OR email LIKE '%{$name_or_email}%') OR original_inquiry lIKE '%{$name_or_email}%' ";
+            $summarySql .= " AND (contact LIKE '%{$name_or_email}%' OR email LIKE '%{$name_or_email}%' OR original_inquiry lIKE '%{$name_or_email}%') ";
         endif;
         
         if ($date_type == 2) {
@@ -293,7 +293,8 @@ class OaInquiryController extends Controller
             }
         }
         $summaryInfo['Booking Rate'] = 0;
-        if (($sum = ($summaryInfo['Booked'] + $summaryInfo['Lost'] + $summaryInfo['Inactive'])) > 0 ) {
+        // if (($sum = ($summaryInfo['Booked'] + $summaryInfo['Lost'] + $summaryInfo['Inactive'])) > 0 ) {
+        if (($sum = ($summaryInfo['Booked'] + $summaryInfo['Lost'])) > 0 ) {
             $summaryInfo['Booking Rate'] = intval(($summaryInfo['Booked']/$sum)*100) . '%';
         }
 
@@ -310,6 +311,7 @@ class OaInquiryController extends Controller
             'date_type' => $date_type,
             'inquiry_source' => $inquiry_source,
             'language' => $language,
+            'name_or_email' => $name_or_email,
         ]);
     }
 

@@ -4,7 +4,8 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
+//use yii\data\ActiveDataProvider;
+use yii\data\SqlDataProvider;
 use common\models\OaFeedback;
 
 /**
@@ -12,6 +13,9 @@ use common\models\OaFeedback;
  */
 class OaFeedbackSearch extends OaFeedback
 {
+	public $username;
+	public $tour_end_date;
+	
     /**
      * @inheritdoc
      */
@@ -19,7 +23,8 @@ class OaFeedbackSearch extends OaFeedback
     {
         return [
             [['id', 'tour_id'], 'integer'],
-            [['language', 'create_time', 'comment_itinerary', 'comment_meals', 'comment_service_agent', 'comment_service_guide_driver', 'why_chose_us', 'rate', 'suggestions', 'client_name', 'client_email', 'agent'], 'safe'],
+            [['username', 'tour_end_date'], 'string'],
+            [['create_time', 'comment_itinerary', 'comment_meals', 'comment_service_agent', 'comment_service_guide_driver', 'why_chose_us', 'rate', 'suggestions'], 'safe'],
         ];
     }
 
@@ -41,41 +46,50 @@ class OaFeedbackSearch extends OaFeedback
      */
     public function search($params)
     {
-        $query = OaFeedback::find();
+	    $this->load($params);
+	    
+	    $sql = "SELECT * FROM oa_feedback AS OA_FEEDBACK ";
+        
+        $sql .= "LEFT JOIN (SELECT id as tid, agent, tour_end_date FROM oa_tour GROUP BY id) AS OA_TOUR ON OA_TOUR.tid = OA_FEEDBACK.tour_id ";      
+        
+        $sql .= "LEFT JOIN (SELECT id as aid, username FROM user GROUP BY id) AS USER ON OA_TOUR.agent = USER.aid ";
 
-        // add conditions that should always apply here
+		$sql .= "WHERE 1=1 ";
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+		if(!empty($this->id)):
+        	$sql .= "AND OA_FEEDBACK.id = '$this->id' ";
+		endif;
+		
+		if(!empty($this->tour_id)):
+        	$sql .= "AND OA_FEEDBACK.tour_id = '$this->tour_id' ";
+		endif;
+		
+		if(!empty($this->username)):
+        	$sql .= "AND USER.username LIKE '%{$this->username}%' ";
+		endif;
+		
+		if(!empty($this->tour_end_date)):
+        	$sql .= "AND OA_TOUR.tour_end_date LIKE '%{$this->tour_end_date}%' ";
+		endif;
+		
+		if(!empty($this->create_time)):
+        	$sql .= "AND OA_FEEDBACK.create_time LIKE '%{$this->create_time}%' ";
+		endif;
+		
+		if(!empty($this->rate)):
+        	$sql .= "AND OA_FEEDBACK.rate = '$this->rate' ";
+		endif;
 
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'tour_id' => $this->tour_id,
-            'create_time' => $this->create_time,
-            'agent' => $this->agent,
-        ]);
-
-        $query->andFilterWhere(['like', 'language', $this->language])
-            ->andFilterWhere(['like', 'comment_itinerary', $this->comment_itinerary])
-            ->andFilterWhere(['like', 'comment_meals', $this->comment_meals])
-            ->andFilterWhere(['like', 'comment_service_agent', $this->comment_service_agent])
-            ->andFilterWhere(['like', 'comment_service_guide_driver', $this->comment_service_guide_driver])
-            ->andFilterWhere(['like', 'why_chose_us', $this->why_chose_us])
-            ->andFilterWhere(['like', 'rate', $this->rate])
-            ->andFilterWhere(['like', 'suggestions', $this->suggestions])
-            ->andFilterWhere(['like', 'client_name', $this->client_name])
-            ->andFilterWhere(['like', 'client_email', $this->client_email]);
-
-        return $dataProvider;
+		$count = Yii::$app->db->createCommand("SELECT COUNT(*) FROM ($sql) as FEEDBACKS")->queryScalar();
+		
+		$dataProvider = new SqlDataProvider([
+	       'sql' => $sql,
+		   'totalCount' => $count,
+	       'pagination' => [
+	         'pageSize' => 100
+	        ],
+	     ]);
+		
+		return $dataProvider;
     }
 }

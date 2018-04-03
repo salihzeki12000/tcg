@@ -132,7 +132,7 @@ $secondsInOneDay = 86400;
         <?php endif; ?>
         <div style="margin: 10px 0;">
             <label style="width: 100px;">Name/Email</label>
-	    	<input name="name_or_email" type="text" size="50" />
+	    	<input name="name_or_email" value="<?= $name_or_email?>" type="text" size="50" />
 	    </div>
         <input class="btn btn-primary" type="submit" name="" value="Refresh" style="margin-bottom: 20px">
     </form>
@@ -181,11 +181,11 @@ $secondsInOneDay = 86400;
     <?php $i=0; foreach ($listInfo as $listTitle => $listItem) { ?>
     
     	<?php
-	    $lostOrBad = in_array($listTitle, array('Lost', 'Bad'));
+	    $bookedLostOrBad = in_array($listTitle, array('Booked', 'Lost', 'Bad'));
 	    $waitingOrBooked = in_array($listTitle, array('Waiting for Payment', 'Booked'));
 	    ?>
     	
-	        <div id="list_view_<?=$i?>" class="list_views" style="<?=($i>0)?'display: none;':''?>">
+	        <div id="list_view_<?=$i?>" class="grid-view" style="<?=($i>0)?'display: none;':''?>">
 	            <table id="w0" class="table table-striped table-bordered detail-view">
 	                <thead>
 	                    <tr>
@@ -200,7 +200,7 @@ $secondsInOneDay = 86400;
 	                        <th>Inquiry Status</th>
 	                        <th>Agent</th>
 	                        <th>Co-Agent</th>
-	                        <?php if(!$lostOrBad): ?><th>Task, Notice & Warning</th><?php endif; ?>
+	                        <?php if(!$bookedLostOrBad): ?><th>Task, Notice & Warning</th><?php endif; ?>
 	                    </tr>
 	                </thead>
 	                <tbody>
@@ -246,7 +246,7 @@ $secondsInOneDay = 86400;
 		                        </td>
 	                            <td><?=$value['agent']?></td>
 	                            <td><?=$value['co_agent']?></td>
-	                            <?php if(!$lostOrBad): ?><td>
+	                            <?php if(!$bookedLostOrBad): ?><td>
 		                            <?php
 			                        // if there's a due task
 			                        if(!empty($taskReminder)):
@@ -299,9 +299,9 @@ $secondsInOneDay = 86400;
 	                            	
 									$oa_inquiry_status = \common\models\Tools::getEnvironmentVariable('oa_inquiry_status');
 									
-	                            	if($oa_inquiry_status[$value['inquiry_status']] == 'Inactive' && (($tourStartDate - $now) / $secondsInOneDay) <= 60):
+	                            	/* if($oa_inquiry_status[$value['inquiry_status']] == 'Inactive' && (($tourStartDate - $now) / $secondsInOneDay) <= 60):
 										echo '<div style="color: #c55">Expiring, contact for final try.</div>';
-	                            	endif;
+	                            	endif; */
 	                            	
 	                            	// if expired
 	                            	if(!empty($tourStartDate) && in_array($oa_inquiry_status[$value['inquiry_status']], array('New', 'Following up', 'Waiting for Payment', 'Inactive')) && (($tourStartDate - $now) / $secondsInOneDay) <= 0):
@@ -345,7 +345,7 @@ $js = <<<JS
     $(function(){
         $(".ul_list_view a").click(function(){
             var showId = $(this).attr('data-id');
-            $(".list_views").hide();
+            $(".grid-view").hide();
             $("#"+showId).show();
             $(".ul_list_view li").removeClass('active');
             $(this).parent("li").addClass('active');

@@ -16,6 +16,7 @@ class Tools
             return $ret;
         }
     }
+        
     static public function getCurrentUrl()
     {
         $url = \yii\helpers\Url::current();
@@ -35,7 +36,7 @@ class Tools
         // var_dump($url);exit;
         return $url;
     }
-
+        
     static public function wordcut($str, $length = null, $start = 0)
     {
 
@@ -127,7 +128,7 @@ class Tools
         $words = explode(" ",$string);
         return implode(" ",array_splice($words,0,$word_limit));
     }
-
+        
     static public function getMostPopularTours($count=6)
     {
         $cache = Yii::$app->cache;
@@ -153,7 +154,7 @@ class Tools
         }
         return $data;
     }
-
+        
     static public function getMostPopularBlogs($count=10)
     {
         $cache = Yii::$app->cache;
@@ -172,7 +173,7 @@ class Tools
 
         return $data;
     }
-
+        
     static public function getMostPopularCities($count=6)
     {
         $cache = Yii::$app->cache;
@@ -190,7 +191,7 @@ class Tools
 
         return $data;
     }
-
+        
     static public function getAllTheme()
     {
         $cache = Yii::$app->cache;
@@ -207,7 +208,7 @@ class Tools
         
         return $data;
     }
-
+        
     static public function getCitiesByRecType($rec_type = REC_TYPE_POPULAR)
     {
         $cache = Yii::$app->cache;
@@ -225,7 +226,7 @@ class Tools
 
         return $data;
     }
-
+        
     static public function getFormPopularCities()
     {
 
@@ -252,7 +253,7 @@ class Tools
             return $data;
         }
     }
-
+        
     static public function getFormTravelAgents()
     {
         if (($row = \common\models\EnvironmentVariables::findOne('travel_agents_mail')) !== null) {
@@ -297,7 +298,7 @@ class Tools
             return $data[$type];
         }
     }
-
+        
     static public function getEnvironmentVariable($var_name)
     {
         $cache = Yii::$app->cache;
@@ -314,7 +315,7 @@ class Tools
         }
         return $data;
     }
-
+        
     static public function getUserList()
     {
         $cache = Yii::$app->cache;
@@ -333,7 +334,7 @@ class Tools
         }
         return $data;
     }
-
+        
     static public function getAgentUserList()
     {
         $cache = Yii::$app->cache;
@@ -356,7 +357,7 @@ class Tools
         }
         return $data;
     }
-
+        
     static public function getLeaders($subId)
     {
         $sql = "SELECT a.id FROM user a JOIN oa_user_sub b ON a.id = b.user_id WHERE b.sub_id=$subId";
@@ -379,7 +380,7 @@ class Tools
 			return 0;
 		endif;
     }
-
+        
     static public function getSubUserByUserId($userId)
     {
         $sql = "SELECT a.sub_id,b.username FROM oa_user_sub a JOIN user b ON a.sub_id=b.id WHERE a.user_id=$userId";
@@ -392,7 +393,7 @@ class Tools
         }
         return $subAgent;
     }
-
+        
     static public function tourClosed($id)
     {
         if(!empty($id))
@@ -421,7 +422,7 @@ class Tools
 	    $dt = \DateTime::createFromFormat("Y-m-d", $date);
 		return $dt !== false && !array_sum($dt->getLastErrors());
     }
-
+        
     static public function inquiryAssignedToTour($inquiry_id)
     {
         if(!empty($inquiry_id))
@@ -443,7 +444,7 @@ class Tools
             return 0;
         }
     }
-
+        
     static public function getTourStartDate($tour_id)
     {
         if(!empty($tour_id))
@@ -477,13 +478,16 @@ class Tools
 	    return number_format($total, 2, '.', ',');
 	}
 	
-	public static function getDailyCostTypes(){
+	
+	public static function getDailyCostTypes()
+	{
     	$data = \common\models\OaDailyCostType::find()->all();
 		$value = (count($data)==0) ? [''=>'']: \yii\helpers\ArrayHelper::map($data, 'id','name');
         return $value;
     }
     
-    public static function getDailyCostSubtypes($type, $index = 0) {
+    public static function getDailyCostSubtypes($type, $index = 0)
+    {
         $data = \common\models\OaDailyCostSubtype::find()->where(['type'=>$type])->select(['id','name'])->asArray()->all();
         $value = (count($data) == 0) ? ['' => ''] : ((!$index) ? $data : \yii\helpers\ArrayHelper::map($data, 'id','name'));
         return $value;
