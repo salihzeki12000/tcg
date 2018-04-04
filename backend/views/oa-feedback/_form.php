@@ -18,13 +18,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'comment_meals')->textarea(['rows' => 6, 'disabled' => true])->label("Comment meals") ?>
 
-    <?= $form->field($model, 'comment_service_agent')->textarea(['rows' => 6, 'disabled' => true])->label("Comment service agent") ?>
-
     <?= $form->field($model, 'comment_service_guide_driver')->textarea(['rows' => 6, 'disabled' => true])->label("Comment service guide & driver") ?>
 
-    <?= $form->field($model, 'why_chose_us')->textInput(['maxlength' => true, 'disabled' => true])->label("Why client chose us") ?>
+    <?= $form->field($model, 'comment_service_agent')->textarea(['rows' => 6, 'disabled' => true])->label("Comment service agent") ?>
 
     <?= $form->field($model, 'rate')->dropDownList(common\models\Tools::getEnvironmentVariable('oa_feedback_rate'), ['prompt' => Yii::t('app',''), 'disabled' => true])->label("Rate") ?>
+
+    <?= $form->field($model, 'why_chose_us')->textInput(['maxlength' => true, 'disabled' => true])->label("Why client chose us") ?>
 
     <?= $form->field($model, 'suggestions')->textarea(['rows' => 6, 'disabled' => true])->label("Suggestions") ?>
 
