@@ -60,7 +60,11 @@ class FormInfoController extends Controller
 
     public function actionSuccess()
     {
+        return $this->render('view', []);
+    }
 
+    public function actionComplete()
+    {
         return $this->render('view', []);
     }
 
@@ -179,7 +183,7 @@ class FormInfoController extends Controller
 
             }
         }
-        return $this->redirect(['success']);
+        return $this->redirect(['complete']);
     }
 
     /**
