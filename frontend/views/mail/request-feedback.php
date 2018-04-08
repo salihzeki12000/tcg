@@ -38,7 +38,7 @@
 	<div>
 		<div style="margin-bottom: 15px">Liebe/r <?= $contact ?>,</div>
 		
-		<div style="margin-bottom: 15px">Danke für die Reise mit The China Guide!</div>
+		<div style="margin-bottom: 15px">danke für Ihre Reise mit The China Guide!</div>
 		
 		<div style="margin-bottom: 15px">Mein Name ist Emily France, ich bin Customer Experience Manager bei The China Guide. Ich hoffe, Sie hatten eine fantastische Reise und alle unsere Dienstleistungen haben Ihre Erwartungen erfüllt.</div>
 			

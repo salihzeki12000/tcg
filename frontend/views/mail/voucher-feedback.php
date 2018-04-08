@@ -42,11 +42,11 @@
 	<div>
 		<div style="margin-bottom: 15px">Liebe/r <?= $contact ?>,</div>
 		
-		<div style="margin-bottom: 15px">Vielen Dank, dass Sie sich die Zeit genommen haben, uns Ihr Feedback zu geben. Im Folgenden finden Sie Ihre Gutscheininformationen.</div>
+		<div style="margin-bottom: 15px">vielen Dank, dass Sie sich die Zeit genommen haben, uns Ihr Feedback zu geben. Im Folgenden finden Sie Ihre Gutscheininformationen.</div>
 		
 		<div style="margin-bottom: 15px">Code: <?= $voucher->code ?><br>Wert: CNY <?= $voucher->value ?></div>
 			
-		<div style="margin-bottom: 15px">Allgemeine Geschäftsbedingungen: Sie können diesen Gutschein für Ihre nächste Tour mit uns nutzen oder an Familie und Freunde weitergeben. Dieser Gutschein kann für Touren mit einer Dauer von zwei oder mehr Tagen verwendet werden. Pro Tour kann nur ein Gutschein verwendet werden.</div>
+		<div style="margin-bottom: 15px">Sie können diesen Gutschein für Ihre nächste Tour mit uns nutzen oder an Familie und Freunde weitergeben. Dieser Gutschein kann für Touren mit einer Dauer von zwei oder mehr Tagen verwendet werden. Pro Tour kann nur ein Gutschein verwendet werden.</div>
 		
 		<div style="margin-bottom: 15px">Um den Gutschein einzulösen, teilen Sie den Code einfach bei der nächsten Buchung Ihrem Reiseberater mit.</div>
 		
