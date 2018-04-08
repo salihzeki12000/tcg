@@ -224,7 +224,7 @@ $inquiryAssignedToTour =  \common\models\Tools::inquiryAssignedToTour($model->id
                 ],
             ]); ?>
     </div>
-    <?= (!$permission['canAddPayment'] || $model->close == 'Yes' || $model->inquiry_status != 'Waiting for Payment') ? '' : "<a href='".Url::to(['oa-payment/create', 'inquiry_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary']).'</a>' ?>
+    <?= (!empty($tour_id) || !$permission['canAddPayment'] || $model->close == 'Yes' || $model->inquiry_status != 'Waiting for Payment') ? '' : "<a href='".Url::to(['oa-payment/create', 'inquiry_id'=>$model->id])."' target='_blank'>".Html::button(Yii::t('app', 'Add Payment Item'), ['class' => 'btn btn-primary']).'</a>' ?>
     </div>
 
 </div>

@@ -546,7 +546,11 @@ class OaTourController extends Controller
             if(isset($_POST['OaTour']['co_agent']) && is_array($_POST['OaTour']['co_agent'])) {
                 $model->co_agent = join(',', $_POST['OaTour']['co_agent']);
             }
-            
+            else
+            {
+	            $model->co_agent = '';
+            }
+
             if($model->inquiry_id) {
                 if(($inquiryModel = \common\models\OaInquiry::findOne($model->inquiry_id)) !== null) {
                 }
