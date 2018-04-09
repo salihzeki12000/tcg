@@ -198,7 +198,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	                                <?php
 		                            $now = time();
 		                            $secondsInOneDay = 86400;
-		                            $tourEndDate = strtotime($value['tour_end_date']);
 		                            
 		                            // if task is overdue
 		                            if($value['task_remind'] && $value['task_remind_date']):
@@ -227,8 +226,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            
 		                            // if tour hasn't been closed after 3 months
 	                            	if($permission['isAdmin'] || $permission['isAccountant']):
-		                            	$thirdMonth = date('m', $tourEndDate) + 3;
-		                            	$dateThirdMonth = strtotime(date("Y-$thirdMonth-01"));
+		                            	$tourEndDate = $value['tour_end_date'];
+		                            	$thirdMonth = date('Y-m-01', strtotime("$tourEndDate +3 month"));
+		                            	$dateThirdMonth = strtotime(date($thirdMonth));
 		                            	if($now >= $dateThirdMonth && !$value['close']):
 		                            		echo '<div class="other-notice">Needs to be closed!</div>';
 		                            	endif;
@@ -237,6 +237,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		                            // needs pre-tour confirmation OR tour has ended and stage hasn't been changed
 	                            	if($permission['isAdmin'] || $permission['isAgent'] || $permission['isOperator']):
 		                            	$tourStartDate = strtotime($value['tour_start_date']);
+		                            	$tourEndDate = strtotime($value['tour_end_date']);
 		                            	if(
 		                            		((($tourStartDate - $now) / $secondsInOneDay) <= 15 && $value['stage'] == 'Need to Schedule')
 											||
@@ -272,7 +273,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            	
 		                            // if Accounting Profit != Confirmed Profit!
 	                            	if($permission['isAdmin'] || $permission['isAccountant']):
-										if(($value['pay_confirmed_amount'] - $value['cost_confirmed_amount']) != ($value['pay_accounting_amount'] - $value['cost_accounting_amount'])):
+	                            		// number_format here avoids a situation where the comparison returns false when the result of both subtractions is actually the same
+										if(number_format($value['pay_confirmed_amount'] - $value['cost_confirmed_amount'], 2) != number_format($value['pay_accounting_amount'] - $value['cost_accounting_amount'], 2)):
 											echo '<div  class="other-notice">Accounting Profit != Confirmed Profit</div>';
 		                            	endif;
 	                            	endif;
