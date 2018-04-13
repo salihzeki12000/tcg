@@ -32,20 +32,24 @@ endif;
 $this->keywords = Html::encode($tour_info['keywords']);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experiences'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $tour_info['name'];
+
+$numberOfSlides = count($tour_info['images']);
 ?>
 <div class="tour-view">
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
+      <?php if($numberOfSlides != 1): ?>
       <ol class="carousel-indicators">
-        <?php for($i=0; $i<count($tour_info['images']); $i++) { ?>
+        <?php for($i=0; $i<$numberOfSlides; $i++) { ?>
             <li data-target="#carousel-slides-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
         <?php } ?>
       </ol>
+      <?php endif; ?>
      
       <!-- Wrapper for slides -->
       <div class="carousel-inner full-w">
-        <?php for($i=0; $i<count($tour_info['images']); $i++) {
+        <?php for($i=0; $i<$numberOfSlides; $i++) {
             $slide=$tour_info['images'][$i];
             $pic_type = 'l';
             if (Yii::$app->params['is_mobile']) {
@@ -59,12 +63,14 @@ $this->params['breadcrumbs'][] = $tour_info['name'];
       </div>
      
       <!-- Controls -->
+      <?php if($numberOfSlides != 1): ?>
       <a class="left carousel-control" href="#carousel-slides-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
       <a class="right carousel-control" href="#carousel-slides-generic" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
+      <?php endif; ?>
     </div>
 
 
