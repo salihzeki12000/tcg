@@ -91,6 +91,7 @@ class FGlobalClass extends \yii\base\Component
                     && stripos($url, 'terms-of-service') === false
                     && stripos($url, '/blog') === false
                     && stripos($url, 'feedback-form') === false
+                    && stripos($url, 'about-us') === false
                     && !YII_DEBUG
                     ) {
                     header('Location: http://'.$language.'.thechinaguide.com');
