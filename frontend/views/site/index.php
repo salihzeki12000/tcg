@@ -24,26 +24,28 @@ $this->keywords = Yii::t('app','China tours, China travel guide, China travel ag
         </div>
     </div>
 
-    <?php }else{ ?>
+    <?php }else{ $numberOfSlides = count($slides); ?>
 
     <div id="carousel-slides-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
+      <?php if($numberOfSlides != 1): ?>
       <ol class="carousel-indicators">
-        <?php for($i=0; $i<count($slides); $i++) { ?>
+        <?php for($i=0; $i<$numberOfSlides; $i++) { ?>
             <li data-target="#carousel-slides-generic" data-slide-to="<?= $i ?>" <?= ($i==0)? 'class="active"' : '' ?> ></li>
         <?php } ?>
       </ol>
+      <?php endif; ?>
       
       <!-- Wrapper for slides -->
       <div class="carousel-inner full-w">
-        <?php for($i=0; $i<count($slides); $i++) {
+        <?php for($i=0; $i<$numberOfSlides; $i++) {
             $slide=$slides[$i];
             $pic_type = 'l';
             if (Yii::$app->params['is_mobile']) {
                 $pic_type = 'mob';
             }
         ?>
-            <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $slide['url'] ?>">
+            <a class="item <?= ($i==0)? 'active' : '' ?> " href="<?= $slide['url'] ?>" <?php if(empty($slide['url'])): ?>onclick="return false;" style="cursor: default"<?php endif; ?>>
               <img src="<?= Yii::$app->params['uploads_url'] . UploadedFiles::getSize($slide['pic_s'], $pic_type)?>" alt="<?=  $slide['title'] ?>">
               <div class="carousel-caption">
                 <h3><span><?= $slide['title'] ?></span></h3>
@@ -53,12 +55,14 @@ $this->keywords = Yii::t('app','China tours, China travel guide, China travel ag
         <?php } ?>
       </div>
       <!-- Controls -->
+      <?php if($numberOfSlides != 1): ?>
       <a class="left carousel-control" href="#carousel-slides-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
       <a class="right carousel-control" href="#carousel-slides-generic" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
+	  <?php endif; ?>
 
     <a  id="bt-show-video" class="video_preview" href="javascript:void(0);"  data-toggle="modal" data-target="#video-modal">
         <span class="preview_img">
