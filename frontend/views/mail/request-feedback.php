@@ -8,7 +8,7 @@
 			
 		<div style="margin-bottom: 15px">Since your trip has come to an end, we would like to take this opportunity to ask if you could take a few minutes to complete <a href="https://www.thechinaguide.com/feedback-form?cd=<?= $code; ?>" target="_blank">our online feedback form</a>. Not only does your feedback help us to keep improving our services, you will also receive a voucher to put towards a tour with The China Guide that you can use yourself or pass on to family and friends.</div>
 		
-		<div style="margin-bottom: 15px">Thank you in advance!</div>
+		<div style="margin-bottom: 15px">Thank you in advance,</div>
 		
 		<div style="margin-bottom: 15px">Emily France</div>
 		
@@ -44,7 +44,7 @@
 			
 		<div style="margin-bottom: 15px">Ihre Reise ist nun zu Ende. Wir möchten diese Gelegenheit nutzen, um zu fragen, ob Sie sich ein paar Minuten Zeit nehmen können, <a href="https://www.thechinaguide.com/de/feedback-form?cd=<?= $code; ?>" target="_blank">um  uns zu bewerten</a>. Ihr Feedback hilft uns nicht nur unseren Service zu verbessern, sondern Sie erhalten auch einen Gutschein für eine Tour mit The China Guide, den Sie selbst verwenden oder an Familie und Freunde weitergeben können.</div>
 		
-		<div style="margin-bottom: 15px">Vielen Dank im Voraus!</div>
+		<div style="margin-bottom: 15px">Vielen Dank im Voraus,</div>
 		
 		<div style="margin-bottom: 15px">Emily France</div>
 		
@@ -62,7 +62,7 @@
 			
 		<div style="margin-bottom: 15px">Ahora que su viaje ha terminado nos gustaría aprovechar esta oportunidad para preguntar si podría tomar unos minutos de su tiempo para completar <a href="https://www.thechinaguide.com/es/feedback-form?cd=<?= $code; ?>" target="_blank">nuestro feedback en línea</a>. Sus comentarios nos ayudan a mejorar nuestros servicios continuamente y le proporcionarán un cupón que puede emplear para un nuevo tour con The China Guide o que puede regalar a sus familiares o amigos.</div>
 		
-		<div style="margin-bottom: 15px">¡Gracias de antemano!</div>
+		<div style="margin-bottom: 15px">¡Gracias de antemano,</div>
 		
 		<div style="margin-bottom: 15px">Emily France</div>
 		
