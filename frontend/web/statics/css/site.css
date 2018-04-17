@@ -1246,6 +1246,9 @@ div#social-media-icons-container a {
     .overview .overview-img {
         width: 50% !important;
     }
+    .overview .overview-img-70 {
+        width: 70% !important;
+    }
     .overview .overview-vr {
         width: 80% !important;
         height: 480px !important;
@@ -1657,7 +1660,7 @@ a.desc:after {
     text-decoration: underline;
     ;
 }
-.overview .overview-img {
+.overview .overview-img, .overview .overview-img-70 {
     width: 100%;
 }
 .overview a.sight {
