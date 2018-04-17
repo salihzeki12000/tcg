@@ -62,7 +62,7 @@
 			
 		<div style="margin-bottom: 15px">Ahora que su viaje ha terminado nos gustaría aprovechar esta oportunidad para preguntar si podría tomar unos minutos de su tiempo para completar <a href="https://www.thechinaguide.com/es/feedback-form?cd=<?= $code; ?>" target="_blank">nuestro feedback en línea</a>. Sus comentarios nos ayudan a mejorar nuestros servicios continuamente y le proporcionarán un cupón que puede emplear para un nuevo tour con The China Guide o que puede regalar a sus familiares o amigos.</div>
 		
-		<div style="margin-bottom: 15px">¡Gracias de antemano,</div>
+		<div style="margin-bottom: 15px">Gracias de antemano,</div>
 		
 		<div style="margin-bottom: 15px">Emily France</div>
 		
