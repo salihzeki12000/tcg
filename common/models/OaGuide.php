@@ -36,12 +36,11 @@ class OaGuide extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'language', 'city_id'], 'required'],
+            [['name', 'language', 'city_id', 'contact_info'], 'required'],
             [['rating', 'city_id', 'agency'], 'integer'],
             [['daily_price'], 'number'],
-            [['contact_info', 'identity_bank_info', 'cl_english', 'note', 'email'], 'string'],
-            [['name', 'email', 'language'], 'string', 'max' => 255],
-            [['email'], 'unique'],
+            [['identity_bank_info', 'cl_english', 'note', 'email'], 'string'],
+            [['name', 'email', 'language', 'contact_info'], 'string', 'max' => 255],
             [['name'], 'unique'],
             ['email', 'email'],
         ];
@@ -61,7 +60,7 @@ class OaGuide extends \yii\db\ActiveRecord
             'daily_price' => Yii::t('app', 'Daily Price'),
             'city_id' => Yii::t('app', 'City'),
             'agency' => Yii::t('app', 'Agency'),
-            'contact_info' => Yii::t('app', 'Contact Info'),
+            'contact_info' => Yii::t('app', 'Mobile Number'),
             'identity_bank_info' => Yii::t('app', 'Identity & Bank Info'),
             'cl_english' => Yii::t('app', 'CL-English'),
             'note' => Yii::t('app', 'Note'),
