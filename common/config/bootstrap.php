@@ -7,7 +7,7 @@ Yii::setAlias('@root', realpath(dirname(__FILE__).'/../../'));
 Yii::setAlias('@uploads', dirname(dirname(__DIR__)) . '/frontend/web/uploads');
 
 define('SITE_SERVER_NAME'   , 'localhost');
-define('SITE_BASE_URL'   , 'http://'.SITE_SERVER_NAME.'/repositories/tcg/frontend/web');
+define('SITE_BASE_URL'   , 'https://'.SITE_SERVER_NAME.'/repositories/tcg/frontend/web');
 define('UPLOADS_URL'   , SITE_BASE_URL.'/uploads/');
 define('SECRET_SECRET_KEY'   , '3567bd0855afc34c');
 
@@ -61,6 +61,7 @@ define('FORM_TYPE_GROUP',       5);
 define('CARD_STATUS_CHARGED',     0);
 define('CARD_STATUS_SUCCESSFULY', 1);
 define('CARD_STATUS_FAILED',      2);
+define('CARD_STATUS_DISMISSED',   3);
 
 define('OA_BOOK_COST_TYPE_GUIDE',     1);
 define('OA_BOOK_COST_TYPE_HOTEL',     2);
