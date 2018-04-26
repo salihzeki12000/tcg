@@ -27,7 +27,9 @@ class TourController extends Controller
     public function actionSendfeedbackform()
     { 
 	    if(!empty($this->tour_end_date)):
-		    $clients = ArrayHelper::toArray(OaTour::find()->where(['tour_end_date' => $this->tour_end_date])->all(), [
+		    $clients = ArrayHelper::toArray(OaTour::find()->where(['tour_end_date' => $this->tour_end_date])
+		    											  ->andWhere(['not in', 'stage', array(6, 7)])
+		    											  ->all(), [
 			    'common\models\OaTour' => [
 			        'id',
 			        'contact',
