@@ -42,7 +42,7 @@ body {
     margin-bottom: 5px;
 }
 .carousel-caption h3 {
-    font-size: 18px;
+    font-size: 14px;
     font-family: Georgia, Times, 'Times New Roman', serif;
     margin-bottom: 4px;
     margin-top: 4px;
@@ -1222,7 +1222,7 @@ div#social-media-icons-container a {
         margin-bottom: 10px;
     }
     .carousel-caption h3 {
-        font-size: 34px;
+        font-size: 34px !important;
     }
     .page-header {
         font-size: 30px;
@@ -1253,8 +1253,8 @@ div#social-media-icons-container a {
         width: 80% !important;
         height: 480px !important;
     }
-    .carousel-caption {
-        font-size: 18px !important;
+    .carousel-caption h3 {
+        font-size: 18px;
     }
     .navbar-right {
         float: right !important;
@@ -2425,14 +2425,20 @@ blockquote cite:before {
         margin-top: 30px;
         padding: 0px 15px;
     }
+	.site-index .carousel-caption {
+    	right: 15%;
+		left: 15%;
+	}
 }
 /* SINGLE IMAGE BANNERS - VIDEO PREVIEW ======================================== */
 
 .video_preview {
     position: absolute;
     display: block;
-    bottom: 10px;
-    left: 10px;
+    /* bottom: 10px; */
+    /* left: 10px; */
+    top: 10px;
+    right: 9px;
     z-index: 10;
     height: 50px;
 }
